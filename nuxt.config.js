@@ -39,11 +39,9 @@ module.exports = {
    */
   plugins: [
     '@/plugins/vuesax',
+    '@/plugins/filters.js',
     { src: '~/plugins/globalComponents', mode: 'client' },
-    { src: '~/plugins/filters', mode: 'client' },
     { src: '~/plugins/peer', mode: 'client' }
-
-    // { src: "~/plugins/aframe", mode: "client" }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -76,7 +74,7 @@ module.exports = {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content',
+    // '@nuxt/content',
     'nuxt-purgecss',
     '@nuxtjs/firebase',
     'nuxt-socket-io',
@@ -93,13 +91,13 @@ module.exports = {
       ['vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css']
     ]
   ],
-  content: {
-    markdown: {
-      prism: {
-        theme: false
-      }
-    }
-  },
+  // content: {
+  //   markdown: {
+  //     prism: {
+  //       theme: false
+  //     }
+  //   }
+  // },
 
   /*
    ** Firebase Config
@@ -107,16 +105,16 @@ module.exports = {
   firebase: {
     config: {
       production: {
-        apiKey: 'AIzaSyBMj2o9iEITpXpmXGiaJ9wfDr8otWdh-fw',
-        authDomain: 'apps-test-all.firebaseapp.com',
-        databaseURL: 'https://apps-test-all.firebaseio.com',
-        projectId: 'apps-test-all',
-        storageBucket: 'apps-test-all.appspot.com',
-        messagingSenderId: '458723667512',
-        appId: '1:458723667512:web:112c5fcd9c7ece141140cd',
-        measurementId: 'G-NCTV5W0QKN',
+        apiKey: 'AIzaSyAv6qjy00LlrxmBCk2xuaRKjw2zXJE1jPo',
+        authDomain: 'partnersinbiz-agency.firebaseapp.com',
+        databaseURL: 'https://partnersinbiz-agency.firebaseio.com',
+        projectId: 'partnersinbiz-agency',
+        storageBucket: 'partnersinbiz-agency.appspot.com',
+        messagingSenderId: '463207487963',
+        appId: '1:463207487963:web:d555981e27f1c41189affe',
+        measurementId: 'G-0ML2QYBW4V',
         fcmPublicVapidKey:
-          'BJnNaNqvpiEa1uoj4fSPMD_BNU3rFPB7QYQIJb9KsqtyPbmYT7HeajpCjFD1NViUcwQ8dBaHFTpEmoA4TGAEanU' // Sets vapid key for FCM after initialization
+          'BElIDO8oe-f5IJCFctJDlKMVaOlbfwXK1XusDBdHShY3YtiKBwYaBMBJLO3JE9QdMLbKazjI3icNvdWlh1JWqc4' // Sets vapid key for FCM after initialization
       },
       development: {
         apiKey: 'AIzaSyBMj2o9iEITpXpmXGiaJ9wfDr8otWdh-fw',
@@ -203,20 +201,7 @@ module.exports = {
             ],
             listeners: ['joinedRoom [updateUsers', 'leavedRoom [updateUsers']
           },
-          '/aframe': {
-            emitters: [
-              'joinRoom + joinDetails --> roomInfo',
-              'leaveRoom + joinDetails --> roomInfo',
-              'sendMsg + userMsg',
-              'movementAvatar + myMovement'
-            ],
-            listeners: [
-              'joinedRoom [updateUsers',
-              'leavedRoom [updateUsers',
-              'chatMessage [appendChats',
-              'movementReceived [updateMovement'
-            ]
-          },
+
           '/videochat': {
             emitters: [
               'joinRoom + joinDetails --> roomInfo',
@@ -258,7 +243,7 @@ module.exports = {
   axios: {},
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
-  content: {},
+  // content: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -277,6 +262,7 @@ module.exports = {
       'vue-prism-component',
       'xlsx',
       'postcss-rtl',
+      'peerjs',
       'vue-select',
       'vue-apexcharts',
       'vue-form-wizard',

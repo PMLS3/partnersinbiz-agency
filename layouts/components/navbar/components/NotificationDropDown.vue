@@ -142,7 +142,7 @@ export default {
         const refff = vm.$fireStore
           .collection('apps')
           .doc('users')
-          .collection(this.business.b_uid)
+          .collection(vm.business.b_uid)
           .doc('notifications')
           .collection(user.uid)
         refff.onSnapshot(snapshot => {

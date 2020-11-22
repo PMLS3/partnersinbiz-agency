@@ -1,5 +1,8 @@
 <template>
-  <HomePage />
+  <!-- <HomePage /> -->
+  <vs-card class="p-8">
+    <DashboardBroadcast />
+  </vs-card>
 </template>
 
 <script>
