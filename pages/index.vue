@@ -9,6 +9,10 @@
 
 <script>
 import * as THREE from 'three'
+import TrackballControls from 'three-trackballcontrols'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
 export default {
   layout: 'fullPage',
   components: {},
@@ -22,10 +26,13 @@ export default {
       particleSystem: undefined,
       started: false,
       trackballControls: undefined,
-      clock: undefined
+      clock: undefined,
+      move: false,
+      mouse: null
     }
   },
   mounted() {
+    this.mouse = new THREE.Vector2()
     this.setupCameraSceneRenderer()
     this.addLight()
     this.positionCamera()
@@ -33,6 +40,7 @@ export default {
     this.setupTrackballControls()
     this.bindWindowEvents()
     this.$refs.threeElement.appendChild(this.renderer.domElement)
+    this.startScene()
   },
   methods: {
     /* THREE scene setup functions */
@@ -71,8 +79,33 @@ export default {
       this.clock = new THREE.Clock()
     },
     setupTrackballControls() {
-      this.trackballControls = new THREE.TrackballControls(this.camera)
+      this.trackballControls = new TrackballControls(
+        this.camera,
+        this.renderer.domElement
+      )
       this.trackballControls.rotateSpeed = 1.7
+
+      const controls = new OrbitControls(this.camera, this.renderer.domElement)
+      controls.target.set(0, 5, 0)
+      controls.update()
+    },
+    /* Load GLTFLoader */
+    createdGLTF() {
+      let vm = this
+
+      //       let mixer = THREE.AnimationMixer
+      // let modelReady = false;
+      // let animationActions = THREE.AnimationAction
+      // let activeAction = THREE.AnimationAction
+      // let lastAction = THREE.AnimationAction
+      const gltfLoader = new GLTFLoader()
+      gltfLoader.load(
+        'https://cdn.glitch.com/7520b016-05b9-4546-90da-4f270e933ccd%2FClinic.glb?v=1605239343980',
+        gltf => {
+          const root = gltf.scene
+          vm.scene.add(root)
+        }
+      )
     },
     /* textures, geometries, meshes */
     createBoundingWall() {
@@ -146,15 +179,23 @@ export default {
       trunkMesh.receiveShadow = true
       leavesMesh.castShadow = true
       leavesMesh.receiveShadow = true
+      leavesMesh.name = 'Leaves'
       this.scene.add(trunkMesh)
       this.scene.add(leavesMesh)
+
+      var object = this.scene.getObjectByName('Leaves')
+      console.log('object: ', object)
+      object.addEventListener('click', () => console.log('leaves click'))
+
+      console.log('object: ', object)
     },
     /* start and render functions */
     startScene() {
       if (this.started) return
-      this.createBoundingWall()
-      this.createGroundPlane()
-      this.createHouse()
+      this.createdGLTF()
+      // this.createBoundingWall()
+      // this.createGroundPlane()
+      // this.createHouse()
       this.createTree()
       this.renderScene()
       this.started = !this.started
@@ -170,6 +211,57 @@ export default {
       window.addEventListener('resize', this.handleWindowResize)
       // rotation keys
       window.addEventListener('keypress', this.changeCameraPosition)
+      // rotation keys
+      document.addEventListener('mousemove', this.onDocumentMouseMove, false)
+      document.addEventListener('mousedown', this.onDocumentMouseDown, false)
+      document.addEventListener('mouseup', this.onDocumentMouseUp, false)
+    },
+    onDocumentMouseDown(event) {
+      event.preventDefault()
+      console.log('mousedown', event)
+      //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+      //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+    },
+
+    onDocumentMouseMove(event) {
+      event.preventDefault()
+      console.log('mouse move', event)
+      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+      this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+
+      // this.camera.position.x = this.mouse.x
+      // this.camera.position.y = this.mouse.y
+      //   theta =
+      //     -((event.clientX - onMouseDownPosition.x) * 0.5) + onMouseDownTheta
+      //   phi = (event.clientY - onMouseDownPosition.y) * 0.5 + onMouseDownPhi
+
+      //   phi = Math.min(180, Math.max(0, phi))
+
+      //   camera.position.x =
+      //     radious *
+      //     Math.sin((theta * Math.PI) / 360) *
+      //     Math.cos((phi * Math.PI) / 360)
+      //   camera.position.y = radious * Math.sin((phi * Math.PI) / 360)
+      //   camera.position.z =
+      //     radious *
+      //     Math.cos((theta * Math.PI) / 360) *
+      //     Math.cos((phi * Math.PI) / 360)
+      //   camera.updateMatrix()
+
+      //   mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+      //   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+    },
+
+    onDocumentMouseUp(event) {
+      event.preventDefault()
+      console.log('mouse up', this.move)
+      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+      this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+      this.move = true
+      console.log('mouse up 2', this.move)
+      this.camera.position.x = this.mouse.x
+      this.camera.position.y = this.mouse.y
+      console.log('mouse event', this.mouse)
     },
     handleWindowResize() {
       this.camera.aspect = window.innerWidth / window.innerHeight
@@ -177,6 +269,7 @@ export default {
       this.renderer.setSize(window.innerWidth, window.innerHeight)
     },
     changeCameraPosition(e) {
+      console.log('scene', this.scene)
       const theta = 0.2 //the speed of rotation
       const x = this.camera.position.x
       const y = this.camera.position.y
@@ -202,6 +295,42 @@ export default {
         default:
           break
       }
+      this.camera.lookAt(this.scene.position)
+    },
+    onLeavesClick() {
+      alert('leaves')
+    },
+    changeCameraPositionClick(e) {
+      console.log('scene', this.scene)
+
+      const theta = 0.2 //the speed of rotation
+      const x = this.camera.position.x
+      const y = this.camera.position.y
+      const z = this.camera.position.z
+      e.preventDefault()
+
+      // this.camera.position.x = e.x
+      // this.camera.position.z = e.y
+      // switch (e.key) {
+      //   case 'a': // left
+      //     this.camera.position.x = x * Math.cos(theta) + z * Math.sin(theta)
+      //     this.camera.position.z = z * Math.cos(theta) - x * Math.sin(theta)
+      //     break
+      //   case 'w': // up
+      //     this.camera.position.y = y * Math.cos(theta) - z * Math.sin(theta)
+      //     this.camera.position.z = z * Math.cos(theta) + y * Math.sin(theta)
+      //     break
+      //   case 's': // down
+      //     this.camera.position.y = y * Math.cos(theta) + z * Math.sin(theta)
+      //     this.camera.position.z = z * Math.cos(theta) - y * Math.sin(theta)
+      //     break
+      //   case 'd': // right
+      //     this.camera.position.x = x * Math.cos(theta) - z * Math.sin(theta)
+      //     this.camera.position.z = z * Math.cos(theta) + x * Math.sin(theta)
+      //     break
+      //   default:
+      //     break
+      // }
       this.camera.lookAt(this.scene.position)
     }
   }
