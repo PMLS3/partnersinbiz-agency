@@ -16,9 +16,9 @@
               />
             </div>
             <div class="w-full p-8">
-              <players-info-panel :trackInfo="getTrackInfo">
-              </players-info-panel>
-              <players-controls-bars
+              <PlayersInfoPanel :trackInfo="getTrackInfo" />
+
+              <PlayersControlsBars
                 :loop="loop"
                 :shuffle="shuffle"
                 :progress="progress"
@@ -30,34 +30,31 @@
                 @toggleloop="toggleLoop"
                 @toggleshuffle="toggleShuffle"
                 @updateseek="setSeek"
-              >
-              </players-controls-bars>
+              />
             </div>
           </div>
           <div class="py-4 mx-8">
-            <players-progress :progress="progress" :trackInfo="getTrackInfo">
-            </players-progress>
+            <PlayersProgress :progress="progress" :trackInfo="getTrackInfo" />
           </div>
           <div
             class="w-full overflow-hidden bg-white rounded-lg shadow-lg min-h-64"
           >
             <p class="px-4 pt-3 mb-2 text-2xl font-thin text-gray-600 ">
-              Songs
+              PlayList
             </p>
-            <players-search-bar :playlist="playlist"> </players-search-bar>
-            <players-playlist-panel
+            <!-- <PlayersSearchBar :playlist="playlist" /> -->
+            <PlayersPlaylistPanel
               :playlist="playlist"
               :selectedTrack="selectedTrack"
               @selecttrack="selectTrack"
               @playtrack="play"
-            >
-            </players-playlist-panel>
-            <div class="flex flex-row-reverse px-2 py-3 bg-gray-300">
+            />
+            <!-- <div class="flex flex-row-reverse px-2 py-3 bg-gray-300">
               <button class="px-4 py-2 text-white bg-blue-500 rounded">
                 Invite
               </button>
               <button class="px-4 py-2 text-gray-600 rounded">Cancel</button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -68,22 +65,7 @@
 <script>
 import { Howl, Howler } from 'howler'
 
-import PlayersTitleBar from './components/PlayersTitleBar.vue'
-import PlayersPlaylistPanel from './components/PlayersPlaylistPanel.vue'
-import PlayersControlsBars from './components/PlayersControlsBars.vue'
-import PlayersInfoPanel from './components/PlayersInfoPanel.vue'
-import PlayersSearchBar from './components/PlayersSearchBar.vue'
-import PlayersProgress from './components/PlayersProgress.vue'
-
 export default {
-  components: {
-    PlayersTitleBar,
-    PlayersPlaylistPanel,
-    PlayersControlsBars,
-    PlayersInfoPanel,
-    PlayersSearchBar,
-    PlayersProgress
-  },
   data() {
     return {
       playlist: [

@@ -3,7 +3,7 @@
     <!-- <div class="flex items-center the-navbar__user-meta" > -->
 
     <div class="hidden leading-tight text-right sm:block">
-      <p class="font-semibold">{{ user.disp_name || "undefined" }}</p>
+      <p class="font-semibold">{{ user.disp_name || 'undefined' }}</p>
       <!-- <p class="font-semibold">Me</p> -->
 
       <small>{{ user.o_status }}</small>
@@ -42,6 +42,14 @@
           >
             <feather-icon icon="UserIcon" svg-classes="w-4 h-4" />
             <span class="ml-2">Profile</span>
+          </li>
+
+          <li
+            class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
+            @click="$router.push(`/dashboardMain`)"
+          >
+            <feather-icon icon="CheckSquareIcon" svg-classes="w-4 h-4" />
+            <span class="ml-2">Dashboard </span>
           </li>
 
           <!--  <li
@@ -97,13 +105,7 @@
             <feather-icon icon="LayoutIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">CRM</span>
           </li>
-          <li
-            class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push(`/dashboard`)"
-          >
-            <feather-icon icon="CheckSquareIcon" svg-classes="w-4 h-4" />
-            <span class="ml-2">Dashboard </span>
-          </li>
+        
           <li
             class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
             @click="$router.push(`/m/${business.un_name}`)"
@@ -129,37 +131,37 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 export default {
   data() {
-    return {};
+    return {}
   },
   computed: {
     user() {
       if (process.client) {
-        return JSON.parse(localStorage.getItem("userInfo"))
-          ? JSON.parse(localStorage.getItem("userInfo"))
-          : this.$store.state.auth.active_user;
+        return JSON.parse(localStorage.getItem('userInfo'))
+          ? JSON.parse(localStorage.getItem('userInfo'))
+          : this.$store.state.auth.active_user
       }
     },
     business() {
       if (process.client) {
-        return JSON.parse(localStorage.getItem("businessInfo"))
-          ? JSON.parse(localStorage.getItem("businessInfo"))
-          : this.$store.state.business.main_business;
+        return JSON.parse(localStorage.getItem('businessInfo'))
+          ? JSON.parse(localStorage.getItem('businessInfo'))
+          : this.$store.state.business.main_business
       }
     },
     isUserLoggedIn() {
-      return this.$store.state.auth.isUserLoggedIn;
+      return this.$store.state.auth.isUserLoggedIn
     }
   },
 
   methods: {
     logout() {
-      this.$store.dispatch("auth/logoutUser");
+      this.$store.dispatch('auth/logoutUser')
     }
   }
-};
+}
 </script>
