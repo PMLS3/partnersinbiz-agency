@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'universal',
+  ssr: false,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'PIB',
@@ -78,6 +78,7 @@ module.exports = {
     'nuxt-purgecss',
     '@nuxtjs/firebase',
     'nuxt-socket-io',
+    '@nuxtjs/device',
 
     [
       'nuxt-sass-resources-loader',
@@ -248,7 +249,7 @@ module.exports = {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extractCSS: true,
-    vendor: ['peerjs'],
+    vendor: ['peerjs', 'three', 'vue-three'],
     transpile: [
       '@chenfengyuan/vue-countdown',
       'moment',
@@ -296,8 +297,17 @@ module.exports = {
     ],
 
     /*
-     ** You can extend webpack config here
+     ** Run ESLint on save
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      if (ctx.dev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
   }
 }
