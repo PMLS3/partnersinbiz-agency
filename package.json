@@ -25,7 +25,7 @@
   "dependencies": {
     "@nuxt/content": "^1.11.0",
     "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/composition-api": "^0.13.5",
+    "@nuxtjs/composition-api": "^0.16.4",
     "@nuxtjs/device": "^1.2.7",
     "@nuxtjs/firebase": "^6.1.1",
     "@nuxtjs/pwa": "^3.0.2",
