@@ -1,18 +1,12 @@
 /*
-
 Tailwind - The Utility-First CSS Framework
-
 A project by Adam Wathan (@adamwathan), Jonathan Reinink (@reinink),
 David Hemphill (@davidhemphill) and Steve Schoger (@steveschoger).
-
 Welcome to the Tailwind config file. This is where you can customize
 Tailwind specifically for your project. Don't be intimidated by the
 length of this file. It's really just a big JavaScript object and
 we've done our very best to explain each section.
-
 View the full documentation at https://tailwindcss.com.
-
-
 |-------------------------------------------------------------------------------
 | The default config
 |-------------------------------------------------------------------------------
@@ -44,8 +38,13 @@ View the full documentation at https://tailwindcss.com.
 
 module.exports = {
   important: true,
+  purge: false,
   // prefix: '',
   // separator: ':',
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true
+  },
 
   theme: {
     /*
@@ -60,13 +59,14 @@ module.exports = {
       | .error { color: config('colors.red') }
       |
       */
-
-    colors: {
-      transparent: 'transparent',
-      black: '#22292f',
-      white: '#ffffff',
-      grey: '#b8c2cc',
-      'grey-light': '#dae1e7'
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        black: '#22292f',
+        white: '#ffffff',
+        grey: '#b8c2cc',
+        'grey-light': '#dae1e7'
+      }
     },
 
     /*
@@ -281,7 +281,7 @@ module.exports = {
       |
       */
 
-    textColor: (theme) => ({
+    textColor: theme => ({
       inherit: 'inherit',
       ...theme('colors')
     }),
@@ -299,7 +299,7 @@ module.exports = {
       |
       */
 
-    backgroundColor: (theme) => theme('colors'),
+    backgroundColor: theme => theme('colors'),
 
     /*
       |-----------------------------------------------------------------------------
@@ -358,7 +358,7 @@ module.exports = {
       |
       */
 
-    borderColor: (theme) => ({
+    borderColor: theme => ({
       default: theme('colors.grey-light'),
       ...theme('colors')
     }),

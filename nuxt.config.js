@@ -1,5 +1,5 @@
 module.exports = {
-  ssr: false,
+  ssr: true,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'PIB',

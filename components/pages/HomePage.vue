@@ -1,94 +1,64 @@
 <template>
   <div class="relative w-full h-screen">
-    <div class="absolute z-10 w-full h-full">
-      <div class="flex items-center justify-start h-full px-16">
-        <div class="flex flex-col py-12 space-y-4 lg:w-2/5">
-          <!-- <img
-              src="https://occ-0-58-64.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABe_MJtJKPmsSU3pjUiW7bRyT8Hg_kAJPLRj6rNNltpjGgSphvfVGjXLQ-_Ic1FIYJ319RRDnIdqPk9D8Uq2X8oHSGVrwbHfx3j1dW_6GncJ2IKZ3OVRybWHjTMdUVY_CLeo3z2EQotzC1-faA7LSygaF5sxsqoskzrVPj6n-NS80jg.png?r=4af"
-              alt=""
-            /> -->
-          <h3 class="text-4xl font-semibold text-white">
-            We're Partners in Biz
-          </h3>
-          <h3 class="text-2xl font-semibold text-white">
-            We help entrepreneurs / freelancers / business owners scale and get
-            more clients by building incredible marketing systems
-          </h3>
-          <small class="text-white"
-            >We currently available for consulting</small
+    <div class="absolute z-50 items-center w-full h-full">
+      <h1 class="w-full text-center text-white bold">You have two options:</h1>
+      <h1 class="w-full text-center text-white bold">
+        You can either click the red button and forget that you ever visited our
+        website
+      </h1>
+      <h1 class="w-full text-center text-white bold">or</h1>
+      <h1 class="w-full text-center text-white bold">
+        You can click the blue button and setup a free consultation and grow
+        your business behind your wildest dreams
+      </h1>
+      <div class="grid grid-cols-2">
+        <div class="text-center">
+          <button
+            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700"
           >
-          <hr />
-          <p class="mt-20 text-2xl text-white">
-            By challenging tradional systems, We've been able to work in the
-            beauty, fitness, health, remodeling and digital service industries.
-          </p>
-          <small class="text-white"
-            >Each industry requires its own thorough market research. This means
-            that each industry has different systems in place to ensure maximum
-            results</small
+            FORGET
+          </button>
+        </div>
+        <div class="text-center">
+          <button
+            class="px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700"
           >
-          <hr />
-          <p class="mt-20 text-2xl text-white">
-            Here is what we currently offer:
-          </p>
-          <ul class="mt-20 text-xl text-white">
-            <li>Ad Management</li>
-            <li>Lead Generation</li>
-            <li>Funnels</li>
-            <li>Website Creation/Design</li>
-          </ul>
-          <!-- <div class="flex flex-row w-full space-x-4">
-            <button
-              class="flex items-center justify-center w-32 px-3 py-2 mt-5 space-x-2 bg-white rounded-lg shadow-md"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <span class="font-semibold text-gray-800">Video</span>
-            </button>
-            <button
-              @click="$router.push('/AframeWorld')"
-              class="flex items-center justify-center w-auto px-3 py-2 mt-5 space-x-2 bg-gray-800 bg-opacity-50 rounded-lg shadow-md"
-            >
-              <svg
-                class="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span class="font-semibold text-white">More info</span>
-            </button>
-          </div> -->
+            Grow
+          </button>
         </div>
       </div>
+      <div class="w-1/2 bg-blue-600 opacity-25">
+        <h5 class="w-full text-center text-white opacity-100 bold">
+          We help entrepreneurs / freelancers / business owners scale and get
+          more clients by building incredible marketing systems
+        </h5>
+        <h5 class="w-full text-center text-white bold">
+          By challenging tradional systems, We've been able to work in the
+          beauty, fitness, health, remodeling and digital service industries.
+        </h5>
+        <h5 class="w-full text-center text-white bold">
+          Each industry requires its own thorough market research. This means
+          that each industry has different systems in place to ensure maximum
+          results
+        </h5>
+      </div>
+      <div class="w-1/2 bg-blue-600 opacity-25">
+        <h5 class="w-full text-center text-white opacity-100 bold">
+          We help entrepreneurs / freelancers / business owners scale and get
+          more clients by building incredible marketing systems
+        </h5>
+        <h5 class="w-full text-center text-white bold">
+          By challenging tradional systems, We've been able to work in the
+          beauty, fitness, health, remodeling and digital service industries.
+        </h5>
+        <h5 class="w-full text-center text-white bold">
+          Each industry requires its own thorough market research. This means
+          that each industry has different systems in place to ensure maximum
+          results
+        </h5>
+      </div>
     </div>
-    <div
-      class="absolute bottom-0 w-full h-64 bg-gradient-to-t from-black"
-    ></div>
-    <video class="object-cover w-full h-screen" autoplay muted loop>
-      <source
-        class="object-contain h-screen"
-        src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4"
-        type="video/mp4"
-      />
-    </video>
+    <canvas width="500" height="200" id="canv" />
   </div>
 </template>
 
@@ -98,6 +68,50 @@ export default {
     return {
       show: true
     }
+  },
+  mounted() {
+    // Get the canvas node and the drawing context
+    const canvas = document.getElementById('canv')
+    const ctx = canvas.getContext('2d')
+
+    // set the width and height of the canvas
+    const w = (canvas.width = document.body.offsetWidth)
+    const h = (canvas.height = document.body.offsetHeight)
+
+    // draw a black rectangle of width and height same as that of the canvas
+    ctx.fillStyle = '#000'
+    ctx.fillRect(0, 0, w, h)
+    const cols = Math.floor(w / 20) + 1
+    const ypos = Array(cols).fill(0)
+
+    function matrix() {
+      // Draw a semitransparent black rectangle on top of previous drawing
+      ctx.fillStyle = '#0001'
+      ctx.fillRect(0, 0, w, h)
+
+      // Set color to green and font to 15pt monospace in the drawing context
+      ctx.fillStyle = '#0f0'
+      ctx.font = '15pt monospace'
+
+      // for each column put a random character at the end
+      ypos.forEach((y, ind) => {
+        // generate a random character
+        const text = String.fromCharCode(Math.random() * 128)
+
+        // x coordinate of the column, y coordinate is already given
+        const x = ind * 20
+        // render the character at (x, y)
+        ctx.fillText(text, x, y)
+
+        // randomly reset the end of the column if it's at least 100px high
+        if (y > 100 + Math.random() * 10000) ypos[ind] = 0
+        // otherwise just move the y coordinate for the column 20px down,
+        else ypos[ind] = y + 20
+      })
+    }
+
+    // render the animation at 20 FPS.
+    setInterval(matrix, 50)
   },
   methods: {
     aframeWorld() {
