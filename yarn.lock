@@ -9309,10 +9309,10 @@ nuxt-sass-resources-loader@^2.0.5:
   dependencies:
     sass-resources-loader "^1.3.1"
 
-nuxt-socket-io@^1.1.11:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/nuxt-socket-io/-/nuxt-socket-io-1.1.12.tgz#44dc3b5fe104a67a9e935893800aed772e5ab229"
-  integrity sha512-SfcVvLEt6v1jCjUBeJNM5EHRj2tshjZl50ndxpbPPBLm0PcBjIx/HNNSWqmKwa1XshdmCa2uQkRTZRbT3o5kyw==
+nuxt-socket-io@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/nuxt-socket-io/-/nuxt-socket-io-1.1.13.tgz#44a574d3e612e0171bc87b75a530dbcfe59f39de"
+  integrity sha512-tpUIKgJH4mTKrvIZY6DM5OgtCfRSaeRxR1OZZfug11YnUXm0GhRAiVsxWwy5Rol/DZxyj55PQiBX2canBoYvsA==
   dependencies:
     "@nuxt/types" "^2.14.7"
     "@types/socket.io-client" "^1.4.34"
