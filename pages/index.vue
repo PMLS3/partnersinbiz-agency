@@ -3,9 +3,7 @@
 </template>
 
 <script>
-export default {
-  layout: 'fullPage'
-}
+export default {}
 </script>
 
 <style></style>
