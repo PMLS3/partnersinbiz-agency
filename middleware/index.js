@@ -5,24 +5,26 @@
 export default context => {
   const {
     route: { params }
-  } = context;
+  } = context
   // set the layout to the page here
   switch (params.id) {
     // case 'profile':
-    case "login":
-    case "register":
-    case "wireframes":
-    case "drawingboard":
-    case "videoCall":
-    case "whiteboard":
-    case "radio":
-    case "kanban":
-    case "resell":
-    case "aframe":
-    case "aframeWorld":
-      return "fullPage";
+    case 'login':
+    case 'register':
+    case 'wireframes':
+    case 'drawingboard':
+    case 'videoCall':
+    case 'whiteboard':
+    case 'radio':
+    case 'kanban':
+    case 'resell':
+    case 'aframe':
+    case 'aframeWorld':
+    case 'DemoAframeShowRoom':
+    case 'DemoAframeApartment':
+      return 'fullPage'
 
     default:
-      return "default";
+      return 'default'
   }
-};
+}

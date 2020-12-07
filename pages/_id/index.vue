@@ -11,6 +11,10 @@ import login from '@/components/pages/login/Login.vue'
 import aframeWorld from '@/components/apps/aframe-world/AframeWorld.vue'
 import profile from '@/components/pages/Profile.vue'
 import userSettings from '@/components/pages/user-settings/UserSettings.vue'
+import DemoAframeShowRoom from '@/components/demo/aframe/DemoAframeShowRoom.vue'
+import DemoAframeApartment from '@/components/demo/aframe/DemoAframeApartment.vue'
+
+import mypage from '@/components/pages/MyPage.vue'
 
 // Main First business dashboard
 import dashboardMain from '@/components/dashboards/DashboardMain.vue'
@@ -39,7 +43,10 @@ export default {
     dashboardMain,
     dashboardApps,
     dashboardAppsBroadcast,
-    calendar
+    calendar,
+    DemoAframeShowRoom,
+    DemoAframeApartment,
+    mypage
     // videoChat
   }
 }
