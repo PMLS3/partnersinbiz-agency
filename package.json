@@ -33,7 +33,7 @@
     "aframe-physics-system": "^4.0.1",
     "ag-grid-community": "^24.1.0",
     "ag-grid-vue": "^24.1.1",
-    "core-js": "^3.6.5",
+    "core-js": "^3.8.1",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "firebase": "^7.24.0",
