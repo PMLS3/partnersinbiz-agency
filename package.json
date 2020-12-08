@@ -51,7 +51,7 @@
     "postcss-rtl": "^1.7.3",
     "prismjs": "^1.22.0",
     "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.1",
+    "socket.io-client": "^3.0.4",
     "socket.io-stream": "^0.9.1",
     "three": "^0.122.0",
     "three-trackballcontrols": "^0.9.0",
