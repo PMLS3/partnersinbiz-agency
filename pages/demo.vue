@@ -1,10 +1,10 @@
 <template>
   <div>
-    <NuxtLink to="DemoAframeShowRoom">
+    <!-- <NuxtLink to="DemoAframeShowRoom">
       <vs-button>Go To Show Room</vs-button>
-    </NuxtLink>
+    </NuxtLink> -->
     <NuxtLink to="DemoAframeApartment">
-      <vs-button>Go To Apartment</vs-button>
+      <vs-button>ENTER</vs-button>
     </NuxtLink>
   </div>
 </template>

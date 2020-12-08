@@ -1,3 +1,8 @@
+/**
+ * Cursor Teleport component for A-Frame.
+ */
+let context = context
+
 AFRAME.registerComponent('cursor-teleport', {
   schema: {
     cameraHead: { type: 'string', default: '' },
@@ -5,11 +10,19 @@ AFRAME.registerComponent('cursor-teleport', {
     collisionEntities: { type: 'string', default: '' },
     ignoreEntities: { type: 'string', default: '' },
     landingMaxAngle: { default: '45', min: 0, max: 360 },
-    landingNormal: { type: 'vec3', default: '0 1 0' },
+    landingNormal: { type: 'vec3', default: '0 1 0' }
   },
-  init: function () {
+  init: function() {
     self = this
 
+    // console.log('contthiext', this)
+
+    // console.log('context', context)
+
+    // console.log('context 2', this.context)
+    // console.log('window 2', window)
+    // console.log('window 2', window.$nuxt.context.isMobile)
+    // console.log('Android 2', window.$nuxt.context.isAndroid)
     self.android = window.$nuxt.context.isAndroid
     self.isMobile = window.$nuxt.context.isMobile
 
@@ -24,7 +37,7 @@ AFRAME.registerComponent('cursor-teleport', {
     // camera
     document
       .querySelector(this.data.cameraHead)
-      .object3D.traverse(function (child) {
+      .object3D.traverse(function(child) {
         if (child instanceof THREE.Camera) {
           self.cam = child
         }
@@ -57,7 +70,7 @@ AFRAME.registerComponent('cursor-teleport', {
     self.transitionCamPosStart = new THREE.Vector3()
     self.transitionCamPosEnd = new THREE.Vector3()
 
-    self.updateRaycastObjects = function () {
+    self.updateRaycastObjects = function() {
       // updates the array of meshes we will need to raycast to
 
       // clear the array of any existing meshes
@@ -69,8 +82,8 @@ AFRAME.registerComponent('cursor-teleport', {
           this.data.collisionEntities
         )
 
-        collisionEntities.forEach((e) => {
-          e.object3D.traverse(function (child) {
+        collisionEntities.forEach(e => {
+          e.object3D.traverse(function(child) {
             if (child instanceof THREE.Mesh) {
               // mark this mesh as a collision object
               child.userData.collision = true
@@ -96,8 +109,8 @@ AFRAME.registerComponent('cursor-teleport', {
         var ignoreEntities = self.scene.querySelectorAll(
           this.data.ignoreEntities
         )
-        ignoreEntities.forEach((e) => {
-          e.object3D.traverse(function (child) {
+        ignoreEntities.forEach(e => {
+          e.object3D.traverse(function(child) {
             if (child instanceof THREE.Mesh) {
               self.rayCastObjects.push(child)
             }
@@ -111,17 +124,17 @@ AFRAME.registerComponent('cursor-teleport', {
       if (e.clientX != null) {
         return {
           x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
+          y: e.clientY - rect.top
         }
       } else if (e.touches[0] != null) {
         return {
           x: e.touches[0].clientX - rect.left,
-          y: e.touches[0].clientY - rect.top,
+          y: e.touches[0].clientY - rect.top
         }
       }
     }
 
-    self.getTeleportPosition = function (mouse_x, mouse_y) {
+    self.getTeleportPosition = function(mouse_x, mouse_y) {
       if (self.rayCastObjects.length != 0) {
         if (self.hasOwnProperty('cam') && self.hasOwnProperty('canvas')) {
           var cam = self.cam
@@ -153,12 +166,12 @@ AFRAME.registerComponent('cursor-teleport', {
       }
     }
 
-    self.isValidNormalsAngle = function (collisionNormal) {
+    self.isValidNormalsAngle = function(collisionNormal) {
       var angleNormals = self.referenceNormal.angleTo(collisionNormal)
       return THREE.Math.RAD2DEG * angleNormals <= this.data.landingMaxAngle
     }
 
-    self.transition = function (destPos) {
+    self.transition = function(destPos) {
       // window.alert(`transition ${self.isMobile} ${self.android} ${destPos.x}`)
       self.transitionProgress = 0
 
@@ -174,27 +187,23 @@ AFRAME.registerComponent('cursor-teleport', {
     }
 
     function mouseMove(e) {
-      if (e) {
-        e.preventDefault()
+      e.preventDefault()
+      var mouseState = getMouseState(self.canvas, e)
 
-        var mouseState = getMouseState(self.canvas, e)
-
-        self.mouseX = mouseState.x
-        self.mouseY = mouseState.y
-      }
+      self.mouseX = mouseState.x
+      self.mouseY = mouseState.y
     }
 
     function mouseDown(e) {
-      if (e) {
-        e.preventDefault()
-        self.updateRaycastObjects()
-        var mouseState = getMouseState(self.canvas, e)
-        self.mouseX = mouseState.x
-        self.mouseY = mouseState.y
+      e.preventDefault()
+      self.updateRaycastObjects()
 
-        self.mouseXOrig = mouseState.x
-        self.mouseYOrig = mouseState.y
-      }
+      var mouseState = getMouseState(self.canvas, e)
+      self.mouseX = mouseState.x
+      self.mouseY = mouseState.y
+
+      self.mouseXOrig = mouseState.x
+      self.mouseYOrig = mouseState.y
     }
 
     function mouseUp(e) {
@@ -222,11 +231,11 @@ AFRAME.registerComponent('cursor-teleport', {
     document.addEventListener('touchcancel', mouseUp, false)
 
     // helper functions
-    self.easeInOutQuad = function (t) {
+    self.easeInOutQuad = function(t) {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
     }
   },
-  tick: function () {
+  tick: function() {
     if (!self.transitioning) {
       var pos = self.getTeleportPosition(self.mouseX, self.mouseY)
       if (pos) {
@@ -236,6 +245,14 @@ AFRAME.registerComponent('cursor-teleport', {
       }
     }
 
+    // if (!self.transitioning && !self.mobile) {
+    //   var pos = self.getTeleportPosition(self.mouseX, self.mouseY)
+    //   if (!self.mobile && pos) {
+    //     self.teleportIndicator.position.x = pos.x
+    //     self.teleportIndicator.position.y = pos.y
+    //     self.teleportIndicator.position.z = pos.z
+    //   }
+    // }
     if (self.transitioning) {
       self.transitionProgress += self.transitionSpeed
 
@@ -257,5 +274,5 @@ AFRAME.registerComponent('cursor-teleport', {
         self.transitioning = false
       }
     }
-  },
+  }
 })

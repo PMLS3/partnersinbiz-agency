@@ -14,32 +14,6 @@
         src="https://cdn.glitch.com/c388f728-37b7-4af9-af03-1ee7430663e7%2F4727356277_66fb5f938f_o.jpg?1544178281422"
       />
 
-      <a-cubemap id="buildingoutside">
-        <img
-          src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FBeach-Sand-1.jpg?v=1604070163344"
-          id="right-cube"
-        />
-        <img
-          src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FBeach-Sand-1.jpg?v=1604070163344"
-          id="left-cube"
-        />
-        <img
-          src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FBeach-Sand-1.jpg?v=1604070163344"
-          id="top-cube"
-        />
-        <img
-          src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FBeach-Sand-1.jpg?v=1604070163344"
-          id="bottom-cube"
-        />
-        <img
-          src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FBeach-Sand-1.jpg?v=1604070163344"
-          id="front-cube"
-        />
-        <img
-          src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FBeach-Sand-1.jpg?v=1604070163344"
-          id="back-cube"
-        />
-      </a-cubemap>
       <a-assets-item
         id="stairs"
         src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FSPIRAL_STAIRCASE.glb?v=1607368795180"
@@ -53,27 +27,27 @@
 
     <a-entity
       id="cameraRig"
-      position="1.3 0 6"
+      position="0 -1 9"
+      animation="property: position; to: 1 0 3; dur: 5000; easing: linear; loop: false"
       cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable"
     >
       <a-entity
         id="head"
-        position="0 3.8 0"
+        position="0 4.82 0"
         camera
         look-controls="reverseMouseDrag: true"
-        wasd-controls
       >
         <a-entity
-          id="poufSet3"
-          visible="false"
+          id="cornerCouchSet"
+          visible=""
           look-at="[camera]"
-          position="0 -0.3 -0.5"
+          position="0 100 -0.5"
           scale="0.2 0.2 0.2"
         >
           <a-sphere
             position="-2.1 0 0"
             radius=".3"
-            src="https://cdn.glitch.com/f91edd71-1dfd-4c2f-9aa7-84cee63f2bc2%2Fbeige_leather_6_height.png?v=1606244489220"
+            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Ffabric_leather_02_diff_2k.jpg?v=1607419660884"
             class="clickable cornerCouch"
             switch-texture
             animation__rotate="property: rotation; dir: forward; dur: 2000;
@@ -83,14 +57,14 @@
           <a-sphere
             position="-1.4 0 0"
             radius=".3"
-            src="https://cdn.glitch.com/f91edd71-1dfd-4c2f-9aa7-84cee63f2bc2%2FFabricLinen001_NRM_6K.jpg?v=1606244483213"
+            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fleather_red_03_coll1_2k.jpg?v=1607419643535"
             class="clickable cornerCouch"
             switch-texture
           ></a-sphere>
           <a-sphere
             position="-0.7 0 0"
             radius=".3"
-            src="https://cdn.glitch.com/f91edd71-1dfd-4c2f-9aa7-84cee63f2bc2%2FFabricDenim002_COL_VAR3_6K.jpg?v=1606244494286"
+            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fbrown_leather_rough_2k.jpg?v=1607419606260"
             class="clickable cornerCouch"
             switch-texture
             animation__rotate="property: rotation; dir: forward; dur: 2000;
@@ -100,7 +74,7 @@
           <a-sphere
             position="0 0 0"
             radius=".3"
-            src="https://cdn.glitch.com/f91edd71-1dfd-4c2f-9aa7-84cee63f2bc2%2FFabricLinen001_COL_VAR3_6K.jpg?v=1606244494657"
+            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FMaterial_3_baseColor.jpeg?v=1607419410585"
             switch-texture
             class="clickable cornerCouch"
             animation__rotate="property: rotation; dir: forward; dur: 2000;
@@ -131,7 +105,7 @@
             position="2.1 0 0"
             radius=".3"
             switch-texture
-            src="https://cdn.glitch.com/f91edd71-1dfd-4c2f-9aa7-84cee63f2bc2%2FFabricDenim002_NRM_6K.jpg?v=1606244487597"
+            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Ffabric_leather_02_disp_2k.png?v=1607419670930"
             class="clickable cornerCouch"
             animation__rotate="property: rotation; dir: forward; dur: 2000;
                                  easing: easeInSine; loop: false; to: 0 90 0;
@@ -141,9 +115,9 @@
 
         <a-entity
           id="poufSet"
-          visible="false"
+          visible=""
           look-at="[camera]"
-          position="0 -0.3 -0.5"
+          position="0 100 -0.5"
           scale="0.2 0.2 0.2"
         >
           <a-sphere
@@ -219,10 +193,10 @@
         </a-entity>
 
         <a-entity
-          id="poufSet2"
-          visible="false"
+          id="armChairSet"
+          visible=""
           look-at="[camera]"
-          position="0 -0.3 -0.5"
+          position="0 100 -0.5"
           scale="0.2 0.2 0.2"
         >
           <a-sphere
@@ -857,7 +831,7 @@
         position="2.38 3.17 1.115"
         rotation="0 45 0"
         scale="3 3 3"
-        event-set__click="_target: #poufSet2; visible: true"
+        switch-balls
         event-set__enter="_event: mouseenter; scale: 3.2 3.2 3.2"
         event-set__leave="_event: mouseleave; scale: 3 3 3"
       >
@@ -879,12 +853,12 @@
         position="4 3.17 -4.274"
         rotation="0 -45 0"
         scale="3 3 3"
-        event-set__click="_target: #poufSet2; visible: true"
+        switch-balls
         event-set__enter="_event: mouseenter; scale: 3.2 3.2 3.2"
         event-set__leave="_event: mouseleave; scale: 3 3 3"
       >
         <a-entity
-          id="armChair"
+          id="armChair2"
           gltf-model="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fcomfy_red_white_armchair.glb?v=1607342086754"
           position="1 0 0.335"
           scale="0.05 0.05 0.05"
@@ -892,63 +866,6 @@
           load-texture
           shadow="receive: false"
         >
-        </a-entity>
-
-        <a-entity
-          id="poufSet2"
-          visible="false"
-          look-at="[camera]"
-          position="0 2 0"
-        >
-          <a-sphere
-            position="-2.1 2.5 0"
-            radius=".3"
-            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fdcmap_naughtOne_portion_armchair_2_arms_4.jpg?v=1607340497236"
-            class="clickable armChair"
-            switch-texture
-          ></a-sphere>
-          <a-sphere
-            position="-1.4 2.5 0"
-            radius=".3"
-            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fdcmap_naughtOne_portion_armchair_2_arms_1.jpg?v=1607340501215"
-            class="clickable armChair"
-            switch-texture
-          ></a-sphere>
-          <a-sphere
-            position="-0.7 2.5 0"
-            radius=".3"
-            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fdcmap_naughtOne_portion_armchair_2_arms_3.jpg?v=1607340502604"
-            class="clickable armChair"
-            switch-texture
-          ></a-sphere>
-          <a-sphere
-            position="0 2.5 0"
-            radius=".3"
-            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fdcmap_naughtOne_portion_armchair_2_arms_5.jpg?v=1607340502693"
-            switch-texture
-            class="clickable armChair"
-          ></a-sphere>
-          <a-sphere
-            position="0.7 2.5 0"
-            radius=".3"
-            switch-texture
-            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fdcmap_naughtOne_portion_armchair_2_arms_2.jpg?v=1607340506849"
-            class="clickable armChair"
-          ></a-sphere>
-          <a-sphere
-            position="1.4 2.5 0"
-            radius=".3"
-            switch-texture
-            src="https://cdn.glitch.com/f91edd71-1dfd-4c2f-9aa7-84cee63f2bc2%2FFabricLinen001_DISP_6K.jpg?v=1606244487377"
-            class="clickable armChair"
-          ></a-sphere>
-          <a-sphere
-            position="2.1 2.5 0"
-            radius=".3"
-            switch-texture
-            src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2FLEATHER_1.png?v=1607341449930"
-            class="clickable armChair"
-          ></a-sphere>
         </a-entity>
       </a-entity>
 
@@ -958,7 +875,7 @@
         position="-7 0.46 -5.8"
         rotation="0 90 0"
         scale="0.8 0.8 0.8"
-        event-set__click="_target: #poufSet3; visible: true"
+        switch-balls
         event-set__enter="_event: mouseenter; scale: 0.83 0.83 0.83"
         event-set__leave="_event: mouseleave; scale: 0.8 0.8 0.8"
       >
@@ -979,7 +896,7 @@
         position="8.4 0 -0.426"
         scale="0.25 0.25 0.25"
         rotation="0 90 0"
-        event-set__click="_target: #poufSet; visible: true"
+        switch-balls
         event-set__enter="_event: mouseenter; scale: 0.3 0.3 0.3"
         event-set__leave="_event: mouseleave; scale: 0.25 0.25 0.25"
       >
@@ -993,6 +910,15 @@
           class="clickable"
         ></a-entity>
       </a-entity>
+      <!-- <a-entity
+        geometry="width: 10; height: 0.11"
+        position="0.1 -4.78 0.1"
+        cursor-teleport
+        visible="false"
+        class="clickable collision"
+        scale="3.67 0.1 20.1"
+        id="collision-world"
+      ></a-entity> -->
     </a-entity>
   </a-scene>
 </template>
