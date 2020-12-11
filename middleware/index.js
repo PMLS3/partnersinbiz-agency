@@ -22,6 +22,8 @@ export default context => {
     case 'aframeWorld':
     case 'DemoAframeShowRoom':
     case 'DemoAframeApartment':
+    case 'DemoAframeSmall':
+    case 'DemoAR':
       return 'fullPage'
 
     default:

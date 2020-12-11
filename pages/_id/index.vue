@@ -13,6 +13,8 @@ import profile from '@/components/pages/Profile.vue'
 import userSettings from '@/components/pages/user-settings/UserSettings.vue'
 import DemoAframeShowRoom from '@/components/demo/aframe/DemoAframeShowRoom.vue'
 import DemoAframeApartment from '@/components/demo/aframe/DemoAframeApartment.vue'
+import DemoAframeSmall from '@/components/demo/aframe/DemoAframeSmall.vue'
+import DemoAR from '@/components/demo/aframe/DemoAR.vue'
 
 import mypage from '@/components/pages/MyPage.vue'
 
@@ -46,7 +48,9 @@ export default {
     calendar,
     DemoAframeShowRoom,
     DemoAframeApartment,
-    mypage
+    mypage,
+    DemoAframeSmall,
+    DemoAR
     // videoChat
   }
 }

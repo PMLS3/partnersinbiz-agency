@@ -27,13 +27,14 @@
 
     <a-entity
       id="cameraRig"
-      position="0 -1 9"
-      animation="property: position; to: 1 0 3; dur: 5000; easing: linear; loop: false"
+      position="0 10 10"
+      movement-controls="fly: true; speed: 0.3"
+      animation="property: position; to: 1 2.5 3; dur: 5000; easing: linear; loop: false"
       cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable"
     >
       <a-entity
         id="head"
-        position="0 4.82 0"
+        position="0 1.6 0"
         camera
         look-controls="reverseMouseDrag: true"
       >
@@ -329,7 +330,7 @@
         <a-light
           type="point"
           position="0.5 1.78675 0.90777"
-          light="color: #f2f2f2; angle: 20; intensity: 0.5"
+          light="color: #f2f2f2; angle: 20; intensity: 0.2; castShadow: true"
           visible=""
           rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
           id="entrance-light-1"
@@ -345,7 +346,7 @@
         <a-light
           type="point"
           position="6.77329 2.96197 -0.82543"
-          light="color: #f2f2f2; angle: 20; intensity: 0.5"
+          light="color: #f2f2f2; angle: 20; intensity: 0.2; castShadow: true"
           visible=""
           rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
           id="multi-light-1"
@@ -441,14 +442,14 @@
           rotation="0 90 0"
           shadow="receive: false"
         ></a-entity>
-        <a-light
+        <!-- <a-light
           type="ambient"
           position="-2.12113 5.23457 0.3112"
-          light="color: #f2f2f2; angle: 20; intensity: 0.2; distance: 0.5"
+          light="color: #f2f2f2; angle: 20; intensity: 0.01; distance: 0.5"
           visible=""
           rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
           id="round-light-1"
-        ></a-light>
+        ></a-light> -->
       </a-entity>
       <a-entity id="office">
         <a-entity
@@ -491,7 +492,7 @@
           <a-light
             type="point"
             position="0.5 5.534 0.811"
-            light="color: #f2f2f2; angle: 20; intensity: 0.5"
+            light="color: #f2f2f2; angle: 20; intensity: 0.2; castShadow: true"
             visible=""
             rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
             id="hallway-light-1-1"
@@ -508,7 +509,7 @@
           <a-light
             type="point"
             position="1.05 5.534 0.811"
-            light="color: #f2f2f2; angle: 20; intensity: 0.5"
+            light="color: #f2f2f2; angle: 20; intensity: 0.2; castShadow: true"
             visible=""
             rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
             id="hallway-light-1-1"
@@ -525,7 +526,7 @@
           <a-light
             type="point"
             position="1.505 5.534 0.811"
-            light="color: #f2f2f2; angle: 20; intensity: 0.5"
+            light="color: #f2f2f2; angle: 20; intensity: 0.2; castShadow: true"
             visible=""
             rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
             id="hallway-light-1-1"
@@ -542,7 +543,7 @@
           <a-light
             type="point"
             position="2.1 5.534 0.811"
-            light="color: #f2f2f2; angle: 20; intensity: 0.5"
+            light="color: #f2f2f2; angle: 20; intensity: 0.2; castShadow: true"
             visible=""
             rotation="-82.22861092599523 179.9998479605043 179.9998479605043"
             id="hallway-light-1-1"
@@ -785,6 +786,7 @@
           rotation="90 0 0"
           scale="6 5 1"
           position="3 0 0"
+          class=" collision"
         >
           <a-entity
             id="bottom-floor-1"
@@ -799,6 +801,7 @@
           rotation="90 0 0"
           scale="12 5 1"
           position="0 3 0"
+          class=" collision"
         >
           <a-entity
             id="top-floor-1"
@@ -872,7 +875,7 @@
       <!-- POUF -->
       <a-entity
         id="couch-corner"
-        position="-7 0.46 -5.8"
+        position="-7 0.4 -5.8"
         rotation="0 90 0"
         scale="0.8 0.8 0.8"
         switch-balls
@@ -910,15 +913,51 @@
           class="clickable"
         ></a-entity>
       </a-entity>
-      <!-- <a-entity
+      <a-entity
         geometry="width: 10; height: 0.11"
-        position="0.1 -4.78 0.1"
-        cursor-teleport
+        position="5.0737 0 0"
         visible="false"
-        class="clickable collision"
-        scale="3.67 0.1 20.1"
+        rotation=""
         id="collision-world"
-      ></a-entity> -->
+        class=" collision"
+        scale="1 1 4.5"
+      ></a-entity>
+      <a-entity
+        geometry="width: 10; height: 0.11"
+        position="2.92945 0.97124 1.69128"
+        visible="false"
+        rotation="0 0 23.713577224874513"
+        id="collision-world2"
+        scale="0.38 1 1"
+        class=" collision"
+      ></a-entity>
+      <a-entity
+        geometry="width: 10; height: 0.11"
+        position="3.05241 2.03712 1.02435"
+        visible="false"
+        rotation="0 0 -35.00944015587869"
+        id="collision-world3"
+        scale="0.34 1 1"
+        class=" collision"
+      ></a-entity>
+      <a-entity
+        geometry="width: 10; height: 0.11"
+        position="1.63429 3.12121 0.71134"
+        visible="false"
+        rotation=""
+        id="collision-world4"
+        class=" collision"
+        scale="0.84 1 1"
+      ></a-entity>
+      <a-entity
+        geometry="width: 10; height: 0.11"
+        position="1.63429 3.12121 0.71134"
+        visible="false"
+        rotation=""
+        id="collision-world5"
+        class=" collision"
+        scale="0.84 1 1"
+      ></a-entity>
     </a-entity>
   </a-scene>
 </template>
