@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "SimpleCard",
+  name: 'SimpleCard',
   props: {
     item: {
       type: Object,
@@ -34,13 +34,18 @@ export default {
   },
   setup() {
     function sendFeature(item) {
-      this.$store.commit("app/SET_FEATURE", item);
-      this.$router.push(item.url);
+      if (item.url == '/dashboardMain') {
+        this.$store.commit('business/UPDATE_BUSINESS_INFO', item)
+        this.$router.push(item.url)
+      } else {
+        this.$store.commit('app/SET_FEATURE', item)
+        this.$router.push(item.url)
+      }
     }
 
-    return { sendFeature };
+    return { sendFeature }
   }
-};
+}
 </script>
 
 <style></style>

@@ -31,7 +31,7 @@ Vue.use(VueSvgGauge)
 Vue.use(VueGoogleMaps, {
   load: {
     // Add your API key here
-    key: 'AIzaSyD71CLr4Y5Il5MHYyi6FcBVyspOnS6t1is',
+    key: 'AIzaSyCB-A02_U3WrFZGBkL2a1jucVpmnrfC_y8',
     libraries: 'places' // This is required if you use the Auto complete plug-in
   }
 })

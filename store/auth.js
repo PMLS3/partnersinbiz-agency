@@ -130,9 +130,9 @@ export const actions = {
   },
   loginAttempt({ dispatch }, payload) {
     let goToRoute = '/'
-    if (payload.goToRoute) {
-      goToRoute = payload.goToRoute
-    }
+    // if (payload.goToRoute) {
+    //   goToRoute = payload.goToRoute
+    // }
 
     const newPayload = {
       userDetails: payload.userDetails,

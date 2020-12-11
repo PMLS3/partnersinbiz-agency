@@ -1,8 +1,9 @@
 <template>
-  <iframe
+  <!-- <iframe
     src="https://peet-5-partners-in-biz.free.builderall.com/"
     class="w-screen h-screen"
-  ></iframe>
+  ></iframe> -->
+  <div></div>
 </template>
 
 <script>
