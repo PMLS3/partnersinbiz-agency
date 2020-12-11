@@ -54,28 +54,28 @@
 </template>
 
 <script>
-import { ref, useContext, computed, onMounted } from "@nuxtjs/composition-api";
+import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 
 export default {
-  name: "dashboardAppsBroadcast",
+  name: 'dashboardAppsBroadcast',
 
   setup() {
-    const { store, $fireStore, route } = useContext();
+    const { store, $fireStore, route } = useContext()
 
     const item = ref({
-      item: "Broadcast",
-      title: "Load Folders",
-      type: "Category"
-    });
-    let knowledgeBaseSearchQuery = ref("");
-    let kb = ref([]);
+      item: 'Broadcast',
+      title: 'Load Folders',
+      type: 'Category'
+    })
+    let knowledgeBaseSearchQuery = ref('')
+    let kb = ref([])
 
-    const business = computed(() => store.state.business.active_business);
+    const business = computed(() => store.state.business.active_business)
 
     const motivational_quotes = computed(() => {
-      let num = Math.floor(Math.random() * 55);
-      return store.state.info.motivational_quotes[num];
-    });
+      let num = Math.floor(Math.random() * 55)
+      return store.state.info.motivational_quotes[num]
+    })
     let filteredKB = computed(() =>
       kb.value.filter(
         item =>
@@ -86,43 +86,43 @@ export default {
             .toLowerCase()
             .includes(knowledgeBaseSearchQuery.value.toLowerCase())
       )
-    );
+    )
 
     const schema = computed(() => [
       {
-        title: "TextInput",
-        placeholder: "Stations Name",
-        type: "text",
-        label: "Station Name",
-        name: "title"
+        title: 'TextInput',
+        placeholder: 'Stations Name',
+        type: 'text',
+        label: 'Station Name',
+        name: 'title'
       },
       {
-        title: "ImageUpload",
-        placeholder: "Cover Image",
-        type: "text",
-        label: "Cover Image",
-        name: "url"
+        title: 'ImageUpload',
+        placeholder: 'Cover Image',
+        type: 'text',
+        label: 'Cover Image',
+        name: 'url'
       },
       {
-        title: "QuilEditor",
-        name: "desc",
-        label: "Description",
-        placeholder: "Description"
+        title: 'QuilEditor',
+        name: 'desc',
+        label: 'Description',
+        placeholder: 'Description'
       }
-    ]);
+    ])
 
     onMounted(() => {
       if (process.client) {
         let ref = $fireStore
           .collection(item.value.item)
-          .where("b_uid", "==", business.value.b_uid);
+          .where('b_uid', '==', business.value.b_uid)
 
         ref.onSnapshot(snapshot => {
           snapshot.docChanges().forEach(change => {
-            if (change.type === "added") {
-              let doc = change.doc;
-              let data = doc.data();
-              data.id = doc.id;
+            if (change.type === 'added') {
+              let doc = change.doc
+              let data = doc.data()
+              data.id = doc.id
               kb.value.push({
                 id: doc.id,
                 title: doc.data().title,
@@ -130,12 +130,12 @@ export default {
                 graphic: doc.data().url[0],
                 feature: route.value.params.id,
                 url: `${window.location.pathname}/${doc.id}`
-              });
+              })
             }
-          });
-        });
+          })
+        })
       }
-    });
+    })
 
     return {
       item,
@@ -144,14 +144,15 @@ export default {
       motivational_quotes,
       schema,
       filteredKB
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss">
 .knowledge-base-jumbotron-content {
-  background-image: url("~/assets/images/background/night.jpeg");
+  background-image: url('../../../../assets/images/background/night.jpeg');
+
   background-size: cover;
 }
 </style>

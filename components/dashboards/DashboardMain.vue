@@ -57,7 +57,7 @@ export default {
         title: 'Business Settings',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/logic.svg'),
-        url: '/dashboard/business-settings'
+        url: '/dashboardBusinessSettings'
       },
       {
         id: 1,
@@ -174,7 +174,8 @@ export default {
 
 <style lang="scss">
 .knowledge-base-jumbotron-content {
-  background-image: url('~/assets/images/background/night.jpeg');
+  background-image: url('../../assets/images/background/night.jpeg');
+
   background-size: cover;
 }
 </style>

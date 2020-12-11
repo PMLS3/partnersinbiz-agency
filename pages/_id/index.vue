@@ -24,9 +24,9 @@ import dashboardMain from '@/components/dashboards/DashboardMain.vue'
 // Secondary Dashboards
 import dashboardRadio from '@/components/dashboards/DashboardRadio.vue'
 import dashboardApps from '@/components/dashboards/DashboardApps.vue'
-
+import dashboardBusinessSettings from '@/components/dashboards/DashboardBusinessSettings.vue'
 // Apps Dashboards
-import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/dashboardAppsBroadcast.vue'
+import DashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 
 // Pages
 import calendar from '@/components/pages/Calendar.vue'
@@ -44,13 +44,14 @@ export default {
     dashboardRadio,
     dashboardMain,
     dashboardApps,
-    dashboardAppsBroadcast,
+    DashboardAppsBroadcast,
     calendar,
     DemoAframeShowRoom,
     DemoAframeApartment,
     mypage,
     DemoAframeSmall,
-    DemoAR
+    DemoAR,
+    dashboardBusinessSettings
     // videoChat
   }
 }

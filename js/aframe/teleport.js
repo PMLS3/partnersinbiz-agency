@@ -1,7 +1,7 @@
 /**
  * Cursor Teleport component for A-Frame.
  */
-let context = context
+// let context = context
 
 AFRAME.registerComponent('cursor-teleport', {
   schema: {
