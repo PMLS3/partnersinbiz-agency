@@ -65,7 +65,7 @@ export default {
         description:
           'See your sales activity, orders, shipments from one place',
         graphic: require('@/assets/illustrations/online_banking.svg'),
-        url: '/dashboard/sales'
+        url: '/dashboardSales'
       },
       {
         id: 2,

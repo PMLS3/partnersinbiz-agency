@@ -25,6 +25,16 @@ import dashboardMain from '@/components/dashboards/DashboardMain.vue'
 import dashboardRadio from '@/components/dashboards/DashboardRadio.vue'
 import dashboardApps from '@/components/dashboards/DashboardApps.vue'
 import dashboardBusinessSettings from '@/components/dashboards/DashboardBusinessSettings.vue'
+import dashboardSales from '@/components/dashboards/DashboardSales.vue'
+import dashboardMarketing from '@/components/dashboards/DashboardMarketing.vue'
+import dashboardCommunication from '@/components/dashboards/DashboardCommunication.vue'
+import dashboardAccounting from '@/components/dashboards/DashboardAccounting.vue'
+import dashboardMarketPlace from '@/components/dashboards/DashboardMarketPlace.vue'
+import dashboardHumanResources from '@/components/dashboards/DashboardHumanResource.vue'
+import dashboardAnalytics from '@/components/dashboards/DashboardAnalytics.vue'
+import dashboardLearn from '@/components/dashboards/DashboardLearn.vue'
+import dashboardSupport from '@/components/dashboards/DashboardSupport.vue'
+import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
 // Apps Dashboards
 import DashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 
@@ -51,7 +61,17 @@ export default {
     mypage,
     DemoAframeSmall,
     DemoAR,
-    dashboardBusinessSettings
+    dashboardBusinessSettings,
+    dashboardSales,
+    dashboardMarketing,
+    dashboardCommunication,
+    dashboardAccounting,
+    dashboardMarketPlace,
+    dashboardHumanResources,
+    dashboardAnalytics,
+    dashboardLearn,
+    dashboardSupport,
+    dashboardRequest
     // videoChat
   }
 }

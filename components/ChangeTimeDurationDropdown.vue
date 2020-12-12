@@ -4,9 +4,21 @@
     ----------------------------------------------------------------------------------------
 
 ========================================================================================== -->
+<template>
+  <div></div>
+</template>
 
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
 <!-- :class="data.class" -->
-
+<!--
 <template functional>
   <vs-dropdown
     vs-trigger-click
