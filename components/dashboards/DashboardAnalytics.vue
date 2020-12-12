@@ -1,181 +1,680 @@
 <!-- =========================================================================================
-    File Name: Dashboard.vue.vue
-    Description: Knowledge Base Page
-    ----------------------------------------------------------------------------------------
-  TODO: if not coming from front business, change
+  File Name: DashboardAnalytics.vue
+  Description: Dashboard Analytics
+  ----------------------------------------------------------------------------------------
+TODO: data not pulling through
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
-    <!-- JUMBOTRON -->
-    <div class="knowledge-base-jumbotron">
-      <div
-        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
-      >
-        <h1 class="mb-1 text-white">Run your business from here</h1>
-        <p class="text-white">
-          {{ motivational_quotes }}
-        </p>
-        <vs-input
-          icon-no-border
-          placeholder="Search Topic or Keyword"
-          v-model="knowledgeBaseSearchQuery"
-          icon-pack="feather"
-          icon="icon-search"
-          size="large"
-          class="w-full mt-6"
+  <div id="dashboard-analytics">
+    <div class="vx-row">
+      <!-- CARD 1: CONGRATS -->
+      <div class="w-full vx-col lg:w-1/2 mb-base">
+        <vx-card
+          slot="no-body"
+          class="text-center bg-primary-gradient greet-user"
+        >
+          <img
+            src="@/assets/images/elements/decore-left.png"
+            class="decore-left"
+            alt="Decore Left"
+            width="200"
+          />
+          <img
+            src="@/assets/images/elements/decore-right.png"
+            class="decore-right"
+            alt="Decore Right"
+            width="175"
+          />
+          <feather-icon
+            icon="AwardIcon"
+            class="inline-flex p-6 mb-8 text-white rounded-full shadow bg-primary"
+            svgClasses="h-8 w-8"
+          ></feather-icon>
+          <h1 class="mb-6 text-white">
+            Congratulations {{ checkpointReward.userName }},
+          </h1>
+          <p class="w-4/5 mx-auto text-white xl:w-3/4 lg:w-4/5 md:w-2/3">
+            You have done <strong>{{ checkpointReward.progress }}</strong> more
+            sales today. Check your new badge in your profile.
+          </p>
+        </vx-card>
+      </div>
+
+      <!-- CARD 2: SUBSCRIBERS GAINED -->
+      <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
+        <StatisticsCardLine
+          icon="UsersIcon"
+          statistic="92.6k"
+          statisticTitle="Subscribers Gained"
+          :chartData="subscribersGained.series"
+          type="area"
+        />
+      </div>
+
+      <!-- CARD 3: ORDER RECIEVED -->
+      <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
+        <StatisticsCardLine
+          icon="ShoppingBagIcon"
+          statistic="97.5K"
+          statisticTitle="Orders Received"
+          :chartData="ordersRecevied.series"
+          color="warning"
+          type="area"
         />
       </div>
     </div>
 
-    <!-- KNOWLEDGE BASE CARDS  -->
     <div class="vx-row">
-      <div
-        class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
-        v-for="item in filteredKB"
-        :key="item.id"
-      >
-        <CardSimple :item="item" class="h-full" />
+      <!-- CARD 4: SESSION -->
+      <div class="w-full vx-col md:w-1/2 mb-base">
+        <vx-card>
+          <div
+            class="flex-col-reverse vx-row md:flex-col-reverse sm:flex-row lg:flex-row"
+          >
+            <!-- LEFT COL -->
+            <div
+              class="flex flex-col justify-between w-full vx-col md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2"
+              v-if="salesBarSession.analyticsData"
+            >
+              <div>
+                <h2 class="mb-1 font-bold">
+                  {{ salesBarSession.analyticsData.session | k_formatter }}
+                </h2>
+                <span class="font-medium">Avg Sessions</span>
+
+                <!-- Previous Data Comparison -->
+                <p class="mt-2 text-xl font-medium">
+                  <span
+                    :class="
+                      salesBarSession.analyticsData.comparison.result >= 0
+                        ? 'text-success'
+                        : 'text-danger'
+                    "
+                  >
+                    <span
+                      v-if="salesBarSession.analyticsData.comparison.result > 0"
+                      >+</span
+                    >
+                    <span>{{
+                      salesBarSession.analyticsData.comparison.result
+                    }}</span>
+                  </span>
+                  <span> vs </span>
+                  <span>{{
+                    salesBarSession.analyticsData.comparison.str
+                  }}</span>
+                </p>
+              </div>
+              <vs-button
+                icon-pack="feather"
+                icon="icon-chevrons-right"
+                icon-after
+                class="w-full mt-4 shadow-md lg:mt-0"
+                >View Details</vs-button
+              >
+            </div>
+
+            <!-- RIGHT COL -->
+            <div
+              class="flex flex-col w-full vx-col md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 lg:mb-0 md:mb-base sm:mb-0 mb-base"
+            >
+              <ChangeTimeDurationDropdown class="self-end" />
+              <vue-apex-charts
+                type="bar"
+                height="200"
+                :options="analyticsData.salesBar.chartOptions"
+                :series="salesBarSession.series"
+                v-if="salesBarSession.series"
+              />
+            </div>
+          </div>
+          <vs-divider class="my-6"></vs-divider>
+          <div class="vx-row">
+            <div class="w-1/2 mb-3 vx-col">
+              <p>Goal: $100000</p>
+              <vs-progress
+                class="block mt-1"
+                :percent="50"
+                color="primary"
+              ></vs-progress>
+            </div>
+            <div class="w-1/2 mb-3 vx-col">
+              <p>Users: 100K</p>
+              <vs-progress
+                class="block mt-1"
+                :percent="60"
+                color="warning"
+              ></vs-progress>
+            </div>
+            <div class="w-1/2 mb-3 vx-col">
+              <p>Retention: 90%</p>
+              <vs-progress
+                class="block mt-1"
+                :percent="70"
+                color="danger"
+              ></vs-progress>
+            </div>
+            <div class="w-1/2 mb-3 vx-col">
+              <p>Duration: 1yr</p>
+              <vs-progress
+                class="block mt-1"
+                :percent="90"
+                color="success"
+              ></vs-progress>
+            </div>
+          </div>
+        </vx-card>
+      </div>
+
+      <!-- CARD 5: SUPPORT TRACKER -->
+      <div class="w-full vx-col md:w-1/2 lg:w-1/2 xl:w-1/2 mb-base">
+        <vx-card title="Support Tracker">
+          <!-- CARD ACTION -->
+          <template slot="actions">
+            <ChangeTimeDurationDropdown />
+          </template>
+
+          <div slot="no-body" v-if="supportTracker.analyticsData">
+            <div class="text-center vx-row">
+              <!-- Open Tickets Heading -->
+              <div
+                class="flex flex-col justify-between order-last w-full mb-4 vx-col lg:w-1/5 md:w-full sm:w-1/5 lg:order-first md:order-last sm:order-first"
+              >
+                <div class="lg:ml-6 lg:mt-6 md:mt-0 md:ml-0 sm:ml-6 sm:mt-6">
+                  <h1 class="text-5xl font-bold">
+                    {{ supportTracker.analyticsData.openTickets }}
+                  </h1>
+                  <small>Tickets</small>
+                </div>
+              </div>
+
+              <!-- Chart -->
+              <div
+                class="justify-center w-full mx-auto mt-6 vx-col lg:w-4/5 md:w-full sm:w-4/5 lg:mt-0 md:mt-6 sm:mt-0"
+              >
+                <vue-apex-charts
+                  type="radialBar"
+                  height="385"
+                  :options="analyticsData.supportTrackerRadialBar.chartOptions"
+                  :series="supportTracker.series"
+                />
+              </div>
+            </div>
+
+            <!-- Support Tracker Meta Data -->
+            <div class="flex flex-row justify-between px-8 pb-4 mt-4">
+              <p
+                class="text-center"
+                v-for="(val, key) in supportTracker.analyticsData.meta"
+                :key="key"
+              >
+                <span class="block">{{ key }}</span>
+                <span class="text-2xl font-semibold">{{ val }}</span>
+              </p>
+            </div>
+          </div>
+        </vx-card>
+      </div>
+    </div>
+
+    <div class="vx-row">
+      <!-- CARD 6: Product Orders -->
+      <div class="w-full vx-col lg:w-1/3 mb-base">
+        <vx-card title="Product Orders">
+          <!-- CARD ACTION -->
+          <template slot="actions">
+            <ChangeTimeDurationDropdown />
+          </template>
+
+          <!-- Chart -->
+          <div slot="no-body">
+            <vue-apex-charts
+              type="radialBar"
+              height="420"
+              :options="analyticsData.productOrdersRadialBar.chartOptions"
+              :series="productsOrder.series"
+            />
+          </div>
+
+          <ul>
+            <li
+              v-for="orderData in productsOrder.analyticsData"
+              :key="orderData.orderType"
+              class="flex justify-between mb-3"
+            >
+              <span class="flex items-center">
+                <span
+                  class="inline-block w-4 h-4 mr-2 bg-white border-solid rounded-full border-3"
+                  :class="`border-${orderData.color}`"
+                ></span>
+                <span class="font-semibold">{{ orderData.orderType }}</span>
+              </span>
+              <span>{{ orderData.counts }}</span>
+            </li>
+          </ul>
+        </vx-card>
+      </div>
+
+      <!-- CARD 7: Sales Stats -->
+      <div class="w-full vx-col lg:w-1/3 mb-base">
+        <vx-card title="Sales Stats" subtitle="Last 6 Months">
+          <template slot="actions">
+            <feather-icon
+              icon="MoreVerticalIcon"
+              svgClasses="w-6 h-6 text-grey"
+            ></feather-icon>
+          </template>
+          <div class="flex">
+            <span class="flex items-center"
+              ><div class="w-3 h-3 mr-1 rounded-full bg-primary"></div>
+              <span>Sales</span></span
+            >
+            <span class="flex items-center ml-4"
+              ><div class="w-3 h-3 mr-1 rounded-full bg-success"></div>
+              <span>Visits</span></span
+            >
+          </div>
+          <div slot="no-body-bottom">
+            <vue-apex-charts
+              type="radar"
+              height="385"
+              :options="analyticsData.statisticsRadar.chartOptions"
+              :series="salesRadar.series"
+            />
+          </div>
+        </vx-card>
+      </div>
+
+      <!-- CARD 8: Activity Timeline -->
+      <div class="w-full vx-col lg:w-1/3 mb-base">
+        <vx-card title="Activity Timeline">
+          <vx-timeline :data="timelineData" />
+        </vx-card>
+      </div>
+    </div>
+
+    <div class="vx-row">
+      <!-- CARD 9: DISPATCHED ORDERS -->
+      <div class="w-full vx-col">
+        <vx-card title="Dispatched Orders">
+          <div slot="no-body" class="mt-4">
+            <vs-table :data="dispatchedOrders" class="table-dark-inverted">
+              <template slot="thead">
+                <vs-th>ORDER NO.</vs-th>
+                <vs-th>STATUS</vs-th>
+                <vs-th>OPERATORS</vs-th>
+                <vs-th>LOCATION</vs-th>
+                <vs-th>DISTANCE</vs-th>
+                <vs-th>START DATE</vs-th>
+                <vs-th>EST DELIVERY DATE</vs-th>
+              </template>
+
+              <template slot-scope="{ data }">
+                <vs-tr :key="indextr" v-for="(tr, indextr) in data">
+                  <vs-td :data="data[indextr].orderNo">
+                    <span>#{{ data[indextr].orderNo }}</span>
+                  </vs-td>
+                  <vs-td :data="data[indextr].status">
+                    <span class="flex items-center px-2 py-1 rounded"
+                      ><div
+                        class="w-3 h-3 mr-2 rounded-full"
+                        :class="'bg-' + data[indextr].statusColor"
+                      ></div>
+                      {{ data[indextr].status }}</span
+                    >
+                  </vs-td>
+                  <vs-td :data="data[indextr].orderNo">
+                    <ul class="users-liked user-list">
+                      <li
+                        v-for="(user, userIndex) in data[indextr].usersLiked"
+                        :key="userIndex"
+                      >
+                        <vx-tooltip :text="user.name" position="bottom">
+                          <vs-avatar
+                            :src="user.img"
+                            size="30px"
+                            class="-m-1 border-2 border-white border-solid"
+                          ></vs-avatar>
+                        </vx-tooltip>
+                      </li>
+                    </ul>
+                  </vs-td>
+                  <vs-td :data="data[indextr].orderNo">
+                    <span>{{ data[indextr].location }}</span>
+                  </vs-td>
+                  <vs-td :data="data[indextr].orderNo">
+                    <span>{{ data[indextr].distance }}</span>
+                    <vs-progress
+                      :percent="data[indextr].distPercent"
+                      :color="data[indextr].statusColor"
+                    ></vs-progress>
+                  </vs-td>
+                  <vs-td :data="data[indextr].orderNo">
+                    <span>{{ data[indextr].startDate }}</span>
+                  </vs-td>
+                  <vs-td :data="data[indextr].orderNo">
+                    <span>{{ data[indextr].estDelDate }}</span>
+                  </vs-td>
+                </vs-tr>
+              </template>
+            </vs-table>
+          </div>
+        </vx-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
-export default {
-  name: 'dashboardMain',
-  setup() {
-    const { store } = useContext()
-    onMounted(() => {
-      store.commit('business/UPDATE_BUSINESS_INFO', business.value)
-    })
-    let knowledgeBaseSearchQuery = ref('')
-    const kb = ref([
-      {
-        id: 12,
-        title: 'Business Settings',
-        description: 'Update business info, create goups and more...',
-        graphic: require('@/assets/illustrations/logic.svg'),
-        url: '/dashboardBusinessSettings'
-      },
-      {
-        id: 1,
-        title: 'Sales',
-        description:
-          'See your sales activity, orders, shipments from one place',
-        graphic: require('@/assets/illustrations/online_banking.svg'),
-        url: '/dashboardSales'
-      },
-      {
-        id: 2,
-        title: 'Marketing',
-        description:
-          'Create Marketing campaigns, assign staff to run with projects',
-        graphic: require('@/assets/illustrations/design_data.svg'),
-        url: '/dashboard/marketing'
-      },
-      {
-        id: 3,
-        title: 'Communication',
-        description: 'Talk is not that cheap, spread the message',
-        graphic: require('@/assets/illustrations/business_chat.svg'),
-        url: '/dashboard/communication'
-      },
-      {
-        id: 4,
-        title: 'Accounting',
-        description: 'Stay ontop of those numbers',
-        graphic: require('@/assets/illustrations/calculator.svg'),
-        url: '/dashboard/accounting'
-      },
-      {
-        id: 5,
-        title: 'Market Place',
-        description:
-          'Want to expand or get into something new? Check what we have installed for you',
-        graphic: require('@/assets/illustrations/business_shop.svg'),
-        url: '/dashboard/market-place'
-      },
-      {
-        id: 6,
-        title: 'Human Resources',
-        description: 'The heart of your business is here',
-        graphic: require('@/assets/illustrations/loving_story.svg'),
-        url: '/dashboard/human-resource'
-      },
-      {
-        id: 7,
-        title: 'Analytics',
-        description:
-          'Sometimes its easier to see the bigger picture in a graph',
-        graphic: require('@/assets/illustrations/business_plan.svg'),
-        url: '/dashboard/analytics'
-      },
-      {
-        id: 8,
-        title: 'Learn',
-        description: 'Knowledge base... thats all',
-        graphic: require('@/assets/illustrations/lightbulb_moment.svg'),
-        url: '/dashboard/learn'
-      },
-      {
-        id: 9,
-        title: 'Apps',
-        description: 'All the apps we have for you to Boom in the Online World',
-        graphic: require('@/assets/illustrations/apps.svg'),
-        url: '/dashboard-apps'
-      },
-      {
-        id: 10,
-        title: 'Support',
-        description: 'Run your support center from here',
-        graphic: require('@/assets/illustrations/intense_feeling.svg'),
-        url: '/dashboard/support'
-      },
-      {
-        id: 11,
-        title: 'Suggestion/Request',
-        description: 'Have feature request? Found a bug? Please let us know.',
-        graphic: require('@/assets/illustrations/in_thoughts.svg'),
-        url: '/dashboard/suggestions'
-      }
-    ])
-    const user = computed(() => store.state.auth.main_user)
-    let filteredKB = computed(() => {
-      return kb.value.filter(
-        item =>
-          item.title
-            .toLowerCase()
-            .includes(knowledgeBaseSearchQuery.value.toLowerCase()) ||
-          item.description
-            .toLowerCase()
-            .includes(knowledgeBaseSearchQuery.value.toLowerCase())
-      )
-    })
-    let motivational_quotes = computed(() => {
-      let num = Math.floor(Math.random() * 55)
-      return store.state.info.motivational_quotes[num]
-    })
+import VueApexCharts from 'vue-apexcharts'
+import analyticsData from '@/js/data/analyticsData.js'
 
-    let business = computed(() => {
-      return store.state.business.active_business
-    })
+// import VxTimeline from '@/components/timeline/VxTimeline'
+
+export default {
+  name: 'analytics',
+  data() {
     return {
-      knowledgeBaseSearchQuery,
-      kb,
-      filteredKB,
-      motivational_quotes,
-      business
+      timelineData: [
+        {
+          color: 'primary',
+          icon: 'PlusIcon',
+          title: 'Client Meeting',
+          desc: 'Bonbon macaroon jelly beans gummi bears jelly lollipop apple',
+          time: '25 mins Ago'
+        },
+        {
+          color: 'warning',
+          icon: 'MailIcon',
+          title: 'Email Newsletter',
+          desc: 'Cupcake gummi bears soufflé caramels candy',
+          time: '15 Days Ago'
+        },
+        {
+          color: 'danger',
+          icon: 'UsersIcon',
+          title: 'Plan Webinar',
+          desc: 'Candy ice cream cake. Halvah gummi bears',
+          time: '20 days ago'
+        },
+        {
+          color: 'success',
+          icon: 'LayoutIcon',
+          title: 'Launch Website',
+          desc:
+            'Candy ice cream cake. Halvah gummi bears Cupcake gummi bears soufflé caramels candy.',
+          time: '25 days ago'
+        },
+        {
+          color: 'primary',
+          icon: 'TvIcon',
+          title: 'Marketing',
+          desc: 'Candy ice cream cake. Halvah gummi bears Cupcake gummi bears.',
+          time: '28 days ago'
+        }
+      ],
+
+      analyticsData,
+      dispatchedOrders: [
+        {
+          orderNo: 879985,
+          status: 'Moving',
+          statusColor: 'success',
+          operator: 'Cinar Knowles',
+          operatorImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
+          usersLiked: [
+            {
+              name: 'Vennie Mostowy',
+              img: require('@/assets/images/portrait/small/avatar-s-5.jpg')
+            },
+            {
+              name: 'Elicia Rieske',
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+            },
+            {
+              name: 'Julee Rossignol',
+              img: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+            },
+            {
+              name: 'Darcey Nooner',
+              img: require('@/assets/images/portrait/small/avatar-s-8.jpg')
+            }
+          ],
+          location: 'Anniston, Alabama',
+          distance: '130 km',
+          distPercent: 80,
+          startDate: '26/07/2018',
+          estDelDate: '28/07/2018'
+        },
+        {
+          orderNo: 156897,
+          status: 'Pending',
+          statusColor: 'warning',
+          operator: 'Britany Ryder',
+          operatorImg: require('@/assets/images/portrait/small/avatar-s-4.jpg'),
+          usersLiked: [
+            {
+              name: 'Trina Lynes',
+              img: require('@/assets/images/portrait/small/avatar-s-1.jpg')
+            },
+            {
+              name: 'Lilian Nenez',
+              img: require('@/assets/images/portrait/small/avatar-s-2.jpg')
+            },
+            {
+              name: 'Alberto Glotzbach',
+              img: require('@/assets/images/portrait/small/avatar-s-3.jpg')
+            }
+          ],
+          location: 'Cordova, Alaska',
+          distance: '234 km',
+          distPercent: 60,
+          startDate: '26/07/2018',
+          estDelDate: '28/07/2018'
+        },
+        {
+          orderNo: 568975,
+          status: 'Moving',
+          statusColor: 'success',
+          operator: 'Kishan Ashton',
+          operatorImg: require('@/assets/images/portrait/small/avatar-s-1.jpg'),
+          usersLiked: [
+            {
+              name: 'Lai Lewandowski',
+              img: require('@/assets/images/portrait/small/avatar-s-6.jpg')
+            },
+            {
+              name: 'Elicia Rieske',
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+            },
+            {
+              name: 'Darcey Nooner',
+              img: require('@/assets/images/portrait/small/avatar-s-8.jpg')
+            },
+            {
+              name: 'Julee Rossignol',
+              img: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+            },
+            {
+              name: 'Jeffrey Gerondale',
+              img: require('@/assets/images/portrait/small/avatar-s-9.jpg')
+            }
+          ],
+          location: 'Florence, Alabama',
+          distance: '168 km',
+          distPercent: 70,
+          startDate: '26/07/2018',
+          estDelDate: '28/07/2018'
+        },
+        {
+          orderNo: 245689,
+          status: 'Canceled',
+          statusColor: 'danger',
+          operator: 'Anabella Elliott',
+          operatorImg: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
+          usersLiked: [
+            {
+              name: 'Vennie Mostowy',
+              img: require('@/assets/images/portrait/small/avatar-s-5.jpg')
+            },
+            {
+              name: 'Elicia Rieske',
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+            }
+          ],
+          location: 'Clifton, Arizona',
+          distance: '125 km',
+          distPercent: 95,
+          startDate: '26/07/2018',
+          estDelDate: '28/07/2018'
+        }
+      ]
+    }
+  },
+  components: {
+    VueApexCharts
+    // VxTimeline
+  },
+  computed: {
+    checkpointReward() {
+      return { userName: 'John', progress: '57.6%' }
+    },
+    subscribersGained() {
+      return {
+        analyticsData: [
+          {
+            device: 'Dekstop',
+            icon: 'MonitorIcon',
+            color: 'primary',
+            sessionsPercentage: 58.6,
+            comparedResultPercentage: 2
+          },
+          {
+            device: 'Mobile',
+            icon: 'SmartphoneIcon',
+            color: 'warning',
+            sessionsPercentage: 34.9,
+            comparedResultPercentage: 8
+          },
+          {
+            device: 'Tablet',
+            icon: 'TabletIcon',
+            color: 'danger',
+            sessionsPercentage: 6.5,
+            comparedResultPercentage: -5
+          }
+        ],
+        series: [58.6, 34.9, 6.5]
+      }
+    },
+    ordersRecevied() {
+      return {
+        series: [
+          {
+            name: 'Orders',
+            data: [10, 15, 8, 15, 7, 12, 8]
+          }
+        ],
+        analyticsData: {
+          orders: 97500
+        }
+      }
+    },
+    salesBarSession() {
+      return {
+        series: [
+          {
+            name: 'Sessions',
+            data: [75, 125, 225, 175, 125, 75, 25]
+          }
+        ],
+        analyticsData: {
+          session: 2700,
+          comparison: {
+            str: 'Last 7 Days',
+            result: +5.2
+          }
+        }
+      }
+    },
+    supportTracker() {
+      return {
+        analyticsData: {
+          openTickets: 163,
+          meta: {
+            'New Tickets': 29,
+            'Open Tickets': 63,
+            'Response Time': '1d'
+          }
+        },
+        series: [83]
+      }
+    },
+    productsOrder() {
+      return {
+        analyticsData: [
+          {
+            orderType: 'Finished',
+            counts: 23043,
+            color: 'primary'
+          },
+          {
+            orderType: 'Pending',
+            counts: 14658,
+            color: 'warning'
+          },
+          {
+            orderType: 'Rejected ',
+            counts: 4758,
+            color: 'danger'
+          }
+        ],
+        series: [70, 52, 26]
+      }
+    },
+    salesRadar() {
+      return {
+        series: [
+          {
+            name: 'Visits',
+            data: [90, 50, 86, 40, 100, 20]
+          },
+          {
+            name: 'Sales',
+            data: [70, 75, 70, 76, 20, 85]
+          }
+        ]
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
-.knowledge-base-jumbotron-content {
-  background-image: url('../../assets/images/background/night.jpeg');
+/*! rtl:begin:ignore */
+#dashboard-analytics {
+  .greet-user {
+    position: relative;
 
-  background-size: cover;
+    .decore-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .decore-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .decore-left,
+    .decore-right {
+      width: 140px;
+    }
+  }
 }
+/*! rtl:end:ignore */
 </style>

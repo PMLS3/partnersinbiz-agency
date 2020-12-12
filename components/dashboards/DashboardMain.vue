@@ -53,14 +53,21 @@ export default {
     let knowledgeBaseSearchQuery = ref('')
     const kb = ref([
       {
-        id: 12,
+        id: 1,
         title: 'Business Settings',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/logic.svg'),
         url: '/dashboardBusinessSettings'
       },
       {
-        id: 1,
+        id: 2,
+        title: 'Clients',
+        description: 'All your clients in one place',
+        graphic: require('@/assets/illustrations/people_search.svg'),
+        url: '/dashboardClients'
+      },
+      {
+        id: 3,
         title: 'Sales',
         description:
           'See your sales activity, orders, shipments from one place',
@@ -68,7 +75,7 @@ export default {
         url: '/dashboardSales'
       },
       {
-        id: 2,
+        id: 4,
         title: 'Marketing',
         description:
           'Create Marketing campaigns, assign staff to run with projects',
@@ -76,21 +83,21 @@ export default {
         url: '/dashboardMarketing'
       },
       {
-        id: 3,
+        id: 5,
         title: 'Communication',
         description: 'Talk is not that cheap, spread the message',
         graphic: require('@/assets/illustrations/business_chat.svg'),
         url: '/dashboardCommunication'
       },
       {
-        id: 4,
+        id: 6,
         title: 'Accounting',
         description: 'Stay ontop of those numbers',
         graphic: require('@/assets/illustrations/calculator.svg'),
         url: '/dashboardAccounting'
       },
       {
-        id: 5,
+        id: 7,
         title: 'Market Place',
         description:
           'Want to expand or get into something new? Check what we have installed for you',
@@ -98,14 +105,14 @@ export default {
         url: '/dashboardMarketPlace'
       },
       {
-        id: 6,
+        id: 8,
         title: 'Human Resources',
         description: 'The heart of your business is here',
         graphic: require('@/assets/illustrations/loving_story.svg'),
         url: '/dashboardHumanResource'
       },
       {
-        id: 7,
+        id: 9,
         title: 'Analytics',
         description:
           'Sometimes its easier to see the bigger picture in a graph',
@@ -113,28 +120,28 @@ export default {
         url: '/dashboardAnalytics'
       },
       {
-        id: 8,
+        id: 10,
         title: 'Learn',
         description: 'Knowledge base... thats all',
         graphic: require('@/assets/illustrations/lightbulb_moment.svg'),
         url: '/dashboardLearn'
       },
       {
-        id: 9,
+        id: 11,
         title: 'Apps',
         description: 'All the apps we have for you to Boom in the Online World',
         graphic: require('@/assets/illustrations/apps.svg'),
         url: '/dashboardApps'
       },
       {
-        id: 10,
+        id: 12,
         title: 'Support',
         description: 'Run your support center from here',
         graphic: require('@/assets/illustrations/intense_feeling.svg'),
         url: '/dashboardSupport'
       },
       {
-        id: 11,
+        id: 13,
         title: 'Suggestion/Request',
         description: 'Have feature request? Found a bug? Please let us know.',
         graphic: require('@/assets/illustrations/in_thoughts.svg'),

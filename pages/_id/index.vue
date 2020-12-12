@@ -35,6 +35,8 @@ import dashboardAnalytics from '@/components/dashboards/DashboardAnalytics.vue'
 import dashboardLearn from '@/components/dashboards/DashboardLearn.vue'
 import dashboardSupport from '@/components/dashboards/DashboardSupport.vue'
 import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
+import dashboardClients from '@/components/dashboards/DashboardClients.vue'
+
 // Apps Dashboards
 import DashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 
@@ -71,7 +73,8 @@ export default {
     dashboardAnalytics,
     dashboardLearn,
     dashboardSupport,
-    dashboardRequest
+    dashboardRequest,
+    dashboardClients
     // videoChat
   }
 }
