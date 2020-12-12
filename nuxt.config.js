@@ -62,6 +62,9 @@ module.exports = {
    */
   plugins: [
     '@/plugins/vuesax',
+    '@/plugins/fake-db/index.js',
+    '@/plugins/http/requests',
+    '@/plugins/i18n/i18n.js',
     '@/plugins/filters.js',
     { src: '~/plugins/globalComponents', mode: 'client' },
     { src: '~/plugins/peer', mode: 'client' }

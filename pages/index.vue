@@ -1,5 +1,6 @@
 <template>
-  <HomePage />
+  <!-- <HomePage /> -->
+  <Login />
 </template>
 
 <script>

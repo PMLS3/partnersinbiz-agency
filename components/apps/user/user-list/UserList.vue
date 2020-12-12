@@ -10,13 +10,13 @@
     <vx-card
       ref="filterCard"
       title="Filters"
-      class="user-list-filters mb-8"
+      class="mb-8 user-list-filters"
       actionButtons
       @refresh="resetColFilters"
       @remove="resetColFilters"
     >
       <div class="vx-row">
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
+        <div class="w-full vx-col md:w-1/4 sm:w-1/2">
           <label class="text-sm opacity-75">Role</label>
           <v-select
             :options="roleOptions"
@@ -26,7 +26,7 @@
             class="mb-4 md:mb-0"
           />
         </div>
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
+        <div class="w-full vx-col md:w-1/4 sm:w-1/2">
           <label class="text-sm opacity-75">Status</label>
           <v-select
             :options="statusOptions"
@@ -36,7 +36,7 @@
             class="mb-4 md:mb-0"
           />
         </div>
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
+        <div class="w-full vx-col md:w-1/4 sm:w-1/2">
           <label class="text-sm opacity-75">Verified</label>
           <v-select
             :options="isVerifiedOptions"
@@ -46,7 +46,7 @@
             class="mb-4 sm:mb-0"
           />
         </div>
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
+        <div class="w-full vx-col md:w-1/4 sm:w-1/2">
           <label class="text-sm opacity-75">Department</label>
           <v-select
             :options="departmentOptions"
@@ -58,13 +58,13 @@
       </div>
     </vx-card>
 
-    <div class="vx-card p-6">
+    <div class="p-6 vx-card">
       <div class="flex flex-wrap items-center">
         <!-- ITEMS PER PAGE -->
         <div class="flex-grow">
           <vs-dropdown vs-trigger-click class="cursor-pointer">
             <div
-              class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium"
+              class="flex items-center justify-between p-4 font-medium border border-solid rounded-full cursor-pointer d-theme-border-grey-light d-theme-dark-bg"
             >
               <span class="mr-2"
                 >{{
@@ -100,7 +100,7 @@
 
         <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
         <vs-input
-          class="sm:mr-4 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4"
+          class="order-3 w-full mt-4 mr-0 sm:mr-4 sm:w-auto sm:order-normal sm:mt-0"
           v-model="searchQuery"
           @input="updateSearchQuery"
           placeholder="Search..."
@@ -110,7 +110,7 @@
         <!-- ACTION - DROPDOWN -->
         <vs-dropdown vs-trigger-click class="cursor-pointer">
           <div
-            class="p-3 shadow-drop rounded-lg d-theme-dark-light-bg cursor-pointer flex items-end justify-center text-lg font-medium w-32"
+            class="flex items-end justify-center w-32 p-3 text-lg font-medium rounded-lg cursor-pointer shadow-drop d-theme-dark-light-bg"
           >
             <span class="mr-2 leading-none">Actions</span>
             <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
@@ -169,7 +169,7 @@
         ref="agGridTable"
         :components="components"
         :gridOptions="gridOptions"
-        class="ag-theme-material w-100 my-4 ag-grid-table"
+        class="my-4 ag-theme-material w-100 ag-grid-table"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
         :rowData="usersData"

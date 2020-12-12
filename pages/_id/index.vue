@@ -30,7 +30,7 @@ import dashboardMarketing from '@/components/dashboards/DashboardMarketing.vue'
 import dashboardCommunication from '@/components/dashboards/DashboardCommunication.vue'
 import dashboardAccounting from '@/components/dashboards/DashboardAccounting.vue'
 import dashboardMarketPlace from '@/components/dashboards/DashboardMarketPlace.vue'
-import dashboardHumanResources from '@/components/dashboards/DashboardHumanResource.vue'
+import dashboardHumanResource from '@/components/dashboards/DashboardHumanResource.vue'
 import dashboardAnalytics from '@/components/dashboards/DashboardAnalytics.vue'
 import dashboardLearn from '@/components/dashboards/DashboardLearn.vue'
 import dashboardSupport from '@/components/dashboards/DashboardSupport.vue'
@@ -67,7 +67,7 @@ export default {
     dashboardCommunication,
     dashboardAccounting,
     dashboardMarketPlace,
-    dashboardHumanResources,
+    dashboardHumanResource,
     dashboardAnalytics,
     dashboardLearn,
     dashboardSupport,
