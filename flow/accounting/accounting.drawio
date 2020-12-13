@@ -1,0 +1,73 @@
+<mxfile host="" modified="2020-06-14T15:00:07.316Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) code-oss/1.45.1 Chrome/78.0.3904.130 Electron/7.1.14 Safari/537.36" etag="TBZ-srch5MFzdzKaXKo_" version="13.1.3" pages="6">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Assets">
+        <mxGraphModel dx="1125" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Assets" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="374" y="50" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Fixed" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="200" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="200" width="80" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="wjC0L1hcKWbeRZpIFO5O" name="Liabilities">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="1117" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="kTc4eHPashOy_Gffm88a-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="kTc4eHPashOy_Gffm88a-1" parent="kTc4eHPashOy_Gffm88a-0"/>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="ZeNP2hcdYUCzX6AQpv07" name="Equity">
+        &#xa;        &#xa;        &#xa;        
+        <mxGraphModel dx="1117" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+            &#xa;            &#xa;            &#xa;            
+            <root>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="a4hWVmO_SfhmWWSgBnwb-0"/>
+                &#xa;                &#xa;                &#xa;                
+                <mxCell id="a4hWVmO_SfhmWWSgBnwb-1" parent="a4hWVmO_SfhmWWSgBnwb-0"/>
+                &#xa;                &#xa;            &#xa;            
+            </root>
+            &#xa;            &#xa;        &#xa;        
+        </mxGraphModel>
+        &#xa;        &#xa;    &#xa;    
+    </diagram>
+    <diagram id="UJZok9CLLeJjtxtweWxz" name="Income">
+        <mxGraphModel dx="1125" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+            <root>
+                <mxCell id="yeTH9v0ahKkC5bIkqajM-0"/>
+                <mxCell id="yeTH9v0ahKkC5bIkqajM-1" parent="yeTH9v0ahKkC5bIkqajM-0"/>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="EK84_-jfz1FyIqy87Pak" name="Expense">
+        <mxGraphModel dx="1125" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+            <root>
+                <mxCell id="UyRTMvqgsbPxAlCtCXEv-0"/>
+                <mxCell id="UyRTMvqgsbPxAlCtCXEv-1" parent="UyRTMvqgsbPxAlCtCXEv-0"/>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="-5n1rzsS3dUbdeKSRbIM" name="Functions">
+        <mxGraphModel dx="1125" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+            <root>
+                <mxCell id="YBYkIW4PgeIUDZ_2jisX-0"/>
+                <mxCell id="YBYkIW4PgeIUDZ_2jisX-1" parent="YBYkIW4PgeIUDZ_2jisX-0"/>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

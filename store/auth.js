@@ -182,11 +182,7 @@ export const actions = {
             vm.$fireAuth.onAuthStateChanged(function(user) {
               if (user) {
                 vm.$fireStore
-                  .collection('apps')
-                  .doc('users')
-                  .collection(rootState.business.main_business.b_uid)
-                  .doc('info')
-                  .collection('general')
+                  .collection('users')
                   .doc(user.uid)
                   .get()
                   .then(function(doc) {
@@ -255,7 +251,8 @@ export const actions = {
             about: '',
             avatar: require('@/static/icon.png'), // So that there is a default image
             o_status: 'online',
-            role: 'user'
+            role: 'user',
+            b_uids: [`${payload.userDetails.b_uid}`]
           }
           // Add defaults with payload details
           let userD = {
@@ -274,41 +271,37 @@ export const actions = {
             goToRoute: goToRoute,
             updateUser: true
           }
-          const general = this.$fireStore
-            .collection('user')
-            .doc('info')
-            .collection('general')
-            .doc(cred.user.uid)
+          const setUser = this.$fireStore.collection('users').doc(cred.user.uid)
 
-          const bus_general = this.$fireStore
-            .collection('apps')
+          const setUserBusiness = this.$fireStore
+            .collection('business')
             .doc('users')
             .collection(payload.userDetails.b_uid)
-            .doc('info')
-            .collection('general')
             .doc(cred.user.uid)
 
           const stats = this.$fireStore.collection('data').doc('stats')
 
           const bus_stats = this.$fireStore
-            .collection('apps')
-            .doc('stats')
-            .collection(payload.userDetails.b_uid)
-            .doc('stats')
+            .collection('stats')
+            .doc(payload.userDetails.b_uid)
 
           const increment = firebase.firestore.FieldValue.increment(1)
 
           const batch = this.$fireStore.batch()
 
-          batch.set(general, {
+          batch.set(setUser, {
             uid: cred.user.uid,
+            b_uids: [`${payload.userDetails.b_uid}`],
             disp_name: payload.userDetails.displayName,
+            name: payload.userDetails.name,
+            surname: payload.userDetails.surname,
             email: payload.userDetails.email,
+            pw: payload.userDetails.password,
             date: moment().format('DD-MM-YYYY'),
             t_stamp: Date.now()
           })
 
-          batch.set(bus_general, {
+          batch.set(setUserBusiness, {
             date: moment().format('DD-MM-YYYY'),
             month: moment().format('MM-YYYY'),
             t_stamp: Date.now(),
@@ -318,6 +311,7 @@ export const actions = {
             uid: cred.user.uid,
             l_act: moment().format('DD-MM-YYYY'),
             name: payload.userDetails.name,
+            pw: payload.userDetails.password,
             mobile: null,
             o_status: 'Online',
             avatar: '',
