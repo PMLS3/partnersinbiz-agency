@@ -23,6 +23,8 @@ export default context => {
     case 'DemoAframeShowRoom':
     case 'DemoAframeApartment':
     case 'DemoAframeSmall':
+    case 'DemoAframeModernApartment':
+
     case 'DemoAR':
       return 'fullPage'
 

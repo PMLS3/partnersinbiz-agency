@@ -32,7 +32,7 @@
     "aframe": "^1.1.0",
     "aframe-physics-system": "^4.0.1",
     "ag-grid-community": "^24.1.0",
-    "ag-grid-vue": "^24.1.1",
+    "ag-grid-vue": "^23.2.1",
     "apexcharts": "^3.22.3",
     "axios-mock-adapter": "^1.19.0",
     "core-js": "^3.6.5",

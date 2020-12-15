@@ -26,11 +26,11 @@ module.exports = {
       {
         src:
           'https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js'
-      },
-      {
-        src:
-          'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
       }
+      // {
+      //   src:
+      //     'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
+      // }
     ]
   },
 
