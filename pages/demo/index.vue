@@ -71,13 +71,13 @@ export default {
       about: '',
       status: 'Active',
       surname: 'Snow',
-      verified: false
+      verified: false,
     })
 
     let demoBusiness = ref({
       b_uid: 'bMal6HJl4QtdDtK8LAlH',
       b_name: 'Demo Company',
-      logo: require('@/static/icon.png')
+      logo: require('@/static/icon.png'),
     })
     onMounted(() => {
       store.commit('auth/UPDATE_USER_INFO', demoClient.value)
@@ -90,35 +90,35 @@ export default {
         title: '3D: Side Apartment',
         description: 'Demo of 3D modelling and furniture texture change',
         graphic: require('@/assets/illustrations/3d_modeling.svg'),
-        url: '/demo/DemoAframeApartment'
+        url: '/demo/DemoAframeApartment',
       },
       {
         id: 2,
         title: '3D: Small Wooden House',
         description: 'Demo of 3D modelling and furniture texture change',
         graphic: require('@/assets/illustrations/3d_modeling.svg'),
-        url: '/demo/DemoAframeSmall'
+        url: '/demo/DemoAframeSmall',
       },
       {
         id: 3,
         title: '3D: Show Room',
         description: 'Demo of 3D modelling and furniture texture change',
         graphic: require('@/assets/illustrations/3d_modeling.svg'),
-        url: '/demo/DemoAframeShowRoom'
+        url: '/demo/DemoAframeShowRoom',
       },
       {
         id: 4,
         title: '3D: Modern Apartment',
         description: 'Demo of 3D modelling and furniture texture change',
         graphic: require('@/assets/illustrations/3d_modeling.svg'),
-        url: '/demo/DemoAframeModernApartment'
+        url: '/demo/DemoAframeModernApartment',
       },
       {
         title: 'Broadcaster',
         description: 'Your own broadcast station',
         graphic: require('@/assets/illustrations/podcast.svg'),
-        url: '/dashboardBroadcast'
-      }
+        url: '/dashboardAppsBroadcast',
+      },
       //   {
       //     id: 2,
       //     title: 'Marketing',
@@ -195,7 +195,7 @@ export default {
     ])
     let filteredKB = computed(() => {
       return kb.value.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(knowledgeBaseSearchQuery.value.toLowerCase()) ||
@@ -213,9 +213,9 @@ export default {
       knowledgeBaseSearchQuery,
       kb,
       filteredKB,
-      motivational_quotes
+      motivational_quotes,
     }
-  }
+  },
 }
 </script>
 

@@ -1,38 +1,18 @@
 <template lang="html">
   <div id="knowledge-base-page">
     <client-only>
-      <!-- JUMBOTRON -->
-      <div class="knowledge-base-jumbotron">
-        <div
-          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
+      <vs-card>
+        <vs-radio v-model="optionset" vs-value="Player" class="ml-3"
+          >Player</vs-radio
         >
-          <h1 class="mb-1 text-white">Broadcast Station</h1>
-          <h2 class="text-xl leading-tight text-white font-semibild">
-            Run your station from here
-          </h2>
-
-          <div class="flex justify-between py-2">
-            <div class="flex items-center">
-              <p class="text-white">
-                {{ motivational_quotes }}
-              </p>
-            </div>
-            <VideoChat />
-          </div>
-        </div>
-      </div>
-      <div>
-        <UploadMusic />
-
-        <MusicPlayer class="mt-3" />
-      </div>
-      <div>
-        <AgGridTableApp
-          :item="item"
-          :schema="schema"
-          :columnDefs="columnDefs"
-          :itemData="itemData"
-        />
+        <vs-radio v-model="optionset" vs-value="Whiteboard"
+          >Whiteboard</vs-radio
+        >
+        <!-- <vs-radio v-model="optionset" vs-value="Stations">Stations</vs-radio> -->
+        <vs-radio v-model="optionset" vs-value="Station">Forms</vs-radio>
+      </vs-card>
+      <div v-show="optionset == 'Player'">
+        <StationPlayer :room="$route.params.id" :show="show" />
       </div>
     </client-only>
   </div>
@@ -44,7 +24,7 @@ import {
   useContext,
   computed,
   onBeforeMount,
-  onMounted
+  onMounted,
 } from '@nuxtjs/composition-api'
 import CellRendererLink from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererLink.vue'
 import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
@@ -53,13 +33,13 @@ import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-ren
 import CellRendererAudio from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererAudio.vue'
 
 export default {
-  name: 'dashboardRadio',
+  name: 'dashboardAppsBroadcastStationSingle',
   components: {
     CellRendererLink,
     CellRendererStatus,
     CellRendererVerified,
     CellRendererActions,
-    CellRendererAudio
+    CellRendererAudio,
   },
   setup() {
     const { store, $fireStore } = useContext()
@@ -71,8 +51,12 @@ export default {
       return store.state.info.motivational_quotes[num]
     })
 
+    let optionset = ref('Player')
+
+    let show = ref(true)
+
     let item = ref({
-      name: 'dashboard'
+      name: 'dashboard',
     })
     let columnDefs = ref([
       {
@@ -82,46 +66,46 @@ export default {
         filter: true,
         checkboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
-        headerCheckboxSelection: true
+        headerCheckboxSelection: true,
       },
       {
         headerName: 'Cover',
         field: 'cover',
         filter: true,
         width: 150,
-        cellRendererFramework: 'CellRendererLink'
+        cellRendererFramework: 'CellRendererLink',
       },
       {
         headerName: 'Title',
         field: 'title',
         filter: true,
         width: 225,
-        editable: true
+        editable: true,
       },
       {
         headerName: 'Genre',
         field: 'genre',
         filter: true,
-        width: 200
+        width: 200,
       },
       {
         headerName: 'Info',
         field: 'desc',
         filter: true,
-        width: 150
+        width: 150,
       },
       {
         headerName: 'Artist',
         field: 'artist',
         filter: true,
-        width: 150
+        width: 150,
       },
       {
         headerName: 'Audio',
         field: 'audio',
         filter: true,
         width: 350,
-        cellRendererFramework: 'CellRendererAudio'
+        cellRendererFramework: 'CellRendererAudio',
       },
       {
         headerName: 'Favourite',
@@ -129,15 +113,15 @@ export default {
         filter: true,
         width: 125,
         cellRendererFramework: 'CellRendererVerified',
-        cellClass: 'text-center'
+        cellClass: 'text-center',
       },
 
       {
         headerName: 'Actions',
         field: 'transactions',
         width: 150,
-        cellRendererFramework: 'CellRendererActions'
-      }
+        cellRendererFramework: 'CellRendererActions',
+      },
     ])
 
     let itemData = ref([])
@@ -146,8 +130,8 @@ export default {
       let infoRetrieve = $fireStore.collection('music')
       // .where('u_uid', '==', this.user.uid)
 
-      infoRetrieve.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      infoRetrieve.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           let doc = change.doc
           itemData.value.push({
             id: doc.id,
@@ -162,14 +146,22 @@ export default {
             u_uid: doc.data().u_uid,
             b_uid: doc.data().b_uid,
             r_uid: doc.data().r_uid,
-            mr_uid: doc.data().mr_uid
+            mr_uid: doc.data().mr_uid,
           })
         })
       })
     })
 
-    return { user, columnDefs, item, motivational_quotes, itemData }
-  }
+    return {
+      user,
+      columnDefs,
+      item,
+      motivational_quotes,
+      itemData,
+      optionset,
+      show,
+    }
+  },
   //   data: () => ({
   //     colorx: "#8B0000"
   //   })

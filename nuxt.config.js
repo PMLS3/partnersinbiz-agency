@@ -6,32 +6,32 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
       { src: 'https://aframe.io/releases/1.0.4/aframe.min.js' },
       {
         src:
-          'https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js'
+          'https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js',
       },
       {
         src:
-          'https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js'
+          'https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js',
       },
       {
         src:
-          'https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js'
+          'https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js',
       },
       {
         src:
-          'https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js'
-      }
+          'https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js',
+      },
       // {
       //   src:
       //     'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
       // }
-    ]
+    ],
   },
 
   /*
@@ -55,7 +55,7 @@ module.exports = {
     // Material Icons
     'material-icons/iconfont/material-icons.css',
     // Vue Select
-    'vue-select/dist/vue-select.css'
+    'vue-select/dist/vue-select.css',
   ],
   /*
    ** Plugins to load before mounting the App
@@ -67,7 +67,7 @@ module.exports = {
     '@/plugins/i18n/i18n.js',
     '@/plugins/filters.js',
     { src: '~/plugins/globalComponents', mode: 'client' },
-    { src: '~/plugins/peer', mode: 'client' }
+    { src: '~/plugins/peer', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -86,12 +86,12 @@ module.exports = {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/composition-api'
+    '@nuxtjs/composition-api',
   ],
   tailwindcss: {
     configPath: '~/config/tailwind.config.js',
     cssPath: '~/assets/css/main.css',
-    purgeCSSInDev: false
+    purgeCSSInDev: false,
   },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -115,8 +115,8 @@ module.exports = {
       ['material-icons/iconfont/material-icons.css'],
       ['vuesax/dist/vuesax.css'],
       ['swiper/dist/css/swiper.min.css'],
-      ['vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css']
-    ]
+      ['vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'],
+    ],
   ],
   // content: {
   //   markdown: {
@@ -141,7 +141,7 @@ module.exports = {
         appId: '1:463207487963:web:d555981e27f1c41189affe',
         measurementId: 'G-0ML2QYBW4V',
         fcmPublicVapidKey:
-          'BElIDO8oe-f5IJCFctJDlKMVaOlbfwXK1XusDBdHShY3YtiKBwYaBMBJLO3JE9QdMLbKazjI3icNvdWlh1JWqc4' // Sets vapid key for FCM after initialization
+          'BElIDO8oe-f5IJCFctJDlKMVaOlbfwXK1XusDBdHShY3YtiKBwYaBMBJLO3JE9QdMLbKazjI3icNvdWlh1JWqc4', // Sets vapid key for FCM after initialization
       },
       development: {
         apiKey: 'AIzaSyBMj2o9iEITpXpmXGiaJ9wfDr8otWdh-fw',
@@ -153,8 +153,8 @@ module.exports = {
         appId: '1:458723667512:web:112c5fcd9c7ece141140cd',
         measurementId: 'G-NCTV5W0QKN',
         fcmPublicVapidKey:
-          'BJnNaNqvpiEa1uoj4fSPMD_BNU3rFPB7QYQIJb9KsqtyPbmYT7HeajpCjFD1NViUcwQ8dBaHFTpEmoA4TGAEanU' // Sets vapid key for FCM after initialization
-      }
+          'BJnNaNqvpiEa1uoj4fSPMD_BNU3rFPB7QYQIJb9KsqtyPbmYT7HeajpCjFD1NViUcwQ8dBaHFTpEmoA4TGAEanU', // Sets vapid key for FCM after initialization
+      },
     },
     customEnv: false,
     onFirebaseHosting: false,
@@ -166,19 +166,19 @@ module.exports = {
           onSuccessAction: null,
           onErrorMutation: null,
           onErrorAction: 'handleAuthError',
-          ssr: true // Default
-        }
+          ssr: true, // Default
+        },
       },
       firestore: {
         static: false, // default
         preload: false, // default
         chunkName:
           process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
-        enablePersistence: true
+        enablePersistence: true,
       },
       functions: {
         location: 'us-central1', // Default
-        emulatorPort: 12345
+        emulatorPort: 12345,
       },
       storage: true,
       realtimeDb: true,
@@ -187,16 +187,16 @@ module.exports = {
       remoteConfig: {
         settings: {
           fetchTimeoutMillis: 60000, // Default
-          minimumFetchIntervalMillis: 43200000 // Default
+          minimumFetchIntervalMillis: 43200000, // Default
         },
         defaultConfig: {
-          welcome_message: 'Welcome'
-        }
+          welcome_message: 'Welcome',
+        },
       },
       messaging: {
-        createServiceWorker: true
-      }
-    }
+        createServiceWorker: true,
+      },
+    },
   },
   /*
    ** IO Config
@@ -210,7 +210,7 @@ module.exports = {
 
         default: process.env.DEPLOY !== 'GH_PAGES',
         vuex: {
-          mutations: [{ type: 'draw/SET_DRAW_TYPE' }]
+          mutations: [{ type: 'draw/SET_DRAW_TYPE' }],
           // actions: [{ chatMessage: 'FORMAT_MESSAGE' }],
           // emitBacks: [
           //   'examples/someObj',
@@ -224,9 +224,9 @@ module.exports = {
             emitters: [
               'joinRoom + joinDetails --> roomInfo',
               'leaveRoom + joinDetails --> roomInfo',
-              'sendMsg + userMsg'
+              'sendMsg + userMsg',
             ],
-            listeners: ['joinedRoom [updateUsers', 'leavedRoom [updateUsers']
+            listeners: ['joinedRoom [updateUsers', 'leavedRoom [updateUsers'],
           },
 
           '/videochat': {
@@ -235,36 +235,36 @@ module.exports = {
               'leaveRoom + joinDetails --> roomInfo',
               'messageSent + messageInfo',
               'sendStream + myStream',
-              'videoSend + sendStream'
+              'videoSend + sendStream',
             ],
             listeners: [
               'joinedRoom [updateUsers',
               'leavedRoom [updateUsers',
               'receivedStream [connectToNewUser',
-              'videoReceived [recv'
-            ]
+              'videoReceived [recv',
+            ],
           },
           '/chat': {
             emitters: [
               'joinRoom + joinDetails --> roomInfo',
               'leaveRoom + joinDetails --> roomInfo',
-              'sendMsg + userMsg'
+              'sendMsg + userMsg',
             ],
             listeners: [
               'joinedRoom [updateUsers',
               'leavedRoom [updateUsers',
-              'chatMessage [appendChats'
-            ]
-          }
-        }
-      }
-    ]
+              'chatMessage [appendChats',
+            ],
+          },
+        },
+      },
+    ],
   },
   /*
    ** Purge CSS
    */
   purgeCSS: {
-    enabled: false
+    enabled: false,
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
@@ -319,21 +319,40 @@ module.exports = {
       'vue-echarts',
       'html2canvas',
       'jspdf',
-      'vue2-gmap-custom-marker'
+      'vue2-gmap-custom-marker',
     ],
 
     /*
      ** Run ESLint on save
      */
+    // extend(config, ctx) {
+    //   if (ctx.dev && ctx.isClient) {
+    //     config.module.rules.push({
+    //       enforce: 'pre',
+    //       test: /\.(js|vue)$/,
+    //       loader: 'eslint-loader',
+    //       exclude: /(node_modules)/
+    //     })
+    //   }
+    // }
     extend(config, ctx) {
-      if (ctx.dev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+      // const vueLoader = config.module.rules.find(
+      //   loader => loader.loader === 'vue-loader'
+      // )
+      // vueLoader.options.transformToRequire = {
+      //   audio: 'src',
+      //   video: 'src',
+      // }
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
-    }
-  }
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+        },
+      })
+    },
+  },
 }

@@ -7,21 +7,21 @@
 </template>
 
 <script>
-import myMiddleware from "@/middleware/index";
-import { ref, useContext, computed, onMounted } from "@nuxtjs/composition-api";
+import myMiddleware from '@/middleware/index'
+import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 
-import dashboardAppsBroadcast from "@/components/dashboards/apps/broadcast/DashboardAppsBroadcastStation.vue";
+import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroardcastStation.vue'
 export default {
   layout: myMiddleware,
   components: { dashboardAppsBroadcast },
   setup() {
-    const { store } = useContext();
+    const { store } = useContext()
 
-    const feature = computed(() => store.state.app.feature);
+    const feature = computed(() => store.state.app.feature)
 
-    return { feature };
-  }
-};
+    return { feature }
+  },
+}
 </script>
 
 <style></style>

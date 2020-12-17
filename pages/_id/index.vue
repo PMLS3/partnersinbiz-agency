@@ -35,7 +35,7 @@ import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
 import dashboardClients from '@/components/dashboards/DashboardClients.vue'
 
 // Apps Dashboards
-import DashboardBroadcast from '@/components/dashboards/DashboardBroadcast.vue'
+import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 
 // Pages
 import calendar from '@/components/pages/Calendar.vue'
@@ -53,7 +53,7 @@ export default {
     dashboardRadio,
     dashboardMain,
     dashboardApps,
-    DashboardBroadcast,
+    dashboardAppsBroadcast,
     calendar,
     DemoAframeShowRoom,
     DemoAframeApartment,
@@ -71,9 +71,9 @@ export default {
     dashboardLearn,
     dashboardSupport,
     dashboardRequest,
-    dashboardClients
+    dashboardClients,
     // videoChat
-  }
+  },
 }
 </script>
 
