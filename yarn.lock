@@ -13086,10 +13086,10 @@ three-trackballcontrols@^0.9.0:
   resolved "https://registry.yarnpkg.com/three-trackballcontrols/-/three-trackballcontrols-0.9.0.tgz#2c8be3627f50644d6dd60c10d23edd7fbfeffadd"
   integrity sha512-Z6HmIJnP70r5uONvcPCdLEF0SsG1kbGzNb7qQYj3c7b6v2E3XTlbNpZsgTjt36oKm0Z2tU11D6EbW4i8KIHuqA==
 
-three@^0.122.0:
-  version "0.122.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.122.0.tgz#bd9ed8a8820074856e8ba7b63fe0a65176e01aeb"
-  integrity sha512-bgYMo0WdaQhf7DhLE8OSNN/rVFO5J4K1A2VeeKqoV4MjjuHjfCP6xLpg8Xedhns7NlEnN3sZ6VJROq19Qyl6Sg==
+three@^0.123.0:
+  version "0.123.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.123.0.tgz#3bb6d8f908a432eb7cd450f7eab6dd40fde53085"
+  integrity sha512-KNnx/IbilvoHRkxOtL0ouozoDoElyuvAXhFB21RK7F5IPWSmqyFelICK6x3hJerLNSlAdHxR0hkuvMMhH9pqXg==
 
 threex.domevents@^1.0.1:
   version "1.0.1"
