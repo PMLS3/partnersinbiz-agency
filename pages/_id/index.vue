@@ -1,8 +1,5 @@
 <template>
   <component :is="$route.params.id" />
-  <!-- <div id="page"> -->
-  <!-- <dashboard-apps-broadcast></dashboard-apps-broadcast> -->
-  <!-- </div> -->
 </template>
 
 <script>
@@ -38,7 +35,7 @@ import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
 import dashboardClients from '@/components/dashboards/DashboardClients.vue'
 
 // Apps Dashboards
-import DashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
+import DashboardBroadcast from '@/components/dashboards/DashboardBroadcast.vue'
 
 // Pages
 import calendar from '@/components/pages/Calendar.vue'
@@ -56,7 +53,7 @@ export default {
     dashboardRadio,
     dashboardMain,
     dashboardApps,
-    DashboardAppsBroadcast,
+    DashboardBroadcast,
     calendar,
     DemoAframeShowRoom,
     DemoAframeApartment,

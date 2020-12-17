@@ -112,13 +112,13 @@ export default {
         description: 'Demo of 3D modelling and furniture texture change',
         graphic: require('@/assets/illustrations/3d_modeling.svg'),
         url: '/demo/DemoAframeModernApartment'
+      },
+      {
+        title: 'Broadcaster',
+        description: 'Your own broadcast station',
+        graphic: require('@/assets/illustrations/podcast.svg'),
+        url: '/dashboardBroadcast'
       }
-      // {
-      //   title: 'Broadcaster',
-      //   description: 'Your own broadcast station',
-      //   graphic: require('@/assets/illustrations/podcast.svg'),
-      //   url: '/dashboardAppsBroadcast'
-      // }
       //   {
       //     id: 2,
       //     title: 'Marketing',

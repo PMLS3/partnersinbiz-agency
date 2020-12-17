@@ -1,9 +1,9 @@
 <template>
-  <!-- <HomePage /> -->
-  <div>
+  <HomePage />
+  <!-- <div>
     <UploadExcelClients />
     <Login />
-  </div>
+  </div> -->
 </template>
 
 <script>

@@ -184,6 +184,14 @@ AFRAME.registerComponent('cursor-teleport', {
       self.transitionCamPosStart.z = self.camPos.z
 
       self.transitioning = true
+
+      let cornerCouchSet = document.getElementById('cornerCouchSet')
+      let poufSet = document.getElementById('poufSet')
+      let armChairSet = document.getElementById('armChairSet')
+
+      cornerCouchSet.setAttribute('position', '0 100 -0.5')
+      poufSet.setAttribute('position', '0 100 -0.5')
+      armChairSet.setAttribute('position', '0 100 -0.5')
     }
 
     function mouseMove(e) {

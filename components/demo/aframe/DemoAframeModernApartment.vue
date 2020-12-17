@@ -1,13 +1,18 @@
 <template>
   <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
     <!-- <a-scene> -->
-    <a-assets> </a-assets>
+    <a-assets>
+      <img
+        id="sky"
+        src="https://cdn.glitch.com/4bdb3f56-b261-46a4-8bf3-8c065554a3ff%2Fpark.jpeg?v=1604890277345"
+      />
+    </a-assets>
 
     <a-entity
       id="cameraRig"
       position="0 10 10"
       movement-controls="fly: true; speed: 0.3"
-      animation="property: position; to: 1 2.5 8; dur: 5000; easing: linear; loop: false"
+      animation="property: position; to: 1.3 0 8; dur: 5000; easing: linear; loop: false"
       cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable"
     >
       <a-entity
@@ -273,6 +278,13 @@
             curveShootingSpeed: 8"
       ></a-entity>
     </a-entity>
+
+    <a-sky
+      src="#sky"
+      geometry="radius: 200"
+      id="skys"
+      material="color: "
+    ></a-sky>
 
     <a-entity id="house-shell" position="0 0 0">
       <a-entity

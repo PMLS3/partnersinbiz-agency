@@ -27,6 +27,16 @@ AFRAME.registerComponent('load-texture', {
         })
       })
     }
+
+    let gltfHouse = document.getElementById('house')
+    let houseShell = document.getElementById('house-shell')
+    let loader = document.getElementById('loader')
+
+    gltfHouse.addEventListener('model-loaded', function() {
+      console.log('ok model-loaded gltfHouse')
+      houseShell.setAttribute('visible', true)
+      loader.setAttribute('visible', false)
+    })
   }
 })
 
@@ -85,8 +95,6 @@ AFRAME.registerComponent('switch-balls', {
     position = '0 -0.3 -0.5'
 
     function changeTexture(e) {
-      console.log('item id', item.id)
-      console.log('poufSet', poufSet, cornerCouchSet, armChairSet)
       if (item.id == 'arm-chair-1' || item.id == 'arm-chair-2') {
         armChairSet.setAttribute('position', '0 -0.3 -0.5')
 
