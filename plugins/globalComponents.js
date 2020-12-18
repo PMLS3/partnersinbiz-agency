@@ -32,37 +32,37 @@ Vue.use(VueGoogleMaps, {
   load: {
     // Add your API key here
     key: 'AIzaSyCB-A02_U3WrFZGBkL2a1jucVpmnrfC_y8',
-    libraries: 'places' // This is required if you use the Auto complete plug-in
-  }
+    libraries: 'places', // This is required if you use the Auto complete plug-in
+  },
 })
 
 // Set the components prop default to return our fresh components
 vSelect.props.components.default = () => ({
   Deselect: {
-    render: createElement =>
+    render: (createElement) =>
       createElement('feather-icon', {
         props: {
           icon: 'XIcon',
-          svgClasses: 'w-4 h-4 mt-1'
-        }
-      })
+          svgClasses: 'w-4 h-4 mt-1',
+        },
+      }),
   },
   OpenIndicator: {
-    render: createElement =>
+    render: (createElement) =>
       createElement('feather-icon', {
         props: {
           icon: 'ChevronDownIcon',
-          svgClasses: 'w-5 h-5'
-        }
-      })
-  }
+          svgClasses: 'w-5 h-5',
+        },
+      }),
+  },
 })
 
 Vue.component(vSelect)
 
 const longClickInstance = longClickDirective({
   delay: 100,
-  interval: 50
+  interval: 50,
 })
 Vue.directive('longclick', longClickInstance)
 
@@ -79,3 +79,6 @@ Vue.use(PerfectScrollbar)
 // Vue.component(Peer);
 import StarRating from 'vue-star-rating'
 Vue.component('StarRating', StarRating)
+
+import VueFullpage from 'fullpage-vue'
+Vue.use(VueFullpage)

@@ -56,6 +56,8 @@ module.exports = {
     'material-icons/iconfont/material-icons.css',
     // Vue Select
     'vue-select/dist/vue-select.css',
+    'fullpage-vue/src/fullpage.css',
+    'animate.css',
   ],
   /*
    ** Plugins to load before mounting the App
@@ -116,6 +118,8 @@ module.exports = {
       ['vuesax/dist/vuesax.css'],
       ['swiper/dist/css/swiper.min.css'],
       ['vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'],
+      ['animate.css'],
+      ['fullpage-vue/src/fullpage.css'],
     ],
   ],
   // content: {

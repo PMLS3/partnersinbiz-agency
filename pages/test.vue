@@ -1,22 +1,9 @@
 <template>
-  <div class="bg-black fullpage-container">
-    <header class="sticky top-0 grid grid-cols-2 py-5 bg-black row">
-      <h1
-        class="ml-8 font-serif text-2xl text-white md:text-4xl"
-        @click="$router.push('/')"
-      >
-        Partners in Biz
-      </h1>
-      <NuxtLink to="/consultation">
-        <h1 class="float-right mr-3 font-serif text-2xl text-white md:text-4xl">
-          Schedule Now
-        </h1></NuxtLink
-      >
-    </header>
-    <div class="p-10 fullpage-wp md:px-60" v-fullpage="opts" ref="example">
+  <div class="p-10 fullpage-container md:px-60">
+    <div class="fullpage-wp" v-fullpage="opts" ref="example">
       <div class="page-1 page">
         <div class="part-1" v-animate="{ value: 'bounceInLeft' }">
-          <h1 class="mt-24 font-serif text-5xl text-white">
+          <h1 class="font-serif text-5xl text-white mt-60">
             We're Partners in Biz
           </h1>
           <h3
@@ -33,10 +20,10 @@
           </h3>
         </div>
       </div>
-      <div class="p-10 page-2 page">
+      <div class="page-2 page">
         <div class="part-2" v-animate="{ value: 'bounceInRight' }">
           <h3
-            class="mt-24 overflow-hidden font-serif text-3xl text-white md:text-5xl overflow-clip md:mr-24"
+            class="overflow-hidden font-serif text-3xl text-white mt-60 md:text-5xl overflow-clip md:mr-60"
           >
             Doing the right thing at the right time to GROW your Business. What
             ever service we provide, we will keep you up to date with weekly
@@ -51,10 +38,10 @@
           </h3>
         </div>
       </div>
-      <div class="p-10 page-3 page md:px-60">
+      <div class="page-3 page">
         <div class="part-3" v-animate="{ value: 'bounceInLeft', delay: 0 }">
           <h3
-            class="mt-24 overflow-hidden font-serif text-3xl text-white md:text-5xl overflow-clip"
+            class="overflow-hidden font-serif text-3xl text-white mt-60 md:text-5xl overflow-clip"
           >
             Here's how we can help:
           </h3>
@@ -91,6 +78,7 @@
 
 <script>
 export default {
+  layout: 'pib',
   data() {
     return {
       opts: {
