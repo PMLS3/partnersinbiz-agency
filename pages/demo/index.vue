@@ -114,7 +114,7 @@ export default {
         url: '/demo/DemoAframeModernApartment',
       },
       {
-        title: 'Broadcaster',
+        title: 'Broadcaster - TESTING PHASE',
         description: 'Your own broadcast station',
         graphic: require('@/assets/illustrations/podcast.svg'),
         url: '/dashboardAppsBroadcast',

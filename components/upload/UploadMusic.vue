@@ -8,7 +8,7 @@
 
 <template>
   <div>
-    <div class="mt-5 ">
+    <div class="mt-5">
       <div
         class="text-center audio-container position-relative"
         v-if="!audios.length"
@@ -322,81 +322,81 @@
 </template>
 
 <script>
-import { forEach, findIndex, orderBy, cloneDeep } from "lodash";
+import { forEach, findIndex, orderBy, cloneDeep } from 'lodash'
 // import Popper from 'vue-popperjs'
-import firebase from "firebase";
+import firebase from 'firebase'
 
 export default {
-  name: "UploadMusic",
+  name: 'UploadMusic',
   components: {
-    Popper: () => (process.client ? import("vue-popperjs") : null)
+    Popper: () => (process.client ? import('vue-popperjs') : null),
   },
   props: {
     label: {
       type: String,
-      default: "label"
+      default: 'label',
     },
     dragText: {
       type: String,
-      default: "Drag audio (multiple)"
+      default: 'Drag audio (multiple)',
     },
     browseText: {
       type: String,
-      default: "(or) Select"
+      default: '(or) Select',
     },
     primaryText: {
       type: String,
-      default: "Default"
+      default: 'Default',
     },
     markIsPrimaryText: {
       type: String,
-      default: "Set as default"
+      default: 'Set as default',
     },
     popupText: {
       type: String,
-      default: "This audio will be displayed as the default"
+      default: 'This audio will be displayed as the default',
     },
     dropText: {
       type: String,
-      default: "Drop your files here ..."
+      default: 'Drop your files here ...',
     },
     accept: {
       type: String,
-      default: "audio/gif,audio/jpeg,audio/png,audio/bmp,audio/jpg"
+      default: 'audio/gif,audio/jpeg,audio/png,audio/bmp,audio/jpg',
     },
     dataAudios: {
       type: Array,
       default: () => {
-        return [];
-      }
+        return []
+      },
     },
     placeholder: {
-      type: String
+      type: String,
     },
     multiple: {
       type: Boolean,
-      default: true
+      default: true,
     },
     edit: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showPrimary: {
       type: Boolean,
-      default: true
+      default: true,
     },
     maxAudio: {
       type: Number,
-      default: 5
+      default: 5,
     },
     idUpload: {
       type: String,
-      default: "audio-upload"
+      default: 'audio-upload',
     },
     idEdit: {
       type: String,
-      default: "audio-edit"
-    }
+      default: 'audio-edit',
+    },
   },
   data() {
     return {
@@ -406,122 +406,122 @@ export default {
       showLightbox: false,
       arrLightBox: [],
       infoAudios: [],
-      categorySave: "",
+      categorySave: '',
       initialSelected: [],
       popupActivo4: false,
       needUpload: false,
-      selectedCategory: "",
+      selectedCategory: '',
       categories: [],
-      checkAudio: []
-    };
+      checkAudio: [],
+    }
   },
 
   computed: {
     audioPreview() {
-      let index = findIndex(this.audios, { highlight: 1 });
+      let index = findIndex(this.audios, { highlight: 1 })
       if (index > -1) {
-        return this.audios[index].path;
+        return this.audios[index].path
       } else {
-        return this.audios.length ? this.audios[0].path : "";
+        return this.audios.length ? this.audios[0].path : ''
       }
     },
     audioDefault() {
       if (this.audios[this.currentIndexAudio]) {
-        return this.audios[this.currentIndexAudio].default;
+        return this.audios[this.currentIndexAudio].default
       }
     },
     business() {
-      return this.$store.state.business.main_business;
+      return this.$store.state.business.main_business
     },
 
     user() {
       if (process.client) {
-        if (localStorage.getItem("userInfo")) {
-          return JSON.parse(localStorage.getItem("userInfo"));
+        if (localStorage.getItem('userInfo')) {
+          return JSON.parse(localStorage.getItem('userInfo'))
         } else {
-          return this.$store.state.auth.main_user;
+          return this.$store.state.auth.main_user
         }
       }
     },
     genres() {
-      return this.$store.state.info.music_genres;
+      return this.$store.state.info.music_genres
     },
     selectedAudios() {
-      return this.infoAudios.filter((item, index) => item.selected == true);
-    }
+      return this.infoAudios.filter((item, index) => item.selected == true)
+    },
   },
 
   methods: {
     onSelectMultipleAudio(i) {
-      let myAudios = [];
+      let myAudios = []
 
       for (let x = 0; x < i.length; x++) {
-        myAudios.push(i[x].audio);
+        myAudios.push(i[x].audio)
       }
 
-      this.selectedAudios = myAudios;
+      this.selectedAudios = myAudios
     },
     emitChanges() {
-      this.$store.commit("form/UPLOADED_MUSIC", this.checkAudio);
-      console.log("check", this.checkAudio);
-      this.$emit("input", this.checkAudio);
-      (this.popupActivo4 = false), (this.needUpload = false);
+      this.$store.commit('form/UPLOADED_MUSIC', this.checkAudio)
+      console.log('check', this.checkAudio)
+      this.$emit('input', this.checkAudio)
+      ;(this.popupActivo4 = false), (this.needUpload = false)
     },
 
     setAudios() {
-      this.$vs.loading();
-      let vm = this;
-      let settingAudios = [];
-      const storageRef = this.$fireStorage.ref();
+      this.$vs.loading()
+      let vm = this
+      let settingAudios = []
+      const storageRef = this.$fireStorage.ref()
 
-      let addingInformationLocation = this.$fireStore.collection("music");
+      let addingInformationLocation = this.$fireStore.collection('music')
 
       for (let i = 0; i < this.audios.length; i++) {
         const mountainsRef = storageRef.child(
           `${this.user.uid}/${this.audios[i].name}`
-        );
+        )
 
-        let genre = "";
-        let album = "";
-        let artist = "";
-        let category = "";
-        let desc = "";
-        let fav = false;
-        let main_reseller = "";
-        let reseller = "";
+        let genre = ''
+        let album = ''
+        let artist = ''
+        let category = ''
+        let desc = ''
+        let fav = false
+        let main_reseller = ''
+        let reseller = ''
 
         if (this.audios[i].genre) {
-          genre = this.audios[i].genre;
+          genre = this.audios[i].genre
         }
         if (this.audios[i].album) {
-          album = this.audios[i].album;
+          album = this.audios[i].album
         }
         if (this.audios[i].artist) {
-          artist = this.audios[i].artist;
+          artist = this.audios[i].artist
         }
         if (this.selectedCategory.category) {
-          category = this.selectedCategory.category;
+          category = this.selectedCategory.category
         }
         if (this.audios[i].fav) {
-          fav = this.audios[i].fav;
+          fav = this.audios[i].fav
         }
         if (this.audios[i].desc) {
-          desc = this.audios[i].desc;
+          desc = this.audios[i].desc
         }
 
         if (this.business.mr) {
-          main_reseller = this.business.mr;
+          main_reseller = this.business.mr
         }
 
         if (this.business.r) {
-          reseller = this.business.r;
+          reseller = this.business.r
         }
         mountainsRef
           .put(this.audios[i].file)
-          .then(snapshot => {
-            snapshot.ref.getDownloadURL().then(audio => {
-              settingAudios.push(audio);
-              this.audioUrls = audio;
+          .then((snapshot) => {
+            snapshot.ref.getDownloadURL().then((audio) => {
+              settingAudios.push(audio)
+              this.audioUrls = audio
               addingInformationLocation.add({
                 audio,
                 category: category,
@@ -537,68 +537,68 @@ export default {
                 u_uid: this.user.uid,
                 b_uid: this.business.b_uid,
                 mr_uid: main_reseller,
-                r_uid: reseller
-              });
-            });
+                r_uid: reseller,
+              })
+            })
           })
           .then(() => {
             vm.$vs.notify({
               title: `${this.audios[i].name}`,
-              text: "Success!",
-              color: "success"
-            });
+              text: 'Success!',
+              color: 'success',
+            })
 
-            console.log("i", i, vm.audios.length - 1);
+            console.log('i', i, vm.audios.length - 1)
             if (i == vm.audios.length - 1) {
-              vm.$vs.loading.close();
+              vm.$vs.loading.close()
             }
           })
-          .catch(err => {
+          .catch((err) => {
             vm.$vs.notify({
               title: `${this.audios[i].name}`,
               text: `Failed: ${err}`,
-              color: "danger"
-            });
+              color: 'danger',
+            })
 
-            console.log("i", i, vm.audios.length - 1);
+            console.log('i', i, vm.audios.length - 1)
             if (i == vm.audios.length - 1) {
-              vm.$vs.loading.close();
+              vm.$vs.loading.close()
             }
-          });
+          })
       }
 
-      this.needUpload = false;
+      this.needUpload = false
     },
     onDrop(e) {
-      this.isDragover = false;
-      e.stopPropagation();
-      e.preventDefault();
-      let files = e.dataTransfer.files;
+      this.isDragover = false
+      e.stopPropagation()
+      e.preventDefault()
+      let files = e.dataTransfer.files
       if (!files.length) {
-        return false;
+        return false
       }
       if (!this.isValidNumberOfAudios(files.length)) {
-        return false;
+        return false
       }
       forEach(files, (value, index) => {
-        this.createAudio(value);
+        this.createAudio(value)
         if (!this.multiple) {
-          return false;
+          return false
         }
-      });
+      })
       if (document.getElementById(this.idUpload)) {
-        document.getElementById(this.idUpload).value = [];
+        document.getElementById(this.idUpload).value = []
       }
     },
     onDragover() {
-      this.isDragover = true;
+      this.isDragover = true
     },
     createAudio(file) {
-      let reader = new FileReader();
-      let formData = new FormData();
-      formData.append("file", file);
-      reader.onload = e => {
-        let dataURI = e.target.result;
+      let reader = new FileReader()
+      let formData = new FormData()
+      formData.append('file', file)
+      reader.onload = (e) => {
+        let dataURI = e.target.result
         if (dataURI) {
           if (!this.audios.length) {
             this.audios.push({
@@ -606,224 +606,203 @@ export default {
               file: file,
               path: dataURI,
               highlight: 1,
-              default: 1
-            });
-            this.currentIndexAudio = 0;
+              default: 1,
+            })
+            this.currentIndexAudio = 0
           } else {
             this.audios.push({
               name: file.name,
               path: dataURI,
               file: file,
               highlight: 0,
-              default: 0
-            });
+              default: 0,
+            })
           }
           this.$emit(
-            "upload-success",
+            'upload-success',
             formData,
             this.audios.length - 1,
             this.audios
-          );
+          )
         }
-      };
-      reader.readAsDataURL(file);
+      }
+      reader.readAsDataURL(file)
     },
     editAudio(file) {
-      let reader = new FileReader();
-      let formData = new FormData();
-      formData.append("file", file);
-      reader.onload = e => {
-        let dataURI = e.target.result;
+      let reader = new FileReader()
+      let formData = new FormData()
+      formData.append('file', file)
+      reader.onload = (e) => {
+        let dataURI = e.target.result
         if (dataURI) {
           if (this.audios.length && this.audios[this.currentIndexAudio]) {
-            this.audios[this.currentIndexAudio].path = dataURI;
-            this.audios[this.currentIndexAudio].name = file.name;
+            this.audios[this.currentIndexAudio].path = dataURI
+            this.audios[this.currentIndexAudio].name = file.name
           }
         }
-      };
-      reader.readAsDataURL(file);
-      this.$emit("edit-audio", formData, this.currentIndexAudio, this.audios);
+      }
+      reader.readAsDataURL(file)
+      this.$emit('edit-audio', formData, this.currentIndexAudio, this.audios)
     },
     uploadFieldChange(e) {
-      let files = e.target.files || e.dataTransfer.files;
+      let files = e.target.files || e.dataTransfer.files
       if (!files.length) {
-        return false;
+        return false
       }
       if (!this.isValidNumberOfAudios(files.length)) {
-        return false;
+        return false
       }
       forEach(files, (value, index) => {
-        this.createAudio(value);
-      });
+        this.createAudio(value)
+      })
       if (document.getElementById(this.idUpload)) {
-        document.getElementById(this.idUpload).value = [];
+        document.getElementById(this.idUpload).value = []
       }
     },
     editFieldChange(e) {
-      let files = e.target.files || e.dataTransfer.files;
+      let files = e.target.files || e.dataTransfer.files
       if (!files.length) {
-        return false;
+        return false
       }
       if (!this.isValidNumberOfAudios(files.length)) {
-        return false;
+        return false
       }
       forEach(files, (value, index) => {
-        this.editAudio(value);
-      });
+        this.editAudio(value)
+      })
       if (document.getElementById(this.idEdit)) {
-        document.getElementById(this.idEdit).value = "";
+        document.getElementById(this.idEdit).value = ''
       }
     },
     changeHighlight(currentIndex) {
-      this.currentIndexAudio = currentIndex;
-      let arr = this.audios;
-      this.audios = [];
+      this.currentIndexAudio = currentIndex
+      let arr = this.audios
+      this.audios = []
       arr.map((item, index) => {
         if (currentIndex === index) {
-          item.highlight = 1;
+          item.highlight = 1
         } else {
-          item.highlight = 0;
+          item.highlight = 0
         }
-        return item;
-      });
-      this.audios = arr;
+        return item
+      })
+      this.audios = arr
     },
     markIsPrimary(currentIndex) {
       this.audios.map((item, index) => {
         if (currentIndex === index) {
-          item.highlight = 1;
-          item.default = 1;
+          item.highlight = 1
+          item.default = 1
         } else {
-          item.highlight = 0;
-          item.default = 0;
+          item.highlight = 0
+          item.default = 0
         }
-        return item;
-      });
-      this.currentIndexAudio = 0;
-      this.audios = orderBy(this.audios, "default", "desc");
-      this.$emit("mark-is-primary", currentIndex, this.audios);
+        return item
+      })
+      this.currentIndexAudio = 0
+      this.audios = orderBy(this.audios, 'default', 'desc')
+      this.$emit('mark-is-primary', currentIndex, this.audios)
     },
     deleteAudio(currentIndex) {
       this.$emit(
-        "before-remove",
+        'before-remove',
         currentIndex,
         () => {
           if (this.audios[currentIndex].default === 1) {
-            this.audios[0].default = 1;
+            this.audios[0].default = 1
           }
-          this.audios.splice(currentIndex, 1);
-          this.currentIndexAudio = 0;
+          this.audios.splice(currentIndex, 1)
+          this.currentIndexAudio = 0
           if (this.audios.length) {
-            this.audios[0].highlight = 1;
+            this.audios[0].highlight = 1
           }
         },
         this.audios
-      );
+      )
     },
     openGallery(index) {
-      this.showLightbox = true;
-      this.$refs.lightbox.showAudio(index);
+      this.showLightbox = true
+      this.$refs.lightbox.showAudio(index)
     },
     onOpenedLightBox(value) {
       if (value) {
-        this.showLightbox = true;
+        this.showLightbox = true
       } else {
-        this.showLightbox = false;
+        this.showLightbox = false
       }
     },
     isValidNumberOfAudios(amount) {
       if (amount > this.maxAudio) {
-        this.$emit("limit-exceeded", amount);
-        return false;
+        this.$emit('limit-exceeded', amount)
+        return false
       } else {
-        return true;
+        return true
       }
-    }
+    },
   },
   watch: {
     dataAudios: {
-      handler: function(newVal) {
-        this.audios = newVal;
+      handler: function (newVal) {
+        this.audios = newVal
       },
-      deep: true
+      deep: true,
     },
     selectedAudios() {
-      this.$store.commit("form/UPLOADED_MUSIC", this.selectedAudios);
-    }
+      this.$store.commit('form/UPLOADED_MUSIC', this.selectedAudios)
+    },
   },
   mounted() {
-    [
-      "drag",
-      "dragstart",
-      "dragend",
-      "dragover",
-      "dragenter",
-      "dragleave",
-      "drop"
-    ].forEach(event => {
-      window.addEventListener(event, e => {
-        e.preventDefault();
-        e.stopPropagation();
-      });
-    });
-    document.body.addEventListener("dragleave", event => {
-      event.stopPropagation();
-      event.preventDefault();
-      this.isDragover = false;
-    });
+    ;[
+      'drag',
+      'dragstart',
+      'dragend',
+      'dragover',
+      'dragenter',
+      'dragleave',
+      'drop',
+    ].forEach((event) => {
+      window.addEventListener(event, (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+      })
+    })
+    document.body.addEventListener('dragleave', (event) => {
+      event.stopPropagation()
+      event.preventDefault()
+      this.isDragover = false
+    })
   },
   created() {
     if (process.client) {
-      this.audios = [];
-      this.audios = cloneDeep(this.dataAudios);
-      console.log("this.user.uid", this.user.uid);
-
-      let infoRetrieve = this.$fireStore
-        .collection("music")
-        .where("u_uid", "==", this.user.uid);
-
-      infoRetrieve.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
-          let doc = change.doc;
-          this.infoAudios.push({
-            id: doc.id,
-            category: doc.data().category,
-            audio: doc.data().audio,
-            artist: doc.data().artist,
-            title: doc.data().title,
-            album: doc.data().album,
-            display: doc.data().display,
-            cover: doc.data().cover,
-            genre: doc.data().genre,
-            u_uid: doc.data().u_uid,
-            b_uid: doc.data().b_uid,
-            r_uid: doc.data().r_uid,
-            mr_uid: doc.data().mr_uid
-          });
-        });
-      });
-
-      //   let catRetrieve = this.$fireStore
-
-      //     .collection("user")
-      //     .doc("music")
-      //     .collection("category")
-      //     .where("u_uid", "==", this.user.uid);
-
-      //   catRetrieve.onSnapshot(snapshot => {
-      //     snapshot.docChanges().forEach(change => {
-      //       let doc = change.doc;
-      //       this.categories.push({
-      //         id: doc.id,
-      //         category: doc.data().category,
-      //         u_uid: doc.data().u_uid,
-      //         b_uid: doc.data().b_uid
-      //       });
+      // this.audios = [];
+      // this.audios = cloneDeep(this.dataAudios);
+      // console.log("this.user.uid", this.user.uid);
+      // let infoRetrieve = this.$fireStore
+      //   .collection("music")
+      //   .where("u_uid", "==", this.user.uid);
+      // infoRetrieve.onSnapshot(snapshot => {
+      //   snapshot.docChanges().forEach(change => {
+      //     let doc = change.doc;
+      //     this.infoAudios.push({
+      //       id: doc.id,
+      //       category: doc.data().category,
+      //       audio: doc.data().audio,
+      //       artist: doc.data().artist,
+      //       title: doc.data().title,
+      //       album: doc.data().album,
+      //       display: doc.data().display,
+      //       cover: doc.data().cover,
+      //       genre: doc.data().genre,
+      //       u_uid: doc.data().u_uid,
+      //       b_uid: doc.data().b_uid,
+      //       r_uid: doc.data().r_uid,
+      //       mr_uid: doc.data().mr_uid
       //     });
       //   });
+      // });
     }
-  }
-};
+  },
+}
 </script>
 
 <style lang="css" scoped>

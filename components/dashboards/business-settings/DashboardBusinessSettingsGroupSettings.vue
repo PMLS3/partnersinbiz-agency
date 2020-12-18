@@ -156,7 +156,7 @@
           class="holamundo"
           :title="selectedBranch.branch"
           :active.sync="popupBranch"
-          style="z-index: 1000;  "
+          style="z-index: 1000"
         >
           <div class="mt-4">
             <div class="mx-8 mb-8">
@@ -171,11 +171,11 @@
               >Please fill in Branch details:</label
             >
 
-            <form-generator
+            <FormGenerator
               :schema="branchForm"
               v-model="formData"
               class="p-6"
-            ></form-generator>
+            />
           </div>
           <div class="vx-row">
             <div class="w-full vx-col">
@@ -204,20 +204,18 @@
 <script>
 import firebase from 'firebase'
 import vSelect from 'vue-select'
-import formGenerator from '@/components/forms/form-generator/formGenerator'
 import moment from 'moment'
 
 export default {
   name: 'group-setttings',
   components: {
     vSelect,
-    formGenerator
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -227,35 +225,35 @@ export default {
           placeholder: 'Email',
           label: 'Email',
           name: 'Email',
-          type: 'text'
+          type: 'text',
         },
         {
           title: 'TextInput',
           placeholder: 'Phone',
           label: 'Phone',
           name: 'Phone',
-          type: 'text'
+          type: 'text',
         },
         {
           title: 'TextInput',
           placeholder: 'Website',
           label: 'Website',
           name: 'Website',
-          type: 'text'
+          type: 'text',
         },
 
         {
           title: 'GoogleAddress',
           placeholder: 'Address',
           label: 'Address',
-          name: 'Address'
+          name: 'Address',
         },
         {
           title: 'TextArea',
           placeholder: 'Description',
           label: 'Description',
-          name: 'Description'
-        }
+          name: 'Description',
+        },
       ],
 
       popupBranch: false,
@@ -268,14 +266,14 @@ export default {
       selectedPosition: {},
       formData: {},
 
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
 
   computed: {
     business() {
       return this.$store.state.business.active_business
-    }
+    },
   },
   methods: {
     save_changes(type) {
@@ -315,7 +313,7 @@ export default {
             date: moment().format('DD-MM-YYYY'),
             month: moment().format('MM-YYYY'),
             desc: vm.formData.Description,
-            t_stamp: Date.now()
+            t_stamp: Date.now(),
           })
           .then(() => {
             vm.popupBranch = false
@@ -344,7 +342,7 @@ export default {
           .doc(vm.selectedPosition.position)
           .update({
             leading: groupOverseeing,
-            following: groupReportedTo
+            following: groupReportedTo,
           })
           .then(() => {
             vm.popupPosition = false
@@ -367,7 +365,7 @@ export default {
           .collection('branches')
           .doc(data)
           .get()
-          .then(function(doc) {
+          .then(function (doc) {
             if (doc.exists) {
               vm.selectedBranch = doc.data()
               vm.selectedBranch.id = doc.id
@@ -381,14 +379,14 @@ export default {
                 .collection('branches')
                 .doc(data)
                 .set({
-                  branch: data
+                  branch: data,
                 })
                 .then(() => {
                   vm.editItem(type, data, i)
                 })
             }
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log('Error getting document:', error)
           })
       } else if (type === 'pos') {
@@ -401,7 +399,7 @@ export default {
           .collection('positions')
           .doc(data)
           .get()
-          .then(function(doc) {
+          .then(function (doc) {
             if (doc.exists) {
               console.log('Document data:', doc.data())
               vm.selectedPosition = doc.data()
@@ -415,14 +413,14 @@ export default {
                 .collection('positions')
                 .doc(data)
                 .set({
-                  position: data
+                  position: data,
                 })
                 .then(() => {
                   vm.editItem(type, data, i)
                 })
             }
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log('Error getting document:', error)
           })
       } else {
@@ -451,7 +449,7 @@ export default {
         .collection('groups')
         .doc(this.business.b_uid)
         .update({
-          [collection]: firebase.firestore.FieldValue.arrayRemove(data)
+          [collection]: firebase.firestore.FieldValue.arrayRemove(data),
         })
         .then(() => {
           vm.successDelete(collection, i)
@@ -466,10 +464,10 @@ export default {
         .collection(collection)
         .doc(data)
         .delete()
-        .then(function() {
+        .then(function () {
           console.log('Document successfully deleted!')
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error('Error removing document: ', error)
         })
     },
@@ -496,7 +494,7 @@ export default {
         .collection('groups')
         .doc(this.business.b_uid)
         .update({
-          [collection]: firebase.firestore.FieldValue.arrayUnion(data)
+          [collection]: firebase.firestore.FieldValue.arrayUnion(data),
         })
         .then(() => {
           vm.successUpload(collection, data)
@@ -506,7 +504,7 @@ export default {
       this.$vs.notify({
         color: 'danger',
         title: 'Oops',
-        text: 'Something went wrong'
+        text: 'Something went wrong',
       })
     },
 
@@ -514,7 +512,7 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let business = this.business
@@ -532,7 +530,7 @@ export default {
       this.$vs.notify({
         color: 'warning',
         title: 'Delete Success',
-        text: 'Whoop whoop, been deleted'
+        text: 'Whoop whoop, been deleted',
       })
 
       let business = this.business
@@ -559,7 +557,7 @@ export default {
       }
       console.log('delete', business)
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
-    }
-  }
+    },
+  },
 }
 </script>

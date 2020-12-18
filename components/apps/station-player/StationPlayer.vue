@@ -266,10 +266,11 @@ export default {
         track.artist = vm.playlist[i].artist
         track.title = vm.playlist[i].title
         track.album = vm.playlist[i].album
-        track.duration = vm.playlist[i].howl.duration()
+        // track.duration = vm.playlist[i].howl.duration()
         track.display = vm.playlist[i].display
         track.cover = vm.playlist[i].cover
         track.currentTime = 0
+        // console.log('HERE', track.duration)
         list.push(track)
       }
       vm.newList = {

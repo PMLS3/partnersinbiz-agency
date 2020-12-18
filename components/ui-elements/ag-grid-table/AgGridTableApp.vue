@@ -60,6 +60,10 @@
           <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()"
             >Export as CSV</vs-button
           >
+
+          <vs-button class="mb-4 md:mb-0" @click="getSelectedRows()"
+            >Send to playlist</vs-button
+          >
         </div>
       </div>
       <ag-grid-vue
@@ -95,11 +99,11 @@ import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 
 export default {
   components: {
-    AgGridVue
+    AgGridVue,
   },
   props: {
     columnDefs: { type: Array, required: true },
-    itemData: { type: Array, required: true }
+    itemData: { type: Array, required: true },
   },
   data() {
     return {
@@ -111,8 +115,8 @@ export default {
         sortable: true,
         editable: true,
         resizable: true,
-        suppressMenu: true
-      }
+        suppressMenu: true,
+      },
     }
   },
   computed: {
@@ -131,8 +135,8 @@ export default {
       },
       set(val) {
         this.gridApi.paginationGoToPage(val - 1)
-      }
-    }
+      },
+    },
   },
   watch: {
     '$store.state.windowWidth'(val) {
@@ -140,7 +144,7 @@ export default {
         this.maxPageNumbers = 4
         this.gridOptions.columnApi.setColumnPinned('email', null)
       } else this.gridOptions.columnApi.setColumnPinned('email', 'left')
-    }
+    },
   },
   mounted() {
     this.gridApi = this.gridOptions.api
@@ -161,7 +165,16 @@ export default {
   methods: {
     updateSearchQuery(val) {
       this.gridApi.setQuickFilter(val)
-    }
-  }
+    },
+    getSelectedRows() {
+      const selectedNodes = this.gridApi.getSelectedNodes()
+      const selectedData = selectedNodes.map((node) => node.data)
+      const selectedDataStringPresentation = selectedData.map((node) => node)
+      console.log(selectedDataStringPresentation)
+      let payload = selectedDataStringPresentation
+      this.$store.commit('form/SELECTED_MUSIC', payload)
+      this.$store.dispatch('form/selectMusic', payload)
+    },
+  },
 }
 </script>

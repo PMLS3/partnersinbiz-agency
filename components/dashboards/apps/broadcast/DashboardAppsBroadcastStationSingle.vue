@@ -2,6 +2,7 @@
   <div id="knowledge-base-page">
     <client-only>
       <vs-card>
+        <a :href="`/station/${$route.params.id}`" target="_blank">Stations</a>
         <vs-radio v-model="optionset" vs-value="Player" class="ml-3"
           >Player</vs-radio
         >
@@ -13,6 +14,7 @@
       </vs-card>
       <div v-show="optionset == 'Player'">
         <StationPlayer :room="$route.params.id" :show="show" />
+        <StationList />
       </div>
     </client-only>
   </div>

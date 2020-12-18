@@ -43,7 +43,7 @@ module.exports = {
   // separator: ':',
   future: {
     removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
+    purgeLayersByDefault: true,
   },
 
   theme: {
@@ -62,11 +62,11 @@ module.exports = {
     extend: {
       colors: {
         transparent: 'transparent',
-        black: '#22292f',
+        black: '#000',
         white: '#ffffff',
         grey: '#b8c2cc',
-        'grey-light': '#dae1e7'
-      }
+        'grey-light': '#dae1e7',
+      },
     },
 
     /*
@@ -92,7 +92,7 @@ module.exports = {
       sm: '576px',
       md: '768px',
       lg: '992px',
-      xl: '1200px'
+      xl: '1200px',
     },
 
     /*
@@ -110,12 +110,12 @@ module.exports = {
 
     zIndex: {
       auto: 'auto',
-      '0': 0,
-      '10': 10,
-      '20': 20,
-      '30': 30,
-      '40': 40,
-      '50': 50
+      0: 0,
+      10: 10,
+      20: 20,
+      30: 30,
+      40: 40,
+      50: 50,
     },
 
     /*
@@ -150,7 +150,7 @@ module.exports = {
         'Fira Sans',
         'Droid Sans',
         'Helvetica Neue',
-        'sans-serif'
+        'sans-serif',
       ],
       serif: [
         'Constantia',
@@ -162,7 +162,7 @@ module.exports = {
         'Bitstream Vera Serif',
         'Liberation Serif',
         'Georgia',
-        'serif'
+        'serif',
       ],
       mono: [
         'Menlo',
@@ -170,8 +170,8 @@ module.exports = {
         'Consolas',
         'Liberation Mono',
         'Courier New',
-        'monospace'
-      ]
+        'monospace',
+      ],
     },
 
     /*
@@ -203,7 +203,7 @@ module.exports = {
       '3xl': '1.875rem', // 30px
       '4xl': '2.25rem', // 36px
       '5xl': '3rem', // 48px
-      '6xl': '4rem' // 64px
+      '6xl': '4rem', // 64px
     },
 
     /*
@@ -227,7 +227,7 @@ module.exports = {
       semibold: 600,
       bold: 700,
       extrabold: 800,
-      black: 900
+      black: 900,
     },
 
     /*
@@ -246,7 +246,7 @@ module.exports = {
       none: 1,
       tight: 1.25,
       normal: 1.5,
-      loose: 2
+      loose: 2,
     },
 
     /*
@@ -265,7 +265,7 @@ module.exports = {
     letterSpacing: {
       tight: '-0.05em',
       normal: '0',
-      wide: '0.05em'
+      wide: '0.05em',
     },
 
     /*
@@ -281,9 +281,9 @@ module.exports = {
       |
       */
 
-    textColor: theme => ({
+    textColor: (theme) => ({
       inherit: 'inherit',
-      ...theme('colors')
+      ...theme('colors'),
     }),
 
     /*
@@ -299,7 +299,7 @@ module.exports = {
       |
       */
 
-    backgroundColor: theme => theme('colors'),
+    backgroundColor: (theme) => theme('colors'),
 
     /*
       |-----------------------------------------------------------------------------
@@ -317,7 +317,7 @@ module.exports = {
     backgroundSize: {
       auto: 'auto',
       cover: 'cover',
-      contain: 'contain'
+      contain: 'contain',
     },
 
     /*
@@ -335,10 +335,10 @@ module.exports = {
 
     borderWidth: {
       default: '1px',
-      '0': '0',
-      '2': '2px',
-      '4': '4px',
-      '8': '8px'
+      0: '0',
+      2: '2px',
+      4: '4px',
+      8: '8px',
     },
 
     /*
@@ -358,9 +358,9 @@ module.exports = {
       |
       */
 
-    borderColor: theme => ({
+    borderColor: (theme) => ({
       default: theme('colors.grey-light'),
-      ...theme('colors')
+      ...theme('colors'),
     }),
 
     /*
@@ -384,7 +384,7 @@ module.exports = {
       sm: '.125rem',
       default: '.25rem',
       lg: '.5rem',
-      full: '9999px'
+      full: '9999px',
     },
 
     /*
@@ -410,20 +410,20 @@ module.exports = {
     width: {
       auto: 'auto',
       px: '1px',
-      '1': '0.25rem',
-      '2': '0.5rem',
-      '3': '0.75rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '8': '2rem',
-      '10': '2.5rem',
-      '12': '3rem',
-      '16': '4rem',
-      '24': '6rem',
-      '32': '8rem',
-      '48': '12rem',
-      '64': '16rem',
+      1: '0.25rem',
+      2: '0.5rem',
+      3: '0.75rem',
+      4: '1rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      8: '2rem',
+      10: '2.5rem',
+      12: '3rem',
+      16: '4rem',
+      24: '6rem',
+      32: '8rem',
+      48: '12rem',
+      64: '16rem',
       '1/2': '50%',
       '1/3': '33.33333%',
       '2/3': '66.66667%',
@@ -447,7 +447,7 @@ module.exports = {
       '10/12': '83.33333%',
       '11/12': '91.66667%',
       full: '100%',
-      screen: '100vw'
+      screen: '100vw',
     },
 
     /*
@@ -468,22 +468,22 @@ module.exports = {
     height: {
       auto: 'auto',
       px: '1px',
-      '1': '0.25rem',
-      '2': '0.5rem',
-      '3': '0.75rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '8': '2rem',
-      '10': '2.5rem',
-      '12': '3rem',
-      '16': '4rem',
-      '24': '6rem',
-      '32': '8rem',
-      '48': '12rem',
-      '64': '16rem',
+      1: '0.25rem',
+      2: '0.5rem',
+      3: '0.75rem',
+      4: '1rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      8: '2rem',
+      10: '2.5rem',
+      12: '3rem',
+      16: '4rem',
+      24: '6rem',
+      32: '8rem',
+      48: '12rem',
+      64: '16rem',
       full: '100%',
-      screen: '100vh'
+      screen: '100vh',
     },
 
     /*
@@ -501,8 +501,8 @@ module.exports = {
       */
 
     minWidth: {
-      '0': '0',
-      full: '100%'
+      0: '0',
+      full: '100%',
     },
 
     /*
@@ -520,9 +520,9 @@ module.exports = {
       */
 
     minHeight: {
-      '0': '0',
+      0: '0',
       full: '100%',
-      screen: '100vh'
+      screen: '100vh',
     },
 
     /*
@@ -550,7 +550,7 @@ module.exports = {
       '3xl': '80rem',
       '4xl': '90rem',
       '5xl': '100rem',
-      full: '100%'
+      full: '100%',
     },
 
     /*
@@ -569,7 +569,7 @@ module.exports = {
 
     maxHeight: {
       full: '100%',
-      screen: '100vh'
+      screen: '100vh',
     },
 
     /*
@@ -590,20 +590,21 @@ module.exports = {
     padding: {
       px: '1px',
       base: '2.2rem',
-      '0': '0',
-      '1': '0.25rem',
-      '2': '0.5rem',
-      '3': '0.75rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '8': '2rem',
-      '10': '2.5rem',
-      '12': '3rem',
-      '16': '4rem',
-      '20': '5rem',
-      '24': '6rem',
-      '32': '8rem'
+      0: '0',
+      1: '0.25rem',
+      2: '0.5rem',
+      3: '0.75rem',
+      4: '1rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      8: '2rem',
+      10: '2.5rem',
+      12: '3rem',
+      16: '4rem',
+      20: '5rem',
+      24: '6rem',
+      32: '8rem',
+      60: '15rem',
     },
 
     /*
@@ -625,42 +626,45 @@ module.exports = {
       auto: 'auto',
       px: '1px',
       base: '2.2rem',
-      '0': '0',
-      '1': '0.25rem',
-      '2': '0.5rem',
-      '3': '0.75rem',
-      '4': '1rem',
-      '5': '1.25rem',
-      '6': '1.5rem',
-      '8': '2rem',
-      '10': '2.5rem',
-      '12': '3rem',
-      '16': '4rem',
-      '20': '5rem',
-      '24': '6rem',
-      '32': '8rem',
+      0: '0',
+      1: '0.25rem',
+      2: '0.5rem',
+      3: '0.75rem',
+      4: '1rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      8: '2rem',
+      10: '2.5rem',
+      12: '3rem',
+      16: '4rem',
+      20: '5rem',
+      24: '6rem',
+      32: '8rem',
+      36: '9rem',
+      44: '11rem',
+      60: '15rem',
       '-px': '-1px',
       '-1': '-0.25rem',
       '-2': '-0.5rem',
       '-3': '-0.75rem',
-      '-4': '-1rem'
+      '-4': '-1rem',
     },
 
     order: {
       first: '-1',
       last: '999',
       normal: '0',
-      '1': '1',
-      '2': '2',
-      '3': '3',
-      '4': '4',
-      '5': '5',
-      '6': '6'
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
     },
 
     container: {
       center: true,
-      padding: '1rem'
+      padding: '1rem',
     },
 
     /*
@@ -689,7 +693,7 @@ module.exports = {
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       outline: '0 0 0 3px rgba(52,144,220,0.5)',
       none: 'none',
-      drop: '0 2px 8px 0 rgba(0,0,0,0.14)'
+      drop: '0 2px 8px 0 rgba(0,0,0,0.14)',
     },
 
     /*
@@ -730,7 +734,7 @@ module.exports = {
       */
 
     fill: {
-      current: 'currentColor'
+      current: 'currentColor',
     },
 
     /*
@@ -748,8 +752,8 @@ module.exports = {
       */
 
     stroke: {
-      current: 'currentColor'
-    }
+      current: 'currentColor',
+    },
   },
 
   /*
@@ -832,7 +836,7 @@ module.exports = {
     whitespace: ['responsive'],
     wordBreak: ['responsive'],
     width: ['responsive'],
-    zIndex: ['responsive']
+    zIndex: ['responsive'],
   },
 
   /*
@@ -852,10 +856,10 @@ module.exports = {
   plugins: [],
 
   corePlugins: {
-    fontFamily: false,
+    fontFamily: true,
     letterSpacing: false,
     backgroundPosition: false,
     backgroundRepeat: false,
-    listStyleType: false
-  }
+    listStyleType: true,
+  },
 }

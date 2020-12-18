@@ -195,10 +195,11 @@ import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 import vSelect from 'vue-select'
 
 // Cell Renderer
-import CellRendererLink from './cell-renderer/CellRendererLink.vue'
-import CellRendererStatus from './cell-renderer/CellRendererStatus.vue'
-import CellRendererVerified from './cell-renderer/CellRendererVerified.vue'
-import CellRendererActions from './cell-renderer/CellRendererActions.vue'
+
+import CellRendererLink from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererLink.vue'
+import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
+import CellRendererVerified from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererVerified.vue'
+import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActions.vue'
 
 export default {
   components: {
@@ -209,7 +210,7 @@ export default {
     CellRendererLink,
     CellRendererStatus,
     CellRendererVerified,
-    CellRendererActions
+    CellRendererActions,
   },
   data() {
     return {
@@ -219,7 +220,7 @@ export default {
         { label: 'All', value: 'all' },
         { label: 'Admin', value: 'admin' },
         { label: 'User', value: 'user' },
-        { label: 'Staff', value: 'staff' }
+        { label: 'Staff', value: 'staff' },
       ],
 
       statusFilter: { label: 'All', value: 'all' },
@@ -227,14 +228,14 @@ export default {
         { label: 'All', value: 'all' },
         { label: 'Active', value: 'active' },
         { label: 'Deactivated', value: 'deactivated' },
-        { label: 'Blocked', value: 'blocked' }
+        { label: 'Blocked', value: 'blocked' },
       ],
 
       isVerifiedFilter: { label: 'All', value: 'all' },
       isVerifiedOptions: [
         { label: 'All', value: 'all' },
         { label: 'Yes', value: 'yes' },
-        { label: 'No', value: 'no' }
+        { label: 'No', value: 'no' },
       ],
 
       departmentFilter: { label: 'All', value: 'all' },
@@ -242,7 +243,7 @@ export default {
         { label: 'All', value: 'all' },
         { label: 'Sales', value: 'sales' },
         { label: 'Development', value: 'development' },
-        { label: 'Management', value: 'management' }
+        { label: 'Management', value: 'management' },
       ],
 
       searchQuery: '',
@@ -253,7 +254,7 @@ export default {
       defaultColDef: {
         sortable: true,
         resizable: true,
-        suppressMenu: true
+        suppressMenu: true,
       },
       columnDefs: [
         {
@@ -263,45 +264,45 @@ export default {
           filter: true,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true
+          headerCheckboxSelection: true,
         },
         {
           headerName: 'Username',
           field: 'username',
           filter: true,
           width: 210,
-          cellRendererFramework: 'CellRendererLink'
+          cellRendererFramework: 'CellRendererLink',
         },
         {
           headerName: 'Email',
           field: 'email',
           filter: true,
-          width: 225
+          width: 225,
         },
         {
           headerName: 'Name',
           field: 'name',
           filter: true,
-          width: 200
+          width: 200,
         },
         {
           headerName: 'Country',
           field: 'country',
           filter: true,
-          width: 150
+          width: 150,
         },
         {
           headerName: 'Role',
           field: 'role',
           filter: true,
-          width: 150
+          width: 150,
         },
         {
           headerName: 'Status',
           field: 'status',
           filter: true,
           width: 150,
-          cellRendererFramework: 'CellRendererStatus'
+          cellRendererFramework: 'CellRendererStatus',
         },
         {
           headerName: 'Verified',
@@ -309,20 +310,20 @@ export default {
           filter: true,
           width: 125,
           cellRendererFramework: 'CellRendererVerified',
-          cellClass: 'text-center'
+          cellClass: 'text-center',
         },
         {
           headerName: 'Department',
           field: 'department',
           filter: true,
-          width: 150
+          width: 150,
         },
         {
           headerName: 'Actions',
           field: 'transactions',
           width: 150,
-          cellRendererFramework: 'CellRendererActions'
-        }
+          cellRendererFramework: 'CellRendererActions',
+        },
       ],
 
       // Cell Renderer Components
@@ -330,8 +331,8 @@ export default {
         CellRendererLink,
         CellRendererStatus,
         CellRendererVerified,
-        CellRendererActions
-      }
+        CellRendererActions,
+      },
     }
   },
   watch: {
@@ -348,7 +349,7 @@ export default {
     },
     departmentFilter(obj) {
       this.setColumnFilter('department', obj.value)
-    }
+    },
   },
   computed: {
     usersData() {
@@ -369,8 +370,8 @@ export default {
       },
       set(val) {
         this.gridApi.paginationGoToPage(val - 1)
-      }
-    }
+      },
+    },
   },
   methods: {
     setColumnFilter(column, val) {
@@ -392,14 +393,14 @@ export default {
       // Reset Filter Options
       this.roleFilter = this.statusFilter = this.isVerifiedFilter = this.departmentFilter = {
         label: 'All',
-        value: 'all'
+        value: 'all',
       }
 
       this.$refs.filterCard.removeRefreshAnimation()
     },
     updateSearchQuery(val) {
       this.gridApi.setQuickFilter(val)
-    }
+    },
   },
   mounted() {
     this.gridApi = this.gridOptions.api
@@ -419,10 +420,10 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('userManagement/fetchUsers').catch(err => {
+    this.$store.dispatch('userManagement/fetchUsers').catch((err) => {
       console.error(err)
     })
-  }
+  },
 }
 </script>
 

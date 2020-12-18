@@ -120,7 +120,7 @@
           class="holamundo"
           :title="selectedGroup.branch"
           :active.sync="popupCustomerGroup"
-          style="z-index: 1000;  "
+          style="z-index: 1000"
         >
           <div class="mt-4">
             <div class="mx-8 mb-8">
@@ -140,11 +140,7 @@
               >Please fill for customer group:</label
             >
 
-            <form-generator
-              :schema="formStyle"
-              v-model="formData"
-              class="p-6"
-            ></form-generator>
+            <FormGenerator :schema="formStyle" v-model="formData" class="p-6" />
           </div>
           <div class="vx-row">
             <div class="w-full vx-col">
@@ -171,19 +167,17 @@
 <script>
 import firebase from 'firebase'
 import vSelect from 'vue-select'
-import formGenerator from '@/components/forms/form-generator/formGenerator'
 import moment from 'moment'
 
 export default {
   components: {
     vSelect,
-    formGenerator
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -198,22 +192,22 @@ export default {
           placeholder: 'How often should visit?',
           label: 'How often should visit?',
           name: 'visit',
-          type: 'number'
+          type: 'number',
         },
         {
           title: 'TextInput',
           placeholder: 'Discount',
           label: 'Discount',
           name: 'discount',
-          type: 'number'
+          type: 'number',
         },
         {
           title: 'TextInput',
           placeholder: 'Credit Limits',
           label: 'Credit Limits',
           name: 'credit',
-          type: 'number'
-        }
+          type: 'number',
+        },
       ],
 
       popupCustomerGroup: false,
@@ -221,14 +215,14 @@ export default {
 
       selectedGroup: {},
 
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
 
   computed: {
     business() {
       return this.$store.state.business.active_business
-    }
+    },
   },
   methods: {
     deleteItem(type, data, i) {
@@ -240,7 +234,7 @@ export default {
         .collection('groups')
         .doc(this.business.b_uid)
         .update({
-          [type]: firebase.firestore.FieldValue.arrayRemove(data)
+          [type]: firebase.firestore.FieldValue.arrayRemove(data),
         })
         .then(() => {
           vm.successDelete(type, i)
@@ -270,7 +264,7 @@ export default {
           .collection('groups')
           .doc(vm.business.b_uid)
           .update({
-            [collection]: firebase.firestore.FieldValue.arrayUnion(data[i])
+            [collection]: firebase.firestore.FieldValue.arrayUnion(data[i]),
           })
           .then(() => {
             vm.successUpload(collection, data[i])
@@ -281,7 +275,7 @@ export default {
       this.$vs.notify({
         color: 'danger',
         title: 'Oops',
-        text: 'Something went wrong'
+        text: 'Something went wrong',
       })
     },
 
@@ -289,7 +283,7 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let business = this.business
@@ -307,14 +301,14 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     successDelete(collection, i) {
       this.$vs.notify({
         color: 'warning',
         title: 'Delete Success',
-        text: 'Whoop whoop, been deleted'
+        text: 'Whoop whoop, been deleted',
       })
 
       let business = this.business
@@ -341,7 +335,7 @@ export default {
         .collection(type)
         .doc(data)
         .get()
-        .then(function(doc) {
+        .then(function (doc) {
           if (doc.exists) {
             vm.selectedGroup = doc.data()
             vm.selectedGroup.id = doc.id
@@ -355,14 +349,14 @@ export default {
               .collection(type)
               .doc(data)
               .set({
-                [type]: data
+                [type]: data,
               })
               .then(() => {
                 vm.editItem(type, data, i)
               })
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log('Error getting document:', error)
         })
     },
@@ -383,13 +377,13 @@ export default {
           credit: this.formData.credit,
           created_date: moment().format('DD-MM-YYYY'),
           created_month: moment().format('MM-YYYY'),
-          timestamp: Date.now()
+          timestamp: Date.now(),
         })
         .then(() => {
           vm.popupCustomerGroup = false
           vm.successUpdate()
         })
-    }
-  }
+    },
+  },
 }
 </script>

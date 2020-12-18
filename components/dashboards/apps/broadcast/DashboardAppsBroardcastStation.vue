@@ -37,18 +37,10 @@
         :itemData="itemData"
         v-show="optionset == 'SongsLists'"
       />
-      <UploadMusic v-show="optionset == 'Upload'" />
-      <!--   <stations v-if="optionset == 'Stations'" /> -->
+      <vs-card>
+        <UploadMusic v-show="optionset == 'Upload'" />
+      </vs-card>
       <DashboardAppsBroadcastStationSingle v-show="optionset == 'Station'" />
-
-      <!-- <div>
-        <UploadMusic v-if="optionset == 'Upload'"/>
-
-        <MusicPlayer class="mt-3" />
-      </div>
-      <div>
-      
-      </div> -->
     </client-only>
   </div>
 </template>
