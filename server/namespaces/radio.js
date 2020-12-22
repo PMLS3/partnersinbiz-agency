@@ -17,6 +17,8 @@ let currentPlay = {
 
 function playStart(room, index) {
   console.log('current', currentPlay[room])
+  console.log('current duration', currentPlay[room].duration)
+
   if (currentPlay[room].currentPlay) {
     if (currentPlay[room].currentTime < currentPlay[room].duration) {
       currentPlay[room].currentTime++
@@ -59,6 +61,7 @@ function playNow(room, index) {
 function Svc(socket, io) {
   const chatSvc = Object.freeze({
     joinRoom({ room, user }) {
+      console.log('joining room', room)
       return new Promise((resolve, reject) => {
         socket.join(room, () => {
           let type = { type: 'join' }

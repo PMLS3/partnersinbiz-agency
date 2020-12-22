@@ -1,98 +1,90 @@
 <template>
-  <div class="p-10 fullpage-container md:px-60">
-    <div class="fullpage-wp" v-fullpage="opts" ref="example">
-      <div class="page-1 page">
-        <div class="part-1" v-animate="{ value: 'bounceInLeft' }">
-          <h1 class="font-serif text-5xl text-white mt-60">
-            We're Partners in Biz
-          </h1>
-          <h3
-            class="mt-5 overflow-hidden font-serif text-3xl text-white md:text-5xl overflow-clip md:mr-60"
-          >
-            We help entrepreneurs / freelancers / business owners scale and get
-            more clients by building incredible marketing systems.
-          </h3>
-
-          <h3
-            class="mt-8 overflow-hidden font-mono text-xl text-white mb-36 overflow-clip"
-          >
-            We are currently available for consulting.
-          </h3>
-        </div>
-      </div>
-      <div class="page-2 page">
-        <div class="part-2" v-animate="{ value: 'bounceInRight' }">
-          <h3
-            class="overflow-hidden font-serif text-3xl text-white mt-60 md:text-5xl overflow-clip md:mr-60"
-          >
-            Doing the right thing at the right time to GROW your Business. What
-            ever service we provide, we will keep you up to date with weekly
-            reports.
-          </h3>
-
-          <h3
-            class="mt-6 overflow-hidden font-serif text-xl text-white mb-36 overflow-clip"
-          >
-            If they don't know about you, how can they use you? Each industry
-            requires its own thorough market reseach.
-          </h3>
-        </div>
-      </div>
-      <div class="page-3 page">
-        <div class="part-3" v-animate="{ value: 'bounceInLeft', delay: 0 }">
-          <h3
-            class="overflow-hidden font-serif text-3xl text-white mt-60 md:text-5xl overflow-clip"
-          >
-            Here's how we can help:
-          </h3>
-        </div>
-        <div class="part-3" v-animate="{ value: 'bounceInRight', delay: 600 }">
-          <ul class="mt-6 font-serif text-2xl text-white list-disc">
-            <li class="ml-8 list-disc">Ad management</li>
-            <li class="ml-8 list-disc">Email marketing</li>
-            <li class="ml-8 list-disc">Lead generation</li>
-            <li class="ml-8 list-disc">Website design</li>
-            <li class="ml-8 list-disc">Funnels</li>
-          </ul>
-          <h3
-            class="mt-6 overflow-hidden font-serif text-xl text-white overflow-clip"
-          >
-            We exceed expectations...
-          </h3>
-        </div>
-        <div class="part-3" v-animate="{ value: 'zoomInDown', delay: 1200 }">
-          <div class="mt-32 text-center">
-            <h1 class="font-serif text-3xl text-white">Let's get started.</h1>
-            <NuxtLink to="/consultation">
-              <h1 class="font-serif text-blue-700">
-                Free consultation
-              </h1></NuxtLink
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <button @click="moveNext">next</button> -->
+  <div class="w-screen h-screen bg-black">
+    <h1>Select a state</h1>
+    <vs-button @click="fetchSomething">Fetch</vs-button>
+    <vs-button @click="submitForm">Submit</vs-button>
+    <h1 class="text-white" v-for="(data, index) in ip" :key="index">
+      {{ data }}
+    </h1>
+    <br />
+    <vs-button @click="fetchStates">Fetch State</vs-button>
+    <vs-button @click="submitForms">Submit</vs-button>
+    <h1 class="text-white" v-for="(data, index) in states" :key="index">
+      {{ data }}
+    </h1>
   </div>
 </template>
 
 <script>
+// import '@/js/data/states.js'
 export default {
   layout: 'pib',
   data() {
     return {
-      opts: {
-        start: 0,
-        dir: 'v',
-        duration: 500,
-        beforeChange: function (currentSlideEl, currenIndex, nextIndex) {},
-        afterChange: function (currentSlideEl, currenIndex) {},
-      },
+      ip: {},
+      title: 'PEET',
+      author: 'Stander',
+      body: 'whoo',
+      states: [],
+      number: 0,
     }
   },
+  watch: {
+    ip() {
+      console.log('data', this.ip)
+    },
+  },
+  async asyncData() {
+    // const posts = await
+  },
+
   methods: {
-    moveNext() {
-      this.$refs.example.$fullpage.moveNext() //Move to the next page
+    async fetchSomething() {
+      const ip = await this.$axios.$get('/api/posts')
+      // const states = await ip.json()
+      console.log('posts', ip)
+      this.ip = ip
+    },
+    async fetchStates() {
+      const ip = await this.$axios.$get('/api/states')
+      // const states = await ip.json()
+      console.log('states', ip)
+      this.states = ip
+    },
+    submitForm() {
+      this.$axios.$post('/api/posts', {
+        title: this.title,
+        author: this.author,
+        body: this.body,
+      })
+      // .then((response) => {
+      //   console.log(response)
+      //   if (response.data._id) {
+      //     this.$router.push({ name: 'articles', params: { created: 'yes' } })
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.log(error)
+      //   if (error.response.data.errors) {
+      //     this.errors = error.response.data.errors
+      //   }
+      // })
+    },
+    submitForms() {
+      this.$axios.$post('/api/states')
+      this.fetchData()
+    },
+    fetchData() {
+      if (this.number < 10) {
+        setTimeout(() => {
+          console.log('i', this.number)
+          this.number++
+          this.fetchStates()
+          this.fetchData()
+        }, 300)
+      } else {
+        this.number = 0
+      }
     },
   },
 }

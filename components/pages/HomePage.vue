@@ -85,7 +85,7 @@
         </div>
       </div>
     </div>
-    <!-- <button @click="moveNext">next</button> -->
+    <vs-button @click="moveNext">next</vs-button>
   </div>
 </template>
 

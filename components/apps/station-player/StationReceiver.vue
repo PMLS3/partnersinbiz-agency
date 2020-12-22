@@ -13,7 +13,7 @@
     <h1>HELOO</h1>
     <h1>HELOO</h1>
 
-    <StationPlayer :room="$route.params.id" />
+    <StationPlayer :room="$route.params.id" :show="show" />
   </div>
 </template>
 
@@ -65,6 +65,10 @@ export default {
     },
   },
   methods: {
+    updateUsers(data) {
+      console.log('data', data)
+      this.$store.commit('radio/SET_PLAYLIST', data)
+    },
     playTracked(data) {
       console.log('playtracked', data)
       this.$store.commit('radio/SET_PLAY_ID', data)
@@ -86,6 +90,13 @@ export default {
       this.$store.commit('radio/SET_PLAY', false)
 
       this.$store.commit('radio/SET_SKIP_TO', data)
+    },
+    receivedPlaylist(data) {
+      console.log('received', data)
+      this.$store.commit('radio/SET_PLAYLIST', data)
+    },
+    selectTrack(track) {
+      this.selectedTrack = track
     },
   },
   created() {
@@ -133,13 +144,6 @@ export default {
     }
     this.joinDetails = { room: this.room, user: user }
     this.joinRoom()
-  },
-  receivedPlaylist(data) {
-    console.log('received', data)
-    this.$store.commit('radio/SET_PLAYLIST', data)
-  },
-  selectTrack(track) {
-    this.selectedTrack = track
   },
 }
 </script>

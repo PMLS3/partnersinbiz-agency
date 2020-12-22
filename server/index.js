@@ -4,11 +4,12 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const config = require('../nuxt.config.js')
 const { IOServer } = require('./io')
+var bodyParser = require('body-parser')
 
 // Boiler-plate
 const app = express()
 const server = http.createServer(app) // Prod should separate server code from client and use https
-
+app.use(bodyParser.json())
 // Import and Set Nuxt.js options
 config.dev = process.env.NODE_ENV !== 'production'
 
@@ -29,6 +30,9 @@ async function start() {
 
   const posts = require('./routes/api/posts')
   app.use('/api/posts', posts)
+
+  const states = require('./routes/api/getUSStates.js')
+  app.use('/api/states', states)
 
   // Give nuxt middleware to express
   app.use(nuxt.render)

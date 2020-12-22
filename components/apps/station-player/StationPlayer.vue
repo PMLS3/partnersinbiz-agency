@@ -257,28 +257,33 @@ export default {
       }
     },
     updateList() {
+      this.howlIt()
       let vm = this
+      this.$vs.loading()
 
-      let list = []
-      for (let i = 0; i < vm.playlist.length; i++) {
-        let track = {}
-        track.audio = vm.playlist[i].audio
-        track.artist = vm.playlist[i].artist
-        track.title = vm.playlist[i].title
-        track.album = vm.playlist[i].album
-        // track.duration = vm.playlist[i].howl.duration()
-        track.display = vm.playlist[i].display
-        track.cover = vm.playlist[i].cover
-        track.currentTime = 0
-        // console.log('HERE', track.duration)
-        list.push(track)
-      }
-      vm.newList = {
-        playlist: list,
-        room: vm.room,
-      }
-      console.log('playlist sending', list)
-      vm.sendPlaylist(vm.newList)
+      setTimeout(function () {
+        let list = []
+        for (let i = 0; i < vm.playlist.length; i++) {
+          let track = {}
+          track.audio = vm.playlist[i].audio
+          track.artist = vm.playlist[i].artist
+          track.title = vm.playlist[i].title
+          track.album = vm.playlist[i].album
+          track.duration = vm.playlist[i].howl.duration()
+          track.display = vm.playlist[i].display
+          track.cover = vm.playlist[i].cover
+          track.currentTime = 0
+          console.log('HERE', vm.playlist[i].howl)
+          list.push(track)
+        }
+        vm.newList = {
+          playlist: list,
+          room: vm.room,
+        }
+        console.log('playlist sending', list)
+        vm.sendPlaylist(vm.newList)
+        vm.$vs.loading.close()
+      }, 4000)
     },
 
     selectTrack(track) {

@@ -179,6 +179,26 @@ export default {
 
     return { user, columnDefs, item, motivational_quotes, itemData, optionset }
   },
+  mounted() {
+    this.socket = this.$nuxtSocket({ channel: '/radio' })
+    if (process.client) {
+      if (this.user.uid) {
+        this.userNumber = this.user.uid
+      } else {
+        this.userNumber = Math.floor(Math.random() * 1000000)
+      }
+
+      if (this.user.disp_name == 'Guest') {
+        this.disp_active = true
+      }
+    }
+    let user = {
+      name: this.user.disp_name,
+      id: this.userNumber,
+    }
+    this.joinDetails = { room: this.$route.params.id, user: user }
+    this.joinRoom()
+  },
   //   data: () => ({
   //     colorx: "#8B0000"
   //   })
