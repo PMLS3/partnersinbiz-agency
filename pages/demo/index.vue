@@ -119,6 +119,12 @@ export default {
         graphic: require('@/assets/illustrations/podcast.svg'),
         url: '/dashboardAppsBroadcast',
       },
+      {
+        title: 'Business Lead Generation - TESTING PHASE',
+        description: 'Your own broadcast station',
+        graphic: require('@/assets/illustrations/podcast.svg'),
+        url: '/dashboardAppsBroadcast',
+      },
       //   {
       //     id: 2,
       //     title: 'Marketing',

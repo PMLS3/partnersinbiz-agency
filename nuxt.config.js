@@ -295,7 +295,9 @@ module.exports = {
     enabled: false,
   },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    // baseURL: 'https://partnersinbiz.tech/',
+  },
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   // content: {},

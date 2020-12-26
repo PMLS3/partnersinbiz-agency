@@ -34,6 +34,9 @@ async function start() {
   const states = require('./routes/api/getUSStates.js')
   app.use('/api/states', states)
 
+  const business = require('./routes/api/getBusiness.js')
+  app.use('/api/business', business)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

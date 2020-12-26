@@ -40,6 +40,8 @@ export default {
 
   methods: {
     async fetchSomething() {
+      const map = await this.$axios.$get('/api/business')
+      console.log('map', map)
       const ip = await this.$axios.$get('/api/posts')
       // const states = await ip.json()
       console.log('posts', ip)
@@ -57,18 +59,8 @@ export default {
         author: this.author,
         body: this.body,
       })
-      // .then((response) => {
-      //   console.log(response)
-      //   if (response.data._id) {
-      //     this.$router.push({ name: 'articles', params: { created: 'yes' } })
-      //   }
-      // })
-      // .catch((error) => {
-      //   console.log(error)
-      //   if (error.response.data.errors) {
-      //     this.errors = error.response.data.errors
-      //   }
-      // })
+
+      this.$axios.post('/api/business')
     },
     submitForms() {
       this.$axios.$post('/api/states')
@@ -90,11 +82,59 @@ export default {
 }
 </script>
 <style>
-.fullpage-container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
+/* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+#map {
   height: 100%;
+  background-color: grey;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* TODO: Step 4A1: Make a generic sidebar */
+/* Styling for an info pane that slides out from the left. 
+     * Hidden by default. */
+#panel {
+  height: 100%;
+  width: null;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  transition: all 0.2s ease-out;
+}
+
+.open {
+  width: 250px;
+}
+
+/* Styling for place details */
+.hero {
+  width: 100%;
+  height: auto;
+  max-height: 166px;
+  display: block;
+}
+
+.place,
+p {
+  font-family: 'open sans', arial, sans-serif;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.details {
+  color: darkslategrey;
+}
+
+a {
+  text-decoration: none;
+  color: cadetblue;
 }
 </style>
