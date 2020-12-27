@@ -1992,13 +1992,13 @@
     consola "^2.15.0"
     defu "^3.2.2"
 
-"@nuxtjs/composition-api@^0.13.5":
-  version "0.13.5"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/composition-api/-/composition-api-0.13.5.tgz#7fb1f6229d2c19bd1428590aea58e5395e008393"
-  integrity sha512-G1H1c5xKAQB6Zxfstc/g+cNSWoies6t+yZv14+K4bOH+CEXH/D3pgmx1J2zTzJM5YSJNC0Z0BBIKhi2EiYqGcA==
+"@nuxtjs/composition-api@^0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/composition-api/-/composition-api-0.17.0.tgz#533402f82dc860cbed17d9612ac8b41333789b26"
+  integrity sha512-hc/1amRpu1sr4/0jkb4T0N37YgvM00jcBTQeur5ymdUd52eJExKiOu+EwbWvTPRFz8IU29x6PhdLZ5LcJT6FgA==
   dependencies:
-    "@vue/composition-api" "1.0.0-beta.17"
-    defu "^3.1.0"
+    "@vue/composition-api" "1.0.0-beta.21"
+    defu "^3.2.2"
     normalize-path "^3.0.0"
 
 "@nuxtjs/device@^1.2.7":
@@ -2710,10 +2710,10 @@
   optionalDependencies:
     prettier "^1.18.2"
 
-"@vue/composition-api@1.0.0-beta.17":
-  version "1.0.0-beta.17"
-  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-beta.17.tgz#63b65b3ed7cab649c53e4459fb0c5d3d1c545a96"
-  integrity sha512-TXa3162xQXeEoT8ar2aLPdSVGUy4phD8b3bytRORJQMvplQxi++QKXKAgYUTH0lwP0t0Dw2ddWtIyTTrOhta5w==
+"@vue/composition-api@1.0.0-beta.21":
+  version "1.0.0-beta.21"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-beta.21.tgz#d5a3c68afc8b569dfc3eccd69998388bb7f6a16c"
+  integrity sha512-tgbvDpLvKQ1GrII424wsoyzPCsG0oTFf38emMq495SfLY7RmUqhVIl81pvnC5489PPrCxDkbauJHJrhlcXfbTQ==
   dependencies:
     tslib "^2.0.1"
 
@@ -5822,8 +5822,9 @@ debug@^3.1.0, debug@^3.1.1, debug@^3.2.6:
   dependencies:
     ms "^2.1.1"
 
-"debug@github:ngokevin/debug#noTimestamp", debug@~2.2.0:
+debug@ngokevin/debug#noTimestamp, debug@~2.2.0:
   version "2.2.0"
+  uid ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
 debug@~4.1.0:
@@ -5945,7 +5946,7 @@ defu@^2.0.4:
   resolved "https://registry.yarnpkg.com/defu/-/defu-2.0.4.tgz#09659a6e87a8fd7178be13bd43e9357ebf6d1c46"
   integrity sha512-G9pEH1UUMxShy6syWk01VQSRVs3CDWtlxtZu7A+NyqjxaCA4gSlWAKDBx6QiUEKezqS8+DUlXLI14Fp05Hmpwg==
 
-defu@^3.1.0, defu@^3.2.2:
+defu@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/defu/-/defu-3.2.2.tgz#be20f4cc49b9805d54ee6b610658d53894942e97"
   integrity sha512-8UWj5lNv7HD+kB0e9w77Z7TdQlbUYDVWqITLHNqFIn6khrNHv5WQo38Dcm1f6HeNyZf0U7UbPf6WeZDSdCzGDQ==
@@ -6057,8 +6058,9 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90":
+document-register-element@dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90:
   version "0.5.4"
+  uid "8ccc532b7f3744be954574caf3072a5fd260ca90"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
 
 dom-converter@^0.2:
@@ -15179,8 +15181,9 @@ thread-loader@^2.1.3:
     loader-utils "^1.1.0"
     neo-async "^2.6.0"
 
-"three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e":
+three-bmfont-text@dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e:
   version "2.3.0"
+  uid "1babdf8507c731a18f8af3b807292e2b9740955e"
   resolved "https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/1babdf8507c731a18f8af3b807292e2b9740955e"
   dependencies:
     array-shuffle "^1.0.1"
@@ -16714,8 +16717,9 @@ webrtc-adapter@^7.3.0:
     rtcpeerconnection-shim "^1.2.15"
     sdp "^2.12.0"
 
-"webrtc-swarm@github:delapuente/webrtc-swarm#stream-support":
+webrtc-swarm@delapuente/webrtc-swarm#stream-support:
   version "2.8.0"
+  uid "207ca1c65591d0dcd8bd84006c85f64838021740"
   resolved "https://codeload.github.com/delapuente/webrtc-swarm/tar.gz/207ca1c65591d0dcd8bd84006c85f64838021740"
   dependencies:
     cuid "^1.2.4"
