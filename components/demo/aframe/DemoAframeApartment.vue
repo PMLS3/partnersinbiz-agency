@@ -786,7 +786,7 @@
           rotation="90 0 0"
           scale="6 5 1"
           position="3 0 0"
-          class=" collision"
+          class="collision"
         >
           <a-entity
             id="bottom-floor-1"
@@ -801,7 +801,7 @@
           rotation="90 0 0"
           scale="12 5 1"
           position="0 3 0"
-          class=" collision"
+          class="collision"
         >
           <a-entity
             id="top-floor-1"
@@ -919,7 +919,7 @@
         visible="false"
         rotation=""
         id="collision-world"
-        class=" collision"
+        class="collision"
         scale="1 1 4.5"
       ></a-entity>
       <a-entity
@@ -929,7 +929,7 @@
         rotation="0 0 23.713577224874513"
         id="collision-world2"
         scale="0.38 1 1"
-        class=" collision"
+        class="collision"
       ></a-entity>
       <a-entity
         geometry="width: 10; height: 0.11"
@@ -938,7 +938,7 @@
         rotation="0 0 -35.00944015587869"
         id="collision-world3"
         scale="0.34 1 1"
-        class=" collision"
+        class="collision"
       ></a-entity>
       <a-entity
         geometry="width: 10; height: 0.11"
@@ -946,7 +946,7 @@
         visible="false"
         rotation=""
         id="collision-world4"
-        class=" collision"
+        class="collision"
         scale="0.84 1 1"
       ></a-entity>
       <a-entity
@@ -955,7 +955,7 @@
         visible="false"
         rotation=""
         id="collision-world5"
-        class=" collision"
+        class="collision"
         scale="0.84 1 1"
       ></a-entity>
     </a-entity>
@@ -963,8 +963,8 @@
 </template>
 
 <script>
-require('@/js/aframe/teleport.js')
-require('@/js/aframe/loadTexture.js')
+// require('@/js/aframe/teleport.js')
+// require('@/js/aframe/loadTexture.js')
 export default {}
 </script>
 

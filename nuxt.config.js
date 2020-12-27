@@ -33,7 +33,12 @@ module.exports = {
       // }
     ],
   },
-
+  /*
+   ** Router middleware
+   */
+  router: {
+    middleware: 'routing',
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -64,6 +69,8 @@ module.exports = {
    */
   plugins: [
     '@/plugins/vuesax',
+    '@/plugins/inject.js',
+
     '@/plugins/fake-db/index.js',
     '@/plugins/http/requests',
     '@/plugins/i18n/i18n.js',

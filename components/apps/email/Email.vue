@@ -2,13 +2,13 @@
     File Name: Email.vue
     Description: Email Application (Inbox)
     ----------------------------------------------------------------------------------------
-  
+
 ========================================================================================== -->
 
 <template>
   <div
     id="email-app"
-    class="border border-solid d-theme-border-grey-light rounded relative overflow-hidden"
+    class="relative h-screen overflow-hidden border border-solid rounded d-theme-border-grey-light"
   >
     <vs-sidebar
       class="items-no-padding"
@@ -26,12 +26,12 @@
 
     <div
       :class="{ 'sidebar-spacer': clickNotClose }"
-      class="no-scroll-content border border-solid d-theme-border-grey-light border-r-0 border-t-0 border-b-0"
+      class="border border-t-0 border-b-0 border-r-0 border-solid no-scroll-content d-theme-border-grey-light"
     >
       <!-- SEARCH BAR -->
-      <div class="flex border d-theme-dark-bg items-center">
+      <div class="flex items-center border d-theme-dark-bg">
         <feather-icon
-          class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer"
+          class="ml-4 mr-4 cursor-pointer md:inline-flex lg:hidden"
           icon="MenuIcon"
           @click.stop="toggleEmailSidebar(true)"
         />
@@ -42,20 +42,20 @@
           icon-pack="feather"
           placeholder="Search Mail"
           v-model="searchQuery"
-          class="vs-input-no-border vs-input-no-shdow-focus w-full"
+          class="w-full vs-input-no-border vs-input-no-shdow-focus"
         />
       </div>
 
       <!-- EMAIL ACTION BAR -->
       <div
-        class="email__actions flex items-center flex-wrap justify-between p-4 border border-r-0 border-l-0 border-solid d-theme-border-grey-light"
+        class="flex flex-wrap items-center justify-between p-4 border border-l-0 border-r-0 border-solid email__actions d-theme-border-grey-light"
       >
         <div class="flex items-center">
           <vs-checkbox
             v-model="selectAllCheckBox"
             icon-pack="feather"
             :icon="selectAllIcon"
-            class="select-all-chexkbox ml-0"
+            class="ml-0 select-all-chexkbox"
             >Select All</vs-checkbox
           >
         </div>
@@ -138,7 +138,7 @@
           >
             <feather-icon
               icon="TagIcon"
-              class="cursor-pointer ml-5"
+              class="ml-5 cursor-pointer"
               svg-classes="h-6 w-6"
             ></feather-icon>
 
@@ -150,7 +150,7 @@
                 class="whitespace-no-wrap"
               >
                 <div
-                  class="h-3 w-3 inline-block rounded-full mr-3"
+                  class="inline-block w-3 h-3 mr-3 rounded-full"
                   :class="'bg-' + label.color"
                 ></div>
                 <span>{{ label.text }}</span>
@@ -168,7 +168,7 @@
           <feather-icon
             v-if="mailFilter != 'trash'"
             icon="TrashIcon"
-            class="cursor-pointer ml-5"
+            class="ml-5 cursor-pointer"
             svg-classes="h-6 w-6"
             @click="moveTo('trash')"
           />
@@ -228,8 +228,6 @@
 import EmailSidebar from './EmailSidebar.vue'
 import MailItem from './MailItem.vue'
 import EmailView from './EmailView.vue'
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import moduleEmail from '@/store/email/moduleEmail.js'
 
 export default {
   data() {
@@ -242,33 +240,33 @@ export default {
       isEmailSidebarActive: true,
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.3
-      }
+        wheelSpeed: 0.3,
+      },
     }
   },
   watch: {
     isSidebarActive(value) {
       if (!value) this.showThread = false
     },
-    mailFilter() {
-      this.selectedMails = []
+    // mailFilter() {
+    //   this.selectedMails = []
 
-      const scroll_el = this.$refs.mailListPS.$el || this.$refs.mailListPS
-      scroll_el.scrollTop = 0
+    //   const scroll_el = this.$refs.mailListPS.$el || this.$refs.mailListPS
+    //   scroll_el.scrollTop = 0
 
-      this.$store.commit('email/UPDATE_MAIL_FILTER', this.$route.params.filter)
-      this.$store.dispatch('email/fetchEmails', {
-        filter: this.$route.params.filter
-      })
-      this.toggleEmailSidebar()
-    },
-    windowWidth() {
-      this.setSidebarWidth()
-    }
+    //   this.$store.commit('email/UPDATE_MAIL_FILTER', this.$route.params.filter)
+    //   this.$store.dispatch('email/fetchEmails', {
+    //     filter: this.$route.params.filter
+    //   })
+    //   this.toggleEmailSidebar()
+    // },
+    // windowWidth() {
+    //   this.setSidebarWidth()
+    // }
   },
   computed: {
     mailFilter() {
-      return this.$route.params.filter
+      return this.$store.state.email.mail_filter
     },
     emailTags() {
       return this.$store.state.email.mailTags
@@ -279,7 +277,7 @@ export default {
       },
       set(val) {
         this.$store.dispatch('email/setEmailSearchQuery', val)
-      }
+      },
     },
     selectAllCheckBox: {
       get() {
@@ -287,9 +285,9 @@ export default {
       },
       set(value) {
         value
-          ? (this.selectedMails = this.mails.map(mail => mail.id))
+          ? (this.selectedMails = this.mails.map((mail) => mail.id))
           : (this.selectedMails = [])
-      }
+      },
     },
     mails() {
       return this.$store.getters['email/filteredMails']
@@ -303,11 +301,11 @@ export default {
       return this.$store.getters.scrollbarTag
     },
     isMailSelected() {
-      return mailId => this.selectedMails.indexOf(mailId) !== -1
+      return (mailId) => this.selectedMails.indexOf(mailId) !== -1
     },
     windowWidth() {
       return this.$store.state.windowWidth
-    }
+    },
   },
   methods: {
     updateOpenMail(mailId) {
@@ -324,7 +322,7 @@ export default {
     },
     moveTo(to) {
       const payload = { emailIds: this.selectedMails, to }
-      this.$store.dispatch('email/moveMailsTo', payload).catch(error => {
+      this.$store.dispatch('email/moveMailsTo', payload).catch((error) => {
         console.error(error)
       })
       this.selectedMails = []
@@ -346,20 +344,20 @@ export default {
     toggleIsStarred() {
       const payload = {
         mailId: this.currentMail.id,
-        value: !this.currentMail.isStarred
+        value: !this.currentMail.isStarred,
       }
       this.$store.dispatch('email/toggleIsMailStarred', payload)
     },
     nextMail() {
       const currentMailIndex = this.mails.findIndex(
-        mail => mail.id === this.openMailId
+        (mail) => mail.id === this.openMailId
       )
       if (this.mails[currentMailIndex + 1])
         this.openMailId = this.mails[currentMailIndex + 1].id
     },
     previousMail() {
       const currentMailIndex = this.mails.findIndex(
-        mail => mail.id === this.openMailId
+        (mail) => mail.id === this.openMailId
       )
       if (this.mails[currentMailIndex - 1])
         this.openMailId = this.mails[currentMailIndex - 1].id
@@ -372,7 +370,7 @@ export default {
     updateLabels(label) {
       this.$store.dispatch('email/updateLabels', {
         mails: this.selectedMails,
-        label
+        label,
       })
       this.selectedMails = []
     },
@@ -394,31 +392,26 @@ export default {
         }
       }
       this.isEmailSidebarActive = value
-    }
+    },
   },
   components: {
     MailItem,
     EmailSidebar,
     EmailView,
-    VuePerfectScrollbar
   },
   created() {
-    this.$store.registerModule('email', moduleEmail)
     this.setSidebarWidth()
+    let filter = 'inbox'
 
-    this.$store.commit('email/UPDATE_MAIL_FILTER', this.$route.params.filter) // Update Mail Filter
-    this.$store.dispatch('email/fetchEmails', {
-      filter: this.$route.params.filter
-    }) // Fetch Emails From API
+    this.$store.commit('email/UPDATE_MAIL_FILTER', filter) // Update Mail Filter
+    this.$store.dispatch('email/fetchEmails', { filter: filter }) // Fetch Emails From API
     this.$store.dispatch('email/fetchMeta') // Fetch Unread Mails
     this.$store.dispatch('email/fetchTags') // Fetch Mail Tags
   },
-  beforeDestroy() {
-    this.$store.unregisterModule('email')
-  },
+
   mounted() {
     this.$store.dispatch('email/setEmailSearchQuery', '')
-  }
+  },
 }
 </script>
 

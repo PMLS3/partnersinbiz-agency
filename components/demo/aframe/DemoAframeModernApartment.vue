@@ -396,7 +396,7 @@
         visible="false"
         rotation=""
         id="collision-world"
-        class=" collision"
+        class="collision"
         scale="0.777 1 6.24"
       ></a-entity>
       <a-entity
@@ -406,7 +406,7 @@
         rotation=""
         id="collision-world2"
         scale="0.91 1 2.88"
-        class=" collision"
+        class="collision"
       ></a-entity>
 
       <a-entity
@@ -415,7 +415,7 @@
         visible="false"
         rotation=""
         id="collision-world5"
-        class=" collision"
+        class="collision"
         scale="0.84 1 1"
       ></a-entity>
     </a-entity>
@@ -423,8 +423,8 @@
 </template>
 
 <script>
-require('@/js/aframe/teleport.js')
-require('@/js/aframe/loadTexture.js')
+// require('@/js/aframe/teleport.js')
+// require('@/js/aframe/loadTexture.js')
 export default {}
 </script>
 

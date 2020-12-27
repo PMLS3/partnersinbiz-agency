@@ -37,6 +37,8 @@ import dashboardClients from '@/components/dashboards/DashboardClients.vue'
 // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 
+// Apps
+import email from '@/components/apps/email/Email.vue'
 // Pages
 import calendar from '@/components/pages/Calendar.vue'
 
@@ -72,6 +74,7 @@ export default {
     dashboardSupport,
     dashboardRequest,
     dashboardClients,
+    email,
     // videoChat
   },
 }

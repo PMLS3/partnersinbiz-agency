@@ -14,15 +14,19 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import vSelect from 'vue-select'
 import { longClickDirective } from 'vue-long-click'
 import VueTelInput from 'vue-tel-input'
-import { ValidationProvider } from 'vee-validate'
+// import { ValidationProvider } from 'vee-validate'
 import VueFlatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
 import FeatherIcon from '../components/FeatherIcon.vue'
 // Your app initialization logic goes here
 Vue.use(VueFlatPickr)
+
+// VeeValidate
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate)
 // Register it globally
 // main.js or any entry file.
-Vue.component('ValidationProvider', ValidationProvider)
+// Vue.component('ValidationProvider', ValidationProvider)
 Vue.component(VuePerfectScrollbar.name, VuePerfectScrollbar)
 Vue.component(Verte.name, Verte)
 Vue.component(FeatherIcon.name, FeatherIcon)

@@ -125,6 +125,12 @@ export default {
         graphic: require('@/assets/illustrations/podcast.svg'),
         url: '/dashboardAppsBroadcast',
       },
+      {
+        title: 'Email - TESTING PHASE',
+        description: 'Your own emails',
+        graphic: require('@/assets/illustrations/podcast.svg'),
+        url: '/email',
+      },
       //   {
       //     id: 2,
       //     title: 'Marketing',

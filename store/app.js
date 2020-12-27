@@ -1,35 +1,35 @@
 export const state = () => ({
-  app_type: "aframe",
+  app_type: 'aframe',
   authorization_type: {
     email: true,
     phone: false,
     facebook: false,
     twitter: false,
     google: false,
-    github: false
+    github: false,
   },
   side_chat: {
     active: false,
-    backgroundColor: "#ffffff"
+    backgroundColor: '#ffffff',
   },
-  feature: ""
-});
+  feature: '',
+})
 
 export const mutations = {
   SET_SIDE_CHAT_ACTIVE(state, payload) {
-    state.side_chat.active = payload;
+    state.side_chat.active = payload
   },
   SET_FEATURE(state, payload) {
-    state.feature = payload;
-  }
-};
+    state.feature = payload
+  },
+}
 
 export const actions = {
   isMobile({ commit }, payload) {
-    console.log("payload");
-  }
-};
+    console.log('payloadfdasfd')
+  },
+}
 
-export const getters = {};
+export const getters = {}
 
-export const strict = false;
+export const strict = false

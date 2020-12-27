@@ -405,7 +405,7 @@
           rotation=""
           id="collision-world"
           scale="0.95453 1 14.41873"
-          class=" collision"
+          class="collision"
         ></a-entity>
         <a-entity
           geometry="width: 10; height: 0.11"
@@ -414,7 +414,7 @@
           rotation=""
           id="collision-world2"
           scale="0.90992 1 7.54164"
-          class=" collision"
+          class="collision"
         ></a-entity>
 
         <a-entity
@@ -423,7 +423,7 @@
           visible="false"
           rotation=""
           id="collision-world5"
-          class=" collision"
+          class="collision"
           scale="0.84 1 1"
         ></a-entity>
       </a-entity>
@@ -432,13 +432,13 @@
 </template>
 
 <script>
-require('@/js/aframe/teleport.js')
-require('@/js/aframe/loadTexture.js')
+// require('@/js/aframe/teleport.js')
+// require('@/js/aframe/loadTexture.js')
 export default {
   mounted() {
     // if (process.client) {
     // }
-  }
+  },
 }
 </script>
 

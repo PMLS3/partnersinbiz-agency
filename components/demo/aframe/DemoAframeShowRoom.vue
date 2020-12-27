@@ -467,10 +467,10 @@
 </template>
 
 <script>
-require('@/js/aframe/teleport.js')
-require('@/js/aframe/loadTexture.js')
+// require('@/js/aframe/teleport.js')
+// require('@/js/aframe/loadTexture.js')
 export default {
-  name: 'ShowRoom'
+  name: 'ShowRoom',
 }
 </script>
 
