@@ -111,8 +111,95 @@
       </calendar-view>
     </div>
 
+    <vs-popup
+      class="holamundo"
+      title="Add Tweet"
+      :active.sync="activePromptAddEvent"
+    >
+      <div class="flex calendar__label-container">
+        <vs-chip
+          v-if="labelLocal != 'none'"
+          class="text-white"
+          :class="'bg-' + labelColor(labelLocal)"
+          >{{ labelLocal }}</vs-chip
+        >
+
+        <vs-dropdown
+          vs-custom-content
+          vs-trigger-click
+          class="my-2 ml-auto cursor-pointer"
+        >
+          <feather-icon
+            icon="TagIcon"
+            svgClasses="h-5 w-5"
+            class="cursor-pointer"
+            @click.prevent
+          ></feather-icon>
+
+          <vs-dropdown-menu style="z-index: 200001">
+            <vs-dropdown-item
+              v-for="(label, index) in calendarLabels"
+              :key="index"
+              @click="labelLocal = label.value"
+            >
+              <div
+                class="inline-block w-3 h-3 mr-2 rounded-full"
+                :class="'bg-' + label.color"
+              ></div>
+              <span>{{ label.text }}</span>
+            </vs-dropdown-item>
+
+            <vs-dropdown-item @click="labelLocal = 'none'">
+              <div
+                class="inline-block w-3 h-3 mr-1 mr-2 rounded-full bg-primary"
+              ></div>
+              <span>None</span>
+            </vs-dropdown-item>
+          </vs-dropdown-menu>
+        </vs-dropdown>
+      </div>
+
+      <vs-input
+        name="event-name"
+        class="w-full"
+        label-placeholder="Tweet Title"
+        v-model="title"
+      ></vs-input>
+
+      <div class="my-4">
+        <small class="date-label">Tweet Date Time</small>
+        <flat-pickr
+          :config="configdateTimePicker"
+          v-model="datetime"
+          placeholder="Date Time"
+          class="w-full"
+        />
+      </div>
+      <div :key="index" v-for="(twt, index) in tweets">
+        <vs-textarea
+          class="w-full"
+          counter="280"
+          label="Counter: 280"
+          :counter-danger.sync="counterDanger"
+          v-model="tweets[index].textarea"
+        />
+
+        <ImageUpload class="mt-4 mb-4" />
+      </div>
+
+      <vs-button
+        color="success"
+        type="filled"
+        icon="add_task"
+        class="float-right"
+        @click="addAnother"
+      ></vs-button>
+
+      <vs-button @click="addEvent">Add Tweet</vs-button>
+    </vs-popup>
+
     <!-- ADD EVENT -->
-    <vs-prompt
+    <!-- <vs-prompt
       class="calendar-event-dialog"
       title="Add Tweet"
       accept-text="Add Tweet"
@@ -166,7 +253,7 @@
       <vs-input
         name="event-name"
         class="w-full"
-        label-placeholder="Event Title"
+        label-placeholder="Tweet Title"
         v-model="title"
       ></vs-input>
 
@@ -198,7 +285,7 @@
         class="float-right"
         @click="addAnother"
       ></vs-button>
-    </vs-prompt>
+    </vs-prompt> -->
 
     <!-- EDIT EVENT -->
     <vs-prompt
@@ -253,7 +340,7 @@
       <!-- <vs-input
         name="event-name"
         class="w-full"
-        label-placeholder="Event Title"
+        label-placeholder="Tweet Title"
         v-model="title"
       ></vs-input>
       <div class="my-4">
@@ -319,7 +406,7 @@ export default {
       datetime: null,
       configdateTimePicker: {
         enableTime: true,
-        dateFormat: 'd-m-Y H:i',
+        dateFormat: 'Y-m-d H:i',
       },
 
       langHe: he,
@@ -390,6 +477,7 @@ export default {
       })
     },
     addEvent() {
+      this.activePromptAddEvent = false
       console.log('datetime', this.datetime)
       console.log('tweets', this.tweets)
       let dateTimeSplit = this.datetime.split(' ')
@@ -465,9 +553,9 @@ export default {
     this.$store.dispatch('calendar/fetchEvents')
     this.$store.dispatch('calendar/fetchEventLabels')
   },
-  beforeDestroy() {
-    this.$store.unregisterModule('calendar')
-  },
+  //   beforeDestroy() {
+  //     this.$store.unregisterModule('calendar')
+  //   },
 }
 </script>
 

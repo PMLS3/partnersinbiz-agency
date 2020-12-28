@@ -108,7 +108,7 @@
       </div>
     </vs-sidebar>
 
-    <div class="px-8 mt-12 ml-12">
+    <div class="px-8 mt-20 ml-12">
       <div id="Dashboard" v-if="showScreen == 'Dashboard'">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
           <StatisticsCardLine

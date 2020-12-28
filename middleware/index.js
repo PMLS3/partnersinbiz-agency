@@ -24,7 +24,6 @@ export default (context) => {
     case 'DemoAframeApartment':
     case 'DemoAframeSmall':
     case 'DemoAframeModernApartment':
-    case 'dashboardAppstwitter':
     case 'email':
 
     case 'DemoAR':
