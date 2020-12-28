@@ -21,5 +21,5 @@ setInterval(retweet, config.retweetRate)
 setInterval(favorite, config.favoriteRate)
 
 // Follow
-// const stream = T.stream('user')
-// stream.on('follow', followed)
+const stream = T.stream('user')
+stream.on('follow', followed)

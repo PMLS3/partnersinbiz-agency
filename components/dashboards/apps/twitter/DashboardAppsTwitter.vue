@@ -1,8 +1,22 @@
 <template>
-  <div ref="parentSidebar" id="parentx" class="h-full min-h-screen">
+  <div
+    ref="parentSidebar"
+    id="parentx"
+    class="h-full min-h-screen parentx-static"
+  >
+    <!-- <vs-button
+      @click=";(active = !active), (notExpand = false)"
+      color="success"
+      type="filled"
+      >Open Sidebar Reduce-expand</vs-button
+    > -->
     <vs-sidebar
+      :reduce="reduce"
+      :reduce-not-hover-expand="notExpand"
+      parent="body"
       default-index="1"
-      color="primary"
+      hidden-background
+      color="success"
       class="sidebarx"
       spacer
       v-model="active"
@@ -93,7 +107,8 @@
         <vs-button icon="settings" color="primary" type="border"></vs-button>
       </div>
     </vs-sidebar>
-    <div class="mt-8">
+
+    <div class="px-8 mt-12 ml-12">
       <div id="Dashboard" v-if="showScreen == 'Dashboard'">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
           <StatisticsCardLine
@@ -165,8 +180,8 @@
           <CardTwitter :item="item" class="mt-3" />
         </div>
       </div>
-      <div id="Schedule" v-if="showScreen == 'Schedule'">
-        <SimpleCalendar />
+      <div id="Schedule" v-if="showScreen == 'Schedule'" class="mt-12">
+        <TweetSchedular />
       </div>
 
       <div id="Recurring" v-if="showScreen == 'Recurring'"></div>
@@ -191,6 +206,8 @@ export default {
   },
   data: () => ({
     active: true,
+    notExpand: false,
+    reduce: true,
     showScreen: 'Dashboard',
     analyticsData,
     item: {
