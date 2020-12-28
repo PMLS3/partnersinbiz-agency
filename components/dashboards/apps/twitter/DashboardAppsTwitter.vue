@@ -1,210 +1,57 @@
 <template>
-  <div
-    ref="parentSidebar"
-    id="parentx"
-    class="h-full min-h-screen parentx-static"
-  >
-    <!-- <vs-button
-      @click=";(active = !active), (notExpand = false)"
-      color="success"
-      type="filled"
-      >Open Sidebar Reduce-expand</vs-button
-    > -->
-    <vs-sidebar
-      :reduce="reduce"
-      :reduce-not-hover-expand="notExpand"
-      parent="body"
-      default-index="1"
-      hidden-background
-      color="success"
-      class="sidebarx"
-      spacer
-      v-model="active"
-    >
-      <div class="header-sidebar" slot="header">
-        <vs-avatar
-          size="70px"
-          src="https://randomuser.me/api/portraits/men/85.jpg"
-        />
-
-        <h4>
-          My Name
-          <vs-button color="primary" icon="more_horiz" type="flat"></vs-button>
-        </h4>
-      </div>
-
-      <vs-sidebar-item
-        index="1"
-        icon="dashboard"
-        @click="showScreen = 'Dashboard'"
-      >
-        Dashboard
-      </vs-sidebar-item>
-
-      <vs-sidebar-item index="2" icon="history" @click="showScreen = 'History'">
-        History
-      </vs-sidebar-item>
-      <vs-sidebar-item
-        index="3"
-        icon="schedule"
-        @click="showScreen = 'Schedule'"
-      >
-        Schedule
-      </vs-sidebar-item>
-      <vs-sidebar-item
-        index="4"
-        icon="update"
-        @click="showScreen = 'Recurring'"
-      >
-        Recurring
-      </vs-sidebar-item>
-      <vs-sidebar-item
-        index="5"
-        icon="thumb_up"
-        @click="showScreen = 'AutoLike'"
-      >
-        Auto Like
-      </vs-sidebar-item>
-      <vs-sidebar-item
-        index="6"
-        icon="repeat"
-        @click="showScreen = 'AutoRetweet'"
-      >
-        Auto Retweet
-      </vs-sidebar-item>
-      <vs-sidebar-item
-        index="7"
-        icon="question_answer"
-        @click="showScreen = 'AutoDMs'"
-      >
-        Auto DM's
-      </vs-sidebar-item>
-
-      <vs-sidebar-item index="8" icon="toll" @click="showScreen = 'Golden'">
-        Golden Tweets
-      </vs-sidebar-item>
-
-      <vs-divider icon="person" position="left"> User </vs-divider>
-
-      <vs-sidebar-item
-        index="3"
-        icon="verified_user"
-        @click="showScreen = 'Configuration'"
-      >
-        Configurations
-      </vs-sidebar-item>
-      <vs-sidebar-item
-        index="4"
-        icon="account_box"
-        @click="showScreen = 'Profile'"
-      >
-        Profile
-      </vs-sidebar-item>
-      <vs-sidebar-item index="5"> Card </vs-sidebar-item>
-
-      <div class="footer-sidebar" slot="footer">
-        <vs-button icon="reply" color="danger" type="flat">log out</vs-button>
-        <vs-button icon="settings" color="primary" type="border"></vs-button>
-      </div>
-    </vs-sidebar>
-
-    <div class="px-8 mt-20 ml-12">
-      <div id="Dashboard" v-if="showScreen == 'Dashboard'">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
-          <StatisticsCardLine
-            icon="ShoppingBagIcon"
-            statistic="97.5K"
-            statisticTitle="Followers"
-            :chartData="ordersRecevied.series"
-            color="warning"
-            type="area"
-          />
-
-          <StatisticsCardLine
-            icon="ShoppingBagIcon"
-            statistic="97.5K"
-            statisticTitle="Engagements per Tweet"
-            :chartData="ordersRecevied.series"
-            color="warning"
-            type="area"
-          />
-
-          <StatisticsCardLine
-            icon="ShoppingBagIcon"
-            statistic="97.5K"
-            statisticTitle="Impressions"
-            :chartData="ordersRecevied.series"
-            color="warning"
-            type="area"
-          />
-
-          <StatisticsCardLine
-            icon="ShoppingBagIcon"
-            statistic="97.5K"
-            statisticTitle="Tweets"
-            :chartData="ordersRecevied.series"
-            color="warning"
-            type="area"
-          />
-        </div>
-        <div class="mt-8">
-          <vx-card title="Client Retention">
-            <div class="flex">
-              <span class="flex items-center"
-                ><div class="w-3 h-3 mr-1 rounded-full bg-primary"></div>
-                <span>New Clients</span></span
-              >
-              <span class="flex items-center ml-4"
-                ><div class="w-3 h-3 mr-1 rounded-full bg-danger"></div>
-                <span>Retained Clients</span></span
-              >
-            </div>
-            <vue-apex-charts
-              type="bar"
-              height="277"
-              :options="analyticsData.clientRetentionBar.chartOptions"
-              :series="clientRetentionBar.series"
-            />
-          </vx-card>
-        </div>
-        <div class="mt-8">
-          <AgGridTableApp
-            :item="item"
-            :columnDefs="columnDefs"
-            :itemData="itemData"
-          />
-        </div>
-      </div>
-      <div id="History" v-if="showScreen == 'History'">
+  <div class="mt-24">
+    <vs-tabs :color="colorx" position="left">
+      <vs-tab label="Dashboard" icon="dashboard" @click="colorx = '#8B0000'">
+        <TweetDashboard />
+      </vs-tab>
+      <vs-tab label="history" icon="history" @click="colorx = '#FFA500'">
         <div v-for="item in historyPosts" :key="item.id" class="flex-1">
           <CardTwitter :item="item" class="mt-3" />
         </div>
-      </div>
-      <div id="Schedule" v-if="showScreen == 'Schedule'" class="mt-12">
+      </vs-tab>
+      <vs-tab label="schedule" icon="schedule" @click="colorx = '#551A8B'">
         <TweetSchedular />
-      </div>
+      </vs-tab>
+      <vs-tab label="Recurring" icon="update" @click="colorx = '#0000FF'">
+        <TweetRecurring />
+      </vs-tab>
+      <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
+        <TweetAutoLike />
+      </vs-tab>
+      <vs-tab label="AutoRetweet" icon="repeat" @click="colorx = '#0000FF'">
+        <TweetAutoShare />
+      </vs-tab>
+      <vs-tab
+        label="AutoDMs"
+        icon="question_answer"
+        @click="colorx = '#0000FF'"
+      >
+        <TweetAutoDMs />
+      </vs-tab>
+      <vs-tab label="Golden" icon="toll" @click="colorx = '#0000FF'">
+        <TweetGold />
+      </vs-tab>
 
-      <div id="Recurring" v-if="showScreen == 'Recurring'"></div>
-      <div id="AutoLike" v-if="showScreen == 'AutoLike'"></div>
-      <div id="AutoRetweet" v-if="showScreen == 'AutoRetweet'"></div>
-      <div id="AutoDMs" v-if="showScreen == 'AutoDMs'"></div>
-      <div id="GoldenTweets" v-if="showScreen == 'GoldenTweets'"></div>
-      <div id="Configuration" v-if="showScreen == 'Configuration'"></div>
-      <div id="Profile" v-if="showScreen == 'Profile'"></div>
-    </div>
+      <vs-tab
+        label="Configuration"
+        icon="account_box"
+        @click="colorx = '#0000FF'"
+      >
+        <TweetConfig />
+      </vs-tab>
+    </vs-tabs>
   </div>
 </template>
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
-// import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
 import analyticsData from '@/js/data/analyticsData.js'
 export default {
   components: {
     VueApexCharts,
-    // StatisticsCardLine,
   },
   data: () => ({
+    colorx: '#8B0000',
     active: true,
     notExpand: false,
     reduce: true,
@@ -213,78 +60,6 @@ export default {
     item: {
       name: 'dashboard',
     },
-    itemData: [],
-    columnDefs: [
-      {
-        headerName: 'ID',
-        field: 'id',
-        width: 125,
-        filter: true,
-        checkboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        headerCheckboxSelection: true,
-      },
-      {
-        headerName: 'Date',
-        field: 'date',
-        filter: true,
-        width: 150,
-        cellRendererFramework: 'CellRendererLink',
-      },
-      {
-        headerName: 'Tweet',
-        field: 'tweet',
-        filter: true,
-        width: 225,
-        editable: true,
-      },
-      {
-        headerName: 'Impressions',
-        field: 'impressions',
-        filter: true,
-        width: 200,
-      },
-      {
-        headerName: 'Engagements',
-        field: 'engagements',
-        filter: true,
-        width: 150,
-      },
-      {
-        headerName: 'EPI',
-        field: 'epi',
-        filter: true,
-        width: 150,
-      },
-      {
-        headerName: 'Likes',
-        field: 'likes',
-        filter: true,
-        width: 350,
-        cellRendererFramework: 'CellRendererAudio',
-      },
-      {
-        headerName: 'Retweets',
-        field: 'retweets',
-        filter: true,
-        width: 125,
-        cellRendererFramework: 'CellRendererVerified',
-        cellClass: 'text-center',
-      },
-
-      {
-        headerName: 'Link Clicks',
-        field: 'linkclicks',
-        width: 150,
-        cellRendererFramework: 'CellRendererActions',
-      },
-      {
-        headerName: 'Profile Clicks',
-        field: 'profileclicks',
-        width: 150,
-        cellRendererFramework: 'CellRendererActions',
-      },
-    ],
     historyPosts: [
       {
         date: 'Oct 15th 8:33pm',
@@ -303,46 +78,25 @@ export default {
     ],
   }),
   computed: {
-    ordersRecevied() {
-      return {
-        series: [
-          {
-            name: 'Orders',
-            data: [10, 15, 8, 15, 7, 12, 8],
-          },
-        ],
-        analyticsData: {
-          orders: 97500,
-        },
-      }
+    business() {
+      return this.$store.state.business.active_business
     },
-    clientRetentionBar() {
-      return {
-        series: [
-          {
-            name: 'New Clients',
-            data: [175, 125, 225, 175, 160, 189, 206, 134, 159, 216, 148, 123],
-          },
-          {
-            name: 'Retained Clients',
-            data: [
-              -144,
-              -155,
-              -141,
-              -167,
-              -122,
-              -143,
-              -158,
-              -107,
-              -126,
-              -131,
-              -140,
-              -137,
-            ],
-          },
-        ],
-      }
+    user() {
+      return this.$store.state.auth.main_user
     },
+  },
+  created() {
+    let vm = this
+    this.$fireStore
+      .collection('business')
+      .doc('users')
+      .collection(this.business.b_uid)
+      .doc(this.user.uid)
+      .collection('config')
+      .doc('twitter')
+      .onSnapshot(function (doc) {
+        vm.$store.commit('config/TWITTER_UPDATE', doc.data())
+      })
   },
 }
 </script>

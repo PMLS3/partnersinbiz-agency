@@ -33,9 +33,10 @@ import dashboardLearn from '@/components/dashboards/DashboardLearn.vue'
 import dashboardSupport from '@/components/dashboards/DashboardSupport.vue'
 import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
 import dashboardClients from '@/components/dashboards/DashboardClients.vue'
+import dashboardSocialMedia from '@/components/dashboards/DashboardSocialMedia.vue'
 // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
-import dashboardAppstwitter from '@/components/dashboards/apps/twitter/DashboardAppsTwitter.vue'
+import dashboardAppsTwitter from '@/components/dashboards/apps/twitter/DashboardAppsTwitter.vue'
 
 // Apps
 import email from '@/components/apps/email/Email.vue'
@@ -75,7 +76,8 @@ export default {
     dashboardRequest,
     dashboardClients,
     email,
-    dashboardAppstwitter,
+    dashboardAppsTwitter,
+    dashboardSocialMedia,
     // videoChat
   },
 }

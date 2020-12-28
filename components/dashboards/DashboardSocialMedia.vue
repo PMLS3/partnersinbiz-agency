@@ -54,49 +54,34 @@ export default {
     const kb = ref([
       {
         id: 1,
-        title: 'Page Builder',
+        title: 'Twitter',
         description: 'Update business info, create goups and more...',
-        graphic: require('@/assets/illustrations/design_feedback.svg'),
-        url: '/dashboard/page-builder',
+        graphic: require('@/assets/illustrations/viral_tweet.svg'),
+        url: '/dashboardAppsTwitter',
       },
       {
         id: 2,
-        title: 'Email Builder',
+        title: 'Facebook',
         description:
           'See your sales activity, orders, shipments from one place',
-        graphic: require('@/assets/illustrations/asset_selection.svg'),
-        url: '/dashboard/email-builder',
+        graphic: require('@/assets/illustrations/social_growth.svg'),
+        url: '/dashboardAppsFacebook',
       },
       {
         id: 3,
-        title: 'Image Builder',
+        title: 'Instagram',
         description:
           'Create Marketing campaigns, assign staff to run with projects',
-        graphic: require('@/assets/illustrations/add_color.svg'),
-        url: '/dashboard/marketing',
+        graphic: require('@/assets/illustrations2/loving_it.svg'),
+        url: '/dashboardAppsInstagram',
       },
       {
         id: 4,
-        title: 'Social Campaigns',
+        title: 'Linkedin',
         description:
           'Create Marketing campaigns, assign staff to run with projects',
-        graphic: require('@/assets/illustrations/social_share.svg'),
-        url: '/dashboardSocialMedia',
-      },
-      {
-        id: 5,
-        title: 'Email Campaigns',
-        description:
-          'Create Marketing campaigns, assign staff to run with projects',
-        graphic: require('@/assets/illustrations/message_sent.svg'),
-        url: '/dashboard/marketing',
-      },
-      {
-        id: 6,
-        title: 'Website',
-        description: 'Set the website...',
-        graphic: require('@/assets/illustrations/content_team.svg'),
-        url: '/dashboard/website-builder',
+        graphic: require('@/assets/illustrations/social_ideas.svg'),
+        url: '/dashboardAppsLinkedin',
       },
     ])
     const user = computed(() => store.state.auth.main_user)

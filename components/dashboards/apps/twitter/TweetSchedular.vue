@@ -468,6 +468,15 @@ export default {
     windowWidth() {
       return this.$store.state.windowWidth
     },
+    business() {
+      return this.$store.state.business.active_business
+    },
+    user() {
+      return this.$store.state.auth.main_user
+    },
+    config() {
+      return this.$store.state.config.twitter
+    },
   },
   methods: {
     addAnother() {
@@ -477,25 +486,60 @@ export default {
       })
     },
     addEvent() {
+      let vm = this
       this.activePromptAddEvent = false
-      console.log('datetime', this.datetime)
-      console.log('tweets', this.tweets)
+
       let dateTimeSplit = this.datetime.split(' ')
       let date = dateTimeSplit[0]
       let time = dateTimeSplit[1]
-
-      console.log('datetime', date)
-      console.log('datetime', time)
 
       const obj = {
         title: this.title,
         startDate: date,
         endDate: date,
+        time: time,
+        performAt: this.datetime,
+        tweets: this.tweets,
         label: this.labelLocal,
         url: this.url,
+        u_uid: this.user.uid,
+        b_uid: this.business.b_uid,
+        config: this.config,
+        type: 'Tweet',
+        status: 'scheduled',
       }
-      obj.classes = `event-${this.labelColor(this.labelLocal)}`
-      this.$store.dispatch('calendar/addEvent', obj)
+      if (this.config) {
+        this.$fireStore
+          .collection('tweets')
+          .add(obj)
+          .then(function () {
+            console.log('Document successfully written!')
+            obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
+            vm.$store.dispatch('calendar/addEvent', obj)
+            vm.successUpload()
+          })
+          .catch(function (error) {
+            console.error('Error writing document: ', error)
+            vm.unsuccessUpload(error)
+          })
+      } else {
+        let error = 'Please enter your configuration file'
+        vm.unsuccessUpload(error)
+      }
+    },
+    successUpload() {
+      this.$vs.notify({
+        color: 'success',
+        title: 'Yeah',
+        text: 'Message has been scheduled!',
+      })
+    },
+    unsuccessUpload(err) {
+      this.$vs.notify({
+        color: 'danger',
+        title: 'Oops',
+        text: `${err}`,
+      })
     },
     updateMonth(val) {
       this.showDate = this.$refs.calendar.getIncrementedPeriod(val)
@@ -506,7 +550,6 @@ export default {
       this.labelLocal = 'none'
     },
     promptAddNewEvent(date) {
-      console.log('HERE I AM')
       this.disabledFrom = false
       this.addNewEventDialog(date)
     },
@@ -550,6 +593,30 @@ export default {
     },
   },
   created() {
+    let vm = this
+    //     this.$fireStore.collection("tweets").where("u_uid", "==", this.user.uid).get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(`${doc.id} => ${doc.data()}`);
+    //           let obj = {...doc.data(), id: doc.id};
+    //           vm.$store.dispatch('calendar/addEvent', obj)
+    //     });
+
+    this.$fireStore
+      .collection('tweets')
+      .where('u_uid', '==', this.user.uid)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, ' => ', doc.data())
+          let obj = { ...doc.data(), id: doc.id }
+          vm.$store.dispatch('calendar/addEvent', obj)
+        })
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error)
+      })
+
     this.$store.dispatch('calendar/fetchEvents')
     this.$store.dispatch('calendar/fetchEventLabels')
   },
