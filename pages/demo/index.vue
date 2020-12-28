@@ -131,6 +131,12 @@ export default {
         graphic: require('@/assets/illustrations/podcast.svg'),
         url: '/email',
       },
+      {
+        title: 'Twitter - TESTING PHASE',
+        description: 'Share like and retweet',
+        graphic: require('@/assets/illustrations/podcast.svg'),
+        url: '/dashboardAppstwitter',
+      },
       //   {
       //     id: 2,
       //     title: 'Marketing',
