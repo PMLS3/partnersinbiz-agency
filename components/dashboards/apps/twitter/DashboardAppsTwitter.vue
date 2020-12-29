@@ -15,11 +15,11 @@
       <vs-tab label="Recurring" icon="update" @click="colorx = '#0000FF'">
         <TweetRecurring />
       </vs-tab>
-      <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
+      <!-- <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
         <TweetAutoLike />
-      </vs-tab>
-      <vs-tab label="AutoRetweet" icon="repeat" @click="colorx = '#0000FF'">
-        <TweetAutoShare />
+      </vs-tab> -->
+      <vs-tab label="Auto Pilot" icon="repeat" @click="colorx = '#0000FF'">
+        <TweetAuto />
       </vs-tab>
       <vs-tab
         label="AutoDMs"
