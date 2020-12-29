@@ -380,6 +380,7 @@ import 'flatpickr/dist/flatpickr.css'
 
 import Datepicker from 'vuejs-datepicker'
 import { en, he } from 'vuejs-datepicker/src/locale'
+import moment from 'moment'
 
 export default {
   components: {
@@ -489,16 +490,47 @@ export default {
       let vm = this
       this.activePromptAddEvent = false
 
+      var d = new Date()
+      var n = d.getTimezoneOffset()
+      var t = n / 60
+
       let dateTimeSplit = this.datetime.split(' ')
       let date = dateTimeSplit[0]
       let time = dateTimeSplit[1]
+      let timeSplit = time.split(':')
+      let hour = timeSplit[0]
+      let minutes = parseInt(timeSplit[1])
+
+      let setTime = parseInt(hour) + parseInt(t)
+      let setHour = hour
+      let setDay = date
+      console.log('hour', hour)
+      console.log('minutes', minutes)
+      console.log('set time', setTime)
+      if (setTime == 0) {
+        setHour = 0
+      } else if (setTime < 0) {
+        setDay = moment(date).subtract(1, 'days').format('YYYY-MM-DD')
+        setHour = 24 + setTime
+      } else if (setTime > 23) {
+        etDay = moment(date).add(1, 'days').format('YYYY-MM-DD')
+        setHour = 24 - setTime
+        setDay = moment(date, 'YYYY-MM-DD').add(1, 'days')
+      } else {
+        setHour = setTime
+      }
+
+      console.log('setHour', setHour)
+      console.log('setDay', setDay)
 
       const obj = {
         title: this.title,
         startDate: date,
         endDate: date,
         time: time,
-        performAt: this.datetime,
+        scheduled_date: setDay,
+        scheduled_hour: setHour,
+        scheduled_minutes: minutes,
         tweets: this.tweets,
         label: this.labelLocal,
         url: this.url,
@@ -513,7 +545,6 @@ export default {
           .collection('tweets')
           .add(obj)
           .then(function () {
-            console.log('Document successfully written!')
             obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
             vm.$store.dispatch('calendar/addEvent', obj)
             vm.successUpload()

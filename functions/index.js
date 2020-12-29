@@ -33,51 +33,36 @@ let id
 exports.scheduledFunctionMinute = functions.pubsub
   .schedule('* * * * *')
   .onRun((context) => {
-    console.log('Every minte counts')
-    // const newDate = new Date()
     var today = new Date()
-    var time =
-      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds()
-    // const now = admin.firestore.Timestamp.now()
-    // const nowNow = moment(newDate).format('LLL')
-    // const timeNow = moment(newDate).format()
-    const date = moment(today).format('YYYY-MM-DD')
-    // const time = moment(newDate).format('H:MM:SS')
+    var time = today.getHours() + ':' + today.getMinutes() // + ':' + today.getSeconds()
+    var hour = today.getHours()
+    var min = today.getMinutes()
 
-    // console.log('newDate: ' + newDate)
-    // console.log('now: ' + now)
-    // console.log('now: ' + nowNow)
-    // console.log('timeNow: ' + timeNow)
-    console.log('time new time', time)
-    console.log('date', date)
+    const date = moment(today).format('YYYY-MM-DD')
+
+    console.log('time', hour, min)
 
     const docRef = admin
       .firestore()
       .collection('tweets')
-      .where('startDate', '==', date)
+      .where('scheduled_date', '==', date)
       .where('status', '==', 'scheduled')
-      .where('time', '<=', time)
-    console.log('docRef: ' + docRef)
+      .where('scheduled_hour', '==', hour)
+      .where('scheduled_minutes', '<=', min)
 
     return docRef.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`)
-
-        // console.log('1', doc.data().performAt <= timeNow)
-        // console.log('2', doc.data().performAt <= now)
-        console.log('3', doc.data().time <= time)
-        console.log('4', doc.data().startDate == date)
-
         let payload = {
           id: doc.id,
           ...doc.data(),
         }
+
+        console.log('TWEET TIME', doc.data().time, time)
         needTweet(payload)
       })
     })
   })
 function needTweet(payload) {
-  console.log('PAYLOAD', payload)
   id = payload.id
   var T = new Twit(payload.config)
 
@@ -91,7 +76,6 @@ function tweeted(err, data, response) {
   if (err) {
     console.log('err', err)
   } else {
-    console.log('data', data, id)
     admin.firestore().collection('tweets').doc(id).update({ status: 'done' })
   }
 }

@@ -15,10 +15,6 @@ export const state = () => ({
 
 export const mutations = {
   ADD_EVENT(state, event) {
-    console.log('ADE_EVENT', event)
-    console.log('ADE_EVENT', state)
-
-    console.log('ADD_EVENT', state.events)
     state.events.push(event)
   },
   SET_EVENTS(state, events) {
