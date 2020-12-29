@@ -33,35 +33,40 @@ let id
 exports.scheduledFunctionMinute = functions.pubsub
   .schedule('* * * * *')
   .onRun((context) => {
-    var today = new Date()
-    var time = today.getHours() + ':' + today.getMinutes() // + ':' + today.getSeconds()
-    var hour = today.getHours()
-    var min = today.getMinutes()
+    tweeting()
+  })
 
-    const date = moment(today).format('YYYY-MM-DD')
+function tweeting() {
+  console.log('TWEETING')
+  var today = new Date()
+  var time = today.getHours() + ':' + today.getMinutes() // + ':' + today.getSeconds()
+  var hour = today.getHours()
+  var min = today.getMinutes()
 
-    console.log('time', hour, min)
+  const date = moment(today).format('YYYY-MM-DD')
 
-    const docRef = admin
-      .firestore()
-      .collection('tweets')
-      .where('scheduled_date', '==', date)
-      .where('status', '==', 'scheduled')
-      .where('scheduled_hour', '==', hour)
-      .where('scheduled_minutes', '<=', min)
+  console.log('time', hour, min)
 
-    return docRef.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        let payload = {
-          id: doc.id,
-          ...doc.data(),
-        }
+  const docRef = admin
+    .firestore()
+    .collection('tweets')
+    .where('scheduled_date', '==', date)
+    .where('status', '==', 'scheduled')
+    .where('scheduled_hour', '==', hour)
+    .where('scheduled_minutes', '<=', min)
 
-        console.log('TWEET TIME', doc.data().time, time)
-        needTweet(payload)
-      })
+  return docRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      let payload = {
+        id: doc.id,
+        ...doc.data(),
+      }
+
+      console.log('TWEET TIME', doc.data().time, time)
+      needTweet(payload)
     })
   })
+}
 function needTweet(payload) {
   id = payload.id
   var T = new Twit(payload.config)
@@ -79,10 +84,3 @@ function tweeted(err, data, response) {
     admin.firestore().collection('tweets').doc(id).update({ status: 'done' })
   }
 }
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });

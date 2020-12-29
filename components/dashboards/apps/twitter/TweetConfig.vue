@@ -30,6 +30,9 @@
       ></vs-input>
 
       <vs-button @click="tweetConfigSet" class="mt-8">Submit</vs-button>
+      <vs-button @click="ConfigSet" class="mt-8" v-if="config"
+        >View current</vs-button
+      >
     </vs-card>
   </div>
 </template>
@@ -51,8 +54,17 @@ export default {
     user() {
       return this.$store.state.auth.main_user
     },
+    config() {
+      return this.$store.state.config.twitter
+    },
   },
   methods: {
+    ConfigSet() {
+      this.consumer_key = this.config.consumer_key
+      this.consumer_secret = this.config.consumer_secret
+      this.access_token = this.config.access_token
+      this.access_token_secret = this.config.access_token_secret
+    },
     tweetConfigSet() {
       let vm = this
       let payload = {
