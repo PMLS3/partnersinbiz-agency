@@ -4,12 +4,66 @@
       <vs-tab label="Dashboard" icon="dashboard" @click="colorx = '#8B0000'">
         <TweetDashboard />
       </vs-tab>
-      <vs-tab label="history" icon="history" @click="colorx = '#FFA500'">
-        <div v-for="item in historyPosts" :key="item.id" class="flex-1">
+      <vs-tab label="Timeline" icon="theaters" @click="colorx = '#FFA500'">
+        <vs-tabs :color="colorx" position="left">
+          <vs-tab
+            label="Home"
+            icon="home"
+            @click="colorx = '#8B0000'"
+            class="grid grid-cols-3 gap-4"
+          >
+            <vs-button
+              radius
+              class="absolute right-0 p-4"
+              @click="fetchHomeTimeline"
+              type="gradient"
+              icon="cached"
+            ></vs-button>
+            <div v-for="item in hometimeline" :key="item.id">
+              <CardTwitter :item="item" class="mt-3" />
+            </div>
+          </vs-tab>
+          <vs-tab
+            label="History"
+            icon="history"
+            @click="colorx = '#8B0000'"
+            class="grid grid-cols-3 gap-4"
+          >
+            <vs-button
+              radius
+              class="absolute right-0 p-4"
+              @click="fetchTimeline"
+              type="gradient"
+              icon="cached"
+            ></vs-button>
+            <div v-for="item in timeline" :key="item.id">
+              <CardTwitter :item="item" class="mt-3" />
+            </div>
+          </vs-tab>
+
+          <vs-tab
+            label="Mentions"
+            icon="alternate_email"
+            @click="colorx = '#8B0000'"
+            class="grid grid-cols-3 gap-4"
+          >
+            <vs-button
+              radius
+              class="absolute right-0 p-4"
+              @click="fetchMentions"
+              type="gradient"
+              icon="cached"
+            ></vs-button>
+            <div v-for="item in mentions" :key="item.id">
+              <CardTwitter :item="item" class="mt-3" />
+            </div>
+          </vs-tab>
+        </vs-tabs>
+        <!-- <div v-for="item in timeline" :key="item.id" class="flex-1">
           <CardTwitter :item="item" class="mt-3" />
-        </div>
+        </div> -->
       </vs-tab>
-      <vs-tab label="schedule" icon="schedule" @click="colorx = '#551A8B'">
+      <vs-tab label="Schedule" icon="schedule" @click="colorx = '#551A8B'">
         <TweetSchedular />
       </vs-tab>
       <vs-tab label="Recurring" icon="update" @click="colorx = '#0000FF'">
@@ -56,6 +110,9 @@ export default {
     notExpand: false,
     reduce: true,
     showScreen: 'Dashboard',
+    timeline: [],
+    mentions: [],
+    hometimeline: [],
     analyticsData,
     item: {
       name: 'dashboard',
@@ -84,6 +141,33 @@ export default {
     user() {
       return this.$store.state.auth.main_user
     },
+    config() {
+      return this.$store.state.config.twitter
+    },
+  },
+
+  methods: {
+    async fetchTimeline() {
+      const ip = await this.$axios.$get(
+        `/api/twitter/timeline?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}`
+      )
+
+      this.timeline = ip
+    },
+    async fetchHomeTimeline() {
+      const ip = await this.$axios.$get(
+        `/api/twitter/home_timeline?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}`
+      )
+
+      this.hometimeline = ip
+    },
+    async fetchMentions() {
+      const ip = await this.$axios.$get(
+        `/api/twitter/mentions?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}`
+      )
+
+      this.mentions = ip
+    },
   },
   created() {
     let vm = this
@@ -96,6 +180,10 @@ export default {
       .doc('twitter')
       .onSnapshot(function (doc) {
         vm.$store.commit('config/TWITTER_UPDATE', doc.data())
+
+        vm.fetchTimeline()
+        vm.fetchHomeTimeline()
+        vm.fetchMentions()
       })
   },
 }

@@ -37,6 +37,19 @@ async function start() {
   const business = require('./routes/api/getBusiness.js')
   app.use('/api/business', business)
 
+  //TWITTER
+  const twitterTimeline = require('./routes/api/twitter/timeline.js')
+  app.use('/api/twitter/timeline', twitterTimeline)
+
+  const twitterHomeTimeline = require('./routes/api/twitter/home_timeline.js')
+  app.use('/api/twitter/home_timeline', twitterHomeTimeline)
+
+  const twitterMentions = require('./routes/api/twitter/mentions.js')
+  app.use('/api/twitter/mentions', twitterMentions)
+
+  const twitterFollow = require('./routes/api/twitter/follow.js')
+  app.use('/api/twitter/follow', twitterFollow)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

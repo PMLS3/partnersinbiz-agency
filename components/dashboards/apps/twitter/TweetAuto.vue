@@ -36,6 +36,19 @@
       <vs-button @click="LikesStatusSet" class="mt-4">{{
         liked_status
       }}</vs-button>
+      <vs-input
+        name="event-name"
+        class="w-full mt-12"
+        label-placeholder="Keywords place commma between words"
+        v-model="message"
+      ></vs-input>
+      <br />
+      <small class="w-full mt-2">Current: {{ set_liked_words }}</small>
+      <br />
+      <vs-button @click="FollowSet" class="mt-4">Add Follow</vs-button>
+      <vs-button @click="LikesStatusSet" class="mt-4">{{
+        liked_status
+      }}</vs-button>
     </vs-card>
   </div>
 </template>
@@ -50,6 +63,7 @@ export default {
       liked_words: '',
       set_liked_words: '',
       liked_status: '',
+      message: '',
     }
   },
   computed: {
@@ -64,6 +78,12 @@ export default {
     },
   },
   methods: {
+    FollowSet() {
+      this.$axios.$post('/api/twitter/follow', {
+        config: this.config,
+        message: this.message,
+      })
+    },
     RetweetsSet() {
       let vm = this
       if (this.config) {

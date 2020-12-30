@@ -9,11 +9,11 @@ router.get('/', async (req, res) => {
 
   let config = req.query
   const T = new twit(config)
-  await T.get('statuses/mentions_timeline', (err, data, response) => {
+  await T.get('statuses/home_timeline', (err, data, response) => {
     if (err) {
-      console.log('ERROR: in MENTIONS TIMELINE')
+      console.log('ERROR: in RETRIEVING TIMELINE')
     }
-    console.log('SUCCESS: MENTIONS SENT')
+    console.log('SUCCESS: HOME TIMELINE SENT')
     res.send(data)
   })
 })

@@ -81,6 +81,7 @@ export default {
     notExpand: false,
     reduce: true,
     showScreen: 'Dashboard',
+    timeline: [],
     analyticsData,
     item: {
       name: 'dashboard',
@@ -158,6 +159,7 @@ export default {
       },
     ],
   }),
+
   computed: {
     ordersRecevied() {
       return {

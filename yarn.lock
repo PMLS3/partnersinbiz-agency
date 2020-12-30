@@ -3229,9 +3229,9 @@ ap@~0.1.0:
   integrity sha1-2KPyZhU3k5ihtTymzBpmag+/4VA=
 
 apexcharts@^3.22.3:
-  version "3.23.0"
-  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.23.0.tgz#12877aa789d658aef5eb930af6c3b8850fefd925"
-  integrity sha512-1mV6qouuopvYR6UFSXi/Ge4jRMe//zyAN3aK05mAs4Iuet8mA0w31Q6OU6syD77bawt9p3YKNOmNF7OO2u9w0g==
+  version "3.23.1"
+  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.23.1.tgz#6d63ae2a0b5cbb54644fc0147a228ece57afa8dc"
+  integrity sha512-7fRpquXp725BUew5OO1mJWk16/IJPCUl0l8SjhISnAhAtbTaM9PnXPSmN2BvKO4RcT457CzMM7MCG5UokiTwcA==
   dependencies:
     svg.draggable.js "^2.2.2"
     svg.easing.js "^2.0.0"
@@ -11008,9 +11008,9 @@ node-gyp@^3.8.0:
     which "1"
 
 node-html-parser@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-2.0.0.tgz#fe03a9e99efac16819969802e17a9e51d968d65f"
-  integrity sha512-3wJdYSxiVIBxuiFm9UtfNWAlBw2P+Vb/RN1nqf40q2JeZDpcJ1HsrWuWV3j15SSJ25TvfnOoac2Q+uDU9iY0sw==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-2.0.1.tgz#66e3a6178f5fbf345f5e0e7522d36af7625a3346"
+  integrity sha512-CE0K6zALs+pS+SsQd8oKKF51cNrpwZ6gj/8OSzjhQ2vTfCOnlNtZakgv0MKuEOAZ4kBiKRgJBUicvjAxaFM4Hw==
   dependencies:
     he "1.2.0"
 
@@ -16278,9 +16278,9 @@ vue-backtotop@^1.6.1:
     vue "2.3.3"
 
 vue-cal@^3.6.5:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/vue-cal/-/vue-cal-3.9.0.tgz#c40a071a4fd233911313f3848288e0f33bb84e43"
-  integrity sha512-rD5BWeUW4TiaOtA/qdHSBlLBKdF1tc3GayqiEDpCB3kxx/fmJiUtyqSfLtG1UWsPPWBcYQuFE+tjPm3LCtoMEA==
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/vue-cal/-/vue-cal-3.9.1.tgz#bc73fabd7b243c96c26c2560e7c9bd041630b17d"
+  integrity sha512-5mwb505u/L+pNvVk4KbJudYGU3/MJp3AbfyojT6GczJ5VEO3/3MIzmig/YVCQa5PbAwRh7yfCdcasa+nQbgExA==
 
 vue-chartjs@^3.5.1:
   version "3.5.1"
@@ -17090,9 +17090,9 @@ ws@^6.0.0:
     async-limiter "~1.0.0"
 
 ws@^7.0.0, ws@^7.1.2, ws@^7.2.3, ws@^7.4.0:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.1.tgz#a333be02696bd0e54cea0434e21dcc8a9ac294bb"
-  integrity sha512-pTsP8UAfhy3sk1lSk/O/s4tjD0CRwvMnzvwr4OKGX7ZvqZtUyx4KIJB5JWbkykPoc55tixMGgTNoh3k4FkNGFQ==
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.2.tgz#782100048e54eb36fe9843363ab1c68672b261dd"
+  integrity sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
 
 ws@~6.1.0:
   version "6.1.4"

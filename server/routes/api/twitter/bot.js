@@ -8,6 +8,7 @@ const T = new twit(config.twitter)
 const retweet = require('./retweet')
 const favorite = require('./favorite')
 const followed = require('./follow')
+const timeline = require('./timeline')
 
 // Indication Bot refresh
 console.log('================')
