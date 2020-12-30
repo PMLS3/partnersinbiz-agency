@@ -93,6 +93,10 @@
       >
         <TweetConfig />
       </vs-tab>
+
+      <vs-tab label="Pipeline" icon="all_out" @click="colorx = '#0000FF'">
+        <KanbanTodo type="twitter" />
+      </vs-tab>
     </vs-tabs>
   </div>
 </template>
