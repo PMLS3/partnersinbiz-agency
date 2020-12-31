@@ -16,6 +16,7 @@
         <p class="text-white">
           {{ motivational_quotes }}
         </p>
+
         <vs-input
           icon-no-border
           placeholder="Search Topic or Keyword"
@@ -25,6 +26,20 @@
           size="large"
           class="w-full mt-6"
         />
+        <vs-button
+          radius
+          type="filled"
+          icon="all_out"
+          class="float-right mt-24"
+          @click="popupActivo = true"
+        ></vs-button>
+        <vs-popup
+          fullscreen
+          :title="$route.params.id"
+          :active.sync="popupActivo"
+        >
+          <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+        </vs-popup>
       </div>
     </div>
 
@@ -44,39 +59,17 @@
 <script>
 import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 export default {
-  name: 'dashboardMain',
+  name: 'dashboardMarketing',
   setup() {
     const { store } = useContext()
     onMounted(() => {
       store.commit('business/UPDATE_BUSINESS_INFO', business.value)
     })
+    let popupActivo = ref(false)
     let knowledgeBaseSearchQuery = ref('')
     const kb = ref([
       {
         id: 1,
-        title: 'Page Builder',
-        description: 'Update business info, create goups and more...',
-        graphic: require('@/assets/illustrations/design_feedback.svg'),
-        url: '/dashboard/page-builder',
-      },
-      {
-        id: 2,
-        title: 'Email Builder',
-        description:
-          'See your sales activity, orders, shipments from one place',
-        graphic: require('@/assets/illustrations/asset_selection.svg'),
-        url: '/dashboard/email-builder',
-      },
-      {
-        id: 3,
-        title: 'Image Builder',
-        description:
-          'Create Marketing campaigns, assign staff to run with projects',
-        graphic: require('@/assets/illustrations/add_color.svg'),
-        url: '/dashboard/marketing',
-      },
-      {
-        id: 4,
         title: 'Social Campaigns',
         description:
           'Create Marketing campaigns, assign staff to run with projects',
@@ -84,7 +77,7 @@ export default {
         url: '/dashboardSocialMedia',
       },
       {
-        id: 5,
+        id: 2,
         title: 'Email Campaigns',
         description:
           'Create Marketing campaigns, assign staff to run with projects',
@@ -92,11 +85,34 @@ export default {
         url: '/dashboard/marketing',
       },
       {
-        id: 6,
+        id: 3,
         title: 'Website',
         description: 'Set the website...',
         graphic: require('@/assets/illustrations/content_team.svg'),
         url: '/dashboard/website-builder',
+      },
+      {
+        id: 4,
+        title: 'Page Builder',
+        description: 'Update business info, create goups and more...',
+        graphic: require('@/assets/illustrations/design_feedback.svg'),
+        url: '/dashboard/page-builder',
+      },
+      {
+        id: 5,
+        title: 'Email Builder',
+        description:
+          'See your sales activity, orders, shipments from one place',
+        graphic: require('@/assets/illustrations/asset_selection.svg'),
+        url: '/dashboard/email-builder',
+      },
+      {
+        id: 6,
+        title: 'Image Builder',
+        description:
+          'Create Marketing campaigns, assign staff to run with projects',
+        graphic: require('@/assets/illustrations/add_color.svg'),
+        url: '/dashboard/marketing',
       },
     ])
     const user = computed(() => store.state.auth.main_user)
@@ -125,6 +141,7 @@ export default {
       filteredKB,
       motivational_quotes,
       business,
+      popupActivo,
     }
   },
 }

@@ -3,23 +3,24 @@ const express = require('express')
 const router = express.Router()
 const twit = require('twit')
 
-router.get('/', async (req, res) => {
-  let accessToken = req.query.access_token_secret
-  console.log('accessToken', accessToken)
-
-  let config = req.query
-  const T = new twit(config)
-  await T.get('statuses/mentions_timeline', (err, data, response) => {
-    if (err) {
-      console.log('ERROR: in MENTIONS TIMELINE')
-    }
-    console.log('SUCCESS: MENTIONS SENT')
-    res.send(data)
-  })
-})
-
 router.post('/', async (req, res) => {
-  res.status(201).send()
+  console.log('req body', req.body)
+  let config = req.body.config
+  const T = new twit(config)
+  T.post(
+    'statuses/update',
+    { status: `${req.body.message}` },
+    function (err, data, response) {
+      if (err) {
+        console.log('err', err)
+        res.status(201).send(err)
+      } else {
+        // admin.firestore().collection('tweets').doc(id).update({ status: 'done' })
+        console.log('data', data)
+        res.status(201).send(data)
+      }
+    }
+  )
 })
 
 module.exports = router

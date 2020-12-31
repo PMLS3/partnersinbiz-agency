@@ -18,7 +18,7 @@
         >
           <simple-card :item="item" class="h-full"></simple-card>
         </div> -->
-        <vs-checkbox v-model="autoSave" class="absolute top-0 p-3 mt-4"
+        <vs-checkbox v-model="autoSave" class="absolute p-3 mt-4"
           >Auto Save</vs-checkbox
         >
         <Kanban

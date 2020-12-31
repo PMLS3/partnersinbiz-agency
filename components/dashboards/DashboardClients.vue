@@ -34,6 +34,20 @@
           </div>
           <div>
             <UploadApps :schema="schema" :item="item" />
+            <vs-button
+              radius
+              type="filled"
+              icon="all_out"
+              class="float-right mt-24"
+              @click="popupActivo = true"
+            ></vs-button>
+            <vs-popup
+              fullscreen
+              :title="$route.params.id"
+              :active.sync="popupActivo"
+            >
+              <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+            </vs-popup>
           </div>
         </div>
       </div>
@@ -55,9 +69,10 @@ export default {
     const item = ref({
       item: 'Broadcast',
       title: 'Load Folders',
-      type: 'Category'
+      type: 'Category',
     })
     let knowledgeBaseSearchQuery = ref('')
+    let popupActivo = ref(false)
     let kb = ref([])
 
     const business = computed(() => store.state.business.active_business)
@@ -68,7 +83,7 @@ export default {
     })
     let filteredKB = computed(() =>
       kb.value.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(knowledgeBaseSearchQuery.value.toLowerCase()) ||
@@ -84,21 +99,21 @@ export default {
         placeholder: 'Stations Name',
         type: 'text',
         label: 'Station Name',
-        name: 'title'
+        name: 'title',
       },
       {
         title: 'ImageUpload',
         placeholder: 'Cover Image',
         type: 'text',
         label: 'Cover Image',
-        name: 'url'
+        name: 'url',
       },
       {
         title: 'QuilEditor',
         name: 'desc',
         label: 'Description',
-        placeholder: 'Description'
-      }
+        placeholder: 'Description',
+      },
     ])
 
     onMounted(() => {
@@ -107,8 +122,8 @@ export default {
           .collection(item.value.item)
           .where('b_uid', '==', business.value.b_uid)
 
-        ref.onSnapshot(snapshot => {
-          snapshot.docChanges().forEach(change => {
+        ref.onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
             if (change.type === 'added') {
               let doc = change.doc
               let data = doc.data()
@@ -119,7 +134,7 @@ export default {
                 description: doc.data().desc,
                 graphic: doc.data().url[0],
                 feature: route.value.params.id,
-                url: `${window.location.pathname}/${doc.id}`
+                url: `${window.location.pathname}/${doc.id}`,
               })
             }
           })
@@ -133,9 +148,10 @@ export default {
       kb,
       motivational_quotes,
       schema,
-      filteredKB
+      filteredKB,
+      popupActivo,
     }
-  }
+  },
 }
 </script>
 

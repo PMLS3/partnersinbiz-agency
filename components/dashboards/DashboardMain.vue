@@ -25,6 +25,20 @@
           size="large"
           class="w-full mt-6"
         />
+        <vs-button
+          radius
+          type="filled"
+          icon="all_out"
+          class="float-right mt-24"
+          @click="popupActivo = true"
+        ></vs-button>
+        <vs-popup
+          fullscreen
+          :title="$route.params.id"
+          :active.sync="popupActivo"
+        >
+          <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+        </vs-popup>
       </div>
     </div>
 
@@ -51,20 +65,21 @@ export default {
       store.commit('business/UPDATE_BUSINESS_INFO', business.value)
     })
     let knowledgeBaseSearchQuery = ref('')
+    let popupActivo = ref(false)
     const kb = ref([
       {
         id: 1,
         title: 'Business Settings',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/logic.svg'),
-        url: '/dashboardBusinessSettings'
+        url: '/dashboardBusinessSettings',
       },
       {
         id: 2,
         title: 'Clients',
         description: 'All your clients in one place',
         graphic: require('@/assets/illustrations/people_search.svg'),
-        url: '/dashboardClients'
+        url: '/dashboardClients',
       },
       {
         id: 3,
@@ -72,7 +87,7 @@ export default {
         description:
           'See your sales activity, orders, shipments from one place',
         graphic: require('@/assets/illustrations/online_banking.svg'),
-        url: '/dashboardSales'
+        url: '/dashboardSales',
       },
       {
         id: 4,
@@ -80,21 +95,21 @@ export default {
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations/design_data.svg'),
-        url: '/dashboardMarketing'
+        url: '/dashboardMarketing',
       },
       {
         id: 5,
         title: 'Communication',
         description: 'Talk is not that cheap, spread the message',
         graphic: require('@/assets/illustrations/business_chat.svg'),
-        url: '/dashboardCommunication'
+        url: '/dashboardCommunication',
       },
       {
         id: 6,
         title: 'Accounting',
         description: 'Stay ontop of those numbers',
         graphic: require('@/assets/illustrations/calculator.svg'),
-        url: '/dashboardAccounting'
+        url: '/dashboardAccounting',
       },
       {
         id: 7,
@@ -102,14 +117,14 @@ export default {
         description:
           'Want to expand or get into something new? Check what we have installed for you',
         graphic: require('@/assets/illustrations/business_shop.svg'),
-        url: '/dashboardMarketPlace'
+        url: '/dashboardMarketPlace',
       },
       {
         id: 8,
         title: 'Human Resources',
         description: 'The heart of your business is here',
         graphic: require('@/assets/illustrations/loving_story.svg'),
-        url: '/dashboardHumanResource'
+        url: '/dashboardHumanResource',
       },
       {
         id: 9,
@@ -117,41 +132,41 @@ export default {
         description:
           'Sometimes its easier to see the bigger picture in a graph',
         graphic: require('@/assets/illustrations/business_plan.svg'),
-        url: '/dashboardAnalytics'
+        url: '/dashboardAnalytics',
       },
       {
         id: 10,
         title: 'Learn',
         description: 'Knowledge base... thats all',
         graphic: require('@/assets/illustrations/lightbulb_moment.svg'),
-        url: '/dashboardLearn'
+        url: '/dashboardLearn',
       },
       {
         id: 11,
         title: 'Apps',
         description: 'All the apps we have for you to Boom in the Online World',
         graphic: require('@/assets/illustrations/apps.svg'),
-        url: '/dashboardApps'
+        url: '/dashboardApps',
       },
       {
         id: 12,
         title: 'Support',
         description: 'Run your support center from here',
         graphic: require('@/assets/illustrations/intense_feeling.svg'),
-        url: '/dashboardSupport'
+        url: '/dashboardSupport',
       },
       {
         id: 13,
         title: 'Suggestion/Request',
         description: 'Have feature request? Found a bug? Please let us know.',
         graphic: require('@/assets/illustrations/in_thoughts.svg'),
-        url: '/dashboardRequest'
-      }
+        url: '/dashboardRequest',
+      },
     ])
     const user = computed(() => store.state.auth.main_user)
     let filteredKB = computed(() => {
       return kb.value.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(knowledgeBaseSearchQuery.value.toLowerCase()) ||
@@ -173,9 +188,10 @@ export default {
       kb,
       filteredKB,
       motivational_quotes,
-      business
+      business,
+      popupActivo,
     }
-  }
+  },
 }
 </script>
 

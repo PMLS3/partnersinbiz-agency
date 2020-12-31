@@ -75,12 +75,8 @@
       <vs-tab label="Auto Pilot" icon="repeat" @click="colorx = '#0000FF'">
         <TweetAuto />
       </vs-tab>
-      <vs-tab
-        label="AutoDMs"
-        icon="question_answer"
-        @click="colorx = '#0000FF'"
-      >
-        <TweetAutoDMs />
+      <vs-tab label="Manual" icon="business_center" @click="colorx = '#0000FF'">
+        <TweetManual />
       </vs-tab>
       <vs-tab label="Golden" icon="toll" @click="colorx = '#0000FF'">
         <TweetGold />
@@ -102,12 +98,8 @@
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
-import analyticsData from '@/js/data/analyticsData.js'
 export default {
-  components: {
-    VueApexCharts,
-  },
+  components: {},
   data: () => ({
     colorx: '#8B0000',
     active: true,
@@ -117,26 +109,9 @@ export default {
     timeline: [],
     mentions: [],
     hometimeline: [],
-    analyticsData,
     item: {
       name: 'dashboard',
     },
-    historyPosts: [
-      {
-        date: 'Oct 15th 8:33pm',
-        tweet: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-        handle: '@joe.blow',
-        name: 'Joe Blow',
-        img: 'https://uifaces.co/our-content/donated/1H_7AxP0.jpg',
-      },
-      {
-        date: 'Oct 15th 8:33pm',
-        tweet: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-        handle: '@joe.blow',
-        name: 'Joe Blow',
-        img: 'https://uifaces.co/our-content/donated/1H_7AxP0.jpg',
-      },
-    ],
   }),
   computed: {
     business() {
@@ -184,7 +159,6 @@ export default {
       .doc('twitter')
       .onSnapshot(function (doc) {
         vm.$store.commit('config/TWITTER_UPDATE', doc.data())
-
         vm.fetchTimeline()
         vm.fetchHomeTimeline()
         vm.fetchMentions()

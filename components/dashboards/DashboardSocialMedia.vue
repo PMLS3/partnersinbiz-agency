@@ -25,6 +25,20 @@
           size="large"
           class="w-full mt-6"
         />
+        <vs-button
+          radius
+          type="filled"
+          icon="all_out"
+          class="float-right mt-24"
+          @click="popupActivo = true"
+        ></vs-button>
+        <vs-popup
+          fullscreen
+          :title="$route.params.id"
+          :active.sync="popupActivo"
+        >
+          <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+        </vs-popup>
       </div>
     </div>
 
@@ -51,6 +65,7 @@ export default {
       store.commit('business/UPDATE_BUSINESS_INFO', business.value)
     })
     let knowledgeBaseSearchQuery = ref('')
+    let popupActivo = ref(false)
     const kb = ref([
       {
         id: 1,
@@ -110,6 +125,7 @@ export default {
       filteredKB,
       motivational_quotes,
       business,
+      popupActivo,
     }
   },
 }

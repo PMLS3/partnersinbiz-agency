@@ -244,60 +244,52 @@
               :key="index"
               class="px-3 py-3 mr-4 bg-gray-100 rounded column-width"
             >
-              <perfect-scrollbar
-                ref="verticalNavMenuPs"
-                :key="$vs.rtl"
-                class="pt-2 scroll-area-v-nav-menu"
-                :settings="settings"
-                @ps-scroll-y="psSectionScroll"
-              >
-                <div class="p-2 mb-3">
-                  <div class="flex float-right -mt-4">
-                    <vs-button
-                      icon="undo"
-                      type="line"
-                      v-if="index != 0"
-                      @click="move(index, index - 1)"
-                    ></vs-button>
-                    <vs-button
-                      icon="redo"
-                      type="line"
-                      v-if="index != columns.length - 1"
-                      @click="move(index, index + 1)"
-                    ></vs-button>
-                  </div>
-                  <span
-                    class="w-full p-2 text-sm font-medium text-white bg-blue-900 rounded hover:bg-gray-300"
-                    @click="addForm(index)"
-                    v-if="newItemActive"
-                  >
-                    New Item
-                  </span>
+              <div class="p-2 mb-3">
+                <div class="flex float-right -mt-4">
+                  <vs-button
+                    icon="undo"
+                    type="line"
+                    v-if="index != 0"
+                    @click="move(index, index - 1)"
+                  ></vs-button>
+                  <vs-button
+                    icon="redo"
+                    type="line"
+                    v-if="index != columns.length - 1"
+                    @click="move(index, index + 1)"
+                  ></vs-button>
                 </div>
-                <hr />
-                <p
-                  class="pt-2 font-sans text-2xl font-semibold tracking-wide text-gray-700"
+                <span
+                  class="w-full p-2 text-sm font-medium text-white bg-blue-900 rounded hover:bg-gray-300"
+                  @click="addForm(index)"
+                  v-if="newItemActive"
                 >
-                  {{ column.title }}
-                </p>
+                  New Item
+                </span>
+              </div>
+              <hr />
+              <p
+                class="pt-2 font-sans text-2xl font-semibold tracking-wide text-gray-700"
+              >
+                {{ column.title }}
+              </p>
 
-                <draggable
-                  :list="column.children"
-                  :animation="200"
-                  ghost-class="ghost-card"
-                  group="children"
-                >
-                  <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
-                  <TaskCard
-                    v-for="task in column.children"
-                    :key="task.id"
-                    :task="task"
-                    class="mt-3 cursor-move"
-                    @add-more="addMore(task.id, index)"
-                  ></TaskCard>
-                  <!-- </transition-group> -->
-                </draggable>
-              </perfect-scrollbar>
+              <draggable
+                :list="column.children"
+                :animation="200"
+                ghost-class="ghost-card"
+                group="children"
+              >
+                <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
+                <TaskCard
+                  v-for="task in column.children"
+                  :key="task.id"
+                  :task="task"
+                  class="mt-3 cursor-move"
+                  @add-more="addMore(task.id, index)"
+                ></TaskCard>
+                <!-- </transition-group> -->
+              </draggable>
             </div>
           </div>
         </div>
@@ -436,16 +428,11 @@ export default {
       popupActivo: false,
       popupActivo2: false,
       popupActivo3: false,
-
       formData: {},
       columnData: {},
       tagData: {},
 
       selectedIndex: 0,
-      settings: {
-        maxScrollbarLength: 60,
-        wheelSpeed: 0.7,
-      },
     }
   },
   computed: {
@@ -519,9 +506,6 @@ export default {
     },
   },
   methods: {
-    psSectionScroll() {
-      this.showShadowBottom = this.$refs.verticalNavMenuPs.$el.scrollTop > 0
-    },
     addMore(taskId, index) {
       console.log('addMore', taskId, index)
     },

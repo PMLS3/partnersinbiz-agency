@@ -37,6 +37,9 @@ import dashboardSocialMedia from '@/components/dashboards/DashboardSocialMedia.v
 // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 import dashboardAppsTwitter from '@/components/dashboards/apps/twitter/DashboardAppsTwitter.vue'
+import dashboardAppsFacebook from '@/components/dashboards/apps/facebook/DashboardAppsFacebook.vue'
+import dashboardAppsInstagram from '@/components/dashboards/apps/instagram/DashboardAppsInstagram.vue'
+import dashboardAppsLinkedin from '@/components/dashboards/apps/linkedin/DashboardAppsLinkedin.vue'
 
 // Apps
 import email from '@/components/apps/email/Email.vue'
@@ -77,6 +80,9 @@ export default {
     dashboardClients,
     email,
     dashboardAppsTwitter,
+    dashboardAppsFacebook,
+    dashboardAppsInstagram,
+    dashboardAppsLinkedin,
     dashboardSocialMedia,
     // videoChat
   },
