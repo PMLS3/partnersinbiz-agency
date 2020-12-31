@@ -18,6 +18,9 @@
         >
           <simple-card :item="item" class="h-full"></simple-card>
         </div> -->
+        <vs-checkbox v-model="autoSave" class="absolute top-0 p-3 mt-4"
+          >Auto Save</vs-checkbox
+        >
         <Kanban
           :columns="columns"
           :tags="tags"
@@ -53,7 +56,18 @@ export default {
       columns: [],
       tags: [{ name: 'Default', color: 'black' }],
       hasDoc: false,
+      autoSave: false,
     }
+  },
+  watch: {
+    columns: {
+      handler: function (newVal) {
+        if (this.autoSave) {
+          this.saveBoard()
+        }
+      },
+      deep: true,
+    },
   },
   computed: {
     business() {

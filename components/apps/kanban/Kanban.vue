@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-screen">
+  <div class="flex w-full h-full">
     <div class="w-64 px-8 py-3 bg-gray-100 border-r" v-if="type == 'support'">
       <div class="flex items-center">
         <img :src="business.logo" class="w-8 h-8 rounded-full" />
@@ -135,10 +135,13 @@
           </div> -->
           <div class="flex items-center justify-between py-2">
             <div class="flex items-center">
-              <h2 class="text-2xl leading-tight text-gray-900 font-semibild">
+              <h2
+                class="text-2xl leading-tight text-gray-900 font-semibild"
+                v-if="type == 'support'"
+              >
                 All Issues
               </h2>
-              <div class="flex items-center ml-6">
+              <div class="flex items-center ml-6" v-if="type == 'support'">
                 <span class="-ml-1 border-2 border-white rounded-full">
                   <img
                     class="object-cover w-8 h-8 rounded-full"
@@ -164,15 +167,10 @@
                   />
                 </span>
               </div>
-              <vs-button
-                icon="save"
-                class="ml-2"
-                @click="$emit('save-board')"
-              ></vs-button>
             </div>
 
             <div class="flex center-items">
-              <span class="inline-flex bg-gray-300 border rounded-md p-2px">
+              <!-- <span class="inline-flex bg-gray-300 border rounded-md p-2px">
                 <span class="px-2 py-1">
                   <svg
                     class="w-6 h-6 text-gray-600"
@@ -201,7 +199,13 @@
                     />
                   </svg>
                 </span>
-              </span>
+              </span> -->
+              <vs-button
+                icon="save"
+                class="flex items-center py-2 pl-2 pr-4 ml-5 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-gray-300"
+                @click="$emit('save-board')"
+                >Save All</vs-button
+              >
               <vs-button
                 class="flex items-center py-2 pl-2 pr-4 ml-5 text-sm font-medium text-white bg-blue-900 rounded-md hover:bg-gray-300"
                 icon="control_point"
@@ -240,52 +244,60 @@
               :key="index"
               class="px-3 py-3 mr-4 bg-gray-100 rounded column-width"
             >
-              <div class="p-2 mb-3">
-                <div class="flex float-right -mt-4">
-                  <vs-button
-                    icon="undo"
-                    type="line"
-                    v-if="index != 0"
-                    @click="move(index, index - 1)"
-                  ></vs-button>
-                  <vs-button
-                    icon="redo"
-                    type="line"
-                    v-if="index != columns.length - 1"
-                    @click="move(index, index + 1)"
-                  ></vs-button>
+              <perfect-scrollbar
+                ref="verticalNavMenuPs"
+                :key="$vs.rtl"
+                class="pt-2 scroll-area-v-nav-menu"
+                :settings="settings"
+                @ps-scroll-y="psSectionScroll"
+              >
+                <div class="p-2 mb-3">
+                  <div class="flex float-right -mt-4">
+                    <vs-button
+                      icon="undo"
+                      type="line"
+                      v-if="index != 0"
+                      @click="move(index, index - 1)"
+                    ></vs-button>
+                    <vs-button
+                      icon="redo"
+                      type="line"
+                      v-if="index != columns.length - 1"
+                      @click="move(index, index + 1)"
+                    ></vs-button>
+                  </div>
+                  <span
+                    class="w-full p-2 text-sm font-medium text-white bg-blue-900 rounded hover:bg-gray-300"
+                    @click="addForm(index)"
+                    v-if="newItemActive"
+                  >
+                    New Item
+                  </span>
                 </div>
-                <span
-                  class="w-full p-2 text-sm font-medium text-white bg-blue-900 rounded hover:bg-gray-300"
-                  @click="addForm(index)"
-                  v-if="newItemActive"
+                <hr />
+                <p
+                  class="pt-2 font-sans text-2xl font-semibold tracking-wide text-gray-700"
                 >
-                  New Item
-                </span>
-              </div>
-              <hr />
-              <p
-                class="pt-2 font-sans text-2xl font-semibold tracking-wide text-gray-700"
-              >
-                {{ column.title }}
-              </p>
+                  {{ column.title }}
+                </p>
 
-              <draggable
-                :list="column.children"
-                :animation="200"
-                ghost-class="ghost-card"
-                group="children"
-              >
-                <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
-                <TaskCard
-                  v-for="task in column.children"
-                  :key="task.id"
-                  :task="task"
-                  class="mt-3 cursor-move"
-                  @add-more="addMore(task.id, index)"
-                ></TaskCard>
-                <!-- </transition-group> -->
-              </draggable>
+                <draggable
+                  :list="column.children"
+                  :animation="200"
+                  ghost-class="ghost-card"
+                  group="children"
+                >
+                  <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
+                  <TaskCard
+                    v-for="task in column.children"
+                    :key="task.id"
+                    :task="task"
+                    class="mt-3 cursor-move"
+                    @add-more="addMore(task.id, index)"
+                  ></TaskCard>
+                  <!-- </transition-group> -->
+                </draggable>
+              </perfect-scrollbar>
             </div>
           </div>
         </div>
@@ -430,6 +442,10 @@ export default {
       tagData: {},
 
       selectedIndex: 0,
+      settings: {
+        maxScrollbarLength: 60,
+        wheelSpeed: 0.7,
+      },
     }
   },
   computed: {
@@ -503,6 +519,9 @@ export default {
     },
   },
   methods: {
+    psSectionScroll() {
+      this.showShadowBottom = this.$refs.verticalNavMenuPs.$el.scrollTop > 0
+    },
     addMore(taskId, index) {
       console.log('addMore', taskId, index)
     },
