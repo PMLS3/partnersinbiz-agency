@@ -56,11 +56,20 @@ async function start() {
   const twitterTweet = require('./routes/api/twitter/tweet.js')
   app.use('/api/twitter/tweet', twitterTweet)
 
-  const twitterUserFollowersSearch = require('./routes/api/twitter/search.js')
+  const twitterSearch = require('./routes/api/twitter/search.js')
   app.use('/api/twitter/search', twitterSearch)
 
-  const twitterSearch = require('./routes/api/twitter/followers_id.js')
+  const twitterUserFollowersSearch = require('./routes/api/twitter/followers_ids.js')
   app.use('/api/twitter/twitterUserFollowersSearch', twitterUserFollowersSearch)
+
+  const twitterFollowUser = require('./routes/api/twitter/follow_user.js')
+  app.use('/api/twitter/followUser', twitterFollowUser)
+
+  const twitterLike = require('./routes/api/twitter/like_tweet.js')
+  app.use('/api/twitter/twitterLike', twitterLike)
+
+  const twitterRetweet = require('./routes/api/twitter/retweet_tweet.js')
+  app.use('/api/twitter/twitterRetweet', twitterRetweet)
 
   // Give nuxt middleware to express
   app.use(nuxt.render)

@@ -31,13 +31,15 @@
       <vs-icon
         icon="thumb_up"
         class="mr-2"
-        :color="item.favorite_count ? blue : gray"
+        :color="item.favorited ? blue : gray"
+        @click="likeTweet()"
       ></vs-icon>
       {{ item.favorite_count }}
       <vs-icon
         icon="repeat"
         class="ml-4 mr-2"
-        :color="item.retweet_count ? green : gray"
+        :color="item.retweeted ? green : gray"
+        @click="retweetTweet()"
       ></vs-icon
       >{{ item.retweet_count }}
     </div>
@@ -47,6 +49,7 @@
         {{ item.created_at.split('+')[0] }}
       </p>
     </div>
+    <vs-button @click="followUser()">Follow</vs-button>
   </div>
 </template>
 
@@ -63,6 +66,89 @@ export default {
       green: 'green',
       gray: 'gray',
     }
+  },
+  computed: {
+    business() {
+      return this.$store.state.business.active_business
+    },
+    user() {
+      return this.$store.state.auth.main_user
+    },
+    config() {
+      return this.$store.state.config.twitter
+    },
+  },
+  methods: {
+    followUser() {
+      let id = this.item.user.id_str
+      let screen_name = this.item.user.screen_name
+      let vm = this
+      this.$axios
+        .$post('/api/twitter/followUser', {
+          config: this.config,
+          screen_name: screen_name,
+          user_id: id,
+        })
+        .then(
+          (response) => {
+            vm.successUpload('FOLLOWED')
+          },
+          (error) => {
+            console.log(error)
+            vm.unsuccessUpload(error)
+          }
+        )
+    },
+    likeTweet() {
+      let id = this.item.id_str
+      let vm = this
+      this.$axios
+        .$post('api/twitter/twitterLike', {
+          config: this.config,
+          post_id: id,
+        })
+        .then(
+          (response) => {
+            vm.successUpload('LIKED')
+          },
+          (error) => {
+            console.log(error)
+            vm.unsuccessUpload(error)
+          }
+        )
+    },
+    retweetTweet() {
+      let id = this.item.id_str
+      let vm = this
+      this.$axios
+        .$post('/api/twitter/twitterRetweet', {
+          config: this.config,
+          post_id: id,
+        })
+        .then(
+          (response) => {
+            vm.successUpload('RETWEETED')
+          },
+          (error) => {
+            console.log(error)
+            vm.unsuccessUpload(error)
+          }
+        )
+    },
+    successUpload(msg) {
+      this.$vs.notify({
+        color: 'success',
+        title: 'Yeah',
+        text: `${msg}`,
+      })
+    },
+    unsuccessUpload(err) {
+      this.$vs.notify({
+        color: 'danger',
+        title: 'Oops',
+        text: `${err}`,
+      })
+    },
   },
 }
 </script>

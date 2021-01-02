@@ -14,6 +14,8 @@ router.get('/', async (req, res) => {
     access_token_secret: req.query.access_token_secret,
   }
 
+  console.log('screen_name', req.query.screen_name)
+
   const T = new twit(config)
   await T.get(
     'followers/ids',

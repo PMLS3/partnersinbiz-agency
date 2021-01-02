@@ -51,7 +51,7 @@
             :config="configdateTimePicker"
             v-model="date"
             placeholder="Since"
-            class="w-full"
+            class="w-full p-2"
           />
         </div>
         <br />
@@ -159,7 +159,7 @@ export default {
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/twitter/search?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&screen_name=${this.screen_name}`
+          `/api/twitter/twitterUserFollowersSearch?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&screen_name=${this.screen_name}`
         )
         .then(vm.successUpload('searching...'))
 
