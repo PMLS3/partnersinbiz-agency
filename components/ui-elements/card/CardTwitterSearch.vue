@@ -3,13 +3,14 @@
     class="w-full p-5 mx-auto text-gray-800 bg-white rounded-lg shadow"
     style="max-width: 400px"
   >
-    <div class="flex w-full mb-4">
+    {{ typeof item }}
+    {{ item.statuses }}
+
+    <!-- <div class="flex w-full mb-4">
       <div class="w-12 h-12 overflow-hidden rounded-full">
         <img
           :src="
-            item.user.profile_image_url_https
-              ? item.user.profile_image_url_https
-              : ''
+            item.user.profile_image_url_https ? item.user.profile_image_url_https : ''
           "
           alt=""
         />
@@ -46,7 +47,7 @@
       <p class="text-xs text-right text-gray-500">
         {{ item.created_at.split('+')[0] }}
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 

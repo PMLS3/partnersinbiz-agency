@@ -15,8 +15,9 @@ router.post('/', async (req, res) => {
         console.log('err', err)
         res.status(201).send(err)
       } else {
+        console.log('response', response.data.message)
         // admin.firestore().collection('tweets').doc(id).update({ status: 'done' })
-        console.log('data', data)
+        // console.log('data', data)
         res.status(201).send(data)
       }
     }

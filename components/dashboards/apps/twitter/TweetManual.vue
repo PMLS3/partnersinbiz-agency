@@ -1,34 +1,104 @@
 <template>
-  <div class="flex justify-center">
-    <vs-tabs alignment="fixed">
-      <vs-tab label="Tweet">
-        <vs-card class="mt-12 md:w-1/2">
-          <vs-textarea
-            class="w-full"
-            counter="280"
-            label="Counter: 280"
-            :counter-danger.sync="counterDanger"
-            v-model="message"
-          />
+  <vs-tabs position="left">
+    <vs-tab label="Tweet" icon="home" class="grid grid-cols-3 gap-4">
+      <vs-card>
+        <vs-textarea
+          class="w-full"
+          counter="280"
+          label="Counter: 280"
+          :counter-danger.sync="counterDanger"
+          v-model="message"
+        />
 
-          <vs-button @click="TweetSend" class="mt-4">Send Tweet</vs-button>
-        </vs-card>
-      </vs-tab>
-      <vs-tab label="Documents">
-        <div></div>
-      </vs-tab>
-      <vs-tab label="Contributors">
-        <div></div>
-      </vs-tab>
-      <vs-tab label="Ecosystem">
-        <div></div>
-      </vs-tab>
-    </vs-tabs>
-  </div>
+        <vs-button @click="TweetSend" class="mt-4">Send Tweet</vs-button>
+      </vs-card>
+    </vs-tab>
+    <vs-tab label="Seach" icon="home" class="grid grid-cols-3 gap-4">
+      <vs-card>
+        <vs-input
+          name="search"
+          class="w-full mt-12"
+          label-placeholder="Keywords that you want to search for"
+          v-model="search"
+        ></vs-input>
+        <small class="w-full mt-2"
+          >Example: '#Nodejs, #Angular, #Reactjs, #ionicframework, #ReactNative,
+          #es6'</small
+        >
+        <div class="my-4">
+          <v-select
+            label="Result type"
+            v-model="results_type"
+            :options="results_types"
+          />
+          <small class="w-full mt-2"
+            >* mixed : Include both popular and real time results in the
+            response.</small
+          >
+          <small class="w-full mt-2"
+            >* recent : return only the most recent results in the
+            response</small
+          >
+          <small class="w-full mt-2"
+            >* popular : return only the most popular results in the
+            response.</small
+          >
+        </div>
+
+        <div class="my-4">
+          <small class="date-label">Tweet Date (since)</small>
+          <flat-pickr
+            :config="configdateTimePicker"
+            v-model="date"
+            placeholder="Since"
+            class="w-full"
+          />
+        </div>
+        <br />
+
+        <vs-button @click="SearchTweetSend" class="mt-4"
+          >Search for Tweet</vs-button
+        >
+      </vs-card>
+
+      <vs-card>
+        <vs-input
+          name="search"
+          class="w-full mt-12"
+          label-placeholder="User handle"
+          v-model="screen_name"
+        ></vs-input>
+        <small class="w-full mt-2">Example: 'standerpm'</small>
+
+        <vs-button @click="SearchUserFollowersSend" class="mt-4"
+          >Search Users Followers</vs-button
+        >
+      </vs-card>
+
+      <div v-for="item in results.statuses" :key="item.id">
+        <CardTwitter :item="item" class="mt-3" />
+      </div>
+    </vs-tab>
+    <vs-tab label="Contributors">
+      <div></div>
+    </vs-tab>
+    <vs-tab label="Ecosystem">
+      <div></div>
+    </vs-tab>
+  </vs-tabs>
 </template>
 
 <script>
+import flatPickr from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
+import vSelect from 'vue-select'
+
+import moment from 'moment'
 export default {
+  components: {
+    flatPickr,
+    vSelect,
+  },
   data() {
     return {
       //   retweet_words: '',
@@ -37,6 +107,20 @@ export default {
       //   liked_words: '',
       //   set_liked_words: '',
       //   liked_status: '',
+      screen_name: '',
+      twitterUserFollowersSearch: [],
+      configdateTimePicker: {
+        wrap: true, // set wrap to true only when using 'input-group'
+        altFormat: 'M j, Y',
+        altInput: true,
+        dateFormat: 'Y-m-d',
+      },
+      results: [],
+      results_type: 'mixed',
+      results_types: ['mixed', 'recent', 'popular'],
+
+      date: '',
+      search: '',
       message: '',
       counterDanger: false,
     }
@@ -54,6 +138,7 @@ export default {
   },
   methods: {
     TweetSend() {
+      console.log('date', this.date)
       let vm = this
       this.$axios
         .$post('/api/twitter/tweet', {
@@ -62,12 +147,6 @@ export default {
         })
         .then(
           (response) => {
-            console.log(response)
-            console.log(response.data)
-            console.log(response.status)
-            console.log(response.statusText)
-            console.log(response.headers)
-            console.log(response.config)
             vm.successUpload('TWEETED')
           },
           (error) => {
@@ -76,120 +155,27 @@ export default {
           }
         )
     },
-    // RetweetsSet() {
-    //   let vm = this
-    //   if (this.config) {
-    //     const obj = {
-    //       retweet_words: this.retweet_words,
-    //       u_uid: this.user.uid,
-    //       b_uid: this.business.b_uid,
-    //       config: this.config,
-    //       type: 'Tweet',
-    //       status: 'scheduled',
-    //     }
-    //     this.$fireStore
-    //       .collection('retweets')
-    //       .doc(this.config.consumer_key)
-    //       .set(obj)
-    //       .then(function () {
-    //         vm.set_retweets = vm.retweet_words
-    //         let msg = 'Retweets has been set'
-    //         vm.successUpload(msg)
-    //       })
-    //       .catch(function (error) {
-    //         console.error('Error writing document: ', error)
-    //         vm.unsuccessUpload(error)
-    //       })
-    //   } else {
-    //     let error = 'Please enter your configuration file'
-    //     vm.unsuccessUpload(error)
-    //   }
-    // },
-    // RetweetsStatusSet() {
-    //   let vm = this
-    //   let status = ''
-    //   if (this.retweet_status == 'scheduled') {
-    //     status = 'offline'
-    //   } else {
-    //     status = 'scheduled'
-    //   }
+    async SearchUserFollowersSend() {
+      let vm = this
+      const ip = await this.$axios
+        .$get(
+          `/api/twitter/search?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&screen_name=${this.screen_name}`
+        )
+        .then(vm.successUpload('searching...'))
 
-    //   let obj = {
-    //     status: status,
-    //   }
+      this.twitterUserFollowersSearch = ip
+    },
+    async SearchTweetSend() {
+      let vm = this
+      const ip = await this.$axios
+        .$get(
+          `/api/twitter/search?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&search=${this.search}&since=${this.date}&results_type=${this.results_type}`
+        )
+        .then(vm.successUpload('searching...'))
 
-    //   this.$fireStore
-    //     .collection('retweets')
-    //     .doc(this.config.consumer_key)
-    //     .update(obj)
-    //     .then(function () {
-    //       vm.retweet_status = status
-    //       let msg = 'Liked Tweets has been set to'
-    //       vm.successUpload(msg)
-    //     })
-    //     .catch(function (error) {
-    //       console.error('Error writing document: ', error)
-    //       vm.unsuccessUpload(error)
-    //     })
-    // },
+      this.results = ip
+    },
 
-    // LikesSet() {
-    //   let vm = this
-    //   if (this.config) {
-    //     const obj = {
-    //       liked_words: this.liked_words,
-    //       u_uid: this.user.uid,
-    //       b_uid: this.business.b_uid,
-    //       config: this.config,
-    //       type: 'Tweet',
-    //       status: 'scheduled',
-    //     }
-    //     this.$fireStore
-    //       .collection('likeTweets')
-    //       .doc(this.config.consumer_key)
-    //       .set(obj)
-    //       .then(function () {
-    //         vm.set_liked_words = vm.liked_words
-    //         let msg = 'Liked Tweets has been set'
-    //         vm.successUpload(msg)
-    //       })
-    //       .catch(function (error) {
-    //         console.error('Error writing document: ', error)
-    //         vm.unsuccessUpload(error)
-    //       })
-    //   } else {
-    //     let error = 'Please enter your configuration file'
-    //     vm.unsuccessUpload(error)
-    //   }
-    // },
-    // LikesStatusSet() {
-    //   let vm = this
-
-    //   let status = ''
-    //   if (this.liked_status == 'scheduled') {
-    //     status = 'offline'
-    //   } else {
-    //     status = 'scheduled'
-    //   }
-
-    //   let obj = {
-    //     status: status,
-    //   }
-
-    //   this.$fireStore
-    //     .collection('likeTweets')
-    //     .doc(this.config.consumer_key)
-    //     .update(obj)
-    //     .then(function () {
-    //       vm.liked_status = status
-    //       let msg = 'Liked Tweets has been set to'
-    //       vm.successUpload(msg)
-    //     })
-    //     .catch(function (error) {
-    //       console.error('Error writing document: ', error)
-    //       vm.unsuccessUpload(error)
-    //     })
-    // },
     successUpload(msg) {
       this.$vs.notify({
         color: 'success',

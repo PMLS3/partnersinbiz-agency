@@ -56,6 +56,12 @@ async function start() {
   const twitterTweet = require('./routes/api/twitter/tweet.js')
   app.use('/api/twitter/tweet', twitterTweet)
 
+  const twitterUserFollowersSearch = require('./routes/api/twitter/search.js')
+  app.use('/api/twitter/search', twitterSearch)
+
+  const twitterSearch = require('./routes/api/twitter/followers_id.js')
+  app.use('/api/twitter/twitterUserFollowersSearch', twitterUserFollowersSearch)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
