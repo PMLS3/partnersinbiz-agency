@@ -71,6 +71,9 @@ async function start() {
   const twitterRetweet = require('./routes/api/twitter/retweet_tweet.js')
   app.use('/api/twitter/twitterRetweet', twitterRetweet)
 
+  const twitterUserShow = require('./routes/api/twitter/user_show.js')
+  app.use('/api/twitter/twitterUserShow', twitterUserShow)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

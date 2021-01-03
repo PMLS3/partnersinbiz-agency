@@ -1,4 +1,4 @@
-// const admin = require('firebase-admin')
+const admin = require('firebase-admin')
 // admin.initializeApp()
 const moment = require('moment')
 var Twit = require('twit')

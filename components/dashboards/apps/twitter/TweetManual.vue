@@ -109,6 +109,8 @@ export default {
       //   liked_status: '',
       screen_name: '',
       twitterUserFollowersSearch: [],
+      twitterUserFollowersSearchResults: [],
+
       configdateTimePicker: {
         wrap: true, // set wrap to true only when using 'input-group'
         altFormat: 'M j, Y',
@@ -136,6 +138,37 @@ export default {
       return this.$store.state.config.twitter
     },
   },
+  watch: {
+    twitterUserFollowersSearch: {
+      handler: function (newVal) {
+        let vm = this
+        console.log('newVal', newVal.ids)
+        if (newVal.ids) {
+          if (newVal.ids.length > 0) {
+            // for (let i = 0; i < newVal.ids.length; i++) {
+            for (let i = 0; i < 10; i++) {
+              console.log('i', i)
+              console.log('here', typeof newVal.ids[i])
+              let user_id = newVal.ids[i].toString()
+              vm.UserShow(user_id)
+            }
+          }
+        } else {
+          let error = 'Rate limit exceeded'
+          vm.unsuccessUpload(error)
+        }
+      },
+      deep: true,
+    },
+    twitterUserFollowersSearchResults: {
+      handler: function (newVal) {
+        console.log(
+          'twitterUserFollowersSearchResults',
+          this.twitterUserFollowersSearchResults
+        )
+      },
+    },
+  },
   methods: {
     TweetSend() {
       console.log('date', this.date)
@@ -155,6 +188,17 @@ export default {
           }
         )
     },
+    async UserShow(user_id) {
+      console.log('user', user_id)
+      let vm = this
+      const ip = await this.$axios
+        .$get(
+          `/api/twitter/twitterUserShow?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&user_id=${user_id}`
+        )
+        .then(vm.successUpload('searching...'))
+
+      this.twitterUserFollowersSearchResults.push(ip)
+    },
     async SearchUserFollowersSend() {
       let vm = this
       const ip = await this.$axios
@@ -164,6 +208,7 @@ export default {
         .then(vm.successUpload('searching...'))
 
       this.twitterUserFollowersSearch = ip
+      this.results = []
     },
     async SearchTweetSend() {
       let vm = this
