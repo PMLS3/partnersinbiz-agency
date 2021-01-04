@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CardInstaPost />
+    <!-- <CardInstaPost /> -->
   </div>
 </template>
 

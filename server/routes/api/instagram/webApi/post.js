@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   await client.login()
 
   // Upload Photo to feed or story, just configure 'post' to 'feed' or 'story'
-  const { media } = await client
+  await client
     .uploadPhoto({
       photo: photo,
       caption: caption,

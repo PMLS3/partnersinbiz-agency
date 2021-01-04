@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
   await client.login()
   const tag = await client.getMediaFeedByHashtag({ hashtag: hashtag })
 
-  console.log(tag[0])
   res.send(tag)
 })
 
