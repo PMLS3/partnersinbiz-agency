@@ -74,6 +74,10 @@ async function start() {
   const twitterUserShow = require('./routes/api/twitter/user_show.js')
   app.use('/api/twitter/twitterUserShow', twitterUserShow)
 
+  //Instagram
+  const instagramClientProfile = require('./routes/api/instagram/webApi/client_profile.js')
+  app.use('/api/instagram/instagramClientProfile', instagramClientProfile)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

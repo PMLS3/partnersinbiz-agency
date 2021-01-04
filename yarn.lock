@@ -2174,10 +2174,22 @@
   resolved "https://registry.yarnpkg.com/@remusao/trie/-/trie-1.4.1.tgz#755d09f8a007476334e611f42719b2d581f00720"
   integrity sha512-yvwa+aCyYI/UjeD39BnpMypG8N06l86wIDW1/PAc6ihBRnodIfZDwccxQN3n1t74wduzaz74m4ZMHZnB06567Q==
 
+"@sindresorhus/fnv1a@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@sindresorhus/fnv1a/-/fnv1a-1.2.0.tgz#d554da64c406f3b62ad06dfce9efd537a4a55de4"
+  integrity sha512-5ezb/dBSTWtKQ4sLQwMgOJyREXJcZZkTMbendMwKrXTghUhWjZhstzkkmt4/WkFy/GSTSGzfJOKU7dEXv3C/XQ==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
+
+"@sindresorhus/string-hash@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@sindresorhus/string-hash/-/string-hash-1.2.0.tgz#20d7f88484406f2992391b55cf8aa486103f4d03"
+  integrity sha512-DLUEF2sS37k9QwG5mVP36suIVJO0vmXRvUCJT7s17AbMxCJMoyV/X5nAy3sEgB84MkHJd2WmEMtCSfmhZNk46A==
+  dependencies:
+    "@sindresorhus/fnv1a" "^1.2.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"
@@ -2298,6 +2310,25 @@
   dependencies:
     "@types/node" "*"
     source-map "^0.6.0"
+
+"@types/color-convert@*":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-2.0.0.tgz#8f5ee6b9e863dcbee5703f5a517ffb13d3ea4e22"
+  integrity sha512-m7GG7IKKGuJUXvkZ1qqG3ChccdIM/qBBo913z+Xft0nKCX4hAU/IxKwZBU4cpRZ7GS5kV4vOblUkILtSShCPXQ==
+  dependencies:
+    "@types/color-name" "*"
+
+"@types/color-name@*":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
+  integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
+
+"@types/color@^3.0.0":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/color/-/color-3.0.1.tgz#2900490ed04da8116c5058cd5dba3572d5a25071"
+  integrity sha512-oeUWVaAwI+xINDUx+3F2vJkl/vVB03VChFF/Gl3iQCdbcakjuoJyMOba+3BXRtnBhxZ7uBYqQBi9EpLnvSoztA==
+  dependencies:
+    "@types/color-convert" "*"
 
 "@types/compression@^1.7.0":
   version "1.7.0"
@@ -5124,7 +5155,7 @@ color-string@^1.5.4:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
-color@^3.0.0, color@^3.1.2:
+color@^3.0.0, color@^3.1.1, color@^3.1.2:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/color/-/color-3.1.3.tgz#ca67fb4e7b97d611dcde39eceed422067d91596e"
   integrity sha512-xgXAcTHa2HeFCGLE9Xs/R82hujGtu9Jd9x4NW3T34+OMs7VoPsjwzRczKHvTAHeJwWFwX5j15+MgAppE8ztObQ==
@@ -8671,6 +8702,17 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
+instagram-web-api@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/instagram-web-api/-/instagram-web-api-2.2.2.tgz#9073477a313e1ab4e0ff1a1713370162d67d4ff9"
+  integrity sha512-oDIQKY6AhewbiKb8o+/NLzPkrluRjkgC0v6Pche0npexVJzpiNeS4IDg7ZfMQrNUTguFp/khgjXRBOp3FOwiGw==
+  dependencies:
+    is-url "^1.2.4"
+    request "^2.88.0"
+    request-promise-native "^1.0.8"
+    tough-cookie "^3.0.1"
+    useragent-from-seed "^1.0.1"
+
 instantsearch.js@^4.7.0:
   version "4.9.2"
   resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.9.2.tgz#fecdbbae0d1e09b47c7a04a374c6fbd768488984"
@@ -9118,6 +9160,11 @@ is-typedarray@^1.0.0, is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
+
+is-url@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
 
 is-utf8@^0.2.0:
   version "0.2.1"
@@ -11923,6 +11970,11 @@ parent-module@^2.0.0:
   dependencies:
     callsites "^3.1.0"
 
+park-miller@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/park-miller/-/park-miller-1.1.0.tgz#5831ca3b353166735e52a9c5fbb9ff8b1211b7c5"
+  integrity sha512-6mLXc2jkM9dcavPoxDHfof2QM/baCsrgK51iHbJDHl94AwymJv2Z/iGKQVwJMWUAXFiIV6FzY9UskjU3+KvLuA==
+
 parse-asn1@^5.0.0, parse-asn1@^5.1.5:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/parse-asn1/-/parse-asn1-5.1.6.tgz#385080a3ec13cb62a62d39409cb3e88844cdaed4"
@@ -13527,6 +13579,16 @@ random-iterate@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/random-iterate/-/random-iterate-1.0.1.tgz#f7d97d92dee6665ec5f6da08c7f963cad4b2ac99"
   integrity sha1-99l9kt7mZl7F9toIx/ljytSyrJk=
+
+randoma@^1.2.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/randoma/-/randoma-1.3.0.tgz#adf382394f15202947062a2ae02e81374e94acad"
+  integrity sha512-bi5f+w340fQ9LI4R4xYQd/YwrasOOZBPKNneSfZoCfwKYGFOVCNHilUKVzpzovS1iYY+NF/lsn5FW+EaxPBOPg==
+  dependencies:
+    "@sindresorhus/string-hash" "^1.2.0"
+    "@types/color" "^3.0.0"
+    color "^3.1.1"
+    park-miller "^1.1.0"
 
 randomatic@^3.0.0:
   version "3.1.1"
@@ -15868,6 +15930,13 @@ touch@^3.1.0:
   dependencies:
     nopt "~1.0.10"
 
+tough-cookie-filestore2@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tough-cookie-filestore2/-/tough-cookie-filestore2-1.0.0.tgz#c82848c5234c50b87bb16572f89a89863b84f32a"
+  integrity sha512-2/p7yiS7CBura7JzfCO72iuWNRbB2ot/Hz4VtiP6qcrgvYXUbeiyEUf6fz8i9gWvzOad83gOUCtg5PtLpErZug==
+  dependencies:
+    tough-cookie "^2.3.3"
+
 tough-cookie@^2.3.3, tough-cookie@~2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
@@ -16361,6 +16430,13 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
+
+useragent-from-seed@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/useragent-from-seed/-/useragent-from-seed-1.0.1.tgz#4cb40b0fc71b7fad2feab24fc906a8b8bf2867b2"
+  integrity sha512-EFAdvlqEhG1mWc6xsNLn+xfif0vRmna08oS35JM/dAsRgbMnc8g8eShAsF7aU2teM37+yYmQcPb2l9zF1PCwZQ==
+  dependencies:
+    randoma "^1.2.0"
 
 utf7@>=1.0.2:
   version "1.0.2"

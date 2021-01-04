@@ -2,6 +2,7 @@
   <div class="mt-24">
     <vs-tabs :color="colorx" position="left">
       <vs-tab label="Dashboard" icon="dashboard" @click="colorx = '#8B0000'">
+        <InstagramProfile />
       </vs-tab>
 
       <vs-tab

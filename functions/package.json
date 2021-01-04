@@ -17,11 +17,13 @@
     "delay": "^4.4.0",
     "firebase-admin": "^9.2.0",
     "firebase-functions": "^3.13.0",
+    "instagram-web-api": "^2.2.2",
     "moment": "^2.29.1",
     "puppeteer": "^5.5.0",
     "puppeteer-extra": "^3.1.15",
     "puppeteer-extra-plugin-stealth": "^2.6.5",
     "shuffle-array": "^1.0.1",
+    "tough-cookie-filestore2": "^1.0.0",
     "twit": "^2.2.11"
   },
   "devDependencies": {

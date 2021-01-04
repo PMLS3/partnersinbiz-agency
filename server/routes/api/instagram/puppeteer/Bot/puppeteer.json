@@ -15,7 +15,7 @@
       "username_field": "input[type=\"text\"]",
       "password_field": "input[type=\"password\"]",
       "login_button": "button[type=\"submit\"]",
-      "post_heart_grey": "span.glyphsSpriteHeart__outline__24__grey_9",
+      "post_heart_grey": "div.QBdPU > span.FY9nT",
       "post_username": "div.e1e1d > span.Jv7Aj > a",
       "post_follow_link": ".bY2yH > button",
       "post_like_button": "span.fr66n > button",
