@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   const client = new Instagram({ username, password, cookieStore })
 
   await client.login()
-  const location = await client
+  await client
     .getMediaFeedByLocation({
       locationId: locationId,
     })
@@ -22,10 +22,9 @@ router.get('/', async (req, res) => {
     })
     .then((response) => {
       console.log(response)
+      console.log(response)
+      res.send(response)
     })
-
-  console.log(location)
-  res.send(location)
 })
 
 module.exports = router

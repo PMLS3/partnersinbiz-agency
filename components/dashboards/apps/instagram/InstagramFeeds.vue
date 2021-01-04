@@ -1,7 +1,6 @@
 <template>
   <div>
-    <CardInstaProfile :item="instaProfile" />
-    <vs-button @click="UserShow">Refresh</vs-button>
+    <CardInstaPost />
   </div>
 </template>
 
@@ -18,7 +17,7 @@ export default {
   },
   data() {
     return {
-      instaProfile: {},
+      instaActivity: {},
     }
   },
   computed: {
@@ -34,33 +33,15 @@ export default {
   },
   watch: {},
   methods: {
-    // TweetSend() {
-    //   console.log('date', this.date)
-    //   let vm = this
-    //   this.$axios
-    //     .$post('/api/twitter/tweet', {
-    //       config: this.config,
-    //       message: this.message,
-    //     })
-    //     .then(
-    //       (response) => {
-    //         vm.successUpload('TWEETED')
-    //       },
-    //       (error) => {
-    //         console.log(error)
-    //         vm.unsuccessUpload(error)
-    //       }
-    //     )
-    // },
-    async UserShow() {
+    async UserPost() {
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/instagram/ClientProfile?username=${this.config.username}&password=${this.config.password}`
+          `/api/instagram/feed?username=${this.config.username}&password=${this.config.password}`
         )
         .then(vm.successUpload('searching...'))
 
-      this.instaProfile = ip
+      this.instaActivity = ip
     },
 
     successUpload(msg) {
@@ -79,7 +60,7 @@ export default {
     },
   },
   created() {
-    this.UserShow()
+    this.UserPost()
     // let vm = this
     // this.$fireStore
     //   .collection('retweets')

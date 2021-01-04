@@ -13,9 +13,9 @@ router.get('/', async (req, res) => {
   const client = new Instagram({ username, password, cookieStore })
 
   await client.login()
-  const tag = client.getMediaFeedByHashtag({ hashtag: hashtag })
+  const tag = await client.getMediaFeedByHashtag({ hashtag: hashtag })
 
-  console.log(tag)
+  console.log(tag[0])
   res.send(tag)
 })
 

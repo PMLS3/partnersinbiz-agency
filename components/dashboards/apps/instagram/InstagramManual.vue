@@ -1,7 +1,34 @@
 <template>
   <div>
-    <CardInstaProfile :item="instaProfile" />
-    <vs-button @click="UserShow">Refresh</vs-button>
+    <vs-input v-model="search" name="search" />
+    <vs-button @click="SearchNow">Search Hastag</vs-button>
+    <div v-if="instaActivity">
+      <div v-if="instaActivity.edge_hashtag_to_media">
+        <div
+          v-for="(item, index) in instaActivity.edge_hashtag_to_media.edges"
+          :key="index"
+        >
+          <CardInstaPost
+            :item="item"
+            :name="instaActivity.name"
+            :profile_pic_url="instaActivity.profile_pic_url"
+          />
+        </div>
+      </div>
+
+      <div v-if="instaActivity.edge_hashtag_to_top_posts">
+        <div
+          v-for="(item, index) in instaActivity.edge_hashtag_to_top_posts.edges"
+          :key="index"
+        >
+          <CardInstaPost
+            :item="item"
+            :name="instaActivity.name"
+            :profile_pic_url="instaActivity.profile_pic_url"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,7 +45,8 @@ export default {
   },
   data() {
     return {
-      instaProfile: {},
+      search: '',
+      instaActivity: {},
     }
   },
   computed: {
@@ -34,33 +62,15 @@ export default {
   },
   watch: {},
   methods: {
-    // TweetSend() {
-    //   console.log('date', this.date)
-    //   let vm = this
-    //   this.$axios
-    //     .$post('/api/twitter/tweet', {
-    //       config: this.config,
-    //       message: this.message,
-    //     })
-    //     .then(
-    //       (response) => {
-    //         vm.successUpload('TWEETED')
-    //       },
-    //       (error) => {
-    //         console.log(error)
-    //         vm.unsuccessUpload(error)
-    //       }
-    //     )
-    // },
-    async UserShow() {
+    async SearchNow() {
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/instagram/ClientProfile?username=${this.config.username}&password=${this.config.password}`
+          `/api/instagram/getFeedHashtag?username=${this.config.username}&password=${this.config.password}&hashtag=${this.search}`
         )
         .then(vm.successUpload('searching...'))
 
-      this.instaProfile = ip
+      this.instaActivity = ip
     },
 
     successUpload(msg) {
@@ -79,7 +89,6 @@ export default {
     },
   },
   created() {
-    this.UserShow()
     // let vm = this
     // this.$fireStore
     //   .collection('retweets')

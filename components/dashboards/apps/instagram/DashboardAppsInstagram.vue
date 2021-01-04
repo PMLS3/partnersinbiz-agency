@@ -5,6 +5,14 @@
         <InstagramProfile />
       </vs-tab>
 
+      <vs-tab label="Feeds" icon="dashboard" @click="colorx = '#8B0000'">
+        <InstagramFeeds />
+      </vs-tab>
+
+      <vs-tab label="Manual" icon="dashboard" @click="colorx = '#8B0000'">
+        <InstagramManual />
+      </vs-tab>
+
       <vs-tab
         label="Configuration"
         icon="account_box"

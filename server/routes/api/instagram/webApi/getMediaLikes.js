@@ -7,7 +7,6 @@ const FileCookieStore = require('tough-cookie-filestore2')
 router.get('/', async (req, res) => {
   let username = req.query.username
   let password = req.query.password
-  let username = req.query.username
   let shortcode = req.query.shortcode
   let first = req.query.first
   let after = req.query.after

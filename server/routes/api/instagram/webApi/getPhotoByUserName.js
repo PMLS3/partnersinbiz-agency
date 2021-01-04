@@ -7,7 +7,6 @@ const FileCookieStore = require('tough-cookie-filestore2')
 router.get('/', async (req, res) => {
   let username = req.query.username
   let password = req.query.password
-  let username = req.query.username
 
   const cookieStore = new FileCookieStore('./cookies.json')
   const client = new Instagram({ username, password, cookieStore })

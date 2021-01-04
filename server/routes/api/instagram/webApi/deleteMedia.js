@@ -24,8 +24,8 @@ router.post('/', async (req, res) => {
     })
     .then((response) => {
       console.log(response)
+      res.status(201).send(response)
     })
-  res.status(201).send(data)
 })
 
 module.exports = router

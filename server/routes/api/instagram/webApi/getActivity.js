@@ -11,17 +11,15 @@ router.get('/', async (req, res) => {
   const client = new Instagram({ username, password, cookieStore })
 
   await client.login()
-  const activity = await client
+  await client
     .getActivity()
     .catch((error) => {
       console.log(error)
     })
     .then((response) => {
       console.log(response)
+      res.send(response)
     })
-
-  console.log(activity)
-  res.send(activity)
 })
 
 module.exports = router
