@@ -6,81 +6,53 @@
     :key="isSmallerScreen"
   >
     <!-- GENERAL -->
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-user"
-      :label="!isSmallerScreen ? 'Account' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-general md:ml-4 md:mt-0">
-        <client-only>
+    <vs-tab icon="account_box" :label="!isSmallerScreen ? 'Account' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
           <DashboardBusinessSettingsAccountSettings :data="business" />
-        </client-only>
+        </vs-card>
       </div>
     </vs-tab>
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-lock"
-      :label="!isSmallerScreen ? 'Information' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-change-pwd md:ml-4 md:mt-0">
-        <client-only>
+    <vs-tab icon="info" :label="!isSmallerScreen ? 'Information' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
           <DashboardBusinessSettingsInformationSettings :data="business" />
-        </client-only>
+        </vs-card>
       </div>
     </vs-tab>
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-info"
-      :label="!isSmallerScreen ? 'Employee' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-info md:ml-4 md:mt-0">
-        <client-only>
-          <DashboardBusinessSettingEmployeeSettings :data="business" />
-        </client-only>
+    <vs-tab icon="face" :label="!isSmallerScreen ? 'Employee' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
+          <DashboardBusinessSettingsEmployeeSettings :data="business" />
+        </vs-card>
       </div>
     </vs-tab>
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-github"
-      :label="!isSmallerScreen ? 'Groups' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-social-links md:ml-4 md:mt-0">
-        <client-only>
+    <vs-tab icon="supervisor_account" :label="!isSmallerScreen ? 'Groups' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
           <DashboardBusinessSettingsGroupSettings :data="business" />
-        </client-only>
+        </vs-card>
       </div>
     </vs-tab>
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-link-2"
-      :label="!isSmallerScreen ? 'Social' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-text md:ml-4 md:mt-0">
-        <client-only>
+    <vs-tab icon="view_module" :label="!isSmallerScreen ? 'Social' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
           <DashboardBusinessSettingsSocialSettings :data="business" />
-        </client-only>
+        </vs-card>
       </div>
     </vs-tab>
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-bell"
-      :label="!isSmallerScreen ? 'Sales' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-text md:ml-4 md:mt-0">
-        <client-only>
+    <vs-tab icon="shopping_cart" :label="!isSmallerScreen ? 'Sales' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
           <DashboardBusinessSettingsSalesSettings :data="business" />
-        </client-only>
+        </vs-card>
       </div>
     </vs-tab>
-    <vs-tab
-      icon-pack="feather"
-      icon="icon-bell"
-      :label="!isSmallerScreen ? 'Stock' : ''"
-    >
-      <div class="p-4 mt-4 ml-0 tab-text md:ml-4 md:mt-0">
-        <client-only>
+    <vs-tab icon="grid_on" :label="!isSmallerScreen ? 'Stock' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
           <DashboardBusinessSettingsStockSettings :data="business" />
-        </client-only>
+        </vs-card>
       </div>
     </vs-tab>
   </vs-tabs>

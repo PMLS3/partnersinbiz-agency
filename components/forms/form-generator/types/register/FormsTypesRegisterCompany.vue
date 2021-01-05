@@ -64,16 +64,23 @@
         <span slot="on">Public</span>
         <span slot="off">Not Public</span>
       </vs-switch>
+      <small class="mt-2 mb-6 text-gray-400"
+        >* If public we will advertise your business through our channels</small
+      >
+
+      <br />
+      <div class="flex mt-10">
+        <UploadImage class="mb-2 mr-4 sm:mb-0" label="Company Logo" />
+        <small class="mt-2 text-gray-400">Logo Upload</small>
+      </div>
 
       <br />
       <!--Company Logo-->
       <img
         :src="uploaded_images[0]"
         v-if="uploaded_images[0]"
-        style="height: 125px;"
+        style="height: 125px"
       />
-      <br />
-      <UploadImage class="mb-2 mr-4 sm:mb-0" label="Company Logo" />
       <br />
 
       <br />
@@ -84,10 +91,10 @@
       <vs-divider color="success" icon="check"></vs-divider>
       <br />
       <h4>Contact Person Details</h4>
-      <small
+      <!-- <small
         >Please use client details so that they can login to their own
         backend</small
-      >
+      > -->
 
       <!-- Company -->
       <vs-input
@@ -153,7 +160,7 @@ import Geohash from 'latlon-geohash'
 
 export default {
   components: {
-    vSelect
+    vSelect,
   },
   data() {
     return {
@@ -195,12 +202,12 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   watch: {
-    industry: function() {
+    industry: function () {
       if (this.industry == 'Community' || this.industry == 'Complexes') {
         this.isEstate = false
         this.subscriptionPrice = 499
@@ -212,13 +219,13 @@ export default {
         this.subscriptionPrice = 699
       }
     },
-    isMyEstate: function() {
+    isMyEstate: function () {
       if (this.isMyEstate == 'Amenities') {
         this.subscriptionPrice = 899
       } else {
         this.subscriptionPrice = 1299
       }
-    }
+    },
   },
 
   computed: {
@@ -259,8 +266,8 @@ export default {
           this.$emit('closeSidebar')
           this.initValues()
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     newBusiness() {
@@ -345,39 +352,38 @@ export default {
             c_email: this.email,
             c_number: this.number,
             date: moment().format('DD-MM-YYYY'),
-            month: moment().format('MM-YYYY')
-            // currency: '',
-            // desc: this.description,
-            // tax: 0,
-            // configuration: 'done',
-            // t_stamp: Date.now(),
-            // public: this.radios,
-            // active: false,
-            // paid: true,
-            // b_uid: '',
-            // reseller: this.$store.state.business.reseller,
-            // sub_sellers: this.$store.state.business.sub_sellers,
-            // geo1: this.geo1,
-            // geo2: this.geo2,
-            // geo3: this.geo3,
-            // geo4: this.geo4,
-            // geo5: this.geo5,
-            // geo6: this.geo6,
-            // geo7: this.geo7,
-            // geo8: this.geo8,
-            // geo9: this.geo9,
-            // vicinity: this.google_place.vicinity,
-            // addr_html: this.google_place.adr_address,
-            // for_address: this.google_place.formatted_address,
-            // utc_offset: this.google_place.utc_offset_minutes,
-            // addr_url: this.google_place.url,
-            // lat: this.google_marker.lat,
-            // lng: this.google_marker.lng
+            month: moment().format('MM-YYYY'),
+            currency: '',
+            desc: this.description,
+            tax: 0,
+            configuration: 'done',
+            t_stamp: Date.now(),
+            public: this.radios,
+            active: false,
+            paid: true,
+            b_uid: '',
+            reseller: this.$store.state.business.reseller,
+            sub_sellers: this.$store.state.business.sub_sellers,
+            geo1: this.geo1,
+            geo2: this.geo2,
+            geo3: this.geo3,
+            geo4: this.geo4,
+            geo5: this.geo5,
+            geo6: this.geo6,
+            geo7: this.geo7,
+            geo8: this.geo8,
+            geo9: this.geo9,
+            vicinity: this.google_place.vicinity,
+            addr_html: this.google_place.adr_address,
+            for_address: this.google_place.formatted_address,
+            utc_offset: this.google_place.utc_offset_minutes,
+            addr_url: this.google_place.url,
+            lat: this.google_marker.lat,
+            lng: this.google_marker.lng,
           })
-          .then(function(docRef) {
+          .then(function (docRef) {
             vm.successUpload()
-            // vm.$store.commit('form/FORM_ACTIVE', false)
-            // vm.$router.push('/profile')
+            vm.$emit('uploaded')
           })
       }
     },
@@ -386,10 +392,10 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

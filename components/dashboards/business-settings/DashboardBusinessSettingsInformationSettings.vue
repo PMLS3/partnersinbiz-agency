@@ -13,7 +13,9 @@
             <!-- Col Header -->
             <div class="flex items-end">
               <feather-icon icon="UserIcon" class="mr-2" svgClasses="w-5 h-5" />
-              <span class="font-medium leading-none">Personal Information</span>
+              <span class="font-medium leading-none"
+                >Contact Person Information</span
+              >
             </div>
             <!-- Col Content -->
             <div>
@@ -79,30 +81,30 @@ import vSelect from 'vue-select'
 export default {
   name: 'information-setting',
   components: {
-    vSelect
+    vSelect,
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
   computed: {
     business() {
       return this.$store.state.business.active_business
-    }
+    },
   },
   methods: {
     successUpload() {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let business = this.business
@@ -126,12 +128,12 @@ export default {
           c_name: this.data_local.c_name,
           c_surname: this.data_local.c_surname,
           c_number: this.data_local.c_number,
-          c_email: this.data_local.c_email
+          c_email: this.data_local.c_email,
         })
         .then(() => {
           this.successUpload()
         })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -35,14 +35,14 @@
 
             <p class="mt-5">Industry</p>
             <v-select
-              class="w-full "
+              class="w-full"
               v-model="data_local.indstr"
               :options="categories"
             ></v-select>
 
             <p class="mt-5">Currency</p>
             <v-select
-              class="w-full "
+              class="w-full"
               v-model="data_local.currency"
               :options="currencies"
             ></v-select>
@@ -58,6 +58,10 @@
               <span slot="on">Public</span>
               <span slot="off">Not Public</span>
             </vs-switch>
+            <small class="mt-2 text-gray-400"
+              >* If public we will advertise your business through our
+              channels</small
+            >
           </div>
 
           <div class="w-full vx-col md:w-1/2">
@@ -116,7 +120,7 @@ import firebase from 'firebase'
 export default {
   name: 'account-settings',
   components: {
-    vSelect
+    vSelect,
     // autoLocation,
     // imageUpload
   },
@@ -124,8 +128,8 @@ export default {
     data: {
       type: Object,
       required: true,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
@@ -139,7 +143,7 @@ export default {
       geo7: 0,
       geo8: 0,
       geo9: 0,
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
   computed: {
@@ -157,10 +161,10 @@ export default {
     },
     google_marker() {
       return this.$store.getters['google/google_marker']
-    }
+    },
   },
   watch: {
-    uploaded_images: function() {
+    uploaded_images: function () {
       if (this.uploaded_images) {
         let vm = this
         let ref = vm.$fireStore
@@ -170,17 +174,17 @@ export default {
           .doc(this.data_local.b_uid)
         ref
           .update({
-            logo: this.uploaded_images[0]
+            logo: this.uploaded_images[0],
           })
           .then(() => {
             vm.successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             this.unsuccessfulUpload(err)
           })
       }
     },
-    google_marker: function() {
+    google_marker: function () {
       let vm = this
       const geohash1 = Geohash.encode(
         `${this.google_marker.lat}`,
@@ -267,7 +271,7 @@ export default {
           utc_offset: vm.google_place.utc_offset_minutes,
           addr_url: vm.google_place.url,
           lat: vm.google_marker.lat,
-          lng: vm.google_marker.lng
+          lng: vm.google_marker.lng,
         })
         .then(() => {
           console.log('WHAT')
@@ -283,11 +287,11 @@ export default {
           vm.$store.commit('business/UPDATE_BUSINESS_INFO', business)
           vm.successUploadAddress()
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('error', err)
           this.unsuccessfulUpload(err)
         })
-    }
+    },
   },
   methods: {
     save_changes() {
@@ -306,12 +310,12 @@ export default {
           public: this.data_local.public,
           currency: this.data_local.currency,
           tax: this.data_local.tax,
-          desc: this.data_local.desc
+          desc: this.data_local.desc,
         })
         .then(() => {
           this.successUpload()
         })
-        .catch(err => {
+        .catch((err) => {
           this.unsuccessfulUpload(err)
         })
     },
@@ -319,21 +323,21 @@ export default {
       this.$vs.notify({
         color: 'warning',
         title: `Woops`,
-        text: `Error: ${err}`
+        text: `Error: ${err}`,
       })
     },
     successUploadAddress() {
       this.$vs.notify({
         color: 'success',
         title: 'Adress Success',
-        text: 'Your Adress has been changed!'
+        text: 'Your Adress has been changed!',
       })
     },
     successUpload() {
       this.$vs.notify({
         color: 'success',
         title: 'Update Success',
-        text: 'Oh Yeah! Company info updated'
+        text: 'Oh Yeah! Company info updated',
       })
       let logo = this.data_local.logo
       if (this.uploaded_images[0]) {
@@ -349,7 +353,7 @@ export default {
         (business.tax = this.data_local.tax),
         (business.desc = this.data_local.desc)
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
-    }
-  }
+    },
+  },
 }
 </script>
