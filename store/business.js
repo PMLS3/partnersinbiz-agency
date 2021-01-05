@@ -7,67 +7,67 @@
 
 const businessDefaults = {
   // b_uid: 'UZnaDQw8wliD6EUAkkoQ',
-  b_uid: "bMal6HJl4QtdDtK8LAlH",
-  b_name: "Loading...",
-  logo: require("@/static/icon.png")
-};
+  b_uid: '6FAUg6Y5aEvL1B2sh1O7',
+  b_name: 'Loading...',
+  logo: require('@/static/icon.png'),
+}
 
-const businessInfoLocalStorage = businessDefaults;
+const businessInfoLocalStorage = businessDefaults
 
 // Set default values for active-user
 // More data can be added by auth provider or other plugins/packages
 const getBusinessInfo = () => {
-  let businessInfo = {};
+  let businessInfo = {}
 
   // Update property in user
-  Object.keys(businessDefaults).forEach(key => {
+  Object.keys(businessDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
     businessInfo[key] = businessInfoLocalStorage[key]
       ? businessInfoLocalStorage[key]
-      : businessDefaults[key];
-  });
+      : businessDefaults[key]
+  })
 
   // Include properties from localStorage
-  Object.keys(businessInfoLocalStorage).forEach(key => {
+  Object.keys(businessInfoLocalStorage).forEach((key) => {
     if (businessInfo[key] == undefined && businessInfoLocalStorage[key] != null)
-      businessInfo[key] = businessInfoLocalStorage[key];
-  });
+      businessInfo[key] = businessInfoLocalStorage[key]
+  })
 
-  return businessInfo;
-};
+  return businessInfo
+}
 
-const mainBusinessLocalStorage = businessDefaults;
+const mainBusinessLocalStorage = businessDefaults
 
 const getMainBusiness = () => {
-  let mainBusiness = {};
+  let mainBusiness = {}
 
   // Update property in user
-  Object.keys(businessDefaults).forEach(key => {
+  Object.keys(businessDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
     mainBusiness[key] = mainBusinessLocalStorage[key]
       ? mainBusinessLocalStorage[key]
-      : businessDefaults[key];
-  });
+      : businessDefaults[key]
+  })
 
   // Include properties from localStorage
-  Object.keys(mainBusinessLocalStorage).forEach(key => {
+  Object.keys(mainBusinessLocalStorage).forEach((key) => {
     if (mainBusiness[key] == undefined && mainBusinessLocalStorage[key] != null)
-      mainBusiness[key] = mainBusinessLocalStorage[key];
-  });
+      mainBusiness[key] = mainBusinessLocalStorage[key]
+  })
 
-  return mainBusiness;
-};
+  return mainBusiness
+}
 
 export const state = () => ({
-  reseller: "community",
+  reseller: 'community',
   // reseller_id: 'UZnaDQw8wliD6EUAkkoQ',
-  reseller_id: "bMal6HJl4QtdDtK8LAlH",
+  reseller_id: '6FAUg6Y5aEvL1B2sh1O7',
   sub_sellers: [],
   active_business: getBusinessInfo(),
   main_business: getMainBusiness(),
   staff: [],
-  users: []
-});
+  users: [],
+})
 
 export const mutations = {
   // /////////////////////////////////////////////
@@ -78,57 +78,57 @@ export const mutations = {
   UPDATE_BUSINESS_INFO(state, payload) {
     if (process.client) {
       // Get Data localStorage
-      let businessInfo = state.active_business;
-      console.log("payload", payload);
+      let businessInfo = state.active_business
+      console.log('payload', payload)
 
       for (const property of Object.keys(payload)) {
         if (payload[property] != null) {
           // If some of user property is null - user default property defined in state.active_business
-          state.active_business[property] = payload[property];
+          state.active_business[property] = payload[property]
 
           // Update key in localStorage
-          businessInfo[property] = payload[property];
+          businessInfo[property] = payload[property]
         }
       }
       // Store data in localStorage
-      localStorage.setItem("businessInfo", JSON.stringify(businessInfo));
+      localStorage.setItem('businessInfo', JSON.stringify(businessInfo))
     }
   },
 
   UPDATE_MAIN_BUSINESS_INFO(state, payload) {
     if (process.client) {
       // Get Data localStorage
-      let mainBusiness = state.main_business;
+      let mainBusiness = state.main_business
 
       for (const property of Object.keys(payload)) {
         if (payload[property] != null) {
           // If some of user property is null - user default property defined in state.main_business
-          state.main_business[property] = payload[property];
+          state.main_business[property] = payload[property]
 
           // Update key in localStorage
-          mainBusiness[property] = payload[property];
+          mainBusiness[property] = payload[property]
         }
       }
       // Store data in localStorage
-      localStorage.setItem("mainBusiness", JSON.stringify(mainBusiness));
+      localStorage.setItem('mainBusiness', JSON.stringify(mainBusiness))
     }
   },
   UPDATE_STAFF(state, payload) {
-    state.staff = payload;
-  }
-};
+    state.staff = payload
+  },
+}
 
-export const actions = {};
+export const actions = {}
 
 export const getters = {
-  active_business: state => state.active_business,
-  isBusinessSet: state => {
+  active_business: (state) => state.active_business,
+  isBusinessSet: (state) => {
     try {
-      return state.active_business.b_uid !== 0;
+      return state.active_business.b_uid !== 0
     } catch {
-      return false;
+      return false
     }
-  }
-};
+  },
+}
 
-export const strict = false;
+export const strict = false

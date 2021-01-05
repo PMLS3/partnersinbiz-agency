@@ -98,44 +98,42 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
   computed: {
     business() {
       return this.$store.state.business.active_business
-    }
+    },
   },
   methods: {
     successUpload() {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let business = this.business
 
-      ;(business.fb = this.data_local.fb),
-        (business.github = this.data_local.github),
-        (business.insta = this.data_local.insta),
-        (business.linkedin = this.data_local.linkedin),
-        (business.slack = this.data_local.slack),
-        (business.twt = this.data_local.twt),
-        (business.codepen = this.data_local.codepen)
+      business.fb = this.data_local.fb
+      business.github = this.data_local.github
+      business.insta = this.data_local.insta
+      business.linkedin = this.data_local.linkedin
+      business.slack = this.data_local.slack
+      business.twt = this.data_local.twt
+      business.codepen = this.data_local.codepen
 
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
     },
     save_changes() {
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('social_links')
+        .collection('business')
         .doc(this.business.b_uid)
         .update({
           fb: this.data_local.fb,
@@ -144,12 +142,12 @@ export default {
           linkedin: this.data_local.linkedin,
           slack: this.data_local.slack,
           twt: this.data_local.twt,
-          codepen: this.data_local.codepen
+          codepen: this.data_local.codepen,
         })
         .then(() => {
           this.successUpload()
         })
-    }
-  }
+    },
+  },
 }
 </script>

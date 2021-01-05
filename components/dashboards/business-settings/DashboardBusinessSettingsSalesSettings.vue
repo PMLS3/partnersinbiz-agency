@@ -229,9 +229,7 @@ export default {
       let vm = this
 
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
         .doc(this.business.b_uid)
         .update({
           [type]: firebase.firestore.FieldValue.arrayRemove(data),
@@ -259,9 +257,7 @@ export default {
       }
       for (let i = 0; i < data.length; i++) {
         vm.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('groups')
+          .collection('business')
           .doc(vm.business.b_uid)
           .update({
             [collection]: firebase.firestore.FieldValue.arrayUnion(data[i]),
@@ -328,9 +324,7 @@ export default {
 
       collection = type
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
         .doc(vm.business.b_uid)
         .collection(type)
         .doc(data)
@@ -342,9 +336,7 @@ export default {
             vm.popupCustomerGroup = true
           } else {
             vm.$fireStore
-              .collection('apps')
-              .doc('info')
-              .collection('groups')
+              .collection('business')
               .doc(vm.business.b_uid)
               .collection(type)
               .doc(data)
@@ -365,9 +357,7 @@ export default {
       let vm = this
 
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
         .doc(vm.business.b_uid)
         .collection('c_grps')
         .doc(vm.selectedGroup.id)

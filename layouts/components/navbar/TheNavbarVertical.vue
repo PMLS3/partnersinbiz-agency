@@ -28,54 +28,28 @@
         >
           <logo class="w-10 mr-4 fill-current text-primary" alt="logo" />
         </nuxt-link>
-        <!-- <p v-if="currentlyDisplayingUser" class="font-semibold">"Guest"</p> -->
-        <!-- <p  class="font-semibold"> Guest</p> -->
 
-        <!-- <bookmarks
-          :navbarColor="navbarColor"
-          v-if="windowWidth >= 992 && showNav.bookmarksNow"
-        />-->
-        <!-- <bookmarks
-          :navbarColor="navbarColor"
-          v-if="windowWidth >= 992 && showNav.bookmarksNow"
-        />-->
-        <client-only>
-          <UiMiscAnon v-if="showNav.anon" class="ml-6" />
-          <UiMiscSpeed v-if="showNav.speed" class="ml-6" />
-          <SideChat v-if="showNav.chat" class="ml-6" />
-          <client-only>
-            <VideoChat v-if="showNav.video" class="ml-6" />
-          </client-only>
-        </client-only>
         <vs-spacer />
+        <div v-if="isUserLoggedIn" class="flex">
+          <!-- <i18n /> -->
 
-        <!-- <i18n /> -->
+          <!-- <search-bar /> -->
 
-        <!-- <search-bar /> -->
+          <cart-drop-down v-if="showNav.cartDropDown" />
 
-        <cart-drop-down v-if="showNav.cartDropDown" />
+          <notification-drop-down v-if="showNav.notificationDropDown" />
 
-        <notification-drop-down v-if="showNav.notificationDropDown" />
+          <profile-drop-down v-if="showNav.profileDropDown" />
+        </div>
 
-        <profile-drop-down v-if="showNav.profileDropDown" />
         <div v-if="isUserLoggedIn">
-          <feather-icon
-            icon="LogOutIcon"
-            class="ml-3"
-            svg-classes="w-4 h-4 cursor-pointer"
-            @click="logout"
-          />
-          <span class="ml-2 cursor-pointer" @click="logout">Logout</span>
+          <vs-button type="flat" icon="lock_open" @click="logout"
+            >Logout</vs-button
+          >
         </div>
         <div v-else>
-          <feather-icon
-            icon="LogOutIcon"
-            class="ml-3"
-            svg-classes="w-4 h-4 cursor-pointer"
-            @click="$router.push('/login')"
-          />
-          <span class="ml-2 cursor-pointer" @click="$router.push('/login')"
-            >Login</span
+          <vs-button type="flat" icon="lock" @click="$router.push('/login')"
+            >Login</vs-button
           >
         </div>
       </vs-navbar>
@@ -84,17 +58,17 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import Logo from "../Logo.vue";
-import Bookmarks from "./components/Bookmarks.vue";
+import firebase from 'firebase'
+import Logo from '../Logo.vue'
+import Bookmarks from './components/Bookmarks.vue'
 // import I18n from "./components/I18n.vue";
-import SearchBar from "./components/SearchBar.vue";
-import CartDropDown from "./components/CartDropDown.vue";
-import NotificationDropDown from "./components/NotificationDropDown.vue";
-import ProfileDropDown from "./components/ProfileDropDown.vue";
+import SearchBar from './components/SearchBar.vue'
+import CartDropDown from './components/CartDropDown.vue'
+import NotificationDropDown from './components/NotificationDropDown.vue'
+import ProfileDropDown from './components/ProfileDropDown.vue'
 
 export default {
-  name: "TheNavbarVertical",
+  name: 'TheNavbarVertical',
   components: {
     Logo,
     Bookmarks,
@@ -102,73 +76,73 @@ export default {
     SearchBar,
     CartDropDown,
     NotificationDropDown,
-    ProfileDropDown
+    ProfileDropDown,
   },
   props: {
     navbarColor: {
       type: String,
-      default: "#fff"
-    }
+      default: '#fff',
+    },
   },
   data() {
-    return {};
+    return {}
   },
   computed: {
     showNav() {
-      return this.$store.getters["navbar/showNav"];
+      return this.$store.getters['navbar/showNav']
     },
     user() {
       if (process.client) {
-        return JSON.parse(localStorage.getItem("userInfo"))
-          ? JSON.parse(localStorage.getItem("userInfo"))
-          : this.$store.state.auth.active_user;
+        return JSON.parse(localStorage.getItem('userInfo'))
+          ? JSON.parse(localStorage.getItem('userInfo'))
+          : this.$store.state.auth.active_user
       }
     },
     business() {
       if (process.client) {
-        return JSON.parse(localStorage.getItem("mainBusiness"))
-          ? JSON.parse(localStorage.getItem("mainBusiness"))
-          : this.$store.state.business.main_business;
+        return JSON.parse(localStorage.getItem('mainBusiness'))
+          ? JSON.parse(localStorage.getItem('mainBusiness'))
+          : this.$store.state.business.main_business
       }
     },
     isUserLoggedIn() {
-      return this.$store.state.auth.isUserLoggedIn;
+      return this.$store.state.auth.isUserLoggedIn
     },
 
     navbarColorLocal() {
-      return this.$store.state.theme === "dark" && this.navbarColor === "#fff"
-        ? "#10163a"
-        : this.navbarColor;
+      return this.$store.state.theme === 'dark' && this.navbarColor === '#fff'
+        ? '#10163a'
+        : this.navbarColor
     },
     verticalNavMenuWidth() {
-      return this.$store.state.verticalNavMenuWidth;
+      return this.$store.state.verticalNavMenuWidth
     },
     textColor() {
       return {
-        "text-white":
-          (this.navbarColor != "#10163a" &&
-            this.$store.state.theme === "dark") ||
-          (this.navbarColor != "#fff" && this.$store.state.theme !== "dark")
-      };
+        'text-white':
+          (this.navbarColor != '#10163a' &&
+            this.$store.state.theme === 'dark') ||
+          (this.navbarColor != '#fff' && this.$store.state.theme !== 'dark'),
+      }
     },
     windowWidth() {
-      return this.$store.state.windowWidth;
+      return this.$store.state.windowWidth
     },
 
     // NAVBAR STYLE
     classObj() {
-      if (this.verticalNavMenuWidth == "default") return "navbar-default";
-      else if (this.verticalNavMenuWidth == "reduced") return "navbar-reduced";
-      else if (this.verticalNavMenuWidth) return "navbar-full";
-    }
+      if (this.verticalNavMenuWidth == 'default') return 'navbar-default'
+      else if (this.verticalNavMenuWidth == 'reduced') return 'navbar-reduced'
+      else if (this.verticalNavMenuWidth) return 'navbar-full'
+    },
   },
   methods: {
     showSidebar() {
-      this.$store.commit("TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE", true);
+      this.$store.commit('TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE', true)
     },
     logout() {
-      this.$store.dispatch("auth/logoutUser");
-    }
-  }
-};
+      this.$store.dispatch('auth/logoutUser')
+    },
+  },
+}
 </script>

@@ -2,7 +2,7 @@
   <div v-if="user" class="flex items-center the-navbar__user-meta">
     <!-- <div class="flex items-center the-navbar__user-meta" > -->
 
-    <div class="hidden leading-tight text-right sm:block">
+    <div class="hidden leading-tight text-right sm:block" v-if="isUserLoggedIn">
       <p class="font-semibold">{{ user.disp_name || 'undefined' }}</p>
       <!-- <p class="font-semibold">Me</p> -->
 
@@ -47,6 +47,7 @@
           <li
             class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
             @click="$router.push(`/dashboardMain`)"
+            v-if="isUserLoggedIn"
           >
             <feather-icon icon="CheckSquareIcon" svg-classes="w-4 h-4" />
             <span class="ml-2">Dashboard </span>
@@ -119,7 +120,17 @@
 
           <li
             class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
+            @click="$router.push('/login')"
+            v-if="!isUserLoggedIn"
+          >
+            <feather-icon icon="LogOutIcon" svg-classes="w-4 h-4" />
+            <span class="ml-2">Login</span>
+          </li>
+
+          <li
+            class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
             @click="logout"
+            v-if="isUserLoggedIn"
           >
             <feather-icon icon="LogOutIcon" svg-classes="w-4 h-4" />
             <span class="ml-2">Logout</span>
@@ -155,13 +166,13 @@ export default {
     },
     isUserLoggedIn() {
       return this.$store.state.auth.isUserLoggedIn
-    }
+    },
   },
 
   methods: {
     logout() {
       this.$store.dispatch('auth/logoutUser')
-    }
-  }
+    },
+  },
 }
 </script>

@@ -168,7 +168,7 @@ export default {
       if (this.uploaded_images) {
         let vm = this
         let ref = vm.$fireStore
-          .collection('apps')
+          .collection('business')
           .doc('info')
           .collection('general')
           .doc(this.data_local.b_uid)
@@ -250,7 +250,7 @@ export default {
       let lng = this.google_marker.lng
 
       this.$fireStore
-        .collection('apps')
+        .collection('business')
         .doc('info')
         .collection('general')
         .doc(this.data_local.b_uid)
@@ -299,19 +299,44 @@ export default {
       if (this.data_local.public == undefined) {
         myPublic = false
       }
+
+      let obj = {
+        b_name: '',
+        indstr: '',
+        public: '',
+        currency: '',
+        tax: '',
+        desc: '',
+      }
+
+      if (this.data_local.b_name) {
+        obj.b_name = this.data_local.b_name
+      }
+
+      if (this.data_local.indstr) {
+        obj.indstr = this.data_local.indstr
+      }
+
+      if (this.data_local.public) {
+        obj.public = this.data_local.public
+      }
+
+      if (this.data_local.currency) {
+        obj.currency = this.data_local.currency
+      }
+
+      if (this.data_local.tax) {
+        obj.tax = this.data_local.tax
+      }
+
+      if (this.data_local.desc) {
+        obj.desc = this.data_local.desc
+      }
+
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('general')
+        .collection('business')
         .doc(this.data_local.b_uid)
-        .update({
-          b_name: this.data_local.b_name,
-          indstr: this.data_local.indstr,
-          public: this.data_local.public,
-          currency: this.data_local.currency,
-          tax: this.data_local.tax,
-          desc: this.data_local.desc,
-        })
+        .update(obj)
         .then(() => {
           this.successUpload()
         })
@@ -346,12 +371,12 @@ export default {
       //submit user to store
       let business = this.data_local
       business.logo = logo
-      ;(business.b_name = this.data_local.b_name),
-        (business.indstr = this.data_local.indstr),
-        (business.public = this.data_local.public),
-        (business.currency = this.data_local.currency),
-        (business.tax = this.data_local.tax),
-        (business.desc = this.data_local.desc)
+      business.b_name = this.data_local.b_name
+      business.indstr = this.data_local.indstr
+      business.public = this.data_local.public
+      business.currency = this.data_local.currency
+      business.tax = this.data_local.tax
+      business.desc = this.data_local.desc
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
     },
   },

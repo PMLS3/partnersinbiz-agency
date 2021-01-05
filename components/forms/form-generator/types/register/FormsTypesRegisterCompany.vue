@@ -330,57 +330,58 @@ export default {
         let vm = this
 
         console.log('test', this.user)
-
+        //TODO make sure uniqueName is unique
         const uniqueName = this.b_name.toLowerCase().replace(/\s/g, '_')
-        let ref = this.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('general')
-        ref
-          .add({
-            logo: this.uploaded_images[0],
-            uid: firebase.auth().currentUser.uid,
-            disp_name: this.user.disp_name,
-            // u_email: this.user.email,
-            b_name: this.b_name,
-            b_email: this.b_email,
-            un_name: uniqueName,
-            indstr: this.industry,
-            c_name: this.contactperson,
-            c_surname: this.contactsurname,
-            c_company: this.company,
-            c_email: this.email,
-            c_number: this.number,
-            date: moment().format('DD-MM-YYYY'),
-            month: moment().format('MM-YYYY'),
-            currency: '',
-            desc: this.description,
-            tax: 0,
-            configuration: 'done',
-            t_stamp: Date.now(),
-            public: this.radios,
-            active: false,
-            paid: true,
-            b_uid: '',
-            reseller: this.$store.state.business.reseller,
-            sub_sellers: this.$store.state.business.sub_sellers,
-            geo1: this.geo1,
-            geo2: this.geo2,
-            geo3: this.geo3,
-            geo4: this.geo4,
-            geo5: this.geo5,
-            geo6: this.geo6,
-            geo7: this.geo7,
-            geo8: this.geo8,
-            geo9: this.geo9,
-            vicinity: this.google_place.vicinity,
-            addr_html: this.google_place.adr_address,
-            for_address: this.google_place.formatted_address,
-            utc_offset: this.google_place.utc_offset_minutes,
-            addr_url: this.google_place.url,
-            lat: this.google_marker.lat,
-            lng: this.google_marker.lng,
-          })
+
+        //TODO obj destructoring
+        let obj = {
+          logo: this.uploaded_images[0],
+          uid: firebase.auth().currentUser.uid,
+          disp_name: this.user.disp_name,
+          // u_email: this.user.email,
+          b_name: this.b_name,
+          b_email: this.b_email,
+          un_name: uniqueName,
+          indstr: this.industry,
+          c_name: this.contactperson,
+          c_surname: this.contactsurname,
+          c_company: this.company,
+          c_email: this.email,
+          c_number: this.number,
+          date: moment().format('DD-MM-YYYY'),
+          month: moment().format('MM-YYYY'),
+          currency: '',
+          desc: this.description,
+          tax: 0,
+          configuration: 'done',
+          t_stamp: Date.now(),
+          public: this.radios,
+          active: false,
+          paid: true,
+          b_uid: '',
+          reseller: this.$store.state.business.reseller,
+          sub_sellers: this.$store.state.business.sub_sellers,
+          geo1: this.geo1,
+          geo2: this.geo2,
+          geo3: this.geo3,
+          geo4: this.geo4,
+          geo5: this.geo5,
+          geo6: this.geo6,
+          geo7: this.geo7,
+          geo8: this.geo8,
+          geo9: this.geo9,
+          vicinity: this.google_place.vicinity,
+          addr_html: this.google_place.adr_address,
+          for_address: this.google_place.formatted_address,
+          utc_offset: this.google_place.utc_offset_minutes,
+          addr_url: this.google_place.url,
+          lat: this.google_marker.lat,
+          lng: this.google_marker.lng,
+        }
+
+        this.$fireStore
+          .collection('business')
+          .add(obj)
           .then(function (docRef) {
             vm.successUpload()
             vm.$emit('uploaded')

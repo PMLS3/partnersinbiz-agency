@@ -382,9 +382,7 @@ export default {
         console.log('form', vm.formData)
 
         this.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('groups')
+          .collection('business')
           .doc(vm.business.b_uid)
           .collection('w_house')
           .doc(vm.selectedWH.w_house)
@@ -434,9 +432,8 @@ export default {
           groupReportedTo = vm.selectedPosition.following
         }
         vm.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('groups')
+          .collection('business')
+
           .doc(vm.business.b_uid)
           .collection('positions')
           .doc(vm.selectedPosition.position)
@@ -458,9 +455,8 @@ export default {
       if (type === 'w_house') {
         collection = 'w_house'
         this.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('groups')
+          .collection('business')
+
           .doc(vm.business.b_uid)
           .collection('w_house')
           .doc(data)
@@ -472,9 +468,8 @@ export default {
               vm.popupWH = true
             } else {
               vm.$fireStore
-                .collection('apps')
-                .doc('info')
-                .collection('groups')
+                .collection('business')
+
                 .doc(vm.business.b_uid)
                 .collection('w_house')
                 .doc(data)
@@ -492,9 +487,8 @@ export default {
       } else if (type === 'pos') {
         collection = 'pos'
         vm.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('groups')
+          .collection('business')
+
           .doc(vm.business.b_uid)
           .collection('positions')
           .doc(data)
@@ -506,9 +500,8 @@ export default {
               vm.popupPosition = true
             } else {
               vm.$fireStore
-                .collection('apps')
-                .doc('info')
-                .collection('groups')
+                .collection('business')
+
                 .doc(vm.business.b_uid)
                 .collection('positions')
                 .doc(data)
@@ -547,9 +540,8 @@ export default {
       }
 
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
+
         .doc(this.business.b_uid)
         .update({
           [collection]: firebase.firestore.FieldValue.arrayRemove(data),
@@ -560,9 +552,8 @@ export default {
     },
     deletItemInfo(collection, data) {
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
+
         .doc(this.business.b_uid)
         .collection(collection)
         .doc(data)
@@ -595,9 +586,7 @@ export default {
       }
 
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
         .doc(this.business.b_uid)
         .update({
           [collection]: firebase.firestore.FieldValue.arrayUnion(data),

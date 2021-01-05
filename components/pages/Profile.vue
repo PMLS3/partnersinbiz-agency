@@ -634,9 +634,8 @@ export default {
   },
   created() {
     let getApps = this.$fireStore
-      .collection('apps')
-      .doc('info')
-      .collection('general')
+      .collection('business')
+      .where('uid', '==', this.user.uid)
 
     getApps.onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {

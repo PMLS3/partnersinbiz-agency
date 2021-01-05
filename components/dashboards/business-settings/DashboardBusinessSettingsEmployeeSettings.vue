@@ -124,13 +124,13 @@ import moment from 'moment'
 export default {
   name: 'employee-settings',
   components: {
-    vSelect
+    vSelect,
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -139,26 +139,24 @@ export default {
       claims: [],
       leave: [],
 
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
 
   computed: {
     business() {
       return this.$store.state.business.active_business
-    }
+    },
   },
   methods: {
     deleteItem(type, data, i) {
       let vm = this
 
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('groups')
+        .collection('business')
         .doc(this.business.b_uid)
         .update({
-          [type]: firebase.firestore.FieldValue.arrayRemove(data)
+          [type]: firebase.firestore.FieldValue.arrayRemove(data),
         })
         .then(() => {
           vm.successDelete(type, i)
@@ -183,23 +181,25 @@ export default {
       }
       for (let i = 0; i < data.length; i++) {
         vm.$fireStore
-          .collection('apps')
-          .doc('info')
-          .collection('groups')
+          .collection('business')
           .doc(vm.business.b_uid)
           .update({
-            [collection]: firebase.firestore.FieldValue.arrayUnion(data[i])
+            [collection]: firebase.firestore.FieldValue.arrayUnion(data[i]),
           })
           .then(() => {
             vm.successUpload(collection, data[i])
           })
+          .catch(function (error) {
+            vm.unsuccessUpload(error)
+            console.error('Error adding document: ', error)
+          })
       }
     },
-    unsuccessUpload() {
+    unsuccessUpload(err) {
       this.$vs.notify({
         color: 'danger',
         title: 'Oops',
-        text: 'Something went wrong'
+        text: `${err}`,
       })
     },
 
@@ -207,7 +207,7 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let business = this.business
@@ -224,7 +224,7 @@ export default {
       this.$vs.notify({
         color: 'warning',
         title: 'Delete Success',
-        text: 'Whoop whoop, been deleted'
+        text: 'Whoop whoop, been deleted',
       })
 
       let business = this.business
@@ -237,7 +237,7 @@ export default {
       business[collection] = filteredItems
 
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
-    }
-  }
+    },
+  },
 }
 </script>

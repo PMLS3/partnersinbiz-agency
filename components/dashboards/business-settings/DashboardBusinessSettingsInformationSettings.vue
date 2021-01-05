@@ -118,18 +118,38 @@ export default {
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
     },
     save_changes() {
+      let obj = {
+        c_company: this.data_local.c_company,
+        c_name: this.data_local.c_name,
+        c_surname: this.data_local.c_surname,
+        c_number: this.data_local.c_number,
+        c_email: this.data_local.c_email,
+      }
+
+      if (this.data_local.c_company) {
+        obj.c_company = this.data_local.c_company
+      }
+
+      if (this.data_local.c_name) {
+        obj.c_name = this.data_local.c_name
+      }
+
+      if (this.data_local.c_surname) {
+        obj.c_surname = this.data_local.c_surname
+      }
+
+      if (this.data_local.c_number) {
+        obj.c_number = this.data_local.c_number
+      }
+
+      if (this.data_local.c_email) {
+        obj.c_email = this.data_local.c_email
+      }
+
       this.$fireStore
-        .collection('apps')
-        .doc('info')
-        .collection('general')
+        .collection('business')
         .doc(this.business.b_uid)
-        .update({
-          c_company: this.data_local.c_company,
-          c_name: this.data_local.c_name,
-          c_surname: this.data_local.c_surname,
-          c_number: this.data_local.c_number,
-          c_email: this.data_local.c_email,
-        })
+        .update(obj)
         .then(() => {
           this.successUpload()
         })
