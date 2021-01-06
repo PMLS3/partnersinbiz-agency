@@ -10,15 +10,9 @@
       <NuxtLink to="/consultation">
         <h1 class="float-right mr-3 font-serif text-2xl text-white md:text-4xl">
           Schedule Now
-        </h1></NuxtLink
-      >
+        </h1>
+      </NuxtLink>
     </header>
     <nuxt />
   </div>
 </template>
-
-<script>
-export default {}
-</script>
-
-<style></style>

@@ -12,7 +12,7 @@
       layoutTypeClass,
       navbarClasses,
       footerClasses,
-      { 'no-scroll': isAppPage }
+      { 'no-scroll': isAppPage },
     ]"
   >
     <client-only>
@@ -35,7 +35,7 @@
           :navbarType="navbarType"
           :class="[
             { 'text-white': isNavbarDark && !isThemeDark },
-            { 'text-base': !isNavbarDark && isThemeDark }
+            { 'text-base': !isNavbarDark && isThemeDark },
           ]"
         />
 
@@ -44,7 +44,7 @@
         <h-nav-menu
           :class="[
             { 'text-white': isNavbarDark && !isThemeDark },
-            { 'text-base': !isNavbarDark && isThemeDark }
+            { 'text-base': !isNavbarDark && isThemeDark },
           ]"
           :navMenuItems="navMenuItems"
         />
@@ -56,7 +56,7 @@
             :navbarColor="navbarColor"
             :class="[
               { 'text-white': isNavbarDark && !isThemeDark },
-              { 'text-base': !isNavbarDark && isThemeDark }
+              { 'text-base': !isNavbarDark && isThemeDark },
             ]"
             :v-show="showNav.totalNav"
           />
@@ -76,7 +76,7 @@
                   class="content-area__heading"
                   :class="{
                     'pr-4 border-0 md:border-r border-solid border-grey-light':
-                      $route.meta.breadcrumb
+                      $route.meta.breadcrumb,
                   }"
                 >
                   <h2 class="mb-1">{{ routeTitle }}</h2>
@@ -151,7 +151,7 @@
                 <nuxt
                   @changeRouteTitle="changeRouteTitle"
                   @setAppClasses="
-                    classesStr => $emit('setAppClasses', classesStr)
+                    (classesStr) => $emit('setAppClasses', classesStr)
                   "
                 />
               </transition>
@@ -166,14 +166,14 @@
 
 <script>
 // import BackToTop           from 'vue-backtotop'
-import HNavMenu from "@/layouts/components/horizontal-nav-menu/HorizontalNavMenu.vue";
-import navMenuItems from "@/layouts/components/vertical-nav-menu/navMenuItems.js";
-import TheCustomizer from "@/layouts/components/customizer/TheCustomizer.vue";
-import TheNavbarHorizontal from "@/layouts/components/navbar/TheNavbarHorizontal.vue";
-import TheNavbarVertical from "@/layouts/components/navbar/TheNavbarVertical.vue";
-import TheFooter from "@/layouts/components/TheFooter.vue";
-import themeConfig from "@/config/themeConfig.js";
-import VNavMenu from "@/layouts/components/vertical-nav-menu/VerticalNavMenu.vue";
+import HNavMenu from '@/layouts/components/horizontal-nav-menu/HorizontalNavMenu.vue'
+import navMenuItems from '@/layouts/components/vertical-nav-menu/navMenuItems.js'
+import TheCustomizer from '@/layouts/components/customizer/TheCustomizer.vue'
+import TheNavbarHorizontal from '@/layouts/components/navbar/TheNavbarHorizontal.vue'
+import TheNavbarVertical from '@/layouts/components/navbar/TheNavbarVertical.vue'
+import TheFooter from '@/layouts/components/TheFooter.vue'
+import themeConfig from '@/config/themeConfig.js'
+import VNavMenu from '@/layouts/components/vertical-nav-menu/VerticalNavMenu.vue'
 // const VxTour = () => import('@/components/vx-tour/VxTour.vue')
 export default {
   components: {
@@ -183,7 +183,7 @@ export default {
     TheFooter,
     TheNavbarHorizontal,
     TheNavbarVertical,
-    VNavMenu
+    VNavMenu,
     // VxTour
   },
   data() {
@@ -191,69 +191,69 @@ export default {
       disableCustomizer: themeConfig.disableCustomizer,
       disableThemeTour: themeConfig.disableThemeTour,
       dynamicWatchers: {},
-      footerType: themeConfig.footerType || "static",
+      footerType: themeConfig.footerType || 'static',
       hideScrollToTop: themeConfig.hideScrollToTop,
       isNavbarDark: false,
-      navbarColor: themeConfig.navbarColor || "#fff",
-      navbarType: themeConfig.navbarType || "floating",
+      navbarColor: themeConfig.navbarColor || '#fff',
+      navbarType: themeConfig.navbarType || 'floating',
       navMenuItems: navMenuItems,
-      routerTransition: themeConfig.routerTransition || "none",
+      routerTransition: themeConfig.routerTransition || 'none',
       routeTitle: this.$route.meta.pageTitle,
       steps: [
         {
-          target: "#btnVNavMenuMinToggler",
-          content: "Toggle Collapse Sidebar."
+          target: '#btnVNavMenuMinToggler',
+          content: 'Toggle Collapse Sidebar.',
         },
         {
-          target: ".vx-navbar__starred-pages",
+          target: '.vx-navbar__starred-pages',
           content:
-            "Create your own bookmarks. You can also re-arrange them using drag & drop."
+            'Create your own bookmarks. You can also re-arrange them using drag & drop.',
         },
         {
-          target: ".i18n-locale",
-          content: "You can change language from here."
+          target: '.i18n-locale',
+          content: 'You can change language from here.',
         },
         {
-          target: ".navbar-fuzzy-search",
-          content: "Try fuzzy search to visit pages in flash."
+          target: '.navbar-fuzzy-search',
+          content: 'Try fuzzy search to visit pages in flash.',
         },
         {
-          target: ".customizer-btn",
-          content: "Customize template based on your preference",
+          target: '.customizer-btn',
+          content: 'Customize template based on your preference',
           params: {
-            placement: "left"
-          }
+            placement: 'left',
+          },
         },
         {
-          target: ".vs-button.buy-now",
-          content: "Buy this awesomeness at affordable price!",
+          target: '.vs-button.buy-now',
+          content: 'Buy this awesomeness at affordable price!',
           params: {
-            placement: "top"
-          }
-        }
-      ]
-    };
+            placement: 'top',
+          },
+        },
+      ],
+    }
   },
   watch: {
     $route() {
-      this.routeTitle = this.$route.meta.pageTitle;
+      this.routeTitle = this.$route.meta.pageTitle
     },
     isThemeDark(val) {
-      const color = this.navbarColor == "#fff" && val ? "#10163a" : "#fff";
-      this.updateNavbarColor(color);
+      const color = this.navbarColor == '#fff' && val ? '#10163a' : '#fff'
+      this.updateNavbarColor(color)
     },
-    "$store.state.mainLayoutType"(val) {
-      this.setNavMenuVisibility(val);
-      this.disableThemeTour = true;
+    '$store.state.mainLayoutType'(val) {
+      this.setNavMenuVisibility(val)
+      this.disableThemeTour = true
     },
-    "$store.state.theme"(val) {
-      this.toggleClassInBody(val);
+    '$store.state.theme'(val) {
+      this.toggleClassInBody(val)
     },
-    "$vs.rtl"(val) {
+    '$vs.rtl'(val) {
       if (process.client) {
-        this.document.documentElement.setAttribute("dir", val ? "rtl" : "ltr");
+        this.document.documentElement.setAttribute('dir', val ? 'rtl' : 'ltr')
       }
-    }
+    },
   },
   computed: {
     //  navMenuItems(){
@@ -261,238 +261,238 @@ export default {
     //     return this.$store.getters['navbar/navMenuItems']
     // },
     showNav() {
-      return this.$store.getters["navbar/showNav"];
+      return this.$store.getters['navbar/showNav']
     },
     resellerName() {
-      return this.$store.getters["app/resellerName"];
+      return this.$store.getters['app/resellerName']
     },
     document() {
-      let doc;
+      let doc
       if (process.client) {
-        doc = document;
+        doc = document
       } else {
-        doc = {};
+        doc = {}
       }
-      return doc;
+      return doc
     },
     window() {
-      let win;
+      let win
       if (process.client) {
-        win = window;
+        win = window
       } else {
-        win = {};
+        win = {}
       }
-      return win;
+      return win
     },
     bodyOverlay() {
-      return this.$store.state.bodyOverlay;
+      return this.$store.state.bodyOverlay
     },
     contentAreaClass() {
-      if (this.mainLayoutType === "vertical") {
-        if (this.verticalNavMenuWidth == "default")
-          return "content-area-reduced";
-        else if (this.verticalNavMenuWidth == "reduced")
-          return "content-area-lg";
-        else return "content-area-full";
+      if (this.mainLayoutType === 'vertical') {
+        if (this.verticalNavMenuWidth == 'default')
+          return 'content-area-reduced'
+        else if (this.verticalNavMenuWidth == 'reduced')
+          return 'content-area-lg'
+        else return 'content-area-full'
       }
       // else if(this.mainLayoutType === "boxed") return "content-area-reduced"
-      else return "content-area-full";
+      else return 'content-area-full'
     },
     footerClasses() {
       return {
-        "footer-hidden": this.footerType == "hidden",
-        "footer-sticky": this.footerType == "sticky",
-        "footer-static": this.footerType == "static"
-      };
+        'footer-hidden': this.footerType == 'hidden',
+        'footer-sticky': this.footerType == 'sticky',
+        'footer-static': this.footerType == 'static',
+      }
     },
     isAppPage() {
-      return this.$route.meta.no_scroll;
+      return this.$route.meta.no_scroll
     },
     isThemeDark() {
-      return this.$store.state.theme == "dark";
+      return this.$store.state.theme == 'dark'
     },
     layoutTypeClass() {
-      return `main-${this.mainLayoutType}`;
+      return `main-${this.mainLayoutType}`
     },
     mainLayoutType() {
-      return this.$store.state.mainLayoutType;
+      return this.$store.state.mainLayoutType
     },
     navbarClasses() {
       return {
-        "navbar-hidden": this.navbarType == "hidden",
-        "navbar-sticky": this.navbarType == "sticky",
-        "navbar-static": this.navbarType == "static",
-        "navbar-floating": this.navbarType == "floating"
-      };
+        'navbar-hidden': this.navbarType == 'hidden',
+        'navbar-sticky': this.navbarType == 'sticky',
+        'navbar-static': this.navbarType == 'static',
+        'navbar-floating': this.navbarType == 'floating',
+      }
     },
     verticalNavMenuWidth() {
-      return this.$store.state.verticalNavMenuWidth;
+      return this.$store.state.verticalNavMenuWidth
     },
     windowWidth() {
-      return this.$store.state.windowWidth;
-    }
+      return this.$store.state.windowWidth
+    },
   },
   methods: {
     toggleClassInBody(className) {
-      if (className == "dark") {
-        if (this.document.body.className.match("theme-semi-dark"))
-          this.document.body.classList.remove("theme-semi-dark");
-        this.document.body.classList.add("theme-dark");
-      } else if (className == "semi-dark") {
-        if (this.document.body.className.match("theme-dark"))
-          this.document.body.classList.remove("theme-dark");
-        this.document.body.classList.add("theme-semi-dark");
+      if (className == 'dark') {
+        if (this.document.body.className.match('theme-semi-dark'))
+          this.document.body.classList.remove('theme-semi-dark')
+        this.document.body.classList.add('theme-dark')
+      } else if (className == 'semi-dark') {
+        if (this.document.body.className.match('theme-dark'))
+          this.document.body.classList.remove('theme-dark')
+        this.document.body.classList.add('theme-semi-dark')
       } else {
-        if (this.document.body.className.match("theme-dark"))
-          this.document.body.classList.remove("theme-dark");
-        if (this.document.body.className.match("theme-semi-dark"))
-          this.document.body.classList.remove("theme-semi-dark");
+        if (this.document.body.className.match('theme-dark'))
+          this.document.body.classList.remove('theme-dark')
+        if (this.document.body.className.match('theme-semi-dark'))
+          this.document.body.classList.remove('theme-semi-dark')
       }
     },
     setAppClasses(classesStr) {
-      this.vueAppClasses.push(classesStr);
+      this.vueAppClasses.push(classesStr)
     },
     handleWindowResize() {
-      this.$store.commit("UPDATE_WINDOW_WIDTH", this.window.innerWidth);
+      this.$store.commit('UPDATE_WINDOW_WIDTH', this.window.innerWidth)
       // Set --vh property
       this.document.documentElement.style.setProperty(
-        "--vh",
+        '--vh',
         `${this.window.innerHeight * 0.01}px`
-      );
+      )
     },
     handleScroll() {
-      this.$store.commit("UPDATE_WINDOW_SCROLL_Y", this.window.scrollY);
+      this.$store.commit('UPDATE_WINDOW_SCROLL_Y', this.window.scrollY)
     },
     changeRouteTitle(title) {
-      this.routeTitle = title;
+      this.routeTitle = title
     },
     updateNavbar(val) {
-      if (val == "static")
-        this.updateNavbarColor(this.isThemeDark ? "#10163a" : "#fff");
-      this.navbarType = val;
+      if (val == 'static')
+        this.updateNavbarColor(this.isThemeDark ? '#10163a' : '#fff')
+      this.navbarType = val
     },
     updateNavbarColor(val) {
-      this.navbarColor = val;
-      if (val == "#fff") this.isNavbarDark = false;
-      else this.isNavbarDark = true;
+      this.navbarColor = val
+      if (val == '#fff') this.isNavbarDark = false
+      else this.isNavbarDark = true
     },
     updateFooter(val) {
-      this.footerType = val;
+      this.footerType = val
     },
     updateRouterTransition(val) {
-      this.routerTransition = val;
+      this.routerTransition = val
     },
     setNavMenuVisibility(layoutType) {
       if (
-        (layoutType === "horizontal" && this.windowWidth >= 1200) ||
-        (layoutType === "vertical" && this.windowWidth < 1200)
+        (layoutType === 'horizontal' && this.windowWidth >= 1200) ||
+        (layoutType === 'vertical' && this.windowWidth < 1200)
       ) {
-        this.$store.commit("TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE", false);
-        this.$store.dispatch("updateVerticalNavMenuWidth", "no-nav-menu");
+        this.$store.commit('TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE', false)
+        this.$store.dispatch('updateVerticalNavMenuWidth', 'no-nav-menu')
       } else {
-        this.$store.commit("TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE", true);
+        this.$store.commit('TOGGLE_IS_VERTICAL_NAV_MENU_ACTIVE', true)
       }
     },
     toggleHideScrollToTop(val) {
-      this.hideScrollToTop = val;
-    }
+      this.hideScrollToTop = val
+    },
   },
   created() {
     const color =
-      this.navbarColor == "#fff" && this.isThemeDark
-        ? "#10163a"
-        : this.navbarColor;
-    this.updateNavbarColor(color);
-    this.setNavMenuVisibility(this.$store.state.mainLayoutType);
+      this.navbarColor == '#fff' && this.isThemeDark
+        ? '#10163a'
+        : this.navbarColor
+    this.updateNavbarColor(color)
+    this.setNavMenuVisibility(this.$store.state.mainLayoutType)
     // Dynamic Watchers for tour
     // Reason: Once tour is disabled it is not required to enable it.
     // So, watcher is required for just disabling it.
     this.dynamicWatchers.windowWidth = this.$watch(
-      "$store.state.windowWidth",
-      val => {
+      '$store.state.windowWidth',
+      (val) => {
         if (val < 1200) {
-          this.disableThemeTour = true;
-          this.dynamicWatchers.windowWidth();
+          this.disableThemeTour = true
+          this.dynamicWatchers.windowWidth()
         }
       }
-    );
+    )
     this.dynamicWatchers.verticalNavMenuWidth = this.$watch(
-      "$store.state.verticalNavMenuWidth",
+      '$store.state.verticalNavMenuWidth',
       () => {
-        this.disableThemeTour = true;
-        this.dynamicWatchers.verticalNavMenuWidth();
+        this.disableThemeTour = true
+        this.dynamicWatchers.verticalNavMenuWidth()
       }
-    );
-    this.dynamicWatchers.rtl = this.$watch("$vs.rtl", () => {
-      this.disableThemeTour = true;
-      this.dynamicWatchers.rtl();
-    });
+    )
+    this.dynamicWatchers.rtl = this.$watch('$vs.rtl', () => {
+      this.disableThemeTour = true
+      this.dynamicWatchers.rtl()
+    })
 
-    let dir = this.$vs.rtl ? "rtl" : "ltr";
+    let dir = this.$vs.rtl ? 'rtl' : 'ltr'
     // this.document.documentElement.setAttribute("dir", dir)
     // this.window.addEventListener('resize', this.handleWindowResize)
     // this.window.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy() {
-    Object.keys(this.dynamicWatchers).map(i => {
-      this.dynamicWatchers[i]();
-      delete this.dynamicWatchers[i];
-    });
+    Object.keys(this.dynamicWatchers).map((i) => {
+      this.dynamicWatchers[i]()
+      delete this.dynamicWatchers[i]
+    })
   },
   mounted() {
     var isMobile = {
-      Android: function() {
-        return navigator.userAgent.match(/Android/i);
+      Android: function () {
+        return navigator.userAgent.match(/Android/i)
       },
-      BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
+      BlackBerry: function () {
+        return navigator.userAgent.match(/BlackBerry/i)
       },
-      iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+      iOS: function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i)
       },
-      Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
+      Opera: function () {
+        return navigator.userAgent.match(/Opera Mini/i)
       },
-      Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i);
+      Windows: function () {
+        return navigator.userAgent.match(/IEMobile/i)
       },
-      any: function() {
+      any: function () {
         return (
           isMobile.Android() ||
           isMobile.BlackBerry() ||
           isMobile.iOS() ||
           isMobile.Opera() ||
           isMobile.Windows()
-        );
-      }
-    };
+        )
+      },
+    }
     // if (isMobile.any()) alert("Mobile");
     // if (isMobile.iOS()) alert("iOS");
     const isInStandaloneMode = () =>
-      this.window.matchMedia("(display-mode: standalone)").matches ||
-      this.window.navigator.standalone;
-    this.item = isInStandaloneMode;
-    this.media = this.window.matchMedia;
+      this.window.matchMedia('(display-mode: standalone)').matches ||
+      this.window.navigator.standalone
+    this.item = isInStandaloneMode
+    this.media = this.window.matchMedia
     if (isInStandaloneMode()) {
       //  alert("webapp is installed");
     } else {
       //  alert("Webapp is not installed");
-      if (isMobile.iOS()) this.popupActive = true;
+      if (isMobile.iOS()) this.popupActive = true
     }
     if (isMobile.any()) {
-      this.$store.dispatch("app/isMobile", true);
-      this.isMobile = true;
+      this.$store.dispatch('app/isMobile', true)
+      this.isMobile = true
     }
 
-    this.toggleClassInBody(themeConfig.theme);
-    this.$store.commit("UPDATE_WINDOW_WIDTH", this.window.innerWidth);
-    let vh = this.window.innerHeight * 0.01;
+    this.toggleClassInBody(themeConfig.theme)
+    this.$store.commit('UPDATE_WINDOW_WIDTH', this.window.innerWidth)
+    let vh = this.window.innerHeight * 0.01
     // Then we set the value in the --vh custom property to the root of the document
-    this.document.documentElement.style.setProperty("--vh", `${vh}px`);
+    this.document.documentElement.style.setProperty('--vh', `${vh}px`)
   },
   destroyed() {
     // this.window.removeEventListener('resize', this.handleWindowResize)
     // this.window.removeEventListener('scroll', this.handleScroll)
-  }
-};
+  },
+}
 </script>

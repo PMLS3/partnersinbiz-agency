@@ -7,14 +7,14 @@
 
 <template>
   <div
-    class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center"
+    class="flex items-center justify-center w-full h-screen bg-img vx-row no-gutter"
     id="page-login"
   >
-    <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
+    <div class="m-4 vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0">
       <vx-card>
         <div slot="no-body" class="full-page-bg-color">
-          <div class="vx-row no-gutter justify-center items-center">
-            <div class="vx-col hidden lg:block lg:w-1/2">
+          <div class="items-center justify-center vx-row no-gutter">
+            <div class="hidden vx-col lg:block lg:w-1/2">
               <img
                 src="@/assets/images/pages/login.png"
                 alt="login"
@@ -24,7 +24,7 @@
 
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg">
               <div class="px-8 pt-8 login-tabs-container">
-                <div class="vx-card__title mb-4">
+                <div class="mb-4 vx-card__title">
                   <h4 class="mb-4">Login</h4>
                   <p>Welcome back, please login to your account.</p>
                 </div>
@@ -35,16 +35,10 @@
                   </vs-tab> -->
 
                   <vs-tab label="Email" v-if="authorization_type.email">
-                    <client-only>
-                      <login-firebase
-                        :authorization_type="authorization_type"
-                      ></login-firebase>
-                    </client-only>
+                    <LoginFirebase :authorization_type="authorization_type" />
                   </vs-tab>
                   <vs-tab label="Phone" v-if="authorization_type.phone">
-                    <client-only>
-                      <login-phone></login-phone>
-                    </client-only>
+                    <LoginPhone />
                   </vs-tab>
 
                   <!-- <vs-tab label="Auth0">
@@ -61,24 +55,15 @@
 </template>
 
 <script>
-// import LoginJwt from './LoginJWT.vue'
-import LoginFirebase from "./LoginFirebase.vue";
-// import LoginAuth0 from './LoginAuth0.vue'
-import LoginPhone from "./LoginPhone";
 export default {
-  name: "Login",
-  components: {
-    // LoginJwt,
-    LoginFirebase,
-    LoginPhone
-    // LoginAuth0
-  },
+  name: 'Login',
+
   computed: {
     authorization_type() {
-      return this.$store.state.app.authorization_type;
-    }
-  }
-};
+      return this.$store.state.app.authorization_type
+    },
+  },
+}
 </script>
 
 <style lang="scss">
