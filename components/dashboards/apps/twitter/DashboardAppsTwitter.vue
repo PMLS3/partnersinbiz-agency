@@ -1,16 +1,15 @@
 <template>
   <div class="mt-24">
-    <vs-tabs :color="colorx" position="left">
-      <vs-tab label="Dashboard" icon="dashboard" @click="colorx = '#8B0000'">
+    <vs-tabs alignment="fixed">
+      <vs-tab label="Dashboard" icon="dashboard">
         <TweetDashboard />
       </vs-tab>
-      <vs-tab label="Timeline" icon="theaters" @click="colorx = '#FFA500'">
-        <vs-tabs :color="colorx" position="left">
+      <vs-tab label="Timeline" icon="theaters">
+        <vs-tabs>
           <vs-tab
             label="Home"
             icon="home"
-            @click="colorx = '#8B0000'"
-            class="grid grid-cols-3 gap-4"
+            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
           >
             <vs-button
               radius
@@ -26,8 +25,7 @@
           <vs-tab
             label="History"
             icon="history"
-            @click="colorx = '#8B0000'"
-            class="grid grid-cols-3 gap-4"
+            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
           >
             <vs-button
               radius
@@ -44,8 +42,7 @@
           <vs-tab
             label="Mentions"
             icon="alternate_email"
-            @click="colorx = '#8B0000'"
-            class="grid grid-cols-3 gap-4"
+            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
           >
             <vs-button
               radius
@@ -63,34 +60,30 @@
           <CardTwitter :item="item" class="mt-3" />
         </div> -->
       </vs-tab>
-      <vs-tab label="Schedule" icon="schedule" @click="colorx = '#551A8B'">
+      <vs-tab label="Schedule" icon="schedule">
         <TweetSchedular />
       </vs-tab>
-      <vs-tab label="Recurring" icon="update" @click="colorx = '#0000FF'">
-        <TweetRecurring />
+      <vs-tab label="Drafts" icon="history_edu">
+        <TweetDrafts />
       </vs-tab>
       <!-- <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
         <TweetAutoLike />
       </vs-tab> -->
-      <vs-tab label="Auto Pilot" icon="repeat" @click="colorx = '#0000FF'">
+      <vs-tab label="Auto Pilot" icon="repeat">
         <TweetAuto />
       </vs-tab>
-      <vs-tab label="Manual" icon="business_center" @click="colorx = '#0000FF'">
+      <vs-tab label="Manual" icon="business_center">
         <TweetManual />
       </vs-tab>
-      <vs-tab label="Golden" icon="toll" @click="colorx = '#0000FF'">
+      <vs-tab label="Golden" icon="toll">
         <TweetGold />
       </vs-tab>
 
-      <vs-tab
-        label="Configuration"
-        icon="account_box"
-        @click="colorx = '#0000FF'"
-      >
-        <TweetConfig />
+      <vs-tab label="Configuration" icon="account_box">
+        <TweetConfig :entity="entity" />
       </vs-tab>
 
-      <vs-tab label="Pipeline" icon="all_out" @click="colorx = '#0000FF'">
+      <vs-tab label="Pipeline" icon="all_out">
         <KanbanTodo type="twitter" />
       </vs-tab>
     </vs-tabs>
@@ -101,7 +94,6 @@
 export default {
   components: {},
   data: () => ({
-    colorx: '#8B0000',
     active: true,
     notExpand: false,
     reduce: true,
@@ -122,6 +114,9 @@ export default {
     },
     config() {
       return this.$store.state.config.twitter
+    },
+    entity() {
+      return this.$store.state.app.entity
     },
   },
 
@@ -148,21 +143,15 @@ export default {
       this.mentions = ip
     },
   },
-  created() {
+  mounted() {
     let vm = this
-    this.$fireStore
-      .collection('business')
-      .doc('users')
-      .collection(this.business.b_uid)
-      .doc(this.user.uid)
-      .collection('config')
-      .doc('twitter')
-      .onSnapshot(function (doc) {
-        vm.$store.commit('config/TWITTER_UPDATE', doc.data())
-        vm.fetchTimeline()
-        vm.fetchHomeTimeline()
-        vm.fetchMentions()
-      })
+    setTimeout(() => {
+      if (vm.config) {
+        this.fetchTimeline()
+        this.fetchHomeTimeline()
+        this.fetchMentions()
+      }
+    }, 1000)
   },
 }
 </script>

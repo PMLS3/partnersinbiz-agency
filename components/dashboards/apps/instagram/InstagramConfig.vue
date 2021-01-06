@@ -1,9 +1,11 @@
 <template>
   <vs-card>
     <h1 v-if="entity == 'business'" class="text-2xl text-gray-600">
-      Twitter: {{ business.b_name }}
+      Instagram: {{ business.b_name }}
     </h1>
-    <h1 v-else class="text-2xl text-gray-600">Twitter: {{ user.disp_name }}</h1>
+    <h1 v-else class="text-2xl text-gray-600">
+      Instagram: {{ user.disp_name }}
+    </h1>
 
     <h6>@{{ handle }}</h6>
 
@@ -39,8 +41,6 @@
     <vs-button @click="ConfigSet" class="mt-8" v-if="config"
       >View current</vs-button
     >
-
-    <HowToTwitterConfig />
   </vs-card>
 </template>
 
@@ -69,33 +69,6 @@ export default {
     config() {
       return this.$store.state.config.twitter
     },
-  },
-  created() {
-    let vm = this
-    let payload = {}
-    if (this.entity == 'business') {
-      let branch = 'HQ'
-
-      this.$fireStore
-        .collection('business')
-        .doc('config')
-        .collection('twitter')
-        .doc(branch)
-        .onSnapshot(function (doc) {
-          vm.$store.commit('config/TWITTER_UPDATE', doc.data())
-        })
-    } else {
-      this.$fireStore
-        .collection('business')
-        .doc('users')
-        .collection(this.business.b_uid)
-        .doc(this.user.uid)
-        .collection('config')
-        .doc('twitter')
-        .onSnapshot(function (doc) {
-          vm.$store.commit('config/TWITTER_UPDATE_USER', doc.data())
-        })
-    }
   },
   methods: {
     ConfigSet() {

@@ -28,20 +28,42 @@
       </p>
     </div>
     <div class="flex items-center">
-      <vs-icon
-        icon="thumb_up"
-        class="mr-2"
-        :color="item.favorited ? blue : gray"
-        @click="likeTweet()"
-      ></vs-icon>
-      {{ item.favorite_count }}
-      <vs-icon
-        icon="repeat"
-        class="ml-4 mr-2"
-        :color="item.retweeted ? green : gray"
-        @click="retweetTweet()"
-      ></vs-icon
-      >{{ item.retweet_count }}
+      <vs-tooltip text="Like Tweet" class="flex">
+        <!-- <vs-icon
+          icon="thumb_up"
+          class="mr-2"
+          :color="item.favorited ? blue : gray"
+          @click="likeTweet()"
+        ></vs-icon> -->
+        <vs-button
+          radius
+          :color="item.favorited ? blue : gray"
+          type="flat"
+          class="mr-2"
+          icon="thumb_up"
+          @click="likeTweet()"
+        ></vs-button>
+        <p class="text-blue-600">{{ item.favorite_count }}</p>
+      </vs-tooltip>
+      <vs-tooltip text="Retweet" class="flex flex-item-center">
+        <!-- <vs-icon
+          icon="repeat"
+          class="ml-4 mr-2"
+          :color="item.retweeted ? green : gray"
+          @click="retweetTweet()"
+        ></vs-icon
+        >{{ item.retweet_count }} -->
+
+        <vs-button
+          radius
+          :color="item.retweeted ? green : gray"
+          type="flat"
+          class="ml-4 mr-2"
+          icon="repeat"
+          @click="retweetTweet()"
+        ></vs-button>
+        <p class="text-blue-600">{{ item.retweet_count }}</p>
+      </vs-tooltip>
     </div>
 
     <div class="w-full">
@@ -49,7 +71,55 @@
         {{ item.created_at.split('+')[0] }}
       </p>
     </div>
-    <vs-button @click="followUser()">Follow</vs-button>
+    <!-- <vs-button @click="followUser()">Follow</vs-button> -->
+    <vs-tooltip text="Follow Account" class="right-0 float-right -mt-8">
+      <vs-button
+        radius
+        color="dark"
+        type="line"
+        icon="directions_walk"
+        @click="followUser()"
+      ></vs-button>
+    </vs-tooltip>
+    <vs-tooltip text="Save Image to File" class="right-0 float-right -mt-8">
+      <vs-button
+        radius
+        color="dark"
+        type="line"
+        icon="add_photo_alternate"
+        @click="saveImage()"
+      ></vs-button>
+    </vs-tooltip>
+    <vs-tooltip text="Save Tweet to Drafts" class="right-0 float-right -mt-8">
+      <vs-button
+        radius
+        color="dark"
+        type="line"
+        icon="save"
+        class="right-0 float-right -mt-8"
+        @click="savePost()"
+      ></vs-button>
+    </vs-tooltip>
+    <vs-tooltip text="Schedule Tweet" class="right-0 float-right -mt-8">
+      <vs-button
+        radius
+        color="dark"
+        type="line"
+        icon="date_range"
+        class="right-0 float-right -mt-8"
+        @click="activePromptAddEvent = true"
+      ></vs-button>
+    </vs-tooltip>
+    <vs-tooltip text="Use this Tweet" class="right-0 float-right -mt-8">
+      <vs-button
+        radius
+        color="dark"
+        type="line"
+        icon="post_add"
+        class="right-0 float-right -mt-8"
+        @click="activePromptAddEvent2 = true"
+      ></vs-button>
+    </vs-tooltip>
   </div>
 </template>
 
@@ -77,6 +147,13 @@ export default {
     config() {
       return this.$store.state.config.twitter
     },
+  },
+  created() {
+    // var str = this.item.text
+    // var urlRE = new RegExp(
+    //   '([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?([^ ])+'
+    // )
+    // str.match(urlRE)
   },
   methods: {
     followUser() {
@@ -109,6 +186,7 @@ export default {
         })
         .then(
           (response) => {
+            vm.item.favorited = true
             vm.successUpload('LIKED')
           },
           (error) => {
@@ -127,6 +205,7 @@ export default {
         })
         .then(
           (response) => {
+            vm.item.retweeted = true
             vm.successUpload('RETWEETED')
           },
           (error) => {

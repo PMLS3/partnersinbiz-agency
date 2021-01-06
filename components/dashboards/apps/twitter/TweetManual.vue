@@ -1,91 +1,96 @@
 <template>
-  <vs-tabs position="left">
-    <vs-tab label="Tweet" icon="home" class="grid grid-cols-3 gap-4">
-      <vs-card>
-        <vs-textarea
-          class="w-full"
-          counter="280"
-          label="Counter: 280"
-          :counter-danger.sync="counterDanger"
-          v-model="message"
-        />
-
-        <vs-button @click="TweetSend" class="mt-4">Send Tweet</vs-button>
-      </vs-card>
-    </vs-tab>
-    <vs-tab label="Seach" icon="home" class="grid grid-cols-3 gap-4">
-      <vs-card>
-        <vs-input
-          name="search"
-          class="w-full mt-12"
-          label-placeholder="Keywords that you want to search for"
-          v-model="search"
-        ></vs-input>
-        <small class="w-full mt-2"
-          >Example: '#Nodejs, #Angular, #Reactjs, #ionicframework, #ReactNative,
-          #es6'</small
-        >
-        <div class="my-4">
-          <v-select
-            label="Result type"
-            v-model="results_type"
-            :options="results_types"
+  <div>
+    <vs-tabs position="left">
+      <vs-tab label="Tweet" icon="business_center">
+        <vs-card>
+          <vs-textarea
+            class="w-full"
+            counter="280"
+            label="Counter: 280"
+            :counter-danger.sync="counterDanger"
+            v-model="message"
           />
+
+          <UploadImage @input="input" />
+
+          <vs-button @click="TweetSend" class="mt-4">Send Tweet</vs-button>
+        </vs-card>
+      </vs-tab>
+      <vs-tab label="Seach Hashtags" icon="business_center">
+        <vs-card>
+          <vs-input
+            name="search"
+            class="w-full mt-12"
+            label-placeholder="Keywords that you want to search for"
+            v-model="search"
+          ></vs-input>
           <small class="w-full mt-2"
-            >* mixed : Include both popular and real time results in the
-            response.</small
+            >Example: '#Nodejs, #Angular, #Reactjs, #ionicframework,
+            #ReactNative, #es6'</small
           >
-          <small class="w-full mt-2"
-            >* recent : return only the most recent results in the
-            response</small
+          <div class="my-4">
+            <v-select
+              label="Result type"
+              v-model="results_type"
+              :options="results_types"
+            />
+            <small class="w-full mt-2"
+              >* mixed : Include both popular and real time results in the
+              response.</small
+            >
+            <small class="w-full mt-2"
+              >* recent : return only the most recent results in the
+              response</small
+            >
+            <small class="w-full mt-2"
+              >* popular : return only the most popular results in the
+              response.</small
+            >
+          </div>
+
+          <div class="my-4">
+            <small class="date-label">Tweet Date (since)</small>
+            <flat-pickr
+              :config="configdateTimePicker"
+              v-model="date"
+              placeholder="Since"
+              class="w-full p-2"
+            />
+          </div>
+          <br />
+
+          <vs-button @click="SearchTweetSend" class="mt-4"
+            >Search for Tweet</vs-button
           >
-          <small class="w-full mt-2"
-            >* popular : return only the most popular results in the
-            response.</small
-          >
+        </vs-card>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div v-for="item in results.statuses" :key="item.id">
+            <CardTwitter :item="item" class="mt-3" />
+          </div>
         </div>
+      </vs-tab>
+      <vs-tab label="Search Users Followers" icon="business_center">
+        <vs-card>
+          <vs-input
+            name="search"
+            class="w-full mt-12"
+            label-placeholder="User handle"
+            v-model="screen_name"
+          ></vs-input>
+          <small class="w-full mt-2">Example: 'standerpm'</small>
 
-        <div class="my-4">
-          <small class="date-label">Tweet Date (since)</small>
-          <flat-pickr
-            :config="configdateTimePicker"
-            v-model="date"
-            placeholder="Since"
-            class="w-full p-2"
-          />
+          <vs-button @click="SearchUserFollowersSend" class="mt-4"
+            >Search Users Followers</vs-button
+          >
+        </vs-card>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div v-for="item in resultsUsers.statuses" :key="item.id">
+            <CardTwitter :item="item" class="mt-3" />
+          </div>
         </div>
-        <br />
-
-        <vs-button @click="SearchTweetSend" class="mt-4"
-          >Search for Tweet</vs-button
-        >
-      </vs-card>
-
-      <vs-card>
-        <vs-input
-          name="search"
-          class="w-full mt-12"
-          label-placeholder="User handle"
-          v-model="screen_name"
-        ></vs-input>
-        <small class="w-full mt-2">Example: 'standerpm'</small>
-
-        <vs-button @click="SearchUserFollowersSend" class="mt-4"
-          >Search Users Followers</vs-button
-        >
-      </vs-card>
-
-      <div v-for="item in results.statuses" :key="item.id">
-        <CardTwitter :item="item" class="mt-3" />
-      </div>
-    </vs-tab>
-    <vs-tab label="Contributors">
-      <div></div>
-    </vs-tab>
-    <vs-tab label="Ecosystem">
-      <div></div>
-    </vs-tab>
-  </vs-tabs>
+      </vs-tab>
+    </vs-tabs>
+  </div>
 </template>
 
 <script>
@@ -118,9 +123,10 @@ export default {
         dateFormat: 'Y-m-d',
       },
       results: [],
+      resultsUsers: [],
       results_type: 'mixed',
       results_types: ['mixed', 'recent', 'popular'],
-
+      data: [],
       date: '',
       search: '',
       message: '',
@@ -170,13 +176,25 @@ export default {
     },
   },
   methods: {
+    input(data) {
+      console.log('data', data)
+      this.images = data
+    },
     TweetSend() {
       console.log('date', this.date)
       let vm = this
+      let message = this.message
+      if (this.images) {
+        for (let i = 0; i < this.images.length; i++) {
+          message = message + ' ' + this.images[i] + ' '
+        }
+      }
+      console.log('image', message)
+
       this.$axios
         .$post('/api/twitter/tweet', {
           config: this.config,
-          message: this.message,
+          message: message,
         })
         .then(
           (response) => {
@@ -208,7 +226,7 @@ export default {
         .then(vm.successUpload('searching...'))
 
       this.twitterUserFollowersSearch = ip
-      this.results = []
+      this.resultsUsers = []
     },
     async SearchTweetSend() {
       let vm = this

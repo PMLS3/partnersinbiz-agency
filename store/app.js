@@ -13,6 +13,7 @@ export const state = () => ({
     backgroundColor: '#ffffff',
   },
   feature: '',
+  entity: 'business',
 })
 
 export const mutations = {

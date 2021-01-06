@@ -20,13 +20,6 @@
         </vs-card>
       </div>
     </vs-tab>
-    <vs-tab icon="face" :label="!isSmallerScreen ? 'Employee' : ''">
-      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
-        <vs-card class="py-4">
-          <DashboardBusinessSettingsEmployeeSettings :data="business" />
-        </vs-card>
-      </div>
-    </vs-tab>
     <vs-tab icon="supervisor_account" :label="!isSmallerScreen ? 'Groups' : ''">
       <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
         <vs-card class="py-4">
@@ -34,6 +27,14 @@
         </vs-card>
       </div>
     </vs-tab>
+    <vs-tab icon="face" :label="!isSmallerScreen ? 'Employee' : ''">
+      <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4">
+          <DashboardBusinessSettingsEmployeeSettings :data="business" />
+        </vs-card>
+      </div>
+    </vs-tab>
+
     <vs-tab icon="view_module" :label="!isSmallerScreen ? 'Social' : ''">
       <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
         <vs-card class="py-4">
