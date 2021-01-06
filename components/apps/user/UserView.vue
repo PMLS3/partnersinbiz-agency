@@ -40,7 +40,7 @@
             <table>
               <tr>
                 <td class="font-semibold">Username</td>
-                <td>{{ user_data.username }}</td>
+                <td>{{ user_data.disp_name }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Name</td>

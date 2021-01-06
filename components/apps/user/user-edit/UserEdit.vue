@@ -25,7 +25,11 @@
 
     <vx-card v-if="user_data" class="mt-28">
       <div slot="no-body" class="px-6 pt-6 tabs-container">
-        <vs-tabs v-model="activeTab" class="tab-action-btn-fill-conatiner">
+        <vs-tabs
+          :position="$device.isMobile ? 'top' : 'left'"
+          class="mt-24 tabs-shadow-none"
+          id="profile-tabs"
+        >
           <vs-tab label="Account" icon-pack="feather" icon="icon-user">
             <div class="tab-text">
               <user-edit-tab-account class="mt-4" :data="user_data" />

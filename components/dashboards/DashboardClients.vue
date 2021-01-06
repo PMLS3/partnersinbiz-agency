@@ -155,6 +155,7 @@ export default {
             if (change.type === 'added') {
               let doc = change.doc
               let data = doc.data()
+              data.id = doc.id
               clients.value.push(data)
             }
           })

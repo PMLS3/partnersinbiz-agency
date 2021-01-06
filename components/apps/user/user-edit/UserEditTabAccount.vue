@@ -246,7 +246,36 @@ export default {
     },
     save_changes() {
       console.log('this', this.data_local)
+      let vm = this
+      let payload = this.data_local
+      this.$fireStore
+        .collection('business')
+        .doc('users')
+        .collection(this.business.b_uid)
+        .doc(this.data_local.id)
+        .update(payload)
+        .then(() => {
+          vm.successUpload()
+        })
+        .catch((err) => {
+          vm.unsuccessUpload(err)
+        })
     },
+    successUpload() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Successful upload',
+        color: 'green',
+      })
+    },
+    unsuccessUpload(err) {
+      this.$vs.notify({
+        title: 'Error',
+        text: `${err}`,
+        color: 'red',
+      })
+    },
+
     reset_data() {
       this.data_local = JSON.parse(JSON.stringify(this.data))
     },
