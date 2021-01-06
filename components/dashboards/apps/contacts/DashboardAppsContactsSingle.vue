@@ -55,7 +55,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-           <CardContacts :contact="item" />
+          <CardContacts :contact="item" />
         </div>
       </div>
     </client-only>
@@ -65,9 +65,7 @@
 <script>
 export default {
   name: 'ContactsSingle',
-  components: {
-   
-  },
+  components: {},
   data() {
     return {
       item: { item: 'ContactsSingle', title: 'Load Images', type: 'Single' },
@@ -182,8 +180,8 @@ export default {
       let vm = this
       let ref = this.$fireStore
         .collection('apps')
-        .doc('apps')
-        .collection(this.item.item)
+        .doc(this.item.item)
+        .collection('app')
         .where('id', '==', this.$route.params.id)
 
       ref.onSnapshot((snapshot) => {

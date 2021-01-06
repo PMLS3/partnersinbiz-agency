@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1>Hello</h1>
-    <p>{{ feature.feature }}</p>
-    <component :is="feature.feature" :id="$route.params.id" />
+    <component :is="feature" :id="$route.params.id" />
   </div>
 </template>
 
@@ -10,15 +8,22 @@
 import myMiddleware from '@/middleware/index'
 import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 import station from '@/components/apps/station-player/StationReceiver.vue'
+import dashboardAppsEvents from '@/components/dashboards/apps/events/DashboardAppsEventsSingle.vue'
 
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroardcastStation.vue'
 export default {
   layout: myMiddleware,
-  components: { dashboardAppsBroadcast, station },
+  components: { dashboardAppsBroadcast, station, dashboardAppsEvents },
   setup() {
-    const { store } = useContext()
-
-    const feature = computed(() => store.state.app.feature)
+    const { store, route } = useContext()
+    const feature = ref({})
+    onMounted(() => {
+      console.log('mounted!', route)
+      console.log('mounted!', route.value.path)
+      console.log('mounted!', route.value.path.split('/'))
+      feature.value = route.value.path.split('/')[1]
+    })
+    // const feature = computed(() => store.state.app.feature)
 
     return { feature }
   },

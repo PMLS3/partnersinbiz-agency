@@ -156,8 +156,8 @@ export default {
       let vm = this
       let ref = this.$fireStore
         .collection('apps')
-        .doc('apps')
-        .collection(this.item.item)
+        .doc(this.item.item)
+        .collection('app')
         .where('b_uid', '==', this.business.b_uid)
 
       ref.onSnapshot((snapshot) => {

@@ -14,6 +14,8 @@ export const state = () => ({
   },
   feature: '',
   entity: 'business',
+  teaching: {},
+  categories: [],
 })
 
 export const mutations = {
@@ -22,6 +24,12 @@ export const mutations = {
   },
   SET_FEATURE(state, payload) {
     state.feature = payload
+  },
+  CATEGORIES_SET(state, payload) {
+    state.categories = payload
+  },
+  SET_TEACHING(state, payload) {
+    state.teaching = payload
   },
 }
 

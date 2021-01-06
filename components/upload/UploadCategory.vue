@@ -76,9 +76,7 @@ export default {
         form.reseller = [vm.reseller, ...vm.sub_reseller]
         vm.$fireStore
           .collection('apps')
-          .doc('apps')
-          .collection(vm.item.item)
-          .doc('category')
+          .doc(vm.item.item)
           .collection('category')
           .add(form)
           .then(() => {
@@ -101,9 +99,7 @@ export default {
           form.id = vm.$route.params.id
           vm.$fireStore
             .collection('apps')
-            .doc('apps')
-            .collection(vm.item.item)
-            .doc('category')
+            .doc(vm.item.item)
             .collection('category')
             .add(form)
             .then(() => {
@@ -124,9 +120,7 @@ export default {
         form.id = vm.$route.params.id
         vm.$fireStore
           .collection('apps')
-          .doc('apps')
-          .collection(vm.item.item)
-          .doc('category')
+          .doc(vm.item.item)
           .collection('category')
           .add(form)
           .then(() => {

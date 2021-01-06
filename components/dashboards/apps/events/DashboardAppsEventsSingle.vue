@@ -74,9 +74,10 @@ export default {
   },
   data() {
     return {
-      item: { item: 'EventsSingle', title: 'Load Images', type: 'Single' },
+      item: { item: 'EventsSingle', title: 'Load Events', type: 'Single' },
       knowledgeBaseSearchQuery: '',
       kb: [],
+      categories: [],
     }
   },
   computed: {
@@ -92,9 +93,9 @@ export default {
     sub_reseller() {
       return this.$store.state.business.sub_sellers
     },
-    categories() {
-      return this.$store.state.app.categories
-    },
+    // categories() {
+    //   return this.$store.state.app.categories
+    // },
     cats() {
       let cats = []
       for (let i = 0; i < this.categories.length; i++) {
@@ -182,11 +183,12 @@ export default {
   },
   created() {
     if (process.client) {
+      console.log('item', this.item.item)
       let vm = this
       let ref = this.$fireStore
         .collection('apps')
-        .doc('apps')
-        .collection(this.item.item)
+        .doc(this.item.item)
+        .collection('app')
         .where('id', '==', this.$route.params.id)
 
       ref.onSnapshot((snapshot) => {
@@ -207,6 +209,28 @@ export default {
           }
         })
       })
+
+      let catRef = this.$fireStore
+        .collection('apps')
+        .doc('Events')
+        .collection('category')
+        .where('b_uid', '==', this.business.b_uid)
+
+      catRef.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            let doc = change.doc
+            let data = doc.data()
+            data.id = doc.id
+            vm.categories.push({
+              id: doc.id,
+              title: doc.data().title,
+              color: doc.data().color,
+            })
+          }
+        })
+      })
+      vm.$store.commit('app/CATEGORIES_SET', vm.categories)
     }
   },
 }

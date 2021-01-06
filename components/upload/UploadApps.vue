@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row ">
+  <div class="flex flex-row">
     <vs-button icon="amp_stories"></vs-button>
     <vs-button icon="storage"></vs-button>
 
@@ -13,7 +13,7 @@
       class="holamundo"
       :title="item.title"
       :active.sync="popupActivo"
-      style="z-index:300; margin-top: 5%; "
+      style="z-index: 300; margin-top: 5%"
     >
       <div class="px-6 pb-12">
         <UiMiscAccessControl v-if="control" />
@@ -29,21 +29,21 @@ import moment from 'moment'
 import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 
 export default {
-  name: 'apps-cat',
+  name: 'UploadApps',
   props: {
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     schema: {
       type: Array,
-      required: true
+      required: true,
     },
 
     control: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   setup(props) {
     let vm = this
@@ -59,9 +59,9 @@ export default {
     let categories = computed(() => store.state.app.categories)
     let color = computed(() => {
       let color
-      for (let i = 0; i < this.categories.length; i++) {
-        if (this.categories[i].title == vm.formData.category) {
-          color = this.categories[i].color
+      for (let i = 0; i < categories.value.length; i++) {
+        if (categories.value[i].title == formData.value.category) {
+          color = categories.value[i].color
         }
       }
       return color
@@ -70,11 +70,14 @@ export default {
     function addForm() {
       console.log('ITEM', props.item)
       console.log('itme', props.item.item)
-      console.log('itme', props.item.type)
+      // console.log('itme', props.item.type)
 
-      console.log('itme', formData)
+      console.log('FormDAta', formData)
 
-      if (props.item.type == 'Category') {
+      let type = props.item.type
+      console.log('type', type)
+
+      if (type == 'Category') {
         let form = formData.value
         form.i_type = props.item.item
         form.date = moment().format('DD-MM-YYYY')
@@ -83,12 +86,14 @@ export default {
         form.b_uid = business.value.b_uid
         form.reseller = [reseller.value, ...sub_reseller.value]
         $fireStore
-          .collection(props.item.item)
+          .collection('apps')
+          .doc(props.item.item)
+          .collection('app')
           .add(form)
           .then(() => {
             successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             unsuccessUpload(err)
           })
       } else if (props.item.item == 'Images') {
@@ -102,15 +107,16 @@ export default {
           form.u_uid = user.value.uid
           form.b_uid = business.value.b_uid
           form.reseller = [reseller.value, ...sub_reseller.value]
-          form.id = route.params.id
+          form.id = route.value.params.id
           $fireStore
-
-            .collection(props.item.item)
+            .collection('apps')
+            .doc(props.item.item)
+            .collection('app')
             .add(form)
             .then(() => {
               vm.successUpload()
             })
-            .catch(err => {
+            .catch((err) => {
               vm.unsuccessUpload(err)
             })
         }
@@ -128,22 +134,28 @@ export default {
           form.u_uid = user.value.uid
           form.b_uid = business.value.b_uid
           form.reseller = [reseller.value, ...sub_reseller.value]
-          form.id = route.params.id
+          form.id = route.value.params.id
           $fireStore
-
-            .collection(item.item)
+            .collection('apps')
+            .doc(props.item.item)
+            .collection('app')
             .add(form)
             .then(() => {
               successUpload()
             })
-            .catch(err => {
+            .catch((err) => {
               unsuccessUpload(err)
             })
         }
       } else if (
-        props.item.type == 'BlogSingle' ||
-        item.type == 'EventsSingle'
+        props.item.item == 'BlogSingle' ||
+        props.item.item == 'EventsSingle'
       ) {
+        console.log('Route', route)
+
+        //TODO: check if date is added otherwise use moment date
+        //TODO: check if address is placed
+
         let form = formData.value
         form.color = color.value
         form.i_type = props.item.item
@@ -152,18 +164,25 @@ export default {
         form.u_uid = user.value.uid
         form.b_uid = business.value.b_uid
         form.reseller = [reseller.value, ...sub_reseller.value]
-        form.id = $route.params.id
-        $fireStore
+        form.id = route.value.params.id
 
-          .collection(props.item.item)
+        console.log('Form: ' + form)
+
+        $fireStore
+          .collection('apps')
+          .doc(props.item.item)
+          .collection('app')
           .add(form)
           .then(() => {
             successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
+            console.log(err)
+
             unsuccessUpload(err)
           })
       } else if (props.item.type == 'Single') {
+        console.log('SINGLE')
         let form = formData.value
         form.i_type = props.item.item
         form.date = moment().format('DD-MM-YYYY')
@@ -171,16 +190,19 @@ export default {
         form.u_uid = user.value.uid
         form.b_uid = business.value.b_uid
         form.reseller = [reseller.value, ...sub_reseller.value]
-        form.id = $route.params.id
+        form.id = route.value.params.id
+
+        console.log('Form: ' + form)
         $fireStore
           .collection('apps')
-          .doc('apps')
-          .collection(props.item.item)
+          .doc(props.item.item)
+          .collection('app')
           .add(form)
           .then(() => {
             successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
+            console.log(err)
             unsuccessUpload(err)
           })
       }
@@ -189,24 +211,24 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: `${this.item.item} added`,
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     }
     function successDelete() {
       this.$vs.notify({
         color: 'success',
         title: `${this.item.item} Deleted`,
-        text: 'Successful deletion'
+        text: 'Successful deletion',
       })
     }
     function unsuccessUpload(er) {
       this.$vs.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
     }
     return { popupActivo, formData, addForm }
-  }
+  },
 }
 </script>
