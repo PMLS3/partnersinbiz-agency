@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div class="con-example-images">
+      <!-- <div class="con-example-images">
         <vs-images alternating not-border-radius not-margin>
           <vs-image
             v-for="(img, index) in filteredKB"
@@ -47,11 +47,11 @@
             :src="img.url"
           />
         </vs-images>
-      </div>
+      </div> -->
 
-      <div class="vx-row">
+      <div class="p-2 vx-row">
         <div
-          class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="w-full vx-col md:w-1/6 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >

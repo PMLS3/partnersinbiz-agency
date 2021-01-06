@@ -12,6 +12,8 @@ import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/Dashb
 import dashboardAppsAroundUs from '@/components/dashboards/apps/around-us/DashboardAppsAroundUsSingle.vue'
 import dashboardAppsBlog from '@/components/dashboards/apps/blog/DashboardAppsBlogSingle.vue'
 import dashboardAppsContacts from '@/components/dashboards/apps/contacts/DashboardAppsContactsSingle.vue'
+import dashboardAppsEmailPhoto from '@/components/dashboards/apps/email-photo/DashboardAppsEmailPhotoSingle.vue'
+
 import dashboardAppsDirectionView from '@/components/dashboards/apps/direction-view/DashboardAppsDirectionViewSingle.vue'
 import dashboardAppsDocuments from '@/components/dashboards/apps/documents/DashboardAppsDocumentsSingle.vue'
 import dashboardAppsDrawingBoard from '@/components/dashboards/apps/drawing-board/DashboardAppsDrawingBoardSingle.vue'
@@ -44,6 +46,7 @@ export default {
     dashboardAppsDocuments,
     dashboardAppsDrawingBoard,
     dashboardAppsEcommerce,
+    dashboardAppsEmailPhoto,
     dashboardAppsEvents,
     dashboardAppsFanwall,
     dashboardAppsGolf,

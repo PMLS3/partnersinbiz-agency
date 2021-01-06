@@ -132,9 +132,9 @@ export default {
       return [
         {
           title: 'TextInput',
-          placeholder: 'Gallery Name',
+          placeholder: 'Image Name',
           type: 'text',
-          label: 'Gallery Name',
+          label: 'Image Name',
           name: 'title',
         },
 

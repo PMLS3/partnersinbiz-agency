@@ -2,7 +2,7 @@
     File Name: Dashboard.vue.vue
     Description: Knowledge Base Page
     ----------------------------------------------------------------------------------------
-  
+  TODO agents and cost
 ========================================================================================== -->
 
 <template>
@@ -60,7 +60,11 @@ export default {
   components: {},
   data() {
     return {
-      item: { item: 'RealEstateSingle', title: 'Load Images', type: 'Single' },
+      item: {
+        item: 'RealEstateSingle',
+        title: 'Load Property',
+        type: 'Single',
+      },
       knowledgeBaseSearchQuery: '',
       kb: [],
     }

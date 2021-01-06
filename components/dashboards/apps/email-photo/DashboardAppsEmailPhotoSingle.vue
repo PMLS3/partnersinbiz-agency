@@ -130,13 +130,13 @@ export default {
 
     schema() {
       return [
-        {
-          title: 'SelectList',
-          name: 'category',
-          multi: false,
-          label: 'Category',
-          options: myGroups,
-        },
+        // {
+        //   title: 'SelectList',
+        //   name: 'category',
+        //   multi: false,
+        //   label: 'Category',
+        //   options: myGroups,
+        // },
         {
           title: 'TextInput',
           placeholder: 'Title',

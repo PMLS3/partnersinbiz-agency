@@ -2,7 +2,7 @@
     File Name: Dashboard.vue.vue
     Description: Knowledge Base Page
     ----------------------------------------------------------------------------------------
-  
+  TODO: not done yet
 ========================================================================================== -->
 
 <template>
@@ -11,10 +11,10 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
           <h1 class="mb-1 text-white">Info Group</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
+          <h2 class="text-xl leading-tight text-white font-semibild">
             Create different info groups
           </h2>
 
@@ -27,13 +27,15 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex items-center justify-between">
+          <div class="flex items-center justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
             <div>
+              <UploadCategory :schema="schemas" :item="item" />
+
               <UploadApps :schema="schema" :item="item" />
             </div>
           </div>
@@ -42,7 +44,7 @@
 
       <div class="vx-row">
         <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
@@ -118,6 +120,24 @@ export default {
         },
       ]
     },
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
+        },
+      ]
+    },
   },
   created() {
     if (process.client) {
@@ -144,6 +164,28 @@ export default {
           }
         })
       })
+
+      let catRef = this.$fireStore
+        .collection('apps')
+        .doc(vm.item.item)
+        .collection('category')
+        .where('b_uid', '==', this.business.b_uid)
+
+      catRef.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            let doc = change.doc
+            let data = doc.data()
+            data.id = doc.id
+            vm.categories.push({
+              id: doc.id,
+              title: doc.data().title,
+              color: doc.data().color,
+            })
+          }
+        })
+      })
+      vm.$store.commit('app/CATEGORIES_SET', vm.categories)
     }
   },
 }

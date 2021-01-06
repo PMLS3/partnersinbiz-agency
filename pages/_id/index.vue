@@ -54,6 +54,7 @@ import dashboardAppsDrawingBoard from '@/components/dashboards/apps/drawing-boar
 import dashboardAppsDrawingBoardSingle from '@/components/dashboards/apps/drawing-board/DashboardAppsDrawingBoardSingle.vue'
 import dashboardAppsEcommerce from '@/components/dashboards/apps/ecommerce/DashboardAppsEcommerce.vue'
 import dashboardAppsEcommerceSingle from '@/components/dashboards/apps/ecommerce/DashboardAppsEcommerceSingle.vue'
+import dashboardAppsEmailPhoto from '@/components/dashboards/apps/email-photo/DashboardAppsEmailPhoto.vue'
 import dashboardAppsEvents from '@/components/dashboards/apps/events/DashboardAppsEvents.vue'
 import dashboardAppsEventsSingle from '@/components/dashboards/apps/events/DashboardAppsEventsSingle.vue'
 import dashboardAppsFanwall from '@/components/dashboards/apps/fanwall/DashboardAppsFanwall.vue'
@@ -142,6 +143,7 @@ export default {
     dashboardAppsDrawingBoardSingle,
     dashboardAppsEcommerce,
     dashboardAppsEcommerceSingle,
+    dashboardAppsEmailPhoto,
     dashboardAppsEvents,
     dashboardAppsEventsSingle,
     dashboardAppsFanwall,

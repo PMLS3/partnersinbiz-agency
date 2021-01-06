@@ -11,11 +11,11 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
-          <h1 class="mb-1 text-white">Image Gallery</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
-            Create different Gallerys to keep your Images organized
+          <h1 class="mb-1 text-white">Golf Courses</h1>
+          <h2 class="text-xl leading-tight text-white font-semibild">
+            Create different Golf Courses
           </h2>
 
           <vs-input
@@ -27,7 +27,7 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex items-center justify-between">
+          <div class="flex items-center justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
@@ -42,7 +42,7 @@
 
       <div class="vx-row">
         <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
@@ -59,7 +59,7 @@ export default {
   components: {},
   data() {
     return {
-      item: { item: 'Golf', title: 'Load Folders', type: 'Category' },
+      item: { item: 'Golf', title: 'Course', type: 'Category' },
       knowledgeBaseSearchQuery: '',
       kb: [],
     }
@@ -98,7 +98,7 @@ export default {
       return [
         {
           title: 'TextInput',
-          placeholder: 'Name',
+          placeholder: 'Course Name',
           label: 'Name',
           name: 'name',
         },
@@ -109,14 +109,14 @@ export default {
           name: 'website',
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
           placeholder: 'Contact Number',
           name: 'number',
           label: 'Contact Number',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
           placeholder: 'Secondary Contact Number',
           name: 'number2',
           label: 'Secondary Contact Number',
@@ -168,7 +168,7 @@ export default {
             data.id = doc.id
             vm.kb.push({
               id: doc.id,
-              title: doc.data().title,
+              title: doc.data().name,
               description: doc.data().desc,
               graphic: doc.data().url[0],
               url: `${window.location.pathname}/${doc.id}`,

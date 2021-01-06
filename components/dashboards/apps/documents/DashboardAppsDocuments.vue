@@ -98,9 +98,9 @@ export default {
       return [
         {
           title: 'TextInput',
-          placeholder: 'Gallery Name',
+          placeholder: 'Documents Folder',
           type: 'text',
-          label: 'Gallery Name',
+          label: 'Documents Folder',
           name: 'title',
         },
         {

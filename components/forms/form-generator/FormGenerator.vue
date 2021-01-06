@@ -31,7 +31,7 @@ import DateTimePicker from './components/dateTimePicker'
 import TimePicker from './components/timePicker'
 import StarRating from './components/starRating'
 import CheckBox from './components/checkBox'
-import ImageUpload from './components/imageUpload'
+import ImageUpload from '@/components/upload/UploadImage.vue'
 import DocumentUpload from './components/documentUpload'
 import MusicUpload from './components/musicUpload'
 
@@ -61,12 +61,12 @@ export default {
     DatePicker: () =>
       process.client ? import('./components/datePicker') : null,
     DateTimePicker,
-    TimePicker
+    TimePicker,
   },
   props: ['schema', 'value', 'edit', 'valueIn', 'front'],
   data() {
     return {
-      formData: this.value || {}
+      formData: this.value || {},
     }
   },
 
@@ -74,7 +74,7 @@ export default {
     updateForm(fieldName, value) {
       this.$set(this.formData, fieldName, value)
       this.$emit('input', this.formData)
-    }
-  }
+    },
+  },
 }
 </script>

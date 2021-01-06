@@ -111,6 +111,16 @@ export default {
     sub_reseller() {
       return this.$store.state.business.sub_sellers
     },
+    categories() {
+      return this.$store.state.app.categories
+    },
+    cats() {
+      let cats = []
+      for (let i = 0; i < this.categories.length; i++) {
+        cats.push(this.categories[i].title)
+      }
+      return cats
+    },
 
     motivational_quotes() {
       let num = Math.floor(Math.random() * 55)
@@ -135,7 +145,7 @@ export default {
           name: 'category',
           multi: false,
           label: 'Category',
-          options: myGroups,
+          options: this.cats,
         },
         {
           title: 'TextInput',
@@ -187,6 +197,28 @@ export default {
           }
         })
       })
+
+      let catRef = this.$fireStore
+        .collection('apps')
+        .doc(vm.item.item)
+        .collection('category')
+        .where('b_uid', '==', this.business.b_uid)
+
+      catRef.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            let doc = change.doc
+            let data = doc.data()
+            data.id = doc.id
+            vm.categories.push({
+              id: doc.id,
+              title: doc.data().title,
+              color: doc.data().color,
+            })
+          }
+        })
+      })
+      vm.$store.commit('app/CATEGORIES_SET', vm.categories)
     }
   },
 }

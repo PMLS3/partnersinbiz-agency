@@ -98,7 +98,7 @@ export default {
           })
       } else if (props.item.item == 'Images') {
         for (let i = 0; i < formData.value.url.length; i++) {
-          let form = { url: formData.url[i] }
+          let form = { url: formData.value.url[i] }
           form.title = formData.value.title
           form.desc = formData.value.desc
           form.i_type = props.item.item

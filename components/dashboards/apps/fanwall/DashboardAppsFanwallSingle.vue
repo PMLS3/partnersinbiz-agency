@@ -2,7 +2,7 @@
     File Name: Dashboard.vue.vue
     Description: Knowledge Base Page
     ----------------------------------------------------------------------------------------
-  
+  //TODO: show fanwall as is
 ========================================================================================== -->
 
 <template>
@@ -11,10 +11,10 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
           <h1 class="mb-1 text-white">Image Gallery</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
+          <h2 class="text-xl leading-tight text-white font-semibild">
             Create different Gallerys to keep your Images organized
           </h2>
 
@@ -27,7 +27,7 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex justify-between">
+          <div class="flex justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
@@ -41,14 +41,14 @@
       <!-- KNOWLEDGE BASE CARDS  -->
       <!-- <div class="vx-row">
         <div
-          class="vx-col w-1/2 sm:w-1/2 md:w-1/3 xl:1/4"
+          class="w-1/2 vx-col sm:w-1/2 md:w-1/3 xl:1/4"
           v-for="(img, index) in filteredKB"
           :key="index"
         >
           <img
             :src="img.url"
             alt="latest-upload"
-            class="rounded mb-4 user-latest-image responsive"
+            class="mb-4 rounded user-latest-image responsive"
           />
         </div> 
       </div>-->
@@ -69,14 +69,14 @@
       </div> -->
       <!-- <div class="vx-row">
         <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
           <img
             :src="img.url"
             alt="latest-upload"
-            class="rounded mb-4 user-latest-image responsive"
+            class="mb-4 rounded user-latest-image responsive"
           />
         </div>
       </div> -->
