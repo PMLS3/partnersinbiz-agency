@@ -5,7 +5,7 @@
     </h1>
     <h1 v-else class="text-2xl text-gray-600">Twitter: {{ user.disp_name }}</h1>
 
-    <h6>@{{ handle }}</h6>
+    <h6 class="mt-2">@{{ handle }}</h6>
 
     <vs-input
       name="event-name"
@@ -34,13 +34,37 @@
       label-placeholder="Access Token Secret"
       v-model="access_token_secret"
     ></vs-input>
+    <div class="vx-row">
+      <div class="w-full vx-col">
+        <div class="flex flex-wrap items-center justify-end mt-8">
+          <vs-tooltip text="Update or set new details" position="top">
+            <vs-button
+              @click="tweetConfigSet"
+              class="mt-2"
+              icon="save"
+            ></vs-button>
+          </vs-tooltip>
+          <vs-tooltip text="See current details" position="top">
+            <vs-button
+              @click="ConfigSet"
+              class="mt-2 ml-2"
+              v-if="config"
+              icon="visibility"
+            ></vs-button>
+          </vs-tooltip>
+          <vs-tooltip text="How to get config details" position="top">
+            <vs-button
+              @click="howto = !howto"
+              class="mt-2 ml-2"
+              v-if="config"
+              icon="live_help"
+            ></vs-button>
+          </vs-tooltip>
+        </div>
+      </div>
+    </div>
 
-    <vs-button @click="tweetConfigSet" class="mt-8">Submit</vs-button>
-    <vs-button @click="ConfigSet" class="mt-8" v-if="config"
-      >View current</vs-button
-    >
-
-    <HowToTwitterConfig />
+    <HowToTwitterConfig v-if="howto" />
   </vs-card>
 </template>
 
@@ -50,6 +74,7 @@ export default {
   props: {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
+    branch: { type: String, default: '' },
   },
   data() {
     return {
@@ -57,6 +82,7 @@ export default {
       consumer_secret: '',
       access_token: '',
       access_token_secret: '',
+      howto: false,
     }
   },
   computed: {
@@ -74,15 +100,20 @@ export default {
     let vm = this
     let payload = {}
     if (this.entity == 'business') {
-      let branch = 'HQ'
-
       this.$fireStore
         .collection('business')
-        .doc('config')
-        .collection('twitter')
-        .doc(branch)
+        .doc(this.business.b_uid)
         .onSnapshot(function (doc) {
           vm.$store.commit('config/TWITTER_UPDATE', doc.data())
+        })
+    } else if (this.entity == 'branch') {
+      this.$fireStore
+        .collection('business')
+        .doc(this.business.b_uid)
+        .collection('branch')
+        .doc(this.branch)
+        .onSnapshot(function (doc) {
+          vm.$store.commit('config/TWITTER_UPDATE', doc.data().twtConfig)
         })
     } else {
       this.$fireStore
@@ -114,25 +145,49 @@ export default {
         access_token_secret: this.access_token_secret,
         u_uid: this.user.uid,
         b_uid: this.business.b_uid,
-        branch: 'HQ',
+      }
+      let obj = {
+        twtConfig: payload,
       }
 
       if (this.entity == 'business') {
         this.$fireStore
           .collection('business')
-          .doc('config')
-          .collection('twitter')
-          .doc(branch)
-          .set(payload)
-          .then(function () {
-            console.log('Document successfully written!')
-            vm.$store.commit('config/TWITTER_UPDATE', payload)
-
+          .doc(this.business.b_uid)
+          .update(obj)
+          .then(() => {
             vm.successUpload()
           })
           .catch(function (error) {
-            console.error('Error writing document: ', error)
+            console.error('Error adding document: ', error)
+
             vm.unsuccessUpload(error)
+          })
+      } else if (this.entity == 'branch') {
+        this.$fireStore
+          .collection('business')
+          .doc(this.business.b_uid)
+          .collection('branch')
+          .doc(this.branch)
+          .update(obj)
+          .then(() => {
+            vm.successUpload()
+          })
+          .catch(function (error) {
+            console.error('Error adding document: ', error)
+            vm.$fireStore
+              .collection('business')
+              .doc(vm.business.b_uid)
+              .collection('branch')
+              .doc(vm.branch)
+              .set(obj)
+              .then(() => {
+                vm.successUpload()
+              })
+              .catch(function (error) {
+                console.error('Error adding document: ', error)
+                vm.unsuccessUpload(error)
+              })
           })
       } else {
         this.$fireStore

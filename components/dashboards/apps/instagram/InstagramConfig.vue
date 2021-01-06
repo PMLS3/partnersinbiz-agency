@@ -1,11 +1,9 @@
 <template>
   <vs-card>
     <h1 v-if="entity == 'business'" class="text-2xl text-gray-600">
-      Instagram: {{ business.b_name }}
+      Twitter: {{ business.b_name }}
     </h1>
-    <h1 v-else class="text-2xl text-gray-600">
-      Instagram: {{ user.disp_name }}
-    </h1>
+    <h1 v-else class="text-2xl text-gray-600">Twitter: {{ user.disp_name }}</h1>
 
     <h6>@{{ handle }}</h6>
 
@@ -41,6 +39,8 @@
     <vs-button @click="ConfigSet" class="mt-8" v-if="config"
       >View current</vs-button
     >
+
+    <HowToTwitterConfig />
   </vs-card>
 </template>
 
@@ -50,6 +50,7 @@ export default {
   props: {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
+    branch: { type: String, default: '' },
   },
   data() {
     return {
@@ -70,6 +71,38 @@ export default {
       return this.$store.state.config.twitter
     },
   },
+  created() {
+    let vm = this
+    let payload = {}
+    if (this.entity == 'business') {
+      this.$fireStore
+        .collection('business')
+        .doc(this.business.b_uid)
+        .onSnapshot(function (doc) {
+          vm.$store.commit('config/TWITTER_UPDATE', doc.data())
+        })
+    } else if (this.entity == 'branch') {
+      this.$fireStore
+        .collection('business')
+        .doc(this.business.b_uid)
+        .collection('branch')
+        .doc(this.branch)
+        .onSnapshot(function (doc) {
+          vm.$store.commit('config/TWITTER_UPDATE', doc.data().twtConfig)
+        })
+    } else {
+      this.$fireStore
+        .collection('business')
+        .doc('users')
+        .collection(this.business.b_uid)
+        .doc(this.user.uid)
+        .collection('config')
+        .doc('twitter')
+        .onSnapshot(function (doc) {
+          vm.$store.commit('config/TWITTER_UPDATE_USER', doc.data())
+        })
+    }
+  },
   methods: {
     ConfigSet() {
       this.consumer_key = this.config.consumer_key
@@ -87,25 +120,49 @@ export default {
         access_token_secret: this.access_token_secret,
         u_uid: this.user.uid,
         b_uid: this.business.b_uid,
-        branch: 'HQ',
+      }
+      let obj = {
+        twtConfig: payload,
       }
 
       if (this.entity == 'business') {
         this.$fireStore
           .collection('business')
-          .doc('config')
-          .collection('twitter')
-          .doc(branch)
-          .set(payload)
-          .then(function () {
-            console.log('Document successfully written!')
-            vm.$store.commit('config/TWITTER_UPDATE', payload)
-
+          .doc(this.business.b_uid)
+          .update(obj)
+          .then(() => {
             vm.successUpload()
           })
           .catch(function (error) {
-            console.error('Error writing document: ', error)
+            console.error('Error adding document: ', error)
+
             vm.unsuccessUpload(error)
+          })
+      } else if (this.entity == 'branch') {
+        this.$fireStore
+          .collection('business')
+          .doc(this.business.b_uid)
+          .collection('branch')
+          .doc(this.branch)
+          .update(obj)
+          .then(() => {
+            vm.successUpload()
+          })
+          .catch(function (error) {
+            console.error('Error adding document: ', error)
+            vm.$fireStore
+              .collection('business')
+              .doc(vm.business.b_uid)
+              .collection('branch')
+              .doc(vm.branch)
+              .set(obj)
+              .then(() => {
+                vm.successUpload()
+              })
+              .catch(function (error) {
+                console.error('Error adding document: ', error)
+                vm.unsuccessUpload(error)
+              })
           })
       } else {
         this.$fireStore

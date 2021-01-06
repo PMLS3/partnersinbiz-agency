@@ -9,7 +9,7 @@
   <div class="w-full">
     <client-only>
       <div class="flex items-end m-4">
-        <feather-icon icon="UserIcon" class="mr-2" svgClasses="w-5 h-5" />
+        <!-- <feather-icon icon="UserIcon" class="mr-2" svgClasses="w-5 h-5" /> -->
         <span class="font-medium leading-none">Company Social Media</span>
       </div>
       <div id="user-edit-tab-info">
@@ -85,16 +85,94 @@
         <div class="vx-row">
           <div class="w-full vx-col">
             <div class="flex flex-wrap items-center justify-end mt-8">
-              <vs-button class="mt-2 ml-auto" @click="save_changes"
-                >Save Changes</vs-button
+              <vs-tooltip
+                text="Save/Update Social Media Details"
+                position="top"
               >
+                <vs-button class="mt-2 ml-auto" @click="save_changes"
+                  >Save Changes</vs-button
+                >
+              </vs-tooltip>
             </div>
           </div>
         </div>
       </div>
     </client-only>
+    <div class="flex">
+      <!-- <vs-tooltip text="Add Twitter Configuration" position="top">
+            <vs-button
+              class="mt-2"
+              @click="configShow = 'ex'"
+              icon-pack="feather"
+              icon="icon-x"
+              v-if="configShow != 'ex'"
+            ></vs-button>
+          </vs-tooltip> -->
+      <vs-tooltip text="Add Twitter Configuration" position="top">
+        <vs-button
+          class="mt-2 ml-2"
+          @click="configShow = 'twitter'"
+          icon-pack="feather"
+          icon="icon-twitter"
+        ></vs-button>
+      </vs-tooltip>
+      <vs-tooltip text="Add Facebook Configuration" position="top">
+        <vs-button
+          class="mt-2 ml-2"
+          @click="configShow = 'facebook'"
+          icon-pack="feather"
+          icon="icon-facebook"
+        ></vs-button>
+      </vs-tooltip>
+      <vs-tooltip text="Add Instagram Configuration" position="top">
+        <vs-button
+          class="mt-2 ml-2"
+          @click="configShow = 'instagram'"
+          icon-pack="feather"
+          icon="icon-instagram"
+        ></vs-button>
+      </vs-tooltip>
 
-    <div class="flex w-full mt-6">
+      <vs-tooltip text="Add Linkedin Configuration" position="top">
+        <vs-button
+          class="mt-2 ml-2"
+          @click="configShow = 'linkedin'"
+          icon-pack="feather"
+          icon="icon-linkedin"
+        ></vs-button>
+      </vs-tooltip>
+    </div>
+    <div class="flex flex-wrap content-center w-full">
+      <TweetConfig
+        entity="business"
+        :handle="data_local.twt"
+        v-if="configShow == 'twitter'"
+        class="p-8 m-4"
+      />
+
+      <FacebookConfig
+        entity="business"
+        :handle="data_local.fb"
+        v-if="configShow == 'facebook'"
+        class="p-8 m-4"
+      />
+
+      <InstagramConfig
+        entity="business"
+        :handle="data_local.insta"
+        v-if="configShow == 'instagram'"
+        class="p-8 m-4"
+      />
+
+      <LinkedinConfig
+        entity="business"
+        :handle="data_local.link"
+        v-if="configShow == 'linkedin'"
+        class="p-8 m-4"
+      />
+    </div>
+
+    <!-- <div class="flex w-full mt-6">
       <div class="m-4 md:w-1/2">
         <TweetConfig entity="business" :handle="data_local.twt" />
       </div>
@@ -107,7 +185,7 @@
       <div class="md:w-1/2">
         <LinkedinConfig entity="business" :handle="data_local.link" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -123,6 +201,7 @@ export default {
   data() {
     return {
       data_local: JSON.parse(JSON.stringify(this.data)),
+      configShow: '',
     }
   },
   computed: {

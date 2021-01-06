@@ -252,12 +252,12 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
+import vSelect from 'vue-select'
 
 export default {
-  props: ["value", "label", "underLabel", "addingData"],
+  props: ['value', 'label', 'underLabel', 'addingData'],
   components: {
-    vSelect
+    vSelect,
   },
   data() {
     return {
@@ -268,33 +268,33 @@ export default {
       group_views: false,
       group_push_notes: false,
       group_none: false,
-      group_push_notes_selected: "",
-      group_branches_selected: "",
-      group_positions_selected: "",
-      group_views_selected: "",
+      group_push_notes_selected: '',
+      group_branches_selected: '',
+      group_positions_selected: '',
+      group_views_selected: '',
 
       pop_filter: false,
-      popMessage: "",
+      popMessage: '',
 
       add_filter: false,
       add_group_branches: false,
       add_group_positions: false,
       add_group_views: false,
       add_group_push_notes: false,
-      add_group_push_notes_selected: "",
-      add_group_branches_selected: "",
-      add_group_positions_selected: "",
-      add_group_views_selected: "",
+      add_group_push_notes_selected: '',
+      add_group_branches_selected: '',
+      add_group_positions_selected: '',
+      add_group_views_selected: '',
 
       popupActivo4: false,
       configdateTimePicker: {
         enableTime: true,
         enableSeconds: true,
-        noCalendar: true
+        noCalendar: true,
       },
-      Categories: [""],
+      Categories: [''],
       formData: {},
-      htmlForEditor: "",
+      htmlForEditor: '',
       active: false,
       date: null,
 
@@ -303,213 +303,210 @@ export default {
       timeEnd: null,
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
-    };
+        wheelSpeed: 0.6,
+      },
+    }
   },
   // watch: {
 
   // },
   computed: {
     appcode() {
-      return this.$store.getters["appcode"];
+      return this.$store.getters['appcode']
     },
     component() {
-      return this.$store.getters["app/component"];
+      return this.$store.getters['app/component']
     },
     currentComponent() {
-      return this.$store.getters["app/currentcomponent"];
+      return this.$store.getters['app/currentcomponent']
     },
     companyDetails() {
-      return this.$store.getters["app/companyDetails"];
-    }
+      return this.$store.getters['app/companyDetails']
+    },
   },
   watch: {
-    imageUrl: function() {
-      this.imageUrls = this.imageUrl;
+    imageUrl: function () {
+      this.imageUrls = this.imageUrl
     },
-    pop_filter: function() {
-      this.$store.dispatch("form/pop_filter", this.pop_filter);
+    pop_filter: function () {
+      this.$store.dispatch('form/pop_filter', this.pop_filter)
     },
-    popMessage: function() {
-      this.$store.dispatch("form/popMessage", this.popMessage);
+    popMessage: function () {
+      this.$store.dispatch('form/popMessage', this.popMessage)
     },
-    filter: function() {
+    filter: function () {
       if (!this.filter) {
-        (this.group_views = false),
+        ;(this.group_views = false),
           (this.group_positions = false),
           (this.group_branches = false),
-          (this.group_push_notes = false);
+          (this.group_push_notes = false)
       }
-      this.$store.dispatch("form/filter", this.filter);
+      this.$store.dispatch('form/filter', this.filter)
     },
-    group_branches: function() {
+    group_branches: function () {
       if (this.group_branches) {
-        (this.group_positions = false),
+        ;(this.group_positions = false),
           (this.group_views = false),
-          (this.group_push_notes = false);
+          (this.group_push_notes = false)
       }
-      this.$store.dispatch("form/group_branches", this.group_branches);
+      this.$store.dispatch('form/group_branches', this.group_branches)
     },
 
-    group_push_notes: function() {
+    group_push_notes: function () {
       if (this.group_push_notes) {
-        (this.group_positions = false),
+        ;(this.group_positions = false),
           (this.group_views = false),
-          (this.group_branches = false);
+          (this.group_branches = false)
       }
-      this.$store.dispatch("form/group_push_notes", this.group_push_notes);
+      this.$store.dispatch('form/group_push_notes', this.group_push_notes)
     },
     group_push_notes_selected() {
       this.$store.dispatch(
-        "form/group_push_notes_selected",
+        'form/group_push_notes_selected',
         this.group_positions_selected
-      );
+      )
     },
-    group_positions: function() {
+    group_positions: function () {
       if (this.group_positions) {
-        (this.group_branches = false),
+        ;(this.group_branches = false),
           (this.group_views = false),
-          (this.group_push_notes = false);
+          (this.group_push_notes = false)
       }
-      this.$store.dispatch("form/group_positions", this.group_positions);
+      this.$store.dispatch('form/group_positions', this.group_positions)
     },
-    group_views: function() {
+    group_views: function () {
       if (this.group_views) {
-        (this.group_positions = false),
+        ;(this.group_positions = false),
           (this.group_branches = false),
-          (this.group_push_notes = false);
+          (this.group_push_notes = false)
       }
-      this.$store.dispatch("form/group_views", this.group_views);
+      this.$store.dispatch('form/group_views', this.group_views)
     },
-    group_branches_selected: function() {
+    group_branches_selected: function () {
       this.$store.dispatch(
-        "form/group_branches_selected",
+        'form/group_branches_selected',
         this.group_branches_selected
-      );
+      )
     },
-    group_positions_selected: function() {
+    group_positions_selected: function () {
       this.$store.dispatch(
-        "form/group_positions_selected",
+        'form/group_positions_selected',
         this.group_positions_selected
-      );
+      )
     },
-    group_views_selected: function() {
+    group_views_selected: function () {
       this.$store.dispatch(
-        "form/group_views_selected",
+        'form/group_views_selected',
         this.group_views_selected
-      );
+      )
     },
 
-    add_filter: function() {
+    add_filter: function () {
       if (!this.filter) {
-        (this.add_group_views = false),
+        ;(this.add_group_views = false),
           (this.add_group_positions = false),
           (this.add_group_branches = false),
-          (this.add_group_push_notes = false);
+          (this.add_group_push_notes = false)
       }
-      this.$store.dispatch("form/add_filter", this.add_filter);
+      this.$store.dispatch('form/add_filter', this.add_filter)
     },
-    group_none: function() {
+    group_none: function () {
       if (this.group_none) {
-        (this.add_group_views = false),
+        ;(this.add_group_views = false),
           (this.add_group_positions = false),
           (this.add_group_branches = false),
-          (this.add_group_push_notes = false);
+          (this.add_group_push_notes = false)
       }
-      this.$store.dispatch("form/group_none", this.group_none);
+      this.$store.dispatch('form/group_none', this.group_none)
     },
-    add_group_branches: function() {
+    add_group_branches: function () {
       if (this.add_group_branches) {
-        (this.add_group_positions = false),
+        ;(this.add_group_positions = false),
           (this.add_group_views = false),
-          (this.add_group_push_notes = false);
+          (this.add_group_push_notes = false)
       }
       this.$store.add_dispatch(
-        "form/add_group_branches",
+        'form/add_group_branches',
         this.add_group_branches
-      );
+      )
     },
-    add_group_push_notes: function() {
+    add_group_push_notes: function () {
       if (this.add_group_push_notes) {
-        (this.add_group_positions = false),
+        ;(this.add_group_positions = false),
           (this.add_group_views = false),
-          (this.add_group_branches = false);
+          (this.add_group_branches = false)
       }
       this.$store.dispatch(
-        "form/add_group_push_notes",
+        'form/add_group_push_notes',
         this.add_group_push_notes
-      );
+      )
     },
     add_group_push_notes_selected() {
       this.$store.dispatch(
-        "form/add_group_push_notes_selected",
+        'form/add_group_push_notes_selected',
         this.add_group_positions_selected
-      );
+      )
     },
-    add_group_positions: function() {
+    add_group_positions: function () {
       if (this.add_group_positions) {
-        (this.add_group_branches = false),
+        ;(this.add_group_branches = false),
           (this.add_group_views = false),
-          (this.add_group_push_notes = false);
+          (this.add_group_push_notes = false)
       }
-      this.$store.dispatch(
-        "form/add_group_positions",
-        this.add_group_positions
-      );
+      this.$store.dispatch('form/add_group_positions', this.add_group_positions)
     },
-    add_group_views: function() {
+    add_group_views: function () {
       if (this.add_group_views) {
-        (this.add_group_positions = false),
+        ;(this.add_group_positions = false),
           (this.add_group_branches = false),
-          (this.add_group_push_notes = false);
+          (this.add_group_push_notes = false)
       }
-      this.$store.dispatch("form/add_group_views", this.add_group_views);
+      this.$store.dispatch('form/add_group_views', this.add_group_views)
     },
-    add_group_branches_selected: function() {
+    add_group_branches_selected: function () {
       this.$store.dispatch(
-        "form/add_group_branches_selected",
+        'form/add_group_branches_selected',
         this.add_group_branches_selected
-      );
+      )
     },
-    add_group_positions_selected: function() {
+    add_group_positions_selected: function () {
       this.$store.dispatch(
-        "form/add_group_positions_selected",
+        'form/add_group_positions_selected',
         this.add_group_positions_selected
-      );
+      )
     },
-    add_group_views_selected: function() {
+    add_group_views_selected: function () {
       this.$store.dispatch(
-        "form/add_group_views_selected",
+        'form/add_group_views_selected',
         this.add_group_views_selected
-      );
+      )
     },
 
-    date: function() {
-      let payload = this.date;
-      this.$store.dispatch("form/datePick", payload);
+    date: function () {
+      let payload = this.date
+      this.$store.dispatch('form/datePick', payload)
     },
-    time: function() {
-      let payload = this.time;
-      this.$store.dispatch("form/timePick", payload);
+    time: function () {
+      let payload = this.time
+      this.$store.dispatch('form/timePick', payload)
     },
-    dateEnd: function() {
-      let payload = this.dateEnd;
-      this.$store.dispatch("form/datePickEnd", payload);
+    dateEnd: function () {
+      let payload = this.dateEnd
+      this.$store.dispatch('form/datePickEnd', payload)
     },
-    timeEnd: function() {
-      let payload = this.timeEnd;
-      this.$store.dispatch("form/timePickEnd", payload);
+    timeEnd: function () {
+      let payload = this.timeEnd
+      this.$store.dispatch('form/timePickEnd', payload)
     },
-    currentComponent: function() {
+    currentComponent: function () {
       let newCategory = this.$fireStore
         .collection(this.appcode)
         .doc(this.component)
-        .collection("category")
-        .where("currentComponent", "==", this.$route.params.id);
-      newCategory.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
-          let doc = change.doc;
+        .collection('category')
+        .where('currentComponent', '==', this.$route.params.id)
+      newCategory.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          let doc = change.doc
           this.Categories.push({
             id: doc.id,
             component: doc.data().component,
@@ -517,35 +514,35 @@ export default {
             category: doc.data().category,
             downloadURL: doc.data().downloadURL,
             downloadUrl: doc.data().downloadUrl,
-            description: doc.data().description
-          });
-        });
-      });
+            description: doc.data().description,
+          })
+        })
+      })
     },
-    Categories: function() {
-      console.log("cat", this.addingData.schema[0]);
-      var i;
+    Categories: function () {
+      console.log('cat', this.addingData.schema[0])
+      var i
       for (i = 0; i < this.Categories.length; i++) {
-        this.addingData.schema[0].options.push(this.Categories[i].category);
+        this.addingData.schema[0].options.push(this.Categories[i].category)
       }
-    }
+    },
   },
   mounted() {},
   methods: {
     frontChange() {
-      this.front = !this.front;
+      this.front = !this.front
     },
     newCategory() {
       let payload = {
         label: this.label,
         form: this.formData,
-        html: this.htmlForEditor
-      };
-      this.$store.dispatch("form/addFormData", payload);
-      this.active = false;
-    }
-  }
-};
+        html: this.htmlForEditor,
+      }
+      this.$store.dispatch('form/addFormData', payload)
+      this.active = false
+    },
+  },
+}
 </script>
 
 <style lang="scss">

@@ -10,23 +10,23 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
-      { src: 'https://aframe.io/releases/1.0.4/aframe.min.js' },
-      {
-        src:
-          'https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js',
-      },
-      {
-        src:
-          'https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js',
-      },
-      {
-        src:
-          'https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js',
-      },
-      {
-        src:
-          'https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js',
-      },
+      // { src: 'https://aframe.io/releases/1.0.4/aframe.min.js' },
+      // {
+      //   src:
+      //     'https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js',
+      // },
+      // {
+      //   src:
+      //     'https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js',
+      // },
+      // {
+      //   src:
+      //     'https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js',
+      // },
+      // {
+      //   src:
+      //     'https://unpkg.com/aframe-animation-component@^5.1.2/dist/aframe-animation-component.min.js',
+      // },
       // {
       //   src:
       //     'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'
@@ -49,8 +49,7 @@ module.exports = {
   css: [
     // VUESAX
     'vuesax/dist/vuesax.css',
-    // SCSS file in the project
-    '~/assets/css/loader.css',
+
     // Tailwind
     '~/assets/css/main.css',
     // SCSS file in the project
@@ -63,6 +62,8 @@ module.exports = {
     'vue-select/dist/vue-select.css',
     'fullpage-vue/src/fullpage.css',
     'animate.css',
+    // SCSS file in the project
+    '~/assets/css/loader.css',
   ],
   /*
    ** Plugins to load before mounting the App

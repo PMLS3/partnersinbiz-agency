@@ -1,9 +1,8 @@
 <template>
   <vs-tabs
-    :position="isSmallerScreen ? 'top' : 'left'"
+    :position="$device.isMobile ? 'top' : 'left'"
     class="mt-24 tabs-shadow-none"
     id="profile-tabs"
-    :key="isSmallerScreen"
   >
     <!-- GENERAL -->
     <vs-tab icon="account_box" :label="!isSmallerScreen ? 'Account' : ''">
@@ -55,6 +54,14 @@
           <FormsBusinessSettingsStockSettings :data="business" />
         </vs-card>
       </div>
+    </vs-tab>
+
+    <vs-tab icon="store" :label="!isSmallerScreen ? 'Branches' : ''">
+      <!-- <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+        <vs-card class="py-4"> -->
+      <FormsBusinessSettingsBranchesSettings :data="business" />
+      <!-- </vs-card> -->
+      <!-- </div> -->
     </vs-tab>
   </vs-tabs>
 </template>

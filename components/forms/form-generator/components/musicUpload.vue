@@ -7,7 +7,7 @@
       fullscreen
       :title="label"
       :active.sync="popupActivo4"
-      style="z-index: 65000;"
+      style="z-index: 65000"
     >
       <vs-button @click="emitChanges" color="primary" type="border"
         >Use Selected</vs-button
@@ -38,7 +38,7 @@
         />
       </vs-select>
 
-      <vs-card class=" mt-5">
+      <vs-card class="mt-5">
         <div>
           <div
             class="text-center audio-container position-relative"
@@ -278,14 +278,14 @@
       <!--  -->
       <vs-card v-for="(audio, index) in audios" :key="index">
         <div class="vx-row">
-          <div class="vx-col sm:w-1/2 w-full mb-2">
+          <div class="w-full mb-2 vx-col sm:w-1/2">
             <vs-input
               class="w-full"
               label-placeholder="Title"
               v-model="audio.name"
             />
           </div>
-          <div class="vx-col sm:w-1/2 w-full mb-2">
+          <div class="w-full mb-2 vx-col sm:w-1/2">
             <vs-input
               class="w-full"
               label-placeholder="Artist"
@@ -294,14 +294,14 @@
           </div>
         </div>
         <div class="vx-row">
-          <div class="vx-col sm:w-1/2 w-full mb-2">
+          <div class="w-full mb-2 vx-col sm:w-1/2">
             <vs-input
               class="w-full"
               label-placeholder="Album"
               v-model="audio.album"
             />
           </div>
-          <div class="vx-col sm:w-1/2 w-full mb-2">
+          <div class="w-full mb-2 vx-col sm:w-1/2">
             <vs-select
               class="w-full selectExample"
               autocomplete
@@ -318,14 +318,14 @@
           </div>
         </div>
         <div class="vx-row">
-          <div class="vx-col sm:w-1/2 w-full mb-2">
+          <div class="w-full mb-2 vx-col sm:w-1/2">
             <vs-input
               class="w-full"
               label-placeholder="Company"
               v-model="audio.company"
             />
           </div>
-          <div class="vx-col sm:w-1/2 w-full mb-6">
+          <div class="w-full mb-6 vx-col sm:w-1/2">
             <vs-textarea
               type="text"
               class="w-full"
@@ -335,15 +335,15 @@
           </div>
         </div>
         <div class="vx-row">
-          <div class="vx-col w-full mb-6">
+          <div class="w-full mb-6 vx-col">
             <vs-checkbox class="inline-flex" v-model="audio.fav"
               >Favourite</vs-checkbox
             >
           </div>
         </div>
         <!-- <div class="vx-row">
-        <div class="vx-col w-full">
-          <vs-button class="mr-3 mb-2">Submit</vs-button>
+        <div class="w-full vx-col">
+          <vs-button class="mb-2 mr-3">Submit</vs-button>
           <vs-button
             color="warning"
             type="border"
@@ -394,74 +394,74 @@ import firebase from 'firebase'
 export default {
   name: 'VueUploadMultipleAudio',
   components: {
-    Popper: () => (process.client ? import('vue-popperjs') : null)
+    Popper: () => (process.client ? import('vue-popperjs') : null),
   },
   props: {
     label: {
       type: String,
-      default: 'label'
+      default: 'label',
     },
     dragText: {
       type: String,
-      default: 'Drag audio (multiple)'
+      default: 'Drag audio (multiple)',
     },
     browseText: {
       type: String,
-      default: '(or) Select'
+      default: '(or) Select',
     },
     primaryText: {
       type: String,
-      default: 'Default'
+      default: 'Default',
     },
     markIsPrimaryText: {
       type: String,
-      default: 'Set as default'
+      default: 'Set as default',
     },
     popupText: {
       type: String,
-      default: 'This audio will be displayed as the default'
+      default: 'This audio will be displayed as the default',
     },
     dropText: {
       type: String,
-      default: 'Drop your files here ...'
+      default: 'Drop your files here ...',
     },
     accept: {
       type: String,
-      default: 'audio/gif,audio/jpeg,audio/png,audio/bmp,audio/jpg'
+      default: 'audio/gif,audio/jpeg,audio/png,audio/bmp,audio/jpg',
     },
     dataAudios: {
       type: Array,
       default: () => {
         return []
-      }
+      },
     },
     placeholder: {
-      type: String
+      type: String,
     },
     multiple: {
       type: Boolean,
-      default: true
+      default: true,
     },
     edit: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showPrimary: {
       type: Boolean,
-      default: true
+      default: true,
     },
     maxAudio: {
       type: Number,
-      default: 5
+      default: 5,
     },
     idUpload: {
       type: String,
-      default: 'audio-upload'
+      default: 'audio-upload',
     },
     idEdit: {
       type: String,
-      default: 'audio-edit'
-    }
+      default: 'audio-edit',
+    },
   },
   data() {
     return {
@@ -477,7 +477,7 @@ export default {
       needUpload: false,
       selectedCategory: '',
       categories: [],
-      checkAudio: []
+      checkAudio: [],
     }
   },
 
@@ -513,7 +513,7 @@ export default {
     },
     selectedAudios() {
       return this.infoAudios.filter((item, index) => item.selected == true)
-    }
+    },
   },
 
   methods: {
@@ -542,7 +542,7 @@ export default {
       addingInformationLocation.add({
         category: this.categorySave,
         u_uid: this.user.uid,
-        b_uid: this.business.b_uid
+        b_uid: this.business.b_uid,
       })
     },
     setAudios() {
@@ -586,8 +586,8 @@ export default {
           desc = this.audios[i].desc
         }
 
-        mountainsRef.put(this.audios[i].file).then(snapshot => {
-          snapshot.ref.getDownloadURL().then(audio => {
+        mountainsRef.put(this.audios[i].file).then((snapshot) => {
+          snapshot.ref.getDownloadURL().then((audio) => {
             settingAudios.push(audio)
             this.audioUrls = audio
             addingInformationLocation.add({
@@ -603,7 +603,7 @@ export default {
               fav: fav,
               desc: desc,
               u_uid: this.user.uid,
-              b_uid: this.business.b_uid
+              b_uid: this.business.b_uid,
             })
           })
         })
@@ -639,7 +639,7 @@ export default {
       let reader = new FileReader()
       let formData = new FormData()
       formData.append('file', file)
-      reader.onload = e => {
+      reader.onload = (e) => {
         let dataURI = e.target.result
         if (dataURI) {
           if (!this.audios.length) {
@@ -648,7 +648,7 @@ export default {
               file: file,
               path: dataURI,
               highlight: 1,
-              default: 1
+              default: 1,
             })
             this.currentIndexAudio = 0
           } else {
@@ -657,7 +657,7 @@ export default {
               path: dataURI,
               file: file,
               highlight: 0,
-              default: 0
+              default: 0,
             })
           }
           this.$emit(
@@ -674,7 +674,7 @@ export default {
       let reader = new FileReader()
       let formData = new FormData()
       formData.append('file', file)
-      reader.onload = e => {
+      reader.onload = (e) => {
         let dataURI = e.target.result
         if (dataURI) {
           if (this.audios.length && this.audios[this.currentIndexAudio]) {
@@ -780,18 +780,18 @@ export default {
       } else {
         return true
       }
-    }
+    },
   },
   watch: {
     dataAudios: {
-      handler: function(newVal) {
+      handler: function (newVal) {
         this.audios = newVal
       },
-      deep: true
+      deep: true,
     },
     selectedAudios() {
       this.$store.commit('form/UPLOADED_MUSIC', this.selectedAudios)
-    }
+    },
   },
   mounted() {
     ;[
@@ -801,14 +801,14 @@ export default {
       'dragover',
       'dragenter',
       'dragleave',
-      'drop'
-    ].forEach(event => {
-      window.addEventListener(event, e => {
+      'drop',
+    ].forEach((event) => {
+      window.addEventListener(event, (e) => {
         e.preventDefault()
         e.stopPropagation()
       })
     })
-    document.body.addEventListener('dragleave', event => {
+    document.body.addEventListener('dragleave', (event) => {
       event.stopPropagation()
       event.preventDefault()
       this.isDragover = false
@@ -825,8 +825,8 @@ export default {
         .collection('music')
         .where('u_uid', '==', this.user.uid)
 
-      infoRetrieve.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      infoRetrieve.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           let doc = change.doc
           this.infoAudios.push({
             id: doc.id,
@@ -839,7 +839,7 @@ export default {
             cover: doc.data().cover,
             genre: doc.data().genre,
             u_uid: doc.data().u_uid,
-            b_uid: doc.data().b_uid
+            b_uid: doc.data().b_uid,
           })
         })
       })
@@ -851,19 +851,19 @@ export default {
         .collection('category')
         .where('u_uid', '==', this.user.uid)
 
-      catRetrieve.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      catRetrieve.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           let doc = change.doc
           this.categories.push({
             id: doc.id,
             category: doc.data().category,
             u_uid: doc.data().u_uid,
-            b_uid: doc.data().b_uid
+            b_uid: doc.data().b_uid,
           })
         })
       })
     }
-  }
+  },
 }
 </script>
 
@@ -1117,8 +1117,6 @@ export default {
   text-align: left;
   font-size: 12px;
 }
-</style>
-<style lang="css">
 .popper-custom .popper__arrow {
   border-color: #000 transparent transparent transparent !important;
 }

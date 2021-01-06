@@ -5952,7 +5952,7 @@ debug@^3.1.0, debug@^3.1.1, debug@^3.2.6:
   dependencies:
     ms "^2.1.1"
 
-"debug@github:ngokevin/debug#noTimestamp", debug@~2.2.0:
+debug@ngokevin/debug#noTimestamp, debug@~2.2.0:
   version "2.2.0"
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
@@ -6197,7 +6197,7 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90":
+document-register-element@dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90:
   version "0.5.4"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
 
@@ -15607,7 +15607,7 @@ thread-loader@^2.1.3:
     loader-utils "^1.1.0"
     neo-async "^2.6.0"
 
-"three-bmfont-text@github:dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e":
+three-bmfont-text@dmarcos/three-bmfont-text#1babdf8507c731a18f8af3b807292e2b9740955e:
   version "2.3.0"
   resolved "https://codeload.github.com/dmarcos/three-bmfont-text/tar.gz/1babdf8507c731a18f8af3b807292e2b9740955e"
   dependencies:
@@ -17202,7 +17202,7 @@ webrtc-adapter@^7.3.0:
     rtcpeerconnection-shim "^1.2.15"
     sdp "^2.12.0"
 
-"webrtc-swarm@github:delapuente/webrtc-swarm#stream-support":
+webrtc-swarm@delapuente/webrtc-swarm#stream-support:
   version "2.8.0"
   resolved "https://codeload.github.com/delapuente/webrtc-swarm/tar.gz/207ca1c65591d0dcd8bd84006c85f64838021740"
   dependencies:
