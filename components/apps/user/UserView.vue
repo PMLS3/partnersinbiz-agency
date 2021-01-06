@@ -2,11 +2,12 @@
   File Name: UserView.vue
   Description: User View page
   ----------------------------------------------------------------------------------------
+            // TODO delete user with confirmation
 
 ========================================================================================== -->
 
 <template>
-  <div id="page-user-view">
+  <div id="page-user-view w-full">
     <vs-alert
       color="danger"
       title="User Not Found"
@@ -17,25 +18,25 @@
         <span>Check </span
         ><router-link
           :to="{ name: 'page-user-list' }"
-          class="text-inherit underline"
+          class="underline text-inherit"
           >All Users</router-link
         >
       </span>
     </vs-alert>
 
-    <div id="user-data" v-if="user_data">
-      <vx-card title="Account" class="mb-base">
+    <div id="user-data" v-if="user_data" class="w-full mt-18">
+      <vx-card title="Account" class="w-full mt-24 mb-base">
         <!-- Avatar -->
         <div class="vx-row">
           <!-- Avatar Col -->
           <div class="vx-col" id="avatar-col">
-            <div class="img-container mb-4">
-              <img :src="user_data.avatar" class="rounded w-full" />
+            <div class="mb-4 img-container">
+              <img :src="user_data.avatar" class="w-full rounded" />
             </div>
           </div>
 
           <!-- Information - Col 1 -->
-          <div class="vx-col flex-1" id="account-info-col-1">
+          <div class="flex-1 vx-col" id="account-info-col-1">
             <table>
               <tr>
                 <td class="font-semibold">Username</td>
@@ -54,7 +55,7 @@
           <!-- /Information - Col 1 -->
 
           <!-- Information - Col 2 -->
-          <div class="vx-col flex-1" id="account-info-col-2">
+          <div class="flex-1 vx-col" id="account-info-col-2">
             <table>
               <tr>
                 <td class="font-semibold">Status</td>
@@ -71,31 +72,32 @@
             </table>
           </div>
           <!-- /Information - Col 2 -->
-          <div class="vx-col w-full flex" id="account-manage-buttons">
-            <vs-button
-              icon-pack="feather"
-              icon="icon-edit"
-              class="mr-4"
-              :to="{
-                name: 'app-user-edit',
-                params: { userId: $route.params.userId }
-              }"
-              >Edit</vs-button
+          <div class="flex w-full vx-col" id="account-manage-buttons">
+            <vs-tooltip
+              text="Edit User Details"
+              position="top"
+              class="float-right mr-4"
             >
-            <vs-button
+              <vs-button
+                icon-pack="feather"
+                icon="icon-edit"
+                @click="$router.push('/userEdit')"
+              ></vs-button>
+            </vs-tooltip>
+            <!-- <vs-button
               type="border"
               color="danger"
               icon-pack="feather"
               icon="icon-trash"
               @click="confirmDeleteRecord"
               >Delete</vs-button
-            >
+            > -->
           </div>
         </div>
       </vx-card>
 
       <div class="vx-row">
-        <div class="vx-col lg:w-1/2 w-full">
+        <div class="w-full vx-col lg:w-1/2">
           <vx-card title="Information" class="mb-base">
             <table>
               <tr>
@@ -112,7 +114,9 @@
               </tr>
               <tr>
                 <td class="font-semibold">Languages</td>
-                <td>{{ user_data.languages_known.join(", ") }}</td>
+                <td v-if="user_data.languages_known">
+                  {{ user_data.languages_known.join(', ') }}
+                </td>
               </tr>
               <tr>
                 <td class="font-semibold">Gender</td>
@@ -120,38 +124,52 @@
               </tr>
               <tr>
                 <td class="font-semibold">Contact</td>
-                <td>{{ user_data.contact_options.join(", ") }}</td>
+                <td v-if="user_data.contact_options">
+                  {{ user_data.contact_options.join(', ') }}
+                </td>
               </tr>
             </table>
           </vx-card>
         </div>
 
-        <div class="vx-col lg:w-1/2 w-full">
+        <div class="w-full vx-col lg:w-1/2">
           <vx-card title="Social Links" class="mb-base">
             <table>
               <tr>
                 <td class="font-semibold">Twitter</td>
-                <td>{{ user_data.social_links.twitter }}</td>
+                <td v-if="user_data.social_links">
+                  {{ user_data.social_links.twitter }}
+                </td>
               </tr>
               <tr>
                 <td class="font-semibold">Facebook</td>
-                <td>{{ user_data.social_links.facebook }}</td>
+                <td v-if="user_data.social_links">
+                  {{ user_data.social_links.facebook }}
+                </td>
               </tr>
               <tr>
                 <td class="font-semibold">Instagram</td>
-                <td>{{ user_data.social_links.instagram }}</td>
+                <td v-if="user_data.social_links">
+                  {{ user_data.social_links.instagram }}
+                </td>
               </tr>
               <tr>
                 <td class="font-semibold">Github</td>
-                <td>{{ user_data.social_links.github }}</td>
+                <td v-if="user_data.social_links">
+                  {{ user_data.social_links.github }}
+                </td>
               </tr>
               <tr>
                 <td class="font-semibold">CodePen</td>
-                <td>{{ user_data.social_links.codepen }}</td>
+                <td v-if="user_data.social_links">
+                  {{ user_data.social_links.codepen }}
+                </td>
               </tr>
               <tr>
                 <td class="font-semibold">Slack</td>
-                <td>{{ user_data.social_links.slack }}</td>
+                <td v-if="user_data.social_links">
+                  {{ user_data.social_links.slack }}
+                </td>
               </tr>
             </table>
           </vx-card>
@@ -161,10 +179,10 @@
       <!-- Permissions -->
       <vx-card>
         <div class="vx-row">
-          <div class="vx-col w-full">
+          <div class="w-full vx-col">
             <div class="flex items-end px-3">
               <feather-icon svgClasses="w-6 h-6" icon="LockIcon" class="mr-2" />
-              <span class="font-medium text-lg leading-none">Permissions</span>
+              <span class="text-lg font-medium leading-none">Permissions</span>
             </div>
             <vs-divider />
           </div>
@@ -179,13 +197,13 @@
                 Below we made it simple. So, everyone can understand.
                -->
               <th
-                class="font-semibold text-base text-left px-3 py-2"
+                class="px-3 py-2 text-base font-semibold text-left"
                 v-for="heading in [
                   'Module',
                   'Read',
                   'Write',
                   'Create',
-                  'Delete'
+                  'Delete',
                 ]"
                 :key="heading"
               >
@@ -211,39 +229,41 @@
 </template>
 
 <script>
-import moduleUserManagement from "@/store/user-management/moduleUserManagement.js";
+// import moduleUserManagement from "@/store/user-management/moduleUserManagement.js";
 
 export default {
   data() {
     return {
-      user_data: null,
-      user_not_found: false
-    };
+      user_not_found: false,
+    }
   },
   computed: {
     userAddress() {
-      let str = "";
+      let str = ''
       for (const field in this.user_data.location) {
-        str += `${field} `;
+        str += `${field} `
       }
-      return str;
-    }
+      return str
+    },
+    user_data() {
+      return this.$store.state.userManagement.user
+    },
   },
   methods: {
     confirmDeleteRecord() {
       this.$vs.dialog({
-        type: "confirm",
-        color: "danger",
-        title: "Confirm Delete",
+        type: 'confirm',
+        color: 'danger',
+        title: 'Confirm Delete',
         text: `You are about to delete "${this.user_data.username}"`,
         accept: this.deleteRecord,
-        acceptText: "Delete"
-      });
+        acceptText: 'Delete',
+      })
     },
     deleteRecord() {
       /* Below two lines are just for demo purpose */
-      this.$router.push({ name: "app-user-list" });
-      this.showDeleteSuccess();
+      this.$router.push({ name: 'app-user-list' })
+      this.showDeleteSuccess()
 
       /* UnComment below lines for enabling true flow if deleting user */
       // this.$store.dispatch("userManagement/removeRecord", this.user_data.id)
@@ -252,34 +272,33 @@ export default {
     },
     showDeleteSuccess() {
       this.$vs.notify({
-        color: "success",
-        title: "User Deleted",
-        text: "The selected user was successfully deleted"
-      });
-    }
+        color: 'success',
+        title: 'User Deleted',
+        text: 'The selected user was successfully deleted',
+      })
+    },
   },
   created() {
     // Register Module UserManagement Module
-    if (!moduleUserManagement.isRegistered) {
-      this.$store.registerModule("userManagement", moduleUserManagement);
-      moduleUserManagement.isRegistered = true;
-    }
-
-    const userId = this.$route.params.userId;
-    this.$store
-      .dispatch("userManagement/fetchUser", userId)
-      .then(res => {
-        this.user_data = res.data;
-      })
-      .catch(err => {
-        if (err.response.status === 404) {
-          this.user_not_found = true;
-          return;
-        }
-        console.error(err);
-      });
-  }
-};
+    // if (!moduleUserManagement.isRegistered) {
+    //   this.$store.registerModule("userManagement", moduleUserManagement);
+    //   moduleUserManagement.isRegistered = true;
+    // }
+    // const userId = this.$route.params.userId;
+    // this.$store
+    //   .dispatch("userManagement/fetchUser", userId)
+    //   .then(res => {
+    //     this.user_data = res.data;
+    //   })
+    //   .catch(err => {
+    //     if (err.response.status === 404) {
+    //       this.user_not_found = true;
+    //       return;
+    //     }
+    //     console.error(err);
+    //   });
+  },
+}
 </script>
 
 <style lang="scss">

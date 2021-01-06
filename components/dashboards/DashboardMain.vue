@@ -25,13 +25,17 @@
           size="large"
           class="w-full mt-6"
         />
-        <vs-button
-          radius
-          type="filled"
-          icon="all_out"
-          class="float-right mt-24"
-          @click="popupActivo = true"
-        ></vs-button>
+        <vs-tooltip
+          text="Let us know what you want!"
+          class="float-right mt-2"
+          position="top"
+        >
+          <vs-button
+            type="filled"
+            icon="live_help"
+            @click="popupActivo = true"
+          ></vs-button>
+        </vs-tooltip>
         <vs-popup
           fullscreen
           :title="$route.params.id"

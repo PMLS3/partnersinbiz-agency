@@ -212,6 +212,9 @@ export default {
     CellRendererVerified,
     CellRendererActions,
   },
+  props: {
+    users: { type: Array, default: [] },
+  },
   data() {
     return {
       // Filter Options
@@ -267,11 +270,17 @@ export default {
           headerCheckboxSelection: true,
         },
         {
+          headerName: 'Avatar',
+          field: 'avatar',
+          filter: true,
+          width: 125,
+          cellRendererFramework: 'CellRendererLink',
+        },
+        {
           headerName: 'Username',
-          field: 'username',
+          field: 'disp_name',
           filter: true,
           width: 210,
-          cellRendererFramework: 'CellRendererLink',
         },
         {
           headerName: 'Email',
@@ -420,9 +429,9 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('userManagement/fetchUsers').catch((err) => {
-      console.error(err)
-    })
+    // this.$store.dispatch('userManagement/fetchUsers').catch((err) => {
+    //   console.error(err)
+    // })
   },
 }
 </script>

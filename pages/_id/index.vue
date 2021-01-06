@@ -88,6 +88,9 @@ import dashboardAppsVideosSingle from '@/components/dashboards/apps/videos/Dashb
 
 // // Apps
 import email from '@/components/apps/email/Email.vue'
+import userView from '@/components/apps/user/UserView.vue'
+import userEdit from '@/components/apps/user/user-edit/UserEdit.vue'
+
 // // Pages
 import calendar from '@/components/pages/Calendar.vue'
 // import videoChat from '@/components/apps/videoChat/VideoChat.vue'
@@ -174,6 +177,8 @@ export default {
     dashboardAppsVideoCallSingle,
     dashboardAppsVideos,
     dashboardAppsVideosSingle,
+    userView,
+    userEdit,
     // videoChat,
   },
 }

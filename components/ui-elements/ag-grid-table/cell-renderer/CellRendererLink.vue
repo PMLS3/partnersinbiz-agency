@@ -1,10 +1,10 @@
 <template>
   <div class="flex items-center">
     <vs-avatar
-      :src="params.data.cover"
+      :src="params.data.avatar"
       class="flex-shrink-0 mr-2"
       size="30px"
-      @click="$router.push(url)"
+      @click="geUser(params.data)"
     />
   </div>
 </template>
@@ -19,7 +19,13 @@ export default {
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose
       // return "/apps/user/user-view/" + this.params.data.id
-    }
-  }
+    },
+  },
+  methods: {
+    geUser(data) {
+      this.$store.commit('userManagement/SET_USER', data)
+      this.$router.push('/userView')
+    },
+  },
 }
 </script>

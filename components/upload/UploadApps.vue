@@ -1,13 +1,14 @@
 <template>
   <div class="flex flex-row">
-    <vs-button icon="amp_stories"></vs-button>
-    <vs-button icon="storage"></vs-button>
-
-    <vs-button
-      class="ml-1"
-      icon="add_circle_outline"
-      @click="popupActivo = true"
-    ></vs-button>
+    <!-- <vs-button icon="amp_stories"></vs-button>
+    <vs-button icon="storage"></vs-button> -->
+    <vs-tooltip :text="item.title" position="top">
+      <vs-button
+        class="ml-1"
+        icon="add_circle_outline"
+        @click="popupActivo = true"
+      ></vs-button>
+    </vs-tooltip>
 
     <vs-popup
       class="holamundo"
