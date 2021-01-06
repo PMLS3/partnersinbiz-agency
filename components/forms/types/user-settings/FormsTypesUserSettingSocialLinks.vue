@@ -1,0 +1,151 @@
+<template>
+  <vx-card no-shadow>
+    <vs-input
+      class="w-full mb-base"
+      v-model="twt"
+      icon-pack="feather"
+      icon="icon-twitter"
+      label="Twitter"
+      icon-no-border
+    />
+    <vs-input
+      class="w-full mb-base"
+      v-model="fb"
+      icon-pack="feather"
+      icon="icon-facebook"
+      label="Facebook"
+      icon-no-border
+    />
+    <vs-input
+      class="w-full mb-base"
+      v-model="insta"
+      icon-pack="feather"
+      icon="icon-instagram"
+      label="Instagram"
+      icon-no-border
+    />
+    <vs-input
+      class="w-full mb-base"
+      v-model="github"
+      icon-pack="feather"
+      icon="icon-github"
+      label="GitHub"
+      icon-no-border
+    />
+    <vs-input
+      class="w-full mb-base"
+      v-model="linkedin"
+      icon-pack="feather"
+      icon="icon-linkedin"
+      label="Linkedin"
+      icon-no-border
+    />
+    <vs-input
+      class="w-full mb-base"
+      v-model="slack"
+      icon-pack="feather"
+      icon="icon-slack"
+      label="Slack"
+      icon-no-border
+    />
+
+    <!-- Save & Reset Button -->
+    <div class="flex flex-wrap items-center justify-end">
+      <vs-button class="mt-2 ml-auto" @click="updateUser"
+        >Save Changes</vs-button
+      >
+      <vs-button class="mt-2 ml-4" type="border" color="warning"
+        >Reset</vs-button
+      >
+    </div>
+  </vx-card>
+</template>
+
+<script>
+import firebase from 'firebase'
+export default {
+  name: 'User Social Links',
+
+  data() {
+    return {
+      twitter: this.$store.state.user.active_user.twt,
+      facebook: this.$store.state.user.active_user.fb,
+      instagram: this.$store.state.user.active_user.insta,
+      github: this.$store.state.user.active_user.github,
+      linkedin: this.$store.state.user.active_user.linkedin,
+      slack: this.$store.state.user.active_user.slack
+    }
+  },
+  computed: {
+    user() {
+      if (process.client) {
+        if (localStorage.getItem('userInfo')) {
+          return JSON.parse(localStorage.getItem('userInfo'))
+        } else {
+          return this.$store.state.auth.active_user
+        }
+      }
+    }
+  },
+  created() {
+    let vm = this
+
+    this.$fireStore
+      .collection('user')
+      .doc('info')
+      .collection('social_links')
+      .doc(this.user.uid)
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+          const userAll = { ...vm.user, ...doc.data() }
+          vm.$store.dispatch('user/updateUserInfo', userAll)
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!')
+        }
+      })
+      .catch(function(error) {
+        console.log('Error getting document:', error)
+      })
+  },
+  methods: {
+    successUpload() {
+      this.notify({
+        color: 'success',
+        title: 'Upload Success',
+        text: 'Whoop whoop, been uploaded'
+      })
+      let user = this.$store.state.user.active_user
+
+      ;(user.twt = this.twt),
+        (user.fb = this.fb),
+        (user.insta = this.insta),
+        (user.github = this.github),
+        (user.linkedin = this.linkedin),
+        (user.slack = this.slack)
+      this.$store.dispatch('user/updateUserInfo', user)
+    },
+    updateUser() {
+      let reft = this.$fireStore
+        .collection('user')
+        .doc('info')
+        .collection('social_links')
+        .doc(this.user.uid)
+
+      reft
+        .update({
+          twt: this.twt,
+          fb: this.fb,
+          insta: this.insta,
+          github: this.github,
+          linkedin: this.linkedin,
+          slack: this.slack
+        })
+        .then(() => {
+          this.successUpload()
+        })
+    }
+  }
+}
+</script>

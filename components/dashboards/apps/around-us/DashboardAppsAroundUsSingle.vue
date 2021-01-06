@@ -34,7 +34,7 @@
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <contacts-card :contact="item" />
+          <CardContacts :contact="item" />
         </div>
       </div>
     </client-only>
@@ -54,16 +54,7 @@
 <script>
 export default {
   name: 'AroundUsSingle',
-  components: {
-    ContactsCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/contacts.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null,
-  },
+  components: {},
   data() {
     return {
       item: { item: 'AroundUsSingle', title: 'Load Images', type: 'Single' },

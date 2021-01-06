@@ -1,0 +1,628 @@
+<!-- =========================================================================================
+    File Name: AgGridTable.vue
+    Description: Ag Grid table
+    ----------------------------------------------------------------------------------------
+
+    TODO add columns together
+========================================================================================== -->
+
+<template>
+  <div>
+    <h1>new budget</h1>
+
+    <vs-input label="Title" name="subject" v-model="ref" class="w-full mt-5" />
+    <p class="mt-5">Fiscal Year</p>
+    <v-select class="w-full" v-model="customer" :options="customers"></v-select>
+    <p class="mt-5">Budget Period</p>
+    <v-select class="w-full" v-model="customer" :options="customers"></v-select>
+
+    <p class="mt-5">Branch</p>
+    <v-select class="w-full" v-model="customer" :options="customers"></v-select>
+
+    <grid-table
+      :item="item"
+      :item_id="item_id"
+      :schema="schema"
+      :choices="choices"
+      :columnDefs="columnDefs"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Budget',
+  components: {
+    vSelect: () => (process.client ? import('vue-select') : null),
+    gridTable: () =>
+      process.client
+        ? import(
+            '@/components/tables/ag-grid-table/types/AgGridTableBudget.vue'
+          )
+        : null
+  },
+  data() {
+    return {
+      item: 'Events',
+      item_id: 1,
+      customers: [],
+      customer: '',
+      ref: '',
+      choices: {
+        view: true,
+        adding: false,
+        editing: false,
+        popup: false
+      }
+    }
+  },
+
+  computed: {
+    schema() {
+      return [
+        {
+          account: 'INCOME'
+        },
+        {
+          account: 'Sales',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'General Income',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Interest Income',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Late Fee Income',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Discount',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Other Charges',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Shipping Charge',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'EXPENSES'
+        },
+        {
+          account: 'Cost Of Goods Sold',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Office Supplies',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Advertising And Marketing',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Bank Fees and Charges',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Credit Card Charges',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Travel Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Automobile Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'IT and Internet Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Rent Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Janitorial Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Postage',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Bad Debt',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Printing and Stationery',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Salaries and Employee Wages',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Meals and Entertainment',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Depreciation Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Consultant Expense',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Repairs and Maintenance',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Other Expenses',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Lodging',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Fuel/Mileage Expenses',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        },
+        {
+          account: 'Exchange Gain or Loss',
+          jan: 0,
+          feb: 0,
+          march: 0,
+          april: 0,
+          may: 0,
+          june: 0,
+          july: 0,
+          aug: 0,
+          sept: 0,
+          oct: 0,
+          nov: 0,
+          dec: 0,
+          total: 0
+        }
+      ]
+    },
+    columnDefs() {
+      return [
+        {
+          headerName: 'Account',
+          field: 'account',
+          filter: true,
+          width: 250,
+          pinned: 'left'
+        },
+        {
+          headerName: 'Jan 2020',
+          field: 'jan',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Feb 2020',
+          field: 'feb',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'March 2020',
+          field: 'march',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'April 2020',
+          field: 'april',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'May 2020',
+          field: 'may',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'June 2020',
+          field: 'june',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'July 2020',
+          field: 'july',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Aug 2020',
+          field: 'aug',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Sept 2020',
+          field: 'sept',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Oct 2020',
+          field: 'oct',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Nov 2020',
+          field: 'nov',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Dec 2020',
+          field: 'dec',
+          width: 175,
+          filter: true
+        },
+        {
+          headerName: 'Total',
+          field: 'total',
+          width: 175,
+          filter: true
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style></style>

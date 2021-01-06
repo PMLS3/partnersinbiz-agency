@@ -34,9 +34,9 @@
               </p>
             </div>
             <div class="flex flex-row">
-              <apps-cat :schema="schemas" :item="item" />
+              <UploadCategory :schema="schemas" :item="item" />
 
-              <apps-load :schema="schema" :item="item" />
+              <UploadApps :schema="schema" :item="item" />
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <simple-card :item="item" class="h-full"></simple-card>
+          <CardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>
@@ -72,18 +72,8 @@
 export default {
   name: 'Events',
   components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null,
-    appsCat: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/category.vue')
-        : null,
+    
+    
   },
   data() {
     return {

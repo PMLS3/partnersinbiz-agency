@@ -27,14 +27,14 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex  justify-between">
+          <div class="py-2 flex justify-between">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <simple-card :item="item" class="h-full"></simple-card>
+          <CardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>
@@ -57,21 +57,12 @@
 
 export default {
   name: 'RealEstateSingle',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'RealEstateSingle', title: 'Load Images', type: 'Single' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -94,7 +85,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -111,7 +102,7 @@ export default {
           placeholder: 'Title',
           type: 'text',
           label: 'Title',
-          name: 'title'
+          name: 'title',
         },
         // {
         //   title: 'SelectList',
@@ -125,7 +116,7 @@ export default {
           name: 'category',
           multi: false,
           label: 'Category',
-          options: ['Rent', 'Buy']
+          options: ['Rent', 'Buy'],
         },
         {
           title: 'SelectList',
@@ -139,29 +130,29 @@ export default {
             'Land',
             'Farms & Smallholdings',
             'Commercial Property',
-            'Industrial Property'
-          ]
+            'Industrial Property',
+          ],
         },
         {
           title: 'SelectList',
           name: 'bedrooms',
           multi: false,
           label: 'Bedrooms',
-          options: ['1', '2', '3', '4', '5+']
+          options: ['1', '2', '3', '4', '5+'],
         },
         {
           title: 'SelectList',
           name: 'bathrooms',
           multi: false,
           label: 'Bathrooms',
-          options: ['1', '2', '3', '4', '5+']
+          options: ['1', '2', '3', '4', '5+'],
         },
         {
           title: 'SelectList',
           name: 'parking',
           multi: false,
           label: 'Parking',
-          options: ['1', '2', '3', '4', '5+']
+          options: ['1', '2', '3', '4', '5+'],
         },
         {
           title: 'SelectList',
@@ -173,8 +164,8 @@ export default {
             'Access Gate',
             'Electric Fencing',
             'Intercom',
-            'Security Post'
-          ]
+            'Security Post',
+          ],
         },
         {
           title: 'SelectList',
@@ -186,37 +177,37 @@ export default {
             'Pet Friendly',
             'Staff Quaters',
             'Sea View',
-            'Flatlet / Garden Cottage'
-          ]
+            'Flatlet / Garden Cottage',
+          ],
         },
         {
           title: 'ImageUpload',
           placeholder: 'Image Upload',
           label: 'Image Upload',
-          name: 'img'
+          name: 'img',
         },
         {
           title: 'Divider',
-          name: 'Divider'
+          name: 'Divider',
         },
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
+          placeholder: 'Description',
         },
         {
           title: 'Divider',
-          name: 'Divider'
+          name: 'Divider',
         },
         {
           title: 'GoogleAddress',
           placeholder: 'Address',
           label: 'Address',
-          name: 'addr'
-        }
+          name: 'addr',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -227,8 +218,8 @@ export default {
         .collection(this.item.item)
         .where('id', '==', this.$route.params.id)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -238,7 +229,7 @@ export default {
         })
       })
     }
-  }
+  },
 }
 </script>
 

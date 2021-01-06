@@ -14,9 +14,7 @@
           class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
         >
           <h1 class="mb-1 text-white">Mailing List</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
-            See
-          </h2>
+          <h2 class="text-xl font-semibild text-white leading-tight">See</h2>
 
           <vs-input
             icon-no-border
@@ -27,14 +25,14 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex  justify-between">
+          <div class="py-2 flex justify-between">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -90,21 +88,12 @@
 
 export default {
   name: 'MailingListSingle',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'MailingListSingle', title: 'Load Images', type: 'Single' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -127,7 +116,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -144,24 +133,24 @@ export default {
           placeholder: 'Gallery Name',
           type: 'text',
           label: 'Gallery Name',
-          name: 'title'
+          name: 'title',
         },
 
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
+          placeholder: 'Description',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Image',
           type: 'text',
           label: 'Image',
-          name: 'url'
-        }
+          name: 'url',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -172,8 +161,8 @@ export default {
         .collection(this.item.item)
         .where('id', '==', this.$route.params.id)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -183,13 +172,13 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
 
-              url: doc.data().url
+              url: doc.data().url,
             })
           }
         })
       })
     }
-  }
+  },
 }
 </script>
 

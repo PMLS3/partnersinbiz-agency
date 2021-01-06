@@ -11,10 +11,10 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
           <h1 class="mb-1 text-white">Videos</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
+          <h2 class="text-xl leading-tight text-white font-semibild">
             Upload all your Videos
           </h2>
 
@@ -27,24 +27,24 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex  justify-between">
+          <div class="flex justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
-      <div class="vx-row ml-2">
+      <div class="ml-2 vx-row">
         <div
-          class="vx-col w-1/6 sm:w-1/6 md:w-1/10 xl:1/10"
+          class="w-1/6 vx-col sm:w-1/6 md:w-1/10 xl:1/10"
           v-for="(doc, index) in filteredKB"
           :key="index"
         >
-          <doc-type :doc="doc" />
+          <UiDocumentsDocType :doc="doc" />
         </div>
       </div>
     </client-only>
@@ -54,21 +54,12 @@
 <script>
 export default {
   name: 'VideosSingle',
-  components: {
-    docType: () =>
-      process.client
-        ? import('@/components/ui-elements/documents/doctype.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'VideosSingle', title: 'Load Images', type: 'Single' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -91,7 +82,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -108,24 +99,24 @@ export default {
           placeholder: 'Video Title',
           type: 'text',
           label: 'Video Title',
-          name: 'title'
+          name: 'title',
         },
 
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
+          placeholder: 'Description',
         },
         {
           title: 'DocumentUpload',
           placeholder: 'Video',
           type: 'text',
           label: 'Video',
-          name: 'url'
-        }
+          name: 'url',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -136,8 +127,8 @@ export default {
         .collection(this.item.item)
         .where('id', '==', this.$route.params.id)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -147,13 +138,13 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
 
-              url: doc.data().url
+              url: doc.data().url,
             })
           }
         })
       })
     }
-  }
+  },
 }
 </script>
 

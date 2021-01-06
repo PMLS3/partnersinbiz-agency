@@ -34,7 +34,7 @@
               </p>
             </div>
             <div>
-              <apps-load :schema="schema" :item="item" />
+              <UploadApps :schema="schema" :item="item" />
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <simple-card :item="item" class="h-full"></simple-card>
+          <CardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>
@@ -56,16 +56,7 @@
 <script>
 export default {
   name: 'AroundUs',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null,
-  },
+  components: {},
   data() {
     return {
       item: { item: 'AroundUs', title: 'Load Folders', type: 'Category' },

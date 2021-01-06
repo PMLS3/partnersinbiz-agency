@@ -16,7 +16,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <simple-card :item="item" class="h-full"></simple-card>
+          <CardSimple :item="item" class="h-full" />
         </div> -->
         <Kanban
           :columns="columns"

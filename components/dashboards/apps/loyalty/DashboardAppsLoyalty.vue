@@ -34,7 +34,7 @@
               </p>
             </div>
             <div>
-              <apps-load :schema="schema" :item="item" />
+              <UploadApps :schema="schema" :item="item" />
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <simple-card :item="item" class="h-full"></simple-card>
+          <CardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>
@@ -56,21 +56,12 @@
 <script>
 export default {
   name: 'Loyalty',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'Loyalty', title: 'Load Folders', type: 'Category' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -93,7 +84,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -110,23 +101,23 @@ export default {
           placeholder: 'Loyalty Group',
           type: 'text',
           label: 'Loyalty Group',
-          name: 'title'
+          name: 'title',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Cover Image',
           type: 'text',
           label: 'Cover Image',
-          name: 'url'
+          name: 'url',
         },
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
-        }
+          placeholder: 'Description',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -137,8 +128,8 @@ export default {
         .collection(this.item.item)
         .where('b_uid', '==', this.business.b_uid)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -148,13 +139,13 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
               graphic: doc.data().url[0],
-              url: `${window.location.pathname}/${doc.id}`
+              url: `${window.location.pathname}/${doc.id}`,
             })
           }
         })
       })
     }
-  }
+  },
 }
 </script>
 

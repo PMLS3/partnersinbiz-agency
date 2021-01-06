@@ -27,14 +27,14 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex  justify-between">
+          <div class="py-2 flex justify-between">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -90,21 +90,12 @@
 
 export default {
   name: 'EmailPhotoSingle',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'EmailPhotoSingle', title: 'Load Images', type: 'Single' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -127,7 +118,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -144,28 +135,28 @@ export default {
           name: 'category',
           multi: false,
           label: 'Category',
-          options: myGroups
+          options: myGroups,
         },
         {
           title: 'TextInput',
           placeholder: 'Title',
           label: 'Title',
-          name: 'name'
+          name: 'name',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Image Upload',
           label: 'Image Upload',
-          name: 'imageUpload'
+          name: 'imageUpload',
         },
         {
           title: 'QuilEditor',
           name: 'html',
           label: 'Description',
-          placeholder: 'Description'
-        }
+          placeholder: 'Description',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -176,8 +167,8 @@ export default {
         .collection(this.item.item)
         .where('id', '==', this.$route.params.id)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -187,13 +178,13 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
 
-              url: doc.data().url
+              url: doc.data().url,
             })
           }
         })
       })
     }
-  }
+  },
 }
 </script>
 

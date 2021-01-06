@@ -34,7 +34,7 @@
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -67,14 +67,6 @@
 export default {
   name: 'EventsSingle',
   components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null,
     simpleCalendar: () =>
       process.client
         ? import('@/components/apps/calendar/MultiCalendar.vue')

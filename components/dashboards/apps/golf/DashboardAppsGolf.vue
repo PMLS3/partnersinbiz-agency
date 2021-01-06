@@ -34,7 +34,7 @@
               </p>
             </div>
             <div>
-              <apps-load :schema="schema" :item="item" />
+              <UploadApps :schema="schema" :item="item" />
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <simple-card :item="item" class="h-full"></simple-card>
+          <CardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>
@@ -56,21 +56,12 @@
 <script>
 export default {
   name: 'Golf',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'Golf', title: 'Load Folders', type: 'Category' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -93,7 +84,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -109,56 +100,56 @@ export default {
           title: 'TextInput',
           placeholder: 'Name',
           label: 'Name',
-          name: 'name'
+          name: 'name',
         },
         {
           title: 'TextInput',
           placeholder: 'Website',
           label: 'Website',
-          name: 'website'
+          name: 'website',
         },
         {
           title: 'NumberInput',
           placeholder: 'Contact Number',
           name: 'number',
           label: 'Contact Number',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Secondary Contact Number',
           name: 'number2',
           label: 'Secondary Contact Number',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'TextInput',
           placeholder: 'Email',
           label: 'Email',
-          name: 'email'
+          name: 'email',
         },
         {
           title: 'SelectList',
           name: 'category',
           multi: false,
           label: 'Distance',
-          options: ['', 'Yards', 'Km']
+          options: ['', 'Yards', 'Km'],
         },
         {
           title: 'TextArea',
           placeholder: 'Description',
           label: 'Description',
-          name: 'description'
+          name: 'description',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Image',
           type: 'text',
           label: 'Image',
-          name: 'url'
-        }
+          name: 'url',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -169,8 +160,8 @@ export default {
         .collection(this.item.item)
         .where('b_uid', '==', this.business.b_uid)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -180,13 +171,13 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
               graphic: doc.data().url[0],
-              url: `${window.location.pathname}/${doc.id}`
+              url: `${window.location.pathname}/${doc.id}`,
             })
           }
         })
       })
     }
-  }
+  },
 }
 </script>
 

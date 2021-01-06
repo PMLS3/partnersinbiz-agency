@@ -11,10 +11,10 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
           <h1 class="mb-1 text-white">Contacts</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
+          <h2 class="text-xl leading-tight text-white font-semibild">
             Contacts in list
           </h2>
 
@@ -27,14 +27,14 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex  justify-between">
+          <div class="flex justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -51,11 +51,11 @@
 
       <div class="vx-row">
         <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <contacts-card :contact="item" />
+           <CardContacts :contact="item" />
         </div>
       </div>
     </client-only>
@@ -66,20 +66,13 @@
 export default {
   name: 'ContactsSingle',
   components: {
-    ContactsCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/contacts.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
+   
   },
   data() {
     return {
       item: { item: 'ContactsSingle', title: 'Load Images', type: 'Single' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -102,7 +95,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -119,14 +112,14 @@ export default {
           placeholder: 'Name',
           type: 'text',
           label: 'Name',
-          name: 'title'
+          name: 'title',
         },
         {
           title: 'TextInput',
           placeholder: 'Website',
           type: 'text',
           label: 'Website',
-          name: 'website'
+          name: 'website',
         },
         {
           title: 'TextInput',
@@ -134,7 +127,7 @@ export default {
           placeholder: 'Contact Number',
           name: 'number',
           label: 'Contact Number',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'TextInput',
@@ -142,47 +135,47 @@ export default {
           placeholder: 'Secondary Contact Number',
           name: 'number2',
           label: 'Secondary Contact Number',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'TextInput',
           type: 'email',
           placeholder: 'Email',
           label: 'Email',
-          name: 'email'
+          name: 'email',
         },
         {
           title: 'Divider',
-          name: 'Divider'
+          name: 'Divider',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Image Upload',
           label: 'Image Upload',
-          name: 'img'
+          name: 'img',
         },
         {
           title: 'Divider',
-          name: 'Divider'
+          name: 'Divider',
         },
         {
           title: 'QuilEditor',
           name: 'html',
           label: 'Description',
-          placeholder: 'Description'
+          placeholder: 'Description',
         },
         {
           title: 'Divider',
-          name: 'Divider'
+          name: 'Divider',
         },
         {
           title: 'GoogleAddress',
           placeholder: 'Address',
           label: 'Address',
-          name: 'Address'
-        }
+          name: 'Address',
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -193,8 +186,8 @@ export default {
         .collection(this.item.item)
         .where('id', '==', this.$route.params.id)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -204,7 +197,7 @@ export default {
         })
       })
     }
-  }
+  },
 }
 </script>
 

@@ -27,14 +27,14 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex  justify-between">
+          <div class="py-2 flex justify-between">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
 
-            <apps-load :schema="schema" :item="item" />
+            <UploadApps :schema="schema" :item="item" />
           </div>
         </div>
       </div>
@@ -90,21 +90,12 @@
 
 export default {
   name: 'GolfSingle',
-  components: {
-    SimpleCard: () =>
-      process.client
-        ? import('@/components/ui-elements/card/simple.vue')
-        : null,
-    appsLoad: () =>
-      process.client
-        ? import('@/components/dashboard/apps_load/index.vue')
-        : null
-  },
+  components: {},
   data() {
     return {
       item: { item: 'GolfSingle', title: 'Load Images', type: 'Single' },
       knowledgeBaseSearchQuery: '',
-      kb: []
+      kb: [],
     }
   },
   computed: {
@@ -127,7 +118,7 @@ export default {
     },
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -144,59 +135,59 @@ export default {
           name: 'course',
           multi: false,
           label: 'Course',
-          options: golfCourse
+          options: golfCourse,
         },
         {
           title: 'NumberInput',
           placeholder: 'Hole Number',
           name: 'holenumber',
           label: 'Hole Number',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Par',
           name: 'par',
           label: 'Par',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Handicap',
           name: 'handicap',
           label: 'Handicap',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Tee 1 - Distance',
           name: 'tee1',
           label: 'Tee 1 - Distance',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Tee 2 - Distance',
           name: 'tee2',
           label: 'Tee 2 - Distance',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Tee 3 - Distance',
           name: 'tee3',
           label: 'Tee 3 - Distance',
-          minValue: 0
+          minValue: 0,
         },
         {
           title: 'NumberInput',
           placeholder: 'Tee 4 - Distance',
           name: 'tee4',
           label: 'Tee 4 - Distance',
-          minValue: 0
-        }
+          minValue: 0,
+        },
       ]
-    }
+    },
   },
   created() {
     if (process.client) {
@@ -207,8 +198,8 @@ export default {
         .collection(this.item.item)
         .where('id', '==', this.$route.params.id)
 
-      ref.onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
+      ref.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
           if (change.type === 'added') {
             let doc = change.doc
             let data = doc.data()
@@ -218,13 +209,13 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
 
-              url: doc.data().url
+              url: doc.data().url,
             })
           }
         })
       })
     }
-  }
+  },
 }
 </script>
 
