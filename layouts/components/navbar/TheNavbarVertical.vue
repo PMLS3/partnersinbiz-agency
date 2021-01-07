@@ -120,7 +120,6 @@ export default {
   },
   created() {
     this.branches = ['Company']
-    console.log('this.=', this.businessActive.branches)
     for (let i = 0; i < this.businessActive.branches.length; i++) {
       this.branches.push(this.businessActive.branches[i])
     }
@@ -148,13 +147,6 @@ export default {
         return this.$store.state.business.active_business
       }
     },
-    // branches() {
-    //   let branch = ['Company']
-    //   for (let i = 0; i < this.businessActive.branches; i++) {
-    //     branch.push(br)
-    //   }
-    //   return branch
-    // },
 
     isUserLoggedIn() {
       return this.$store.state.auth.isUserLoggedIn

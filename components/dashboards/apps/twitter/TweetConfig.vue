@@ -3,6 +3,10 @@
     <h1 v-if="entity == 'business'" class="text-2xl text-gray-600">
       Twitter: {{ business.b_name }}
     </h1>
+
+    <h1 v-else-if="entity == 'branch'" class="text-2xl text-gray-600">
+      Twitter: {{ branch }}
+    </h1>
     <h1 v-else class="text-2xl text-gray-600">Twitter: {{ user.disp_name }}</h1>
 
     <h6 class="mt-2">@{{ handle }}</h6>
@@ -104,7 +108,7 @@ export default {
         .collection('business')
         .doc(this.business.b_uid)
         .onSnapshot(function (doc) {
-          vm.$store.commit('config/TWITTER_UPDATE', doc.data())
+          vm.$store.commit('config/TWITTER_UPDATE', doc.data().twtConfig)
         })
     } else if (this.entity == 'branch') {
       this.$fireStore
@@ -130,6 +134,7 @@ export default {
   },
   methods: {
     ConfigSet() {
+      console.log('Config', this.config)
       this.consumer_key = this.config.consumer_key
       this.consumer_secret = this.config.consumer_secret
       this.access_token = this.config.access_token
@@ -137,7 +142,7 @@ export default {
     },
     tweetConfigSet() {
       let vm = this
-      let branch = 'HQ'
+
       let payload = {
         consumer_key: this.consumer_key,
         consumer_secret: this.consumer_secret,

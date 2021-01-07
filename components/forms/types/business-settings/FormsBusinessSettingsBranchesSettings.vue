@@ -330,6 +330,7 @@ export default {
       website: '',
       phone: '',
       for_address: '',
+      desc: '',
       branchForm: [
         {
           title: 'TextInput',
@@ -387,38 +388,40 @@ export default {
       vm.social.slack = ''
       vm.social.codepen = ''
       vm.social.twt = ''
-      ;(vm.email = ''),
-        (vm.website = ''),
-        (vm.phone = ''),
-        (vm.for_address = ''),
-        this.$fireStore
-          .collection('business')
-          .doc(this.business.b_uid)
-          .collection('branch')
-          .doc(this.SelectedBranch)
-          .get()
-          .then(function (doc) {
-            if (doc.exists) {
-              console.log('Document data:', doc.data())
-              vm.social.fb = doc.data().social.fb
-              vm.social.github = doc.data().social.github
-              vm.social.insta = doc.data().social.insta
-              vm.social.linkedin = doc.data().social.linkedin
-              vm.social.slack = doc.data().social.slack
-              vm.social.codepen = doc.data().social.codepen
-              vm.social.twt = doc.data().social.twt
-              vm.email = doc.data().email
-              vm.website = doc.data().website
-              vm.phone = doc.data().phone
-              vm.for_address = doc.data().for_address
-            } else {
-              // doc.data() will be undefined in this case
-              console.log('No such document!')
-            }
-          })
-          .catch(function (error) {
-            console.log('Error getting document:', error)
-          })
+      vm.email = ''
+      vm.website = ''
+      vm.phone = ''
+      vm.for_address = ''
+      vm.desc = ''
+      this.$fireStore
+        .collection('business')
+        .doc(this.business.b_uid)
+        .collection('branch')
+        .doc(this.SelectedBranch)
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            console.log('Document data:', doc.data())
+            vm.social.fb = doc.data().social.fb
+            vm.social.github = doc.data().social.github
+            vm.social.insta = doc.data().social.insta
+            vm.social.linkedin = doc.data().social.linkedin
+            vm.social.slack = doc.data().social.slack
+            vm.social.codepen = doc.data().social.codepen
+            vm.social.twt = doc.data().social.twt
+            vm.email = doc.data().email
+            vm.website = doc.data().website
+            vm.phone = doc.data().phone
+            vm.for_address = doc.data().for_address
+            vm.desc = doc.data().desc
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!')
+          }
+        })
+        .catch(function (error) {
+          console.log('Error getting document:', error)
+        })
     },
   },
   created() {
@@ -444,6 +447,7 @@ export default {
           vm.website = doc.data().website
           vm.phone = doc.data().phone
           vm.for_address = doc.data().for_address
+          vm.desc = doc.data().desc
         } else {
           // doc.data() will be undefined in this case
           console.log('No such document!')
@@ -502,15 +506,18 @@ export default {
     },
     save_details() {
       let vm = this
+      console.log('vm', vm.formData)
+      console.log('vm', this.SelectedBranch)
+
       let obj = {
-        branch: vm.selectedBranch ? vm.selectedBranch : '',
-        email: vm.formData.Email ? vm.formData.Email : '',
-        phone: vm.formData.Phone ? vm.formData.Phone : '',
-        website: vm.formData.Website ? vm.formData.Website : '',
+        branch: vm.SelectedBranch,
+        email: vm.formData.Email ? vm.formData.Email : this.email,
+        phone: vm.formData.Phone ? vm.formData.Phone : this.phone,
+        website: vm.formData.Website ? vm.formData.Website : this.website,
 
         date: moment().format('DD-MM-YYYY'),
         month: moment().format('MM-YYYY'),
-        desc: vm.formData.Description ? vm.formData.Description : '',
+        desc: vm.formData.Description ? vm.formData.Description : this.desc,
         t_stamp: Date.now(),
       }
 
@@ -630,6 +637,7 @@ export default {
 
       let obj2 = {
         social: obj,
+        branch: vm.SelectedBranch,
       }
 
       this.$fireStore

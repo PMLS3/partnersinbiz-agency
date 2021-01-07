@@ -63,7 +63,7 @@
       <vs-tab label="Schedule" icon="schedule">
         <TweetSchedular />
       </vs-tab>
-      <vs-tab label="Drafts" icon="history_edu">
+      <vs-tab label="Drafts" icon="gesture">
         <TweetDrafts />
       </vs-tab>
       <!-- <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
@@ -80,7 +80,7 @@
       </vs-tab>
 
       <vs-tab label="Configuration" icon="account_box">
-        <TweetConfig :entity="entity" />
+        <TweetConfig :entity="entity" :branch="branch" />
       </vs-tab>
 
       <vs-tab label="Pipeline" icon="all_out">
@@ -116,7 +116,76 @@ export default {
       return this.$store.state.config.twitter
     },
     entity() {
-      return this.$store.state.app.entity
+      if (this.branch == 'Company') {
+        return 'business'
+      } else {
+        return 'branch'
+      }
+    },
+    branch() {
+      return this.$store.state.app.selected_branch
+    },
+  },
+  watch: {
+    branch() {
+      let vm = this
+      if (vm.branch == 'Company') {
+        let payload = vm.business.twtConfig
+        vm.$store.commit('config/TWITTER_UPDATE', payload)
+
+        if (
+          vm.config.access_token &&
+          vm.config.access_token_secret &&
+          vm.config.consumer_key &&
+          vm.config.consumer_secret
+        ) {
+          vm.fetchTimeline()
+          vm.fetchHomeTimeline()
+          vm.fetchMentions()
+        } else {
+          vm.$vs.notify({
+            title: 'No Config',
+            text: `Please check config for ${vm.branch}`,
+            color: 'success',
+          })
+        }
+      } else {
+        vm.$fireStore
+          .collection('business')
+          .doc(vm.business.b_uid)
+          .collection('branch')
+          .doc(vm.branch)
+          .get()
+          .then(function (doc) {
+            if (doc.exists) {
+              console.log('Document data:', doc.data())
+              vm.$store.commit('app/CURRENT_BRANCH', doc.data())
+              vm.$store.commit('config/TWITTER_UPDATE', doc.data().twtConfig)
+              if (
+                doc.data().twtConfig.access_token &&
+                doc.data().twtConfig.access_token_secret &&
+                doc.data().twtConfig.consumer_key &&
+                doc.data().twtConfig.consumer_secret
+              ) {
+                vm.fetchTimeline()
+                vm.fetchHomeTimeline()
+                vm.fetchMentions()
+              } else {
+                vm.$vs.notify({
+                  title: 'No Config',
+                  text: `Please check config for ${vm.branch}`,
+                  color: 'success',
+                })
+              }
+            } else {
+              // doc.data() will be undefined in this case
+              console.log('No such document!')
+            }
+          })
+          .catch(function (error) {
+            console.log('Error getting document:', error)
+          })
+      }
     },
   },
 
@@ -145,11 +214,51 @@ export default {
   },
   mounted() {
     let vm = this
+    console.log('this.branch', this.branch)
+
+    if (this.branch == 'Company') {
+      let payload = vm.business.twtConfig
+      vm.$store.commit('config/TWITTER_UPDATE', payload)
+    } else {
+      this.$fireStore
+        .collection('business')
+        .doc(vm.business.b_uid)
+        .collection('branch')
+        .doc(vm.branch)
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            console.log('Document data:', doc.data())
+            vm.$store.commit('app/CURRENT_BRANCH', doc.data())
+            vm.$store.commit('config/TWITTER_UPDATE', doc.data().twtConfig)
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!')
+          }
+        })
+        .catch(function (error) {
+          console.log('Error getting document:', error)
+        })
+    }
     setTimeout(() => {
       if (vm.config) {
-        this.fetchTimeline()
-        this.fetchHomeTimeline()
-        this.fetchMentions()
+        console.log('fetching', vm.config)
+        if (
+          vm.config.access_token &&
+          vm.config.access_token_secret &&
+          vm.config.consumer_key &&
+          vm.config.consumer_secret
+        ) {
+          vm.fetchTimeline()
+          vm.fetchHomeTimeline()
+          vm.fetchMentions()
+        } else {
+          vm.$vs.notify({
+            title: 'No Config',
+            text: `Please check config for ${vm.branch}`,
+            color: 'success',
+          })
+        }
       }
     }, 1000)
   },

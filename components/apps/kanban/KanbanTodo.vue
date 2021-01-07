@@ -9,6 +9,8 @@
   <div id="knowledge-base-page">
     <client-only>
       <!-- JUMBOTRON -->
+      <h3>Whats need or can be improved on?</h3>
+      <small>Please be specific to this</small>
 
       <div class="w-full vx-row">
         <!-- <div

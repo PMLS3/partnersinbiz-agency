@@ -1,3 +1,10 @@
+// <!-- =========================================================================================
+//     File Name: app.js
+//     Description: Handles client authentication
+//     ----------------------------------------------------------------------------------------
+// TODO get branches once in the beginning
+// ========================================================================================== -->
+
 export const state = () => ({
   app_type: 'aframe',
   authorization_type: {
@@ -17,9 +24,13 @@ export const state = () => ({
   teaching: {},
   categories: [],
   selected_branch: 'Company',
+  current_branch_details: {},
 })
 
 export const mutations = {
+  CURRENT_BRANCH(state, payload) {
+    state.current_branch_details = payload
+  },
   SELECTED_BRANCH(state, payload) {
     state.selected_branch = payload
   },
