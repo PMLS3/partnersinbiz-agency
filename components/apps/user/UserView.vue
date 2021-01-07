@@ -8,83 +8,55 @@
 
 <template>
   <div id="page-user-view w-full">
-    <vs-alert
-      color="danger"
-      title="User Not Found"
-      :active.sync="user_not_found"
-    >
-      <span>User record with id: {{ $route.params.userId }} not found. </span>
-      <span>
-        <span>Check </span
-        ><router-link
-          :to="{ name: 'page-user-list' }"
-          class="underline text-inherit"
-          >All Users</router-link
-        >
-      </span>
-    </vs-alert>
-
     <div id="user-data" v-if="user_data" class="w-full mt-18">
       <vx-card title="Account" class="w-full mt-24 mb-base">
         <!-- Avatar -->
-        <div class="vx-row">
+        <div class="grid grid-cols-3 gap-4">
           <!-- Avatar Col -->
-          <div class="vx-col" id="avatar-col">
+          <div id="avatar-col">
             <div class="mb-4 img-container">
               <img :src="user_data.avatar" class="w-full rounded" />
             </div>
           </div>
 
           <!-- Information - Col 1 -->
-          <div class="flex-1 vx-col" id="account-info-col-1">
+          <div id="account-info-col-1">
             <table>
               <tr>
                 <td class="font-semibold">Username</td>
-                <td>{{ user_data.disp_name }}</td>
+                <td class="ml-2">{{ user_data.disp_name }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Name</td>
-                <td>{{ user_data.name }}</td>
+                <td class="ml-2">{{ user_data.name }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Email</td>
-                <td>{{ user_data.email }}</td>
+                <td class="ml-2">{{ user_data.email }}</td>
               </tr>
             </table>
           </div>
-          <!-- /Information - Col 1 -->
 
           <!-- Information - Col 2 -->
-          <div class="flex-1 vx-col" id="account-info-col-2">
+          <div id="account-info-col-2">
             <table>
               <tr>
                 <td class="font-semibold">Status</td>
-                <td>{{ user_data.status }}</td>
+                <td class="ml-2">{{ user_data.status }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Role</td>
-                <td>{{ user_data.role }}</td>
+                <td class="ml-2">{{ user_data.role }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Company</td>
-                <td>{{ user_data.company }}</td>
+                <td class="ml-2">{{ user_data.company }}</td>
               </tr>
             </table>
           </div>
           <!-- /Information - Col 2 -->
-          <div class="flex w-full vx-col" id="account-manage-buttons">
-            <vs-tooltip
-              text="Edit User Details"
-              position="top"
-              class="float-right mr-4"
-            >
-              <vs-button
-                icon-pack="feather"
-                icon="icon-edit"
-                @click="$router.push('/userEdit')"
-              ></vs-button>
-            </vs-tooltip>
-            <!-- <vs-button
+
+          <!-- <vs-button
               type="border"
               color="danger"
               icon-pack="feather"
@@ -92,8 +64,20 @@
               @click="confirmDeleteRecord"
               >Delete</vs-button
             > -->
-          </div>
         </div>
+
+        <vs-tooltip
+          text="Edit User Details"
+          position="top"
+          class="float-right mr-4"
+        >
+          <vs-button
+            class="float-right mr-4"
+            icon-pack="feather"
+            icon="icon-edit"
+            @click="$router.push('/userEdit')"
+          ></vs-button>
+        </vs-tooltip>
       </vx-card>
 
       <div class="vx-row">
@@ -137,38 +121,38 @@
             <table>
               <tr>
                 <td class="font-semibold">Twitter</td>
-                <td v-if="user_data.social_links">
-                  {{ user_data.social_links.twitter }}
+                <td>
+                  {{ user_data.twt }}
                 </td>
               </tr>
               <tr>
                 <td class="font-semibold">Facebook</td>
-                <td v-if="user_data.social_links">
-                  {{ user_data.social_links.facebook }}
+                <td>
+                  {{ user_data.fb }}
                 </td>
               </tr>
               <tr>
                 <td class="font-semibold">Instagram</td>
-                <td v-if="user_data.social_links">
-                  {{ user_data.social_links.instagram }}
+                <td>
+                  {{ user_data.insta }}
                 </td>
               </tr>
               <tr>
                 <td class="font-semibold">Github</td>
-                <td v-if="user_data.social_links">
-                  {{ user_data.social_links.github }}
+                <td>
+                  {{ user_data.github }}
                 </td>
               </tr>
               <tr>
                 <td class="font-semibold">CodePen</td>
-                <td v-if="user_data.social_links">
-                  {{ user_data.social_links.codepen }}
+                <td>
+                  {{ user_data.codepen }}
                 </td>
               </tr>
               <tr>
                 <td class="font-semibold">Slack</td>
-                <td v-if="user_data.social_links">
-                  {{ user_data.social_links.slack }}
+                <td>
+                  {{ user_data.slack }}
                 </td>
               </tr>
             </table>
@@ -278,26 +262,7 @@ export default {
       })
     },
   },
-  created() {
-    // Register Module UserManagement Module
-    // if (!moduleUserManagement.isRegistered) {
-    //   this.$store.registerModule("userManagement", moduleUserManagement);
-    //   moduleUserManagement.isRegistered = true;
-    // }
-    // const userId = this.$route.params.userId;
-    // this.$store
-    //   .dispatch("userManagement/fetchUser", userId)
-    //   .then(res => {
-    //     this.user_data = res.data;
-    //   })
-    //   .catch(err => {
-    //     if (err.response.status === 404) {
-    //       this.user_not_found = true;
-    //       return;
-    //     }
-    //     console.error(err);
-    //   });
-  },
+  created() {},
 }
 </script>
 
@@ -325,15 +290,15 @@ export default {
   }
 }
 
-// #account-info-col-1 {
-//   // flex-grow: 1;
-//   width: 30rem !important;
-//   @media screen and (min-width:1200px) {
-//     & {
-//       flex-grow: unset !important;
-//     }
-//   }
-// }
+#account-info-col-1 {
+  flex-grow: 1;
+  width: 30rem !important;
+  @media screen and (min-width: 1200px) {
+    & {
+      flex-grow: unset !important;
+    }
+  }
+}
 
 @media screen and (min-width: 1201px) and (max-width: 1211px),
   only screen and (min-width: 636px) and (max-width: 991px) {
@@ -341,14 +306,14 @@ export default {
     width: calc(100% - 12rem) !important;
   }
 
-  // #account-manage-buttons {
-  //   width: 12rem !important;
-  //   flex-direction: column;
+  #account-manage-buttons {
+    width: 12rem !important;
+    flex-direction: column;
 
-  //   > button {
-  //     margin-right: 0 !important;
-  //     margin-bottom: 1rem;
-  //   }
-  // }
+    > button {
+      margin-right: 0 !important;
+      margin-bottom: 1rem;
+    }
+  }
 }
 </style>

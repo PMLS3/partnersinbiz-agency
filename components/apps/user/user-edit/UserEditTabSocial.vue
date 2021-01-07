@@ -7,12 +7,12 @@
 
 <template>
   <div id="user-edit-tab-info">
-    <div class="vx-row">
+    <div class="p-4 vx-row">
       <!-- Col 1 -->
       <div class="w-full vx-col md:w-1/2">
         <vs-input
           class="w-full"
-          v-model="data_local.social_links.twitter"
+          v-model="data_local.twt"
           icon-pack="feather"
           icon="icon-twitter"
           label="Twitter"
@@ -25,7 +25,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.facebook"
+          v-model="data_local.fb"
           icon-pack="feather"
           icon="icon-facebook"
           label="Facebook"
@@ -38,7 +38,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.instagram"
+          v-model="data_local.insta"
           icon-pack="feather"
           icon="icon-instagram"
           label="Instagram"
@@ -54,7 +54,7 @@
       <div class="w-full vx-col md:w-1/2">
         <vs-input
           class="w-full mt-4 md:mt-0"
-          v-model="data_local.social_links.github"
+          v-model="data_local.github"
           icon-pack="feather"
           icon="icon-github"
           label="GitHub"
@@ -67,7 +67,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.codepen"
+          v-model="data_local.codepen"
           icon-pack="feather"
           icon="icon-codepen"
           label="CodePen"
@@ -80,7 +80,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.slack"
+          v-model="data_local.slack"
           icon-pack="feather"
           icon="icon-slack"
           label="Slack"
@@ -94,7 +94,7 @@
     </div>
 
     <!-- Save & Reset Button -->
-    <div class="vx-row">
+    <div class="mb-6 vx-row">
       <div class="w-full vx-col">
         <div class="flex flex-wrap items-center justify-end mt-8">
           <vs-button
@@ -133,16 +133,50 @@ export default {
     validateForm() {
       return !this.errors.any()
     },
+    user() {
+      if (process.client) {
+        if (localStorage.getItem('userInfo')) {
+          return JSON.parse(localStorage.getItem('userInfo'))
+        } else {
+          return this.$store.state.auth.main_user
+        }
+      }
+    },
+    business() {
+      return this.$store.state.business.active_business
+    },
   },
   methods: {
     save_changes() {
-      /* eslint-disable */
-      if (!this.validateForm) return
-
-      // Here will go your API call for updating data (Also remvoe eslint-disable)
-      // You can get data in "this.data_local"
-
-      /* eslint-enable */
+      console.log('this', this.data_local)
+      let vm = this
+      let payload = this.data_local
+      this.$fireStore
+        .collection('business')
+        .doc('users')
+        .collection(this.business.b_uid)
+        .doc(this.data_local.id)
+        .update(payload)
+        .then(() => {
+          vm.successUpload()
+        })
+        .catch((err) => {
+          vm.unsuccessUpload(err)
+        })
+    },
+    successUpload() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Successful upload',
+        color: 'green',
+      })
+    },
+    unsuccessUpload(err) {
+      this.$vs.notify({
+        title: 'Error',
+        text: `${err}`,
+        color: 'red',
+      })
     },
     reset_data() {
       this.data_local = Object.assign({}, this.data)

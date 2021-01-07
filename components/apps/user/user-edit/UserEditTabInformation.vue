@@ -2,7 +2,7 @@
   File Name: UserEditTabInformation.vue
   Description: User Edit Information Tab content
   ----------------------------------------------------------------------------------------
-
+TODO Google address option
 ========================================================================================== -->
 
 <template>
@@ -91,19 +91,19 @@
             <label>Contact Options</label>
             <div class="flex flex-wrap mt-1">
               <vs-checkbox
-                v-model="data_local.contact_options"
+                v-model="data_local.contact_options_email"
                 vs-value="email"
                 class="mb-2 mr-4"
                 >Email</vs-checkbox
               >
               <vs-checkbox
-                v-model="data_local.contact_options"
+                v-model="data_local.contact_options_message"
                 vs-value="message"
                 class="mb-2 mr-4"
                 >Message</vs-checkbox
               >
               <vs-checkbox
-                v-model="data_local.contact_options"
+                v-model="data_local.contact_options_phone"
                 vs-value="Phone"
                 class="mb-2"
                 >Phone</vs-checkbox
@@ -126,7 +126,7 @@
           <vs-input
             class="w-full mt-4"
             label="Address Line 1"
-            v-model="data_local.location.add_line_1"
+            v-model="data_local.add_line_1"
             name="addd_line_1"
           />
           <!-- <span
@@ -138,14 +138,13 @@
           <vs-input
             class="w-full mt-4"
             label="Address Line 2"
-            v-model="data_local.location.add_line_2"
+            v-model="data_local.add_line_2"
           />
 
           <vs-input
             class="w-full mt-4"
             label="Post Code"
-            v-model="data_local.location.post_code"
-            v-validate="'required|numeric'"
+            v-model="data_local.post_code"
             name="post_code"
           />
           <!-- <span class="text-sm text-danger" v-show="errors.has('post_code')">{{
@@ -155,8 +154,7 @@
           <vs-input
             class="w-full mt-4"
             label="City"
-            v-model="data_local.location.city"
-            v-validate="'required|alpha'"
+            v-model="data_local.city"
             name="city"
           />
           <!-- <span class="text-sm text-danger" v-show="errors.has('city')">{{
@@ -166,8 +164,7 @@
           <vs-input
             class="w-full mt-4"
             label="State"
-            v-model="data_local.location.state"
-            v-validate="'required|alpha'"
+            v-model="data_local.state"
             name="state"
           />
           <!-- <span class="text-sm text-danger" v-show="errors.has('state')">{{
@@ -177,8 +174,7 @@
           <vs-input
             class="w-full mt-4"
             label="Country"
-            v-model="data_local.location.country"
-            v-validate="'required|alpha'"
+            v-model="data_local.country"
             name="country"
           />
           <!-- <span class="text-sm text-danger" v-show="errors.has('country')">{{
@@ -189,7 +185,7 @@
     </div>
 
     <!-- Save & Reset Button -->
-    <div class="vx-row">
+    <div class="mb-6 vx-row">
       <div class="w-full vx-col">
         <div class="flex flex-wrap items-center justify-end mt-8">
           <vs-button
@@ -232,30 +228,65 @@ export default {
       data_local: JSON.parse(JSON.stringify(this.data)),
 
       langOptions: [
-        { label: 'English', value: 'english' },
-        { label: 'Spanish', value: 'spanish' },
-        { label: 'French', value: 'french' },
-        { label: 'Russian', value: 'russian' },
-        { label: 'German', value: 'german' },
-        { label: 'Arabic', value: 'arabic' },
-        { label: 'Sanskrit', value: 'sanskrit' },
+        'English',
+        'Spanish',
+        'French',
+        'Russian',
+        'German',
+        'Arabic',
+        'Sanskrit',
       ],
     }
   },
+  created() {},
   computed: {
     validateForm() {
       return !this.errors.any()
     },
+    user() {
+      if (process.client) {
+        if (localStorage.getItem('userInfo')) {
+          return JSON.parse(localStorage.getItem('userInfo'))
+        } else {
+          return this.$store.state.auth.main_user
+        }
+      }
+    },
+    business() {
+      return this.$store.state.business.active_business
+    },
   },
   methods: {
     save_changes() {
-      /* eslint-disable */
-      if (!this.validateForm) return
-
-      // Here will go your API call for updating data
-      // You can get data in "this.data_local"
-
-      /* eslint-enable */
+      console.log('this', this.data_local)
+      let vm = this
+      let payload = this.data_local
+      this.$fireStore
+        .collection('business')
+        .doc('users')
+        .collection(this.business.b_uid)
+        .doc(this.data_local.id)
+        .update(payload)
+        .then(() => {
+          vm.successUpload()
+        })
+        .catch((err) => {
+          vm.unsuccessUpload(err)
+        })
+    },
+    successUpload() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Successful upload',
+        color: 'green',
+      })
+    },
+    unsuccessUpload(err) {
+      this.$vs.notify({
+        title: 'Error',
+        text: `${err}`,
+        color: 'red',
+      })
     },
     reset_data() {
       this.data_local = Object.assign({}, this.data)

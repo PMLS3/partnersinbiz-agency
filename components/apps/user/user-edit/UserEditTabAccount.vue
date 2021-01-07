@@ -2,7 +2,7 @@
   File Name: UserEditTabInformation.vue
   Description: User Edit Information Tab content
   ----------------------------------------------------------------------------------------
-//TODO  Company needs to create company
+//TODO  Company needs to create company and Avatar
 ========================================================================================== -->
 
 <template>
