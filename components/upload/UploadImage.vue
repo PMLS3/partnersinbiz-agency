@@ -5,7 +5,7 @@
       color="primary"
       :icon="icon"
       class="-ml-16"
-    >
+      >{{ label }}
     </vs-button>
     <vs-popup fullscreen :title="label" :active.sync="popupActivo4">
       <vs-card

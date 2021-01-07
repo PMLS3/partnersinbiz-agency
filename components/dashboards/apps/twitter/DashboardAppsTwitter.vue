@@ -64,7 +64,7 @@
         <TweetSchedular />
       </vs-tab>
       <vs-tab label="Drafts" icon="gesture">
-        <TweetDrafts />
+        <TweetDrafts :entity="entity" :branch="branch" />
       </vs-tab>
       <!-- <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
         <TweetAutoLike />
