@@ -12,10 +12,10 @@
       <div
         class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
       >
-        <h1 class="mb-1 text-white">Run your business from here</h1>
-        <p class="text-white">
-          {{ motivational_quotes }}
-        </p>
+        <h1 class="mb-1 text-white">Marketing Management</h1>
+        <h2 class="text-xl leading-tight text-white font-semibild">
+          Manage all your marketing from one place
+        </h2>
 
         <vs-input
           icon-no-border
@@ -26,20 +26,31 @@
           size="large"
           class="w-full mt-6"
         />
-        <vs-button
-          radius
-          type="filled"
-          icon="all_out"
-          class="float-right mt-24"
-          @click="popupActivo = true"
-        ></vs-button>
-        <vs-popup
-          fullscreen
-          :title="$route.params.id"
-          :active.sync="popupActivo"
-        >
-          <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
-        </vs-popup>
+        <div class="flex items-center justify-between py-2">
+          <div class="flex items-center">
+            <p class="text-white">
+              {{ motivational_quotes }}
+            </p>
+          </div>
+          <div class="flex">
+            <!-- <UploadApps :schema="schema" :item="item" /> -->
+            <vs-tooltip text="Let us know what you want!" position="top">
+              <vs-button
+                type="filled"
+                icon="live_help"
+                class="float-right ml-2"
+                @click="popupActivo = true"
+              ></vs-button>
+            </vs-tooltip>
+            <vs-popup
+              fullscreen
+              :title="$route.params.id"
+              :active.sync="popupActivo"
+            >
+              <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+            </vs-popup>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -67,6 +78,11 @@ export default {
     })
     let popupActivo = ref(false)
     let knowledgeBaseSearchQuery = ref('')
+    const item = ref({
+      item: 'dashboardMarketing',
+      title: 'Marketing',
+      type: 'Category',
+    })
     const kb = ref([
       {
         id: 1,
@@ -142,6 +158,7 @@ export default {
       motivational_quotes,
       business,
       popupActivo,
+      item,
     }
   },
 }

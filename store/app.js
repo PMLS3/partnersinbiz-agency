@@ -16,9 +16,13 @@ export const state = () => ({
   entity: 'business',
   teaching: {},
   categories: [],
+  selected_branch: 'Company',
 })
 
 export const mutations = {
+  SELECTED_BRANCH(state, payload) {
+    state.selected_branch = payload
+  },
   SET_SIDE_CHAT_ACTIVE(state, payload) {
     state.side_chat.active = payload
   },

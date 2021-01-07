@@ -14,173 +14,177 @@ export const state = () => ({
     profileDropDown: true,
     saveBar: false,
     shareScreen: false,
-    zoomGrid: false
+    zoomGrid: false,
+    showBranchSelector: false,
   },
-  navMenuItems: []
-});
+  navMenuItems: [],
+})
 
 export const mutations = {
+  SET_BRANCH_SELECTOR(state, payload) {
+    state.showNav.showBranchSelector = payload
+  },
   SET_NAV(state, payload) {
-    state.showNav = payload;
+    state.showNav = payload
   },
   SET_NAV_TYPE(state, payload) {
-    let type = payload.type;
-    state.showNav[type] = payload.bool;
+    let type = payload.type
+    state.showNav[type] = payload.bool
   },
   FRONTEND_NAV(state, payload) {
-    console.log("PAYLOAD", payload);
-    state.showNav.bookmarksNow = true;
-    state.showNav.searchNow = true;
-    state.showNav.i18nNow = false;
-    state.showNav.cartDropDown = false;
-    state.showNav.notificationDropDown = true;
-    state.showNav.profileDropDown = true;
-    state.showNav.saveBar = false;
-    state.showNav.shareScreen = false;
-    state.showNav.zoomGrid = false;
-    state.featherIcon = false;
-    state.navMenuItems = payload;
+    console.log('PAYLOAD', payload)
+    state.showNav.bookmarksNow = true
+    state.showNav.searchNow = true
+    state.showNav.i18nNow = false
+    state.showNav.cartDropDown = false
+    state.showNav.notificationDropDown = true
+    state.showNav.profileDropDown = true
+    state.showNav.saveBar = false
+    state.showNav.shareScreen = false
+    state.showNav.zoomGrid = false
+    state.featherIcon = false
+    state.navMenuItems = payload
   },
   BACKEND_NAV(state, payload) {
-    state.showNav.bookmarksNow = !payload;
-    state.showNav.searchNow = !payload;
-    state.showNav.i18nNow = !payload;
-    state.showNav.cartDropDown = !payload;
-    state.showNav.notificationDropDown = payload;
-    state.showNav.profileDropDown = true;
-    state.showNav.saveBar = !payload;
-    state.showNav.shareScreen = !payload;
-    state.showNav.zoomGrid = !payload;
+    state.showNav.bookmarksNow = !payload
+    state.showNav.searchNow = !payload
+    state.showNav.i18nNow = !payload
+    state.showNav.cartDropDown = !payload
+    state.showNav.notificationDropDown = payload
+    state.showNav.profileDropDown = true
+    state.showNav.saveBar = !payload
+    state.showNav.shareScreen = !payload
+    state.showNav.zoomGrid = !payload
 
     if (payload == true) {
-      state.featherIcon = true;
+      state.featherIcon = true
       state.navMenuItems = [
         {
-          url: "/apps/email",
-          name: "Email",
-          slug: "email",
-          icon: "MailIcon",
-          i18n: "Email"
+          url: '/apps/email',
+          name: 'Email',
+          slug: 'email',
+          icon: 'MailIcon',
+          i18n: 'Email',
         },
         {
-          url: "/apps/chat",
-          name: "Chat",
-          slug: "chat",
-          icon: "MessageSquareIcon",
-          i18n: "Chat"
+          url: '/apps/chat',
+          name: 'Chat',
+          slug: 'chat',
+          icon: 'MessageSquareIcon',
+          i18n: 'Chat',
         },
         {
-          url: "/apps/todo",
-          name: "Todo",
-          slug: "todo",
-          icon: "CheckSquareIcon",
-          i18n: "Todo"
+          url: '/apps/todo',
+          name: 'Todo',
+          slug: 'todo',
+          icon: 'CheckSquareIcon',
+          i18n: 'Todo',
         },
         {
-          url: "/apps/calendar/vue-simple-calendar",
-          name: "Calendar",
-          slug: "calendar-simple-calendar",
-          icon: "CalendarIcon",
-          tagColor: "success",
-          i18n: "Calendar"
-        }
-      ];
+          url: '/apps/calendar/vue-simple-calendar',
+          name: 'Calendar',
+          slug: 'calendar-simple-calendar',
+          icon: 'CalendarIcon',
+          tagColor: 'success',
+          i18n: 'Calendar',
+        },
+      ]
     }
   },
   WHITEBOARD_NAV(state, payload) {
-    state.showNav.bookmarksNow = !payload;
-    state.showNav.searchNow = !payload;
-    state.showNav.i18nNow = !payload;
-    state.showNav.cartDropDown = !payload;
-    state.showNav.notificationDropDown = !payload;
-    state.showNav.profileDropDown = !payload;
-    state.showNav.saveBar = payload;
-    state.showNav.shareScreen = payload;
-    state.showNav.zoomGrid = payload;
+    state.showNav.bookmarksNow = !payload
+    state.showNav.searchNow = !payload
+    state.showNav.i18nNow = !payload
+    state.showNav.cartDropDown = !payload
+    state.showNav.notificationDropDown = !payload
+    state.showNav.profileDropDown = !payload
+    state.showNav.saveBar = payload
+    state.showNav.shareScreen = payload
+    state.showNav.zoomGrid = payload
 
     if (payload == true) {
-      state.featherIcon = false;
+      state.featherIcon = false
       state.navMenuItems = [
         {
-          header: "Whiteboard",
-          icon: "alarm",
-          i18n: "Whiteboard",
+          header: 'Whiteboard',
+          icon: 'alarm',
+          i18n: 'Whiteboard',
           items: [
             {
               url: null,
-              name: "Drag",
-              slug: "drag",
-              icon: "drag_indicator",
-              i18n: "Drag"
+              name: 'Drag',
+              slug: 'drag',
+              icon: 'drag_indicator',
+              i18n: 'Drag',
             },
             {
               url: null,
-              name: "Chat",
-              slug: "chat",
-              icon: "table_chart",
-              i18n: "Chat"
+              name: 'Chat',
+              slug: 'chat',
+              icon: 'table_chart',
+              i18n: 'Chat',
             },
             {
               url: null,
-              name: "Text",
-              slug: "todo",
-              icon: "text_fields",
-              i18n: "Text"
+              name: 'Text',
+              slug: 'todo',
+              icon: 'text_fields',
+              i18n: 'Text',
             },
             {
               url: null,
-              name: "Shapes",
-              slug: "todo",
-              icon: "category",
-              i18n: "Shapes"
+              name: 'Shapes',
+              slug: 'todo',
+              icon: 'category',
+              i18n: 'Shapes',
             },
             {
               url: null,
-              name: "Straight Line",
-              slug: "todo",
-              icon: "arrow_right_alt",
-              i18n: "Straight Line"
+              name: 'Straight Line',
+              slug: 'todo',
+              icon: 'arrow_right_alt',
+              i18n: 'Straight Line',
             },
             {
               url: null,
-              name: "Pen",
-              slug: "todo",
-              icon: "create",
-              i18n: "Pen"
+              name: 'Pen',
+              slug: 'todo',
+              icon: 'create',
+              i18n: 'Pen',
             },
             {
               url: null,
-              name: "Note",
-              slug: "todo",
-              icon: "insert_comment",
-              i18n: "Note"
+              name: 'Note',
+              slug: 'todo',
+              icon: 'insert_comment',
+              i18n: 'Note',
             },
             {
               url: null,
-              name: "Select",
-              slug: "todo",
-              icon: "border_clear",
-              i18n: "Select"
+              name: 'Select',
+              slug: 'todo',
+              icon: 'border_clear',
+              i18n: 'Select',
             },
             {
               url: null,
-              name: "Upload",
-              slug: "todo",
-              icon: "cloud_upload",
-              i18n: "Upload"
+              name: 'Upload',
+              slug: 'todo',
+              icon: 'cloud_upload',
+              i18n: 'Upload',
             },
             {
               url: null,
-              name: "Todo",
-              slug: "todo",
-              icon: "linear_scale",
-              i18n: "Todo"
-            }
-          ]
-        }
-      ];
+              name: 'Todo',
+              slug: 'todo',
+              icon: 'linear_scale',
+              i18n: 'Todo',
+            },
+          ],
+        },
+      ]
     } else {
-      state.featherIcon = true;
+      state.featherIcon = true
       state.navbarItem = [
         // {
         //   url: null,
@@ -1011,25 +1015,25 @@ export const mutations = {
         // }
         // ]
         // }
-      ];
+      ]
     }
-  }
-};
+  },
+}
 
 export const actions = {
   whiteBoardNav({ commit }, payload) {
-    commit("WHITEBOARD_NAV", payload);
+    commit('WHITEBOARD_NAV', payload)
   },
   backendNav({ commit }, payload) {
-    commit("BACKEND_NAV", payload);
+    commit('BACKEND_NAV', payload)
   },
   frontendNav({ commit }, payload) {
-    commit("FRONTEND_NAV", payload);
-  }
-};
+    commit('FRONTEND_NAV', payload)
+  },
+}
 
 export const getters = {
-  navMenuItems: state => state.navMenuItems,
-  showNav: state => state.showNav,
-  featherIcon: state => state.featherIcon
-};
+  navMenuItems: (state) => state.navMenuItems,
+  showNav: (state) => state.showNav,
+  featherIcon: (state) => state.featherIcon,
+}

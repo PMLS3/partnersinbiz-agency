@@ -28,6 +28,20 @@
         >
           <logo class="w-10 mr-4 fill-current text-primary" alt="logo" />
         </nuxt-link>
+        <vs-spacer />
+        <vs-select
+          autocomplete
+          class="ml-4 selectExample"
+          v-model="selectedBranch"
+          v-if="showNav.showBranchSelector"
+        >
+          <vs-select-item
+            :key="index"
+            :value="item"
+            :text="item"
+            v-for="(item, index) in branches"
+          />
+        </vs-select>
 
         <vs-spacer />
         <div v-if="isUserLoggedIn" class="flex">
@@ -85,7 +99,31 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      selectedBranch: 'Company',
+      branches: '',
+    }
+  },
+  watch: {
+    selectedBranch() {
+      this.$store.commit('app/SELECTED_BRANCH', this.selectedBranch)
+    },
+    businessActive: {
+      handler(val) {
+        this.branches = ['Company']
+        for (let i = 0; i < this.businessActive.branches.length; i++) {
+          this.branches.push(this.businessActive.branches[i])
+        }
+      },
+      deep: true,
+    },
+  },
+  created() {
+    this.branches = ['Company']
+    console.log('this.=', this.businessActive.branches)
+    for (let i = 0; i < this.businessActive.branches.length; i++) {
+      this.branches.push(this.businessActive.branches[i])
+    }
   },
   computed: {
     showNav() {
@@ -105,6 +143,19 @@ export default {
           : this.$store.state.business.main_business
       }
     },
+    businessActive() {
+      if (process.client) {
+        return this.$store.state.business.active_business
+      }
+    },
+    // branches() {
+    //   let branch = ['Company']
+    //   for (let i = 0; i < this.businessActive.branches; i++) {
+    //     branch.push(br)
+    //   }
+    //   return branch
+    // },
+
     isUserLoggedIn() {
       return this.$store.state.auth.isUserLoggedIn
     },

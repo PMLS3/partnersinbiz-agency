@@ -7,15 +7,15 @@
 
 <template>
   <div id="knowledge-base-page">
-    <!-- JUMBOTRON -->
     <div class="knowledge-base-jumbotron">
       <div
         class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
       >
-        <h1 class="mb-1 text-white">Run your business from here</h1>
-        <p class="text-white">
-          {{ motivational_quotes }}
-        </p>
+        <h1 class="mb-1 text-white">Social Management</h1>
+        <h2 class="text-xl leading-tight text-white font-semibild">
+          Manage all your social media campaigns
+        </h2>
+
         <vs-input
           icon-no-border
           placeholder="Search Topic or Keyword"
@@ -25,20 +25,31 @@
           size="large"
           class="w-full mt-6"
         />
-        <vs-button
-          radius
-          type="filled"
-          icon="all_out"
-          class="float-right mt-24"
-          @click="popupActivo = true"
-        ></vs-button>
-        <vs-popup
-          fullscreen
-          :title="$route.params.id"
-          :active.sync="popupActivo"
-        >
-          <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
-        </vs-popup>
+        <div class="flex items-center justify-between py-2">
+          <div class="flex items-center">
+            <p class="text-white">
+              {{ motivational_quotes }}
+            </p>
+          </div>
+          <div class="flex">
+            <!-- <UploadApps :schema="schema" :item="item" /> -->
+            <vs-tooltip text="Let us know what you want!" position="top">
+              <vs-button
+                type="filled"
+                icon="live_help"
+                class="float-right ml-2"
+                @click="popupActivo = true"
+              ></vs-button>
+            </vs-tooltip>
+            <vs-popup
+              fullscreen
+              :title="$route.params.id"
+              :active.sync="popupActivo"
+            >
+              <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+            </vs-popup>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -63,9 +74,15 @@ export default {
     const { store } = useContext()
     onMounted(() => {
       store.commit('business/UPDATE_BUSINESS_INFO', business.value)
+      store.commit('navbar/SET_BRANCH_SELECTOR', true)
     })
     let knowledgeBaseSearchQuery = ref('')
     let popupActivo = ref(false)
+    const item = ref({
+      item: 'dashboardSocialMedia',
+      title: 'Social Media',
+      type: 'Category',
+    })
     const kb = ref([
       {
         id: 1,
@@ -90,14 +107,14 @@ export default {
         graphic: require('@/assets/illustrations2/loving_it.svg'),
         url: '/dashboardAppsInstagram',
       },
-      {
-        id: 4,
-        title: 'Linkedin',
-        description:
-          'Create Marketing campaigns, assign staff to run with projects',
-        graphic: require('@/assets/illustrations/social_ideas.svg'),
-        url: '/dashboardAppsLinkedin',
-      },
+      // {
+      //   id: 4,
+      //   title: 'Linkedin',
+      //   description:
+      //     'Create Marketing campaigns, assign staff to run with projects',
+      //   graphic: require('@/assets/illustrations/social_ideas.svg'),
+      //   url: '/dashboardAppsLinkedin',
+      // },
     ])
     const user = computed(() => store.state.auth.main_user)
     let filteredKB = computed(() => {
@@ -126,6 +143,7 @@ export default {
       motivational_quotes,
       business,
       popupActivo,
+      item,
     }
   },
 }
