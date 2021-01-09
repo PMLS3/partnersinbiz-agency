@@ -389,12 +389,37 @@ export default {
     },
     uploadUser(obj, docRef) {
       let vm = this
+
+      let payload = {
+        date: moment().format('DD-MM-YYYY'),
+        month: moment().format('MM-YYYY'),
+        t_stamp: Date.now(),
+        branch: '',
+        disp_name: this.user.disp_name,
+        email: this.user.email,
+        uid: vm.user.uid,
+        l_act: moment().format('DD-MM-YYYY'),
+        name: this.user.name,
+
+        mobile: null,
+        o_status: 'Online',
+        avatar: '',
+        pos: '',
+        p_notes: [],
+        role: 'Staff',
+        about: '',
+        status: 'Active',
+        stage: 'Prospect',
+        source: 'Websites',
+        surname: this.user.surname,
+        verified: false,
+      }
       this.$fireStore
         .collection('business')
         .doc('users')
         .collection(docRef.id)
         .doc(this.user.uid)
-        .set(obj)
+        .set(payload)
         .then(function (docRef) {
           vm.successUpload()
           vm.$emit('uploaded')

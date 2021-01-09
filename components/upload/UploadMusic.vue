@@ -431,7 +431,7 @@ export default {
       }
     },
     business() {
-      return this.$store.state.business.main_business
+      return this.$store.state.business.active_business
     },
 
     user() {

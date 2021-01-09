@@ -184,13 +184,13 @@ export default {
   name: 'Employee-Info',
   components: {
     vSelect,
-    flatPickr
+    flatPickr,
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -203,30 +203,24 @@ export default {
         { label: 'Russian', value: 'russian' },
         { label: 'German', value: 'german' },
         { label: 'Arabic', value: 'arabic' },
-        { label: 'Sanskrit', value: 'sanskrit' }
-      ]
+        { label: 'Sanskrit', value: 'sanskrit' },
+      ],
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user_data() {
       return this.$store.state.user.main_user
-    }
+    },
   },
   methods: {
     successUpload() {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let user = this.user_data
@@ -266,12 +260,12 @@ export default {
           post_code: this.data_local.post_code,
           city: this.data_local.city,
           state: this.data_local.state,
-          country: this.data_local.country
+          country: this.data_local.country,
         })
         .then(() => {
           this.successUpload()
         })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -35,22 +35,16 @@ export default {
 
   components: {
     vSelect,
-    quillEditor
+    quillEditor,
   },
   data: () => ({
     terms: '',
     content: '',
-    info: []
+    info: [],
   }),
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -60,18 +54,18 @@ export default {
           return this.$store.state.auth.active_user
         }
       }
-    }
+    },
   },
   watch: {
-    terms: function() {
+    terms: function () {
       this.content = this.terms.desc
     },
     content: {
       handler(val) {
         this.$store.commit('form/TERMS_SET', this.content)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   created() {
     let vm = this
@@ -82,8 +76,8 @@ export default {
       .doc('Terms & Conditions')
       .collection('Terms & Conditions')
 
-    ref.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    ref.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         // if (change.type === 'added') {
         let doc = change.doc
         let data = doc.data()
@@ -92,7 +86,7 @@ export default {
         // }
       })
     })
-  }
+  },
 }
 </script>
 

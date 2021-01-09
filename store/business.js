@@ -63,7 +63,9 @@ export const state = () => ({
   // reseller_id: 'UZnaDQw8wliD6EUAkkoQ',
   reseller_id: '6FAUg6Y5aEvL1B2sh1O7',
   sub_sellers: [],
-  active_business: getBusinessInfo(),
+  // active_business: getBusinessInfo(),
+  active_business: [],
+
   main_business: getMainBusiness(),
   staff: [],
   users: [],
@@ -79,23 +81,30 @@ export const mutations = {
   },
   // Updates user info in state and localstorage
   UPDATE_BUSINESS_INFO(state, payload) {
-    if (process.client) {
-      // Get Data localStorage
-      let businessInfo = state.active_business
-      console.log('payload', payload)
+    state.active_business = payload
+    // console.log('updateing')
+    // if (process.client) {
+    //   localStorage.removeItem('businessInfo')
+    //   let businessInfotest = JSON.parse(localStorage.getItem('businessInfo'))
+    //   console.log(businessInfotest)
+    //   // Get Data localStorage
+    //   let businessInfo = state.active_business
+    //   console.log('payload', payload)
 
-      for (const property of Object.keys(payload)) {
-        if (payload[property] != null) {
-          // If some of user property is null - user default property defined in state.active_business
-          state.active_business[property] = payload[property]
+    //   for (const property of Object.keys(payload)) {
+    //     if (payload[property] != null) {
+    //       // If some of user property is null - user default property defined in state.active_business
+    //       state.active_business[property] = payload[property]
 
-          // Update key in localStorage
-          businessInfo[property] = payload[property]
-        }
-      }
-      // Store data in localStorage
-      localStorage.setItem('businessInfo', JSON.stringify(businessInfo))
-    }
+    //       // Update key in localStorage
+    //       businessInfo[property] = payload[property]
+    //     }
+    //   }
+    //   // Store data in localStorage
+    //   localStorage.setItem('businessInfo', JSON.stringify(businessInfo))
+    //   businessInfotest = JSON.parse(localStorage.getItem('businessInfo'))
+    //   console.log(businessInfotest)
+    // }
   },
 
   UPDATE_MAIN_BUSINESS_INFO(state, payload) {

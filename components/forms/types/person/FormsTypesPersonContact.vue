@@ -83,7 +83,7 @@ export default {
   name: 'Contact Person',
 
   components: {
-    vSelect
+    vSelect,
   },
   data: () => ({
     users: [
@@ -93,27 +93,21 @@ export default {
         surname: '',
         u_email: '',
         mobile: '',
-        pos: ''
-      }
-    ]
+        pos: '',
+      },
+    ],
   }),
   watch: {
     users: {
       handler(val) {
         this.$store.commit('form/CONTACT_SET', this.users)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
 
     positions() {
@@ -128,7 +122,7 @@ export default {
     },
     salutations() {
       return this.$store.state.app.salutation
-    }
+    },
   },
 
   methods: {
@@ -139,9 +133,9 @@ export default {
         surname: '',
         u_email: '',
         mobile: '',
-        pos: ''
+        pos: '',
       })
-    }
-  }
+    },
+  },
 }
 </script>

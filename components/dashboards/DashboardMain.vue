@@ -12,7 +12,7 @@
       <div
         class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
       >
-        <h1 class="mb-1 text-white">Run your business from here</h1>
+        <h1 class="mb-1 text-white">Run {{ business.b_name }} from here</h1>
         <p class="text-white">
           {{ motivational_quotes }}
         </p>

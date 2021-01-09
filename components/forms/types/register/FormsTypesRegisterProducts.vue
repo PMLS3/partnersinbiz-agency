@@ -187,20 +187,14 @@ export default {
       addedItems: [
         {
           product: '',
-          quantity: 1
-        }
-      ]
+          quantity: 1,
+        },
+      ],
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -246,7 +240,7 @@ export default {
       }
 
       return ass
-    }
+    },
   },
   watch: {
     asset_type() {
@@ -264,7 +258,7 @@ export default {
       } else if (this.current_asset == 'Cash Equivalent') {
         this.current_asset = ''
       }
-    }
+    },
   },
   created() {
     if (this.business.branches) {
@@ -278,11 +272,11 @@ export default {
       .doc('brand')
       .collection('brand')
 
-    docBrands.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    docBrands.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.brands.push({
-          brand: doc.data().brand
+          brand: doc.data().brand,
         })
       })
     })
@@ -294,11 +288,11 @@ export default {
       .doc('category')
       .collection('category')
 
-    docCat.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    docCat.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.categories.push({
-          category: doc.data().category
+          category: doc.data().category,
         })
       })
     })
@@ -307,7 +301,7 @@ export default {
     AddMoreProd() {
       this.addedItems.push({
         product: '',
-        quantity: 1
+        quantity: 1,
       })
     },
     newProduct() {
@@ -340,7 +334,7 @@ export default {
         reseller_id: this.reseller_id,
         last_active: moment().format('DD-MM-YYYY'),
         created_month: moment().format('DD-MM-YYYY'),
-        timestamp: Date.now()
+        timestamp: Date.now(),
       }
 
       let ref = this.$fireStore
@@ -368,7 +362,7 @@ export default {
           this.category = ''
           this.brand = ''
         })
-        .catch(err => {
+        .catch((err) => {
           vm.unsuccessUpload(err)
         })
     },
@@ -376,17 +370,17 @@ export default {
       this.notify({
         color: 'success',
         title: 'Asset Added',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     unsuccessUpload(er) {
       this.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

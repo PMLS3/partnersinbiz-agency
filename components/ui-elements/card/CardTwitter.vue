@@ -15,6 +15,7 @@
     <div class="flex w-full mb-4">
       <div class="w-12 h-12 overflow-hidden rounded-full">
         <img
+          v-if="item.user"
           :src="
             item.user.profile_image_url_https
               ? item.user.profile_image_url_https
@@ -148,7 +149,7 @@
         type="line"
         icon="post_add"
         class="right-0 float-right -mt-8"
-        @click="activePromptAddEvent2 = true"
+        @click="useTweet()"
       ></vs-button>
     </vs-tooltip>
 
@@ -292,6 +293,40 @@
         </vs-tooltip>
       </vs-card>
     </vs-popup>
+
+    <vs-popup
+      class="holamundo"
+      title="Ready to Tweet"
+      :active.sync="activePromptAddTweet"
+    >
+      <vs-card>
+        <div :key="index" v-for="(twt, index) in tweets">
+          <vs-textarea
+            class="w-full"
+            counter="280"
+            label="Counter: 280"
+            :counter-danger.sync="counterDanger"
+            v-model="tweets[index].textarea"
+          />
+
+          <ImageUpload @input="input" class="mt-4 mb-4" />
+        </div>
+
+        <vs-button
+          color="success"
+          type="filled"
+          icon="library_add"
+          class="float-right"
+          @click="addAnother"
+        ></vs-button>
+
+        <vs-tooltip text="Tweet" position="top" class="float-right">
+          <vs-button @click="createTweet" class="mt-4" icon="save"
+            >Send Tweet</vs-button
+          >
+        </vs-tooltip>
+      </vs-card>
+    </vs-popup>
   </div>
 </template>
 
@@ -355,6 +390,7 @@ export default {
 
       activePromptAddEvent: false,
       activePromptEditEvent: false,
+      activePromptAddTweet: true,
       activePromptSave: false,
 
       calendarViewTypes: [
@@ -449,6 +485,32 @@ export default {
         },
       ]
       this.activePromptSave = true
+    },
+    createTweet() {
+      console.log('date', this.date)
+      let vm = this
+      let message = this.tweets[0].textarea
+      // if (this.images) {
+      //   for (let i = 0; i < this.images.length; i++) {
+      //     message = message + ' ' + this.images[i] + ' '
+      //   }
+      // }
+      // console.log('image', message)
+
+      this.$axios
+        .$post('/api/twitter/tweet', {
+          config: this.config,
+          message: message,
+        })
+        .then(
+          (response) => {
+            vm.successUpload('TWEETED')
+          },
+          (error) => {
+            console.log(error)
+            vm.unsuccessUpload(error)
+          }
+        )
     },
     addEvent() {
       let vm = this
@@ -600,6 +662,20 @@ export default {
         },
       ]
       this.activePromptAddEvent = true
+    },
+    useTweet() {
+      let vm = this
+      let imgs = []
+      if (vm.item.images) {
+        imgs = vm.item.images
+      }
+      this.tweets = [
+        {
+          textarea: vm.item.text,
+          imgs: [],
+        },
+      ]
+      this.activePromptAddTweet = true
     },
     createDraft() {
       let obj = {

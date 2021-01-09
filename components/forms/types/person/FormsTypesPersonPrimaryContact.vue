@@ -68,7 +68,7 @@ export default {
 
   props: ['title', 'subtitle'],
   components: {
-    vSelect
+    vSelect,
   },
   data: () => ({
     users: {
@@ -77,21 +77,15 @@ export default {
       surname: '',
       pos: '',
       email: '',
-      mobile: ''
-    }
+      mobile: '',
+    },
   }),
   computed: {
     salutation() {
       return this.$store.state.app.salutation
     },
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
 
     positions() {
@@ -103,15 +97,15 @@ export default {
       } else {
         return grp
       }
-    }
+    },
   },
   watch: {
     users: {
       handler(val) {
         this.$store.commit('form/CONTACT_PRIMARY_SET', this.users)
       },
-      deep: true
-    }
-  }
+      deep: true,
+    },
+  },
 }
 </script>

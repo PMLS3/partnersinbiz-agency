@@ -92,7 +92,7 @@
             class="mt-5"
             v-if="
               current_asset == 'Cash Equivalent' &&
-                asset_type == 'Current Assets'
+              asset_type == 'Current Assets'
             "
           >
             Cash Equivalent
@@ -100,7 +100,7 @@
           <v-select
             v-if="
               current_asset == 'Cash Equivalent' &&
-                asset_type == 'Current Assets'
+              asset_type == 'Current Assets'
             "
             class="w-full"
             v-model="cash_equivalent"
@@ -168,9 +168,7 @@
             />
           </div>
 
-          <p class="mt-5">
-            Transaction Type
-          </p>
+          <p class="mt-5">Transaction Type</p>
           <v-select
             class="w-full"
             v-model="transactionType"
@@ -282,7 +280,7 @@ export default {
         'Leasehold improvements',
         'Machinery',
         'Office equipment',
-        'Vehicles'
+        'Vehicles',
       ],
       interest: 0,
       interestType: 'fixed',
@@ -302,7 +300,7 @@ export default {
         'Accounts Receivable',
         'Marketable Securities',
         'Prepaid Expenses',
-        'Other Liquid Assets'
+        'Other Liquid Assets',
       ],
       cash_equivalents: [
         'Bank Balances',
@@ -310,13 +308,13 @@ export default {
         'Cheques',
         'Drafts-On-Hand',
         'Demand deposits',
-        'Short-term investments'
+        'Short-term investments',
       ],
       cash_equivalent: '',
       inventories: [
         'Raw and Packaging Material',
         'Finished Goods',
-        'Work in Progress'
+        'Work in Progress',
       ],
       inventory: '',
       fixed_asset: '',
@@ -329,18 +327,12 @@ export default {
       description: '',
       reference: '',
       active: false,
-      popupActivo4: false
+      popupActivo4: false,
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -365,7 +357,7 @@ export default {
     },
     straightLine() {
       return (this.totalAmount - this.residual) / this.expectedLife
-    }
+    },
   },
   watch: {
     asset_type() {
@@ -383,7 +375,7 @@ export default {
       } else if (this.current_asset == 'Cash Equivalent') {
         this.inventory = ''
       }
-    }
+    },
   },
   methods: {
     newAsset() {
@@ -405,7 +397,7 @@ export default {
         created_date: moment().format('DD-MM-YYYY'),
         created_month: moment().format('MM-YYYY'),
 
-        timestamp: Date.now()
+        timestamp: Date.now(),
       }
 
       if (vm.uploaded_images) {
@@ -472,7 +464,7 @@ export default {
             (vm.valueType = 'None'),
             vm.successUpload()
         })
-        .catch(err => {
+        .catch((err) => {
           vm.unsuccessUpload(err)
         })
     },
@@ -480,17 +472,17 @@ export default {
       this.notify({
         color: 'success',
         title: 'Asset Added',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     unsuccessUpload(er) {
       this.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

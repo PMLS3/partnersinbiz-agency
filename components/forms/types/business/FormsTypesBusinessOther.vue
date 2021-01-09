@@ -45,7 +45,7 @@ import vSelect from 'vue-select'
 export default {
   name: 'Business-Other',
   components: {
-    vSelect
+    vSelect,
   },
   data() {
     return {
@@ -53,13 +53,13 @@ export default {
         currency: '',
         opening_balance: '',
         payment_term: '',
-        group: ''
+        group: '',
       },
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   watch: {
@@ -67,18 +67,12 @@ export default {
       handler(val) {
         this.$store.commit('form/BUSINESS_OTHER_SET', this.setBusiness)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     groups() {
       let grp = ['None']
@@ -99,7 +93,7 @@ export default {
     },
     payment_terms() {
       return this.$store.state.info.payment_terms
-    }
-  }
+    },
+  },
 }
 </script>

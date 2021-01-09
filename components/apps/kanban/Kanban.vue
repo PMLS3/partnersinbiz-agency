@@ -440,7 +440,7 @@ export default {
       return this.$store.state.auth.active_user
     },
     business() {
-      return this.$store.state.business.main_business
+      return this.$store.state.business.active_business
     },
     date() {
       return Date.now()

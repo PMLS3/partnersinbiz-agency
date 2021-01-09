@@ -190,32 +190,26 @@ export default {
   name: 'Employee-Account',
   components: {
     vSelect,
-    imageUpload
+    imageUpload,
   },
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       data_local: JSON.parse(JSON.stringify(this.data)),
 
       statusOptions: ['Active', 'Blocked', 'Deactivated'],
-      roleOptions: ['User', 'Staff', 'Admin']
+      roleOptions: ['User', 'Staff', 'Admin'],
     }
   },
 
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user_data() {
       return this.$store.state.user.main_user
@@ -233,10 +227,10 @@ export default {
     },
     groupPositions() {
       return this.business.positions
-    }
+    },
   },
   watch: {
-    uploaded_images: function() {
+    uploaded_images: function () {
       if (this.uploaded_images) {
         let vm = this
 
@@ -249,13 +243,13 @@ export default {
           .doc(vm.user_data.uid)
         docRef
           .update({
-            avatar: this.uploaded_images[0]
+            avatar: this.uploaded_images[0],
           })
           .then(() => {
             vm.successUpload('url')
           })
       }
-    }
+    },
   },
 
   methods: {
@@ -263,7 +257,7 @@ export default {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let user = this.user_data
@@ -354,12 +348,12 @@ export default {
           position: myposition,
           status: this.data_local.status,
           permissions: permissions,
-          p_notes: this.data_local.p_notes
+          p_notes: this.data_local.p_notes,
         })
         .then(() => {
           this.successUpload()
         })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -84,7 +84,7 @@ export default {
     vSelect,
     imageUpload,
     PrimaryContact,
-    BusinessDetails
+    BusinessDetails,
   },
   data() {
     return {
@@ -126,8 +126,8 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
 
@@ -155,13 +155,7 @@ export default {
       }
     },
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     categories() {
       return this.$store.state.app.industries_available
@@ -188,8 +182,8 @@ export default {
           this.$emit('closeSidebar')
           this.initValues()
         }
-      }
-    }
+      },
+    },
   },
   created() {
     this.industry = this.business.indstr
@@ -303,9 +297,9 @@ export default {
             utc_offset: this.google_place.utc_offset_minutes,
             addr_url: this.google_place.url,
             lat: this.google_marker.lat,
-            lng: this.google_marker.lng
+            lng: this.google_marker.lng,
           })
-          .then(function(docRef) {
+          .then(function (docRef) {
             vm.successUpload()
             vm.$store.commit('form/FORM_ACTIVE', false)
             vm.$router.push('/profile')
@@ -317,10 +311,10 @@ export default {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

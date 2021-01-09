@@ -54,7 +54,7 @@ export default {
     FormGenerator: () =>
       process.client
         ? import('@/components/forms/form-generator/formGenerator')
-        : null
+        : null,
   },
   data() {
     return {
@@ -64,28 +64,28 @@ export default {
           placeholder: 'Company',
           label: 'Company',
           name: 'Company',
-          type: 'text'
+          type: 'text',
         },
         {
           title: 'TextInput',
           placeholder: 'Email',
           label: 'Email',
           name: 'Email',
-          type: 'text'
+          type: 'text',
         },
         {
           title: 'TextInput',
           placeholder: 'Phone',
           label: 'Phone',
           name: 'Phone',
-          type: 'text'
+          type: 'text',
         },
         {
           title: 'TextInput',
           placeholder: 'Website',
           label: 'Website',
           name: 'Website',
-          type: 'text'
+          type: 'text',
         },
         {
           title: 'SelectList',
@@ -97,28 +97,28 @@ export default {
             'Website',
             'Networks',
             'Direct Marketing',
-            'Others'
-          ]
+            'Others',
+          ],
         },
         {
           title: 'SelectList',
           name: 'Ratings',
           multi: false,
           label: 'Ratings',
-          options: this.$store.state.business.active_business.customer_groups
+          options: this.$store.state.business.active_business.customer_groups,
         },
         {
           title: 'GoogleAddress',
           placeholder: 'Address',
           label: 'Address',
-          name: 'Address'
+          name: 'Address',
         },
         {
           title: 'TextArea',
           placeholder: 'Description',
           label: 'Description',
-          name: 'Description'
-        }
+          name: 'Description',
+        },
       ],
       active: false,
 
@@ -126,27 +126,21 @@ export default {
       configdateTimePicker: {
         enableTime: true,
         enableSeconds: true,
-        noCalendar: true
+        noCalendar: true,
       },
 
       formData: {},
 
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
 
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -156,7 +150,7 @@ export default {
           return this.$store.state.auth.active_user
         }
       }
-    }
+    },
   },
 
   mounted() {},
@@ -171,7 +165,7 @@ export default {
         user_surname: this.user.surname,
         user_displayName: this.user.displayName,
         user_branch: this.user.branches,
-        user_positions: this.user.ositions
+        user_positions: this.user.ositions,
       }
 
       let vm = this
@@ -215,7 +209,7 @@ export default {
           lng: this.formData.Address.markers[0].position.lng,
           geolocation: {
             lat: this.formData.Address.markers[0].position.lat,
-            lng: this.formData.Address.markers[0].position.lng
+            lng: this.formData.Address.markers[0].position.lng,
           },
           geo1: this.formData.Address.geoAll.geo1,
           geo2: this.formData.Address.geoAll.geo2,
@@ -230,12 +224,12 @@ export default {
           created_date: moment().format('DD-MM-YYYY'),
           created_month: moment().format('MM-YYYY'),
           description: this.formData.Description,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         })
-        .then(function() {
+        .then(function () {
           vm.successUpload()
         })
-        .catch(function(error) {
+        .catch(function (error) {
           vm.noSuccessUpload(error)
         })
       this.active = false
@@ -244,16 +238,16 @@ export default {
       this.notify({
         color: 'red',
         title: 'Oops! Something wrong',
-        text: `Here it is: ${err}`
+        text: `Here it is: ${err}`,
       })
     },
     successUpload() {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>

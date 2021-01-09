@@ -66,98 +66,94 @@ export default {
   data() {
     return {
       userUpdate: {
-        twt: "https://twitter.com/adoptionism744",
-        fb: "https://www.facebook.com/adoptionism664",
-        insta: "https://www.instagram.com/adopt-ionism744/",
-        github: "https://github.com/madop818",
-        linkedin: "https://codepen.io/adoptism243",
-        slack: "@adoptionism744"
-      }
-    };
+        twt: 'https://twitter.com/adoptionism744',
+        fb: 'https://www.facebook.com/adoptionism664',
+        insta: 'https://www.instagram.com/adopt-ionism744/',
+        github: 'https://github.com/madop818',
+        linkedin: 'https://codepen.io/adoptism243',
+        slack: '@adoptionism744',
+      },
+    }
   },
   computed: {
     user() {
       if (process.client) {
-        return JSON.parse(localStorage.getItem("userInfo"))
-          ? JSON.parse(localStorage.getItem("userInfo"))
-          : this.$store.state.auth.active_user;
+        return JSON.parse(localStorage.getItem('userInfo'))
+          ? JSON.parse(localStorage.getItem('userInfo'))
+          : this.$store.state.auth.active_user
       }
     },
     business() {
-      if (process.client) {
-        return JSON.parse(localStorage.getItem("businessInfo"))
-          ? JSON.parse(localStorage.getItem("businessInfo"))
-          : this.$store.state.business.main_business;
-      }
-    }
+      return this.$store.state.business.active_business
+    },
   },
   mounted() {
-    this.userUpdate.twt = this.user.twt ? this.user.twt : "";
-    this.userUpdate.fb = this.user.fb ? this.user.fb : "";
-    this.userUpdate.insta = this.user.insta ? this.user.insta : "";
-    this.userUpdate.github = this.user.github ? this.user.github : "";
-    this.userUpdate.linkedin = this.user.linkedin ? this.user.linkedin : "";
-    this.userUpdate.slack = this.user.slack ? this.user.slack : "";
+    this.userUpdate.twt = this.user.twt ? this.user.twt : ''
+    this.userUpdate.fb = this.user.fb ? this.user.fb : ''
+    this.userUpdate.insta = this.user.insta ? this.user.insta : ''
+    this.userUpdate.github = this.user.github ? this.user.github : ''
+    this.userUpdate.linkedin = this.user.linkedin ? this.user.linkedin : ''
+    this.userUpdate.slack = this.user.slack ? this.user.slack : ''
   },
   methods: {
     saveChanges() {
-      let vm = this;
+      let vm = this
 
       let newUser = {
         ...this.user,
-        ...this.userUpdate
-      };
+        ...this.userUpdate,
+      }
 
       this.$fireStore
-        .collection("apps")
-        .doc("users")
+        .collection('apps')
+        .doc('users')
         .collection(vm.business.b_uid)
-        .doc("info")
-        .collection("social_links")
+        .doc('info')
+        .collection('social_links')
         .doc(vm.user.uid)
         .update(vm.userUpdate)
-        .then(function() {
-          vm.$store.commit("auth/UPDATE_USER_INFO", newUser);
+        .then(function () {
+          vm.$store.commit('auth/UPDATE_USER_INFO', newUser)
 
           vm.$vs.notify({
-            title: "Submitted",
-            text: "Update done and dusted",
-            iconPack: "feather",
-            icon: "icon-alert-circle",
-            color: "success"
-          });
+            title: 'Submitted',
+            text: 'Update done and dusted',
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'success',
+          })
         })
-        .catch(function(error) {
+        .catch(function (error) {
           vm.$fireStore
-            .collection("apps")
-            .doc("users")
+            .collection('apps')
+            .doc('users')
             .collection(vm.business.b_uid)
-            .doc("info")
-            .collection("social_links")
+            .doc('info')
+            .collection('social_links')
             .doc(vm.user.uid)
             .set(vm.userUpdate)
-            .then(function() {
-              vm.$store.commit("auth/UPDATE_USER_INFO", newUser);
+            .then(function () {
+              vm.$store.commit('auth/UPDATE_USER_INFO', newUser)
 
               vm.$vs.notify({
-                title: "Submitted",
-                text: "Update done and dusted",
-                iconPack: "feather",
-                icon: "icon-alert-circle",
-                color: "success"
-              });
+                title: 'Submitted',
+                text: 'Update done and dusted',
+                iconPack: 'feather',
+                icon: 'icon-alert-circle',
+                color: 'success',
+              })
             })
-            .catch(function(error) {
+            .catch(function (error) {
               vm.$vs.notify({
-                title: "Error",
+                title: 'Error',
                 text: `Error: ${error}`,
-                iconPack: "feather",
-                icon: "icon-alert-circle",
-                color: "red"
-              });
-            });
-        });
-    }
-  }
-};
+                iconPack: 'feather',
+                icon: 'icon-alert-circle',
+                color: 'red',
+              })
+            })
+        })
+    },
+  },
+}
 </script>

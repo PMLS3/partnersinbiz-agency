@@ -76,11 +76,12 @@ export default {
       return this.$store.state.windowWidth < 768
     },
     business() {
-      if (process.client) {
-        return JSON.parse(localStorage.getItem('businessInfo'))
-          ? JSON.parse(localStorage.getItem('businessInfo'))
-          : this.$store.state.business.active_business
-      }
+      // if (process.client) {
+      //   return JSON.parse(localStorage.getItem('businessInfo'))
+      //     ? JSON.parse(localStorage.getItem('businessInfo'))
+      //     : this.$store.state.business.active_business
+      // }
+      return this.$store.state.business.active_business
     },
   },
 }

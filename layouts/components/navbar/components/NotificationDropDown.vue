@@ -35,7 +35,7 @@
                 :icon="ntf.icon"
                 :svg-classes="[
                   `text-${ntf.category}`,
-                  'stroke-current mr-1 h-6 w-6'
+                  'stroke-current mr-1 h-6 w-6',
                 ]"
               ></feather-icon>
               <div class="mx-2">
@@ -112,8 +112,8 @@ export default {
       ],
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   computed: {
@@ -125,19 +125,20 @@ export default {
       }
     },
     business() {
-      if (process.client) {
-        return JSON.parse(localStorage.getItem('businessInfo'))
-          ? JSON.parse(localStorage.getItem('businessInfo'))
-          : this.$store.state.business.main_business
-      }
+      // if (process.client) {
+      //   return JSON.parse(localStorage.getItem('businessInfo'))
+      //     ? JSON.parse(localStorage.getItem('businessInfo'))
+      //     : this.$store.state.business.main_business
+      // }
+      return this.$store.state.business.main_business
     },
     isUserLoggedIn() {
       return this.$store.state.auth.isUserLoggedIn
-    }
+    },
   },
   mounted() {
     const vm = this
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         const refff = vm.$fireStore
           .collection('apps')
@@ -145,8 +146,8 @@ export default {
           .collection(vm.business.b_uid)
           .doc('notifications')
           .collection(user.uid)
-        refff.onSnapshot(snapshot => {
-          snapshot.docChanges().forEach(change => {
+        refff.onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
             const doc = change.doc
             if (change.type === 'added') {
               vm.unreadNotifications.push({
@@ -156,7 +157,7 @@ export default {
                 msg: doc.data().msg,
                 icon: doc.data().icon,
                 time: doc.data().time,
-                category: doc.data().category
+                category: doc.data().category,
               })
             }
           })
@@ -175,11 +176,11 @@ export default {
         .collection(user.uid)
         .doc(ntf.id)
         .delete()
-        .then(function() {
+        .then(function () {
           vm.successDelete()
         })
         .catch()
-      const myArray = this.unreadNotifications.filter(function(obj) {
+      const myArray = this.unreadNotifications.filter(function (obj) {
         return obj.id !== ntf.id
       })
       this.unreadNotifications = myArray
@@ -188,7 +189,7 @@ export default {
       this.$vs.notify({
         color: 'red',
         title: 'Delete Success',
-        text: 'Whoop whoop, been deleted'
+        text: 'Whoop whoop, been deleted',
       })
     },
     elapsedTime(startTime) {
@@ -234,7 +235,7 @@ export default {
       if (sec) date.setSeconds(date.getSeconds() - sec)
 
       return date
-    }
-  }
+    },
+  },
 }
 </script>

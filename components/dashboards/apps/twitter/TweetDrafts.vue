@@ -245,7 +245,21 @@ export default {
           querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, ' => ', doc.data())
-            vm.drafts.push(doc.data())
+            let payload = doc.data()
+            payload.id = doc.id
+            console.log(' payload', payload, vm.business.logo)
+            payload.user = {}
+            payload.user['profile_image_url_https'] = vm.business.logo
+            payload.user.name = vm.business.b_name
+            payload.user.screen_name = vm.business.b_name
+            payload.text = doc.data().tweets[0].textarea
+            payload.favorite_count = 0
+            payload.retweet_count = 0
+            payload.created_at = moment(doc.data().timestamp).format(
+              'MMMM Do YYYY, h:mm:ss a'
+            )
+            console.log(payload)
+            vm.drafts.push(payload)
           })
         })
         .catch(function (error) {
@@ -262,7 +276,21 @@ export default {
         querySnapshot.forEach(function (doc) {
           // doc.data() is never undefined for query doc snapshots
           console.log(doc.id, ' => ', doc.data())
-          vm.drafts.push(doc.data())
+          let payload = doc.data()
+          payload.id = doc.id
+          console.log(' payload', payload, vm.business.logo)
+          payload.user = {}
+          payload.user['profile_image_url_https'] = vm.business.logo
+          payload.user.name = vm.business.b_name
+          payload.user.screen_name = vm.business.b_name
+          payload.text = doc.data().tweets[0].textarea
+          payload.favorite_count = 0
+          payload.retweet_count = 0
+          payload.created_at = moment(doc.data().timestamp).format(
+            'MMMM Do YYYY, h:mm:ss a'
+          )
+          console.log(payload)
+          vm.drafts.push(payload)
         })
       })
       .catch(function (error) {

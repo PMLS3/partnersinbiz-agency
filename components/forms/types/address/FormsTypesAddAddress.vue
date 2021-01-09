@@ -40,7 +40,7 @@ export default {
   name: 'Address-Auto',
   components: {
     vSelect,
-    autoLocation
+    autoLocation,
   },
 
   data() {
@@ -53,18 +53,12 @@ export default {
       geo6: 0,
       geo7: 0,
       geo8: 0,
-      geo9: 0
+      geo9: 0,
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
 
     google_place() {
@@ -72,10 +66,10 @@ export default {
     },
     google_marker() {
       return this.$store.getters['google/google_marker']
-    }
+    },
   },
   watch: {
-    google_marker: function() {
+    google_marker: function () {
       const geohash1 = Geohash.encode(
         `${this.google_marker.lat}`,
         `${this.google_marker.lng}`,
@@ -152,26 +146,26 @@ export default {
           utc_offset: this.google_place.utc_offset_minutes,
           addr_url: this.google_place.url,
           lat: this.google_marker.lat,
-          lng: this.google_marker.lng
+          lng: this.google_marker.lng,
         })
         .then(() => {
           this.successUploadAddress()
         })
-    }
+    },
   },
   methods: {
     successUploadAddress() {
       this.notify({
         color: 'success',
         title: 'Adress Success',
-        text: 'Your Adress has been changed!'
+        text: 'Your Adress has been changed!',
       })
     },
     successUpload() {
       this.notify({
         color: 'success',
         title: 'Update Success',
-        text: 'Oh Yeah! Company info updated'
+        text: 'Oh Yeah! Company info updated',
       })
 
       let logo = this.data_local.logo
@@ -209,12 +203,12 @@ export default {
           public: this.data_local.public,
           currency: this.data_local.currency,
           tax: this.data_local.tax,
-          desc: this.data_local.desc
+          desc: this.data_local.desc,
         })
         .then(() => {
           this.successUpload()
         })
-    }
-  }
+    },
+  },
 }
 </script>

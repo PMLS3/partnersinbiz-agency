@@ -114,18 +114,12 @@ export default {
       email: '',
       number: '',
       position: '',
-      positions: this.$store.state.business.active_business.positions
+      positions: this.$store.state.business.active_business.positions,
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -138,7 +132,7 @@ export default {
     },
     activeCompanyInfo() {
       return this.$store.state.crm.company
-    }
+    },
   },
   methods: {
     newEmployee() {
@@ -154,7 +148,7 @@ export default {
 
       this.$fireAuth
         .createUserWithEmailAndPassword(this.email, this.email)
-        .then(cred => {
+        .then((cred) => {
           credential = cred
           this.$fireStore
             .collection('apps')
@@ -185,9 +179,9 @@ export default {
               customer_last_active: moment().format('DD-MM-YYYY'),
               created_date: moment().format('DD-MM-YYYY'),
               created_month: moment().format('MM-YYYY'),
-              timestamp: Date.now()
+              timestamp: Date.now(),
             })
-            .then(cred => {
+            .then((cred) => {
               console.log('setting')
               let general = vm.$fireStore
                 .collection('user')
@@ -206,10 +200,10 @@ export default {
                 surname: vm.contactsurname,
                 last_active: moment().format('DD-MM-YYYY'),
                 created_month: moment().format('DD-MM-YYYY'),
-                timestamp: Date.now()
+                timestamp: Date.now(),
               })
             })
-            .then(cred => {
+            .then((cred) => {
               let uid = credential.user.uid
               let activeBusiness = vm.business
               const docRef = this.$fireStore
@@ -231,14 +225,14 @@ export default {
                 contact_email: activeBusiness.contact_email,
                 contact_number: activeBusiness.contact_number,
                 created_month: moment().format('DD-MM-YYYY'),
-                timestamp: Date.now()
+                timestamp: Date.now(),
               })
             })
             .then(() => {
               vm.successUpload()
             })
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err)
           vm.successUpload(err)
         })
@@ -247,17 +241,17 @@ export default {
       this.notify({
         color: 'red',
         title: 'Oops! Something wrong',
-        text: `Here it is: ${err}`
+        text: `Here it is: ${err}`,
       })
     },
     successUpload() {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

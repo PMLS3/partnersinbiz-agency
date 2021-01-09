@@ -63,7 +63,7 @@
       >Terms & Conditions.</vs-checkbox
     >
 
-    <vs-button class="mt-3 mb-5 w-full" @click="registerUser"
+    <vs-button class="w-full mt-3 mb-5" @click="registerUser"
       >Register</vs-button
     >
 
@@ -98,7 +98,7 @@ export default {
       isPrivatePolicyAccepted: true,
       phNo: '',
       appVerifier: '',
-      otp: ''
+      otp: '',
     }
   },
   computed: {
@@ -114,7 +114,7 @@ export default {
 
     isLoggedIn() {
       return this.$store.getters['user/isLoggedIn']
-    }
+    },
   },
 
   methods: {
@@ -150,7 +150,7 @@ export default {
           text: 'You are already logged in!',
           iconPack: 'feather',
           icon: 'icon-alert-circle',
-          color: 'warning'
+          color: 'warning',
         })
 
         return false
@@ -166,10 +166,10 @@ export default {
               email: this.email,
               password: this.password,
               confirmPassword: this.confirm_password,
-              b_uid: this.$store.state.business.main_business.b_uid
+              b_uid: this.$store.state.business.main_business.b_uid,
             },
             notify: this.notify,
-            router: this.$router
+            router: this.$router,
           }
           this.$store.dispatch('auth/registerUser', payload)
         } else {
@@ -178,7 +178,7 @@ export default {
             text: 'Password and Confirm Password do not match',
             iconPack: 'feather',
             icon: 'icon-alert-circle',
-            color: 'warning'
+            color: 'warning',
           })
         }
       } else {
@@ -187,10 +187,10 @@ export default {
           text: 'Please fill in all fields',
           iconPack: 'feather',
           icon: 'icon-alert-circle',
-          color: 'warning'
+          color: 'warning',
         })
       }
-    }
-  }
+    },
+  },
 }
 </script>

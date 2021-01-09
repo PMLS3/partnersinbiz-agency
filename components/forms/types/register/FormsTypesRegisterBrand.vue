@@ -59,15 +59,15 @@ export default {
           placeholder: 'Brand',
           label: 'Brand',
           name: 'Brand',
-          type: 'text'
-        }
+          type: 'text',
+        },
       ],
 
       popupActivo4: false,
       configdateTimePicker: {
         enableTime: true,
         enableSeconds: true,
-        noCalendar: true
+        noCalendar: true,
       },
       Categories: [''],
       formData: {},
@@ -80,8 +80,8 @@ export default {
       timeEnd: null,
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   // watch: {
@@ -89,13 +89,7 @@ export default {
   // },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -108,7 +102,7 @@ export default {
     },
     activeCompanyInfo() {
       return this.$store.state.crm.company
-    }
+    },
   },
 
   mounted() {},
@@ -132,12 +126,12 @@ export default {
           brand: this.formData.Brand,
           created_date: moment().format('DD-MM-YYYY'),
           created_month: moment().format('MM-YYYY'),
-          timestamp: Date.now()
+          timestamp: Date.now(),
         })
-        .then(function() {
+        .then(function () {
           vm.successUpload()
         })
-        .catch(function(error) {
+        .catch(function (error) {
           vm.noSuccessUpload(error)
         })
       this.active = false
@@ -146,21 +140,21 @@ export default {
       this.notify({
         color: 'red',
         title: 'Oops! Something wrong',
-        text: `Here it is: ${err}`
+        text: `Here it is: ${err}`,
       })
     },
     successUpload() {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
+    },
   },
 
   components: {
-    FormGenerator
-  }
+    FormGenerator,
+  },
 }
 </script>
 

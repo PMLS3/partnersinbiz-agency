@@ -597,11 +597,12 @@ export default {
       }
     },
     business() {
-      if (process.client) {
-        return JSON.parse(localStorage.getItem('businessInfo'))
-          ? JSON.parse(localStorage.getItem('businessInfo'))
-          : this.$store.state.business.main_business
-      }
+      // if (process.client) {
+      //   return JSON.parse(localStorage.getItem('businessInfo'))
+      //     ? JSON.parse(localStorage.getItem('businessInfo'))
+      //     : this.$store.state.business.main_business
+      // }
+      return this.$store.state.business.main_business
     },
     isUserLoggedIn() {
       return this.$store.state.auth.isUserLoggedIn

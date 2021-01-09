@@ -36,9 +36,7 @@
           :options="current_assets"
         ></v-select>
 
-        <p class="mt-5" v-if="asset_type == 'Fixed Assets'">
-          Fixed Asset Type
-        </p>
+        <p class="mt-5" v-if="asset_type == 'Fixed Assets'">Fixed Asset Type</p>
         <v-select
           v-if="asset_type == 'Fixed Assets'"
           class="w-full"
@@ -134,9 +132,7 @@
           />
         </div>
 
-        <p class="mt-5">
-          Transaction Type
-        </p>
+        <p class="mt-5">Transaction Type</p>
         <v-select
           class="w-full"
           v-model="transactionType"
@@ -204,9 +200,7 @@
         <div>
           <imageUpload class="mb-2 sm:mb-0" label="Documentation" />
 
-          <p class="mt-2 text-sm">
-            Allowed JPG, GIF or PNG. Max size of 800kB
-          </p>
+          <p class="mt-2 text-sm">Allowed JPG, GIF or PNG. Max size of 800kB</p>
         </div>
         <div
           class="flex flex-wrap items-center justify-center p-6"
@@ -257,7 +251,7 @@ export default {
         'Leasehold improvements',
         'Machinery',
         'Office equipment',
-        'Vehicles'
+        'Vehicles',
       ],
 
       interest: 0,
@@ -277,7 +271,7 @@ export default {
         'Accounts Receivable',
         'Marketable Securities',
         'Prepaid Expenses',
-        'Other Liquid Assets'
+        'Other Liquid Assets',
       ],
       cash_equivalents: [
         'Bank Balances',
@@ -285,13 +279,13 @@ export default {
         'Cheques',
         'Drafts-On-Hand',
         'Demand deposits',
-        'Short-term investments'
+        'Short-term investments',
       ],
       cash_equivalent: '',
       inventories: [
         'Raw and Packaging Material',
         'Finished Goods',
-        'Work in Progress'
+        'Work in Progress',
       ],
       inventory: '',
       fixed_asset: '',
@@ -304,18 +298,12 @@ export default {
       description: '',
       reference: '',
       active: false,
-      popupActivo4: false
+      popupActivo4: false,
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user() {
       if (process.client) {
@@ -357,7 +345,7 @@ export default {
       } else if (this.transactionType == 'Credit') {
         return `Long Term loans : ${this.loanAmount}`
       }
-    }
+    },
   },
   watch: {
     asset_type() {
@@ -375,7 +363,7 @@ export default {
       } else if (this.current_asset == 'Cash Equivalent') {
         this.inventory = ''
       }
-    }
+    },
   },
   methods: {
     newAsset() {
@@ -399,7 +387,7 @@ export default {
         last: moment().format('DD-MM-YYYY'),
         date: moment().format('DD-MM-YYYY'),
         month: moment().format('MM-YYYY'),
-        timestamp: Date.now()
+        timestamp: Date.now(),
       }
 
       if (vm.uploaded_images) {
@@ -469,7 +457,7 @@ export default {
             (vm.valueType = 'None'),
             vm.successUpload()
         })
-        .catch(err => {
+        .catch((err) => {
           vm.unsuccessUpload(err)
         })
     },
@@ -477,17 +465,17 @@ export default {
       this.notify({
         color: 'success',
         title: 'Asset Added',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     unsuccessUpload(er) {
       this.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

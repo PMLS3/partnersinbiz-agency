@@ -136,11 +136,12 @@ export default {
       }
     },
     business() {
-      if (process.client) {
-        return JSON.parse(localStorage.getItem('mainBusiness'))
-          ? JSON.parse(localStorage.getItem('mainBusiness'))
-          : this.$store.state.business.main_business
-      }
+      // if (process.client) {
+      //   return JSON.parse(localStorage.getItem('mainBusiness'))
+      //     ? JSON.parse(localStorage.getItem('mainBusiness'))
+      //     : this.$store.state.business.main_business
+      // }
+      return this.$store.state.business.main_business
     },
     businessActive() {
       if (process.client) {

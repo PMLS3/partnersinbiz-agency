@@ -94,34 +94,28 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
   computed: {
     business() {
-      if (process.client) {
-        if (localStorage.getItem('mainBusiness')) {
-          return JSON.parse(localStorage.getItem('mainBusiness'))
-        } else {
-          return this.$store.state.business.main_business
-        }
-      }
+      return this.$store.state.business.active_business
     },
     user_data() {
       return this.$store.state.user.main_user
-    }
+    },
   },
   methods: {
     successUpload() {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
 
       let user = this.user_data
@@ -151,12 +145,12 @@ export default {
           linkedin: this.data_local.linkedin,
           slack: this.data_local.slack,
           twt: this.data_local.twt,
-          codepen: this.data_local.codepen
+          codepen: this.data_local.codepen,
         })
         .then(() => {
           this.successUpload()
         })
-    }
-  }
+    },
+  },
 }
 </script>
