@@ -67,13 +67,16 @@ export const state = () => ({
   main_business: getMainBusiness(),
   staff: [],
   users: [],
+  main_business_set: false,
 })
 
 export const mutations = {
   // /////////////////////////////////////////////
   // Business/Account
   // /////////////////////////////////////////////
-
+  UPDATE_MAIN_BUSINESS_SET(state, payload) {
+    state.main_business_set = payload
+  },
   // Updates user info in state and localstorage
   UPDATE_BUSINESS_INFO(state, payload) {
     if (process.client) {

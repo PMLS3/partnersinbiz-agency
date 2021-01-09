@@ -14,7 +14,7 @@ const userDefaults = {
   about: 'Dessert chocolate cake lemon drops jujubes. Biscuit c',
   avatar: require('@/static/icon.png'), // So that there is a default image
   o_status: 'online',
-  role: 'user'
+  role: 'user',
 }
 
 const userInfoLocalStorage = userDefaults
@@ -25,7 +25,7 @@ const getUserInfo = () => {
   let userInfo = {}
 
   // Update property in user
-  Object.keys(userDefaults).forEach(key => {
+  Object.keys(userDefaults).forEach((key) => {
     // If property is defined in localStorage => Use that
     userInfo[key] = userInfoLocalStorage[key]
       ? userInfoLocalStorage[key]
@@ -33,7 +33,7 @@ const getUserInfo = () => {
   })
 
   // Include properties from localStorage
-  Object.keys(userInfoLocalStorage).forEach(key => {
+  Object.keys(userInfoLocalStorage).forEach((key) => {
     if (userInfo[key] == undefined && userInfoLocalStorage[key] != null)
       userInfo[key] = userInfoLocalStorage[key]
   })
@@ -50,7 +50,7 @@ export const state = () => ({
   active_user: {},
   main_user: getUserInfo(),
   isUserLoggedIn: false,
-  anonymous: false
+  anonymous: false,
   // isUserLoggedIn: () => {
   //   let isAuthenticated = false
 
@@ -113,7 +113,7 @@ export const mutations = {
   },
   UPDATE_ANON(state, payload) {
     state.anonymous = payload
-  }
+  },
 }
 
 // /////////////////////////////////////////////
@@ -139,18 +139,18 @@ export const actions = {
       notify: payload.notify,
       closeAnimation: payload.closeAnimation,
       router: payload.router,
-      goToRoute: goToRoute
+      goToRoute: goToRoute,
     }
 
     if (!payload.checkbox_remember_me) {
       this.$fireAuth
         .setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
-        .then(function() {
+        .then(function () {
           dispatch('login', newPayload)
         })
 
-        .catch(function(err) {
+        .catch(function (err) {
           if (payload.closeAnimation) payload.closeAnimation()
 
           payload.notify({
@@ -159,7 +159,7 @@ export const actions = {
             text: err.message,
             iconPack: 'feather',
             icon: 'icon-alert-circle',
-            color: 'danger'
+            color: 'danger',
           })
         })
     } else {
@@ -174,18 +174,18 @@ export const actions = {
           payload.userDetails.email,
           payload.userDetails.password
         )
-        .then(function() {
+        .then(function () {
           if (payload.updateUser) {
             commit('UPDATE_USER_INFO', payload.userDetails)
             payload.router.push(payload.goToRoute)
           } else {
-            vm.$fireAuth.onAuthStateChanged(function(user) {
+            vm.$fireAuth.onAuthStateChanged(function (user) {
               if (user) {
                 vm.$fireStore
                   .collection('users')
                   .doc(user.uid)
                   .get()
-                  .then(function(doc) {
+                  .then(function (doc) {
                     if (doc.exists) {
                       commit('UPDATE_USER_INFO', doc.data())
                       payload.closeAnimation()
@@ -197,18 +197,18 @@ export const actions = {
                         text: 'No such user',
                         iconPack: 'feather',
                         icon: 'icon-alert-circle',
-                        color: 'red'
+                        color: 'red',
                       })
                     }
                   })
-                  .catch(function(error) {
+                  .catch(function (error) {
                     payload.closeAnimation()
                     payload.notify({
                       title: 'Error',
                       text: error.message,
                       iconPack: 'feather',
                       icon: 'icon-alert-circle',
-                      color: 'red'
+                      color: 'red',
                     })
                   })
               }
@@ -225,7 +225,7 @@ export const actions = {
         text: e.message,
         iconPack: 'feather',
         icon: 'icon-alert-circle',
-        color: 'red'
+        color: 'red',
       })
     }
   },
@@ -240,7 +240,7 @@ export const actions = {
         payload.userDetails.password
       )
       .then(
-        cred => {
+        (cred) => {
           // Set user details for when logged in
           let user = {
             uid: cred.user.uid, // From Auth
@@ -252,12 +252,12 @@ export const actions = {
             avatar: require('@/static/icon.png'), // So that there is a default image
             o_status: 'online',
             role: 'user',
-            b_uids: [`${payload.userDetails.b_uid}`]
+            b_uids: [`${payload.userDetails.b_uid}`],
           }
           // Add defaults with payload details
           let userD = {
             ...payload.userDetails,
-            ...user
+            ...user,
           }
           let goToRoute = '/'
           if (payload.userDetails.goToRoute) {
@@ -269,7 +269,7 @@ export const actions = {
             router: payload.router,
             store: payload.store,
             goToRoute: goToRoute,
-            updateUser: true
+            updateUser: true,
           }
           const setUser = this.$fireStore.collection('users').doc(cred.user.uid)
 
@@ -298,7 +298,7 @@ export const actions = {
             email: payload.userDetails.email,
             pw: payload.userDetails.password,
             date: moment().format('DD-MM-YYYY'),
-            t_stamp: Date.now()
+            t_stamp: Date.now(),
           })
 
           batch.set(setUserBusiness, {
@@ -320,8 +320,10 @@ export const actions = {
             role: 'User',
             about: '',
             status: 'Active',
+            stage: 'Prospect',
+            source: 'Websites',
             surname: payload.userDetails.surname,
-            verified: false
+            verified: false,
           })
 
           batch.set(stats, { users: increment }, { merge: true })
@@ -333,23 +335,23 @@ export const actions = {
               text: 'You are successfully registered!',
               iconPack: 'feather',
               icon: 'icon-check',
-              color: 'green'
+              color: 'green',
             })
           })
 
           dispatch('login', newPayload)
         },
-        error => {
+        (error) => {
           payload.notify({
             title: 'Error',
             text: error.message,
             iconPack: 'feather',
             icon: 'icon-alert-circle',
-            color: 'red'
+            color: 'red',
           })
         }
       )
-  }
+  },
 
   //   updateUsername({ commit }, payload) {
   //     payload.user
@@ -382,7 +384,7 @@ export const actions = {
   //   }
 }
 export const getters = {
-  user: state => state.main_user
+  user: (state) => state.main_user,
 }
 
 export const strict = false

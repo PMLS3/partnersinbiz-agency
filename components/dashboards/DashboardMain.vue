@@ -64,9 +64,10 @@ import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 export default {
   name: 'dashboardMain',
   setup() {
-    const { store } = useContext()
+    const { store, $fireStore } = useContext()
     onMounted(() => {
       store.commit('business/UPDATE_BUSINESS_INFO', business.value)
+      console.log('cont', useContext())
     })
     let knowledgeBaseSearchQuery = ref('')
     let popupActivo = ref(false)

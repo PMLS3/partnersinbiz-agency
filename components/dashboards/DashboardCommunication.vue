@@ -25,13 +25,17 @@
           size="large"
           class="w-full mt-6"
         />
-        <vs-button
-          radius
-          type="filled"
-          icon="all_out"
-          class="float-right mt-24"
-          @click="popupActivo = true"
-        ></vs-button>
+        <vs-tooltip
+          text="Let us know what you want!"
+          class="float-right mt-2"
+          position="top"
+        >
+          <vs-button
+            type="filled"
+            icon="live_help"
+            @click="popupActivo = true"
+          ></vs-button>
+        </vs-tooltip>
         <vs-popup
           fullscreen
           :title="$route.params.id"
@@ -68,15 +72,15 @@ export default {
     let popupActivo = ref(false)
     const kb = ref([
       {
-        id: 12,
-        title: 'Business Settings',
+        id: 0,
+        title: 'Video Chat',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/logic.svg'),
         url: '/dashboardBusinessSettings',
       },
       {
         id: 1,
-        title: 'Sales',
+        title: 'Push Notifications',
         description:
           'See your sales activity, orders, shipments from one place',
         graphic: require('@/assets/illustrations/online_banking.svg'),
@@ -84,7 +88,7 @@ export default {
       },
       {
         id: 2,
-        title: 'Marketing',
+        title: 'Email',
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations/design_data.svg'),
@@ -92,21 +96,21 @@ export default {
       },
       {
         id: 3,
-        title: 'Communication',
+        title: 'Drawing Board',
         description: 'Talk is not that cheap, spread the message',
         graphic: require('@/assets/illustrations/business_chat.svg'),
         url: '/dashboard/communication',
       },
       {
         id: 4,
-        title: 'Accounting',
+        title: 'Project Management',
         description: 'Stay ontop of those numbers',
         graphic: require('@/assets/illustrations/calculator.svg'),
         url: '/dashboard/accounting',
       },
       {
         id: 5,
-        title: 'Market Place',
+        title: 'Classroom',
         description:
           'Want to expand or get into something new? Check what we have installed for you',
         graphic: require('@/assets/illustrations/business_shop.svg'),
@@ -114,46 +118,18 @@ export default {
       },
       {
         id: 6,
-        title: 'Human Resources',
+        title: 'SMS',
         description: 'The heart of your business is here',
         graphic: require('@/assets/illustrations/loving_story.svg'),
         url: '/dashboard/human-resource',
       },
       {
-        id: 7,
-        title: 'Analytics',
+        id: 5,
+        title: 'Chat',
         description:
-          'Sometimes its easier to see the bigger picture in a graph',
-        graphic: require('@/assets/illustrations/business_plan.svg'),
-        url: '/dashboard/analytics',
-      },
-      {
-        id: 8,
-        title: 'Learn',
-        description: 'Knowledge base... thats all',
-        graphic: require('@/assets/illustrations/lightbulb_moment.svg'),
-        url: '/dashboard/learn',
-      },
-      {
-        id: 9,
-        title: 'Apps',
-        description: 'All the apps we have for you to Boom in the Online World',
-        graphic: require('@/assets/illustrations/apps.svg'),
-        url: '/dashboard-apps',
-      },
-      {
-        id: 10,
-        title: 'Support',
-        description: 'Run your support center from here',
-        graphic: require('@/assets/illustrations/intense_feeling.svg'),
-        url: '/dashboard/support',
-      },
-      {
-        id: 11,
-        title: 'Suggestion/Request',
-        description: 'Have feature request? Found a bug? Please let us know.',
-        graphic: require('@/assets/illustrations/in_thoughts.svg'),
-        url: '/dashboard/suggestions',
+          'Want to expand or get into something new? Check what we have installed for you',
+        graphic: require('@/assets/illustrations/business_shop.svg'),
+        url: '/dashboard/market-place',
       },
     ])
     const user = computed(() => store.state.auth.main_user)

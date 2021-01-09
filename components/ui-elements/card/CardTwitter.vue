@@ -1,3 +1,12 @@
+<!-- =========================================================================================
+    File Name: CardTwitter.vue
+    Description: Twitter Thread display
+    ----------------------------------------------------------------------------------------
+  TODO unlike and cancel retweets on
+  TODO follow or unfollow
+  TODO Retweet reply
+========================================================================================== -->
+
 <template>
   <div
     class="w-full p-5 mx-auto text-gray-800 bg-white rounded-lg shadow"
@@ -64,6 +73,20 @@
         ></vs-button>
         <p class="text-blue-600">{{ item.retweet_count }}</p>
       </vs-tooltip>
+    </div>
+    <div v-if="item.tweet">
+      <div v-if="item.tweets.length > 1">
+        <div
+          class="w-full mb-4"
+          v-for="(item, index) in item.tweets"
+          :key="index"
+        >
+          <vs-divider class="w-full mb-4" v-if="index != 0" />
+          <p class="text-sm" v-if="index != 0">
+            {{ item.textarea }}
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="w-full">
@@ -208,12 +231,66 @@
       <vs-button
         color="success"
         type="filled"
-        icon="add_task"
+        icon="library_add"
         class="float-right"
         @click="addAnother"
       ></vs-button>
 
       <vs-button @click="addEvent">Add Tweet</vs-button>
+    </vs-popup>
+
+    <vs-popup
+      class="holamundo"
+      title="Save to Drafts"
+      :active.sync="activePromptSave"
+    >
+      <vs-card>
+        <div :key="index" v-for="(twt, index) in tweets">
+          <vs-textarea
+            class="w-full"
+            counter="280"
+            label="Counter: 280"
+            :counter-danger.sync="counterDanger"
+            v-model="tweets[index].textarea"
+          />
+
+          <ImageUpload @input="input" class="mt-4 mb-4" />
+        </div>
+
+        <vs-button
+          color="success"
+          type="filled"
+          icon="library_add"
+          class="float-right"
+          @click="addAnother"
+        ></vs-button>
+
+        <div class="flex m-4">
+          <vs-tooltip
+            text="Everyone in the Company will have this draft"
+            position="top"
+          >
+            <vs-checkbox v-model="for_all">Everyone</vs-checkbox>
+          </vs-tooltip>
+          <vs-tooltip
+            text="Everyone in the Branch will have this draft"
+            position="top"
+          >
+            <vs-checkbox v-model="for_branch" v-if="entity == 'branch'"
+              >For everyon in Branch</vs-checkbox
+            >
+          </vs-tooltip>
+        </div>
+        <vs-tooltip
+          text="Save Tweet to Drafts"
+          position="top"
+          class="float-right"
+        >
+          <vs-button @click="createDraft" class="mt-4" icon="save"
+            >Save</vs-button
+          >
+        </vs-tooltip>
+      </vs-card>
     </vs-popup>
   </div>
 </template>
@@ -249,6 +326,8 @@ export default {
   },
   data() {
     return {
+      for_all: false,
+      for_branch: false,
       showDate: new Date(),
       disabledFrom: false,
       id: 0,
@@ -276,6 +355,7 @@ export default {
 
       activePromptAddEvent: false,
       activePromptEditEvent: false,
+      activePromptSave: false,
 
       calendarViewTypes: [
         {
@@ -354,6 +434,21 @@ export default {
         textarea: '',
         imgs: [],
       })
+    },
+    savePost() {
+      console.log('savepost')
+      let vm = this
+      let imgs = []
+      if (vm.item.images) {
+        imgs = vm.item.images
+      }
+      this.tweets = [
+        {
+          textarea: vm.item.text,
+          imgs: [],
+        },
+      ]
+      this.activePromptSave = true
     },
     addEvent() {
       let vm = this
@@ -506,6 +601,25 @@ export default {
       ]
       this.activePromptAddEvent = true
     },
+    createDraft() {
+      let obj = {
+        b_uid: this.business.b_uid,
+        uid: this.user.uid,
+        branch: this.branch,
+        tweets: this.tweets,
+        for_all: this.for_all,
+        for_branch: this.for_branch,
+        timestamp: Date.now(),
+      }
+
+      this.$fireStore.collection('tweetDrafts').add(obj)
+      this.activePromptSave = false
+    },
+    input(data) {
+      console.log('data', data)
+      this.images = data
+      console.log('images', this.images)
+    },
     followUser() {
       let id = this.item.user.id_str
       let screen_name = this.item.user.screen_name
@@ -537,6 +651,7 @@ export default {
         .then(
           (response) => {
             vm.item.favorited = true
+            vm.item.favorite_count = vm.item.favorite_count + 1
             vm.successUpload('LIKED')
           },
           (error) => {
@@ -556,6 +671,7 @@ export default {
         .then(
           (response) => {
             vm.item.retweeted = true
+            vm.item.retweet_count = vm.item.retweet_count + 1
             vm.successUpload('RETWEETED')
           },
           (error) => {

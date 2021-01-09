@@ -1,3 +1,14 @@
+<!-- =========================================================================================
+    File Name: CardTwitter.vue
+    Description: Twitter Thread display
+    ----------------------------------------------------------------------------------------
+  TODO Add to drafts as well
+  TODO create own tags
+  TODO: show next three days tweets
+  TODO: Delete tweets
+  TODO: show timezones compared to where person tweets from
+========================================================================================== -->
+
 <template>
   <div id="simple-calendar-app">
     <div class="vx-card no-scroll-content">

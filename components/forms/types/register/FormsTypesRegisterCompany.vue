@@ -383,10 +383,22 @@ export default {
           .collection('business')
           .add(obj)
           .then(function (docRef) {
-            vm.successUpload()
-            vm.$emit('uploaded')
+            vm.uploadUser(obj, docRef)
           })
       }
+    },
+    uploadUser(obj, docRef) {
+      let vm = this
+      this.$fireStore
+        .collection('business')
+        .doc('users')
+        .collection(docRef.id)
+        .doc(this.user.uid)
+        .set(obj)
+        .then(function (docRef) {
+          vm.successUpload()
+          vm.$emit('uploaded')
+        })
     },
 
     successUpload() {
