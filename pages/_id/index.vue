@@ -33,6 +33,7 @@ import dashboardSupport from '@/components/dashboards/DashboardSupport.vue'
 import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
 import dashboardClients from '@/components/dashboards/DashboardClients.vue'
 import dashboardSocialMedia from '@/components/dashboards/DashboardSocialMedia.vue'
+import DashboardLeadGen from '@/components/dashboards/DashboardLeadGen.vue'
 
 // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
@@ -126,6 +127,7 @@ export default {
     dashboardSupport,
     dashboardRequest,
     dashboardClients,
+    DashboardLeadGen,
     email,
     dashboardAppsTwitter,
     dashboardAppsFacebook,

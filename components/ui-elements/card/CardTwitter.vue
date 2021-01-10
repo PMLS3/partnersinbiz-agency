@@ -352,6 +352,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    entity: { type: String, default: 'person' },
   },
   components: {
     CalendarView,
@@ -390,7 +391,7 @@ export default {
 
       activePromptAddEvent: false,
       activePromptEditEvent: false,
-      activePromptAddTweet: true,
+      activePromptAddTweet: false,
       activePromptSave: false,
 
       calendarViewTypes: [

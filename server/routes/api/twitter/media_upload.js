@@ -10,9 +10,7 @@ router.post('/', async (req, res) => {
   let config = req.body.config
   const T = new twit(config)
   let imgData = ''
-  convertImgToBase64(req.body.url, function (base64Img) {
-    console.log(base64Img)
-  })
+
   https
     .get(req.body.url, (resp) => {
       resp.setEncoding('base64')
@@ -22,10 +20,10 @@ router.post('/', async (req, res) => {
         body += data
       })
       resp.on('end', () => {
-        console.log('body', body.substring(0, 50))
+        console.log('bodys', imgData.substring(0, 50))
         T.post(
           'media/upload',
-          { media: imgData },
+          { media_data: imgData },
           function (err, data, response) {
             if (err) {
               console.log('error', err)
@@ -43,42 +41,5 @@ router.post('/', async (req, res) => {
       console.log(`Got error: ${e.message}`)
     })
 })
-
-function convertImgToBase64(url, callback, outputFormat) {
-  console.log('URL', url)
-  if (process.client) {
-    var canvas = document.createElement('CANVAS')
-    var ctx = canvas.getContext('2d')
-    var img = new Image()
-    img.crossOrigin = 'Anonymous'
-    img.onload = function () {
-      canvas.height = img.height
-      canvas.width = img.width
-      ctx.drawImage(img, 0, 0)
-      var dataURL = canvas.toDataURL(outputFormat || 'image/png')
-      callback.call(this, dataURL)
-      // Clean up
-      canvas = null
-    }
-    img.src = url
-
-    console.log('img', img.substring(0, 50))
-    // const T = new twit(config)
-
-    // T.post(
-    //   'media/upload',
-    //   { media: body },
-    //   function (err, data, response) {
-    //     if (err) {
-    //       console.log('error', err)
-    //       res.status(201).send(err)
-    //     } else {
-    //       console.log('data', data)
-    //       res.status(201).send(data)
-    //     }
-    //   }
-    // )
-  }
-}
 
 module.exports = router

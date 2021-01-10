@@ -167,6 +167,13 @@ export default {
         graphic: require('@/assets/illustrations/in_thoughts.svg'),
         url: '/dashboardRequest',
       },
+      {
+        id: 13,
+        title: 'Lead Gen',
+        description: 'Have feature request? Found a bug? Please let us know.',
+        graphic: require('@/assets/illustrations/in_thoughts.svg'),
+        url: '/dashboardLeadGen',
+      },
     ])
     const user = computed(() => store.state.auth.main_user)
     let filteredKB = computed(() => {

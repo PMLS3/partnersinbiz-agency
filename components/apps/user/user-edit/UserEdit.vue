@@ -23,7 +23,7 @@
       </span>
     </vs-alert>
 
-    <vx-card v-if="user_data" class="mt-28">
+    <div v-if="user_data" class="mt-28">
       <div slot="no-body" class="px-6 pt-6 tabs-container">
         <vs-tabs
           :position="$device.isMobile ? 'top' : 'left'"
@@ -31,23 +31,29 @@
           id="profile-tabs"
         >
           <vs-tab label="Account" icon-pack="feather" icon="icon-user">
-            <div class="tab-text">
-              <user-edit-tab-account class="mt-4" :data="user_data" />
+            <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+              <vs-card class="py-4">
+                <user-edit-tab-account class="mt-4" :data="user_data" />
+              </vs-card>
             </div>
           </vs-tab>
           <vs-tab label="Information" icon-pack="feather" icon="icon-info">
-            <div class="tab-text">
-              <user-edit-tab-information class="mt-4" :data="user_data" />
+            <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+              <vs-card class="py-4">
+                <user-edit-tab-information class="mt-4" :data="user_data" />
+              </vs-card>
             </div>
           </vs-tab>
           <vs-tab label="Social" icon-pack="feather" icon="icon-share-2">
-            <div class="tab-text">
-              <user-edit-tab-social class="mt-4" :data="user_data" />
+            <div class="p-4 mt-4 ml-0 md:ml-4 md:mt-0">
+              <vs-card class="py-4">
+                <user-edit-tab-social class="mt-4" :data="user_data" />
+              </vs-card>
             </div>
           </vs-tab>
         </vs-tabs>
       </div>
-    </vx-card>
+    </div>
   </div>
 </template>
 

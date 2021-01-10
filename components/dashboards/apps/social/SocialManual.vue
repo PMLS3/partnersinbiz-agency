@@ -97,6 +97,8 @@ export default {
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
     twtConfig: { type: Object },
+    fbConfig: { type: Object },
+    instaConfig: { type: Object },
   },
   data() {
     return {
