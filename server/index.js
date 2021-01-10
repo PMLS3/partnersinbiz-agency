@@ -74,6 +74,9 @@ async function start() {
   const twitterUserShow = require('./routes/api/twitter/user_show.js')
   app.use('/api/twitter/twitterUserShow', twitterUserShow)
 
+  const twitterMediaUpload = require('./routes/api/twitter/media_upload.js')
+  app.use('/api/twitter/media_upload', twitterMediaUpload)
+
   //Instagram
   const instagramClientProfile = require('./routes/api/instagram/webApi/clientProfile.js')
   app.use('/api/instagram/ClientProfile', instagramClientProfile)

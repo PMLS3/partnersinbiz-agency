@@ -7,7 +7,10 @@
 
 <template>
   <div id="knowledge-base-page">
-    <div class="knowledge-base-jumbotron">
+    <!-- KNOWLEDGE BASE CARDS  -->
+
+    <DashboardAppsSocial />
+    <!-- <div class="knowledge-base-jumbotron">
       <div
         class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
       >
@@ -32,7 +35,7 @@
             </p>
           </div>
           <div class="flex">
-            <!-- <UploadApps :schema="schema" :item="item" /> -->
+           
             <vs-tooltip text="Let us know what you want!" position="top">
               <vs-button
                 type="filled"
@@ -53,7 +56,6 @@
       </div>
     </div>
 
-    <!-- KNOWLEDGE BASE CARDS  -->
     <div class="vx-row">
       <div
         class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
@@ -62,7 +64,7 @@
       >
         <CardSimple :item="item" class="h-full" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

@@ -1,27 +1,10 @@
 <template>
   <div>
     <vs-tabs position="left">
-      <vs-tab label="Tweet" icon="business_center">
-        <FormsTypesSocialPost
-          :entity="entity"
-          :branch="branch"
-          @send-data="sendData"
-        />
-        <!-- <vs-card>
-          <vs-textarea
-            class="w-full"
-            counter="280"
-            label="Counter: 280"
-            :counter-danger.sync="counterDanger"
-            v-model="message"
-          />
-
-          <UploadImage @input="input" />
-
-          <vs-button @click="TweetSend" class="mt-4">Send Tweet</vs-button>
-        </vs-card> -->
+      <vs-tab label="Post" icon="send">
+        <SocialPost :entity="entity" :branch="branch" :twtConfig="twtConfig" />
       </vs-tab>
-      <vs-tab label="Seach Hashtags" icon="business_center">
+      <vs-tab label="Seach Hashtags" icon="search">
         <vs-card>
           <vs-input
             name="search"
@@ -74,7 +57,7 @@
           </div>
         </div>
       </vs-tab>
-      <vs-tab label="Search Users Followers" icon="business_center">
+      <vs-tab label="Search Users Followers" icon="person_search">
         <vs-card>
           <vs-input
             name="search"
@@ -113,6 +96,7 @@ export default {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
+    twtConfig: { type: Object },
   },
   data() {
     return {
@@ -186,13 +170,6 @@ export default {
     },
   },
   methods: {
-    sendData(data) {
-      console.log('sendData', data)
-    },
-    input(data) {
-      console.log('data', data)
-      this.images = data
-    },
     TweetSend() {
       console.log('date', this.date)
       let vm = this

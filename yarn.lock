@@ -10502,10 +10502,10 @@ marker-clusterer-plus@^2.1.4:
   resolved "https://registry.yarnpkg.com/marker-clusterer-plus/-/marker-clusterer-plus-2.1.4.tgz#f8eff74d599dab3b7d0e3fed5264ea0e704f5d67"
   integrity sha1-+O/3TVmdqzt9Dj/tUmTqDnBPXWc=
 
-material-icons@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-0.3.1.tgz#425e06e2448632d6249d6e1ffe2993682c5b171e"
-  integrity sha512-5Hbj76A6xDPcDZEbM4oxTknhWuMwGWnAHVLLPCEq9eVlcHb0fn4koU9ZeyMy1wjARtDEPAHfd5ZdL2Re5hf0zQ==
+material-icons@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-0.5.2.tgz#4b774e8ddedbaf585c536391855baeec59f95e68"
+  integrity sha512-4j0LzymSnpoyzuu6SK7tLA03BX6drnmBFI/2jGX1Ckfa89ykNiLoXr17c8i8YxYAl/pHQKEHaEzlx7zubmD/Bg==
 
 math-random@^1.0.1:
   version "1.0.4"

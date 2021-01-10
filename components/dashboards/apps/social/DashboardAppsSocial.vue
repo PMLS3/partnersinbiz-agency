@@ -1,93 +1,106 @@
 <template>
-  <div class="mt-24">
-    <vs-tabs alignment="fixed">
-      <vs-tab label="Dashboard" icon="dashboard">
-        <TweetDashboard />
-      </vs-tab>
-      <vs-tab label="Timeline" icon="theaters">
-        <vs-tabs>
-          <vs-tab
-            label="Home"
-            icon="home"
-            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <vs-button
-              radius
-              class="absolute right-0 p-4"
-              @click="fetchHomeTimeline"
-              type="gradient"
-              icon="cached"
-            ></vs-button>
-            <div v-for="item in hometimeline" :key="item.id">
-              <CardTwitter :item="item" class="mt-3" />
-            </div>
-          </vs-tab>
-          <vs-tab
-            label="History"
-            icon="history"
-            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <vs-button
-              radius
-              class="absolute right-0 p-4"
-              @click="fetchTimeline"
-              type="gradient"
-              icon="cached"
-            ></vs-button>
-            <div v-for="item in timeline" :key="item.id">
-              <CardTwitter :item="item" class="mt-3" />
-            </div>
-          </vs-tab>
+  <vs-tabs
+    :position="$device.isMobile ? 'top' : 'left'"
+    class="mt-24 tabs-shadow-none"
+    id="profile-tabs"
+  >
+    <vs-tab label="Dashboard" icon="dashboard">
+      <TweetDashboard :entity="entity" :branch="branch" />
+    </vs-tab>
+    <vs-tab label="Timeline" icon="theaters">
+      <vs-tabs>
+        <vs-tab
+          label="Home"
+          icon="home"
+          class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <vs-button
+            radius
+            class="absolute right-0 p-4"
+            @click="fetchHomeTimeline"
+            type="gradient"
+            icon="cached"
+          ></vs-button>
+          <div v-for="item in hometimeline" :key="item.id">
+            <CardTwitter
+              :item="item"
+              :entity="entity"
+              :branch="branch"
+              class="mt-3"
+            />
+          </div>
+        </vs-tab>
+        <vs-tab
+          label="History"
+          icon="history"
+          class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <vs-button
+            radius
+            class="absolute right-0 p-4"
+            @click="fetchTimeline"
+            type="gradient"
+            icon="cached"
+          ></vs-button>
+          <div v-for="item in timeline" :key="item.id">
+            <CardTwitter
+              :item="item"
+              :entity="entity"
+              :branch="branch"
+              class="mt-3"
+            />
+          </div>
+        </vs-tab>
 
-          <vs-tab
-            label="Mentions"
-            icon="alternate_email"
-            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <vs-button
-              radius
-              class="absolute right-0 p-4"
-              @click="fetchMentions"
-              type="gradient"
-              icon="cached"
-            ></vs-button>
-            <div v-for="item in mentions" :key="item.id">
-              <CardTwitter :item="item" class="mt-3" />
-            </div>
-          </vs-tab>
-        </vs-tabs>
-        <!-- <div v-for="item in timeline" :key="item.id" class="flex-1">
+        <vs-tab
+          label="Mentions"
+          icon="alternate_email"
+          class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <vs-button
+            radius
+            class="absolute right-0 p-4"
+            @click="fetchMentions"
+            type="gradient"
+            icon="cached"
+          ></vs-button>
+          <div v-for="item in mentions" :key="item.id">
+            <CardTwitter :item="item" class="mt-3" />
+          </div>
+        </vs-tab>
+      </vs-tabs>
+      <!-- <div v-for="item in timeline" :key="item.id" class="flex-1">
           <CardTwitter :item="item" class="mt-3" />
         </div> -->
-      </vs-tab>
-      <vs-tab label="Schedule" icon="schedule">
-        <TweetSchedular :entity="entity" :branch="branch" />
-      </vs-tab>
-      <vs-tab label="Drafts" icon="gesture">
-        <TweetDrafts :entity="entity" :branch="branch" />
-      </vs-tab>
-      <!-- <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
+    </vs-tab>
+    <vs-tab label="Schedule" icon="schedule">
+      <TweetSchedular :entity="entity" :branch="branch" />
+    </vs-tab>
+    <vs-tab label="Drafts" icon="gesture">
+      <TweetDrafts :entity="entity" :branch="branch" />
+    </vs-tab>
+    <!-- <vs-tab label="AutoLike" icon="thumb_up" @click="colorx = '#0000FF'">
         <TweetAutoLike />
       </vs-tab> -->
-      <vs-tab label="Auto Pilot" icon="repeat">
-        <TweetAuto :entity="entity" :branch="branch" />
-      </vs-tab>
-      <vs-tab label="Manual" icon="business_center">
-        <TweetManual :entity="entity" :branch="branch" />
-      </vs-tab>
-      <vs-tab label="Golden" icon="toll">
-        <TweetGold />
-      </vs-tab>
+    <vs-tab label="Auto Pilot" icon="repeat">
+      <TweetAuto :entity="entity" :branch="branch" />
+    </vs-tab>
+    <vs-tab label="Manual" icon="business_center">
+      <SocialManual :entity="entity" :branch="branch" :twtConfig="twtConfig" />
+    </vs-tab>
+    <vs-tab label="Golden" icon="toll">
+      <TweetGold />
+    </vs-tab>
 
-      <vs-tab label="Configuration" icon="account_box">
-        <TweetConfig :entity="entity" :branch="branch" />
-      </vs-tab>
+    <vs-tab label="Configuration" icon="account_box">
+      <SocialConfig :entity="entity" :branch="branch" :twtConfig="twtConfig" />
+    </vs-tab>
 
-      <vs-tab label="Pipeline" icon="all_out">
-        <KanbanTodo type="twitter" />
-      </vs-tab>
-    </vs-tabs>
-  </div>
+    <vs-tab label="Pipeline" icon="all_out">
+      <KanbanTodo type="twitter" />
+    </vs-tab>
+  </vs-tabs>
+  <!-- <SocialPost :entity="entity" :branch="branch" /> -->
 </template>
 
 <script>
@@ -112,7 +125,7 @@ export default {
     user() {
       return this.$store.state.auth.main_user
     },
-    config() {
+    twtConfig() {
       return this.$store.state.config.twitter
     },
     entity() {

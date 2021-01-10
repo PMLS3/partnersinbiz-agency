@@ -1,10 +1,6 @@
 <template>
   <div class="w-full h-full">
-    <vs-button
-      @click="popupActivo4 = !popupActivo4"
-      color="primary"
-      :icon="icon"
-      class="-ml-16"
+    <vs-button @click="indexChange" color="primary" :icon="icon" class="-ml-16"
       >{{ label }}
     </vs-button>
     <vs-popup fullscreen :title="label" :active.sync="popupActivo4">
@@ -370,7 +366,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: 'label',
+      default: '',
     },
     icon: {
       type: String,
@@ -488,6 +484,10 @@ export default {
   },
 
   methods: {
+    indexChange() {
+      this.popupActivo4 = !this.popupActivo4
+      this.$emit('indexChange')
+    },
     setCategoryNow() {
       console.log('setting category')
       this.catSelect = this.categories[0].category
@@ -512,8 +512,9 @@ export default {
     emitChanges() {
       let vm = this
       this.submitStore()
-
+      console.log('emitting', this.selectedImages)
       this.$emit('input', this.selectedImages)
+
       // this.popupActivo4 = false
       // this.needUpload = false
       setTimeout(function () {

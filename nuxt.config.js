@@ -115,6 +115,7 @@ module.exports = {
     '@nuxtjs/firebase',
     'nuxt-socket-io',
     '@nuxtjs/device',
+    '@nuxtjs/proxy',
 
     [
       'nuxt-sass-resources-loader',
@@ -130,6 +131,14 @@ module.exports = {
       ['fullpage-vue/src/fullpage.css'],
     ],
   ],
+  proxy: {
+    '/api': {
+      target: 'http://example.com',
+      pathRewrite: {
+        '^/api': '/',
+      },
+    },
+  },
   // content: {
   //   markdown: {
   //     prism: {

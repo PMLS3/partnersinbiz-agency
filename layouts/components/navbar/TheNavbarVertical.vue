@@ -110,7 +110,7 @@ export default {
     },
     businessActive: {
       handler(val) {
-        this.branches = ['Company']
+        this.branches = ['Company', 'Personal']
         for (let i = 0; i < this.businessActive.branches.length; i++) {
           this.branches.push(this.businessActive.branches[i])
         }
@@ -119,7 +119,7 @@ export default {
     },
   },
   created() {
-    this.branches = ['Company']
+    this.branches = ['Company', 'Personal']
     for (let i = 0; i < this.businessActive.branches.length; i++) {
       this.branches.push(this.businessActive.branches[i])
     }
