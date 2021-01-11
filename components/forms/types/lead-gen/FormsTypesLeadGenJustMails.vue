@@ -38,9 +38,10 @@
     />
 
     <vs-input
+      v-if="data_company.input.company_name"
       name="domain"
       label-placeholder="Domain"
-      v-model="data_company.name"
+      v-model="data_company.input.company_name"
       class="w-full mt-6"
     />
     <vs-tooltip :text="text" position="right">
@@ -83,7 +84,6 @@ export default {
       this.data_clients.push(payload)
     }
     this.data_company = this.items
-    this.data_company.name = ''
   },
   methods: {
     AddProspects() {
