@@ -1,10 +1,6 @@
 <template>
   <div>
-    <vs-tabs
-      :position="$device.isMobile ? 'top' : 'left'"
-      class="mt-24 tabs-shadow-none"
-      id="profile-tabs"
-    >
+    <vs-tabs :position="$device.isMobile ? 'top' : 'left'" id="profile-tabs">
       <!-- GENERAL -->
       <vs-tab icon="search" :label="!$device.isMobile ? 'Access' : ''">
         <FormsTypesAccess />

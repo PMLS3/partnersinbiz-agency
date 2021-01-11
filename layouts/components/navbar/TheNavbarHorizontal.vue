@@ -42,7 +42,6 @@ TODO showNav, dark mode dark navbar
 </template>
 
 <script>
-import Logo from '../Logo.vue'
 import Bookmarks from './components/Bookmarks.vue'
 // import I18n                 from "./components/I18n.vue"
 import SearchBar from './components/SearchBar.vue'
@@ -54,7 +53,6 @@ export default {
   name: 'TheNavbarHorizontal',
 
   components: {
-    Logo,
     Bookmarks,
     // I18n,
     SearchBar,

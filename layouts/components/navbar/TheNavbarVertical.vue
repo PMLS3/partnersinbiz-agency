@@ -26,7 +26,7 @@
           to="/"
           class="flex items-center mx-auto cursor-pointer vx-logo"
         >
-          <logo class="w-10 mr-4 fill-current text-primary" alt="logo" />
+          <Logo class="w-10 mr-4 fill-current text-primary" alt="logo" />
         </nuxt-link>
         <vs-spacer />
         <vs-select
@@ -73,7 +73,6 @@
 
 <script>
 import firebase from 'firebase'
-import Logo from '../Logo.vue'
 import Bookmarks from './components/Bookmarks.vue'
 // import I18n from "./components/I18n.vue";
 import SearchBar from './components/SearchBar.vue'
@@ -84,7 +83,6 @@ import ProfileDropDown from './components/ProfileDropDown.vue'
 export default {
   name: 'TheNavbarVertical',
   components: {
-    Logo,
     Bookmarks,
     // I18n,
     SearchBar,

@@ -12,10 +12,9 @@
 
 <template>
   <div>
-    <p class="mt-5">Vendor</p>
+    <!-- <p class="mt-5">Vendor</p>
     <v-select class="w-full " v-model="vendor" :options="customers"></v-select>
 
-    <!-- Client Name -->
     <vs-input
       label="Profile Name"
       name="contactperson"
@@ -23,7 +22,6 @@
       class="w-full mt-5"
     />
 
-    <!-- Client Name -->
     <p class="mt-5">Repeat Every</p>
     <v-select
       class="w-full "
@@ -41,7 +39,7 @@
       class="w-full "
       v-model="payment_term"
       :options="payment_terms"
-    ></v-select>
+    ></v-select> -->
   </div>
 </template>
 
@@ -53,7 +51,7 @@ export default {
 
   components: {
     vSelect,
-    Datepicker: () => (process.client ? import('vuejs-datepicker') : null)
+    Datepicker: () => (process.client ? import('vuejs-datepicker') : null),
   },
   data: () => ({
     customer: '',
@@ -64,7 +62,7 @@ export default {
     expiry_date: '',
     project: '',
     deliveryTo: 'branch',
-    subject: ''
+    subject: '',
   }),
   watch: {
     estimates: {
@@ -77,12 +75,12 @@ export default {
           estimate_date: '',
           expiry_date: '',
           project: '',
-          subject: ''
+          subject: '',
         }
         this.$store.commit('form/PAPER_ESTIMATES', estimates)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   computed: {
     payment_terms() {
@@ -96,7 +94,7 @@ export default {
     },
     projects() {
       return this.$store.state.crm.projects
-    }
-  }
+    },
+  },
 }
 </script>

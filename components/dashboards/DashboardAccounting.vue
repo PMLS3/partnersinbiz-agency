@@ -7,51 +7,11 @@
 
 <template>
   <div id="knowledge-base-page">
-    <!-- JUMBOTRON -->
-    <div class="knowledge-base-jumbotron">
-      <div
-        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
-      >
-        <h1 class="mb-1 text-white">Run your business from here</h1>
-        <p class="text-white">
-          {{ motivational_quotes }}
-        </p>
-        <vs-input
-          icon-no-border
-          placeholder="Search Topic or Keyword"
-          v-model="knowledgeBaseSearchQuery"
-          icon-pack="feather"
-          icon="icon-search"
-          size="large"
-          class="w-full mt-6"
-        />
-        <vs-button
-          radius
-          type="filled"
-          icon="all_out"
-          class="float-right mt-24"
-          @click="popupActivo = true"
-        ></vs-button>
-        <vs-popup
-          fullscreen
-          :title="$route.params.id"
-          :active.sync="popupActivo"
-        >
-          <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
-        </vs-popup>
-      </div>
-    </div>
-
-    <!-- KNOWLEDGE BASE CARDS  -->
-    <div class="vx-row">
-      <div
-        class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
-        v-for="item in filteredKB"
-        :key="item.id"
-      >
-        <CardSimple :item="item" class="h-full" />
-      </div>
-    </div>
+    <vs-tabs alignment="center">
+      <vs-tab label="Bulk Upload">
+        <DashboardAccountingOpeningBalances />
+      </vs-tab>
+    </vs-tabs>
   </div>
 </template>
 

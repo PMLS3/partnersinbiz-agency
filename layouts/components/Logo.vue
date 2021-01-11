@@ -1,6 +1,8 @@
 <template>
   <div>
-    <vs-avatar size="50px" :src="business.logo" />
+    <div v-if="business.logo">
+      <vs-avatar size="50px" :src="business.logo" />
+    </div>
   </div>
 </template>
 <script>
