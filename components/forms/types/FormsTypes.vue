@@ -1,5 +1,19 @@
 <template>
-  <div></div>
+  <div>
+    <vs-tabs
+      :position="$device.isMobile ? 'top' : 'left'"
+      class="mt-24 tabs-shadow-none"
+      id="profile-tabs"
+    >
+      <!-- GENERAL -->
+      <vs-tab
+        icon="search"
+        :label="!$device.isMobile ? 'Email Search' : ''"
+        @click="tab = 'email'"
+      >
+      </vs-tab>
+    </vs-tabs>
+  </div>
 </template>
 
 <script>
