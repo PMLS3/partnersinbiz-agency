@@ -24,11 +24,7 @@
       </div>
       <vs-divider class="mb-0"></vs-divider>
 
-      <form-generator
-        :schema="formStyle"
-        v-model="formData"
-        class="p-6"
-      ></form-generator>
+      <FormGenerator :schema="formStyle" v-model="formData" class="p-6" />
 
       <div class="flex flex-wrap items-center justify-center p-6">
         <vs-button class="mr-6" @click="newCategoryAdd">Add Data</vs-button>
@@ -46,7 +42,6 @@
 </template>
 
 <script>
-import FormGenerator from '@/components/forms/form-generator/formGenerator'
 import moment from 'moment'
 
 export default {
@@ -153,10 +148,6 @@ export default {
         text: 'Whoop whoop, been uploaded',
       })
     },
-  },
-
-  components: {
-    FormGenerator,
   },
 }
 </script>

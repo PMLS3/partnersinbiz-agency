@@ -37,9 +37,9 @@ export default {
     gridTable: () =>
       process.client
         ? import(
-            '@/components/tables/ag-grid-table/types/AgGridTableBudget.vue'
+            '@/components/ui-elements/ag-grid-table/types/AgGridTableBudget.vue'
           )
-        : null
+        : null,
   },
   data() {
     return {
@@ -52,8 +52,8 @@ export default {
         view: true,
         adding: false,
         editing: false,
-        popup: false
-      }
+        popup: false,
+      },
     }
   },
 
@@ -61,7 +61,7 @@ export default {
     schema() {
       return [
         {
-          account: 'INCOME'
+          account: 'INCOME',
         },
         {
           account: 'Sales',
@@ -77,7 +77,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'General Income',
@@ -93,7 +93,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Interest Income',
@@ -109,7 +109,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Late Fee Income',
@@ -125,7 +125,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Discount',
@@ -141,7 +141,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Other Charges',
@@ -157,7 +157,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Shipping Charge',
@@ -173,10 +173,10 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
-          account: 'EXPENSES'
+          account: 'EXPENSES',
         },
         {
           account: 'Cost Of Goods Sold',
@@ -192,7 +192,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Office Supplies',
@@ -208,7 +208,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Advertising And Marketing',
@@ -224,7 +224,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Bank Fees and Charges',
@@ -240,7 +240,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Credit Card Charges',
@@ -256,7 +256,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Travel Expense',
@@ -272,7 +272,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Automobile Expense',
@@ -288,7 +288,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'IT and Internet Expense',
@@ -304,7 +304,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Rent Expense',
@@ -320,7 +320,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Janitorial Expense',
@@ -336,7 +336,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Postage',
@@ -352,7 +352,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Bad Debt',
@@ -368,7 +368,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Printing and Stationery',
@@ -384,7 +384,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Salaries and Employee Wages',
@@ -400,7 +400,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Meals and Entertainment',
@@ -416,7 +416,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Depreciation Expense',
@@ -432,7 +432,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Consultant Expense',
@@ -448,7 +448,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Repairs and Maintenance',
@@ -464,7 +464,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Other Expenses',
@@ -480,7 +480,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Lodging',
@@ -496,7 +496,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Fuel/Mileage Expenses',
@@ -512,7 +512,7 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
+          total: 0,
         },
         {
           account: 'Exchange Gain or Loss',
@@ -528,8 +528,8 @@ export default {
           oct: 0,
           nov: 0,
           dec: 0,
-          total: 0
-        }
+          total: 0,
+        },
       ]
     },
     columnDefs() {
@@ -539,89 +539,89 @@ export default {
           field: 'account',
           filter: true,
           width: 250,
-          pinned: 'left'
+          pinned: 'left',
         },
         {
           headerName: 'Jan 2020',
           field: 'jan',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Feb 2020',
           field: 'feb',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'March 2020',
           field: 'march',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'April 2020',
           field: 'april',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'May 2020',
           field: 'may',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'June 2020',
           field: 'june',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'July 2020',
           field: 'july',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Aug 2020',
           field: 'aug',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Sept 2020',
           field: 'sept',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Oct 2020',
           field: 'oct',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Nov 2020',
           field: 'nov',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Dec 2020',
           field: 'dec',
           width: 175,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Total',
           field: 'total',
           width: 175,
-          filter: true
-        }
+          filter: true,
+        },
       ]
-    }
-  }
+    },
+  },
 }
 </script>
 

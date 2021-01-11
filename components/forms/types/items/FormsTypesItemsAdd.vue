@@ -43,8 +43,8 @@ TODO delete items, discount on items
 import { AgGridVue } from 'ag-grid-vue'
 import vSelect from 'vue-select'
 
-import CellRendererAmount from '@/components/tables/ag-grid-table/cell-renderer/amount.vue'
-import CellRendererItemSelect from '@/components/tables/ag-grid-table/cell-renderer/item_select.vue'
+import CellRendererAmount from '@/components/ui-elements/ag-grid-table/cell-renderer/amount.vue'
+import CellRendererItemSelect from '@/components/ui-elements/ag-grid-table/cell-renderer/item_select.vue'
 
 export default {
   name: 'Items-Add',
@@ -53,7 +53,7 @@ export default {
     vSelect,
 
     CellRendererAmount,
-    CellRendererItemSelect
+    CellRendererItemSelect,
   },
   data: () => ({
     item: '',
@@ -67,15 +67,15 @@ export default {
       sortable: true,
       editable: true,
       resizable: true,
-      suppressMenu: true
-    }
+      suppressMenu: true,
+    },
   }),
   watch: {
     info: {
       handler(val) {
         this.$store.commit('form/ITEMS_SET', this.info)
       },
-      deep: true
+      deep: true,
     },
     '$store.state.windowWidth'(val) {
       if (val <= 576) {
@@ -89,7 +89,7 @@ export default {
 
       this.info[index].qty = 1
       this.info[index].price = item.price
-    }
+    },
   },
 
   computed: {
@@ -148,43 +148,43 @@ export default {
           headerName: 'Description',
           field: 'desc',
           width: 250,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Name',
           field: 'item',
           filter: true,
           width: 175,
-          pinned: 'left'
+          pinned: 'left',
         },
         {
           headerName: 'Quantity',
           field: 'qty',
-          width: 175
+          width: 175,
         },
         {
           headerName: 'Price',
           field: 'price',
-          width: 175
+          width: 175,
         },
         {
           headerName: 'Tax',
           field: 'tax',
-          width: 175
+          width: 175,
         },
         {
           cellRendererFramework: 'CellRendererAmount',
           headerName: 'Amount',
           field: 'amount',
-          width: 175
+          width: 175,
         },
         {
           headerName: 'Edit/Delete',
           field: 'i_name',
-          width: 175
-        }
+          width: 175,
+        },
       ]
-    }
+    },
   },
   mounted() {
     this.gridApi = this.gridOptions.api
@@ -205,18 +205,18 @@ export default {
   methods: {
     editSelectedRows() {
       const selectedNodes = this.gridOptions.api.getSelectedNodes()
-      const selectedData = selectedNodes.map(node => node.data)
-      const selectedDataStringPresentation = selectedData.map(node => node)
+      const selectedData = selectedNodes.map((node) => node.data)
+      const selectedDataStringPresentation = selectedData.map((node) => node)
       console.log('adfa', selectedDataStringPresentation)
     },
     AddItem() {
       let addDetails = {
         qty: 1,
-        amount: 0
+        amount: 0,
       }
       let payload = { ...this.item, ...addDetails }
       this.info.push(payload)
-    }
-  }
+    },
+  },
 }
 </script>

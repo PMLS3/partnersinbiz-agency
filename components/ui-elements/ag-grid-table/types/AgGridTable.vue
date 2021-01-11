@@ -89,18 +89,18 @@
 </template>
 
 <script>
-import { AgGridVue } from "ag-grid-vue";
-import contacts from "./data.json";
+import { AgGridVue } from 'ag-grid-vue'
+import contacts from './data.json'
 
-import "@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss";
+import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 
 export default {
   components: {
-    AgGridVue
+    AgGridVue,
   },
   data() {
     return {
-      searchQuery: "",
+      searchQuery: '',
       gridOptions: {},
       maxPageNumbers: 7,
       gridApi: null,
@@ -108,100 +108,100 @@ export default {
         sortable: true,
         editable: true,
         resizable: true,
-        suppressMenu: true
+        suppressMenu: true,
       },
       columnDefs: [
         {
-          headerName: "First Name",
-          field: "firstname",
+          headerName: 'First Name',
+          field: 'firstname',
           width: 175,
           filter: true,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true
+          headerCheckboxSelection: true,
         },
         {
-          headerName: "Last Name",
-          field: "lastname",
+          headerName: 'Last Name',
+          field: 'lastname',
           filter: true,
-          width: 175
+          width: 175,
         },
         {
-          headerName: "Email",
-          field: "email",
+          headerName: 'Email',
+          field: 'email',
           filter: true,
           width: 250,
-          pinned: "left"
+          pinned: 'left',
         },
         {
-          headerName: "Company",
-          field: "company",
+          headerName: 'Company',
+          field: 'company',
           filter: true,
-          width: 250
+          width: 250,
         },
         {
-          headerName: "City",
-          field: "city",
+          headerName: 'City',
+          field: 'city',
           filter: true,
-          width: 150
+          width: 150,
         },
         {
-          headerName: "Country",
-          field: "country",
+          headerName: 'Country',
+          field: 'country',
           filter: true,
-          width: 150
+          width: 150,
         },
         {
-          headerName: "State",
-          field: "state",
+          headerName: 'State',
+          field: 'state',
           filter: true,
-          width: 125
+          width: 125,
         },
         {
-          headerName: "Zip",
-          field: "zip",
+          headerName: 'Zip',
+          field: 'zip',
           filter: true,
-          width: 125
+          width: 125,
         },
         {
-          headerName: "Followers",
-          field: "followers",
-          filter: "agNumberColumnFilter",
-          width: 125
-        }
+          headerName: 'Followers',
+          field: 'followers',
+          filter: 'agNumberColumnFilter',
+          width: 125,
+        },
       ],
-      contacts
-    };
+      contacts,
+    }
   },
   computed: {
     paginationPageSize() {
-      if (this.gridApi) return this.gridApi.paginationGetPageSize();
-      else return 50;
+      if (this.gridApi) return this.gridApi.paginationGetPageSize()
+      else return 50
     },
     totalPages() {
-      if (this.gridApi) return this.gridApi.paginationGetTotalPages();
-      else return 0;
+      if (this.gridApi) return this.gridApi.paginationGetTotalPages()
+      else return 0
     },
     currentPage: {
       get() {
-        if (this.gridApi) return this.gridApi.paginationGetCurrentPage() + 1;
-        else return 1;
+        if (this.gridApi) return this.gridApi.paginationGetCurrentPage() + 1
+        else return 1
       },
       set(val) {
-        this.gridApi.paginationGoToPage(val - 1);
-      }
-    }
+        this.gridApi.paginationGoToPage(val - 1)
+      },
+    },
   },
   watch: {
-    "$store.state.windowWidth"(val) {
+    '$store.state.windowWidth'(val) {
       if (val <= 576) {
-        this.maxPageNumbers = 4;
-        this.gridOptions.columnApi.setColumnPinned("email", null);
-      } else this.gridOptions.columnApi.setColumnPinned("email", "left");
-    }
+        this.maxPageNumbers = 4
+        this.gridOptions.columnApi.setColumnPinned('email', null)
+      } else this.gridOptions.columnApi.setColumnPinned('email', 'left')
+    },
   },
   mounted() {
-    this.gridApi = this.gridOptions.api;
+    this.gridApi = this.gridOptions.api
 
     /* =================================================================
       NOTE:
@@ -210,16 +210,16 @@ export default {
     ================================================================= */
     if (this.$vs.rtl) {
       const header = this.$refs.agGridTable.$el.querySelector(
-        ".ag-header-container"
-      );
+        '.ag-header-container'
+      )
       header.style.left =
-        "-" + String(Number(header.style.transform.slice(11, -3)) + 9) + "px";
+        '-' + String(Number(header.style.transform.slice(11, -3)) + 9) + 'px'
     }
   },
   methods: {
     updateSearchQuery(val) {
-      this.gridApi.setQuickFilter(val);
-    }
-  }
-};
+      this.gridApi.setQuickFilter(val)
+    },
+  },
+}
 </script>

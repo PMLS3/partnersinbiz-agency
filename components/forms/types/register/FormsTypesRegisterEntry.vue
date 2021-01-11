@@ -23,7 +23,7 @@
       <PerfectScrollbar>
         <div class="h-full mx-4">
           <div
-            class="customizer-header mt-6 flex items-center justify-between px-6"
+            class="flex items-center justify-between px-6 mt-6 customizer-header"
           >
             <div>
               <h4>Select transaction type</h4>
@@ -70,19 +70,19 @@
 
           <vs-divider class="mb-0" />
           <div v-if="entryType == 'Assets'">
-            <registerAssets />
+            <FormsTypesRegisterEntryAssets />
           </div>
           <div v-if="entryType == 'Equity'">
-            <registerEquity />
+            <FormsTypesRegisterEntryEquity />
           </div>
           <div v-if="entryType == 'Liability'">
-            <registerLiability />
+            <FormsTypesRegisterEntryLiability />
           </div>
           <div v-if="entryType == 'Income'">
-            <registerIncome />
+            <FormsTypesRegisterEntryIncome />
           </div>
           <div v-if="entryType == 'Expense'">
-            <registerExpense />
+            <FormsTypesRegisterEntryExpense />
           </div>
         </div>
       </PerfectScrollbar>
@@ -93,22 +93,22 @@
 <script>
 import moment from 'moment'
 import vSelect from 'vue-select'
-import imageUpload from '@/components/forms/form-generator/components/imageUpload.vue'
+// import imageUpload from '@/components/forms/form-generator/components/imageUpload.vue'
 // import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import registerAssets from './entry/assets'
-import registerEquity from './entry/equity'
-import registerLiability from './entry/liability'
-import registerIncome from './entry/income'
-import registerExpense from './entry/expenses'
+// import registerAssets from './entry/assets'
+// import registerEquity from './entry/equity'
+// import registerLiability from './entry/liability'
+// import registerIncome from './entry/income'
+// import registerExpense from './entry/expenses'
 export default {
   components: {
     vSelect,
-    imageUpload,
-    registerAssets,
-    registerEquity,
-    registerLiability,
-    registerIncome,
-    registerExpense,
+    // imageUpload,
+    // registerAssets,
+    // registerEquity,
+    // registerLiability,
+    // registerIncome,
+    // registerExpense,
   },
   data() {
     return {

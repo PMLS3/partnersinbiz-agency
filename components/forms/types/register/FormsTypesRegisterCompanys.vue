@@ -172,16 +172,16 @@
       <img
         :src="uploaded_images[0]"
         v-if="uploaded_images[0]"
-        style="height: 125px;"
+        style="height: 125px"
       />
       <br />
-      <imageUpload class="mb-2 mr-4 sm:mb-0" label="Company Logo" />
+      <UploadImage class="mb-2 mr-4 sm:mb-0" label="Company Logo" />
       <br />
 
       <br />
 
       <!--Google Address-->
-      <auto-location />
+      <MapsAutoLocation />
       <br />
       <vs-divider color="success" icon="check"></vs-divider>
       <br />
@@ -253,14 +253,14 @@ import moment from 'moment'
 import vSelect from 'vue-select'
 
 import Geohash from 'latlon-geohash'
-import imageUpload from '@/components/forms/form-generator/components/imageUpload.vue'
-import autoLocation from '@/components/maps/auto_location'
+// import imageUpload from '@/components/forms/form-generator/components/imageUpload.vue'
+// import autoLocation from '@/components/maps/auto_location'
 
 export default {
   components: {
-    autoLocation,
+    // autoLocation,
     vSelect,
-    imageUpload
+    // imageUpload
   },
   data() {
     return {
@@ -302,12 +302,12 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   watch: {
-    industry: function() {
+    industry: function () {
       if (this.industry == 'Community' || this.industry == 'Complexes') {
         this.isEstate = false
         this.subscriptionPrice = 499
@@ -319,13 +319,13 @@ export default {
         this.subscriptionPrice = 699
       }
     },
-    isMyEstate: function() {
+    isMyEstate: function () {
       if (this.isMyEstate == 'Amenities') {
         this.subscriptionPrice = 899
       } else {
         this.subscriptionPrice = 1299
       }
-    }
+    },
   },
 
   computed: {
@@ -366,8 +366,8 @@ export default {
           this.$emit('closeSidebar')
           this.initValues()
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     newBusiness() {
@@ -477,9 +477,9 @@ export default {
             utc_offset: this.google_place.utc_offset_minutes,
             addr_url: this.google_place.url,
             lat: this.google_marker.lat,
-            lng: this.google_marker.lng
+            lng: this.google_marker.lng,
           })
-          .then(function(docRef) {
+          .then(function (docRef) {
             vm.successUpload()
             vm.$store.commit('form/FORM_ACTIVE', false)
             vm.$router.push('/profile')
@@ -491,10 +491,10 @@ export default {
       this.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

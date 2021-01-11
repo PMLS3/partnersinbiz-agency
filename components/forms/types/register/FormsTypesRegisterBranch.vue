@@ -20,18 +20,18 @@
         <span slot="off">Not Public</span>
       </vs-switch>
       <br />
-      <imageUpload class="mb-2 mr-4 sm:mb-0" label="Logo" />
+      <UploadImage class="mb-2 mr-4 sm:mb-0" label="Logo" />
       <br />
       <!-- Business details -->
-      <business-details />
+      <FormsTypesBusinessDetails />
       <br />
 
       <!--Google Address-->
-      <auto-location />
+      <MapsAutoLocation />
       <br />
       <vs-divider color="success" icon="check"></vs-divider>
       <br />
-      <primary-contact
+      <FormsTypesPersonPrimaryContact
         title="Primary Contact"
         subtitle="Please give main contact person for branch"
       />
@@ -71,20 +71,20 @@ import firebase from 'firebase'
 import moment from 'moment'
 import vSelect from 'vue-select'
 import Geohash from 'latlon-geohash'
-import BusinessDetails from '@/components/forms/forms/business/business_details'
-import PrimaryContact from '@/components/forms/forms/person/primary_contact.vue'
-import imageUpload from '@/components/forms/form-generator/components/imageUpload.vue'
+// import BusinessDetails from '@/components/forms/forms/business/business_details'
+// import PrimaryContact from '@/components/forms/forms/person/primary_contact.vue'
+// import imageUpload from '@/components/forms/form-generator/components/imageUpload.vue'
 
-import autoLocation from '@/components/maps/auto_location'
+// import autoLocation from '@/components/maps/auto_location'
 
 export default {
   name: 'Branch',
   components: {
-    autoLocation,
+    // autoLocation,
     vSelect,
-    imageUpload,
-    PrimaryContact,
-    BusinessDetails,
+    // imageUpload,
+    // PrimaryContact,
+    // BusinessDetails,
   },
   data() {
     return {

@@ -11,7 +11,7 @@
       <div id="user-edit-tab-info">
         <!-- Content Row -->
         <div class="vx-row">
-          <auto-location class="mt-4 ml-8" />
+          <MapsAutoLocation />
         </div>
 
         <!-- Save  Button -->
@@ -31,7 +31,7 @@
 
 <script>
 import vSelect from 'vue-select'
-import autoLocation from '@/components/maps/auto_location'
+// import autoLocation from '@/components/maps/auto_location'
 import Geohash from 'latlon-geohash'
 
 import firebase from 'firebase'
@@ -40,7 +40,7 @@ export default {
   name: 'Address-Auto',
   components: {
     vSelect,
-    autoLocation,
+    // autoLocation,
   },
 
   data() {

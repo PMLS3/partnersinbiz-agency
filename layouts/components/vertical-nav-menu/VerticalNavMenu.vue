@@ -31,7 +31,7 @@
             class="flex items-center cursor-pointer vx-logo"
             to="/"
           >
-            <logo class="w-10 mr-4 fill-current text-primary" />
+            <Logo class="w-10 mr-4 fill-current text-primary" />
           </router-link>
           <span
             v-show="isMouseEnter || !reduce"
@@ -139,7 +139,6 @@
 </template>
 
 <script>
-import Logo from '../Logo.vue'
 import VNavMenuGroup from './VerticalNavMenuGroup.vue'
 import VNavMenuItem from './VerticalNavMenuItem.vue'
 
@@ -148,7 +147,6 @@ export default {
   components: {
     VNavMenuGroup,
     VNavMenuItem,
-    Logo,
   },
   props: {
     logo: { type: String },

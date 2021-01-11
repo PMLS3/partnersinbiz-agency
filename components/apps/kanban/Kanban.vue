@@ -376,10 +376,6 @@ export default {
     // TaskCard: () =>
     //   process.client ? import('./components/TaskCard.vue') : null,
     draggable: () => (process.client ? import('vuedraggable') : null),
-    // formGenerator: () =>
-    //   process.client
-    //     ? import('@/components/forms/FormGenerator/formGenerator')
-    //     : null,
   },
   props: {
     tags: {

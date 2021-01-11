@@ -119,9 +119,14 @@ export default {
     },
   },
   created() {
-    this.branches = ['Company', 'Personal']
-    for (let i = 0; i < this.businessActive.branches.length; i++) {
-      this.branches.push(this.businessActive.branches[i])
+    let vm = this
+    vm.branches = ['Company', 'Personal']
+    if (vm.businessActive) {
+      if (vm.businessActive.branches) {
+        for (let i = 0; i < vm.businessActive.branches.length; i++) {
+          vm.branches.push(vm.businessActive.branches[i])
+        }
+      }
     }
   },
   computed: {

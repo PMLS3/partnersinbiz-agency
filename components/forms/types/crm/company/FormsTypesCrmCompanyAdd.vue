@@ -29,11 +29,7 @@
       <p v-if="currentlyDisplayingUser" class="px-6 font-semibold">
         Adding for: {{ currentDisplayUser.displayName }}
       </p>
-      <form-generator
-        :schema="formStyle"
-        v-model="formData"
-        class="p-6"
-      ></form-generator>
+      <FormGenerator :schema="formStyle" v-model="formData" class="p-6" />
 
       <div class="flex flex-wrap items-center justify-center p-6">
         <vs-button class="mr-6" @click="newCategory">Add Data</vs-button>
@@ -50,12 +46,7 @@ import moment from 'moment'
 
 export default {
   name: 'CRM-Company-Add',
-  components: {
-    FormGenerator: () =>
-      process.client
-        ? import('@/components/forms/form-generator/formGenerator')
-        : null,
-  },
+
   data() {
     return {
       formStyle: [
