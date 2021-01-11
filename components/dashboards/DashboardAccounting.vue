@@ -6,13 +6,98 @@
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
-    <vs-tabs alignment="center">
-      <vs-tab label="Bulk Upload">
-        <DashboardAccountingOpeningBalances />
-      </vs-tab>
-    </vs-tabs>
-  </div>
+  <vs-tabs
+    :position="$device.isMobile ? 'top' : 'left'"
+    class="mt-24 tabs-shadow-none"
+    id="profile-tabs"
+  >
+    <vs-tab label="Opening Balances" icon="dashboard">
+      <DashboardAccountingOpeningBalances />
+    </vs-tab>
+    <vs-tab label="Dashboard" icon="dashboard"> </vs-tab>
+    <vs-tab label="Items" icon="dashboard">
+      <vs-tabs
+        :position="$device.isMobile ? 'top' : 'left'"
+        class="tabs-shadow-none"
+        id="profile-tabs"
+      >
+        <vs-tab label="Items" icon="dashboard"> </vs-tab>
+        <vs-tab label="Price Lists" icon="dashboard"> </vs-tab>
+        <vs-tab label="Inventory Adjustment" icon="dashboard"> </vs-tab>
+      </vs-tabs>
+    </vs-tab>
+    <vs-tab label="Banking" icon="dashboard">
+      <DashboardAccountingBankAccount />
+    </vs-tab>
+    <vs-tab label="Sales" icon="dashboard">
+      <vs-tabs
+        :position="$device.isMobile ? 'top' : 'left'"
+        class="tabs-shadow-none"
+        id="profile-tabs"
+      >
+        <vs-tab label="Customers" icon="dashboard">
+          <DashboardAccountingCustomer />
+        </vs-tab>
+        <vs-tab label="Estimates" icon="dashboard">
+          <DashboardAccoutingEstimates />
+        </vs-tab>
+        <vs-tab label="Retainer Invoices" icon="dashboard"> </vs-tab>
+        <vs-tab label="Sales Orders" icon="dashboard"> </vs-tab>
+        <vs-tab label="Invoices" icon="dashboard"> </vs-tab>
+        <vs-tab label="Payment Links" icon="dashboard"> </vs-tab>
+        <vs-tab label="Payments Received" icon="dashboard"> </vs-tab>
+        <vs-tab label="Recurring Invoices" icon="dashboard"> </vs-tab>
+        <vs-tab label="Credit Notes" icon="dashboard"> </vs-tab>
+      </vs-tabs>
+    </vs-tab>
+    <vs-tab label="Purchases" icon="dashboard">
+      <vs-tabs
+        :position="$device.isMobile ? 'top' : 'left'"
+        class="tabs-shadow-none"
+        id="profile-tabs"
+      >
+        <vs-tab label="Vendors" icon="dashboard"> </vs-tab>
+        <vs-tab label="Expenses" icon="dashboard"> </vs-tab>
+        <vs-tab label="Recurring Expenses" icon="dashboard"> </vs-tab>
+        <vs-tab label="Purchase Orders" icon="dashboard"> </vs-tab>
+        <vs-tab label="Bills" icon="dashboard"> </vs-tab>
+        <vs-tab label="Payment made" icon="dashboard"> </vs-tab>
+
+        <vs-tab label="Recurring Bills" icon="dashboard"> </vs-tab>
+        <vs-tab label="Vedor" icon="dashboard"> </vs-tab>
+      </vs-tabs>
+    </vs-tab>
+    <vs-tab label="Time Tracking" icon="dashboard"> </vs-tab>
+    <vs-tab label="Accountant" icon="dashboard"> </vs-tab>
+    <vs-tab label="Reports" icon="dashboard">
+      <vs-tabs
+        :position="$device.isMobile ? 'top' : 'left'"
+        class="tabs-shadow-none"
+        id="profile-tabs"
+      >
+        <vs-tab label="Projects" icon="dashboard"> </vs-tab>
+        <vs-tab label="Timesheet" icon="dashboard"> </vs-tab>
+      </vs-tabs>
+    </vs-tab>
+    <vs-tab label="Documents" icon="dashboard">
+      <vs-tabs
+        :position="$device.isMobile ? 'top' : 'left'"
+        class="tabs-shadow-none"
+        id="profile-tabs"
+      >
+        <vs-tab label="Manual Journal" icon="dashboard"> </vs-tab>
+        <vs-tab label="Recurring Journal" icon="dashboard"> </vs-tab>
+
+        <vs-tab label="Bulk Update" icon="dashboard"> </vs-tab>
+        <vs-tab label="Currency Adjustment" icon="dashboard"> </vs-tab>
+        <vs-tab label="Charts of Accounts" icon="dashboard"> </vs-tab>
+        <vs-tab label="Budget" icon="dashboard"> </vs-tab>
+        <vs-tab label="Transaction Locking" icon="dashboard"> </vs-tab>
+      </vs-tabs>
+    </vs-tab>
+    <vs-tab label="Reports" icon="dashboard"> </vs-tab>
+    <vs-tab label="Documents" icon="dashboard"> </vs-tab>
+  </vs-tabs>
 </template>
 
 <script>

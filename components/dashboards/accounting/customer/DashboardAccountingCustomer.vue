@@ -207,13 +207,12 @@ import { AgGridVue } from 'ag-grid-vue'
 import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 import vSelect from 'vue-select'
 
-import addAccount from './addAccount'
 // Cell Renderer
-import CellRendererLink from '@/components/tables/ag-grid-table/cell-renderer/link.vue'
-import CellRendererStatus from '@/components/tables/ag-grid-table/cell-renderer/status.vue'
-import CellRendererVerified from '@/components/tables/ag-grid-table/cell-renderer/verified.vue'
-import CellRendererActions from '@/components/tables/ag-grid-table/cell-renderer/actions.vue'
-import CellRendererAddStore from '@/components/tables/ag-grid-table/cell-renderer/add_store'
+import CellRendererLink from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererLink.vue'
+import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
+import CellRendererVerified from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererVerified.vue'
+import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/actions.vue'
+import CellRendererAddStore from '@/components/ui-elements/ag-grid-table/cell-renderer/add_store'
 
 // import  '@/assets/utils/firestore/user'
 
@@ -223,7 +222,6 @@ export default {
   components: {
     AgGridVue,
     vSelect,
-    addAccount,
 
     // Cell Renderer
     CellRendererLink,

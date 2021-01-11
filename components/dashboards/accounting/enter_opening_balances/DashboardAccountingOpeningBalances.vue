@@ -1,5 +1,5 @@
 <template>
-  <vs-tabs alignment="center">
+  <vs-tabs position="fixed" class="tabs-shadow-none" id="profile-tabs">
     <vs-tab label="Bulk Upload">
       <DashboardAccountingBulk />
     </vs-tab>
