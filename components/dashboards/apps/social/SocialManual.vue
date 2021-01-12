@@ -12,7 +12,19 @@
       </vs-tab>
       <vs-tab label="Seach Hashtags" icon="search">
         <vs-card>
-          <FormsTypesSearchHashTag @searchTag="searchTag" />
+          <vs-radio v-model="socialType" vs-name="socialType" vs-value="twt"
+            >Twitter</vs-radio
+          >
+          <vs-radio v-model="socialType" vs-name="socialType" vs-value="fb"
+            >Facebook</vs-radio
+          >
+          <vs-radio v-model="socialType" vs-name="socialType" vs-value="insta"
+            >Instagram</vs-radio
+          >
+          <FormsTypesSearchHashTag
+            @searchTag="searchTag"
+            :socialType="socialType"
+          />
         </vs-card>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="item in results.statuses" :key="item.id">
@@ -22,17 +34,20 @@
       </vs-tab>
       <vs-tab label="Search Users Followers" icon="person_search">
         <vs-card>
-          <vs-input
-            name="search"
-            class="w-full mt-12"
-            label-placeholder="User handle"
-            v-model="screen_name"
-          ></vs-input>
-          <small class="w-full mt-2">Example: 'standerpm'</small>
-
-          <vs-button @click="SearchUserFollowersSend" class="mt-4"
-            >Search Users Followers</vs-button
+          <vs-radio v-model="socialType" vs-name="socialType" vs-value="twt"
+            >Twitter</vs-radio
           >
+          <vs-radio v-model="socialType" vs-name="socialType" vs-value="fb"
+            >Facebook</vs-radio
+          >
+          <vs-radio v-model="socialType" vs-name="socialType" vs-value="insta"
+            >Instagram</vs-radio
+          >
+
+          <FormsTypesSearchFollowers
+            @searchName="SearchUserFollowersSend"
+            :socialType="socialType"
+          />
         </vs-card>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="item in resultsUsers.statuses" :key="item.id">
@@ -62,6 +77,8 @@ export default {
       twitterUserFollowersSearchResults: [],
       results: [],
       resultsUsers: [],
+      resultsSliced: [],
+      socialType: 'twt',
     }
   },
   computed: {
@@ -107,48 +124,25 @@ export default {
     },
   },
   methods: {
-    // TweetSend() {
-    //   console.log('date', this.date)
-    //   let vm = this
-    //   let message = this.message
-    //   if (this.images) {
-    //     for (let i = 0; i < this.images.length; i++) {
-    //       message = message + ' ' + this.images[i] + ' '
-    //     }
-    //   }
-    //   console.log('image', message)
-
-    //   this.$axios
-    //     .$post('/api/twitter/tweet', {
-    //       config: this.config,
-    //       message: message,
-    //     })
-    //     .then(
-    //       (response) => {
-    //         vm.successUpload('TWEETED')
-    //       },
-    //       (error) => {
-    //         console.log(error)
-    //         vm.unsuccessUpload(error)
-    //       }
-    //     )
-    // },
     async UserShow(user_id) {
       console.log('user', user_id)
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/twitter/twitterUserShow?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&user_id=${user_id}`
+          `/api/twitter/twitterUserShow?consumer_key=${this.twtConfig.consumer_key}&consumer_secret=${this.twtConfig.consumer_secret}&access_token=${this.twtConfig.access_token}&access_token_secret=${this.twtConfig.access_token_secret}&user_id=${user_id}`
         )
         .then(vm.successUpload('searching...'))
-
-      this.twitterUserFollowersSearchResults.push(ip)
+      if (ip.errors) {
+        console.log('ip error', ip)
+      } else {
+        this.twitterUserFollowersSearchResults.push(ip)
+      }
     },
-    async SearchUserFollowersSend() {
+    async SearchUserFollowersSend(data) {
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/twitter/twitterUserFollowersSearch?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&screen_name=${this.screen_name}`
+          `/api/twitter/twitterUserFollowersSearch?consumer_key=${this.twtConfig.consumer_key}&consumer_secret=${this.twtConfig.consumer_secret}&access_token=${this.twtConfig.access_token}&access_token_secret=${this.twtConfig.access_token_secret}&screen_name=${data.screen_name}`
         )
         .then(vm.successUpload('searching...'))
 
@@ -156,10 +150,12 @@ export default {
       this.resultsUsers = []
     },
     async SearchTweetSend(data) {
+      console.log('twt', this.twtConfig)
+      console.log('data', data.date)
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/twitter/search?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&search=${data.search}&since=${data.date}&results_type=${data.results_type}`
+          `/api/twitter/search?consumer_key=${this.twtConfig.consumer_key}&consumer_secret=${this.twtConfig.consumer_secret}&access_token=${this.twtConfig.access_token}&access_token_secret=${this.twtConfig.access_token_secret}&search=${data.search}&since=${data.date}&results_type=${data.results_type}`
         )
         .then(vm.successUpload('searching...'))
 
@@ -185,6 +181,7 @@ export default {
     },
   },
   created() {
+    console.log('twtConfig', this.twtConfig)
     // let vm = this
     // this.$fireStore
     //   .collection('retweets')

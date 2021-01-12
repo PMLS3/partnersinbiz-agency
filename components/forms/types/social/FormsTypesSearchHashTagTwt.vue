@@ -2,7 +2,7 @@
   <div>
     <vs-input
       name="search"
-      class="w-full mt-12"
+      class="w-full"
       label-placeholder="Keywords that you want to search for"
       v-model="search"
     ></vs-input>

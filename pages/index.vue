@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen">
     <!-- <HomePage /> -->
-    <vs-button @click="$router.push('/p')" class="mt-24">Test</vs-button>
+    <vs-button @click="$router.push('/Login')" class="mt-24">Login</vs-button>
     <vs-button @click="$router.push('/p')" class="mt-24">Test</vs-button>
     <vs-button @click="$router.push('/p')" class="mt-24">Test</vs-button>
     <vs-button @click="$router.push('/p')" class="mt-24">Test</vs-button>

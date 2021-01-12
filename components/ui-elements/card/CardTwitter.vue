@@ -166,6 +166,7 @@ export default {
       let id = this.item.user.id_str
       let screen_name = this.item.user.screen_name
       let vm = this
+      console.log('config', this.twtConfig)
       this.$axios
         .$post('/api/twitter/followUser', {
           config: this.twtConfig,

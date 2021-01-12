@@ -149,7 +149,7 @@
       />
     </vs-prompt>
 
-    <UiSocialTwitterFeeds :twitterFeeds="twitterFeeds" />
+    <UiSocialTwitterFeeds :simpleCalendarEvents="simpleCalendarEvents" />
   </div>
 </template>
 
@@ -276,73 +276,69 @@ export default {
       })
     },
     addEvent() {
-      let vm = this
-      this.activePromptAddEvent = false
-
-      var d = new Date()
-      var n = d.getTimezoneOffset()
-      var t = n / 60
-
-      let dateTimeSplit = this.datetime.split(' ')
-      let date = dateTimeSplit[0]
-      let time = dateTimeSplit[1]
-      let timeSplit = time.split(':')
-      let hour = timeSplit[0]
-      let minutes = parseInt(timeSplit[1])
-
-      let setTime = parseInt(hour) + parseInt(t)
-      let setHour = hour
-      let setDay = date
-      console.log('hour', hour)
-      console.log('minutes', minutes)
-      console.log('set time', setTime)
-      if (setTime == 0) {
-        setHour = 0
-      } else if (setTime < 0) {
-        setDay = moment(date).subtract(1, 'days').format('YYYY-MM-DD')
-        setHour = 24 + setTime
-      } else if (setTime > 23) {
-        etDay = moment(date).add(1, 'days').format('YYYY-MM-DD')
-        setHour = 24 - setTime
-        setDay = moment(date, 'YYYY-MM-DD').add(1, 'days')
-      } else {
-        setHour = setTime
-      }
-
-      const obj = {
-        title: this.title,
-        startDate: date,
-        endDate: date,
-        time: time,
-        scheduled_date: setDay,
-        scheduled_hour: setHour,
-        scheduled_minutes: minutes,
-        tweets: this.tweets,
-        label: this.labelLocal,
-        url: this.url,
-        u_uid: this.user.uid,
-        b_uid: this.business.b_uid,
-        config: this.config,
-        type: 'Tweet',
-        status: 'scheduled',
-      }
-      if (this.config) {
-        this.$fireStore
-          .collection('tweets')
-          .add(obj)
-          .then(function () {
-            obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
-            vm.$store.dispatch('calendar/addEvent', obj)
-            vm.successUpload()
-          })
-          .catch(function (error) {
-            console.error('Error writing document: ', error)
-            vm.unsuccessUpload(error)
-          })
-      } else {
-        let error = 'Please enter your configuration file'
-        vm.unsuccessUpload(error)
-      }
+      // let vm = this
+      // this.activePromptAddEvent = false
+      // var d = new Date()
+      // var n = d.getTimezoneOffset()
+      // var t = n / 60
+      // let dateTimeSplit = this.datetime.split(' ')
+      // let date = dateTimeSplit[0]
+      // let time = dateTimeSplit[1]
+      // let timeSplit = time.split(':')
+      // let hour = timeSplit[0]
+      // let minutes = parseInt(timeSplit[1])
+      // let setTime = parseInt(hour) + parseInt(t)
+      // let setHour = hour
+      // let setDay = date
+      // console.log('hour', hour)
+      // console.log('minutes', minutes)
+      // console.log('set time', setTime)
+      // if (setTime == 0) {
+      //   setHour = 0
+      // } else if (setTime < 0) {
+      //   setDay = moment(date).subtract(1, 'days').format('YYYY-MM-DD')
+      //   setHour = 24 + setTime
+      // } else if (setTime > 23) {
+      //   etDay = moment(date).add(1, 'days').format('YYYY-MM-DD')
+      //   setHour = 24 - setTime
+      //   setDay = moment(date, 'YYYY-MM-DD').add(1, 'days')
+      // } else {
+      //   setHour = setTime
+      // }
+      // const obj = {
+      //   title: this.title,
+      //   startDate: date,
+      //   endDate: date,
+      //   time: time,
+      //   scheduled_date: setDay,
+      //   scheduled_hour: setHour,
+      //   scheduled_minutes: minutes,
+      //   tweets: this.tweets,
+      //   label: this.labelLocal,
+      //   url: this.url,
+      //   u_uid: this.user.uid,
+      //   b_uid: this.business.b_uid,
+      //   config: this.config,
+      //   type: 'Tweet',
+      //   status: 'scheduled',
+      // }
+      // if (this.config) {
+      //   this.$fireStore
+      //     .collection('tweets')
+      //     .add(obj)
+      //     .then(function () {
+      //       obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
+      //       vm.$store.dispatch('calendar/addEvent', obj)
+      //       vm.successUpload()
+      //     })
+      //     .catch(function (error) {
+      //       console.error('Error writing document: ', error)
+      //       vm.unsuccessUpload(error)
+      //     })
+      // } else {
+      //   let error = 'Please enter your configuration file'
+      //   vm.unsuccessUpload(error)
+      // }
     },
     successUpload() {
       this.$vs.notify({

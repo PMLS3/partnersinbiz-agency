@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     q = q + ' ' + 'since:' + req.query.since
     console.log('q', q)
   }
-
+  console.log(q)
   const T = new twit(config)
   await T.get('search/tweets', { q: q, count: 100 }, (err, data, response) => {
     if (err) {
