@@ -6,7 +6,15 @@
 
 <template>
   <vs-card>
-    <FormsTypesSocialPost @send-data="sendData" />
+    <FormsTypesSocialPost
+      @send-data="sendData"
+      :posts="posts"
+      :entity="entity"
+      :branch="branch"
+      :twtConfig="twtConfig"
+      :fbConfig="fbConfig"
+      :instaConfig="instaConfig"
+    />
   </vs-card>
 </template>
 
@@ -18,6 +26,9 @@ export default {
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
     twtConfig: { type: Object },
+    fbConfig: { type: Object },
+    instaConfig: { type: Object },
+    posts: { required: false, type: Array, default: () => [] },
   },
   data() {
     return {}
@@ -122,7 +133,45 @@ export default {
     postNowFacebook(data) {},
     postNowInstagram(data) {},
     saveToDrafts(data) {},
-    schedule(data) {},
+    schedule(data) {
+      console.log('data', data)
+      let vm = this
+
+      // const obj = {
+      //   title: this.title,
+      //   startDate: date,
+      //   endDate: date,
+      //   time: time,
+      //   scheduled_date: setDay,
+      //   scheduled_hour: setHour,
+      //   scheduled_minutes: minutes,
+      //   tweets: this.tweets,
+      //   label: this.labelLocal,
+      //   url: this.url,
+      //   u_uid: this.user.uid,
+      //   b_uid: this.business.b_uid,
+      //   config: this.config,
+      //   type: 'Tweet',
+      //   status: 'scheduled',
+      // }
+      //  if (this.config) {
+      //  this.$fireStore
+      //     .collection('tweets')
+      //     .add(obj)
+      //     .then(function () {
+      //       obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
+      //       vm.$store.dispatch('calendar/addEvent', obj)
+      //       vm.successUpload()
+      //     })
+      //     .catch(function (error) {
+      //       console.error('Error writing document: ', error)
+      //       vm.unsuccessUpload(error)
+      //     })
+      // } else {
+      //   let error = 'Please enter your configuration file'
+      //   vm.unsuccessUpload(error)
+      // }
+    },
     success(msg) {
       this.$vs.notify({
         color: 'success',

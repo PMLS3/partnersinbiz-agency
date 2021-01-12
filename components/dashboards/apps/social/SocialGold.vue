@@ -4,6 +4,14 @@
 
 <script>
 export default {
+  props: {
+    entity: { type: String, default: 'person' },
+    handle: { type: String, default: '' },
+    branch: { type: String, default: '' },
+    twtConfig: { type: Object },
+    fbConfig: { type: Object },
+    instaConfig: { type: Object },
+  },
   computed: {
     business() {
       return this.$store.state.business.active_business

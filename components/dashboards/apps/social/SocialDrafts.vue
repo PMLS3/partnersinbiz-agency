@@ -8,50 +8,7 @@
 
 <template>
   <vs-card>
-    <vs-card>
-      <div :key="index" v-for="(twt, index) in tweets">
-        <vs-textarea
-          class="w-full"
-          counter="280"
-          label="Counter: 280"
-          :counter-danger.sync="counterDanger"
-          v-model="tweets[index].textarea"
-        />
-        <vs-tooltip text="Add Image" position="top">
-          <ImageUpload @input="input" class="mt-4 mb-4" />
-        </vs-tooltip>
-      </div>
-      <vs-tooltip text="Add a another tweet below " position="left">
-        <vs-button
-          color="success"
-          type="filled"
-          icon="library_add"
-          class="float-right"
-          @click="addAnother"
-        ></vs-button>
-      </vs-tooltip>
-      <div class="flex m-4">
-        <vs-tooltip
-          text="Everyone in the Company will have this draft"
-          position="right"
-        >
-          <vs-checkbox v-model="for_all">Everyone</vs-checkbox>
-        </vs-tooltip>
-        <vs-tooltip
-          text="Everyone in the Branch will have this draft"
-          position="right"
-        >
-          <vs-checkbox v-model="for_branch" v-if="entity == 'branch'"
-            >For everyon in Branch</vs-checkbox
-          >
-        </vs-tooltip>
-      </div>
-      <vs-tooltip text="Save Tweet to Drafts" position="top">
-        <vs-button @click="createDraft" class="mt-8" icon="save"
-          >Save</vs-button
-        >
-      </vs-tooltip>
-    </vs-card>
+    <SocialPost />
 
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <div v-for="item in drafts" :key="item.id">
@@ -62,13 +19,7 @@
           color="danger"
           v-if="item.uid == user.uid"
         ></vs-button>
-        <CardTwitter
-          :item="item"
-          :entity="entity"
-          class="mt-3"
-          :saveDraft="false"
-          :followAccount="false"
-        />
+        <CardTwitter :item="item" :entity="entity" class="mt-3" />
 
         <!-- <UiSocialTwitterFeeds :twitterFeeds="twitterFeeds" /> -->
       </div>
@@ -84,6 +35,9 @@ export default {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
+    twtConfig: { type: Object },
+    fbConfig: { type: Object },
+    instaConfig: { type: Object },
   },
   components: {},
   data() {

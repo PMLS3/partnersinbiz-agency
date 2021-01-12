@@ -124,179 +124,11 @@
 
     <vs-popup
       class="holamundo"
-      title="Add Tweet"
+      title="Schedule Post"
       :active.sync="activePromptAddEvent"
     >
-      <div class="flex calendar__label-container">
-        <vs-chip
-          v-if="labelLocal != 'none'"
-          class="text-white"
-          :class="'bg-' + labelColor(labelLocal)"
-          >{{ labelLocal }}</vs-chip
-        >
-
-        <vs-dropdown
-          vs-custom-content
-          vs-trigger-click
-          class="my-2 ml-auto cursor-pointer"
-        >
-          <feather-icon
-            icon="TagIcon"
-            svgClasses="h-5 w-5"
-            class="cursor-pointer"
-            @click.prevent
-          ></feather-icon>
-
-          <vs-dropdown-menu style="z-index: 200001">
-            <vs-dropdown-item
-              v-for="(label, index) in calendarLabels"
-              :key="index"
-              @click="labelLocal = label.value"
-            >
-              <div
-                class="inline-block w-3 h-3 mr-2 rounded-full"
-                :class="'bg-' + label.color"
-              ></div>
-              <span>{{ label.text }}</span>
-            </vs-dropdown-item>
-
-            <vs-dropdown-item @click="labelLocal = 'none'">
-              <div
-                class="inline-block w-3 h-3 mr-1 mr-2 rounded-full bg-primary"
-              ></div>
-              <span>None</span>
-            </vs-dropdown-item>
-          </vs-dropdown-menu>
-        </vs-dropdown>
-      </div>
-
-      <vs-input
-        name="event-name"
-        class="w-full"
-        label-placeholder="Tweet Title"
-        v-model="title"
-      ></vs-input>
-
-      <div class="my-4">
-        <small class="date-label">Tweet Date Time</small>
-        <flat-pickr
-          :config="configdateTimePicker"
-          v-model="datetime"
-          placeholder="Date Time"
-          class="w-full"
-        />
-      </div>
-      <div :key="index" v-for="(twt, index) in tweets">
-        <vs-textarea
-          class="w-full"
-          counter="280"
-          label="Counter: 280"
-          :counter-danger.sync="counterDanger"
-          v-model="tweets[index].textarea"
-        />
-
-        <ImageUpload class="mt-4 mb-4" />
-      </div>
-
-      <vs-button
-        color="success"
-        type="filled"
-        icon="add_task"
-        class="float-right"
-        @click="addAnother"
-      ></vs-button>
-
-      <vs-button @click="addEvent">Add Tweet</vs-button>
+      <SocialPost />
     </vs-popup>
-
-    <!-- ADD EVENT -->
-    <!-- <vs-prompt
-      class="calendar-event-dialog"
-      title="Add Tweet"
-      accept-text="Add Tweet"
-      @accept="addEvent"
-      :is-valid="validForm"
-      :active.sync="activePromptAddEvent"
-    >
-      <div class="flex calendar__label-container">
-        <vs-chip
-          v-if="labelLocal != 'none'"
-          class="text-white"
-          :class="'bg-' + labelColor(labelLocal)"
-          >{{ labelLocal }}</vs-chip
-        >
-
-        <vs-dropdown
-          vs-custom-content
-          vs-trigger-click
-          class="my-2 ml-auto cursor-pointer"
-        >
-          <feather-icon
-            icon="TagIcon"
-            svgClasses="h-5 w-5"
-            class="cursor-pointer"
-            @click.prevent
-          ></feather-icon>
-
-          <vs-dropdown-menu style="z-index: 200001">
-            <vs-dropdown-item
-              v-for="(label, index) in calendarLabels"
-              :key="index"
-              @click="labelLocal = label.value"
-            >
-              <div
-                class="inline-block w-3 h-3 mr-2 rounded-full"
-                :class="'bg-' + label.color"
-              ></div>
-              <span>{{ label.text }}</span>
-            </vs-dropdown-item>
-
-            <vs-dropdown-item @click="labelLocal = 'none'">
-              <div
-                class="inline-block w-3 h-3 mr-1 mr-2 rounded-full bg-primary"
-              ></div>
-              <span>None</span>
-            </vs-dropdown-item>
-          </vs-dropdown-menu>
-        </vs-dropdown>
-      </div>
-
-      <vs-input
-        name="event-name"
-        class="w-full"
-        label-placeholder="Tweet Title"
-        v-model="title"
-      ></vs-input>
-
-      <div class="my-4">
-        <small class="date-label">Tweet Date Time</small>
-        <flat-pickr
-          :config="configdateTimePicker"
-          v-model="datetime"
-          placeholder="Date Time"
-          class="w-full"
-        />
-      </div>
-      <div :key="index" v-for="(twt, index) in tweets">
-        <vs-textarea
-          class="w-full"
-          counter="280"
-          label="Counter: 280"
-          :counter-danger.sync="counterDanger"
-          v-model="tweets[index].textarea"
-        />
-
-        <ImageUpload class="mt-4 mb-4" />
-      </div>
-
-      <vs-button
-        color="success"
-        type="filled"
-        icon="add_task"
-        class="float-right"
-        @click="addAnother"
-      ></vs-button>
-    </vs-prompt> -->
 
     <!-- EDIT EVENT -->
     <vs-prompt
@@ -310,76 +142,14 @@
       :is-valid="validForm"
       :active.sync="activePromptEditEvent"
     >
-      <div class="flex calendar__label-container">
-        <vs-chip
-          v-if="labelLocal != 'none'"
-          class="text-white"
-          :class="'bg-' + labelColor(labelLocal)"
-          >{{ labelLocal }}</vs-chip
-        >
-
-        <vs-dropdown vs-custom-content class="my-2 ml-auto cursor-pointer">
-          <feather-icon
-            icon="TagIcon"
-            svgClasses="h-5 w-5"
-            @click.prevent
-          ></feather-icon>
-
-          <vs-dropdown-menu style="z-index: 200001">
-            <vs-dropdown-item
-              v-for="(label, index) in calendarLabels"
-              :key="index"
-              @click="labelLocal = label.value"
-            >
-              <div
-                class="inline-block w-3 h-3 mr-2 rounded-full"
-                :class="'bg-' + label.color"
-              ></div>
-              <span>{{ label.text }}</span>
-            </vs-dropdown-item>
-
-            <vs-dropdown-item @click="labelLocal = 'none'">
-              <div
-                class="inline-block w-3 h-3 mr-1 mr-2 rounded-full bg-primary"
-              ></div>
-              <span>None</span>
-            </vs-dropdown-item>
-          </vs-dropdown-menu>
-        </vs-dropdown>
-      </div>
-
-      <!-- <vs-input
-        name="event-name"
-        class="w-full"
-        label-placeholder="Tweet Title"
-        v-model="title"
-      ></vs-input>
-      <div class="my-4">
-        <small class="date-label">Start Date</small>
-        <datepicker
-          :language="$vs.rtl ? langHe : langEn"
-          :disabledDates="disabledDatesFrom"
-          name="start-date"
-          v-model="startDate"
-        ></datepicker>
-      </div> -->
-      <!-- <div class="my-4">
-        <small class="date-label">End Date</small>
-        <datepicker
-          :language="$vs.rtl ? langHe : langEn"
-          :disabledDates="disabledDatesTo"
-          name="end-date"
-          v-model="endDate"
-        ></datepicker>
-      </div> -->
-      <!-- <vs-input
-        name="event-url"
-        class="w-full mt-6"
-        label-placeholder="Event URL"
-        v-model="url"
-        :color="!errors.has('event-url') ? 'success' : 'danger'"
-      ></vs-input> -->
+      <SocialPost
+        :twtConfig="twtConfig"
+        :fbConfig="fbConfig"
+        :instaConfig="instaConfig"
+      />
     </vs-prompt>
+
+    <UiSocialTwitterFeeds :twitterFeeds="twitterFeeds" />
   </div>
 </template>
 
@@ -399,6 +169,14 @@ export default {
     CalendarViewHeader,
     Datepicker,
     flatPickr,
+  },
+  props: {
+    entity: { type: String, default: 'person' },
+    handle: { type: String, default: '' },
+    branch: { type: String, default: '' },
+    twtConfig: { type: Object },
+    fbConfig: { type: Object },
+    instaConfig: { type: Object },
   },
   data() {
     return {
@@ -530,9 +308,6 @@ export default {
       } else {
         setHour = setTime
       }
-
-      console.log('setHour', setHour)
-      console.log('setDay', setDay)
 
       const obj = {
         title: this.title,

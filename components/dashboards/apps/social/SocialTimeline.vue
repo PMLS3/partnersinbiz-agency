@@ -1,9 +1,5 @@
 <template>
-  <vs-tabs
-    :position="$device.isMobile ? 'top' : 'left'"
-    class="tabs-shadow-none"
-    id="profile-tabs"
-  >
+  <vs-tabs position="left" class="tabs-shadow-none" id="profile-tabs">
     <vs-tab icon-pack="feather" icon="icon-twitter" label="Twitter">
       <TweetTimeline
         :entity="entity"

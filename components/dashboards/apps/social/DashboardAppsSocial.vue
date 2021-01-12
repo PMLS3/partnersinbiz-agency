@@ -17,7 +17,7 @@
       />
     </vs-tab>
     <vs-tab label="Schedule" icon="schedule">
-      <TweetSchedular
+      <SocialSchedular
         :entity="entity"
         :branch="branch"
         :twtConfig="twtConfig"
@@ -26,7 +26,7 @@
       />
     </vs-tab>
     <vs-tab label="Drafts" icon="gesture">
-      <TweetDrafts
+      <SocialDrafts
         :entity="entity"
         :branch="branch"
         :twtConfig="twtConfig"
@@ -38,7 +38,7 @@
         <TweetAutoLike />
       </vs-tab> -->
     <vs-tab label="Auto Pilot" icon="repeat">
-      <TweetAuto
+      <SocialAuto
         :entity="entity"
         :branch="branch"
         :twtConfig="twtConfig"
@@ -56,7 +56,7 @@
       />
     </vs-tab>
     <vs-tab label="Golden" icon="toll">
-      <TweetGold
+      <SocialGold
         :entity="entity"
         :branch="branch"
         :twtConfig="twtConfig"

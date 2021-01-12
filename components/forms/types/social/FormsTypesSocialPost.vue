@@ -50,13 +50,13 @@
       v-model="title"
     ></vs-input>
 
-    <div :key="index" v-for="(twt, index) in posts">
+    <div :key="index" v-for="(twt, index) in postss">
       <vs-textarea
         class="w-full"
         counter="280"
         label="Counter: 280 (Twitter limit)"
         :counter-danger.sync="counterDanger"
-        v-model="posts[index].textarea"
+        v-model="postss[index].textarea"
       />
 
       <vs-tooltip text="Add a Image" position="left">
@@ -66,7 +66,7 @@
           @indexChange="change(index)"
         />
       </vs-tooltip>
-      <div v-for="(img, i) in posts[index].imgs" :key="i">
+      <div v-for="(img, i) in postss[index].imgs" :key="i">
         <img :src="img" class="h-24" />
       </div>
     </div>
@@ -132,7 +132,7 @@
         >
       </vs-tooltip>
     </div>
-    <vs-button @click="preview">Preview Posts</vs-button>
+    <vs-button @click="preview">Submit Posts</vs-button>
   </div>
 </template>
 
@@ -151,6 +151,7 @@ export default {
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
     twtConfig: { type: Object },
+    posts: { required: false, type: Array, default: () => [] },
   },
   components: {
     CalendarView,
@@ -172,7 +173,7 @@ export default {
       //   disabledFrom: false,
       id: 0,
       title: '',
-      posts: [
+      postss: [
         {
           textarea: '',
           imgs: [],
@@ -219,14 +220,19 @@ export default {
       return this.$store.state.auth.main_user
     },
   },
-  created() {},
+  created() {
+    console.log('post', this.posts)
+    if (this.posts.length > 0) {
+      this.postss = this.posts
+    }
+  },
   methods: {
     change(index) {
       console.log(index)
       this.id = index
     },
     addAnother() {
-      this.posts.push({
+      this.postss.push({
         textarea: '',
         imgs: [],
       })
@@ -273,7 +279,7 @@ export default {
 
       const obj = {
         title: this.title,
-        posts: this.posts,
+        posts: this.postss,
         label: this.labelLocal,
         url: this.url,
         u_uid: this.user.uid,
@@ -302,8 +308,8 @@ export default {
 
     input(data) {
       console.log('input', data)
-      this.posts[this.id].imgs = data
-      console.log('input', this.posts)
+      this.postss[this.id].imgs = data
+      console.log('input', this.postss)
     },
   },
 }

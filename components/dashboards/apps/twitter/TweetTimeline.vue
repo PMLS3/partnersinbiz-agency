@@ -1,5 +1,5 @@
 <template>
-  <vs-tabs>
+  <vs-tabs position="top" class="tabs-shadow-none" id="profile-tabs">
     <vs-tab
       label="Home"
       icon="home"
@@ -17,6 +17,9 @@
           :item="item"
           :entity="entity"
           :branch="branch"
+          :twtConfig="twtConfig"
+          :fbConfig="fbConfig"
+          :instaConfig="instaConfig"
           class="mt-3"
         />
       </div>
@@ -38,6 +41,9 @@
           :item="item"
           :entity="entity"
           :branch="branch"
+          :twtConfig="twtConfig"
+          :fbConfig="fbConfig"
+          :instaConfig="instaConfig"
           class="mt-3"
         />
       </div>
@@ -56,7 +62,14 @@
         icon="cached"
       ></vs-button>
       <div v-for="item in mentions" :key="item.id">
-        <CardTwitter :item="item" :entity="entity" class="mt-3" />
+        <CardTwitter
+          :item="item"
+          :entity="entity"
+          class="mt-3"
+          :twtConfig="twtConfig"
+          :fbConfig="fbConfig"
+          :instaConfig="instaConfig"
+        />
       </div>
     </vs-tab>
   </vs-tabs>

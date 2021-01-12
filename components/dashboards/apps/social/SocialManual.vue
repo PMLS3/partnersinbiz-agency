@@ -2,54 +2,17 @@
   <div>
     <vs-tabs position="left">
       <vs-tab label="Post" icon="send">
-        <SocialPost :entity="entity" :branch="branch" :twtConfig="twtConfig" />
+        <SocialPost
+          :entity="entity"
+          :branch="branch"
+          :twtConfig="twtConfig"
+          :fbConfig="fbConfig"
+          :instaConfig="instaConfig"
+        />
       </vs-tab>
       <vs-tab label="Seach Hashtags" icon="search">
         <vs-card>
-          <vs-input
-            name="search"
-            class="w-full mt-12"
-            label-placeholder="Keywords that you want to search for"
-            v-model="search"
-          ></vs-input>
-          <small class="w-full mt-2"
-            >Example: '#Nodejs, #Angular, #Reactjs, #ionicframework,
-            #ReactNative, #es6'</small
-          >
-          <div class="my-4">
-            <v-select
-              label="Result type"
-              v-model="results_type"
-              :options="results_types"
-            />
-            <small class="w-full mt-2"
-              >* mixed : Include both popular and real time results in the
-              response.</small
-            >
-            <small class="w-full mt-2"
-              >* recent : return only the most recent results in the
-              response</small
-            >
-            <small class="w-full mt-2"
-              >* popular : return only the most popular results in the
-              response.</small
-            >
-          </div>
-
-          <div class="my-4">
-            <small class="date-label">Tweet Date (since)</small>
-            <flat-pickr
-              :config="configdateTimePicker"
-              v-model="date"
-              placeholder="Since"
-              class="w-full p-2"
-            />
-          </div>
-          <br />
-
-          <vs-button @click="SearchTweetSend" class="mt-4"
-            >Search for Tweet</vs-button
-          >
+          <FormsTypesSearchHashTag @searchTag="searchTag" />
         </vs-card>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="item in results.statuses" :key="item.id">
@@ -82,16 +45,8 @@
 </template>
 
 <script>
-import flatPickr from 'vue-flatpickr-component'
-import 'flatpickr/dist/flatpickr.css'
-import vSelect from 'vue-select'
-
 import moment from 'moment'
 export default {
-  components: {
-    flatPickr,
-    vSelect,
-  },
   props: {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
@@ -102,31 +57,11 @@ export default {
   },
   data() {
     return {
-      //   retweet_words: '',
-      //   set_retweets: '',
-      //   retweet_status: '',
-      //   liked_words: '',
-      //   set_liked_words: '',
-      //   liked_status: '',
       screen_name: '',
       twitterUserFollowersSearch: [],
       twitterUserFollowersSearchResults: [],
-
-      configdateTimePicker: {
-        wrap: true, // set wrap to true only when using 'input-group'
-        altFormat: 'M j, Y',
-        altInput: true,
-        dateFormat: 'Y-m-d',
-      },
       results: [],
       resultsUsers: [],
-      results_type: 'mixed',
-      results_types: ['mixed', 'recent', 'popular'],
-      data: [],
-      date: '',
-      search: '',
-      message: '',
-      counterDanger: false,
     }
   },
   computed: {
@@ -172,32 +107,32 @@ export default {
     },
   },
   methods: {
-    TweetSend() {
-      console.log('date', this.date)
-      let vm = this
-      let message = this.message
-      if (this.images) {
-        for (let i = 0; i < this.images.length; i++) {
-          message = message + ' ' + this.images[i] + ' '
-        }
-      }
-      console.log('image', message)
+    // TweetSend() {
+    //   console.log('date', this.date)
+    //   let vm = this
+    //   let message = this.message
+    //   if (this.images) {
+    //     for (let i = 0; i < this.images.length; i++) {
+    //       message = message + ' ' + this.images[i] + ' '
+    //     }
+    //   }
+    //   console.log('image', message)
 
-      this.$axios
-        .$post('/api/twitter/tweet', {
-          config: this.config,
-          message: message,
-        })
-        .then(
-          (response) => {
-            vm.successUpload('TWEETED')
-          },
-          (error) => {
-            console.log(error)
-            vm.unsuccessUpload(error)
-          }
-        )
-    },
+    //   this.$axios
+    //     .$post('/api/twitter/tweet', {
+    //       config: this.config,
+    //       message: message,
+    //     })
+    //     .then(
+    //       (response) => {
+    //         vm.successUpload('TWEETED')
+    //       },
+    //       (error) => {
+    //         console.log(error)
+    //         vm.unsuccessUpload(error)
+    //       }
+    //     )
+    // },
     async UserShow(user_id) {
       console.log('user', user_id)
       let vm = this
@@ -220,15 +155,18 @@ export default {
       this.twitterUserFollowersSearch = ip
       this.resultsUsers = []
     },
-    async SearchTweetSend() {
+    async SearchTweetSend(data) {
       let vm = this
       const ip = await this.$axios
         .$get(
-          `/api/twitter/search?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&search=${this.search}&since=${this.date}&results_type=${this.results_type}`
+          `/api/twitter/search?consumer_key=${this.config.consumer_key}&consumer_secret=${this.config.consumer_secret}&access_token=${this.config.access_token}&access_token_secret=${this.config.access_token_secret}&search=${data.search}&since=${data.date}&results_type=${data.results_type}`
         )
         .then(vm.successUpload('searching...'))
 
       this.results = ip
+    },
+    searchTag(data) {
+      this.SearchTweetSend(data)
     },
 
     successUpload(msg) {

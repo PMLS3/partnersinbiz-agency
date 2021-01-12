@@ -76,6 +76,14 @@ export default {
     VueApexCharts,
     // StatisticsCardLine,
   },
+  props: {
+    entity: { type: String, default: 'person' },
+    handle: { type: String, default: '' },
+    branch: { type: String, default: '' },
+    twtConfig: { type: Object },
+    fbConfig: { type: Object },
+    instaConfig: { type: Object },
+  },
   data: () => ({
     active: true,
     notExpand: false,
