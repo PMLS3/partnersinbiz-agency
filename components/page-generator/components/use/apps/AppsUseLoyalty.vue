@@ -1,23 +1,20 @@
 <template>
   <div>
     <section v-for="(loyal, index) in loyals" :key="index">
-      <gauge :loyal="loyal" :schema="schema" />
+      <UiElementsGauge :loyal="loyal" :schema="schema" />
     </section>
   </div>
 </template>
 
 <script>
-import gauge from '@/components/ui-elements/gauge/index.vue'
 import firebase from 'firebase'
 export default {
   props: ['schema'],
 
-  components: {
-    gauge
-  },
+  components: {},
   data() {
     return {
-      loyals: []
+      loyals: [],
     }
   },
 
@@ -27,7 +24,7 @@ export default {
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
   methods: {
     goToLogin() {
@@ -39,12 +36,12 @@ export default {
       //   }else{
       //   this.$router.push(`/d/${name}`)
       //   }
-    }
+    },
   },
   created() {
     let vm = this
     if (process.client) {
-      firebase.auth().onAuthStateChanged(user => {
+      firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           console.log('loayl', vm.schema)
           let ref = vm.$fireStore
@@ -56,8 +53,8 @@ export default {
             .doc(vm.schema.id)
             .collection('added')
 
-          ref.onSnapshot(snapshot => {
-            snapshot.docChanges().forEach(change => {
+          ref.onSnapshot((snapshot) => {
+            snapshot.docChanges().forEach((change) => {
               let doc = change.doc
               vm.loyals.push({
                 id: doc.id,
@@ -83,7 +80,7 @@ export default {
                 geo6: doc.data().geo6,
                 geo7: doc.data().geo7,
                 geo8: doc.data().geo8,
-                geo9: doc.data().geo9
+                geo9: doc.data().geo9,
               })
             })
           })
@@ -93,7 +90,7 @@ export default {
         }
       })
     }
-  }
+  },
 }
 </script>
 

@@ -1,11 +1,6 @@
 <template>
   <div>
     <client-only>
-      <!-- <div>
-      <google-map-basic :center="myAppProfile[0].geolocation" :markers="markers"></google-map-basic>
-      <google-map-info-window :center="myAppProfile[0].geolocation" :markers="markers"></google-map-info-window>
-      <google-map-pop :center="myAppProfile[0].geolocation" :markers="markers"></google-map-pop>
-    </div>-->
       <div v-if="!googleSearched">
         <vs-card>
           <gmap-map
@@ -268,7 +263,7 @@
             </vs-popup>
           </gmap-custom-marker>
         </gmap-map>
-        <gmap-search />
+        <MapsSearch />
         <vs-button @click="googleSearchReset" v-if="googleSearched"
           >Back</vs-button
         >
@@ -370,21 +365,11 @@
 <script>
 import firebase from 'firebase'
 import GmapCustomMarker from 'vue2-gmap-custom-marker'
-import gmapSearch from '@/components/maps/address'
-// import GoogleMapBasic from "@/views/charts-and-maps/maps/google-map/GoogleMapBasic.vue";
-// import GoogleMapInfoWindow from "@/views/charts-and-maps/maps/google-map/GoogleMapInfoWindow.vue";
-// import GoogleMapStreetView from "@/views/charts-and-maps/maps/google-map/GoogleMapStreetView.vue";
-// import GoogleMapPop from "@/views/charts-and-maps/maps/google-map/GoogleMapPop.vue";
 
 export default {
   props: ['schema'],
   components: {
     'gmap-custom-marker': GmapCustomMarker,
-    'gmap-search': gmapSearch
-    // GoogleMapBasic,
-    // GoogleMapInfoWindow,
-    // GoogleMapStreetView,
-    // GoogleMapPop
   },
   data() {
     return {
@@ -401,7 +386,7 @@ export default {
       clickedOn: {},
       markerOptions: {
         size: { width: 60, height: 90, f: 'px', b: 'px' },
-        scaledSize: { width: 30, height: 45, f: 'px', b: 'px' }
+        scaledSize: { width: 30, height: 45, f: 'px', b: 'px' },
       },
 
       itemsPerPage: 8,
@@ -409,9 +394,9 @@ export default {
 
       //optional: offset infowindow so it visually sits nicely on top of our marker
       infoOptions: {
-        pixelOffset: { width: 0, height: -35 }
+        pixelOffset: { width: 0, height: -35 },
       },
-      markers: []
+      markers: [],
     }
   },
 
@@ -425,21 +410,21 @@ export default {
     BusinessGeo() {
       return {
         lng: this.activeBusinessInfo.lng,
-        lat: this.activeBusinessInfo.lat
+        lat: this.activeBusinessInfo.lat,
       }
     },
 
     google_place_search: {
-      get: function() {
+      get: function () {
         return this.$store.getters['google/google_place_search']
       },
-      set: function() {
+      set: function () {
         this.googleSearched = true
-      }
+      },
     },
     google_marker_search() {
       return this.$store.getters['google/google_marker_search']
-    }
+    },
     // currentPage() {
     //   if (this.isMounted) {
     //     return this.$refs.table.currentx
@@ -448,11 +433,11 @@ export default {
     // }
   },
   watch: {
-    google_marker_search: function() {
+    google_marker_search: function () {
       ;(this.center.lat = this.google_marker_search.lat),
         (this.center.lng = this.google_marker_search.lng)
       this.googleSearched = true
-    }
+    },
   },
   created() {
     let aroundRetrieve = this.$fireStore
@@ -464,14 +449,14 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    aroundRetrieve.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    aroundRetrieve.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.markers.push({
           id: doc.id,
           position: {
             lng: doc.data().lng,
-            lat: doc.data().lat
+            lat: doc.data().lat,
           },
           infoText: doc.data().title,
           img: doc.data().image[0],
@@ -481,7 +466,7 @@ export default {
           website: doc.data().website,
           number: doc.data().number,
           address_url: doc.data().addr.addr_url,
-          html: doc.data().desc
+          html: doc.data().desc,
         })
       })
     })
@@ -501,7 +486,7 @@ export default {
     nextMove() {
       this.popupActivo = true
     },
-    toggleInfoWindow: function(marker, idx) {
+    toggleInfoWindow: function (marker, idx) {
       this.infoWindowPos = marker.position
       this.infoContent = marker.infoText
       //check if its the same marker that was selected if yes toggle
@@ -537,12 +522,12 @@ export default {
 
         /** Converts numeric degrees to radians */
         if (typeof Number.prototype.toRad === 'undefined') {
-          Number.prototype.toRad = function() {
+          Number.prototype.toRad = function () {
             return (this * Math.PI) / 180
           }
         }
 
-        window.navigator.geolocation.getCurrentPosition(function(pos) {
+        window.navigator.geolocation.getCurrentPosition(function (pos) {
           console.log(
             distance(
               this.myAppProfile.geolocation.lat,
@@ -569,7 +554,7 @@ export default {
     // },
     formatData(data) {
       // formats data received from API
-      let formattedData = data.map(item => {
+      let formattedData = data.map((item) => {
         const fields = item.fields
         let obj = {}
         for (const key of Object.keys(fields)) {
@@ -581,8 +566,8 @@ export default {
         return obj
       })
       return formattedData
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>

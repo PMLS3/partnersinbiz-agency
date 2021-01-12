@@ -8,12 +8,12 @@
 <template>
   <div>
     <client-only>
-      <div class="algolia-header mb-4 " style="margin-top: 125px;">
+      <div class="algolia-header mb-4" style="margin-top: 125px">
         <div class="flex md:items-end items-center justify-between flex-wrap">
           <!-- TOGGLE SIDEBAR BUTTON -->
           <vs-button
             icon="search"
-            class="inline-flex  cursor-pointer  ml-4 mr-4"
+            class="inline-flex cursor-pointer ml-4 mr-4"
             @click.stop="toggleFilterSidebar"
           ></vs-button>
 
@@ -49,7 +49,7 @@
                   class="p-2 shadow-drop rounded-lg d-theme-dark-bg cursor-pointer"
                   :svgClasses="{
                     'text-primary stroke-current':
-                      currentItemView == 'item-grid-view'
+                      currentItemView == 'item-grid-view',
                   }"
                 />
                 <feather-icon
@@ -58,7 +58,7 @@
                   class="p-2 ml-4 shadow-drop rounded-lg d-theme-dark-bg cursor-pointer hidden sm:inline-flex"
                   :svgClasses="{
                     'text-primary stroke-current':
-                      currentItemView == 'item-list-view'
+                      currentItemView == 'item-list-view',
                   }"
                 />
               </div>
@@ -210,7 +210,7 @@
                   v-for="item in estates"
                   :key="item.objectID"
                 >
-                  <item-grid-view :item="item">
+                  <UiElementsRealEstateItemGridView :item="item">
                     <!-- SLOT: ACTION BUTTONS -->
                     <template slot="action-buttons">
                       <div class="flex flex-wrap">
@@ -225,9 +225,9 @@
                               {
                                 'text-danger fill-current': isInWishList(
                                   item.objectID
-                                )
+                                ),
                               },
-                              'h-4 w-4'
+                              'h-4 w-4',
                             ]"
                           />
 
@@ -257,7 +257,7 @@
                         </div>
                       </div>
                     </template>
-                  </item-grid-view>
+                  </UiElementsRealEstateItemGridView>
                 </div>
               </div>
             </template>
@@ -269,7 +269,7 @@
                 v-for="item in estates"
                 :key="item.objectID"
               >
-                <item-list-view :item="item">
+                <UiElementsRealEstateItemListView :item="item">
                   <!-- SLOT: ACTION BUTTONS -->
                   <template slot="action-buttons">
                     <div
@@ -282,9 +282,9 @@
                           {
                             'text-danger fill-current': isInWishList(
                               item.objectID
-                            )
+                            ),
                           },
-                          'h-4 w-4'
+                          'h-4 w-4',
                         ]"
                       />
                       <span class="text-sm font-semibold ml-2">WISHLIST</span>
@@ -308,7 +308,7 @@
                       >
                     </div>
                   </template>
-                </item-list-view>
+                </UiElementsRealEstateItemListView>
               </div>
             </template>
           </div>
@@ -320,7 +320,7 @@
               :max="7"
               :value="pages + 1"
               @input="
-                val => {
+                (val) => {
                   refine(val - 1)
                 }
               "
@@ -336,10 +336,6 @@
 export default {
   props: ['schema'],
 
-  components: {
-    ItemGridView: () => import('@/components/realEstate/ItemGridView.vue'),
-    ItemListView: () => import('@/components/realEstate/ItemListView.vue')
-  },
   data() {
     return {
       estates: [],
@@ -355,7 +351,7 @@ export default {
       high_low: [
         { value: 'featured', label: 'Featured' },
         { value: 'low', label: 'Lowest Price' },
-        { value: 'high', label: 'Highest Price' }
+        { value: 'high', label: 'Highest Price' },
       ],
       high_low_val: '',
       // Filter Sidebar
@@ -367,20 +363,20 @@ export default {
         { label: '<= R10', end: 10 },
         { label: 'R10 - R100', start: 10, end: 100 },
         { label: 'R100 - R500', start: 100, end: 500 },
-        { label: '>= R500', start: 500 }
+        { label: '>= R500', start: 500 },
       ],
       brands: [],
       range: {
         min: 20,
-        max: 700
-      }
+        max: 700,
+      },
     }
   },
   computed: {
     toValue() {
       return (value, range) => [
         value.min !== null ? value.min : range.min,
-        value.max !== null ? value.max : range.max
+        value.max !== null ? value.max : range.max,
       ]
     },
     activeBusinessInfo() {
@@ -395,19 +391,19 @@ export default {
 
     // GRID VIEW
     isInCart() {
-      return itemId => this.$store.getters['eCommerce/isInCart'](itemId)
+      return (itemId) => this.$store.getters['eCommerce/isInCart'](itemId)
     },
     isInWishList() {
-      return itemId => this.$store.getters['eCommerce/isInWishList'](itemId)
+      return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
     },
     windowWidth() {
       return this.$store.state.windowWidth
-    }
+    },
   },
   watch: {
     windowWidth() {
       this.setSidebarWidth()
-    }
+    },
   },
   methods: {
     refine(val) {
@@ -436,7 +432,7 @@ export default {
       this.isInCart(item.objectID)
         ? this.$router.push('/eCommerce/checkout')
         : this.additemInCart(item)
-    }
+    },
   },
   created() {
     this.setSidebarWidth()
@@ -450,8 +446,8 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    docProd.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    docProd.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.estates.push({
           objectID: doc.id,
@@ -468,7 +464,7 @@ export default {
           bathrooms: doc.data().bathrooms,
           amenities: doc.data().amenities,
           agent: doc.data().agent,
-          price: doc.data().price
+          price: doc.data().price,
         })
       })
     })
@@ -480,11 +476,11 @@ export default {
       .doc('brand')
       .collection('brand')
 
-    docBrands.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    docBrands.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.brands.push({
-          brand: doc.data().brand
+          brand: doc.data().brand,
         })
       })
     })
@@ -496,15 +492,15 @@ export default {
       .doc('category')
       .collection('category')
 
-    docCat.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    docCat.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.categories.push({
-          category: doc.data().category
+          category: doc.data().category,
         })
       })
     })
-  }
+  },
 }
 </script>
 

@@ -1,0 +1,113 @@
+<!-- =========================================================================================
+  File Name: ItemGridView.vue
+  Description: Item Component - Grid VIew
+  ----------------------------------------------------------------------------------------
+
+========================================================================================== -->
+
+<template>
+  <vx-card class="grid-view-item mb-base overflow-hidden" v-on="$listeners">
+    <template slot="no-body">
+      <div
+        class="item-img-container bg-white h-64 flex items-center justify-center mb-4 cursor-pointer"
+        @click="navigate_to_detail_view"
+      >
+        <img
+          :src="item.image[0]"
+          :alt="item.title"
+          class="grid-view-img px-4"
+        />
+      </div>
+      <div class="item-details px-4">
+        <div class="flex justify-between items-center">
+          <div
+            class="text-warning border border-solid border-warning flex py-1 px-2 rounded"
+          >
+            <span class="text-sm mr-1">{{ item.rating }}</span>
+            <feather-icon icon="StarIcon" svgClasses="h-4 w-4" />
+          </div>
+          <h6 class="font-bold">R{{ item.price }}</h6>
+        </div>
+
+        <div class="my-4">
+          <h6
+            class="truncate font-semibold mb-1 hover:text-primary cursor-pointer"
+            @click="navigate_to_detail_view"
+          >
+            {{ item.title }}
+          </h6>
+          <p class="item-description truncate text-sm" v-html="item.desc">
+            {{ item.desc | str_limit(8) }}
+          </p>
+        </div>
+      </div>
+
+      <slot name="action-buttons" />
+    </template>
+    <vs-popup fullscreen title="fullscreen" :active.sync="popupActivo4">
+      <DetailedView :real_estate="real_estate" v-if="popupActivo4" />
+      {{ real_estate }}
+    </vs-popup>
+  </vx-card>
+</template>
+
+<script>
+import DetailedView from './DetailedView'
+export default {
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
+  components: {
+    DetailedView
+  },
+  data() {
+    return {
+      real_estate: {},
+      popupActivo4: false
+    }
+  },
+  filters: {
+    str_limit(value, size) {
+      if (!value) return ''
+      value = value.toString()
+
+      if (value.length <= size) {
+        return value
+      }
+      return value.substr(0, size) + '...'
+    }
+  },
+  methods: {
+    navigate_to_detail_view() {
+      this.real_estate = this.item
+      this.popupActivo4 = true
+      // this.$store.dispatch('eCommerce/selectedItem', this.item)
+
+      // this.$router.push(`/eCommerce/detail_view/${this.item.objectID}`)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.grid-view-item {
+  .grid-view-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    transition: 0.35s;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.25);
+
+    .grid-view-img {
+      opacity: 0.9;
+    }
+  }
+}
+</style>

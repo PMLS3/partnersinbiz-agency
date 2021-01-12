@@ -8,14 +8,14 @@
             <client-only>
               <!-- <components-edit /> -->
 
-              <mainGrid :schema="component_list" />
+              <MainGrid :schema="component_list" />
             </client-only>
           </vs-row>
         </vs-tab>
         <vs-tab label="Pages">
           <div class="vx-row">
             <!-- <div
-              class="vx-col w-full sm:w-1/3 lg:w-1/6 mb-base"
+              class="w-full vx-col sm:w-1/3 lg:w-1/6 mb-base"
               v-for="(page, i) in pages"
               :key="i"
             >
@@ -24,7 +24,7 @@
                   page.page_name
                 }}</vs-button>
                 <div
-                  class="profile-actions pointer-events-auto flex"
+                  class="flex pointer-events-auto profile-actions"
                   style="position: absolute; margin-top: 1px; margin-right: 2px; position:absolute; top:0;  display: none; ; z-index: 200"
                 >
                   <vs-button
@@ -78,10 +78,10 @@ export default {
   name: 'pageBuilders',
   components: {
     // mainGrid,
-    componentsEdit: () =>
-      process.client
-        ? import('@/components/page-generator/components_edit/index')
-        : null
+    // componentsEdit: () =>
+    //   process.client
+    //     ? import('@/components/page-generator/components_edit/index')
+    //     : null
     // formsBuilder,
     // websiteSettings
   },
@@ -98,7 +98,7 @@ export default {
     },
     activeBusinessInfo() {
       return this.$store.state.business.app_active_business
-    }
+    },
   },
 
   created() {
@@ -134,10 +134,10 @@ export default {
         .collection('page_builder')
         .doc(page.id)
         .delete()
-        .then(function() {
+        .then(function () {
           console.log('Document successfully deleted!')
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error('Error removing document: ', error)
         })
     },
@@ -150,7 +150,7 @@ export default {
     editPage(page) {
       this.$store.commit('page_builder/EDITING_PAGE', true)
       this.$store.commit('page_builder/COMPONENTS_LIST_SET', page)
-    }
-  }
+    },
+  },
 }
 </script>

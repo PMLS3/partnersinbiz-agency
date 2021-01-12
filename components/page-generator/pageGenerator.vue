@@ -6,11 +6,11 @@
 
 <template>
   <div style="width: 100%">
-    <component-generator
+    <ComponentGenerator
       v-for="(field, index) in schema"
       :key="index"
       :schema="field"
-    ></component-generator>
+    />
   </div>
 </template>
 
@@ -27,13 +27,13 @@ export default {
       styleData: {
         border: '1px solid black',
         'min-height': '50px',
-        position: 'relative'
-      }
+        position: 'relative',
+      },
     }
   },
   props: ['schema'],
 
-  methods: {}
+  methods: {},
 }
 </script>
 <style lang="scss">

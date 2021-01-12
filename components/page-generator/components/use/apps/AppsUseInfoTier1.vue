@@ -1,33 +1,32 @@
 <template>
   <div>
-    <documentView :pdfs="pdfs" />
+    <UiElementsAccordianSimple :info="info" />
   </div>
 </template>
 
 <script>
-import vuePdf from '@/components/pdf/pdf-open.vue'
-import documentView from '@/components/pdf/document-view.vue'
-
 export default {
-  components: { vuePdf, documentView },
   props: ['schema'],
 
   data() {
     return {
-      pdfs: []
+      info: [],
     }
   },
-
   computed: {
     activeBusinessInfo() {
       return this.$store.state.business.app_active_business
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
-  mounted() {
-    let pdfRetrieve = this.$fireStore
+
+  created() {
+    let vm = this
+    let ref
+
+    ref = this.$fireStore
       .collection('apps')
       .doc('apps')
       .collection(this.activeBusinessInfo.b_uid)
@@ -36,20 +35,19 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    pdfRetrieve.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    ref.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
-        this.pdfs.push({
+        this.info.push({
           id: doc.id,
-          image: doc.data().image,
           category: doc.data().cat,
-          name: doc.data().title,
-          html: doc.data().desc
+          title: doc.data().title,
+          htmlForEditor: doc.data().desc,
         })
       })
     })
-  }
+  },
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>

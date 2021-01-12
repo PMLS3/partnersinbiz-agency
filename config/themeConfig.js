@@ -10,7 +10,7 @@ import Vue from 'vue'
 import Vuesax from 'vuesax'
 
 const colors = {
-  primary: '#065AFC',
+  primary: '#F4BC33',
   success: '#28C76F',
   danger: '#EA5455',
   warning: '#FF9F43',

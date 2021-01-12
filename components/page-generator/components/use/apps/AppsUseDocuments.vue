@@ -1,35 +1,29 @@
 <template>
   <div>
-    <simple-accordian :info="info" />
+    <UiElementsPdfDocumentView :pdfs="pdfs" />
   </div>
 </template>
 
 <script>
-import simpleAccordian from '@/components/ui-elements/accordian/simple.vue'
-
 export default {
   props: ['schema'],
 
-  components: { simpleAccordian },
   data() {
     return {
-      info: []
+      pdfs: [],
     }
   },
+
   computed: {
     activeBusinessInfo() {
       return this.$store.state.business.app_active_business
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
-
-  created() {
-    let vm = this
-    let ref
-
-    ref = this.$fireStore
+  mounted() {
+    let pdfRetrieve = this.$fireStore
       .collection('apps')
       .doc('apps')
       .collection(this.activeBusinessInfo.b_uid)
@@ -38,19 +32,20 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    ref.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    pdfRetrieve.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
-        this.info.push({
+        this.pdfs.push({
           id: doc.id,
+          image: doc.data().image,
           category: doc.data().cat,
-          title: doc.data().title,
-          htmlForEditor: doc.data().desc
+          name: doc.data().title,
+          html: doc.data().desc,
         })
       })
     })
-  }
+  },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>
