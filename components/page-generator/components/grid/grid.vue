@@ -13,13 +13,19 @@
     :vs-sm="schema.inline.size.sm"
     :vs-xs="schema.inline.size.xs"
     :class="schema.class"
-    :style="
-      `border: 1px solid black; overflow: hidden; min-height: 50px; position: relative; ${schema.style}`
-    "
+    :style="`border: 1px solid black; overflow: hidden; min-height: 50px; position: relative; ${schema.style}`"
   >
     <div
-      class="profile-actions pointer-events-auto flex"
-      style="position: absolute; margin-top: 1px; margin-right: 2px; position:absolute; top:0;  display: none; ; z-index: 200"
+      class="flex pointer-events-auto profile-actions"
+      style="
+        position: absolute;
+        margin-top: 1px;
+        margin-right: 2px;
+        position: absolute;
+        top: 0;
+        display: none;
+        z-index: 200;
+      "
     >
       <vs-button
         icon-pack="feather"
@@ -46,12 +52,12 @@
       ></vs-button>
     </div>
 
-    <component-generator
+    <ComponentGenerator
       v-if="schema.children"
       v-for="(field, index) in schema.children"
       :key="index"
       :schema="field"
-    ></component-generator>
+    />
   </vs-col>
 </template>
 
@@ -67,7 +73,7 @@ export default {
         active_card: true,
         component_show: 'grid',
         place: this.schema.place,
-        index: 1
+        index: 1,
       }
 
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
@@ -77,10 +83,10 @@ export default {
         active_card: true,
         component_show: 'grid',
         schema: this.schema,
-        index: 0
+        index: 0,
       }
       this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
-    }
-  }
+    },
+  },
 }
 </script>

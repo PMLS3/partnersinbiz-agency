@@ -6,11 +6,11 @@
 
 <template>
   <div style="width: 100%">
-    <component-generator
+    <ComponentGenerator
       v-for="(field, index) in schema"
       :key="index"
       :schema="field"
-    ></component-generator>
+    />
   </div>
 </template>
 
@@ -27,8 +27,8 @@ export default {
       styleData: {
         border: '1px solid black',
         'min-height': '50px',
-        position: 'relative'
-      }
+        position: 'relative',
+      },
     }
   },
   props: ['schema'],
@@ -42,7 +42,7 @@ export default {
         active_card: true,
         component_show: 'grid',
         index: index,
-        mainIndex: -1
+        mainIndex: -1,
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
     },
@@ -52,11 +52,11 @@ export default {
         component_show: 'grid',
         schema: field,
         index: index,
-        mainIndex: -1
+        mainIndex: -1,
       }
       this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss">

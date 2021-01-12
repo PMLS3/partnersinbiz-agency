@@ -1,9 +1,9 @@
 <template>
   <div>
     <client-only>
-      <ComponentsEdit @askParentToAddToList="addToList" />
+      <ComponentsEdit @askParentToAddToList="addToList" class="mt-24" />
       {{ component_list }}
-      <MainGrid :schema="component_list" />
+      <PageGeneratorMainGrid :schema="component_list" />
     </client-only>
   </div>
 </template>
@@ -11,7 +11,7 @@
 <script>
 // import editComp from "@/components/page-generator/components_edit/index.vue"
 // import mainGrid from '@/components/page-generator/components/grid/mainGrid'
-// import mainGrid from '@/components/page-generator/page_view/grid/mainGrid'
+// import mainGrid from '@/components/page-generator/page_view/grid/MainGrid'
 
 export default {
   props: {
@@ -21,7 +21,7 @@ export default {
     },
   },
   components: {
-    mainGrid,
+    // mainGrid,
   },
   computed: {
     component_list() {
