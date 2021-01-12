@@ -19,13 +19,13 @@
       id="chat-list-sidebar"
     >
       <!-- USER PROFILE SIDEBAR -->
-      <user-profile
+      <AppsViewsUserProfile
         :active="activeProfileSidebar"
         :userId="userProfileId"
         class="user-profile-container"
         :isLoggedInUser="isLoggedInUserProfileView"
         @closeProfileSidebar="closeProfileSidebar"
-      ></user-profile>
+     />
 
       <div class="chat__profile-search flex p-4">
         <div class="relative inline-flex">
@@ -74,13 +74,13 @@
               :key="index"
               @click="updateActiveChatUser(contact.uid)"
             >
-              <chat-contact
+              <AppsViewsChatContact
                 showLastMsg
                 :contact="contact"
                 :lastMessaged="chatLastMessaged(contact.uid).time"
                 :unseenMsg="chatUnseenMessages(contact.uid)"
                 :isActiveChatUser="isActiveChatUser(contact.uid)"
-              ></chat-contact>
+              >
             </li>
           </ul>
         </div>
@@ -95,7 +95,7 @@
               :key="contact.uid"
               @click="updateActiveChatUser(contact.uid)"
             >
-              <chat-contact :contact="contact"></chat-contact>
+              <AppsViewsChatContact :contact="contact">
             </li>
           </ul>
         </div>
@@ -112,14 +112,14 @@
     >
       <template v-if="activeChatUser">
         <div class="chat__navbar">
-          <chat-navbar
+          <AppsViewsChatNavbar
             :isSidebarCollapsed="!clickNotClose"
             :user-id="activeChatUser"
             :isPinnedProp="isChatPinned"
             @openContactsSidebar="toggleChatSidebar(true)"
             @showProfileSidebar="showProfileSidebar"
             @toggleIsChatPinned="toggleIsChatPinned"
-          ></chat-navbar>
+          >
         </div>
         <component
           :is="scrollbarTag"
@@ -167,10 +167,10 @@
 </template>
 
 <script>
-import ChatContact from './ChatContact.vue'
-import ChatLog from './ChatLog.vue'
-import ChatNavbar from './ChatNavbar.vue'
-import UserProfile from './UserProfile.vue'
+// import ChatContact from './ChatContact.vue'
+// import ChatLog from './ChatLog.vue'
+// import ChatNavbar from './ChatNavbar.vue'
+// import UserProfile from './UserProfile.vue'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 // import moduleChat          from '@/store/chat/moduleChat.js'
 
@@ -314,10 +314,7 @@ export default {
   },
   components: {
     VuePerfectScrollbar,
-    ChatContact,
-    UserProfile,
-    ChatNavbar,
-    ChatLog
+ 
   },
   created() {
     this.$store.registerModule('chat', moduleChat)

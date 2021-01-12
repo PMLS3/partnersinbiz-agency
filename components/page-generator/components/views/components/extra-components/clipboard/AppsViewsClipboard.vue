@@ -5,22 +5,21 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="page-clipboard-demo">
-        <clipboard-directive></clipboard-directive>
-        <clipboard-without-directive></clipboard-without-directive>
-    </div>
+  <div id="page-clipboard-demo">
+    <clipboard-directive></clipboard-directive>
+    <clipboard-without-directive></clipboard-without-directive>
+  </div>
 </template>
 
 <script>
-import ClipboardDirective from './ClipboardDirective.vue'
-import ClipboardWithoutDirective from './ClipboardWithoutDirective.vue'
+import ClipboardDirective from './AppsViewsClipboardDirective.vue'
+import ClipboardWithoutDirective from './AppsViewsClipboardWithoutDirective.vue'
 
-export default{
+export default {
   components: {
     ClipboardDirective,
-    ClipboardWithoutDirective
-  }
+    ClipboardWithoutDirective,
+  },
 }
 </script>

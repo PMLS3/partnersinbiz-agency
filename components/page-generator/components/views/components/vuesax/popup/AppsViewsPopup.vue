@@ -5,28 +5,27 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="popup-demo">
-        <popup-default></popup-default>
-        <popup-inner-popup></popup-inner-popup>
-        <popup-fullscreen></popup-fullscreen>
-        <popup-background></popup-background>
-    </div>
+  <div id="popup-demo">
+    <popup-default></popup-default>
+    <popup-inner-popup></popup-inner-popup>
+    <popup-fullscreen></popup-fullscreen>
+    <popup-background></popup-background>
+  </div>
 </template>
 
 <script>
-import PopupDefault from './PopupDefault.vue'
-import PopupInnerPopup from './PopupInnerPopup.vue'
-import PopupFullscreen from './PopupFullscreen.vue'
-import PopupBackground from './PopupBackground.vue'
+import PopupDefault from './AppsViewsPopupDefault.vue'
+import PopupInnerPopup from './AppsViewsPopupInnerPopup.vue'
+import PopupFullscreen from './AppsViewsPopupFullscreen.vue'
+import PopupBackground from './AppsViewsPopupBackground.vue'
 
-export default{
+export default {
   components: {
     PopupDefault,
     PopupInnerPopup,
     PopupFullscreen,
-    PopupBackground
-  }
+    PopupBackground,
+  },
 }
 </script>

@@ -5,25 +5,24 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="dialog-demo">
-        <dialogs-alert></dialogs-alert>
-        <dialogs-confirm></dialogs-confirm>
-        <dialogs-prompt></dialogs-prompt>
-    </div>
+  <div id="dialog-demo">
+    <dialogs-alert></dialogs-alert>
+    <dialogs-confirm></dialogs-confirm>
+    <dialogs-prompt></dialogs-prompt>
+  </div>
 </template>
 
 <script>
-import DialogsAlert from './DialogsAlert.vue'
-import DialogsConfirm from './DialogsConfirm.vue'
-import DialogsPrompt from './DialogsPrompt.vue'
+import DialogsAlert from './AppsViewsDialogsAlert.vue'
+import DialogsConfirm from './AppsViewsDialogsConfirm.vue'
+import DialogsPrompt from './AppsViewsDialogsPrompt.vue'
 
-export default{
+export default {
   components: {
     DialogsAlert,
     DialogsConfirm,
-    DialogsPrompt
-  }
+    DialogsPrompt,
+  },
 }
 </script>

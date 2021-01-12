@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import QuillEditorThemeSnow from './QuillEditorThemeSnow.vue'
-import QuillEditorThemeBubble from './QuillEditorThemeBubble.vue'
-import QuillEditorCustomToolbar from './QuillEditorCustomToolbar.vue'
+import QuillEditorThemeSnow from './AppsViewsQuillEditorThemeSnow.vue'
+import QuillEditorThemeBubble from './AppsViewsQuillEditorThemeBubble.vue'
+import QuillEditorCustomToolbar from './AppsViewsQuillEditorCustomToolbar.vue'
 
 export default {
   components: {
     QuillEditorThemeSnow,
     QuillEditorThemeBubble,
-    QuillEditorCustomToolbar
-  }
+    QuillEditorCustomToolbar,
+  },
 }
 </script>

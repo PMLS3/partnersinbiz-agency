@@ -41,7 +41,7 @@
                   nbHits,
                   page,
                   processingTimeMS,
-                  query
+                  query,
                 }"
                 class="font-semibold md:block hidden"
               >
@@ -55,13 +55,16 @@
                 :items="[
                   { value: 'instant_search', label: 'Featured' },
                   { value: 'instant_search_price_asc', label: 'Lowest Price' },
-                  { value: 'instant_search_price_desc', label: 'Highest Price' }
+                  {
+                    value: 'instant_search_price_desc',
+                    label: 'Highest Price',
+                  },
                 ]"
               >
                 <vs-select
                   :value="currentRefinement"
                   slot-scope="{ items, currentRefinement, refine }"
-                  @input="val => refine(val)"
+                  @input="(val) => refine(val)"
                   class="mr-4 vs-input-shadow-drop vs-select-no-border d-theme-input-dark-bg w-48"
                 >
                   <vs-select-item
@@ -81,7 +84,7 @@
                   class="p-2 shadow-drop rounded-lg d-theme-dark-bg cursor-pointer"
                   :svgClasses="{
                     'text-primary stroke-current':
-                      currentItemView == 'item-grid-view'
+                      currentItemView == 'item-grid-view',
                   }"
                 />
                 <feather-icon
@@ -90,7 +93,7 @@
                   class="p-2 ml-4 shadow-drop rounded-lg d-theme-dark-bg cursor-pointer hidden sm:inline-flex"
                   :svgClasses="{
                     'text-primary stroke-current':
-                      currentItemView == 'item-list-view'
+                      currentItemView == 'item-list-view',
                   }"
                 />
               </div>
@@ -122,7 +125,7 @@
                     icon="CircleIcon"
                     :svgClasses="[
                       { 'text-primary fill-current': item.isRefined },
-                      'h-5 w-5'
+                      'h-5 w-5',
                     ]"
                   />
                   <span
@@ -168,7 +171,7 @@
                       icon="CircleIcon"
                       :svgClasses="[
                         { 'text-primary fill-current': item.isRefined },
-                        'h-5 w-5'
+                        'h-5 w-5',
                       ]"
                     />
                     <span
@@ -223,9 +226,9 @@
                           {
                             'text-warning': full,
                             'text-grey': !full,
-                            'ml-1': index
+                            'ml-1': index,
                           },
-                          'cursor-pointer stroke-current h-6 w-6'
+                          'cursor-pointer stroke-current h-6 w-6',
                         ]"
                         v-for="(full, index) in item.stars"
                         :key="index"
@@ -314,7 +317,7 @@
                     v-for="item in items"
                     :key="item.objectID"
                   >
-                    <item-grid-view :item="item">
+                    <AppsViewsItemGridView :item="item">
                       <!-- SLOT: ACTION BUTTONS -->
                       <template slot="action-buttons">
                         <div class="flex flex-wrap">
@@ -329,9 +332,9 @@
                                 {
                                   'text-danger fill-current': isInWishList(
                                     item.objectID
-                                  )
+                                  ),
                                 },
-                                'h-4 w-4'
+                                'h-4 w-4',
                               ]"
                             />
 
@@ -361,7 +364,7 @@
                           </div>
                         </div>
                       </template>
-                    </item-grid-view>
+                    </AppsViewsItemGridView>
                   </div>
                 </div>
               </template>
@@ -373,7 +376,7 @@
                   v-for="item in items"
                   :key="item.objectID"
                 >
-                  <item-list-view :item="item">
+                  <AppsViewsItemListView :item="item">
                     <!-- SLOT: ACTION BUTTONS -->
                     <template slot="action-buttons">
                       <div
@@ -386,9 +389,9 @@
                             {
                               'text-danger fill-current': isInWishList(
                                 item.objectID
-                              )
+                              ),
                             },
-                            'h-4 w-4'
+                            'h-4 w-4',
                           ]"
                         />
                         <span class="text-sm font-semibold ml-2">WISHLIST</span>
@@ -412,7 +415,7 @@
                         >
                       </div>
                     </template>
-                  </item-list-view>
+                  </AppsViewsItemListView>
                 </div>
               </template>
             </div>
@@ -428,7 +431,7 @@
                 isFirstPage,
                 isLastPage,
                 refine,
-                createURL
+                createURL,
               }"
             >
               <vs-pagination
@@ -436,7 +439,7 @@
                 :max="7"
                 :value="currentRefinement + 1"
                 @input="
-                  val => {
+                  (val) => {
                     refine(val - 1)
                   }
                 "
@@ -470,14 +473,12 @@ import {
   AisRefinementList,
   AisSearchBox,
   AisSortBy,
-  AisStats
+  AisStats,
 } from 'vue-instantsearch'
 import algoliasearch from 'algoliasearch/lite'
 
 export default {
   components: {
-    ItemGridView: () => import('./components/ItemGridView.vue'),
-    ItemListView: () => import('./components/ItemListView.vue'),
     AisClearRefinements,
     AisConfigure,
     AisHierarchicalMenu,
@@ -490,7 +491,7 @@ export default {
     AisRefinementList,
     AisSearchBox,
     AisSortBy,
-    AisStats
+    AisStats,
   },
   data() {
     return {
@@ -507,39 +508,39 @@ export default {
         { label: '<= $10', end: 10 },
         { label: '$10 - $100', start: 10, end: 100 },
         { label: '$100 - $500', start: 100, end: 500 },
-        { label: '>= $500', start: 500 }
+        { label: '>= $500', start: 500 },
       ],
       algoliaCategories: [
         'hierarchicalCategories.lvl0',
         'hierarchicalCategories.lvl1',
         'hierarchicalCategories.lvl2',
-        'hierarchicalCategories.lvl3'
-      ]
+        'hierarchicalCategories.lvl3',
+      ],
     }
   },
   computed: {
     toValue() {
       return (value, range) => [
         value.min !== null ? value.min : range.min,
-        value.max !== null ? value.max : range.max
+        value.max !== null ? value.max : range.max,
       ]
     },
 
     // GRID VIEW
     isInCart() {
-      return itemId => this.$store.getters['eCommerce/isInCart'](itemId)
+      return (itemId) => this.$store.getters['eCommerce/isInCart'](itemId)
     },
     isInWishList() {
-      return itemId => this.$store.getters['eCommerce/isInWishList'](itemId)
+      return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
     },
     windowWidth() {
       return this.$store.state.windowWidth
-    }
+    },
   },
   watch: {
     windowWidth() {
       this.setSidebarWidth()
-    }
+    },
   },
   methods: {
     addComponent(type) {
@@ -549,15 +550,15 @@ export default {
         title: 'eCommerce',
 
         inline: {
-          type: type
-        }
+          type: type,
+        },
       })
 
       this.$store.commit('page_builder/COMPONENTS_LIST', payload)
 
       let payloads = {
         active_card: false,
-        component_show: 'builder'
+        component_show: 'builder',
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payloads)
     },
@@ -584,11 +585,11 @@ export default {
       this.isInCart(item.objectID)
         ? this.$router.push('/eCommerce/checkout')
         : this.additemInCart(item)
-    }
+    },
   },
   created() {
     this.setSidebarWidth()
-  }
+  },
 }
 </script>
 

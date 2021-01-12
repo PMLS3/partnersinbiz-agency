@@ -109,7 +109,7 @@ import ImageGallery from '@/components/page-generator/components/use/apps/AppsUs
 import InfoTier1 from '@/components/page-generator/components/use/apps/AppsUseInfoTier1'
 import Loyalty from '@/components/page-generator/components/use/apps/AppsUseLoyalty'
 import MailingList from '@/components/page-generator/components/use/apps/AppsUseMailingList'
-import RealEstate from '@/components/page-generator/components/use/apps/AppsUseRealEstate'
+import RealEstate from '@/components/page-generator/components/use/apps/RealEstate/AppsUseRealEstate'
 
 import Youtube from '@/components/page-generator/components/use/apps/AppsUseYoutube'
 

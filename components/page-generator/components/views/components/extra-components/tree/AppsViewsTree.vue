@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import TreeDropdown from './TreeDropdown.vue'
-import TreeSearchTree from './TreeSearchTree.vue'
-import TreeAsyncTree from './TreeAsyncTree.vue'
+import TreeDropdown from './AppsViewsTreeDropdown.vue'
+import TreeSearchTree from './AppsViewsTreeSearchTree.vue'
+import TreeAsyncTree from './AppsViewsTreeAsyncTree.vue'
 
 export default {
   components: {
     TreeDropdown,
     TreeSearchTree,
-    TreeAsyncTree
-  }
+    TreeAsyncTree,
+  },
 }
 </script>

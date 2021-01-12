@@ -2,15 +2,12 @@
   File Name: UserEditTabSocial.vue
   Description: User Edit Social Tab content
   ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
+
 ========================================================================================== -->
 
 <template>
   <div id="user-edit-tab-info">
     <div class="vx-row">
-
       <!-- Col 1 -->
       <div class="vx-col w-full md:w-1/2">
         <vs-input
@@ -21,8 +18,11 @@
           label="Twitter"
           icon-no-border
           v-validate="'url:require_protocol'"
-          name="twitter" />
-          <span class="text-danger text-sm"  v-show="errors.has('twitter')">{{ errors.first('twitter') }}</span>
+          name="twitter"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('twitter')">{{
+          errors.first('twitter')
+        }}</span>
 
         <vs-input
           class="w-full mt-4"
@@ -32,8 +32,11 @@
           label="Facebook"
           icon-no-border
           v-validate="'url:require_protocol'"
-          name="facebook" />
-          <span class="text-danger text-sm"  v-show="errors.has('facebook')">{{ errors.first('facebook') }}</span>
+          name="facebook"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('facebook')">{{
+          errors.first('facebook')
+        }}</span>
 
         <vs-input
           class="w-full mt-4"
@@ -43,9 +46,11 @@
           label="Instagram"
           icon-no-border
           v-validate="'url:require_protocol'"
-          name="instagram" />
-          <span class="text-danger text-sm"  v-show="errors.has('instagram')">{{ errors.first('instagram') }}</span>
-
+          name="instagram"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('instagram')">{{
+          errors.first('instagram')
+        }}</span>
       </div>
 
       <!-- Col 2 -->
@@ -58,8 +63,11 @@
           label="GitHub"
           icon-no-border
           v-validate="'url:require_protocol'"
-          name="github" />
-          <span class="text-danger text-sm"  v-show="errors.has('github')">{{ errors.first('github') }}</span>
+          name="github"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('github')">{{
+          errors.first('github')
+        }}</span>
 
         <vs-input
           class="w-full mt-4"
@@ -69,8 +77,11 @@
           label="CodePen"
           icon-no-border
           v-validate="'url:require_protocol'"
-          name="codepen" />
-          <span class="text-danger text-sm"  v-show="errors.has('codepen')">{{ errors.first('codepen') }}</span>
+          name="codepen"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('codepen')">{{
+          errors.first('codepen')
+        }}</span>
 
         <vs-input
           class="w-full mt-4"
@@ -80,9 +91,11 @@
           label="Slack"
           icon-no-border
           v-validate="'url:require_protocol'"
-          name="slack" />
-          <span class="text-danger text-sm"  v-show="errors.has('slack')">{{ errors.first('slack') }}</span>
-
+          name="slack"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('slack')">{{
+          errors.first('slack')
+        }}</span>
       </div>
     </div>
 
@@ -90,8 +103,19 @@
     <div class="vx-row">
       <div class="vx-col w-full">
         <div class="mt-8 flex flex-wrap items-center justify-end">
-          <vs-button class="ml-auto mt-2" @click="save_changes" :disabled="!validateForm">Save Changes</vs-button>
-          <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data">Reset</vs-button>
+          <vs-button
+            class="ml-auto mt-2"
+            @click="save_changes"
+            :disabled="!validateForm"
+            >Save Changes</vs-button
+          >
+          <vs-button
+            class="ml-4 mt-2"
+            type="border"
+            color="warning"
+            @click="reset_data"
+            >Reset</vs-button
+          >
         </div>
       </div>
     </div>
@@ -103,21 +127,21 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
-      data_local: JSON.parse(JSON.stringify(this.data))
+      data_local: JSON.parse(JSON.stringify(this.data)),
     }
   },
   computed: {
-    validateForm () {
+    validateForm() {
       return !this.errors.any()
-    }
+    },
   },
   methods: {
-    save_changes () {
+    save_changes() {
       /* eslint-disable */
       if (!this.validateForm) return
 
@@ -126,9 +150,9 @@ export default {
 
       /* eslint-enable */
     },
-    reset_data () {
+    reset_data() {
       this.data_local = Object.assign({}, this.data)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import GridBasicGrid from './tailwind/AppsViewsGridBasicGrid.vue'
-import GridResponsiveGrids from './tailwind/AppsViewsGridResponsiveGrids.vue'
-import GridMixedColumnSizes from './tailwind/AppsViewsGridMixedColumnSizes.vue'
-import GridWrappingColumns from './tailwind/AppsViewsGridWrappingColumns.vue'
-import GridColumnSpacing from './tailwind/AppsViewsGridColumnSpacing.vue'
-import GridAutoColumnWidth from './tailwind/AppsViewsGridAutoColumnWidth.vue'
-import GridColumnOrder from './tailwind/AppsViewsGridColumnOrder.vue'
-import GridSimpleOffset from './tailwind/AppsViewsGridSimpleOffset.vue'
+import GridBasicGrid from './AppsViewsGridBasicGrid.vue'
+import GridResponsiveGrids from './AppsViewsGridResponsiveGrids.vue'
+import GridMixedColumnSizes from './AppsViewsGridMixedColumnSizes.vue'
+import GridWrappingColumns from './AppsViewsGridWrappingColumns.vue'
+import GridColumnSpacing from './AppsViewsGridColumnSpacing.vue'
+import GridAutoColumnWidth from './AppsViewsGridAutoColumnWidth.vue'
+import GridColumnOrder from './AppsViewsGridColumnOrder.vue'
+import GridSimpleOffset from './AppsViewsGridSimpleOffset.vue'
 
 export default {
   components: {

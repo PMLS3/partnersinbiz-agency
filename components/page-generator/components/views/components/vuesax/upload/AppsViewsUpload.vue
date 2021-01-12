@@ -5,25 +5,24 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="upload-demo">
-        <upload-default></upload-default>
-        <upload-multiple></upload-multiple>
-        <upload-automatic></upload-automatic>
-    </div>
+  <div id="upload-demo">
+    <upload-default></upload-default>
+    <upload-multiple></upload-multiple>
+    <upload-automatic></upload-automatic>
+  </div>
 </template>
 
 <script>
-import UploadDefault from './UploadDefault.vue'
-import UploadMultiple from './UploadMultiple.vue'
-import UploadAutomatic from './UploadAutomatic.vue'
+import UploadDefault from './AppsViewsUploadDefault.vue'
+import UploadMultiple from './AppsViewsUploadMultiple.vue'
+import UploadAutomatic from './AppsViewsUploadAutomatic.vue'
 
-export default{
+export default {
   components: {
     UploadDefault,
     UploadMultiple,
-    UploadAutomatic
-  }
+    UploadAutomatic,
+  },
 }
 </script>

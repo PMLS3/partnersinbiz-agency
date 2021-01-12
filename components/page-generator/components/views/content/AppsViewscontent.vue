@@ -21,16 +21,16 @@
 </template>
 
 <script>
-import divi from './divi.vue'
-import htmlEditor from './htmlEditor.vue'
-import spanAdd from './spanAdd'
-import h1Tag from './h1Tag'
-import h2Tag from './h2Tag'
-import h3Tag from './h3Tag'
-import h4Tag from './h4Tag'
-import h5Tag from './h5Tag'
-import h6Tag from './h6Tag'
-import pTag from './pTag'
+import divi from './AppsViewsdivi.vue'
+import htmlEditor from './AppsViewshtmlEditor.vue'
+import spanAdd from './AppsViewsspanAdd'
+import h1Tag from './AppsViewsh1Tag'
+import h2Tag from './AppsViewsh2Tag'
+import h3Tag from './AppsViewsh3Tag'
+import h4Tag from './AppsViewsh4Tag'
+import h5Tag from './AppsViewsh5Tag'
+import h6Tag from './AppsViewsh6Tag'
+import pTag from './AppsViewspTag'
 
 export default {
   components: {
@@ -43,7 +43,7 @@ export default {
     h4Tag,
     h5Tag,
     h6Tag,
-    pTag
-  }
+    pTag,
+  },
 }
 </script>

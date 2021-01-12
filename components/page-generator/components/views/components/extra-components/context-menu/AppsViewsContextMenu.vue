@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import ContextMenuSimple from './ContextMenuSimple.vue'
-import ContextMenuClickNotClose from './ContextMenuClickNotClose.vue'
+import ContextMenuSimple from './AppsViewsContextMenuSimple.vue'
+import ContextMenuClickNotClose from './AppsViewsContextMenuClickNotClose.vue'
 
-export default{
+export default {
   components: {
     ContextMenuSimple,
-    ContextMenuClickNotClose
-  }
+    ContextMenuClickNotClose,
+  },
 }
 </script>
