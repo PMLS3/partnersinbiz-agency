@@ -1,11 +1,10 @@
 <template>
   <div :style="`margin-top: ${$store.state.marginTop}px`">
-    <grid-table :item="item" :schema="schema" :columnDefs="columnDefs" />
+    <AgGridTable :item="item" :schema="schema" :columnDefs="columnDefs" />
   </div>
 </template>
 
 <script>
-import gridTable from '@/components/tables/ag-grid-table/AgGridTableBuilder.vue'
 // Cell Renderer
 import CellRendererAction from '@/components/tables/ag-grid-table/cell-renderer/actions_generic.vue'
 import CellRendererImage from '@/components/tables/ag-grid-table/cell-renderer/imageHeader.vue'
@@ -14,11 +13,10 @@ import CellRendererHtml from '@/components/tables/ag-grid-table/cell-renderer/ht
 export default {
   name: 'Letter-Head',
   components: {
-    gridTable,
     CellRendererAction,
     CellRendererImage,
     CellRendererImageFooter,
-    CellRendererHtml
+    CellRendererHtml,
   },
 
   data() {
@@ -26,7 +24,7 @@ export default {
       item: 'Letter Head',
       popup: false,
       popup2: false,
-      list: []
+      list: [],
     }
   },
   computed: {
@@ -37,7 +35,7 @@ export default {
           headerName: 'Description',
           field: 'desc',
           width: 250,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Name',
@@ -47,21 +45,21 @@ export default {
           pinned: 'left',
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true
+          headerCheckboxSelection: true,
         },
         {
           cellRendererFramework: 'CellRendererImage',
           headerName: 'Header',
           field: 'header',
-          width: 175
+          width: 175,
         },
 
         {
           cellRendererFramework: 'CellRendererAction',
           headerName: 'Edit/Delete',
           field: 'i_name',
-          width: 175
-        }
+          width: 175,
+        },
       ]
     },
     schema() {
@@ -71,22 +69,22 @@ export default {
           placeholder: 'Name',
           type: 'text',
           label: 'Name',
-          name: 'i_name'
+          name: 'i_name',
         },
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
+          placeholder: 'Description',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Header',
           label: 'Header',
-          name: 'header'
-        }
+          name: 'header',
+        },
       ]
-    }
-  }
+    },
+  },
 }
 </script>

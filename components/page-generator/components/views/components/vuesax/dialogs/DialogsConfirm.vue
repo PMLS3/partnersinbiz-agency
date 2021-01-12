@@ -1,0 +1,55 @@
+<!-- =========================================================================================
+    File Name: DialogsConfirm.vue
+    Description: Create Confirm dialogs
+    ----------------------------------------------------------------------------------------
+  
+========================================================================================== -->
+
+<template>
+  <vx-card title="Confirm" code-toggler>
+    <p>
+      If you need a dialog of type confirm you can do it just by changing the
+      type as a parameter inside the main function
+    </p>
+
+    <vs-alert color="primary" icon="new_releases" active="true" class="my-4">
+      <p>
+        To do some action when the user approves or confirms we have the
+        property accept:<code>myFunctionAccept</code>
+      </p>
+    </vs-alert>
+
+    <div class="demo-alignment">
+      <vs-button @click="openConfirm()" color="danger" type="gradient"
+        >Delete Image</vs-button
+      >
+    </div>
+  </vx-card>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    activeConfirm: false
+  }),
+  methods: {
+    openConfirm() {
+      this.$vs.dialog({
+        type: 'confirm',
+        color: 'danger',
+        title: 'Confirm',
+        text:
+          'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups.',
+        accept: this.acceptAlert
+      })
+    },
+    acceptAlert() {
+      this.$vs.notify({
+        color: 'danger',
+        title: 'Deleted image',
+        text: 'The selected image was successfully deleted'
+      })
+    }
+  }
+}
+</script>

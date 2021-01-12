@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import gridTable from '@/components/tables/ag-grid-table/AgGridTableBuilder.vue'
 // Cell Renderer
 import CellRendererAction from '@/components/tables/ag-grid-table/cell-renderer/actions_generic.vue'
 import CellRendererImage from '@/components/tables/ag-grid-table/cell-renderer/imageHeader.vue'
@@ -15,11 +14,10 @@ export default {
   name: 'Terms-and-Conditions',
 
   components: {
-    gridTable,
     CellRendererAction,
     CellRendererImage,
     CellRendererImageFooter,
-    CellRendererHtml
+    CellRendererHtml,
   },
 
   data() {
@@ -27,7 +25,7 @@ export default {
       item: 'Terms & Conditions',
       popup: false,
       popup2: false,
-      list: []
+      list: [],
     }
   },
   computed: {
@@ -45,7 +43,7 @@ export default {
           headerName: 'Description',
           field: 'desc',
           width: 250,
-          filter: true
+          filter: true,
         },
         {
           headerName: 'Name',
@@ -55,15 +53,15 @@ export default {
           pinned: 'left',
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true
+          headerCheckboxSelection: true,
         },
 
         {
           cellRendererFramework: 'CellRendererAction',
           headerName: 'Edit/Delete',
           field: 'i_name',
-          width: 250
-        }
+          width: 250,
+        },
       ]
     },
     schema() {
@@ -73,16 +71,16 @@ export default {
           placeholder: 'Name',
           type: 'text',
           label: 'Name',
-          name: 'i_name'
+          name: 'i_name',
         },
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
-        }
+          placeholder: 'Description',
+        },
       ]
-    }
-  }
+    },
+  },
 }
 </script>

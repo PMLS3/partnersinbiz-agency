@@ -34,6 +34,8 @@ import dashboardRequest from '@/components/dashboards/DashboardRequest.vue'
 import dashboardClients from '@/components/dashboards/DashboardClients.vue'
 import dashboardSocialMedia from '@/components/dashboards/DashboardSocialMedia.vue'
 import DashboardLeadGen from '@/components/dashboards/DashboardLeadGen.vue'
+import DashboardWebsiteBuilder from '@/components/dashboards/DashboardWebsiteBuilder.vue'
+import DashboardPageBuilder from '@/components/dashboards/DashboardPageBuilder.vue'
 
 // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
@@ -128,6 +130,8 @@ export default {
     dashboardRequest,
     dashboardClients,
     DashboardLeadGen,
+    DashboardWebsiteBuilder,
+    DashboardPageBuilder,
     email,
     dashboardAppsTwitter,
     dashboardAppsFacebook,

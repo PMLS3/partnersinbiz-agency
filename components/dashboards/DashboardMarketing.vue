@@ -105,14 +105,14 @@ export default {
         title: 'Website',
         description: 'Set the website...',
         graphic: require('@/assets/illustrations/content_team.svg'),
-        url: '/dashboard/website-builder',
+        url: '/dashboardWebsiteBuilder',
       },
       {
         id: 4,
         title: 'Page Builder',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/design_feedback.svg'),
-        url: '/dashboard/page-builder',
+        url: '/dashboardPageBuilder',
       },
       {
         id: 5,
