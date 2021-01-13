@@ -10,7 +10,7 @@
     <!-- ROW 1-->
     <div class="vx-row">
       <div class="vx-col w-1/2 md:w-1/3 xl:w-1/6">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="EyeIcon"
@@ -20,7 +20,7 @@
       </div>
 
       <div class="vx-col w-1/2 md:w-1/3 xl:w-1/6">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="MessageSquareIcon"
@@ -31,7 +31,7 @@
       </div>
 
       <div class="vx-col w-1/2 md:w-1/3 xl:w-1/6">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="ShoppingBagIcon"
@@ -42,7 +42,7 @@
       </div>
 
       <div class="vx-col w-1/2 md:w-1/3 xl:w-1/6">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="HeartIcon"
@@ -53,7 +53,7 @@
       </div>
 
       <div class="vx-col w-1/2 md:w-1/3 xl:w-1/6">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="SmileIcon"
@@ -64,7 +64,7 @@
       </div>
 
       <div class="vx-col w-1/2 md:w-1/3 xl:w-1/6">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="TruckIcon"
@@ -78,7 +78,7 @@
     <!-- ROW 2 -->
     <div class="vx-row">
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="CpuIcon"
@@ -89,7 +89,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="ServerIcon"
@@ -101,7 +101,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="ActivityIcon"
@@ -113,7 +113,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           hideChart
           class="mb-base"
           icon="AlertOctagonIcon"
@@ -128,7 +128,7 @@
     <!-- ROW 3 -->
     <div class="vx-row">
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           class="mb-base"
           v-if="subscribersGained.analyticsData"
           icon="UsersIcon"
@@ -140,7 +140,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           class="mb-base"
           v-if="revenueGenerated.analyticsData"
           icon="DollarSignIcon"
@@ -153,7 +153,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           class="mb-base"
           v-if="quarterlySales.analyticsData"
           icon="ShoppingCartIcon"
@@ -165,7 +165,7 @@
         />
       </div>
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           class="mb-base"
           v-if="ordersRecevied.analyticsData"
           icon="ShoppingBagIcon"
@@ -181,7 +181,7 @@
     <!-- ROW 4 -->
     <div class="vx-row">
       <div class="vx-col w-full md:w-1/3 lg:w-1/3 xl:w-1/3">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           class="md:mb-0 mb-base"
           icon="MonitorIcon"
           icon-right
@@ -192,7 +192,7 @@
       </div>
 
       <div class="vx-col w-full md:w-1/3 lg:w-1/3 xl:w-1/3">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           class="md:mb-0 mb-base"
           icon="UserCheckIcon"
           icon-right
@@ -204,7 +204,7 @@
       </div>
 
       <div class="vx-col w-full md:w-1/3 lg:w-1/3 xl:w-1/3">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           icon="MailIcon"
           icon-right
           statistic="28.7k"

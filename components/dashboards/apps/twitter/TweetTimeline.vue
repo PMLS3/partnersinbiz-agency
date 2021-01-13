@@ -14,7 +14,7 @@
       ></vs-button>
       <div v-if="!twtConfig">NO TWITTER CONFIG SET</div>
       <div v-for="item in hometimeline" :key="item.id">
-        <CardTwitter
+        <UiCardTwitter
           :item="item"
           :entity="entity"
           :branch="branch"
@@ -36,7 +36,7 @@
         icon="cached"
       ></vs-button>
       <div v-for="item in timeline" :key="item.id">
-        <CardTwitter
+        <UiCardTwitter
           :item="item"
           :entity="entity"
           :branch="branch"
@@ -59,7 +59,7 @@
         icon="cached"
       ></vs-button>
       <div v-for="item in mentions" :key="item.id">
-        <CardTwitter
+        <UiCardTwitter
           :item="item"
           :entity="entity"
           class="mt-3"

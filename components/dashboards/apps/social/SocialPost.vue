@@ -25,9 +25,9 @@ export default {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
-    twtConfig: { type: Object },
-    fbConfig: { type: Object },
-    instaConfig: { type: Object },
+    twtConfig: { type: Object, default: () => {} },
+    fbConfig: { type: Object, default: () => {} },
+    instaConfig: { type: Object, default: () => {} },
     posts: { required: false, type: Array, default: () => [] },
   },
   data() {
@@ -134,43 +134,34 @@ export default {
     postNowInstagram(data) {},
     saveToDrafts(data) {},
     schedule(data) {
-      console.log('data', data)
+      console.log('schedule data', data)
+      console.log('this.fbConfig', this.fbConfig)
       let vm = this
 
-      // const obj = {
-      //   title: this.title,
-      //   startDate: date,
-      //   endDate: date,
-      //   time: time,
-      //   scheduled_date: setDay,
-      //   scheduled_hour: setHour,
-      //   scheduled_minutes: minutes,
-      //   tweets: this.tweets,
-      //   label: this.labelLocal,
-      //   url: this.url,
-      //   u_uid: this.user.uid,
-      //   b_uid: this.business.b_uid,
-      //   config: this.config,
-      //   type: 'Tweet',
-      //   status: 'scheduled',
-      // }
-      //  if (this.config) {
-      //  this.$fireStore
-      //     .collection('tweets')
-      //     .add(obj)
-      //     .then(function () {
-      //       obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
-      //       vm.$store.dispatch('calendar/addEvent', obj)
-      //       vm.successUpload()
-      //     })
-      //     .catch(function (error) {
-      //       console.error('Error writing document: ', error)
-      //       vm.unsuccessUpload(error)
-      //     })
-      // } else {
-      //   let error = 'Please enter your configuration file'
-      //   vm.unsuccessUpload(error)
-      // }
+      const obj = {
+        ...data,
+        twtConfig: this.twtConfig,
+        fbConfig: this.fbConfig,
+        instaConfig: this.instaConfig,
+        status: 'scheduled',
+      }
+      if (this.twtConfig) {
+        this.$fireStore
+          .collection('posts')
+          .add(obj)
+          .then(function () {
+            // obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
+            vm.$store.dispatch('calendar/addEvent', obj)
+            vm.success('Schedule successfully')
+          })
+          .catch(function (error) {
+            console.error('Error writing document: ', error)
+            vm.unsuccessfull(error)
+          })
+      } else {
+        let error = 'Please enter your configuration file'
+        vm.unsuccessfull(error)
+      }
     },
     success(msg) {
       this.$vs.notify({

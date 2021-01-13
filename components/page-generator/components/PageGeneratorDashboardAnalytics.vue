@@ -45,7 +45,7 @@
 
       <!-- CARD 2: SUBSCRIBERS GAINED -->
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           icon="UsersIcon"
           statistic="92.6k"
           statisticTitle="Subscribers Gained"
@@ -56,7 +56,7 @@
 
       <!-- CARD 3: ORDER RECIEVED -->
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           icon="ShoppingBagIcon"
           statistic="97.5K"
           statisticTitle="Orders Received"

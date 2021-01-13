@@ -10,7 +10,7 @@
     <div class="vx-row">
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
         <client-only>
-          <StatisticsCardLine
+          <UiStatisticsCardLine
             v-if="subscribersGained.analyticsData"
             icon="UsersIcon"
             :statistic="
@@ -24,7 +24,7 @@
       </div>
 
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="revenueGenerated.analyticsData"
           icon="DollarSignIcon"
           :statistic="revenueGenerated.analyticsData.revenue | k_formatter"
@@ -36,7 +36,7 @@
       </div>
 
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="quarterlySales.analyticsData"
           icon="ShoppingCartIcon"
           :statistic="quarterlySales.analyticsData.sales"
@@ -47,7 +47,7 @@
         />
       </div>
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="ordersRecevied.analyticsData"
           icon="ShoppingBagIcon"
           :statistic="ordersRecevied.analyticsData.orders | k_formatter"
@@ -170,7 +170,7 @@
                       browser.comparedResult < 0
                         ? 'text-danger'
                         : 'text-success',
-                      'stroke-current h-4 w-4 mb-1 mr-1'
+                      'stroke-current h-4 w-4 mb-1 mr-1',
                     ]"
                   ></feather-icon>
                 </span>
@@ -232,7 +232,7 @@
               <feather-icon
                 :icon="deviceData.icon"
                 :svgClasses="[
-                  `h-5 w-5 stroke-current text-${deviceData.color}`
+                  `h-5 w-5 stroke-current text-${deviceData.color}`,
                 ]"
               ></feather-icon>
               <span class="inline-block ml-2 font-semibold">{{
@@ -254,7 +254,7 @@
                     deviceData.comparedResultPercentage < 0
                       ? 'text-danger'
                       : 'text-success',
-                    'stroke-current h-4 w-4 mb-1 mr-1'
+                    'stroke-current h-4 w-4 mb-1 mr-1',
                   ]"
                 ></feather-icon>
               </div>
@@ -293,7 +293,7 @@
                       :class="{
                         'chat-sent-msg bg-primary-gradient text-white':
                           msg.isSent,
-                        'border border-solid d-theme-border-grey-light': !msg.isSent
+                        'border border-solid d-theme-border-grey-light': !msg.isSent,
                       }"
                     >
                       <span>{{ msg.msg }}</span>
@@ -370,7 +370,7 @@ import analyticsData from '@/js/data/analyticsData.js'
 
 export default {
   components: {
-    VueApexCharts
+    VueApexCharts,
     // StatisticsCardLine,
   },
   data() {
@@ -395,8 +395,8 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   computed: {
@@ -408,12 +408,12 @@ export default {
         series: [
           {
             name: 'Subscribers',
-            data: [28, 40, 36, 52, 38, 60, 55]
-          }
+            data: [28, 40, 36, 52, 38, 60, 55],
+          },
         ],
         analyticsData: {
-          subscribers: 92600
-        }
+          subscribers: 92600,
+        },
       }
     },
     revenueGenerated() {
@@ -421,12 +421,12 @@ export default {
         series: [
           {
             name: 'Revenue',
-            data: [350, 275, 400, 300, 350, 300, 450]
-          }
+            data: [350, 275, 400, 300, 350, 300, 450],
+          },
         ],
         analyticsData: {
-          revenue: 97500
-        }
+          revenue: 97500,
+        },
       }
     },
     quarterlySales() {
@@ -434,12 +434,12 @@ export default {
         series: [
           {
             name: 'Sales',
-            data: [10, 15, 7, 12, 3, 16]
-          }
+            data: [10, 15, 7, 12, 3, 16],
+          },
         ],
         analyticsData: {
-          sales: '36%'
-        }
+          sales: '36%',
+        },
       }
     },
     ordersRecevied() {
@@ -447,12 +447,12 @@ export default {
         series: [
           {
             name: 'Orders',
-            data: [10, 15, 8, 15, 7, 12, 8]
-          }
+            data: [10, 15, 8, 15, 7, 12, 8],
+          },
         ],
         analyticsData: {
-          orders: 97500
-        }
+          orders: 97500,
+        },
       }
     },
 
@@ -460,27 +460,27 @@ export default {
       return {
         analyticsData: {
           thisMonth: 86589,
-          lastMonth: 73683
+          lastMonth: 73683,
         },
         series: [
           {
             name: 'This Month',
-            data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600]
+            data: [45000, 47000, 44800, 47500, 45500, 48000, 46500, 48600],
           },
           {
             name: 'Last Month',
-            data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000]
-          }
-        ]
+            data: [46000, 48000, 45500, 46600, 44500, 46500, 45000, 47000],
+          },
+        ],
       }
     },
     goalOverview() {
       return {
         analyticsData: {
           completed: 786617,
-          inProgress: 13561
+          inProgress: 13561,
         },
-        series: [83]
+        series: [83],
       }
     },
 
@@ -491,29 +491,29 @@ export default {
           name: 'Google Chrome',
           ratio: 73,
           time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '800'
+          comparedResult: '800',
         },
         {
           id: 3,
           name: 'Opera',
           ratio: 8,
           time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '-200'
+          comparedResult: '-200',
         },
         {
           id: 2,
           name: 'Firefox',
           ratio: 19,
           time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '100'
+          comparedResult: '100',
         },
         {
           id: 4,
           name: 'Internet Explorer',
           ratio: 27,
           time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '-450'
-        }
+          comparedResult: '-450',
+        },
       ]
     },
     clientRetentionBar() {
@@ -521,7 +521,7 @@ export default {
         series: [
           {
             name: 'New Clients',
-            data: [175, 125, 225, 175, 160, 189, 206, 134, 159, 216, 148, 123]
+            data: [175, 125, 225, 175, 160, 189, 206, 134, 159, 216, 148, 123],
           },
           {
             name: 'Retained Clients',
@@ -537,10 +537,10 @@ export default {
               -126,
               -131,
               -140,
-              -137
-            ]
-          }
-        ]
+              -137,
+            ],
+          },
+        ],
       }
     },
 
@@ -552,24 +552,24 @@ export default {
             icon: 'MonitorIcon',
             color: 'primary',
             sessionsPercentage: 58.6,
-            comparedResultPercentage: 2
+            comparedResultPercentage: 2,
           },
           {
             device: 'Mobile',
             icon: 'SmartphoneIcon',
             color: 'warning',
             sessionsPercentage: 34.9,
-            comparedResultPercentage: 8
+            comparedResultPercentage: 8,
           },
           {
             device: 'Tablet',
             icon: 'TabletIcon',
             color: 'danger',
             sessionsPercentage: 6.5,
-            comparedResultPercentage: -5
-          }
+            comparedResultPercentage: -5,
+          },
         ],
-        series: [58.6, 34.9, 6.5]
+        series: [58.6, 34.9, 6.5],
       }
     },
     chatLog() {
@@ -577,33 +577,33 @@ export default {
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
           msg: 'Cake sesame snaps cupcake gingerbread',
-          isSent: false
+          isSent: false,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
           msg: 'Apple pie pie jujubes chupa chups muffin',
-          isSent: true
+          isSent: true,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
           msg: 'Chocolate cake',
-          isSent: false
+          isSent: false,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
           msg: 'Donut sweet pie oat cake dragée fruitcake',
-          isSent: true
+          isSent: true,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
           msg: 'Liquorice chocolate bar jelly beans icing',
-          isSent: false
+          isSent: false,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
           msg: 'Pudding candy',
-          isSent: true
-        }
+          isSent: true,
+        },
       ]
     },
 
@@ -613,22 +613,22 @@ export default {
           {
             customerType: 'New',
             counts: 890,
-            color: 'primary'
+            color: 'primary',
           },
           {
             customerType: 'Returning',
             counts: 258,
-            color: 'warning'
+            color: 'warning',
           },
           {
             customerType: 'Referrals ',
             counts: 149,
-            color: 'danger'
-          }
+            color: 'danger',
+          },
         ],
-        series: [690, 258, 149]
+        series: [690, 258, 149],
       }
-    }
+    },
   },
   mounted() {
     // const scroll_el = this.$refs.chatLogPS.$el || this.$refs.chatLogPS
@@ -736,7 +736,7 @@ export default {
     //       console.log(error)
     //     })
     // }
-  }
+  },
 }
 </script>
 

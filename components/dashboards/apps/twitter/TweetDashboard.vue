@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
-      <StatisticsCardLine
+      <UiStatisticsCardLine
         icon="ShoppingBagIcon"
         statistic="97.5K"
         statisticTitle="Followers"
@@ -10,7 +10,7 @@
         type="area"
       />
 
-      <StatisticsCardLine
+      <UiStatisticsCardLine
         icon="ShoppingBagIcon"
         statistic="97.5K"
         statisticTitle="Engagements per Tweet"
@@ -19,7 +19,7 @@
         type="area"
       />
 
-      <StatisticsCardLine
+      <UiStatisticsCardLine
         icon="ShoppingBagIcon"
         statistic="97.5K"
         statisticTitle="Impressions"
@@ -28,7 +28,7 @@
         type="area"
       />
 
-      <StatisticsCardLine
+      <UiStatisticsCardLine
         icon="ShoppingBagIcon"
         statistic="97.5K"
         statisticTitle="Tweets"
@@ -58,7 +58,7 @@
       </vx-card>
     </div>
     <div class="mt-8">
-      <AgGridTableApp
+      <UiAgGridTableApp
         :item="item"
         :columnDefs="columnDefs"
         :itemData="itemData"

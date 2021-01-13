@@ -9,7 +9,7 @@
   <div>
     <div class="vx-row">
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="subscribersGained.analyticsData"
           icon="UsersIcon"
           :statistic="subscribersGained.analyticsData.subscribers | k_formatter"
@@ -20,7 +20,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="revenueGenerated.analyticsData"
           icon="DollarSignIcon"
           :statistic="revenueGenerated.analyticsData.revenue | k_formatter"
@@ -32,7 +32,7 @@
       </div>
 
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="quarterlySales.analyticsData"
           icon="ShoppingCartIcon"
           :statistic="quarterlySales.analyticsData.sales"
@@ -43,7 +43,7 @@
         />
       </div>
       <div class="vx-col w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           v-if="ordersRecevied.analyticsData"
           icon="ShoppingBagIcon"
           :statistic="ordersRecevied.analyticsData.orders | k_formatter"

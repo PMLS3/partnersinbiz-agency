@@ -70,7 +70,7 @@
         </vs-card>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="item in results.statuses" :key="item.id">
-            <CardTwitter :item="item" class="mt-3" />
+            <UiCardTwitter :item="item" class="mt-3" />
           </div>
         </div>
       </vs-tab>
@@ -90,7 +90,7 @@
         </vs-card>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div v-for="item in resultsUsers.statuses" :key="item.id">
-            <CardTwitter :item="item" class="mt-3" />
+            <UiCardTwitter :item="item" class="mt-3" />
           </div>
         </div>
       </vs-tab>

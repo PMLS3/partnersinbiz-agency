@@ -1,12 +1,19 @@
+<!-- =========================================================================================
+    File Name: DashboardAppsSocial.vue
+    Description: dashboard with all social accounts
+    ----------------------------------------------------------------------------------------
+// TODO: Social Dashboards for data
+========================================================================================== -->
+
 <template>
   <vs-tabs
     :position="$device.isMobile ? 'top' : 'left'"
     class="mt-24 tabs-shadow-none"
     id="profile-tabs"
   >
-    <vs-tab label="Dashboard" icon="dashboard">
+    <!-- <vs-tab label="Dashboard" icon="dashboard">
       <SocialDashboard :entity="entity" :branch="branch" />
-    </vs-tab>
+    </vs-tab> -->
     <vs-tab label="Timeline" icon="theaters">
       <SocialTimeline
         :entity="entity"

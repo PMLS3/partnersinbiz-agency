@@ -14,9 +14,6 @@
           >{{ business.b_name }} Social Media</span
         >
       </div>
-      {{ data_local }}
-      ------------------------------------------------
-      {{ data_local.twt }}
 
       <div id="user-edit-tab-info">
         <div class="vx-row">
@@ -296,8 +293,6 @@ export default {
           obj.twt = vm.data_local.twt
         }
       }
-
-      console.log('obj', obj)
       vm.$fireStore
         .collection('business')
         .doc(vm.business.b_uid)

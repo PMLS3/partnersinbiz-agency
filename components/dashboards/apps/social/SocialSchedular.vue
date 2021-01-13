@@ -149,22 +149,26 @@
       />
     </vs-prompt>
 
-    <vs-card class="grid gap-4 mt-20 md:grid-cols-2 lg:grid-cols-3">
-      <div v-for="item in tweetsTimelines" :key="item.id">
-        <vs-button
-          icon="delete_sweep"
-          @click="deleteSchedule(item.id)"
-          class="float-left"
-          color="danger"
-        ></vs-button>
-        <CardTwitter :item="item" class="mt-3" />
-      </div>
+    <vs-card class="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
       <div>
+        <h3 class="text-gray-600">Twitter Upcoming</h3>
+        <div v-for="item in tweetsTimelines" :key="item.id">
+          <vs-button
+            icon="delete_sweep"
+            @click="deleteSchedule(item.id)"
+            class="float-left"
+            color="danger"
+          ></vs-button>
+          <UiCardTwitter :item="item" class="mt-3" :twtConfig="twtConfig" />
+        </div>
+      </div>
+
+      <!-- <div>
         <h1>FB</h1>
       </div>
       <div>
         <h1>insta</h1>
-      </div>
+      </div> -->
     </vs-card>
 
     <!-- <UiSocialTwitterFeeds :simpleCalendarEvents="tweetsTimelines" /> -->
@@ -404,6 +408,26 @@ export default {
       .catch(function (error) {
         console.log('Error getting documents: ', error)
       })
+
+    // this.$fireStore
+    //   .collection('posts')
+    //   .where('u_uid', '==', this.user.uid)
+    //   .orderBy('scheduled_date', 'asc')
+    //   .get()
+    //   .then(function (querySnapshot) {
+    //     querySnapshot.forEach(function (doc) {
+    //       // doc.data() is never undefined for query doc snapshots
+    //       console.log(doc.id, ' => ', doc.data())
+    //       let obj = { ...doc.data(), id: doc.id }
+    //       vm.$store.dispatch('calendar/addEvent', obj)
+    //       if (obj.scheduled_date >= date && doc.data().to_twitter == true) {
+    //         vm.tweetsTimelines.push(obj)
+    //       }
+    //     })
+    //   })
+    //   .catch(function (error) {
+    //     console.log('Error getting documents: ', error)
+    //   })
 
     this.$store.dispatch('calendar/fetchEvents')
     this.$store.dispatch('calendar/fetchEventLabels')

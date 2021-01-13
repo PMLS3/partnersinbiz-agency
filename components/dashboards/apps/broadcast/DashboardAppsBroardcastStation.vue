@@ -31,7 +31,7 @@
         <vs-radio v-model="optionset" vs-value="Station">Station</vs-radio>
       </vs-card>
 
-      <AgGridTableApp
+      <UiAgGridTableApp
         :item="item"
         :columnDefs="columnDefs"
         :itemData="itemData"

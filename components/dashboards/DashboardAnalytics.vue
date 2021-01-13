@@ -43,7 +43,7 @@ TODO: data not pulling through
 
       <!-- CARD 2: SUBSCRIBERS GAINED -->
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           icon="UsersIcon"
           statistic="92.6k"
           statisticTitle="Subscribers Gained"
@@ -54,7 +54,7 @@ TODO: data not pulling through
 
       <!-- CARD 3: ORDER RECIEVED -->
       <div class="w-full vx-col sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/4 mb-base">
-        <StatisticsCardLine
+        <UiStatisticsCardLine
           icon="ShoppingBagIcon"
           statistic="97.5K"
           statisticTitle="Orders Received"
@@ -382,21 +382,21 @@ export default {
           icon: 'PlusIcon',
           title: 'Client Meeting',
           desc: 'Bonbon macaroon jelly beans gummi bears jelly lollipop apple',
-          time: '25 mins Ago'
+          time: '25 mins Ago',
         },
         {
           color: 'warning',
           icon: 'MailIcon',
           title: 'Email Newsletter',
           desc: 'Cupcake gummi bears soufflé caramels candy',
-          time: '15 Days Ago'
+          time: '15 Days Ago',
         },
         {
           color: 'danger',
           icon: 'UsersIcon',
           title: 'Plan Webinar',
           desc: 'Candy ice cream cake. Halvah gummi bears',
-          time: '20 days ago'
+          time: '20 days ago',
         },
         {
           color: 'success',
@@ -404,15 +404,15 @@ export default {
           title: 'Launch Website',
           desc:
             'Candy ice cream cake. Halvah gummi bears Cupcake gummi bears soufflé caramels candy.',
-          time: '25 days ago'
+          time: '25 days ago',
         },
         {
           color: 'primary',
           icon: 'TvIcon',
           title: 'Marketing',
           desc: 'Candy ice cream cake. Halvah gummi bears Cupcake gummi bears.',
-          time: '28 days ago'
-        }
+          time: '28 days ago',
+        },
       ],
 
       analyticsData,
@@ -426,26 +426,26 @@ export default {
           usersLiked: [
             {
               name: 'Vennie Mostowy',
-              img: require('@/assets/images/portrait/small/avatar-s-5.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
             },
             {
               name: 'Elicia Rieske',
-              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
             },
             {
               name: 'Julee Rossignol',
-              img: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-10.jpg'),
             },
             {
               name: 'Darcey Nooner',
-              img: require('@/assets/images/portrait/small/avatar-s-8.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
+            },
           ],
           location: 'Anniston, Alabama',
           distance: '130 km',
           distPercent: 80,
           startDate: '26/07/2018',
-          estDelDate: '28/07/2018'
+          estDelDate: '28/07/2018',
         },
         {
           orderNo: 156897,
@@ -456,22 +456,22 @@ export default {
           usersLiked: [
             {
               name: 'Trina Lynes',
-              img: require('@/assets/images/portrait/small/avatar-s-1.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-1.jpg'),
             },
             {
               name: 'Lilian Nenez',
-              img: require('@/assets/images/portrait/small/avatar-s-2.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
             },
             {
               name: 'Alberto Glotzbach',
-              img: require('@/assets/images/portrait/small/avatar-s-3.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-3.jpg'),
+            },
           ],
           location: 'Cordova, Alaska',
           distance: '234 km',
           distPercent: 60,
           startDate: '26/07/2018',
-          estDelDate: '28/07/2018'
+          estDelDate: '28/07/2018',
         },
         {
           orderNo: 568975,
@@ -482,30 +482,30 @@ export default {
           usersLiked: [
             {
               name: 'Lai Lewandowski',
-              img: require('@/assets/images/portrait/small/avatar-s-6.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
             },
             {
               name: 'Elicia Rieske',
-              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
             },
             {
               name: 'Darcey Nooner',
-              img: require('@/assets/images/portrait/small/avatar-s-8.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
             },
             {
               name: 'Julee Rossignol',
-              img: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-10.jpg'),
             },
             {
               name: 'Jeffrey Gerondale',
-              img: require('@/assets/images/portrait/small/avatar-s-9.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-9.jpg'),
+            },
           ],
           location: 'Florence, Alabama',
           distance: '168 km',
           distPercent: 70,
           startDate: '26/07/2018',
-          estDelDate: '28/07/2018'
+          estDelDate: '28/07/2018',
         },
         {
           orderNo: 245689,
@@ -516,24 +516,24 @@ export default {
           usersLiked: [
             {
               name: 'Vennie Mostowy',
-              img: require('@/assets/images/portrait/small/avatar-s-5.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
             },
             {
               name: 'Elicia Rieske',
-              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
+            },
           ],
           location: 'Clifton, Arizona',
           distance: '125 km',
           distPercent: 95,
           startDate: '26/07/2018',
-          estDelDate: '28/07/2018'
-        }
-      ]
+          estDelDate: '28/07/2018',
+        },
+      ],
     }
   },
   components: {
-    VueApexCharts
+    VueApexCharts,
     // VxTimeline
   },
   computed: {
@@ -548,24 +548,24 @@ export default {
             icon: 'MonitorIcon',
             color: 'primary',
             sessionsPercentage: 58.6,
-            comparedResultPercentage: 2
+            comparedResultPercentage: 2,
           },
           {
             device: 'Mobile',
             icon: 'SmartphoneIcon',
             color: 'warning',
             sessionsPercentage: 34.9,
-            comparedResultPercentage: 8
+            comparedResultPercentage: 8,
           },
           {
             device: 'Tablet',
             icon: 'TabletIcon',
             color: 'danger',
             sessionsPercentage: 6.5,
-            comparedResultPercentage: -5
-          }
+            comparedResultPercentage: -5,
+          },
         ],
-        series: [58.6, 34.9, 6.5]
+        series: [58.6, 34.9, 6.5],
       }
     },
     ordersRecevied() {
@@ -573,12 +573,12 @@ export default {
         series: [
           {
             name: 'Orders',
-            data: [10, 15, 8, 15, 7, 12, 8]
-          }
+            data: [10, 15, 8, 15, 7, 12, 8],
+          },
         ],
         analyticsData: {
-          orders: 97500
-        }
+          orders: 97500,
+        },
       }
     },
     salesBarSession() {
@@ -586,16 +586,16 @@ export default {
         series: [
           {
             name: 'Sessions',
-            data: [75, 125, 225, 175, 125, 75, 25]
-          }
+            data: [75, 125, 225, 175, 125, 75, 25],
+          },
         ],
         analyticsData: {
           session: 2700,
           comparison: {
             str: 'Last 7 Days',
-            result: +5.2
-          }
-        }
+            result: +5.2,
+          },
+        },
       }
     },
     supportTracker() {
@@ -605,10 +605,10 @@ export default {
           meta: {
             'New Tickets': 29,
             'Open Tickets': 63,
-            'Response Time': '1d'
-          }
+            'Response Time': '1d',
+          },
         },
-        series: [83]
+        series: [83],
       }
     },
     productsOrder() {
@@ -617,20 +617,20 @@ export default {
           {
             orderType: 'Finished',
             counts: 23043,
-            color: 'primary'
+            color: 'primary',
           },
           {
             orderType: 'Pending',
             counts: 14658,
-            color: 'warning'
+            color: 'warning',
           },
           {
             orderType: 'Rejected ',
             counts: 4758,
-            color: 'danger'
-          }
+            color: 'danger',
+          },
         ],
-        series: [70, 52, 26]
+        series: [70, 52, 26],
       }
     },
     salesRadar() {
@@ -638,16 +638,16 @@ export default {
         series: [
           {
             name: 'Visits',
-            data: [90, 50, 86, 40, 100, 20]
+            data: [90, 50, 86, 40, 100, 20],
           },
           {
             name: 'Sales',
-            data: [70, 75, 70, 76, 20, 85]
-          }
-        ]
+            data: [70, 75, 70, 76, 20, 85],
+          },
+        ],
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

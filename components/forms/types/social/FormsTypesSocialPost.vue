@@ -276,35 +276,35 @@ export default {
 
         console.log('setHour', setHour)
         console.log('setDay', setDay)
-      }
 
-      const obj = {
-        title: this.title,
-        posts: this.postss,
-        label: this.labelLocal,
-        url: this.url,
-        u_uid: this.user.uid,
-        b_uid: this.business.b_uid,
-        post_now: this.post_now,
-        save_to_drafts: this.save_to_drafts,
-        schedule: this.schedule,
-        for_all: this.for_all,
-        for_branch: this.for_branch,
-        to_instagram: this.to_instagram,
-        to_twitter: this.to_twitter,
-        to_facebook: this.to_facebook,
-      }
+        const obj = {
+          title: this.title,
+          posts: this.postss,
+          label: this.labelLocal,
+          url: this.url,
+          u_uid: this.user.uid,
+          b_uid: this.business.b_uid,
+          post_now: this.post_now,
+          save_to_drafts: this.save_to_drafts,
+          schedule: this.schedule,
+          for_all: this.for_all,
+          for_branch: this.for_branch,
+          to_instagram: this.to_instagram,
+          to_twitter: this.to_twitter,
+          to_facebook: this.to_facebook,
+        }
 
-      if (this.datetime) {
-        obj.startDate = date
-        obj.endDate = date
-        obj.time = time
-        obj.scheduled_date = setDay
-        obj.scheduled_hour = setHour
-        obj.scheduled_minutes = minutes
-      }
+        if (this.datetime) {
+          obj.startDate = date
+          obj.endDate = date
+          obj.time = time
+          obj.scheduled_date = setDay
+          obj.scheduled_hour = setHour
+          obj.scheduled_minutes = minutes
+        }
 
-      this.$emit('send-data', obj)
+        this.$emit('send-data', obj)
+      }
     },
 
     input(data) {

@@ -14,7 +14,6 @@ export default {
   },
   methods: {
     searchTag(data) {
-      console.log('mid')
       this.$emit('searchTag', data)
     },
   },

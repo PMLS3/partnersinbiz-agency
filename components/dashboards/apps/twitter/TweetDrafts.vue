@@ -62,7 +62,7 @@
           color="danger"
           v-if="item.uid == user.uid"
         ></vs-button>
-        <CardTwitter
+        <UiCardTwitter
           :item="item"
           :entity="entity"
           class="mt-3"

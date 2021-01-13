@@ -19,7 +19,7 @@
               icon="cached"
             ></vs-button>
             <div v-for="item in hometimeline" :key="item.id">
-              <CardTwitter :item="item" class="mt-3" />
+              <UiCardTwitter :item="item" class="mt-3" />
             </div>
           </vs-tab>
           <vs-tab
@@ -35,7 +35,7 @@
               icon="cached"
             ></vs-button>
             <div v-for="item in timeline" :key="item.id">
-              <CardTwitter :item="item" class="mt-3" />
+              <UiCardTwitter :item="item" class="mt-3" />
             </div>
           </vs-tab>
 
@@ -52,12 +52,12 @@
               icon="cached"
             ></vs-button>
             <div v-for="item in mentions" :key="item.id">
-              <CardTwitter :item="item" class="mt-3" />
+              <UiCardTwitter :item="item" class="mt-3" />
             </div>
           </vs-tab>
         </vs-tabs>
         <!-- <div v-for="item in timeline" :key="item.id" class="flex-1">
-          <CardTwitter :item="item" class="mt-3" />
+          <UiCardTwitter :item="item" class="mt-3" />
         </div> -->
       </vs-tab>
       <vs-tab label="Schedule" icon="schedule">

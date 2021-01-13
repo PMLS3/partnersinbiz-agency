@@ -19,6 +19,7 @@ exports.scheduledFunctionMinute = functions.pubsub
       likeTweet()
     }
     tweeting()
+    socialPosting()
   })
 
 // Utility function - Gives unique elements from an array
@@ -267,5 +268,53 @@ function tweeted(err, data, response) {
     console.log('err', err)
   } else {
     admin.firestore().collection('tweets').doc(id).update({ status: 'done' })
+  }
+}
+
+function socialPosting() {
+  var today = new Date()
+  var time = today.getHours() + ':' + today.getMinutes() // + ':' + today.getSeconds()
+  var hour = today.getHours()
+  var min = today.getMinutes()
+
+  const date = moment(today).format('YYYY-MM-DD')
+
+  const docSocialRef = admin
+    .firestore()
+    .collection('posts')
+    .where('scheduled_date', '==', date)
+    .where('status', '==', 'scheduled')
+    .where('scheduled_hour', '==', hour)
+    .where('scheduled_minutes', '<=', min)
+
+  return docSocialRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      let payload = {
+        id: doc.id,
+        ...doc.data(),
+      }
+
+      if (doc.data().to_twitter) {
+        postTweet(payload)
+      }
+    })
+  })
+}
+
+function postTweet(payload) {
+  id = payload.id
+  var T = new Twit(payload.twtConfig)
+
+  var tweet = {
+    status: payload.posts[0].textarea,
+  }
+
+  T.post('statuses/update', tweet, tweeted)
+}
+function tweeted(err, data, response) {
+  if (err) {
+    console.log('err', err)
+  } else {
+    admin.firestore().collection('posts').doc(id).update({ status: 'done' })
   }
 }
