@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nested :list="list" @submitNewList="newList" />
+    <DraggableNested :list="list" @submitNewList="newList" />
   </div>
 </template>
 
@@ -16,34 +16,34 @@ export default {
           children: [
             {
               name: 'task 2',
-              children: []
-            }
-          ]
+              children: [],
+            },
+          ],
         },
         {
           name: 'task 3',
           children: [
             {
               name: 'task 4',
-              children: []
-            }
-          ]
+              children: [],
+            },
+          ],
         },
         {
           name: 'task 5',
-          children: []
-        }
-      ]
-    }
+          children: [],
+        },
+      ],
+    },
   },
   components: {
-    nested: () => (process.client ? import('./nested') : null)
+    // nested: () => (process.client ? import('./nested') : null)
   },
   methods: {
     newList(data) {
       this.$emit('submitNewList', data)
-    }
-  }
+    },
+  },
   // data() {
   //   return {
   //     list: [

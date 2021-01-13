@@ -11,10 +11,10 @@
       class="holamundo"
       title="Category"
       :active.sync="popupActivo"
-      style="z-index:300; margin-top: 5%; "
+      style="z-index: 300; margin-top: 5%"
     >
       <div class="px-6 pb-12">
-        <form-generator :schema="schema" v-model="formData"></form-generator>
+        <FormGenerator :schema="schema" v-model="formData" />
         <vs-button @click="addForm" class="mt-8">Submit</vs-button>
       </div>
     </vs-popup>
@@ -23,34 +23,33 @@
 
 <script>
 import moment from 'moment'
-import FormGenerator from '@/components/forms/form-generator/formGenerator'
 import accessControl from '@/components/forms/forms/access/index.vue'
 export default {
   name: 'apps-cat',
   props: {
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     schema: {
       type: Array,
-      required: true
+      required: true,
     },
 
     control: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
 
   components: {
     FormGenerator,
-    accessControl
+    accessControl,
   },
   data() {
     return {
       popupActivo: false,
-      formData: {}
+      formData: {},
     }
   },
   computed: {
@@ -65,7 +64,7 @@ export default {
     },
     sub_reseller() {
       return this.$store.state.business.sub_sellers
-    }
+    },
   },
   methods: {
     addForm() {
@@ -89,7 +88,7 @@ export default {
           .then(() => {
             vm.successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             vm.unsuccessUpload(err)
           })
       } else if (vm.item.item == 'ImgSingle') {
@@ -114,7 +113,7 @@ export default {
             .then(() => {
               vm.successUpload()
             })
-            .catch(err => {
+            .catch((err) => {
               vm.unsuccessUpload(err)
             })
         }
@@ -137,7 +136,7 @@ export default {
           .then(() => {
             vm.successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             vm.unsuccessUpload(err)
           })
       }
@@ -146,24 +145,24 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: `${this.item.item} added`,
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     successDelete() {
       this.$vs.notify({
         color: 'success',
         title: `${this.item.item} Deleted`,
-        text: 'Successful deletion'
+        text: 'Successful deletion',
       })
     },
     unsuccessUpload(er) {
       this.$vs.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -11,13 +11,13 @@ export default {
   props: {
     children: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   components: {
-    draggable: () => (process.client ? import('vuedraggable') : null)
+    draggable: () => (process.client ? import('vuedraggable') : null),
   },
-  name: 'nested-draggable'
+  name: 'nested-draggable',
 }
 </script>
 <style scoped>

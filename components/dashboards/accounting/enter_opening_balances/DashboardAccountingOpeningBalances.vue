@@ -33,7 +33,7 @@
       <DashboardAccountingIncome />
     </vs-tab>
     <vs-tab label="Expense">
-      <DashboardAccountingExpenses />
+      <DashboardAccountingExpensess />
     </vs-tab>
     <DashboardAccountingTotals />
   </vs-tabs>

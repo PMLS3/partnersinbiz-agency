@@ -15,10 +15,7 @@
         <span>{{ schema.desc }}</span>
       </div>
       <div class="p-6">
-        <form-generator
-          :schema="schemaForm"
-          v-model="formData"
-        ></form-generator>
+        <FormGenerator :schema="schemaForm" v-model="formData" />
         <br />
         <vs-divider color="primary" icon="check"></vs-divider>
         <br />
@@ -54,13 +51,10 @@
 <script>
 import moment from 'moment'
 import firebase from 'firebase'
-import FormGenerator from '@/components/forms/form-generator/formGenerator'
 
 export default {
   props: ['schema'],
-  components: {
-    FormGenerator
-  },
+  components: {},
   data() {
     return {
       formData: {},
@@ -69,14 +63,14 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   watch: {
-    formData: function() {
+    formData: function () {
       this.preview = true
-    }
+    },
   },
   computed: {
     activeBusinessInfo() {
@@ -91,22 +85,22 @@ export default {
           title: 'TextInput',
           placeholder: 'Title',
           label: 'Title',
-          name: 'title'
+          name: 'title',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Image Upload',
           label: 'Image Upload',
-          name: 'image'
+          name: 'image',
         },
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Description',
-          placeholder: 'Description'
-        }
+          placeholder: 'Description',
+        },
       ]
-    }
+    },
   },
   methods: {
     newApp() {
@@ -130,7 +124,7 @@ export default {
           vm.successUpload()
           this.formData = ''
         })
-        .catch(err => {
+        .catch((err) => {
           vm.unsuccessUpload(err)
         })
     },
@@ -142,17 +136,17 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     unsuccessUpload(err) {
       this.$vs.notify({
         color: 'danger',
         title: 'Oh nooo!',
-        text: `${err}`
+        text: `${err}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

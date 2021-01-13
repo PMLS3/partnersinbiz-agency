@@ -48,7 +48,7 @@
                     class="ml-4"
                     icon="HeartIcon"
                     :svgClasses="{
-                      'text-danger fill-current stroke-current': post.isLiked
+                      'text-danger fill-current stroke-current': post.isLiked,
                     }"
                   ></feather-icon>
                 </div>
@@ -121,8 +121,9 @@
                 <div class="mt-4 comments-container">
                   <ul class="user-comments-list" v-if="post.usersCommented">
                     <li
-                      v-for="(commentedUser,
-                      commentIndex) in post.usersCommented.slice(0, 3)"
+                      v-for="(
+                        commentedUser, commentIndex
+                      ) in post.usersCommented.slice(0, 3)"
                       :key="commentIndex"
                       class="flex items-center mb-4 commented-user"
                     >
@@ -194,10 +195,7 @@
         :active.sync="popupActivo"
       >
         <div class="px-6">
-          <form-generator
-            :schema="schemaForm"
-            v-model="formData"
-          ></form-generator>
+          <FormGenerator :schema="schemaForm" v-model="formData" />
 
           <br />
           <div slot="footer">
@@ -232,7 +230,7 @@
                 class="ml-4"
                 icon="HeartIcon"
                 :svgClasses="{
-                  'text-danger fill-current stroke-current': false
+                  'text-danger fill-current stroke-current': false,
                 }"
               ></feather-icon>
             </div>
@@ -275,11 +273,9 @@
 // import 'video.js/dist/video-js.css'
 import firebase from 'firebase'
 import moment from 'moment'
-import FormGenerator from '@/components/forms/form-generator/formGenerator'
 export default {
   components: {
     // videoPlayer,
-    FormGenerator
     // addData
   },
   props: ['schema'],
@@ -293,23 +289,23 @@ export default {
 
       mediaExtensions: {
         img: ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'exif', 'tiff'],
-        video: ['avi', 'flv', 'wmv', 'mov', 'mp4', '3gp']
+        video: ['avi', 'flv', 'wmv', 'mov', 'mp4', '3gp'],
       },
       popupActivo: false,
       usersPosts: [],
       userPosts: [],
-      preview: false
+      preview: false,
     }
   },
   watch: {
-    formData: function() {
+    formData: function () {
       console.log('form', this.formData)
       if (this.formData) {
         if (this.formData.title || this.formData.desc || this.formData.image) {
           this.preview = true
         }
       }
-    }
+    },
   },
   computed: {
     schemaForm() {
@@ -318,21 +314,21 @@ export default {
           title: 'TextInput',
           placeholder: 'Title',
           label: 'Title',
-          name: 'title'
+          name: 'title',
         },
 
         {
           title: 'QuilEditor',
           name: 'desc',
           label: 'Message',
-          placeholder: 'Message'
+          placeholder: 'Message',
         },
         {
           title: 'ImageUpload',
           placeholder: 'Add Image',
           label: 'Add Image',
-          name: 'image'
-        }
+          name: 'image',
+        },
       ]
     },
     activeBusinessInfo() {
@@ -342,7 +338,7 @@ export default {
       return this.$store.state.user.app_active_user
     },
     mediaType() {
-      return media => {
+      return (media) => {
         if (media.img) {
           const ext = media.img.split('.').pop()
           if (this.mediaExtensions.img.includes(ext)) return 'image'
@@ -353,7 +349,7 @@ export default {
       }
     },
     playerOptions() {
-      return media => {
+      return (media) => {
         return {
           height: '360',
           fluid: true,
@@ -362,10 +358,10 @@ export default {
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: media.sources,
-          poster: media.poster
+          poster: media.poster,
         }
       }
-    }
+    },
   },
   methods: {
     addPost() {
@@ -388,7 +384,7 @@ export default {
         usersCommented: [],
         date: moment().format('DD-MM-YYYY'),
         month: moment().format('MM-YYYY'),
-        t_stamp: Date.now()
+        t_stamp: Date.now(),
       }
 
       let addingInformation
@@ -416,7 +412,7 @@ export default {
             comment: post.commentbox,
             author: vm.activeUserInfo.disp_name,
             img: vm.activeUserInfo.avatar,
-            time: vm.currentDate
+            time: vm.currentDate,
           })
         }
       }
@@ -436,10 +432,10 @@ export default {
           comment: post.commentbox,
           author: vm.activeUserInfo.disp_name,
           img: vm.activeUserInfo.avatar,
-          time: vm.currentDate
+          time: vm.currentDate,
         }),
 
-        comments: 1 + post.comments
+        comments: 1 + post.comments,
       })
       this.successUpload()
     },
@@ -447,7 +443,7 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Success',
-        text: 'Message Sent!'
+        text: 'Message Sent!',
       })
     },
 
@@ -456,12 +452,12 @@ export default {
         background: this.backgroundLoading,
         color: this.colorLoading,
         container: '#button-load-more-posts',
-        scale: 0.45
+        scale: 0.45,
       })
       setTimeout(() => {
         this.$vs.loading.close('#button-load-more-posts > .con-vs-loading')
       }, 3000)
-    }
+    },
   },
 
   created() {
@@ -479,8 +475,8 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    getFanWalls.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    getFanWalls.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         if (change.type === 'added') {
           this.usersPosts.push({
@@ -503,7 +499,7 @@ export default {
             usersCommented: doc.data().usersCommented,
             date: doc.data().date,
             month: doc.data().month,
-            t_stamp: doc.data().t_stamp
+            t_stamp: doc.data().t_stamp,
           })
         }
         if (change.type === 'modified') {
@@ -528,7 +524,7 @@ export default {
                 usersCommented: doc.data().usersCommented,
                 date: doc.data().date,
                 month: doc.data().month,
-                t_stamp: doc.data().t_stamp
+                t_stamp: doc.data().t_stamp,
               }
               console.log('after', this.usersPosts)
             }
@@ -547,7 +543,7 @@ export default {
   },
   beforeDestroy() {
     if (!this.wasSidebarOpen) this.$store.commit('TOGGLE_REDUCE_BUTTON', false)
-  }
+  },
 }
 </script>
 

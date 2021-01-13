@@ -35,7 +35,7 @@
             class="mb-4 mr-4 cursor-pointer dd-actions"
           >
             <div
-              class="flex items-center justify-center w-32 w-full p-4 text-lg font-medium rounded-lg cursor-pointer shadow-drop d-theme-dark-bg"
+              class="flex items-center justify-center w-full p-4 text-lg font-medium rounded-lg cursor-pointer shadow-drop d-theme-dark-bg"
             >
               <span class="mr-2">Actions</span>
               <feather-icon icon="ChevronDownIcon" svg-classes="h-4 w-4" />
@@ -90,7 +90,7 @@
 
           <!-- ADD NEW -->
           <div
-            class="flex items-center justify-center p-3 mb-4 mr-4 text-base text-lg font-medium border border-solid rounded-lg cursor-pointer btn-add-new text-primary border-primary"
+            class="flex items-center justify-center p-3 mb-4 mr-4 text-lg font-medium border border-solid rounded-lg cursor-pointer btn-add-new text-primary border-primary"
             @click="addNewData"
           >
             <feather-icon icon="PlusIcon" svg-classes="h-4 w-4" />
@@ -201,7 +201,7 @@ import moduleDataList from '../../../../store/data-list'
 
 export default {
   components: {
-    DataViewSidebar
+    DataViewSidebar,
   },
   data() {
     return {
@@ -212,7 +212,7 @@ export default {
 
       // Data Sidebar
       addNewDataSidebar: false,
-      sidebarData: {}
+      sidebarData: {},
     }
   },
   computed: {
@@ -229,7 +229,7 @@ export default {
       return this.$refs.table
         ? this.$refs.table.queriedResults.length
         : this.products.length
-    }
+    },
   },
   created() {
     if (!moduleDataList.isRegistered) {
@@ -271,8 +271,8 @@ export default {
     },
     toggleDataSidebar(val = false) {
       this.addNewDataSidebar = val
-    }
-  }
+    },
+  },
 }
 </script>
 

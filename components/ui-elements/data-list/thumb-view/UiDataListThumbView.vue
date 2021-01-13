@@ -24,13 +24,13 @@
     >
       <div
         slot="header"
-        class="flex flex-wrap-reverse items-center flex-grow justify-between"
+        class="flex flex-wrap-reverse items-center justify-between flex-grow"
       >
         <div class="flex flex-wrap-reverse items-center">
           <!-- ACTION - DROPDOWN -->
-          <vs-dropdown vs-trigger-click class="cursor-pointer mr-4 mb-4">
+          <vs-dropdown vs-trigger-click class="mb-4 mr-4 cursor-pointer">
             <div
-              class="p-4 shadow-drop rounded-lg d-theme-dark-bg cursor-pointer flex items-center justify-center text-lg font-medium w-32"
+              class="flex items-center justify-center w-32 p-4 text-lg font-medium rounded-lg cursor-pointer shadow-drop d-theme-dark-bg"
             >
               <span class="mr-2">Actions</span>
               <feather-icon icon="ChevronDownIcon" svg-classes="h-4 w-4" />
@@ -85,7 +85,7 @@
 
           <!-- ADD NEW -->
           <div
-            class="p-3 mb-4 mr-4 rounded-lg cursor-pointer flex items-center justify-between text-lg font-medium text-base text-primary border border-solid border-primary"
+            class="flex items-center justify-between p-3 mb-4 mr-4 text-lg font-medium border border-solid rounded-lg cursor-pointer text-primary border-primary"
             @click="addNewData"
           >
             <feather-icon icon="PlusIcon" svg-classes="h-4 w-4" />
@@ -94,9 +94,9 @@
         </div>
 
         <!-- ITEMS PER PAGE -->
-        <vs-dropdown vs-trigger-click class="cursor-pointer mb-4 mr-4">
+        <vs-dropdown vs-trigger-click class="mb-4 mr-4 cursor-pointer">
           <div
-            class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium"
+            class="flex items-center justify-between p-4 font-medium border border-solid rounded-full cursor-pointer d-theme-border-grey-light d-theme-dark-bg"
           >
             <span class="mr-2"
               >{{ currentPage * itemsPerPage - (itemsPerPage - 1) }} -
@@ -145,7 +145,7 @@
             </vs-td>
 
             <vs-td>
-              <p class="product-name font-medium truncate">{{ tr.name }}</p>
+              <p class="font-medium truncate product-name">{{ tr.name }}</p>
             </vs-td>
 
             <vs-td>
@@ -198,7 +198,7 @@ import moduleDataList from '../../../../store/data-list'
 
 export default {
   components: {
-    DataViewSidebar
+    DataViewSidebar,
   },
   data() {
     return {
@@ -207,7 +207,7 @@ export default {
       itemsPerPage: 4,
       isMounted: false,
       addNewDataSidebar: false,
-      sidebarData: {}
+      sidebarData: {},
     }
   },
   computed: {
@@ -224,7 +224,7 @@ export default {
       return this.$refs.table
         ? this.$refs.table.queriedResults.length
         : this.products.length
-    }
+    },
   },
   created() {
     if (!moduleDataList.isRegistered) {
@@ -266,8 +266,8 @@ export default {
     },
     toggleDataSidebar(val = false) {
       this.addNewDataSidebar = val
-    }
-  }
+    },
+  },
 }
 </script>
 
