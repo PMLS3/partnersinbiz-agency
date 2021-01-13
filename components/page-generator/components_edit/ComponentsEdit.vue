@@ -539,7 +539,7 @@ import NavigationTailwind from '@/components/page-generator/components/views/com
 import CardsTailwind from '@/components/page-generator/components/views/components/tailwind/cards/AppsViewsCards.vue'
 import WidgetTailwind from '@/components/page-generator/components/views/components/tailwind/widget/AppsViewsWidget.vue'
 import TablesTailwind from '@/components/page-generator/components/views/components/tailwind/table/AppsViewsTables.vue'
-import LayoutsTailwind from '@/components/page-generator/components/views/components/tailwind/layout/AppsViewsLayouts.vue'
+import LayoutsTailwind from '@/components/page-generator/components/views/components/tailwind/layout/TailwindAppsViewsLayouts.vue'
 
 import mainGrid from '@/components/page-generator/components/grid/mainGrid'
 
@@ -589,7 +589,7 @@ import exportAdd from '@/components/page-generator/components/views/components/e
 import exportSelectedAdd from '@/components/page-generator/components/views/components/extra-components/import-export/AppsViewsExportSelected'
 import importAdd from '@/components/page-generator/components/views/components/extra-components/import-export/AppsViewsImport'
 import quillEditor from '@/components/page-generator/components/views/components/extra-components/quill-editor/AppsViewsQuillEditor'
-import selectAdd from '@/components/page-generator/components/views/components/extra-components/select/AppsViewsSelect'
+import selectAdd from '@/components/page-generator/components/views/components/extra-components/select/AppsViewsSelects'
 import starRatingsAdd from '@/components/page-generator/components/views/components/extra-components/star-ratings/AppsViewsStarRatings'
 import treeAdd from '@/components/page-generator/components/views/components/extra-components/tree/AppsViewsTree'
 

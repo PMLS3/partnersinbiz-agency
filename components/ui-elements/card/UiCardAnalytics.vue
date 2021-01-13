@@ -2,7 +2,7 @@
     File Name: CardAnalytics.vue
     Description: Analytic Cards
     ----------------------------------------------------------------------------------------
-  
+
 ========================================================================================== -->
 
 <template>
@@ -37,7 +37,7 @@
             >
               <feather-icon
                 :icon="deviceData.icon"
-                :svgClasses="[
+                :svg-classes="[
                   `h-5 w-5 stroke-current text-${deviceData.color}`,
                 ]"
               ></feather-icon>
@@ -56,7 +56,7 @@
                       ? 'ArrowDownIcon'
                       : 'ArrowUpIcon'
                   "
-                  :svgClasses="[
+                  :svg-classes="[
                     deviceData.comparedResultPercentage < 0
                       ? 'text-danger'
                       : 'text-success',
@@ -158,7 +158,7 @@
           <template slot="actions">
             <feather-icon
               icon="MoreVerticalIcon"
-              svgClasses="w-6 h-6 text-grey"
+              svg-classes="w-6 h-6 text-grey"
             ></feather-icon>
           </template>
           <!-- LABELS -->
@@ -191,7 +191,7 @@
             <change-time-duration-dropdown />
           </template>
 
-          <div slot="no-body" v-if="supportTracker.analyticsData">
+          <div v-if="supportTracker.analyticsData" slot="no-body">
             <div class="vx-row text-center">
               <!-- Open Tickets Heading -->
               <div
@@ -221,9 +221,9 @@
             <!-- Support Tracker Meta Data -->
             <div class="flex flex-row justify-between px-8 pb-4 mt-2">
               <p
-                class="text-center"
                 v-for="(val, key) in supportTracker.analyticsData.meta"
                 :key="key"
+                class="text-center"
               >
                 <span class="block">{{ key }}</span>
                 <span class="text-2xl font-semibold">{{ val }}</span>
@@ -242,12 +242,12 @@
           <template slot="actions">
             <feather-icon
               icon="SettingsIcon"
-              svgClasses="w-6 h-6 text-grey"
+              svg-classes="w-6 h-6 text-grey"
             ></feather-icon>
           </template>
 
           <div slot="no-body" class="p-6 pb-0">
-            <div class="flex" v-if="revenueComparisonLine.analyticsData">
+            <div v-if="revenueComparisonLine.analyticsData" class="flex">
               <div class="mr-6">
                 <p class="mb-1 font-semibold">This Month</p>
                 <p class="text-3xl text-success">
@@ -284,7 +284,7 @@
           <template slot="actions">
             <feather-icon
               icon="HelpCircleIcon"
-              svgClasses="w-6 h-6 text-grey"
+              svg-classes="w-6 h-6 text-grey"
             ></feather-icon>
           </template>
 
@@ -303,8 +303,8 @@
           <!-- DATA -->
           <div
             v-if="goalOverview.analyticsData"
-            class="flex justify-between text-center mt-4"
             slot="no-body-bottom"
+            class="flex justify-between text-center mt-4"
           >
             <div
               class="w-1/2 border border-solid d-theme-border-grey-light border-r-0 border-b-0 border-l-0"
@@ -334,8 +334,8 @@
           <div class="vx-row flex-col-reverse lg:flex-row">
             <!-- LEFT COL -->
             <div
-              class="vx-col w-full lg:w-1/2 xl:w-1/2 flex flex-col justify-between"
               v-if="salesBarSession.analyticsData"
+              class="vx-col w-full lg:w-1/2 xl:w-1/2 flex flex-col justify-between"
             >
               <div>
                 <!-- Avg Session -->
@@ -382,11 +382,11 @@
             >
               <change-time-duration-dropdown class="self-end" />
               <vue-apex-charts
+                v-if="salesBarSession.series"
                 type="bar"
                 height="200"
                 :options="analyticsData.salesBar.chartOptions"
                 :series="salesBarSession.series"
-                v-if="salesBarSession.series"
               />
             </div>
           </div>
@@ -448,9 +448,9 @@
             </div>
             <ul class="tasks-today-container">
               <li
-                class="px-6 py-4 tasks-today__task"
                 v-for="todo in todoToday.tasksToday"
                 :key="todo.id"
+                class="px-6 py-4 tasks-today__task"
               >
                 <div class="vx-row">
                   <div class="vx-col w-full sm:w-auto">
@@ -502,7 +502,7 @@
           <template slot="actions">
             <feather-icon
               icon="SettingsIcon"
-              svgClasses="w-6 h-6 text-grey"
+              svg-classes="w-6 h-6 text-grey"
             ></feather-icon>
           </template>
           <div slot="no-body" class="p-6 pb-0">
@@ -517,7 +517,7 @@
       </div>
       <div class="vx-col w-full md:w-1/3 lg:w-1/4 xl:w-1/4">
         <vx-card>
-          <template slot="no-body" v-if="Object.entries(funding).length">
+          <template v-if="Object.entries(funding).length" slot="no-body">
             <div class="p-8 clearfix">
               <div>
                 <h1>
@@ -595,7 +595,7 @@
                         ? 'ArrowDownIcon'
                         : 'ArrowUpIcon'
                     "
-                    :svgClasses="[
+                    :svg-classes="[
                       browser.comparedResult < 0
                         ? 'text-danger'
                         : 'text-success',
@@ -638,10 +638,16 @@
 <script>
 import VueApexCharts from 'vue-apexcharts'
 
-import analyticsData from './analyticsDatas.js'
+import analyticsData from './analyticsDatass.js'
+import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
 import ChangeTimeDurationDropdown from '@/components/ChangeTimeDurationDropdown.vue'
 
 export default {
+  components: {
+    VueApexCharts,
+    StatisticsCardLine,
+    ChangeTimeDurationDropdown,
+  },
   data() {
     return {
       sessionsData: {},
@@ -666,11 +672,6 @@ export default {
 
       analyticsData,
     }
-  },
-  components: {
-    VueApexCharts,
-    // StatisticsCardLine,
-    ChangeTimeDurationDropdown,
   },
   created() {
     // Sessions By Device

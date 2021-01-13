@@ -106,10 +106,10 @@ export default {
       return this.$store.state.config.twitter
     },
     fbConfig() {
-      return {}
+      return { key: '123' }
     },
     instaConfig() {
-      return {}
+      return { key: '123' }
     },
     entity() {
       if (this.branch == 'Company') {

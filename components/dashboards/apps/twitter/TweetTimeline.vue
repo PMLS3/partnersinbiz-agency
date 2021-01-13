@@ -12,14 +12,13 @@
         type="gradient"
         icon="cached"
       ></vs-button>
+      <div v-if="!twtConfig">NO TWITTER CONFIG SET</div>
       <div v-for="item in hometimeline" :key="item.id">
         <CardTwitter
           :item="item"
           :entity="entity"
           :branch="branch"
           :twtConfig="twtConfig"
-          :fbConfig="fbConfig"
-          :instaConfig="instaConfig"
           class="mt-3"
         />
       </div>
@@ -42,8 +41,6 @@
           :entity="entity"
           :branch="branch"
           :twtConfig="twtConfig"
-          :fbConfig="fbConfig"
-          :instaConfig="instaConfig"
           class="mt-3"
         />
       </div>
@@ -67,8 +64,6 @@
           :entity="entity"
           class="mt-3"
           :twtConfig="twtConfig"
-          :fbConfig="fbConfig"
-          :instaConfig="instaConfig"
         />
       </div>
     </vs-tab>
@@ -78,9 +73,7 @@
 <script>
 export default {
   props: {
-    entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
-    branch: { type: String, default: '' },
   },
   data() {
     return {

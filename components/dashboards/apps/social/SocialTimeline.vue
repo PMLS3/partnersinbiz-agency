@@ -1,13 +1,7 @@
 <template>
   <vs-tabs position="left" class="tabs-shadow-none" id="profile-tabs">
     <vs-tab icon-pack="feather" icon="icon-twitter" label="Twitter">
-      <TweetTimeline
-        :entity="entity"
-        :branch="branch"
-        :twtConfig="twtConfig"
-        :fbConfig="fbConfig"
-        :instaConfig="instaConfig"
-      />
+      <TweetTimeline :entity="entity" :branch="branch" :twtConfig="twtConfig" />
     </vs-tab>
     <vs-tab icon-pack="feather" icon="icon-facebook" label="Facebook"></vs-tab>
     <vs-tab
@@ -24,9 +18,9 @@ export default {
     entity: { type: String, default: 'person' },
     handle: { type: String, default: '' },
     branch: { type: String, default: '' },
-    twtConfig: { type: Object },
-    fbConfig: { type: Object },
-    instaConfig: { type: Object },
+    twtConfig: { type: Object, default: () => {} },
+    fbConfig: { type: Object, default: () => {} },
+    instaConfig: { type: Object, default: () => {} },
   },
 }
 </script>

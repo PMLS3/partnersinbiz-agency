@@ -149,7 +149,25 @@
       />
     </vs-prompt>
 
-    <UiSocialTwitterFeeds :simpleCalendarEvents="simpleCalendarEvents" />
+    <vs-card class="grid gap-4 mt-20 md:grid-cols-2 lg:grid-cols-3">
+      <div v-for="item in tweetsTimelines" :key="item.id">
+        <vs-button
+          icon="delete_sweep"
+          @click="deleteSchedule(item.id)"
+          class="float-left"
+          color="danger"
+        ></vs-button>
+        <CardTwitter :item="item" class="mt-3" />
+      </div>
+      <div>
+        <h1>FB</h1>
+      </div>
+      <div>
+        <h1>insta</h1>
+      </div>
+    </vs-card>
+
+    <!-- <UiSocialTwitterFeeds :simpleCalendarEvents="tweetsTimelines" /> -->
   </div>
 </template>
 
@@ -190,6 +208,7 @@ export default {
           imgs: [],
         },
       ],
+      tweetsTimelines: [],
       labelLocal: 'none',
       textarea: '',
       counterDanger: false,
@@ -275,70 +294,18 @@ export default {
         imgs: [],
       })
     },
-    addEvent() {
-      // let vm = this
-      // this.activePromptAddEvent = false
-      // var d = new Date()
-      // var n = d.getTimezoneOffset()
-      // var t = n / 60
-      // let dateTimeSplit = this.datetime.split(' ')
-      // let date = dateTimeSplit[0]
-      // let time = dateTimeSplit[1]
-      // let timeSplit = time.split(':')
-      // let hour = timeSplit[0]
-      // let minutes = parseInt(timeSplit[1])
-      // let setTime = parseInt(hour) + parseInt(t)
-      // let setHour = hour
-      // let setDay = date
-      // console.log('hour', hour)
-      // console.log('minutes', minutes)
-      // console.log('set time', setTime)
-      // if (setTime == 0) {
-      //   setHour = 0
-      // } else if (setTime < 0) {
-      //   setDay = moment(date).subtract(1, 'days').format('YYYY-MM-DD')
-      //   setHour = 24 + setTime
-      // } else if (setTime > 23) {
-      //   etDay = moment(date).add(1, 'days').format('YYYY-MM-DD')
-      //   setHour = 24 - setTime
-      //   setDay = moment(date, 'YYYY-MM-DD').add(1, 'days')
-      // } else {
-      //   setHour = setTime
-      // }
-      // const obj = {
-      //   title: this.title,
-      //   startDate: date,
-      //   endDate: date,
-      //   time: time,
-      //   scheduled_date: setDay,
-      //   scheduled_hour: setHour,
-      //   scheduled_minutes: minutes,
-      //   tweets: this.tweets,
-      //   label: this.labelLocal,
-      //   url: this.url,
-      //   u_uid: this.user.uid,
-      //   b_uid: this.business.b_uid,
-      //   config: this.config,
-      //   type: 'Tweet',
-      //   status: 'scheduled',
-      // }
-      // if (this.config) {
-      //   this.$fireStore
-      //     .collection('tweets')
-      //     .add(obj)
-      //     .then(function () {
-      //       obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
-      //       vm.$store.dispatch('calendar/addEvent', obj)
-      //       vm.successUpload()
-      //     })
-      //     .catch(function (error) {
-      //       console.error('Error writing document: ', error)
-      //       vm.unsuccessUpload(error)
-      //     })
-      // } else {
-      //   let error = 'Please enter your configuration file'
-      //   vm.unsuccessUpload(error)
-      // }
+    deleteSchedule(id) {
+      let vm = this
+      this.$fireStore
+        .collection('tweets')
+        .doc(id)
+        .delete()
+        .then(() => {
+          vm.successUpload('Delete Success')
+        })
+        .catch((error) => {
+          vm.unsuccessUpload(error)
+        })
     },
     successUpload() {
       this.$vs.notify({
@@ -414,9 +381,14 @@ export default {
     //           vm.$store.dispatch('calendar/addEvent', obj)
     //     });
 
+    var today = new Date()
+
+    const date = moment(today).format('YYYY-MM-DD')
+
     this.$fireStore
       .collection('tweets')
       .where('u_uid', '==', this.user.uid)
+      .orderBy('scheduled_date', 'asc')
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -424,6 +396,9 @@ export default {
           console.log(doc.id, ' => ', doc.data())
           let obj = { ...doc.data(), id: doc.id }
           vm.$store.dispatch('calendar/addEvent', obj)
+          if (obj.scheduled_date >= date) {
+            vm.tweetsTimelines.push(obj)
+          }
         })
       })
       .catch(function (error) {

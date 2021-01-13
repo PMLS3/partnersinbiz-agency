@@ -35,6 +35,20 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "tweets",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "u_uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "scheduled_date",
+          "order": "ASCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": []

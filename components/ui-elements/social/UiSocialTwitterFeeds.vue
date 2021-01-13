@@ -41,7 +41,7 @@
     </ul>
     <ul v-if="simpleCalendarEvents.length > 0">
       {{
-        simpleCalendarEvents
+        simpleCalendarEvents[0].tweets
       }}
 
       <li
@@ -55,10 +55,10 @@
           <vs-avatar class="m-0" :src="user.avatar" size="35px" />
           <div class="ml-3 leading-tight">
             <p class="font-semibold feed-author">
-              {{ user.display_name }}
+              {{ user.disp_name }}
             </p>
             <span class="flex items-center"
-              ><small>@{{ user.display_name }}</small
+              ><small>@{{ user.disp_name }}</small
               ><feather-icon
                 class="ml-1"
                 icon="CheckIcon"
@@ -69,7 +69,9 @@
         </div>
 
         <!-- FEED CONTENT -->
-        <!-- <p class="mt-4" v-if="feed.tweets">{{ feed.tweets[0].textarea }}</p> -->
+        <p class="mt-4">{{ feed.tweets.textarea }}</p>
+        <p class="mt-4">{{ feed.tweets[0].textarea }}</p>
+
         <!-- <div class="tags-container" v-if="feed.tags.length">
           <span
             v-for="tag in feed.tags"

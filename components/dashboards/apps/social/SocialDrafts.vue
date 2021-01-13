@@ -7,24 +7,25 @@
 ========================================================================================== -->
 
 <template>
-  <vs-card>
+  <div>
     <SocialPost />
+    <vs-card>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div v-for="item in drafts" :key="item.id">
+          <vs-button
+            icon="delete_sweep"
+            @click="deleteDraft(item.id)"
+            class="float-left"
+            color="danger"
+            v-if="item.uid == user.uid"
+          ></vs-button>
+          <CardTwitter :item="item" :entity="entity" class="mt-3" />
 
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <div v-for="item in drafts" :key="item.id">
-        <vs-button
-          icon="delete_sweep"
-          @click="deleteDraft(item.id)"
-          class="float-left"
-          color="danger"
-          v-if="item.uid == user.uid"
-        ></vs-button>
-        <CardTwitter :item="item" :entity="entity" class="mt-3" />
-
-        <!-- <UiSocialTwitterFeeds :twitterFeeds="twitterFeeds" /> -->
+          <!-- <UiSocialTwitterFeeds :twitterFeeds="twitterFeeds" /> -->
+        </div>
       </div>
-    </div>
-  </vs-card>
+    </vs-card>
+  </div>
 </template>
 
 <script>

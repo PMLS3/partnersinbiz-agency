@@ -19,7 +19,7 @@
     <p class="mt-5">Branch</p>
     <v-select class="w-full" v-model="customer" :options="customers"></v-select>
 
-    <grid-table
+    <UiGridTableBudget
       :item="item"
       :item_id="item_id"
       :schema="schema"
@@ -34,12 +34,6 @@ export default {
   name: 'Budget',
   components: {
     vSelect: () => (process.client ? import('vue-select') : null),
-    gridTable: () =>
-      process.client
-        ? import(
-            '@/components/ui-elements/ag-grid-table/types/AgGridTableBudget.vue'
-          )
-        : null,
   },
   data() {
     return {

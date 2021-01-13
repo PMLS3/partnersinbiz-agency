@@ -224,6 +224,7 @@ export default {
     console.log('post', this.posts)
     if (this.posts.length > 0) {
       this.postss = this.posts
+      console.log('postss', this.postss)
     }
   },
   methods: {
