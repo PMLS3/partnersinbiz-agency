@@ -189,6 +189,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('auth/logoutUser')
+      this.$router.push('/')
     },
   },
 }

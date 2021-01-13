@@ -8,10 +8,16 @@
 <template>
   <div class="w-full">
     <client-only>
-      <div class="flex items-end m-4">
+      <div class="flex m-4">
         <!-- <feather-icon icon="UserIcon" class="mr-2" svgClasses="w-5 h-5" /> -->
-        <span class="font-medium leading-none">Company Social Media</span>
+        <span class="font-medium leading-none"
+          >{{ business.b_name }} Social Media</span
+        >
       </div>
+      {{ data_local }}
+      ------------------------------------------------
+      {{ data_local.twt }}
+
       <div id="user-edit-tab-info">
         <div class="vx-row">
           <!-- Col 1 -->
@@ -227,20 +233,20 @@ export default {
         business.github = this.data_local.github
       }
 
-      if (this.local_data.insta) {
-        business.insta = this.local_data.insta
+      if (this.data_local.insta) {
+        business.insta = this.data_local.insta
       }
 
-      if (this.local_data.linkedin) {
-        business.linkedin = this.local_data.linkedin
+      if (this.data_local.linkedin) {
+        business.linkedin = this.data_local.linkedin
       }
 
-      if (this.local_data.slack) {
-        business.slack = this.local_data.slack
+      if (this.data_local.slack) {
+        business.slack = this.data_local.slack
       }
 
-      if (this.local_data.codepen) {
-        business.codepen = this.local_data.codepen
+      if (this.data_local.codepen) {
+        business.codepen = this.data_local.codepen
       }
 
       if (this.data_local.twt) {
@@ -250,6 +256,7 @@ export default {
       this.$store.commit('business/UPDATE_BUSINESS_INFO', business)
     },
     save_changes() {
+      let vm = this
       let obj = {
         fb: '',
         github: '',
@@ -260,44 +267,43 @@ export default {
         codepen: '',
       }
 
-      console.log('local', this.data_local)
-      if (this.data_local) {
-        if (this.data_local.fb) {
+      if (vm.data_local) {
+        if (vm.data_local.fb) {
           obj.fb = this.data_local.fb
         }
 
-        if (this.data_local.github) {
+        if (vm.data_local.github) {
           obj.github = this.data_local.github
         }
 
-        if (this.local_data.insta) {
-          obj.insta = this.local_data.insta
+        if (vm.data_local.insta) {
+          obj.insta = this.data_local.insta
         }
 
-        if (this.local_data.linkedin) {
-          obj.linkedin = this.local_data.linkedin
+        if (vm.data_local.linkedin) {
+          obj.linkedin = this.data_local.linkedin
         }
 
-        if (this.local_data.slack) {
-          obj.slack = this.local_data.slack
+        if (vm.data_local.slack) {
+          obj.slack = vm.data_local.slack
         }
 
-        if (this.local_data.codepen) {
-          obj.codepen = this.local_data.codepen
+        if (vm.data_local.codepen) {
+          obj.codepen = vm.data_local.codepen
         }
 
-        if (this.data_local.twt) {
-          obj.twt = this.data_local.twt
+        if (vm.data_local.twt) {
+          obj.twt = vm.data_local.twt
         }
       }
 
       console.log('obj', obj)
-      this.$fireStore
+      vm.$fireStore
         .collection('business')
-        .doc(this.business.b_uid)
+        .doc(vm.business.b_uid)
         .update(obj)
         .then(() => {
-          this.successUpload()
+          vm.successUpload()
         })
     },
   },
