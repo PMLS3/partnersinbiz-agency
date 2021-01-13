@@ -46,7 +46,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <CardSimple :item="item" class="h-full" />
+          <UiCardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>
@@ -65,7 +65,7 @@ export default {
     const item = ref({
       item: 'Broadcast',
       title: 'Load Folders',
-      type: 'Category'
+      type: 'Category',
     })
     let knowledgeBaseSearchQuery = ref('')
     let kb = ref([])
@@ -78,7 +78,7 @@ export default {
     })
     let filteredKB = computed(() =>
       kb.value.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(knowledgeBaseSearchQuery.value.toLowerCase()) ||
@@ -94,21 +94,21 @@ export default {
         placeholder: 'Stations Name',
         type: 'text',
         label: 'Station Name',
-        name: 'title'
+        name: 'title',
       },
       {
         title: 'ImageUpload',
         placeholder: 'Cover Image',
         type: 'text',
         label: 'Cover Image',
-        name: 'url'
+        name: 'url',
       },
       {
         title: 'QuilEditor',
         name: 'desc',
         label: 'Description',
-        placeholder: 'Description'
-      }
+        placeholder: 'Description',
+      },
     ])
 
     onMounted(() => {
@@ -117,8 +117,8 @@ export default {
           .collection(item.value.item)
           .where('b_uid', '==', business.value.b_uid)
 
-        ref.onSnapshot(snapshot => {
-          snapshot.docChanges().forEach(change => {
+        ref.onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
             if (change.type === 'added') {
               let doc = change.doc
               let data = doc.data()
@@ -129,7 +129,7 @@ export default {
                 description: doc.data().desc,
                 graphic: doc.data().url[0],
                 feature: route.value.params.id,
-                url: `${window.location.pathname}/${doc.id}`
+                url: `${window.location.pathname}/${doc.id}`,
               })
             }
           })
@@ -143,9 +143,9 @@ export default {
       kb,
       motivational_quotes,
       schema,
-      filteredKB
+      filteredKB,
     }
-  }
+  },
 }
 </script>
 

@@ -22,15 +22,15 @@
         </vs-list-item>
         <vs-list-item
           :title="notes"
-          v-for="(notes, i) in business.p_notes"
-          :key="i"
+          v-for="(notes, e) in business.p_notes"
+          :key="e"
         >
           <vs-button
             type="border"
             color="danger"
             icon="delete"
             size="small"
-            @click="deleteItem('p_notes', notes, i)"
+            @click="deleteItem('p_notes', notes, e)"
           ></vs-button>
         </vs-list-item>
         <vs-divider color="success" icon="check"></vs-divider>
@@ -58,14 +58,14 @@
               size="small"
               @click="deleteItem('branches', branch, i)"
             ></vs-button>
-            <vs-button
+            <!-- <vs-button
               @click="editItem('branches', branch, i)"
               color="primary"
               type="border"
               icon="edit"
               size="small"
               class="ml-5"
-            ></vs-button>
+            ></vs-button> -->
           </vs-row>
         </vs-list-item>
 
@@ -83,8 +83,8 @@
         </vs-list-item>
         <vs-list-item
           :title="position"
-          v-for="(position, i) in business.pos"
-          :key="i"
+          v-for="(position, index) in business.pos"
+          :key="index"
         >
           <vs-row>
             <vs-button
@@ -92,10 +92,10 @@
               color="danger"
               icon="delete"
               size="small"
-              @click="deleteItem('pos', position, i)"
+              @click="deleteItem('pos', position, index)"
             ></vs-button>
             <vs-button
-              @click="editItem('pos', position, i)"
+              @click="editItem('pos', position, index)"
               color="primary"
               type="border"
               icon="edit"
@@ -152,7 +152,7 @@
           </div>
         </vs-popup>
 
-        <vs-popup
+        <!-- <vs-popup
           class="holamundo"
           :title="selectedBranch.branch"
           :active.sync="popupBranch"
@@ -195,7 +195,7 @@
               </div>
             </div>
           </div>
-        </vs-popup>
+        </vs-popup> -->
       </div>
     </client-only>
   </div>

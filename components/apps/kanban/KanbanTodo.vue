@@ -18,7 +18,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <CardSimple :item="item" class="h-full" />
+          <UiCardSimple :item="item" class="h-full" />
         </div> -->
         <vs-checkbox v-model="autoSave" class="absolute p-3 mt-4"
           >Auto Save</vs-checkbox

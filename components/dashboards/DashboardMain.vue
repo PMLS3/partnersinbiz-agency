@@ -53,7 +53,7 @@
         v-for="item in filteredKB"
         :key="item.id"
       >
-        <CardSimple :item="item" class="h-full" />
+        <UiCardSimple :item="item" class="h-full" />
       </div>
     </div>
   </div>
@@ -168,7 +168,7 @@ export default {
         url: '/dashboardRequest',
       },
       {
-        id: 13,
+        id: 14,
         title: 'Lead Gen',
         description: 'Have feature request? Found a bug? Please let us know.',
         graphic: require('@/assets/illustrations/in_thoughts.svg'),

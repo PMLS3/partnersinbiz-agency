@@ -37,7 +37,7 @@
         v-for="item in filteredKB"
         :key="item.id"
       >
-        <CardSimple :item="item" />
+        <UiCardSimple :item="item" />
         <vs-button @click="" class="w-full">Enquire: {{ item.title }}</vs-button
         ><vs-button @click="" class="w-full mt-1"
           >Video: {{ item.title }}</vs-button

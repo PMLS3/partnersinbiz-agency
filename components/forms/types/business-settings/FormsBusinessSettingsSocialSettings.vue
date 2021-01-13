@@ -260,32 +260,35 @@ export default {
         codepen: '',
       }
 
-      if (this.data_local.fb) {
-        obj.fb = this.data_local.fb
-      }
+      console.log('local', this.data_local)
+      if (this.data_local) {
+        if (this.data_local.fb) {
+          obj.fb = this.data_local.fb
+        }
 
-      if (this.data_local.github) {
-        obj.github = this.data_local.github
-      }
+        if (this.data_local.github) {
+          obj.github = this.data_local.github
+        }
 
-      if (this.local_data.insta) {
-        obj.insta = this.local_data.insta
-      }
+        if (this.local_data.insta) {
+          obj.insta = this.local_data.insta
+        }
 
-      if (this.local_data.linkedin) {
-        obj.linkedin = this.local_data.linkedin
-      }
+        if (this.local_data.linkedin) {
+          obj.linkedin = this.local_data.linkedin
+        }
 
-      if (this.local_data.slack) {
-        obj.slack = this.local_data.slack
-      }
+        if (this.local_data.slack) {
+          obj.slack = this.local_data.slack
+        }
 
-      if (this.local_data.codepen) {
-        obj.codepen = this.local_data.codepen
-      }
+        if (this.local_data.codepen) {
+          obj.codepen = this.local_data.codepen
+        }
 
-      if (this.data_local.twt) {
-        obj.twt = this.data_local.twt
+        if (this.data_local.twt) {
+          obj.twt = this.data_local.twt
+        }
       }
 
       console.log('obj', obj)

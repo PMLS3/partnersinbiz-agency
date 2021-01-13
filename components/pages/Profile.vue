@@ -135,7 +135,7 @@
           v-for="(item, index) in items"
           :key="index"
         >
-          <CardSimple :item="item" />
+          <UiCardSimple :item="item" />
         </div>
       </div>
     </div>

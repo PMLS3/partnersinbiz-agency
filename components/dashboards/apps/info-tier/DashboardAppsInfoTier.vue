@@ -48,7 +48,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <CardSimple :item="item" class="h-full" />
+          <UiCardSimple :item="item" class="h-full" />
         </div>
       </div>
     </client-only>

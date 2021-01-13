@@ -261,7 +261,7 @@
               >Please fill in Warehouse details:</label
             >
 
-            <FromGenerator
+            <FormGenerator
               :schema="w_houseForm"
               v-model="formData"
               class="p-6"
