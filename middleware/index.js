@@ -9,7 +9,7 @@ export default (context) => {
   // set the layout to the page here
   switch (params.id) {
     // case 'profile':
-    case 'login':
+    // case 'Login':
     case 'register':
     case 'wireframes':
     case 'drawingboard':
@@ -25,7 +25,6 @@ export default (context) => {
     case 'DemoAframeSmall':
     case 'DemoAframeModernApartment':
     case 'email':
-
     case 'DemoAR':
       return 'fullPage'
 

@@ -1,5 +1,5 @@
 <template>
-  <vs-tabs position="top" class="tabs-shadow-none" id="profile-tabs">
+  <vs-tabs>
     <vs-tab
       label="Home"
       icon="home"

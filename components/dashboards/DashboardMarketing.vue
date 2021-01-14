@@ -98,7 +98,7 @@ export default {
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations/message_sent.svg'),
-        url: '/dashboard/marketing',
+        url: '/DashboardEmailCampaigns',
       },
       {
         id: 3,

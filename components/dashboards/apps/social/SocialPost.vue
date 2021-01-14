@@ -138,21 +138,42 @@ export default {
       console.log('this.fbConfig', this.fbConfig)
       let vm = this
 
+      let fbConfig = {}
+      let instaConfig = {}
+      let twtConfig = {}
+
+      if (this.fbConfig) {
+        fbConfig = this.fbConfig
+      }
+
+      if (this.instaConfig) {
+        instaConfig = this.instaConfig
+      }
+
+      if (this.twtConfig) {
+        twtConfig = this.twtConfig
+      }
+
       const obj = {
         ...data,
-        twtConfig: this.twtConfig,
-        fbConfig: this.fbConfig,
-        instaConfig: this.instaConfig,
+        twtConfig: twtConfig,
+        fbConfig: fbConfig,
+        instaConfig: instaConfig,
         status: 'scheduled',
       }
+      // TODO: lets check what was ticked and if we HAVE THOSE configs
       if (this.twtConfig) {
         this.$fireStore
           .collection('posts')
           .add(obj)
           .then(function () {
             // obj.classes = `event-${vm.labelColor(vm.labelLocal)}`
+            let msg = {
+              title: 'Success',
+              text: 'Schedule successfully',
+            }
             vm.$store.dispatch('calendar/addEvent', obj)
-            vm.success('Schedule successfully')
+            vm.success(msg)
           })
           .catch(function (error) {
             console.error('Error writing document: ', error)

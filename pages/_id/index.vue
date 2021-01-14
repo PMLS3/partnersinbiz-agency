@@ -4,7 +4,7 @@
 
 <script>
 import register from '@/components/pages/register/Register.vue'
-import login from '@/components/pages/login/Login.vue'
+import Login from '@/components/pages/login/Login.vue'
 import aframeWorld from '@/components/apps/aframe-world/AframeWorld.vue'
 import profile from '@/components/pages/Profile.vue'
 import userSettings from '@/components/pages/user-settings/UserSettings.vue'
@@ -14,10 +14,10 @@ import DemoAframeSmall from '@/components/demo/aframe/DemoAframeSmall.vue'
 import DemoAR from '@/components/demo/aframe/DemoAR.vue'
 import mypage from '@/components/pages/MyPage.vue'
 
-// Main First business dashboard
+// // Main First business dashboard
 import dashboardMain from '@/components/dashboards/DashboardMain.vue'
 
-// Secondary Dashboards
+// // Secondary Dashboards
 import dashboardRadio from '@/components/dashboards/DashboardRadio.vue'
 import dashboardApps from '@/components/dashboards/DashboardApps.vue'
 import dashboardBusinessSettings from '@/components/dashboards/DashboardBusinessSettings.vue'
@@ -36,8 +36,9 @@ import dashboardSocialMedia from '@/components/dashboards/DashboardSocialMedia.v
 import DashboardLeadGen from '@/components/dashboards/DashboardLeadGen.vue'
 import DashboardWebsiteBuilder from '@/components/dashboards/DashboardWebsiteBuilder.vue'
 import DashboardPageBuilder from '@/components/dashboards/DashboardPageBuilder.vue'
+import DashboardEmailCampaigns from '@/components/dashboards/DashboardEmailCampaigns.vue'
 
-// Apps Dashboards
+// // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
 import dashboardAppsTwitter from '@/components/dashboards/apps/twitter/DashboardAppsTwitter.vue'
 import dashboardAppsFacebook from '@/components/dashboards/apps/facebook/DashboardAppsFacebook.vue'
@@ -89,21 +90,21 @@ import dashboardAppsVideoCallSingle from '@/components/dashboards/apps/video-cal
 import dashboardAppsVideos from '@/components/dashboards/apps/videos/DashboardAppsVideos.vue'
 import dashboardAppsVideosSingle from '@/components/dashboards/apps/videos/DashboardAppsVideosSingle.vue'
 
-// // Apps
+// // // Apps
 import email from '@/components/apps/email/Email.vue'
 import userView from '@/components/apps/user/UserView.vue'
 import userEdit from '@/components/apps/user/user-edit/UserEdit.vue'
 
-// // Pages
+// // // Pages
 import calendar from '@/components/pages/Calendar.vue'
-// import videoChat from '@/components/apps/videoChat/VideoChat.vue'
+// // import videoChat from '@/components/apps/videoChat/VideoChat.vue'
 
 import myMiddleware from '@/middleware/index'
 export default {
   layout: myMiddleware,
   components: {
     register,
-    login,
+    Login,
     aframeWorld,
     profile,
     userSettings,
@@ -132,6 +133,7 @@ export default {
     DashboardLeadGen,
     DashboardWebsiteBuilder,
     DashboardPageBuilder,
+    DashboardEmailCampaigns,
     email,
     dashboardAppsTwitter,
     dashboardAppsFacebook,
@@ -185,7 +187,7 @@ export default {
     dashboardAppsVideosSingle,
     userView,
     userEdit,
-    // videoChat,
+    //   // videoChat,
   },
 }
 </script>

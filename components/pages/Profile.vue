@@ -192,7 +192,7 @@
 // import 'video.js/dist/video-js.css'
 
 export default {
-  name: 'Profile',
+  name: 'profile',
   data() {
     return {
       isNavOpen: false,

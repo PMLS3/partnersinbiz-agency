@@ -16,7 +16,7 @@
             svg-classes="h-5 w-5 mb-1 stroke-current text-primary"
           />
         </router-link>
-        <span class="breadcrumb-separator mx-2"
+        <span class="mx-2 breadcrumb-separator"
           ><feather-icon
             :icon="props.isRTL ? 'ChevronsLeftIcon' : 'ChevronsRightIcon'"
             svg-classes="w-4 h-4"
@@ -30,8 +30,8 @@
         <router-link v-if="link.url" :to="link.url">{{
           link.title
         }}</router-link>
-        <span v-else class="text-primary cursor-default">{{ link.title }}</span>
-        <span class="breadcrumb-separator mx-2 flex items-start"
+        <span v-else class="cursor-default text-primary">{{ link.title }}</span>
+        <span class="flex items-start mx-2 breadcrumb-separator"
           ><feather-icon
             :icon="props.isRTL ? 'ChevronsLeftIcon' : 'ChevronsRightIcon'"
             svg-classes="w-4 h-4"
@@ -50,6 +50,6 @@
 
 <script>
 export default {
-  name: 'VxBreadcrumb'
+  name: 'VxBreadcrumb',
 }
 </script>

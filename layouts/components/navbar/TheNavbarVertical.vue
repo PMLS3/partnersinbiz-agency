@@ -62,7 +62,7 @@
           >
         </div>
         <div v-else>
-          <vs-button type="flat" icon="lock" @click="$router.push('/login')"
+          <vs-button type="flat" icon="lock" @click="$router.push('/Login')"
             >Login</vs-button
           >
         </div>

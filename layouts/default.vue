@@ -100,7 +100,7 @@
                   <vs-dropdown-menu class="w-32">
                     <vs-dropdown-item>
                       <div
-                        @click="$router.push('/pages/profile').catch(() => {})"
+                        @click="$router.push('/pages/profile')"
                         class="flex items-center"
                       >
                         <feather-icon
@@ -113,7 +113,7 @@
                     </vs-dropdown-item>
                     <vs-dropdown-item>
                       <div
-                        @click="$router.push('/apps/todo').catch(() => {})"
+                        @click="$router.push('/apps/todo')"
                         class="flex items-center"
                       >
                         <feather-icon
@@ -126,7 +126,7 @@
                     </vs-dropdown-item>
                     <vs-dropdown-item>
                       <div
-                        @click="$router.push('/apps/email').catch(() => {})"
+                        @click="$router.push('/apps/email')"
                         class="flex items-center"
                       >
                         <feather-icon
@@ -143,10 +143,6 @@
             </transition>
 
             <div class="content-area__content">
-              <!-- <back-to-top bottom="5%" :right="$vs.rtl ? 'calc(100% - 2.2rem - 38px)' : '30px'" visibleoffset="500" v-if="!hideScrollToTop">
-                <vs-button icon-pack="feather" icon="icon-arrow-up" class="shadow-lg btn-back-to-top" />
-              </back-to-top> -->
-
               <transition :name="routerTransition" mode="out-in">
                 <nuxt
                   @changeRouteTitle="changeRouteTitle"

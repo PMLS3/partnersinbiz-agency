@@ -9,12 +9,12 @@
     <div id="ag-grid-demo">
       <vx-card>
         <!-- TABLE ACTION ROW -->
-        <div class="flex flex-wrap justify-between items-center">
+        <div class="flex flex-wrap items-center justify-between">
           <!-- ITEMS PER PAGE -->
-          <div class="mb-4 md:mb-0 mr-4 ag-grid-table-actions-left">
+          <div class="mb-4 mr-4 md:mb-0 ag-grid-table-actions-left">
             <vs-dropdown vs-trigger-click class="cursor-pointer">
               <div
-                class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium"
+                class="flex items-center justify-between p-4 font-medium border border-solid rounded-full cursor-pointer d-theme-border-grey-light d-theme-dark-bg"
               >
                 <span class="mr-2"
                   >{{
@@ -54,18 +54,18 @@
           >
             <vs-input
               v-model="searchQuery"
-              class="mb-4 md:mb-0 mr-4"
+              class="mb-4 mr-4 md:mb-0"
               placeholder="Search..."
               @input="updateSearchQuery"
             />
             <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()"
               >Export as CSV</vs-button
             >
-            <vs-button class="ml-3 mb-4 md:mb-0" @click="popupActivo = true"
+            <vs-button class="mb-4 ml-3 md:mb-0" @click="popupActivo = true"
               >New</vs-button
             >
             <vs-button
-              class="ml-3 mb-4 md:mb-0"
+              class="mb-4 ml-3 md:mb-0"
               @click="gridApi.exportDataAsCsv()"
               >Breakdown</vs-button
             >
@@ -121,7 +121,7 @@
         class="holamundo"
         title="Lorem ipsum dolor sit amet"
         :active.sync="popupActivo"
-        style="z-index: 300; margin-top: 5%;"
+        style="z-index: 300; margin-top: 5%"
       >
         <div class="px-6 pb-12">
           <form-generator :schema="schema" v-model="formData"></form-generator>
@@ -133,7 +133,7 @@
         class="holamundo"
         title="Lorem ipsum dolor sit amet"
         :active.sync="popupActivo2"
-        style="z-index: 200; margin-top: 5%;"
+        style="z-index: 200; margin-top: 5%"
       >
         <div class="px-6 pb-12">
           <vs-button @click="addForm">Update</vs-button>
@@ -145,7 +145,6 @@
 
 <script>
 import { AgGridVue } from 'ag-grid-vue'
-import contacts from './data.json'
 import moment from 'moment'
 import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
 
@@ -154,7 +153,7 @@ export default {
   props: ['item', 'schema', 'columnDefs', 'info'],
   components: {
     AgGridVue,
-    FormGenerator
+    FormGenerator,
   },
   data() {
     return {
@@ -171,10 +170,10 @@ export default {
         sortable: true,
         editable: true,
         resizable: true,
-        suppressMenu: true
+        suppressMenu: true,
       },
 
-      selectedInfo: {}
+      selectedInfo: {},
     }
   },
   computed: {
@@ -193,7 +192,7 @@ export default {
       },
       set(val) {
         // this.gridApi.paginationGoToPage(val - 1)
-      }
+      },
     },
     business() {
       if (process.client) {
@@ -216,7 +215,7 @@ export default {
     schema2() {
       let list = []
       for (let i = 0; i < Object.entries(this.selectedInfo).lenght; i++) {}
-    }
+    },
   },
   watch: {
     '$store.state.windowWidth'(val) {
@@ -224,7 +223,7 @@ export default {
         this.maxPageNumbers = 4
         this.gridOptions.columnApi.setColumnPinned('email', null)
       } else this.gridOptions.columnApi.setColumnPinned('email', 'left')
-    }
+    },
   },
   created() {
     // let vm = this
@@ -267,24 +266,24 @@ export default {
     },
     getSelectedRows() {
       const selectedNodes = this.gridOptions.api.getSelectedNodes()
-      const selectedData = selectedNodes.map(node => node.data)
-      const selectedDataStringPresentation = selectedData.map(node => node)
+      const selectedData = selectedNodes.map((node) => node.data)
+      const selectedDataStringPresentation = selectedData.map((node) => node)
 
       this.selectedInfo = selectedDataStringPresentation[0]
       this.popupActivo2 = true
     },
     editSelectedRows() {
       const selectedNodes = this.gridOptions.api.getSelectedNodes()
-      const selectedData = selectedNodes.map(node => node.data)
-      const selectedDataStringPresentation = selectedData.map(node => node)
+      const selectedData = selectedNodes.map((node) => node.data)
+      const selectedDataStringPresentation = selectedData.map((node) => node)
       console.log('adfa', selectedDataStringPresentation)
     },
     deleteSelectedRows() {
       let vm = this
       if (process.client) {
         const selectedNodes = this.gridOptions.api.getSelectedNodes()
-        const selectedData = selectedNodes.map(node => node.data)
-        const selectedDataStringPresentation = selectedData.map(node => node)
+        const selectedData = selectedNodes.map((node) => node.data)
+        const selectedDataStringPresentation = selectedData.map((node) => node)
 
         for (let i = 0; i < selectedDataStringPresentation.length; i++) {
           vm.$fireStore
@@ -298,12 +297,12 @@ export default {
             .then(() => {
               vm.successDelete()
             })
-            .catch(err => {
+            .catch((err) => {
               vm.unsuccessUpload(err)
             })
 
           let noItem = this.info.filter(
-            el => el.id !== selectedDataStringPresentation[i].id
+            (el) => el.id !== selectedDataStringPresentation[i].id
           )
 
           console.log('no Item', noItem)
@@ -327,7 +326,7 @@ export default {
         .then(() => {
           vm.successUpload()
         })
-        .catch(err => {
+        .catch((err) => {
           vm.unsuccessUpload(err)
         })
     },
@@ -335,23 +334,23 @@ export default {
       this.notify({
         color: 'success',
         title: `${this.item} added`,
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     successDelete() {
       this.notify({
         color: 'success',
         title: `${this.item} Deleted`,
-        text: 'Successful deletion'
+        text: 'Successful deletion',
       })
     },
     unsuccessUpload(er) {
       this.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
