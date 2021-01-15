@@ -1,29 +1,72 @@
 <template>
-  <vs-tabs
-    :position="$device.isMobile ? 'top' : 'left'"
-    class="mt-24 tabs-shadow-none"
-    id="profile-tabs"
-  >
-    <vs-tab label="Campaigns" icon="dashboard">
-      <UiAgGridTableAny
-        :item="item"
-        :schema="schema"
-        :columnDefs="columnDefs"
-        :info="info"
-        :entity="entity"
-        :branch="branch"
-        class="m-2"
-      />
-    </vs-tab>
+  <div>
+    <div class="knowledge-base-jumbotron">
+      <div
+        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
+      >
+        <h1 class="mb-1 text-white">Marketing Management</h1>
+        <h2 class="text-xl leading-tight text-white font-semibild">
+          Manage all your marketing from one place
+        </h2>
 
-    <vs-tab label="Prospects" icon="dashboard">
-      <DashboardEmailCampaingsProspects />
-    </vs-tab>
+        <!-- <vs-input
+          icon-no-border
+          placeholder="Search Topic or Keyword"
+          v-model="knowledgeBaseSearchQuery"
+          icon-pack="feather"
+          icon="icon-search"
+          size="large"
+          class="w-full mt-6"
+        /> -->
+        <div class="flex items-center justify-between py-2">
+          <div class="flex items-center">
+            <p class="text-white">
+              {{ motivational_quotes }}
+            </p>
+          </div>
+          <div class="flex">
+            <!-- <UploadApps :schema="schema" :item="item" /> -->
+            <vs-tooltip text="Let us know what you want!" position="top">
+              <vs-button
+                type="filled"
+                icon="live_help"
+                class="float-right ml-2"
+                @click="popupActivo = true"
+              ></vs-button>
+            </vs-tooltip>
+            <vs-popup
+              fullscreen
+              :title="$route.params.id"
+              :active.sync="popupActivo"
+            >
+              <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+            </vs-popup>
+          </div>
+        </div>
+      </div>
+    </div>
+    <vs-tabs alignment="center" class="tabs-shadow-none" id="profile-tabs">
+      <vs-tab label="Campaigns" icon="dashboard">
+        <UiAgGridTableAny
+          :item="item"
+          :schema="schema"
+          :columnDefs="columnDefs"
+          :info="info"
+          :entity="entity"
+          :branch="branch"
+          class="m-2"
+        />
+      </vs-tab>
 
-    <vs-tab label="Inbox" icon="dashboard">
-      <Email />
-    </vs-tab>
-  </vs-tabs>
+      <vs-tab label="Prospects" icon="dashboard">
+        <DashboardEmailCampaingsProspects />
+      </vs-tab>
+
+      <vs-tab label="Inbox" icon="dashboard">
+        <Email />
+      </vs-tab>
+    </vs-tabs>
+  </div>
 </template>
 
 <script>
@@ -35,7 +78,7 @@ import CellRendererGo from '@/components/ui-elements/ag-grid-table/cell-renderer
 export default {
   components: { CellRendererHtml, CellRendererStatus, CellRendererGo },
   data() {
-    return { item: 'Email-Campaigns', info: [] }
+    return { item: 'Email-Campaigns', info: [], popupActivo: false }
   },
 
   computed: {
@@ -53,6 +96,11 @@ export default {
         return 'branch'
       }
     },
+    motivational_quotes() {
+      let num = Math.floor(Math.random() * 55)
+      return this.$store.state.info.motivational_quotes[num]
+    },
+
     branch() {
       return this.$store.state.app.selected_branch
     },
@@ -226,4 +274,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.knowledge-base-jumbotron-content {
+  background-image: url('../../assets/images/background/night.jpeg');
+
+  background-size: cover;
+}
+</style>

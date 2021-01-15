@@ -8,131 +8,222 @@
 <template>
   <div class="w-full">
     <!-- KNOWLEDGE BASE CARDS  -->
-    <vs-card class="vx-row">
-      <vs-tabs
-        :position="$device.isMobile ? 'top' : 'left'"
-        class="mt-24 tabs-shadow-none"
-        id="profile-tabs"
+
+    <div class="knowledge-base-jumbotron">
+      <div
+        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
       >
-        <vs-tab label="Data" icon="dashboard">
-          <div class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250">
-            {{ campaign_data }}
-          </div>
-        </vs-tab>
-        <vs-tab label="Prospects" icon="dashboard">
-          <div class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250">
-            {{ campaign_emails }}
-          </div>
-        </vs-tab>
-      </vs-tabs>
-    </vs-card>
-    <div>
-      <div>
-        <div class="w-full vx-col md:w-1/3 lg:w-1/3 xl:w-1/3 mb-base">
-          <vx-card title="PROSPECTS">
-            <div
-              v-for="(prospect, index) in prospectStatistics"
-              :key="prospect.id"
-              :class="{ 'mt-4': index }"
-            >
-              <div class="flex justify-between">
-                <div class="flex flex-col">
-                  <span class="mb-1">{{ prospect.name }}</span>
-                  <h4>{{ prospect.ratio }}%</h4>
-                </div>
-                <div class="flex flex-col text-right">
-                  <span class="flex -mr-1">
-                    <span class="mr-1">{{ prospect.comparedResult }}</span>
-                    <feather-icon
-                      :icon="
-                        prospect.comparedResult < 0
-                          ? 'ArrowDownIcon'
-                          : 'ArrowUpIcon'
-                      "
-                      :svgClasses="[
-                        prospect.comparedResult < 0
-                          ? 'text-danger'
-                          : 'text-success',
-                        'stroke-current h-4 w-4 mb-1 mr-1',
-                      ]"
-                    ></feather-icon>
-                  </span>
-                  <span class="text-grey">{{
-                    prospect.time | time(true)
-                  }}</span>
-                </div>
-              </div>
-              <vs-progress :percent="prospect.ratio"></vs-progress>
-            </div>
-          </vx-card>
-        </div>
-      </div>
-      <div>
-        <div class="w-full vx-col md:w-1/3 mb-base">
-          <vx-card title="Opened Overview">
-            <template slot="actions">
-              <feather-icon
-                icon="HelpCircleIcon"
-                svgClasses="w-6 h-6 text-grey"
-              ></feather-icon>
-            </template>
+        <h1 class="mb-1 text-white">Campaign {{ campaign_data.title }}</h1>
+        <h2 class="text-xl leading-tight text-white font-semibild">
+          Manage your campaign from here
+        </h2>
 
-            <!-- CHART -->
-            <template slot="no-body">
-              <div class="mt-10">
-                <vue-apex-charts
-                  type="radialBar"
-                  height="240"
-                  :options="chartOptions"
-                  :series="emailOpen.series"
-                />
-              </div>
-            </template>
-
-            <!-- DATA -->
-            <div
-              class="flex justify-between mt-6 text-center"
-              slot="no-body-bottom"
+        <!-- <vs-input
+          icon-no-border
+          placeholder="Search Topic or Keyword"
+          v-model="knowledgeBaseSearchQuery"
+          icon-pack="feather"
+          icon="icon-search"
+          size="large"
+          class="w-full mt-6"
+        /> -->
+        <div class="flex items-center justify-between py-2">
+          <div class="flex items-center">
+            <p class="text-white">
+              {{ motivational_quotes }}
+            </p>
+          </div>
+          <div class="flex">
+            <!-- <UploadApps :schema="schema" :item="item" /> -->
+            <vs-tooltip text="Let us know what you want!" position="top">
+              <vs-button
+                type="filled"
+                icon="live_help"
+                class="float-right ml-2"
+                @click="popupActivo = true"
+              ></vs-button>
+            </vs-tooltip>
+            <vs-popup
+              fullscreen
+              :title="$route.params.id"
+              :active.sync="popupActivo"
             >
-              <div
-                class="w-1/2 border border-b-0 border-l-0 border-r-0 border-solid d-theme-border-grey-light"
-              >
-                <p class="mt-4">CLICKED</p>
-                <p class="mb-4 text-3xl font-semibold">786,617</p>
-              </div>
-              <div
-                class="w-1/2 border border-b-0 border-r-0 border-solid d-theme-border-grey-light"
-              >
-                <p class="mt-4">OPT-OUT</p>
-                <p class="mb-4 text-3xl font-semibold">13,561</p>
-              </div>
-            </div>
-          </vx-card>
+              <KanbanTodo :type="$route.params.id" v-if="popupActivo" />
+            </vs-popup>
+          </div>
         </div>
       </div>
     </div>
-    <vs-card class>
-      <UiAgGridTableAny
-        :campaign_type="campaign_data.types"
-        :item="item"
-        :schema="schema"
-        :columnDefs="columnDefs"
-        :info="campaign_emails"
-        :entity="entity"
-        :branch="branch"
-      />
-    </vs-card>
+
+    <vs-tabs
+      alignment="center"
+      class="w-full tabs-shadow-none"
+      id="profile-tabs"
+    >
+      <vs-tab label="Data" icon="dashboard" class="w-full">
+        <div class="w-full mt-4 vx-row">
+          <div class="w-full vx-col md:w-1/3 lg:w-1/3 xl:w-1/3 mb-base">
+            <vx-card title="PROSPECTS">
+              <div
+                v-for="(prospect, index) in prospectStatistics"
+                :key="prospect.id"
+                :class="{ 'mt-4': index }"
+              >
+                <div class="flex justify-between">
+                  <div class="flex flex-col">
+                    <span class="mb-1">{{ prospect.name }}</span>
+                    <h4>{{ prospect.ratio }}%</h4>
+                  </div>
+                  <div class="flex flex-col text-right">
+                    <span class="flex -mr-1">
+                      <span class="mr-1">{{ prospect.comparedResult }}</span>
+                      <feather-icon
+                        :icon="
+                          prospect.comparedResult < 0
+                            ? 'ArrowDownIcon'
+                            : 'ArrowUpIcon'
+                        "
+                        :svgClasses="[
+                          prospect.comparedResult < 0
+                            ? 'text-danger'
+                            : 'text-success',
+                          'stroke-current h-4 w-4 mb-1 mr-1',
+                        ]"
+                      ></feather-icon>
+                    </span>
+                    <span class="text-grey">{{
+                      prospect.time | time(true)
+                    }}</span>
+                  </div>
+                </div>
+                <vs-progress :percent="prospect.ratio"></vs-progress>
+              </div>
+            </vx-card>
+          </div>
+          <div class="w-full vx-col md:w-1/3 mb-base">
+            <vx-card title="Opened Overview">
+              <template slot="actions">
+                <feather-icon
+                  icon="HelpCircleIcon"
+                  svgClasses="w-6 h-6 text-grey"
+                ></feather-icon>
+              </template>
+
+              <!-- CHART -->
+              <template slot="no-body">
+                <div class="mt-10">
+                  <vue-apex-charts
+                    type="radialBar"
+                    height="240"
+                    :options="chartOptions"
+                    :series="emailOpen.series"
+                  />
+                </div>
+              </template>
+
+              <!-- DATA -->
+              <div
+                class="flex justify-between mt-6 text-center"
+                slot="no-body-bottom"
+              >
+                <div
+                  class="w-1/2 border border-b-0 border-l-0 border-r-0 border-solid d-theme-border-grey-light"
+                >
+                  <p class="mt-4">CLICKED</p>
+                  <p class="mb-4 text-3xl font-semibold">
+                    {{ totals.clicked }}
+                  </p>
+                </div>
+                <div
+                  class="w-1/2 border border-b-0 border-r-0 border-solid d-theme-border-grey-light"
+                >
+                  <p class="mt-4">OPT-OUT</p>
+                  <p class="mb-4 text-3xl font-semibold">
+                    {{ totals.opt_out }}
+                  </p>
+                </div>
+              </div>
+            </vx-card>
+          </div>
+
+          <div class="w-full vx-col md:w-1/3 mb-base">
+            <vx-card title="Responded">
+              <template slot="actions">
+                <feather-icon
+                  icon="HelpCircleIcon"
+                  svgClasses="w-6 h-6 text-grey"
+                ></feather-icon>
+              </template>
+
+              <!-- CHART -->
+              <template slot="no-body">
+                <div class="mt-10">
+                  <vue-apex-charts
+                    type="radialBar"
+                    height="240"
+                    :options="chartOptions"
+                    :series="emailOpen.responded"
+                  />
+                </div>
+              </template>
+
+              <!-- DATA -->
+              <div
+                class="flex justify-between mt-6 text-center"
+                slot="no-body-bottom"
+              >
+                <div
+                  class="w-1/2 border border-b-0 border-l-0 border-r-0 border-solid d-theme-border-grey-light"
+                >
+                  <p class="mt-4">SENT</p>
+                  <p class="mb-4 text-3xl font-semibold">{{ totals.sent }}</p>
+                </div>
+                <div
+                  class="w-1/2 border border-b-0 border-r-0 border-solid d-theme-border-grey-light"
+                >
+                  <p class="mt-4">RESPONDED</p>
+                  <p class="mb-4 text-3xl font-semibold">
+                    {{ totals.responded }}
+                  </p>
+                </div>
+              </div>
+            </vx-card>
+          </div>
+        </div>
+        <vs-card class>
+          <UiAgGridTableAny
+            :campaign_type="campaign_data.types"
+            :item="item"
+            :schema="schema"
+            :columnDefs="columnDefs"
+            :info="campaign_emails"
+            :entity="entity"
+            :branch="branch"
+          />
+        </vs-card>
+      </vs-tab>
+      <vs-tab label="Prospects" icon="dashboard">
+        <UiAgGridUsersAdd />
+      </vs-tab>
+    </vs-tabs>
   </div>
 </template>
 
 <script>
 import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
+import VueApexCharts from 'vue-apexcharts'
+
 import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
 import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
 import CellRendererGo from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererGo.vue'
 export default {
   name: 'dashboardMain',
-  components: { CellRendererHtml, CellRendererStatus, CellRendererGo },
+  components: {
+    CellRendererHtml,
+    CellRendererStatus,
+    CellRendererGo,
+    VueApexCharts,
+  },
 
   setup() {
     const { store, $fireStore, nuxt } = useContext()
@@ -158,28 +249,6 @@ export default {
           console.log('Error getting document:', error)
         })
 
-      // $fireStore
-      //     .collection('apps')
-      //     .doc('Email-Campaigns')
-      //     .collection('app')
-      //     .doc(this.route_id)
-      //     .collection('emails')
-      //   .get()
-      //   .then(function (doc) {
-      //     if (doc.exists) {
-      //       console.log('Document data:', doc.data())
-      //       let payload = doc.data()
-      //       payload.id = doc.id
-      //       campaign_emails.value = payload
-      //     } else {
-      //       // doc.data() will be undefined in this case
-      //       console.log('No such document!')
-      //     }
-      //   })
-      //   .catch(function (error) {
-      //     console.log('Error getting document:', error)
-      //   })
-
       $fireStore
         .collection('apps')
         .doc('Email-Campaigns')
@@ -200,25 +269,12 @@ export default {
         .catch(function (error) {
           console.log('Error getting documents: ', error)
         })
-
-      // nuxt.$on('emails_submit', (data) => {
-      //   let payload = data
-      //   payload.branch = branch
-      //   payload.uid = user.uid
-
-      //   $fireStore
-      //     .collection('apps')
-      //     .doc('Email-Campaigns')
-      //     .collection('app')
-      //     .doc(route_id.value)
-      //     .collection('emails')
-      //     .doc('emails')
-      //     .set(data)
-      // })
     })
 
     let campaign_data = ref({})
     let campaign_emails = ref([])
+
+    let popupActivo = ref(false)
 
     let item = ref('Email-Campaign-Specific')
     let info = ref([])
@@ -237,6 +293,115 @@ export default {
       } else {
         return 'branch'
       }
+    })
+
+    let prospectStatistics = computed(() => {
+      return [
+        {
+          id: 1,
+          name: 'Queued',
+          ratio: ratio.value.queued,
+          time: new Date(),
+          comparedResult: totals.value.queued,
+        },
+        {
+          id: 2,
+          name: 'Sent',
+          ratio: ratio.value.sent,
+
+          time: new Date(),
+          comparedResult: totals.value.sent,
+        },
+        {
+          id: 3,
+          name: 'Bounced',
+          ratio: ratio.value.bounced,
+          time: new Date(),
+          comparedResult: totals.value.bounced,
+        },
+        {
+          id: 4,
+          name: 'Delivered',
+          ratio: ratio.value.delivered,
+          time: new Date(),
+          comparedResult: totals.value.delivered,
+        },
+      ]
+    })
+
+    let ratio = computed(() => {
+      let total = {
+        delivered:
+          (totals.value.delivered / totals.value.sent) * 100
+            ? (totals.value.delivered / totals.value.sent) * 100
+            : 0,
+        opened:
+          (totals.value.opened / totals.value.delivered) * 100
+            ? (totals.value.opened / totals.value.delivered) * 100
+            : 0,
+        queued:
+          (totals.value.queued / (totals.value.queued + totals.value.sent)) *
+          100
+            ? (totals.value.queued /
+                (totals.value.queued + totals.value.sent)) *
+              100
+            : 0,
+        sent:
+          (totals.value.sent / (totals.value.queued + totals.value.sent)) * 100
+            ? (totals.value.sent / (totals.value.queued + totals.value.sent)) *
+              100
+            : 0,
+        opt_out:
+          (totals.value.bounced / totals.value.sent) * 100
+            ? (totals.value.bounced / totals.value.sent) * 100
+            : 0,
+        bounced:
+          (totals.value.bounced / totals.value.sent) * 100
+            ? (totals.value.bounced / totals.value.sent) * 100
+            : 0,
+        clicked:
+          (totals.value.clicked / totals.value.sent) * 100
+            ? (totals.value.clicked / totals.value.sent) * 100
+            : 0,
+        responded:
+          (totals.value.responded / totals.value.sent) * 100
+            ? (totals.value.responded / totals.value.sent) * 100
+            : 0,
+      }
+
+      return total
+    })
+
+    let totals = computed(() => {
+      let total = {
+        delivered: 0,
+        opened: 0,
+        queued: 0,
+        sent: 0,
+        opt_out: 0,
+        bounced: 0,
+        clicked: 0,
+        responded: 0,
+      }
+
+      for (let i = 0; i < campaign_emails.value.length; i++) {
+        total.delivered =
+          total.delivered + parseInt(campaign_emails.value[i].delivered)
+        total.opened = total.opened + parseInt(campaign_emails.value[i].opened)
+        total.queued = total.queued + parseInt(campaign_emails.value[i].queued)
+        total.sent = total.sent + parseInt(campaign_emails.value[i].sent)
+        total.opt_out =
+          total.opt_out + parseInt(campaign_emails.value[i].opt_out)
+        total.bounced =
+          total.bounced + parseInt(campaign_emails.value[i].bounced)
+        total.clicked =
+          total.clicked + parseInt(campaign_emails.value[i].clicked)
+
+        total.responded =
+          total.responded + parseInt(campaign_emails.value[i].responded)
+      }
+
+      return total
     })
 
     let chartOptions = computed(() => {
@@ -300,44 +465,16 @@ export default {
     let emailOpen = computed(() => {
       return {
         analyticsData: {
-          completed: 786617,
-          inProgress: 13561,
+          completed: totals.value.clicked,
+          inProgress: totals.value.opt_out,
         },
-        series: [83],
+        series: [ratio.value.opened],
+        responded: [ratio.value.responded],
       }
     })
-
-    let prospectStatistics = computed(() => {
-      return [
-        {
-          id: 1,
-          name: 'Google Chrome',
-          ratio: 73,
-          time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '800',
-        },
-        {
-          id: 3,
-          name: 'Opera',
-          ratio: 8,
-          time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '-200',
-        },
-        {
-          id: 2,
-          name: 'Firefox',
-          ratio: 19,
-          time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '100',
-        },
-        {
-          id: 4,
-          name: 'Internet Explorer',
-          ratio: 27,
-          time: 'Mon Dec 10 2018 07:46:05 GMT+0000 (GMT)',
-          comparedResult: '-450',
-        },
-      ]
+    let motivational_quotes = computed(() => {
+      let num = Math.floor(Math.random() * 55)
+      return store.state.info.motivational_quotes[num]
     })
 
     let branch = computed(() => {
@@ -390,7 +527,7 @@ export default {
           field: 'content',
           filter: true,
           width: 250,
-          cellRendererFramework: 'CellRendererHtml',
+          // cellRendererFramework: 'CellRendererHtml',
         },
         {
           headerName: 'Sent',
@@ -469,7 +606,17 @@ export default {
       chartOptions,
       emailOpen,
       prospectStatistics,
+      popupActivo,
+      totals,
+      motivational_quotes,
     }
   },
 }
 </script>
+<style lang="scss">
+.knowledge-base-jumbotron-content {
+  background-image: url('../../../assets/images/background/night.jpeg');
+
+  background-size: cover;
+}
+</style>
