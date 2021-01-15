@@ -12,6 +12,7 @@
         :info="info"
         :entity="entity"
         :branch="branch"
+        class="m-2"
       />
     </vs-tab>
 
@@ -28,8 +29,11 @@
 <script>
 import moment from 'moment'
 import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
+import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
+import CellRendererGo from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererGo.vue'
+
 export default {
-  components: { CellRendererHtml },
+  components: { CellRendererHtml, CellRendererStatus, CellRendererGo },
   data() {
     return { item: 'Email-Campaigns', info: [] }
   },
@@ -74,6 +78,13 @@ export default {
           label: 'Description',
           placeholder: 'Description',
         },
+        {
+          title: 'SelectList',
+          name: 'type',
+          label: 'Type',
+          placeholder: 'Type',
+          options: ['Date', 'Sequence'],
+        },
       ]
     },
     columnDefs() {
@@ -86,6 +97,13 @@ export default {
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
           headerCheckboxSelection: true,
+        },
+        {
+          headerName: 'View',
+          field: 'id',
+          filter: true,
+          width: 125,
+          cellRendererFramework: 'CellRendererGo',
         },
         {
           headerName: 'Campaing',
@@ -170,6 +188,7 @@ export default {
       form.date = moment().format('DD-MM-YYYY')
       form.disp_name = this.user.disp_name
       form.u_uid = this.user.uid
+      form.b_uid = this.business.b_uid
       form.branch = this.branch
       form.entity = this.entity
 

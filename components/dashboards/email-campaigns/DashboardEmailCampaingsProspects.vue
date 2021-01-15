@@ -213,7 +213,7 @@ export default {
     CellRendererActions,
   },
   props: {
-    users: { type: Array, default: [] },
+    users: { type: Array, default: () => [] },
   },
   data() {
     return {

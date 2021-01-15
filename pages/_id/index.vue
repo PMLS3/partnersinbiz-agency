@@ -89,7 +89,7 @@ import dashboardAppsVideoCall from '@/components/dashboards/apps/video-call/Dash
 import dashboardAppsVideoCallSingle from '@/components/dashboards/apps/video-call/DashboardAppsVideoCallSingle.vue'
 import dashboardAppsVideos from '@/components/dashboards/apps/videos/DashboardAppsVideos.vue'
 import dashboardAppsVideosSingle from '@/components/dashboards/apps/videos/DashboardAppsVideosSingle.vue'
-
+import DashboardEmailCampaignsSpecific from '@/components/dashboards/email-campaigns/DashboardEmailCampaignsSpecific.vue'
 // // // Apps
 import email from '@/components/apps/email/Email.vue'
 import userView from '@/components/apps/user/UserView.vue'
@@ -134,6 +134,7 @@ export default {
     DashboardWebsiteBuilder,
     DashboardPageBuilder,
     DashboardEmailCampaigns,
+    DashboardEmailCampaignsSpecific,
     email,
     dashboardAppsTwitter,
     dashboardAppsFacebook,

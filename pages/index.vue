@@ -1,12 +1,13 @@
 <template>
   <div class="h-screen">
-    <!-- <HomePage /> -->
-    <vs-button @click="$router.push('/Login')" class="mt-24">Login</vs-button>
-    <vs-button @click="$router.push('/p')" class="mt-24">Test</vs-button>
+    <client-only>
+      <!-- <ComingSoon /> -->
+    </client-only>
   </div>
 </template>
 <script>
 export default {
+  // layout: 'fullPage',
   computed: {
     main_business_set() {
       return this.$store.state.business.main_business_set

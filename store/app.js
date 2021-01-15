@@ -25,9 +25,13 @@ export const state = () => ({
   categories: [],
   selected_branch: 'Company',
   current_branch_details: {},
+  route_id: '',
 })
 
 export const mutations = {
+  UPDATE_ROUTE_ID(state, payload) {
+    state.route_id = payload
+  },
   CURRENT_BRANCH(state, payload) {
     state.current_branch_details = payload
   },

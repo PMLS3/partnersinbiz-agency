@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "partnersinbiz-agency"
+  },
+  "targets": {
+    "partnersinbiz-agency": {
+      "hosting": {
+        "saas-empire": [
+          "saas-empire"
+        ]
+      }
+    }
   }
 }

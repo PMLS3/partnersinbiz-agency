@@ -119,9 +119,22 @@
       :active.sync="popupActivo"
       style="z-index: 300; margin-top: 5%"
     >
-      <div class="px-6 pb-12">
+      <div v-if="item == 'Email-Campaign-Specific'">
+        <FormsTypesEmails :campaign_type="campaign_type" />
+      </div>
+      <div class="px-6 pb-12" v-else>
         <FormGenerator :schema="schema" v-model="formData" />
-        <vs-button @click="addForm">Submit</vs-button>
+
+        <div v-if="item == 'Email-Campaigns'">
+          <small
+            >Date: Place certain dates the email will be sent to list</small
+          >
+          <small>
+            Sequence: Whenever user is added to campaign their sequence of
+            emails will be sent
+          </small>
+        </div>
+        <vs-button @click="addForm" class="mt-8">Submit</vs-button>
       </div>
     </vs-popup>
   </div>
@@ -140,6 +153,7 @@ export default {
     item: { type: String, default: '' },
     branch: { type: String, default: null },
     entity: { type: String, default: null },
+    campaign_type: { type: String, default: 'Sequence' },
   },
   components: {
     AgGridVue,
@@ -166,6 +180,9 @@ export default {
     },
     user() {
       return this.$store.state.auth.main_user
+    },
+    route_id() {
+      return this.$store.state.app.route_id
     },
 
     paginationPageSize() {
@@ -195,6 +212,10 @@ export default {
     },
   },
   mounted() {
+    this.$nuxt.$on('successEmit', () => {
+      //Do Something
+      this.popupActivo = false
+    })
     this.gridApi = this.gridOptions.api
 
     /* =================================================================
@@ -236,24 +257,49 @@ export default {
         const selectedDataStringPresentation = selectedData.map((node) => node)
 
         for (let i = 0; i < selectedDataStringPresentation.length; i++) {
-          vm.$fireStore
-            .collection('apps')
-            .doc(vm.item)
-            .collection('app')
-            .doc(selectedDataStringPresentation[i].id)
-            .delete()
-            .then(() => {
-              vm.successDelete()
-            })
-            .catch((err) => {
-              vm.unsuccessUpload(err)
-            })
+          if (vm.item == 'Email-Campaign-Specific') {
+            vm.$fireStore
+              .collection('apps')
+              .doc('Email-Campaigns')
+              .collection('app')
+              .doc(vm.route_id.value)
+              .collection('emails')
+              .doc(selectedDataStringPresentation[i].id)
+              .delete()
+              .then(() => {
+                vm.successDelete()
+              })
+              .catch((err) => {
+                console.log('error', err)
+                vm.unsuccessUpload(err)
+              })
 
-          let noItem = this.info.filter(
-            (el) => el.id !== selectedDataStringPresentation[i].id
-          )
+            let noItem = this.info.filter(
+              (el) => el.id !== selectedDataStringPresentation[i].id
+            )
 
-          console.log('no Item', noItem)
+            console.log('no Item', noItem)
+          } else {
+            vm.$fireStore
+              .collection('apps')
+              .doc(vm.item)
+              .collection('app')
+              .doc(selectedDataStringPresentation[i].id)
+              .delete()
+              .then(() => {
+                vm.successDelete()
+              })
+              .catch((err) => {
+                console.log('error', err)
+                vm.unsuccessUpload(err)
+              })
+
+            let noItem = this.info.filter(
+              (el) => el.id !== selectedDataStringPresentation[i].id
+            )
+
+            console.log('no Item', noItem)
+          }
         }
       }
     },
@@ -266,21 +312,21 @@ export default {
       }, 1000)
     },
     successUpload() {
-      this.notify({
+      this.$vs.notify({
         color: 'success',
         title: `${this.item} added`,
         text: 'Whoop whoop, been uploaded',
       })
     },
     successDelete() {
-      this.notify({
+      this.$vs.notify({
         color: 'success',
         title: `${this.item} Deleted`,
         text: 'Successful deletion',
       })
     },
     unsuccessUpload(er) {
-      this.notify({
+      this.$vs.notify({
         color: 'danger',
         title: 'Oh no',
         text: `Error ${er}`,

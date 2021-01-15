@@ -4,8 +4,9 @@
       <h6>Current: {{ placeholder }}</h6>
     </div>
 
-    {{ label }}
-
+    <h1 class="mt-4 text-base text-gray-800">
+      {{ label }}
+    </h1>
     <v-select
       class="w-full mb-3 select-large"
       :value="val"
