@@ -172,7 +172,7 @@
         class="my-4 ag-theme-material w-100 ag-grid-table"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
-        :rowData="usersData"
+        :rowData="info"
         rowSelection="multiple"
         colResizeDefault="shift"
         :animateRows="true"
@@ -200,6 +200,7 @@ import CellRendererLink from '@/components/ui-elements/ag-grid-table/cell-render
 import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
 import CellRendererVerified from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererVerified.vue'
 import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActions.vue'
+import CellRendererActionsAdd from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActionsAdd.vue'
 
 export default {
   components: {
@@ -211,9 +212,16 @@ export default {
     CellRendererStatus,
     CellRendererVerified,
     CellRendererActions,
+    CellRendererActionsAdd,
   },
   props: {
-    users: { type: Array, default: [] },
+    columnDefs: { type: Array, default: () => [] },
+    schema: { type: Array, default: () => [] },
+    info: { type: Array, default: () => [] },
+    item: { type: String, default: '' },
+    branch: { type: String, default: null },
+    entity: { type: String, default: null },
+    campaign_type: { type: String, default: 'Sequence' },
   },
   data() {
     return {
@@ -259,81 +267,6 @@ export default {
         resizable: true,
         suppressMenu: true,
       },
-      columnDefs: [
-        {
-          headerName: 'ID',
-          field: 'id',
-          width: 125,
-          filter: true,
-          checkboxSelection: true,
-          headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true,
-        },
-        {
-          headerName: 'Avatar',
-          field: 'avatar',
-          filter: true,
-          width: 125,
-          cellRendererFramework: 'CellRendererLink',
-        },
-        {
-          headerName: 'Username',
-          field: 'disp_name',
-          filter: true,
-          width: 210,
-        },
-        {
-          headerName: 'Email',
-          field: 'email',
-          filter: true,
-          width: 225,
-        },
-        {
-          headerName: 'Name',
-          field: 'name',
-          filter: true,
-          width: 200,
-        },
-        {
-          headerName: 'Country',
-          field: 'country',
-          filter: true,
-          width: 150,
-        },
-        {
-          headerName: 'Role',
-          field: 'role',
-          filter: true,
-          width: 150,
-        },
-        {
-          headerName: 'Status',
-          field: 'status',
-          filter: true,
-          width: 150,
-          cellRendererFramework: 'CellRendererStatus',
-        },
-        {
-          headerName: 'Verified',
-          field: 'is_verified',
-          filter: true,
-          width: 125,
-          cellRendererFramework: 'CellRendererVerified',
-          cellClass: 'text-center',
-        },
-        {
-          headerName: 'Department',
-          field: 'department',
-          filter: true,
-          width: 150,
-        },
-        {
-          headerName: 'Actions',
-          field: 'transactions',
-          width: 150,
-          cellRendererFramework: 'CellRendererActions',
-        },
-      ],
 
       // Cell Renderer Components
       components: {

@@ -9,9 +9,9 @@
   <div class="w-full">
     <!-- KNOWLEDGE BASE CARDS  -->
 
-    <div class="knowledge-base-jumbotron">
+    <div class="mt-24 knowledge-base-jumbotron">
       <div
-        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
+        class="p-8 rounded-lg knowledge-base-jumbotron-content sm:p-16 mb-base"
       >
         <h1 class="mb-1 text-white">Campaign {{ campaign_data.title }}</h1>
         <h2 class="text-xl leading-tight text-white font-semibild">
@@ -190,7 +190,7 @@
             </vx-card>
           </div>
         </div>
-        <vs-card class>
+        <vs-card>
           <UiAgGridTableAny
             :campaign_type="campaign_data.types"
             :item="item"
@@ -202,8 +202,35 @@
           />
         </vs-card>
       </vs-tab>
-      <vs-tab label="Prospects" icon="dashboard">
-        <UiAgGridUsersAdd />
+      <vs-tab label="Users" icon="dashboard">
+        <vs-tabs
+          alignment="center"
+          class="w-full tabs-shadow-none"
+          id="profile-tabs"
+        >
+          <vs-tab label="Users in Campaign" icon="dashboard" class="w-full">
+            <UiAgGridUsersAdd
+              :campaign_type="campaign_data.types"
+              :item="item"
+              :schema="schema"
+              :columnDefs="columnDefsUsers"
+              :info="users_all"
+              :entity="entity"
+              :branch="branch"
+            />
+          </vs-tab>
+          <vs-tab label="All Users" icon="dashboard" class="w-full">
+            <UiAgGridUsersAdd
+              :campaign_type="campaign_data.types"
+              :item="item"
+              :schema="schema"
+              :columnDefs="columnDefsUsersAll"
+              :info="users"
+              :entity="entity"
+              :branch="branch"
+            />
+          </vs-tab>
+        </vs-tabs>
       </vs-tab>
     </vs-tabs>
   </div>
@@ -216,12 +243,15 @@ import VueApexCharts from 'vue-apexcharts'
 import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
 import CellRendererStatus from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererStatus.vue'
 import CellRendererGo from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererGo.vue'
+import CellRendererActionsAdd from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActionsAdd.vue'
+
 export default {
   name: 'dashboardMain',
   components: {
     CellRendererHtml,
     CellRendererStatus,
     CellRendererGo,
+    CellRendererActionsAdd,
     VueApexCharts,
   },
 
@@ -269,6 +299,41 @@ export default {
         .catch(function (error) {
           console.log('Error getting documents: ', error)
         })
+
+      let getUser = $fireStore
+        .collection('business')
+        .doc('users')
+        .collection(business.value.b_uid)
+      // .where('b_uid', '==', business.value.b_uid)
+
+      getUser.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          console.log('change', change)
+          if (change.type === 'added') {
+            let doc = change.doc
+            let data = doc.data()
+            data.id = doc.id
+            clients.value.push(data)
+          }
+        })
+      })
+
+      store.commit('userManagement/SET_USERS', clients.value)
+    })
+
+    let clients = ref([])
+
+    let users_all = computed(() => {
+      let all = []
+      for (let i = 0; i < clients.value.length; i++) {
+        if (clients.value[i].email_campaigns) {
+          if (clients.value[i].email_campaigns.includes(route_id.value)) {
+            all.push(clients.value[i])
+          }
+        }
+      }
+
+      return all
     })
 
     let campaign_data = ref({})
@@ -282,6 +347,8 @@ export default {
     let route_id = computed(() => store.state.app.route_id)
 
     const user = computed(() => store.state.auth.main_user)
+
+    const users = computed(() => store.state.userManagement.users)
 
     let business = computed(() => {
       return store.state.business.active_business
@@ -592,6 +659,134 @@ export default {
         },
       ]
     })
+    let columnDefsUsers = computed(() => {
+      return [
+        {
+          headerName: 'ID',
+          field: 'id',
+          width: 125,
+          filter: true,
+          checkboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true,
+          headerCheckboxSelection: true,
+        },
+        {
+          headerName: 'Avatar',
+          field: 'avatar',
+          filter: true,
+          width: 125,
+          cellRendererFramework: 'CellRendererLink',
+        },
+        {
+          headerName: 'Username',
+          field: 'disp_name',
+          filter: true,
+          width: 210,
+        },
+        {
+          headerName: 'Email',
+          field: 'email',
+          filter: true,
+          width: 225,
+        },
+        {
+          headerName: 'Name',
+          field: 'name',
+          filter: true,
+          width: 200,
+        },
+        {
+          headerName: 'Country',
+          field: 'country',
+          filter: true,
+          width: 150,
+        },
+        {
+          headerName: 'Role',
+          field: 'role',
+          filter: true,
+          width: 150,
+        },
+        {
+          headerName: 'Status',
+          field: 'status',
+          filter: true,
+          width: 150,
+          cellRendererFramework: 'CellRendererStatus',
+        },
+        {
+          headerName: 'Verified',
+          field: 'is_verified',
+          filter: true,
+          width: 125,
+          cellRendererFramework: 'CellRendererVerified',
+          cellClass: 'text-center',
+        },
+        {
+          headerName: 'Department',
+          field: 'department',
+          filter: true,
+          width: 150,
+        },
+        {
+          headerName: 'Actions',
+          field: 'transactions',
+          width: 150,
+          cellRendererFramework: 'CellRendererActions',
+        },
+      ]
+    })
+
+    let columnDefsUsersAll = computed(() => {
+      return [
+        {
+          headerName: 'ID',
+          field: 'id',
+          width: 125,
+          filter: true,
+          checkboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true,
+          headerCheckboxSelection: true,
+        },
+        {
+          headerName: 'Avatar',
+          field: 'avatar',
+          filter: true,
+          width: 125,
+          cellRendererFramework: 'CellRendererLink',
+        },
+        {
+          headerName: 'Username',
+          field: 'disp_name',
+          filter: true,
+          width: 210,
+        },
+        {
+          headerName: 'Email',
+          field: 'email',
+          filter: true,
+          width: 225,
+        },
+        {
+          headerName: 'Name',
+          field: 'name',
+          filter: true,
+          width: 200,
+        },
+        {
+          headerName: 'Surname',
+          field: 'surname',
+          filter: true,
+          width: 150,
+        },
+        {
+          headerName: 'Actions',
+          field: 'transactions',
+          width: 150,
+          cellRendererFramework: 'CellRendererActionsAdd',
+        },
+      ]
+    })
     return {
       business,
       user,
@@ -609,6 +804,10 @@ export default {
       popupActivo,
       totals,
       motivational_quotes,
+      users_all,
+      users,
+      columnDefsUsersAll,
+      columnDefsUsers,
     }
   },
 }
