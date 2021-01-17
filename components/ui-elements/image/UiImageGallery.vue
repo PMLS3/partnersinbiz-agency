@@ -30,7 +30,7 @@
         </div>
 
         <img
-          :src="photo.urls.thumb"
+          :src="photo.urls.regular"
           alt="latest-upload"
           class="rounded user-latest-image responsive"
         />
@@ -40,15 +40,19 @@
             <vs-avatar size="large" :src="photo.user.profile_image.medium" />
           </div>
           <div class="items-center w-3/4 vx-col">
-            <p class="float-left">Photo by: {{ photo.user.name }}</p>
-            <p class="float-left">
+            <p>Photo by: {{ photo.user.name }}</p>
+            <p v-if="photo.user.portfolio_url">
               Portfolio:
               <a :href="photo.user.portfolio_url" target="_blank">
                 {{ photo.user.portfolio_url }}</a
               >
             </p>
           </div>
-          <p class="px-2 pb-2">{{ photo.description }}</p>
+          <div class="item-center">
+            <p class="items-center px-2 pb-2 text-center">
+              {{ photo.description }}
+            </p>
+          </div>
         </div>
       </div>
     </div>

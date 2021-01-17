@@ -63,16 +63,13 @@
         class="w-48 m-4"
       />
     </div>
+    <vs-divider v-if="status.total_pages" />
 
-    <!-- {{ status }} -->
-    <!-- <UiImagePhoto /> -->
     <UiImageGallery :photos="status.results" />
 
-    <!-- <p>Current: {{ page }}</p> -->
-    <!-- <vs-button @click="page++">Increment</vs-button>
-    <vs-button @click="page--">Decrement</vs-button> -->
-    <!-- <br /><br /> -->
-    <div class="items-center">
+    <vs-divider v-if="status.total_pages" />
+
+    <div>
       <vs-pagination
         v-if="status.total_pages"
         :total="status.total_pages"
@@ -130,6 +127,7 @@ export default {
   },
   methods: {
     searchTerm(page) {
+      this.status = []
       let url = `https://api.unsplash.com/search/photos?client_id=bd1cnz9Q0gEsiTCSV67IPfUCBXpi_9Yiziook5RuHlM&query=${this.search}&page=${page}&per_page=${this.per_page}&order_by=${this.order_by}`
 
       //  this.$axios.setHeader('X-Api-Key', 'BbV8aERAr8AEQ68ZbUf9vzp1')
