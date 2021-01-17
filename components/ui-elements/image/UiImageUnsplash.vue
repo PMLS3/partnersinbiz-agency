@@ -1,68 +1,73 @@
 <template>
   <div>
-    <div class="flex">
-      <vs-input placeholder="Placeholder" v-model="search" />
-      <vs-button @click="searchTerm(1)">Submit</vs-button>
+    <div class="content-center lg:flex">
+      <div class="flex">
+        <vs-input placeholder="Placeholder" v-model="search" />
+        <vs-button @click="searchTerm(1)">Submit</vs-button>
+      </div>
+
+      <div class="p-4">
+        <ul class="flex">
+          <li>
+            <vs-checkbox v-model="let_color">Color</vs-checkbox>
+          </li>
+          <li>
+            <vs-checkbox v-model="let_order_by">Order by</vs-checkbox>
+          </li>
+          <li>
+            <vs-checkbox v-model="let_content_filter"
+              >Content Filter</vs-checkbox
+            >
+          </li>
+          <li>
+            <vs-checkbox v-model="let_orientation">Orientation</vs-checkbox>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex">
+        <v-select
+          v-model="order_by"
+          :clearable="false"
+          :options="order_by_options"
+          name="order_by"
+          :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          v-if="let_order_by"
+          class="w-48 m-4"
+        />
+
+        <v-select
+          v-model="content_filter"
+          :clearable="false"
+          :options="content_filter_options"
+          name="content_filter"
+          :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          v-if="let_content_filter"
+          class="w-48 m-4"
+        />
+
+        <v-select
+          v-model="color"
+          :clearable="false"
+          :options="color_options"
+          name="order_by"
+          :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          v-if="let_color"
+          class="w-48 m-4"
+        />
+
+        <v-select
+          v-model="orientation"
+          :clearable="false"
+          :options="orientation_options"
+          name="orientation"
+          :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          v-if="let_orientation"
+          class="w-48 m-4"
+        />
+      </div>
     </div>
 
-    <div class="p-4">
-      <ul class="flex">
-        <li>
-          <vs-checkbox v-model="let_color">Color</vs-checkbox>
-        </li>
-        <li>
-          <vs-checkbox v-model="let_order_by">Order by</vs-checkbox>
-        </li>
-        <li>
-          <vs-checkbox v-model="let_content_filter">Content Filter</vs-checkbox>
-        </li>
-        <li>
-          <vs-checkbox v-model="let_orientation">Orientation</vs-checkbox>
-        </li>
-      </ul>
-    </div>
-
-    <div class="flex">
-      <v-select
-        v-model="order_by"
-        :clearable="false"
-        :options="order_by_options"
-        name="order_by"
-        :dir="$vs.rtl ? 'rtl' : 'ltr'"
-        v-if="let_order_by"
-        class="w-48 m-4"
-      />
-
-      <v-select
-        v-model="content_filter"
-        :clearable="false"
-        :options="content_filter_options"
-        name="content_filter"
-        :dir="$vs.rtl ? 'rtl' : 'ltr'"
-        v-if="let_content_filter"
-        class="w-48 m-4"
-      />
-
-      <v-select
-        v-model="color"
-        :clearable="false"
-        :options="color_options"
-        name="order_by"
-        :dir="$vs.rtl ? 'rtl' : 'ltr'"
-        v-if="let_color"
-        class="w-48 m-4"
-      />
-
-      <v-select
-        v-model="orientation"
-        :clearable="false"
-        :options="orientation_options"
-        name="orientation"
-        :dir="$vs.rtl ? 'rtl' : 'ltr'"
-        v-if="let_orientation"
-        class="w-48 m-4"
-      />
-    </div>
     <vs-divider v-if="status.total_pages" />
 
     <UiImageGallery :photos="status.results" />
