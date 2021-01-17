@@ -45,7 +45,9 @@ export default {
 
       const date = moment(today).format('YYYY-MM-DD')
 
-      let payload = {}
+      let payload = {
+        date: date,
+      }
 
       if (data.about) {
         payload.about = data.about

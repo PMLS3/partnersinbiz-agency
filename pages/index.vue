@@ -1,7 +1,9 @@
 <template>
   <div class="h-screen">
     <client-only>
-      <!-- <ComingSoon /> -->
+      <vs-card class="mt-24">
+        <UiImageUnsplash />
+      </vs-card>
     </client-only>
   </div>
 </template>

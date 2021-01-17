@@ -3,6 +3,8 @@ const admin = require('firebase-admin')
 admin.initializeApp()
 const moment = require('moment')
 var Twit = require('twit')
+const nodemailer = require('nodemailer')
+
 // min hour day month weekday https://crontab.guru/
 
 // const { tweeting, retweet, likeTweet } = require('./twitter/tweet')
@@ -13,10 +15,11 @@ exports.scheduledFunctionMinute = functions.pubsub
     var today = new Date()
     var hour = today.getHours()
     var min = today.getMinutes()
-    if (min % 15 === 0) {
+    if (min % 45 === 0) {
       console.log('5MIN', min)
       retweet()
       likeTweet()
+      // emailSend()
     }
     tweeting()
     socialPosting()
@@ -317,4 +320,46 @@ function tweeted(err, data, response) {
   } else {
     admin.firestore().collection('posts').doc(id).update({ status: 'done' })
   }
+}
+
+function emailSend() {
+  console.log('emailSend')
+  let transporter = nodemailer.createTransport({
+    host: 'mail.pocketfox.co.za',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'peet.stander@pocketfox.co.za',
+      pass: '5a9etiplXIkSma',
+    },
+  })
+
+  let mailOptions = {
+    from: 'peet@partnersinbiz.tech',
+    to: 'thepartnersinbiz@gmail.com',
+    subject: 'Test',
+    text: 'Hello World!',
+  }
+
+  // transporter.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     return console.log(error.message)
+  //   }
+  //   console.log('success')
+  // })
+
+  // const mailOptions = {
+  //   from: snap.data().Company_email,
+  //   to: snap.data().user_email,
+  //   subject: 'Booking Confirmed',
+  //   html: `<h1>Booking Confirmation for </h1>
+  //       <p> This is a test </p>`,
+  // }
+  return transporter.sendMail(mailOptions, (error, data) => {
+    if (error) {
+      console.log(error)
+      return
+    }
+    console.log('Sent!')
+  })
 }
