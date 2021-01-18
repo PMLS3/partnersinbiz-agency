@@ -33,8 +33,16 @@
                 {{ motivational_quotes }}
               </p>
             </div>
-
-            <UploadApps :schema="schema" :item="item" />
+            <div class="flex flex-row">
+              <vs-tooltip text="View Calendar" position="top">
+                <vs-button
+                  class="ml-1"
+                  icon="preview"
+                  @click="$router.push(`/AppsAroundUs/${$route.params.id}`)"
+                ></vs-button>
+              </vs-tooltip>
+              <UploadApps :schema="schema" :item="item" />
+            </div>
           </div>
         </div>
       </div>

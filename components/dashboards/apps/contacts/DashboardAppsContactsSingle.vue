@@ -33,8 +33,17 @@
                 {{ motivational_quotes }}
               </p>
             </div>
+            <div class="flex flex-row">
+              <vs-tooltip text="View Calendar" position="top">
+                <vs-button
+                  class="ml-1"
+                  icon="preview"
+                  @click="$router.push(`/AppsContacts/${$route.params.id}`)"
+                ></vs-button>
+              </vs-tooltip>
 
-            <UploadApps :schema="schema" :item="item" />
+              <UploadApps :schema="schema" :item="item" />
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +64,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <CardContacts :contact="item" />
+          <UiCardContacts :contact="item" />
         </div>
       </div>
     </client-only>
