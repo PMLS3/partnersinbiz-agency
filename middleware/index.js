@@ -7,6 +7,9 @@ export default (context) => {
     route: { params },
   } = context
   // set the layout to the page here
+  console.log('params=', params)
+  console.log('context=', context)
+
   switch (params.id) {
     // case 'profile':
     // case 'Login':
@@ -26,6 +29,7 @@ export default (context) => {
     case 'DemoAframeModernApartment':
     case 'email':
     case 'DemoAR':
+    case 'AppsVideoChat':
       return 'fullPage'
 
     default:

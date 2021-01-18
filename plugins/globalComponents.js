@@ -86,3 +86,6 @@ Vue.component('StarRating', StarRating)
 
 import VueFullpage from 'fullpage-vue'
 Vue.use(VueFullpage)
+import Clipboard from 'v-clipboard'
+
+Vue.use(Clipboard)

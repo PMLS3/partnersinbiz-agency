@@ -1356,6 +1356,11 @@
     stream-events "^1.0.1"
     xdg-basedir "^4.0.0"
 
+"@google/markerclustererplus@^5.1.0":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@google/markerclustererplus/-/markerclustererplus-5.1.3.tgz#dd7ddbb2a17c977e0b0252c3d8e61fcf502b1bf2"
+  integrity sha512-2wQGO6GGbKPC2tNmTz8ei1zBa64zV3QBBvgLHiPvYqUA63230qNqfQpN+nzsrl1RM40NJtty4Y1CEQKxq6MBGg==
+
 "@grpc/grpc-js@^1.0.0", "@grpc/grpc-js@~1.2.0":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.2.3.tgz#35dcbca3cb7415ef5ac6e73d44080ebcb44a4be5"
@@ -7714,6 +7719,13 @@ globule@^1.0.0:
     glob "~7.1.1"
     lodash "~4.17.10"
     minimatch "~3.0.2"
+
+gmap-vue@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/gmap-vue/-/gmap-vue-1.5.0.tgz#43de7cba85c61280bfa65e6450b9d55657e9a82f"
+  integrity sha512-WE0VnSM1EsaTFVsnq53WGnre9cP1Q9DPCr0IiPmaoqsQioAKtTNBNyomrEvg0NIsVuxrdC2qvbgZPXCa8v/mBA==
+  dependencies:
+    "@google/markerclustererplus" "^5.1.0"
 
 good-listener@^1.2.2:
   version "1.2.2"
@@ -16405,6 +16417,11 @@ uuid@^8.0.0, uuid@^8.3.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
+v-clipboard@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/v-clipboard/-/v-clipboard-2.2.3.tgz#f5db3d7004145041b6d7d06ca48236de4cee3a41"
+  integrity sha512-Wg+ObZoYK6McHb5OOCFWvm0R7xHp0/p0G1ocx/8bO22jvA/yVY05rADbfiztwCokXBNfQuGv/XSd1ozcTFgekw==
+
 v-validate@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/v-validate/-/v-validate-0.1.4.tgz#bec5811c42625f4672cd0a8c0c01c0002f3fb7d0"
@@ -16948,15 +16965,15 @@ vue-video-player@^5.0.2:
     videojs-flash "^2.1.0"
     videojs-hotkeys "^0.2.20"
 
-vue2-gmap-custom-marker@^5.6.0:
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/vue2-gmap-custom-marker/-/vue2-gmap-custom-marker-5.6.2.tgz#ea995aabca651307759df94ce29eb7ef8c90587f"
-  integrity sha512-1tXe1iRAdLzOJRz1VQ284TAoey4N3fHHIL5Uc2eAF2fXpDBKyVWp9GvupOK22HswM0E5RSLGHZTvPMD8Mxw+8A==
+vue2-gmap-custom-marker@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/vue2-gmap-custom-marker/-/vue2-gmap-custom-marker-6.0.0.tgz#ccb443b9223396726252c0bf10daf80cd6549f10"
+  integrity sha512-vaFhqeJNEu3PwFMnhzfdNa3o/ehKoYoRz/fMe7zXMjPu6LSVWH8/vCAwU3beWcFM6UcQUF9jMHbw4UG+MEk5Gw==
   dependencies:
-    vue "^2.5.17"
-    vue2-google-maps "^0.10.2"
+    gmap-vue "^1.5.0"
+    vue "^2.x"
 
-vue2-google-maps@^0.10.2, vue2-google-maps@^0.10.7:
+vue2-google-maps@^0.10.7:
   version "0.10.7"
   resolved "https://registry.yarnpkg.com/vue2-google-maps/-/vue2-google-maps-0.10.7.tgz#2e4c1239386001bd47777d8c6a0475e5320cc3a8"
   integrity sha512-y5aBJTAsfGvpsbfgPaeWU7o7QbOeINZKsP6SB9qrBe8U8EYBFO/bTWo3rcMq/NOtgT/XssV3Nwg/2u3no6jWbw==
@@ -16986,7 +17003,7 @@ vue@2.3.3:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.3.3.tgz#d1eaa8fde5240735a4563e74f2c7fead9cbb064c"
   integrity sha1-0eqo/eUkBzWkVj508sf+rZy7Bkw=
 
-vue@^2.3.3, vue@^2.3.4, vue@^2.4.4, vue@^2.5.11, vue@^2.5.17, vue@^2.5.22, vue@^2.6.10, vue@^2.6.11, vue@^2.6.12, vue@^2.6.9:
+vue@^2.3.3, vue@^2.3.4, vue@^2.4.4, vue@^2.5.11, vue@^2.5.17, vue@^2.5.22, vue@^2.6.10, vue@^2.6.11, vue@^2.6.12, vue@^2.6.9, vue@^2.x:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==

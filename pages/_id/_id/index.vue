@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import myMiddleware from '@/middleware/index'
 import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 import station from '@/components/apps/station-player/StationReceiver.vue'
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroardcastStation.vue'
@@ -38,6 +37,8 @@ import AppsAlertButton from '@/components/apps/alert-button/AppsAlertButton.vue'
 import AppsAroundUs from '@/components/apps/around-us/AppsAroundUs.vue'
 import AppsBlog from '@/components/apps/blog/AppsBlog'
 import AppsBroadcaster from '@/components/apps/broadcaster/AppsBroadcaster'
+import AppsContacts from '@/components/apps/contacts/AppsContacts'
+
 import AppsCalendar from '@/components/apps/calendar/AppsCalendar'
 import AppsEcommerce from '@/components/apps/eCommerce/AppsEcommerce'
 import AppsEmailPhoto from '@/components/apps/email-photo/AppsEmailPhoto'
@@ -52,6 +53,9 @@ import AppsProjectManagement from '@/components/apps/project-management/AppsProj
 import AppsRadio from '@/components/apps/radio/AppsRadio'
 import AppsRealEstate from '@/components/apps/real-estate/AppsRealEstate'
 import AppsVideo from '@/components/apps/videos/AppsVideos'
+import AppsVideoChat from '@/components/apps/video-chat/AppsVideoChat'
+
+import myMiddleware from '@/middleware/index'
 
 export default {
   layout: myMiddleware,
@@ -85,6 +89,7 @@ export default {
     AppsAroundUs,
     AppsBlog,
     AppsBroadcaster,
+    AppsContacts,
     AppsCalendar,
     AppsEcommerce,
     AppsEmailPhoto,
@@ -99,6 +104,7 @@ export default {
     AppsRadio,
     AppsRealEstate,
     AppsVideo,
+    AppsVideoChat,
   },
   setup() {
     const { store, route } = useContext()

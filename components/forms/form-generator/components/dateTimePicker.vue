@@ -6,6 +6,7 @@
       @input="$emit('input', datetime)"
       v-model="datetime"
       placeholder="Date Time"
+      class="w-full"
     />
   </div>
 </template>

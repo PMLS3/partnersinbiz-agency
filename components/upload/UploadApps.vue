@@ -48,7 +48,7 @@ export default {
   },
   setup(props) {
     let vm = this
-    const { store, route, $fireStore } = useContext()
+    const { store, route, $fireStore, $vs } = useContext()
 
     let popupActivo = ref(false)
     let formData = ref({})
@@ -69,14 +69,7 @@ export default {
     })
 
     function addForm() {
-      console.log('ITEM', props.item)
-      console.log('itme', props.item.item)
-      // console.log('itme', props.item.type)
-
-      console.log('FormDAta', formData)
-
       let type = props.item.type
-      console.log('type', type)
 
       if (type == 'Category') {
         let form = formData.value
@@ -152,8 +145,6 @@ export default {
         props.item.item == 'BlogSingle' ||
         props.item.item == 'EventsSingle'
       ) {
-        console.log('Route', route)
-
         //TODO: check if date is added otherwise use moment date
         //TODO: check if address is placed
 
@@ -167,8 +158,6 @@ export default {
         form.reseller = [reseller.value, ...sub_reseller.value]
         form.id = route.value.params.id
 
-        console.log('Form: ' + form)
-
         $fireStore
           .collection('apps')
           .doc(props.item.item)
@@ -178,8 +167,6 @@ export default {
             successUpload()
           })
           .catch((err) => {
-            console.log(err)
-
             unsuccessUpload(err)
           })
       } else if (props.item.type == 'Single') {
@@ -209,21 +196,21 @@ export default {
       }
     }
     function successUpload() {
-      this.$vs.notify({
+      $vs.notify({
         color: 'success',
         title: `${this.item.item} added`,
         text: 'Whoop whoop, been uploaded',
       })
     }
     function successDelete() {
-      this.$vs.notify({
+      $vs.notify({
         color: 'success',
         title: `${this.item.item} Deleted`,
         text: 'Successful deletion',
       })
     }
     function unsuccessUpload(er) {
-      this.$vs.notify({
+      $vs.notify({
         color: 'danger',
         title: 'Oh no',
         text: `Error ${er}`,

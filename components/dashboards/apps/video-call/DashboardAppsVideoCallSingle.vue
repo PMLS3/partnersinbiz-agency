@@ -11,10 +11,10 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
-          <h1 class="mb-1 text-white">Image Gallery</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
+          <h1 class="mb-1 text-white">Video Call</h1>
+          <h2 class="text-xl leading-tight text-white font-semibild">
             Create different Gallerys to keep your Images organized
           </h2>
 
@@ -27,59 +27,55 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex justify-between">
+          <div class="flex justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
-
-            <UploadApps :schema="schema" :item="item" />
+            <div class="flex flex-row">
+              <vs-tooltip text="View Calendar" position="top">
+                <vs-button
+                  class="ml-1"
+                  icon="preview"
+                  @click="$router.push(`/AppsVideoChat/${$route.params.id}`)"
+                ></vs-button>
+              </vs-tooltip>
+              <!-- <UploadApps :schema="schema" :item="item" /> -->
+              <!-- <vs-input v-model="userUrl" class="inline-flex mb-2 mr-2" /> -->
+              <vs-tooltip text="Copy link to send on" position="top">
+                <vs-button
+                  v-clipboard:copy="userUrl"
+                  v-clipboard:success="onCopy"
+                  v-clipboard:error="onError"
+                  icon="content_copy"
+                  class="ml-1"
+                >
+                </vs-button>
+              </vs-tooltip>
+            </div>
           </div>
         </div>
       </div>
-      <!-- KNOWLEDGE BASE CARDS  -->
-      <!-- <div class="vx-row">
-        <div
-          class="vx-col w-1/2 sm:w-1/2 md:w-1/3 xl:1/4"
-          v-for="(img, index) in filteredKB"
-          :key="index"
-        >
-          <img
-            :src="img.url"
-            alt="latest-upload"
-            class="rounded mb-4 user-latest-image responsive"
-          />
-        </div> 
-      </div>-->
-      <div class="con-example-images">
-        <vs-images alternating not-border-radius not-margin>
-          <vs-image
-            v-for="(img, index) in filteredKB"
-            :key="index"
-            :src="img.url"
-          />
-        </vs-images>
-      </div>
+      <vs-card class="flex flex-row w-full">
+        <vs-tooltip text="Drawingboard available on call" position="top">
+          <vs-checkbox v-model="drawinboard">Drawingboard</vs-checkbox>
+        </vs-tooltip>
 
-      <!-- <div class="con-example-images">
-        <vs-images>
-          <vs-image v-for="(img, index) in filteredKB" :key="index" :src="img.url" />
-        </vs-images>
-      </div> -->
-      <!-- <div class="vx-row">
-        <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
-          v-for="item in filteredKB"
-          :key="item.id"
+        <vs-tooltip
+          text="Host has to be present before call can start"
+          position="top"
         >
-          <img
-            :src="img.url"
-            alt="latest-upload"
-            class="rounded mb-4 user-latest-image responsive"
-          />
-        </div>
-      </div> -->
+          <vs-checkbox v-model="host">Host</vs-checkbox>
+        </vs-tooltip>
+
+        <vs-tooltip text="Only invitees can join" position="top">
+          <vs-checkbox v-model="private_room">Private</vs-checkbox>
+        </vs-tooltip>
+        <vs-button @click="updateSettings">Update Settings</vs-button>
+      </vs-card>
+
+      <AppsVideoChatVideo :room="$route.params.id" :user="main_user" />
     </client-only>
   </div>
 </template>
@@ -89,15 +85,20 @@
 // import appsCat from '@/components/dashboard/apps_cat/index.vue'
 
 export default {
-  name: 'Image-Category',
+  name: 'VideoCall',
   components: {},
   data() {
     return {
-      item: { item: 'ImgSingle', title: 'Load Images', type: 'Single' },
+      item: { item: 'ImgSingle', title: 'Schedule Calls', type: 'Single' },
       knowledgeBaseSearchQuery: '',
       kb: [],
+      drawingboard: false,
+      host: false,
+      private_room: false,
+      room_info: {},
     }
   },
+
   computed: {
     business() {
       return this.$store.state.business.active_business
@@ -110,6 +111,12 @@ export default {
     },
     sub_reseller() {
       return this.$store.state.business.sub_sellers
+    },
+    userUrl() {
+      var url =
+        window.location.origin + '/se/AppsVideoChat/' + this.$route.params.id
+
+      return url
     },
 
     motivational_quotes() {
@@ -155,31 +162,88 @@ export default {
     },
   },
   created() {
+    let vm = this
+
     if (process.client) {
-      let vm = this
       let ref = this.$fireStore
         .collection('apps')
-        .doc(this.item.item)
+        .doc('VidChatCat')
         .collection('app')
-        .where('id', '==', this.$route.params.id)
+        .doc(vm.$route.params.id)
 
-      ref.onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === 'added') {
-            let doc = change.doc
-            let data = doc.data()
-            data.id = doc.id
-            vm.kb.push({
-              id: doc.id,
-              title: doc.data().title,
-              description: doc.data().desc,
+      ref
+        .get()
+        .then(function (doc) {
+          if (doc.exists) {
+            console.log('Document data:', doc.data())
+            vm.room_info = doc.data()
 
-              url: doc.data().url,
-            })
+            if (doc.data().drawingboard) {
+              this.drawingboard = doc.data().drawingboard
+            }
+
+            if (doc.data().host) {
+              this.host = doc.data().host
+            }
+
+            if (doc.data().private_room) {
+              this.private_room = doc.data().private_room
+            }
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!')
           }
         })
-      })
+        .catch(function (error) {
+          console.log('Error getting document:', error)
+        })
     }
+  },
+  methods: {
+    updateSettings() {
+      let payload = {
+        drawingboard: this.drawingboard,
+        host: this.host,
+        private_room: this.private_room,
+      }
+
+      this.$fireStore
+        .collection('apps')
+        .doc('VidChatCat')
+        .collection('app')
+        .doc(this.$route.params.id)
+        .update(payload)
+        .then(() => {
+          vm.success()
+        })
+    },
+    success() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Call updated',
+        color: 'success',
+      })
+    },
+    onCopy() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Text copied successfully',
+        color: 'success',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon: 'icon-check-circle',
+      })
+    },
+    onError() {
+      this.$vs.notify({
+        title: 'Failed',
+        text: 'Error in copying text',
+        color: 'danger',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon: 'icon-alert-circle',
+      })
+    },
   },
 }
 </script>

@@ -11,11 +11,11 @@
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
         <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
         >
-          <h1 class="mb-1 text-white">Image Gallery</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
-            Create different Gallerys to keep your Images organized
+          <h1 class="mb-1 text-white">Video Call</h1>
+          <h2 class="text-xl leading-tight text-white font-semibild">
+            Create different Calls here
           </h2>
 
           <vs-input
@@ -27,7 +27,7 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex items-center justify-between">
+          <div class="flex items-center justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
@@ -42,7 +42,7 @@
 
       <div class="vx-row">
         <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
@@ -55,11 +55,11 @@
 
 <script>
 export default {
-  name: 'Image-Category',
+  name: 'Video-Chat-Category',
   components: {},
   data() {
     return {
-      item: { item: 'ImgCat', title: 'Load Folders', type: 'Category' },
+      item: { item: 'VidChatCat', title: 'Schedule Calls', type: 'Category' },
       knowledgeBaseSearchQuery: '',
       kb: [],
     }
@@ -98,9 +98,9 @@ export default {
       return [
         {
           title: 'TextInput',
-          placeholder: 'Gallery Name',
+          placeholder: 'Title',
           type: 'text',
-          label: 'Gallery Name',
+          label: 'Title',
           name: 'title',
         },
         {
@@ -115,6 +115,12 @@ export default {
           name: 'desc',
           label: 'Description',
           placeholder: 'Description',
+        },
+        {
+          title: 'DateTimePicker',
+          name: 'call_date',
+          label: 'Date and Time',
+          placeholder: 'Date and Time',
         },
       ]
     },

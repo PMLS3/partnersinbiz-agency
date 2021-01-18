@@ -1,8 +1,13 @@
 <template>
   <div class="flex">
+    <!-- <div>room: {{ room }}</div>
+    <div>room_info: {{ room_info }}</div>
+    <div>user_info: {{ user_info }}</div>
+    <div>room: {{ room }}</div> -->
+
     <vs-button icon="mic" @click="muteMicrophone()"></vs-button>
     <vs-button icon="videocam" @click="videoSwitch()"></vs-button>
-    <vs-button icon="video_library" @click="videoShow()"></vs-button>
+    <!-- <vs-button icon="video_library" @click="videoShow()"></vs-button> -->
     <div id="video-grid" class="absolute z-10 flex" style="height: 150px"></div>
   </div>
 </template>
@@ -12,19 +17,27 @@ export default {
   props: {
     show: {
       type: Boolean,
-      default: true
+      default: true,
     },
     room: {
       type: String,
-      default: 'test'
-    }
+      default: '',
+    },
+    room_info: {
+      type: Object,
+      default: () => {},
+    },
+    user_info: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   data() {
     return {
       joinDetails: {
         roomId: 'hello',
-        userId: 'Peet'
+        userId: 'Peet',
       },
       roomInfo: {},
       message: '',
@@ -50,8 +63,8 @@ export default {
         'hover:-translate-y-1',
         'hover:scale-110',
         'moveable',
-        'z-50'
-      ]
+        'z-50',
+      ],
     }
   },
   mounted() {
@@ -66,7 +79,7 @@ export default {
     startVideo() {
       let vm = this
       this.myPeer = this.$peer
-      this.myPeer.on('open', id => {
+      this.myPeer.on('open', (id) => {
         console.log('id', id)
         this.joinDetails.userId = id
         this.socket.emit('joinRoom', this.joinDetails)
@@ -78,13 +91,13 @@ export default {
 
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
-        .then(stream => {
+        .then((stream) => {
           this.stream = stream
           this.addVideoStream(this.myVideo, this.stream)
-          this.myPeer.on('call', call => {
+          this.myPeer.on('call', (call) => {
             call.answer(this.stream)
             const video = document.createElement('video')
-            call.on('stream', userVideoStream => {
+            call.on('stream', (userVideoStream) => {
               console.log('vide user', userVideoStream)
               this.addVideoStream(video, userVideoStream)
             })
@@ -94,7 +107,7 @@ export default {
 
     videoScreen() {
       this.myPeer = new Peer(undefined)
-      this.myPeer.on('open', id => {
+      this.myPeer.on('open', (id) => {
         this.joinDetails.userId = id
         this.socket.emit('joinRoom', this.joinDetails)
       })
@@ -108,22 +121,22 @@ export default {
         navigator.mediaDevices
           .getDisplayMedia({
             video: true,
-            audio: false
+            audio: false,
           })
-          .then(function(stream) {
+          .then(function (stream) {
             // Close allow screenshare snackbar
             vm.mode = 'screen'
             stream
             vm.addVideoStream(myVideo, stream)
-            vm.myPeer.on('call', call => {
+            vm.myPeer.on('call', (call) => {
               call.answer(stream)
               const video = document.createElement('video')
-              call.on('stream', userVideoStream => {
+              call.on('stream', (userVideoStream) => {
                 vm.addVideoStream(video, userVideoStream)
               })
             })
           })
-          .catch(function(err) {
+          .catch(function (err) {
             console.log('err', err)
           })
       }
@@ -133,14 +146,14 @@ export default {
       // Get current video track
       let videoTrack = stream.getVideoTracks()[0]
       // Add listen for if the current track swaps, swap back
-      videoTrack.onended = function() {
+      videoTrack.onended = function () {
         this.swap()
       }
       if (this.VideoChat.connected) {
         // Find sender
         const sender = this.VideoChat.peerConnection
           .getSenders()
-          .find(function(s) {
+          .find(function (s) {
             // make sure tack types match
             return s.track.kind === videoTrack.kind
           })
@@ -169,7 +182,7 @@ export default {
       const call = this.myPeer.call(userId, stream)
       const video = document.createElement('video')
 
-      call.on('stream', userVideoStream => {
+      call.on('stream', (userVideoStream) => {
         this.addVideoStream(video, userVideoStream)
       })
       call.on('close', () => {
@@ -192,14 +205,14 @@ export default {
     messageSend() {
       this.messageInfo = {
         message: this.message,
-        roomId: this.joinDetails.roomId
+        roomId: this.joinDetails.roomId,
       }
       this.messageSent()
     },
     receive(resp) {
       this.messages.push(resp)
-    }
-  }
+    },
+  },
 }
 </script>
 
