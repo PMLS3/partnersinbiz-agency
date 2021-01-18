@@ -2,6 +2,7 @@
   <div class="h-screen">
     <client-only>
       <vs-card class="mt-24">
+        <vs-button @click="$router.push('test')">Tetst</vs-button>
         <UiImageUnsplash />
       </vs-card>
     </client-only>

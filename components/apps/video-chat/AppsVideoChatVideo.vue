@@ -1,15 +1,35 @@
 <template>
-  <div class="flex">
-    <!-- <div>room: {{ room }}</div>
-    <div>room_info: {{ room_info }}</div>
-    <div>user_info: {{ user_info }}</div>
-    <div>room: {{ room }}</div> -->
+  <div class="video-call">
+    <!-- button -->
+    <vs-button @click="runtest">Start Call</vs-button>
+    <!-- current user video  -->
+    <div>
+      <div class="flex">
+        <vs-button icon="mic" @click="muteMicrophone()"></vs-button>
+        <vs-button icon="videocam" @click="videoSwitch()"></vs-button>
+      </div>
 
-    <vs-button icon="mic" @click="muteMicrophone()"></vs-button>
-    <vs-button icon="videocam" @click="videoSwitch()"></vs-button>
-    <!-- <vs-button icon="video_library" @click="videoShow()"></vs-button> -->
-    <div id="video-grid" class="absolute z-10 flex" style="height: 150px"></div>
+      <video class="video-large" autoplay id="my-video-grid" />
+    </div>
+
+    <!-- user list  -->
+    <div class="user-list">
+      <h4>Users</h4>
+      <div id="users" class="users" />
+    </div>
+    <!-- users stream container  -->
+
+    <div id="users-container" class="users-container" />
+    <div
+      id="video-grid"
+      class="flex users-container"
+      style="height: 150px"
+    ></div>
+
+    <div />
   </div>
+
+  <!-- <vs-button icon="video_library" @click="videoShow()"></vs-button> -->
 </template>
 
 <script>
@@ -76,6 +96,9 @@ export default {
     }
   },
   methods: {
+    runtest() {
+      this.startVideo()
+    },
     startVideo() {
       let vm = this
       this.myPeer = this.$peer
@@ -85,15 +108,21 @@ export default {
         this.socket.emit('joinRoom', this.joinDetails)
       })
       this.videoGrid = document.getElementById('video-grid')
-      this.myVideo = document.createElement('video')
+      // this.myVideo = document.createElement('video')
+      this.myVideo = document.getElementById('my-video-grid')
       this.myVideo.muted = true
-      this.myVideo.classList.add(...this.classesToAdd)
+      // this.myVideo.classList.add(...this.classesToAdd)
 
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((stream) => {
           this.stream = stream
-          this.addVideoStream(this.myVideo, this.stream)
+          // this.addVideoStream(this.myVideo, this.stream)
+
+          this.myVideo.srcObject = stream
+          this.myVideo.addEventListener('loadedmetadata', () => {
+            this.myVideo.play()
+          })
           this.myPeer.on('call', (call) => {
             call.answer(this.stream)
             const video = document.createElement('video')
@@ -222,9 +251,53 @@ export default {
   grid-template-columns: repeat(auto-fill, 300px);
   grid-auto-rows: 300px;
 }
-video {
+/* video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+} */
+
+/* .video-call  */
+.video-call {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  width: 100vw;
+}
+.video-call > button {
+  background: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid black;
+  cursor: pointer;
+}
+.video-call > video {
+  margin: auto;
+  transform: rotateY(180deg);
+}
+/* user-list  */
+.user-list {
+  display: flex;
+  flex-direction: column;
+}
+.user-list h4 {
+  margin: 10px 0;
+}
+.user-list .users {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 0;
+}
+/* users-container  */
+.users-container {
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100vw;
 }
 </style>

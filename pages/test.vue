@@ -1,140 +1,211 @@
 <template>
-  <div class="w-screen h-screen bg-black">
-    <h1>Select a state</h1>
-    <vs-button @click="fetchSomething">Fetch</vs-button>
-    <vs-button @click="submitForm">Submit</vs-button>
-    <h1 class="text-white" v-for="(data, index) in ip" :key="index">
-      {{ data }}
-    </h1>
-    <br />
-    <vs-button @click="fetchStates">Fetch State</vs-button>
-    <vs-button @click="submitForms">Submit</vs-button>
-    <h1 class="text-white" v-for="(data, index) in states" :key="index">
-      {{ data }}
-    </h1>
+  <div class="video-call">
+    <!-- button -->
+    <vs-button @click="runtest">Start Call</vs-button>
+    <!-- current user video  -->
+    <video class="video-large" autoplay />
+    <!-- user list  -->
+    <div class="user-list">
+      <h4>Users</h4>
+      <div id="users" class="users" />
+    </div>
+    <!-- users stream container  -->
+    <div id="users-container" class="users-container" />
+    <div />
   </div>
 </template>
 
 <script>
-// import '@/js/data/states.js'
+import io from 'socket.io-client'
 export default {
-  layout: 'pib',
+  layout: 'fullPage',
   data() {
     return {
-      ip: {},
-      title: 'PEET',
-      author: 'Stander',
-      body: 'whoo',
-      states: [],
-      number: 0,
+      serverUrl: 'http://localhost:3000/test',
     }
   },
-  watch: {
-    ip() {
-      console.log('data', this.ip)
-    },
+  mounted() {
+    if (!window.location.href.includes('localhost')) {
+      this.serverUrl = 'https://nuxt-video-call-server.herokuapp.com'
+    }
   },
-  async asyncData() {
-    // const posts = await
-  },
-
   methods: {
-    async fetchSomething() {
-      const map = await this.$axios.$get('/api/business')
-      console.log('map', map)
-      const ip = await this.$axios.$get('/api/posts')
-      // const states = await ip.json()
-      console.log('posts', ip)
-      this.ip = ip
-    },
-    async fetchStates() {
-      const ip = await this.$axios.$get('/api/states')
-      // const states = await ip.json()
-      console.log('states', ip)
-      this.states = ip
-    },
-    submitForm() {
-      this.$axios.$post('/api/posts', {
-        title: this.title,
-        author: this.author,
-        body: this.body,
+    runtest() {
+      // peerConnection
+      // get and create an instance of the peerconnection
+      const PeerConnection =
+        window.RTCPeerConnection ||
+        window.mozRTCPeerConnection ||
+        window.webkitRTCPeerConnection ||
+        window.msRTCPeerConnection
+      const SessionDescription =
+        window.RTCSessionDescription ||
+        window.mozRTCSessionDescription ||
+        window.webkitRTCSessionDescription ||
+        window.msRTCSessionDescription
+      navigator.getUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia
+      // create an instance of PeerConnection
+      const pc = new PeerConnection({
+        iceServers: [
+          {
+            url: 'stun:stun.services.mozilla.com',
+            username: 'somename',
+            credential: 'somecredentials',
+          },
+        ],
       })
-
-      this.$axios.post('/api/business')
-    },
-    submitForms() {
-      this.$axios.$post('/api/states')
-      this.fetchData()
-    },
-    fetchData() {
-      if (this.number < 10) {
-        setTimeout(() => {
-          console.log('i', this.number)
-          this.number++
-          this.fetchStates()
-          this.fetchData()
-        }, 300)
-      } else {
-        this.number = 0
+      // error handler
+      function error(err) {
+        console.warn('Error', err)
       }
+      // define create Offer function to start peer to peer connection
+      function createOffer(id) {
+        pc.createOffer(function (offer) {
+          pc.setLocalDescription(
+            new SessionDescription(offer),
+            function () {
+              // make offer to the cliked id
+              socket.emit('make-offer', {
+                offer,
+                to: id,
+              })
+            },
+            error
+          )
+        }, error)
+      }
+      // socket
+      // start connecion
+      const socket = io.connect(this.serverUrl)
+      // add users list
+      socket.on('add-users', (data) => {
+        console.log(data)
+        for (let i = 0; i < data.users.length; i++) {
+          const el = document.createElement('div')
+          const id = data.users[i]
+          el.setAttribute('id', id)
+          el.innerHTML = id
+          el.setAttribute('class', 'user-item')
+          el.addEventListener('click', function () {
+            // create RTC peer connection when clicked
+            createOffer(id)
+          })
+          document.getElementById('users').appendChild(el)
+        }
+      })
+      // remove user on the current user screen
+      socket.on('remove-user', function (id) {
+        const div = document.getElementById(id)
+        document.getElementById('users').removeChild(div)
+      })
+      // handle offer-made and send answer to the remote user
+      socket.on('offer-made', function (data) {
+        // offer = data.offer
+        pc.setRemoteDescription(
+          new SessionDescription(data.offer),
+          function () {
+            pc.createAnswer(function (answer) {
+              pc.setLocalDescription(
+                new SessionDescription(answer),
+                function () {
+                  console.log('MAKE ANSWER')
+                  socket.emit('make-answer', {
+                    answer,
+                    to: data.socket,
+                  })
+                },
+                error
+              )
+            }, error)
+          },
+          error
+        )
+      })
+      // handle answer-made by setting setRemoteDescription with the remote answer object
+      const answersFrom = {}
+      // let offer
+      socket.on('answer-made', function (data) {
+        pc.setRemoteDescription(
+          new SessionDescription(data.answer),
+          function () {
+            document.getElementById(data.socket).setAttribute('class', 'active')
+            if (!answersFrom[data.socket]) {
+              createOffer(data.socket)
+              answersFrom[data.socket] = true
+            }
+          },
+          error
+        )
+      })
+      pc.onaddstream = function (obj) {
+        console.log(obj)
+        const vid = document.createElement('video')
+        vid.setAttribute('class', 'video-small')
+        vid.setAttribute('autoplay', 'autoplay')
+        vid.setAttribute('id', 'video-small')
+        document.getElementById('users-container').appendChild(vid)
+        vid.srcObject = obj.stream
+      }
+      navigator.getUserMedia(
+        { video: true, audio: true },
+        function (stream) {
+          const video = document.querySelector('video')
+          video.srcObject = stream
+          pc.addStream(stream)
+        },
+        error
+      )
     },
   },
 }
 </script>
-<style>
-/* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-#map {
-  height: 100%;
-  background-color: grey;
-}
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+<style scoped>
+/* .video-call  */
+.video-call {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  width: 100vw;
 }
-
-/* TODO: Step 4A1: Make a generic sidebar */
-/* Styling for an info pane that slides out from the left. 
-     * Hidden by default. */
-#panel {
-  height: 100%;
-  width: null;
-  background-color: white;
-  position: fixed;
-  z-index: 1;
-  overflow-x: hidden;
-  transition: all 0.2s ease-out;
+.video-call > button {
+  background: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid black;
+  cursor: pointer;
 }
-
-.open {
-  width: 250px;
+.video-call > video {
+  margin: auto;
+  transform: rotateY(180deg);
 }
-
-/* Styling for place details */
-.hero {
-  width: 100%;
-  height: auto;
-  max-height: 166px;
-  display: block;
+/* user-list  */
+.user-list {
+  display: flex;
+  flex-direction: column;
 }
-
-.place,
-p {
-  font-family: 'open sans', arial, sans-serif;
-  padding-left: 18px;
-  padding-right: 18px;
+.user-list h4 {
+  margin: 10px 0;
 }
-
-.details {
-  color: darkslategrey;
+.user-list .users {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 0;
 }
-
-a {
-  text-decoration: none;
-  color: cadetblue;
+/* users-container  */
+.users-container {
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100vw;
 }
 </style>
