@@ -47,6 +47,12 @@ export default {
     const { store, $fireStore } = useContext()
 
     const user = computed(() => store.state.auth.main_user)
+    const userUrl = computed(() => {
+      var url =
+        window.location.origin + '/se/AppsBroadcast/' + this.$route.params.id
+
+      return url
+    })
 
     let motivational_quotes = computed(() => {
       let num = Math.floor(Math.random() * 55)

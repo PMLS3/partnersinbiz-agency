@@ -33,11 +33,34 @@
                 {{ motivational_quotes }}
               </p>
             </div>
-            <UploadCategory :schema="schemas" :item="items" />
 
-            <UploadApps :schema="schema" :item="item" />
+            <div class="flex flex-row">
+              <vs-tooltip text="View Component" position="top">
+                <vs-button
+                  class="ml-1"
+                  icon="preview"
+                  @click="$router.push(`/AppsEvents/${$route.params.id}`)"
+                ></vs-button>
+              </vs-tooltip>
+              <!-- <UploadApps :schema="schema" :item="item" /> -->
+              <!-- <vs-input v-model="userUrl" class="inline-flex mb-2 mr-2" /> -->
+              <vs-tooltip text="Copy link to send on" position="top">
+                <vs-button
+                  v-clipboard:copy="userUrl"
+                  v-clipboard:success="onCopy"
+                  v-clipboard:error="onError"
+                  icon="content_copy"
+                  class="ml-1"
+                >
+                </vs-button>
+              </vs-tooltip>
 
-            <vs-tooltip text="View Calendar" position="top">
+              <UploadApps :schema="schema" :item="item" />
+
+              <UploadCategory :schema="schemas" :item="items" />
+            </div>
+
+            <vs-tooltip text="View Component" position="top">
               <vs-button
                 class="ml-1"
                 icon="preview"
@@ -103,6 +126,12 @@ export default {
     },
     sub_reseller() {
       return this.$store.state.business.sub_sellers
+    },
+    userUrl() {
+      var url =
+        window.location.origin + '/se/AppsEvents/' + this.$route.params.id
+
+      return url
     },
     // categories() {
     //   return this.$store.state.app.categories
@@ -260,6 +289,48 @@ export default {
       })
       vm.$store.commit('app/CATEGORIES_SET', vm.categories)
     }
+  },
+  methods: {
+    updateSettings() {
+      let payload = {}
+
+      this.$fireStore
+        .collection('apps')
+        .doc('VidChatCat')
+        .collection('app')
+        .doc(this.$route.params.id)
+        .update(payload)
+        .then(() => {
+          vm.success()
+        })
+    },
+    success() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Call updated',
+        color: 'success',
+      })
+    },
+    onCopy() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Text copied successfully',
+        color: 'success',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon: 'icon-check-circle',
+      })
+    },
+    onError() {
+      this.$vs.notify({
+        title: 'Failed',
+        text: 'Error in copying text',
+        color: 'danger',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon: 'icon-alert-circle',
+      })
+    },
   },
 }
 </script>

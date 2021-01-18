@@ -34,7 +34,7 @@
               </p>
             </div>
             <div class="flex flex-row">
-              <vs-tooltip text="View Calendar" position="top">
+              <vs-tooltip text="View Component" position="top">
                 <vs-button
                   class="ml-1"
                   icon="preview"

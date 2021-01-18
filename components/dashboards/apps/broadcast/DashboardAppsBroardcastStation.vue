@@ -199,9 +199,48 @@ export default {
     this.joinDetails = { room: this.$route.params.id, user: user }
     this.joinRoom()
   },
-  //   data: () => ({
-  //     colorx: "#8B0000"
-  //   })
+  methods: {
+    updateSettings() {
+      let payload = {}
+
+      this.$fireStore
+        .collection('apps')
+        .doc('VidChatCat')
+        .collection('app')
+        .doc(this.$route.params.id)
+        .update(payload)
+        .then(() => {
+          vm.success()
+        })
+    },
+    success() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Call updated',
+        color: 'success',
+      })
+    },
+    onCopy() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Text copied successfully',
+        color: 'success',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon: 'icon-check-circle',
+      })
+    },
+    onError() {
+      this.$vs.notify({
+        title: 'Failed',
+        text: 'Error in copying text',
+        color: 'danger',
+        iconPack: 'feather',
+        position: 'top-center',
+        icon: 'icon-alert-circle',
+      })
+    },
+  },
 }
 </script>
 <style lang="scss">

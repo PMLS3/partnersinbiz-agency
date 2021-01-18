@@ -33,8 +33,29 @@
                 {{ motivational_quotes }}
               </p>
             </div>
+            <div class="flex flex-row">
+              <vs-tooltip text="View Component" position="top">
+                <vs-button
+                  class="ml-1"
+                  icon="preview"
+                  @click="$router.push(`/AppsVideos/${$route.params.id}`)"
+                ></vs-button>
+              </vs-tooltip>
+              <!-- <UploadApps :schema="schema" :item="item" /> -->
+              <!-- <vs-input v-model="userUrl" class="inline-flex mb-2 mr-2" /> -->
+              <vs-tooltip text="Copy link to send on" position="top">
+                <vs-button
+                  v-clipboard:copy="userUrl"
+                  v-clipboard:success="onCopy"
+                  v-clipboard:error="onError"
+                  icon="content_copy"
+                  class="ml-1"
+                >
+                </vs-button>
+              </vs-tooltip>
 
-            <UploadApps :schema="schema" :item="item" />
+              <UploadApps :schema="schema" :item="item" />
+            </div>
           </div>
         </div>
       </div>
@@ -75,7 +96,12 @@ export default {
     sub_reseller() {
       return this.$store.state.business.sub_sellers
     },
+    userUrl() {
+      var url =
+        window.location.origin + '/se/AppsVideos/' + this.$route.params.id
 
+      return url
+    },
     motivational_quotes() {
       let num = Math.floor(Math.random() * 55)
       return this.$store.state.info.motivational_quotes[num]
