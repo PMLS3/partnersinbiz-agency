@@ -1,11 +1,13 @@
 <template>
   <div class="flex items-center">
     <div class="btn-group">
-      <vs-button
-        class="mr-1"
-        icon="control_point_duplicate"
-        @click="popupActivo = true"
-      ></vs-button>
+      <vs-tooltip text="Add Category" position="top">
+        <vs-button
+          class="ml-1"
+          icon="control_point_duplicate"
+          @click="popupActivo = true"
+        ></vs-button>
+      </vs-tooltip>
     </div>
     <vs-popup
       class="holamundo"

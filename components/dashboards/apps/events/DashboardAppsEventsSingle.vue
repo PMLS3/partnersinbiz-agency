@@ -10,9 +10,7 @@
     <client-only>
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
-        <div
-          class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
-        >
+        <div class="p-8 pt-24 knowledge-base-jumbotron-content">
           <h1 class="mb-1 text-white">Events</h1>
           <h2 class="text-xl leading-tight text-white font-semibild">
             Create different events for your Calendar
@@ -59,17 +57,29 @@
 
               <UploadCategory :schema="schemas" :item="items" />
             </div>
-
-            <vs-tooltip text="View Component" position="top">
-              <vs-button
-                class="ml-1"
-                icon="preview"
-                @click="$router.push(`/AppsEvents/${$route.params.id}`)"
-              ></vs-button>
+          </div>
+          <div class="flex flex-row items-center">
+            <vs-tooltip text="Drawingboard available on call" position="top">
+              <vs-checkbox v-model="drawinboard" class="text-white"
+                >Drawingboard</vs-checkbox
+              >
             </vs-tooltip>
+
+            <vs-tooltip
+              text="Host has to be present before call can start"
+              position="top"
+            >
+              <vs-checkbox v-model="host">Host</vs-checkbox>
+            </vs-tooltip>
+
+            <vs-tooltip text="Only invitees can join" position="top">
+              <vs-checkbox v-model="private_room">Private</vs-checkbox>
+            </vs-tooltip>
+            <vs-button @click="updateSettings">Update Settings</vs-button>
           </div>
         </div>
       </div>
+
       <p class="ml-4 text-gray-700">Categories</p>
 
       <div class="mt-3 ml-4 vx-row">
@@ -341,7 +351,7 @@ export default {
   background-size: cover;
 }
 .con-example-images {
-  max-height: 500px;
+  max-height: 300px;
   overflow: auto;
 }
 </style>

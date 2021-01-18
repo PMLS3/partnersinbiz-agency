@@ -3,12 +3,24 @@
 	Description:
 	Component Name: 
 	----------------------------------------------------------------------------------------
-TODO: make events clickable 
+TODO: make items clickable 
 ========================================================================================== -->
 
 <template>
   <div>
-    <MultiCalendar :events="events" />
+    <div>
+      <div class="con-example-images">
+        <vs-images>
+          <vs-image
+            v-for="(image, index) in items"
+            :key="index"
+            :src="`${image.downloadURL}`"
+            @click="imageShow(image)"
+          />
+        </vs-images>
+      </div>
+      <img :src="src" alt v-if="imageShowing" @click="imageNoShow" />
+    </div>
   </div>
 </template>
 
@@ -23,7 +35,7 @@ export default {
   },
   data() {
     return {
-      events: [],
+      items: [],
     }
   },
   computed: {
@@ -53,10 +65,19 @@ export default {
             contentFull: doc.data().description,
           }
           data.id = doc.id
-          vm.events.push(datas)
+          vm.items.push(datas)
         }
       })
     })
+  },
+  methods: {
+    imageShow(im) {
+      this.src = im.downloadURL
+      this.imageShowing = true
+    },
+    imageNoShow() {
+      this.imageShowing = false
+    },
   },
 }
 </script>

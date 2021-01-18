@@ -3,18 +3,18 @@
 	Description:
 	Component Name: 
 	----------------------------------------------------------------------------------------
-TODO: make events clickable 
+TODO: make items clickable 
 ========================================================================================== -->
 
 <template>
   <div>
-    <MultiCalendar :events="events" />
+    <MultiCalendar :items="items" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppsEvents',
+  name: 'AppsClassroom',
   props: {
     item_id: {
       type: String,
@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      events: [],
+      items: [],
     }
   },
   computed: {
@@ -53,7 +53,7 @@ export default {
             contentFull: doc.data().description,
           }
           data.id = doc.id
-          vm.events.push(datas)
+          vm.items.push(datas)
         }
       })
     })
