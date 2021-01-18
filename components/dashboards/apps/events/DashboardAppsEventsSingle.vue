@@ -33,8 +33,17 @@
                 {{ motivational_quotes }}
               </p>
             </div>
+            <UploadCategory :schema="schemas" :item="items" />
 
             <UploadApps :schema="schema" :item="item" />
+
+            <vs-tooltip text="View Calendar" position="top">
+              <vs-button
+                class="ml-1"
+                icon="preview"
+                @click="$router.push(`/AppsEvents/${$route.params.id}`)"
+              ></vs-button>
+            </vs-tooltip>
           </div>
         </div>
       </div>
@@ -75,6 +84,8 @@ export default {
   data() {
     return {
       item: { item: 'EventsSingle', title: 'Load Events', type: 'Single' },
+      items: { item: 'Events', title: 'Load Folders', type: 'Category' },
+
       knowledgeBaseSearchQuery: '',
       kb: [],
       categories: [],
@@ -118,7 +129,24 @@ export default {
             .includes(this.knowledgeBaseSearchQuery.toLowerCase())
       )
     },
-
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
+        },
+      ]
+    },
     schema() {
       return [
         {

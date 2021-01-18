@@ -199,6 +199,8 @@ module.exports = {
           onErrorAction: 'handleAuthError',
           ssr: true, // Default
         },
+        emulatorPort: 9099,
+        emulatorHost: 'http://localhost',
       },
       firestore: {
         static: false, // default
@@ -206,10 +208,14 @@ module.exports = {
         chunkName:
           process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
         enablePersistence: true,
+        memoryOnly: false, // default
+        emulatorPort: 8080,
+        emulatorHost: 'localhost',
       },
       functions: {
         location: 'us-central1', // Default
-        emulatorPort: 12345,
+        emulatorPort: 5001,
+        emulatorHost: 'http://10.10.10.3',
       },
       storage: true,
       realtimeDb: true,

@@ -34,6 +34,25 @@ import dashboardAppsReservationPerson from '@/components/dashboards/apps/reserva
 import dashboardAppsVideoCall from '@/components/dashboards/apps/video-call/DashboardAppsVideoCallSingle.vue'
 import dashboardAppsVideos from '@/components/dashboards/apps/videos/DashboardAppsVideosSingle.vue'
 
+import AppsAlertButton from '@/components/apps/alert-button/AppsAlertButton.vue'
+import AppsAroundUs from '@/components/apps/around-us/AppsAroundUs.vue'
+import AppsBlog from '@/components/apps/blog/AppsBlog'
+import AppsBroadcaster from '@/components/apps/broadcaster/AppsBroadcaster'
+import AppsCalendar from '@/components/apps/calendar/AppsCalendar'
+import AppsEcommerce from '@/components/apps/eCommerce/AppsEcommerce'
+import AppsEmailPhoto from '@/components/apps/email-photo/AppsEmailPhoto'
+import AppsEvents from '@/components/apps/events/AppsEvents'
+import AppsFanwall from '@/components/apps/fanwall/AppsFanwall'
+import AppsGolf from '@/components/apps/golf/AppsGolf'
+import AppsImageGallery from '@/components/apps/image-gallery/AppsImageGallery'
+import AppsInfoTier from '@/components/apps/info-tier/AppsInfoTier'
+import AppsLoyalty from '@/components/apps/loyalty/AppsLoyalty'
+import AppsMailingList from '@/components/apps/mailing-list/AppsMailingList'
+import AppsProjectManagement from '@/components/apps/project-management/AppsProjectManagement'
+import AppsRadio from '@/components/apps/radio/AppsRadio'
+import AppsRealEstate from '@/components/apps/real-estate/AppsRealEstate'
+import AppsVideo from '@/components/apps/videos/AppsVideos'
+
 export default {
   layout: myMiddleware,
   components: {
@@ -62,6 +81,24 @@ export default {
     dashboardAppsReservationPerson,
     dashboardAppsVideoCall,
     dashboardAppsVideos,
+    AppsAlertButton,
+    AppsAroundUs,
+    AppsBlog,
+    AppsBroadcaster,
+    AppsCalendar,
+    AppsEcommerce,
+    AppsEmailPhoto,
+    AppsEvents,
+    AppsFanwall,
+    AppsGolf,
+    AppsImageGallery,
+    AppsInfoTier,
+    AppsLoyalty,
+    AppsMailingList,
+    AppsProjectManagement,
+    AppsRadio,
+    AppsRealEstate,
+    AppsVideo,
   },
   setup() {
     const { store, route } = useContext()

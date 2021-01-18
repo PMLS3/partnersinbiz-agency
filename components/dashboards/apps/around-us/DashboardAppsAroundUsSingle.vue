@@ -44,7 +44,7 @@
           v-for="item in filteredKB"
           :key="item.id"
         >
-          <CardContacts :contact="item" />
+          <UiCardContacts :contact="item" />
         </div>
       </div>
     </client-only>
