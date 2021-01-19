@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'BlogSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Blog',
+        sub_text: 'All your blog needs',
         type: 'Single',
-        has_categories: true,
+        has_categories: false,
         parent: 'Blog',
-        display: 'calendar',
+        display: 'blog',
         url: '/AppsBlog/',
         settings: {
           search: true,
@@ -74,27 +74,27 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Category',
+          field: 'category',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'End',
-          field: 'end',
+          headerName: 'Publish date',
+          field: 'publish',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'Short',
-          field: 'content',
+          headerName: 'Author',
+          field: 'author',
           filter: true,
           width: 175,
         },
 
         {
-          headerName: 'Long Description',
-          field: 'contentFull',
+          headerName: 'Description',
+          field: 'desc',
           filter: true,
           width: 250,
           cellRendererFramework: 'CellRendererHtml',
@@ -106,6 +106,24 @@ export default {
           filter: 'agNumberColumnFilter',
           width: 125,
           cellRendererFramework: 'CellRendererActions',
+        },
+      ]
+    },
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
         },
       ]
     },

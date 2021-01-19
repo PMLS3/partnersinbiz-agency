@@ -124,6 +124,9 @@
             :events="filteredKB"
             v-if="item.display == 'calendar'"
           />
+          <AppsAroundUs v-if="item.display == 'around'" />
+
+          <AppsBlog v-if="item.display == 'blog'" />
         </client-only>
       </div>
       <div v-show="!viewSet">

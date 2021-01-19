@@ -260,9 +260,34 @@ export default {
         )
       }
     },
+    getCategories(id) {
+      let vm = this
+      let catRef = this.$fireStore
+        .collection('apps')
+        .doc('EventsSingle')
+        .collection('category')
+        .where('b_uid', '==', id)
+
+      catRef.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            let doc = change.doc
+            let data = doc.data()
+            data.id = doc.id
+            vm.categories.push({
+              id: doc.id,
+              title: doc.data().title,
+              color: doc.data().color,
+            })
+          }
+        })
+      })
+      vm.$store.commit('app/CATEGORIES_SET', vm.categories)
+    },
   },
   created() {
     let vm = this
+    let id = ''
     let ref = this.$fireStore
       .collection('apps')
       .doc('BlogSingle')
@@ -274,34 +299,17 @@ export default {
         if (change.type === 'added') {
           let doc = change.doc
           let data = doc.data()
-
+          id = doc.data().b_uid
           data.id = doc.id
           vm.items.push(data)
         }
       })
     })
-
-    let catRef = this.$fireStore
-      .collection('apps')
-      .doc('EventsSingle')
-      .collection('category')
-      .where('b_uid', '==', this.business.b_uid)
-
-    catRef.onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === 'added') {
-          let doc = change.doc
-          let data = doc.data()
-          data.id = doc.id
-          vm.categories.push({
-            id: doc.id,
-            title: doc.data().title,
-            color: doc.data().color,
-          })
-        }
-      })
-    })
-    vm.$store.commit('app/CATEGORIES_SET', vm.categories)
+    // .then(() => {
+    setTimeout(() => {
+      vm.getCategories(id)
+    }, 500)
+    // })
   },
 }
 </script>
