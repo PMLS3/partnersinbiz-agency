@@ -49,9 +49,6 @@ export default {
         },
       },
       items: { item: 'Events', title: 'Add Category', type: 'Category' },
-
-      knowledgeBaseSearchQuery: '',
-      kb: [],
     }
   },
   computed: {

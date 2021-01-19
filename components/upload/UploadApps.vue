@@ -180,6 +180,10 @@ export default {
         form.b_uid = business.value.b_uid
         form.reseller = [reseller.value, ...sub_reseller.value]
         form.id = route.value.params.id
+        if (form.addr) {
+          form = { ...form.addr, ...form }
+          delete form.addr
+        }
 
         console.log('Form: ' + form)
         $fireStore

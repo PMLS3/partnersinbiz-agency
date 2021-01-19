@@ -7,8 +7,8 @@ export default (context) => {
     route: { params },
   } = context
   // set the layout to the page here
-  console.log('params=', params)
-  console.log('context=', context)
+  // console.log('params=', params)
+  // console.log('context=', context)
 
   switch (params.id) {
     // case 'profile':

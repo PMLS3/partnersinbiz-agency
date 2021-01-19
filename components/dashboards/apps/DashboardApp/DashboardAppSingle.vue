@@ -65,7 +65,11 @@
 
               <UploadApps :schema="schema" :item="item" />
 
-              <UploadCategory :schema="schemas" :item="items" />
+              <UploadCategory
+                :schema="schemas"
+                :item="items"
+                v-if="item.has_categories"
+              />
             </div>
           </div>
           <div class="flex items-center" v-if="item.has_categories">
@@ -271,11 +275,11 @@ export default {
       console.log('item', this.item.item)
       let vm = this
       if (this.item.display == 'calendar') {
-        let ref = this.$fireStore
+        let ref = vm.$fireStore
           .collection('apps')
-          .doc(this.item.item)
+          .doc(vm.item.item)
           .collection('app')
-          .where('id', '==', this.$route.params.id)
+          .where('id', '==', vm.$route.params.id)
 
         ref.onSnapshot((snapshot) => {
           snapshot.docChanges().forEach((change) => {
@@ -296,11 +300,11 @@ export default {
           })
         })
       } else {
-        let ref = this.$fireStore
+        let ref = vm.$fireStore
           .collection('apps')
-          .doc(this.item.item)
+          .doc(vm.item.item)
           .collection('app')
-          .where('id', '==', this.$route.params.id)
+          .where('id', '==', vm.$route.params.id)
 
         ref.onSnapshot((snapshot) => {
           snapshot.docChanges().forEach((change) => {
@@ -314,27 +318,29 @@ export default {
         })
       }
 
-      let catRef = this.$fireStore
-        .collection('apps')
-        .doc(this.items.item)
-        .collection('category')
-        .where('b_uid', '==', this.business.b_uid)
+      if (this.item.has_categories) {
+        let catRef = tvmhis.$fireStore
+          .collection('apps')
+          .doc(vm.items.item)
+          .collection('category')
+          .where('b_uid', '==', vm.business.b_uid)
 
-      catRef.onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === 'added') {
-            let doc = change.doc
-            let data = doc.data()
-            data.id = doc.id
-            vm.categories.push({
-              id: doc.id,
-              title: doc.data().title,
-              color: doc.data().color,
-            })
-          }
+        catRef.onSnapshot((snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === 'added') {
+              let doc = change.doc
+              let data = doc.data()
+              data.id = doc.id
+              vm.categories.push({
+                id: doc.id,
+                title: doc.data().title,
+                color: doc.data().color,
+              })
+            }
+          })
         })
-      })
-      vm.$store.commit('app/CATEGORIES_SET', vm.categories)
+        vm.$store.commit('app/CATEGORIES_SET', vm.categories)
+      }
     }
 
     setTimeout(() => {

@@ -1,7 +1,8 @@
 <template>
   <div>
     <client-only>
-      <AppsVideoChat />
+      <!-- <MapsBasic /> -->
+      <AppsAroundUs />
     </client-only>
   </div>
 </template>

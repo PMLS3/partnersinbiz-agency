@@ -110,9 +110,6 @@ export default {
     const { store, route } = useContext()
     const feature = ref({})
     onMounted(() => {
-      console.log('mounted!', route)
-      console.log('mounted!', route.value.path)
-      console.log('mounted!', route.value.path.split('/'))
       feature.value = route.value.path.split('/')[1]
     })
     // const feature = computed(() => store.state.app.feature)
