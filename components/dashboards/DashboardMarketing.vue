@@ -90,7 +90,7 @@ export default {
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations/social_share.svg'),
-        url: '/dashboardSocialMedia',
+        go_to_url: '/dashboardSocialMedia',
       },
       {
         id: 2,
@@ -98,21 +98,21 @@ export default {
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations/message_sent.svg'),
-        url: '/DashboardEmailCampaigns',
+        go_to_url: '/DashboardEmailCampaigns',
       },
       {
         id: 3,
         title: 'Website',
         description: 'Set the website...',
         graphic: require('@/assets/illustrations/content_team.svg'),
-        url: '/dashboardWebsiteBuilder',
+        go_to_url: '/dashboardWebsiteBuilder',
       },
       {
         id: 4,
         title: 'Page Builder',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/design_feedback.svg'),
-        url: '/dashboardPageBuilder',
+        go_to_url: '/dashboardPageBuilder',
       },
       {
         id: 5,
@@ -120,7 +120,7 @@ export default {
         description:
           'See your sales activity, orders, shipments from one place',
         graphic: require('@/assets/illustrations/asset_selection.svg'),
-        url: '/dashboard/email-builder',
+        go_to_url: '/dashboard/email-builder',
       },
       {
         id: 6,
@@ -128,7 +128,7 @@ export default {
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations/add_color.svg'),
-        url: '/dashboard/marketing',
+        go_to_url: '/dashboard/marketing',
       },
     ])
     const user = computed(() => store.state.auth.main_user)

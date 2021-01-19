@@ -145,7 +145,7 @@ export default {
               title: doc.data().title,
               description: doc.data().desc,
               graphic: doc.data().url[0],
-              url: `${window.location.pathname}/${doc.id}`,
+              go_to_url: `${window.location.pathname}/${doc.id}`,
             })
           }
         })

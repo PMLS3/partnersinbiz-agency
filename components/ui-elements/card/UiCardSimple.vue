@@ -29,8 +29,8 @@ export default {
   props: {
     item: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   setup() {
     function sendFeature(item) {
@@ -39,12 +39,12 @@ export default {
         this.$router.push(item.url)
       } else {
         this.$store.commit('app/SET_FEATURE', item)
-        this.$router.push(item.url)
+        this.$router.push(item.go_to_url)
       }
     }
 
     return { sendFeature }
-  }
+  },
 }
 </script>
 

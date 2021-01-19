@@ -78,6 +78,7 @@ export default {
         form.disp_name = user.value.disp_name
         form.u_uid = user.value.uid
         form.b_uid = business.value.b_uid
+        form.child = props.item.child
         form.reseller = [reseller.value, ...sub_reseller.value]
         $fireStore
           .collection('apps')

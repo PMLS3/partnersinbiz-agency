@@ -10,12 +10,10 @@
     <client-only>
       <!-- JUMBOTRON -->
       <div class="knowledge-base-jumbotron">
-        <div
-          class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
-        >
-          <h1 class="mb-1 text-white">Music Folders</h1>
-          <h2 class="text-xl font-semibild text-white leading-tight">
-            Create different folders for your music
+        <div class="p-8 pt-24 knowledge-base-jumbotron-content">
+          <h1 class="mb-1 text-white">{{ item.title }}</h1>
+          <h2 class="text-xl leading-tight text-white font-semibild">
+            {{ item.sub_text }}
           </h2>
 
           <vs-input
@@ -27,25 +25,54 @@
             size="large"
             class="w-full mt-6"
           />
-          <div class="py-2 flex items-center justify-between">
+          <div class="flex items-center justify-between py-2">
             <div class="flex items-center">
               <p class="text-white">
                 {{ motivational_quotes }}
               </p>
             </div>
-            <div>
+            <div class="flex flex-row">
               <UploadApps :schema="schema" :item="item" />
+              <UploadCategory
+                :schema="schemas"
+                :item="item"
+                v-if="item.has_categories"
+              />
+            </div>
+          </div>
+          <div class="flex items-center" v-if="item.has_categories">
+            <p class="ml-4 text-white">Categories:</p>
+
+            <div class="mt-3 ml-4 vx-row">
+              <vs-chip
+                transparent
+                closable
+                :color="cat.color"
+                close-icon="close"
+                v-for="(cat, index) in categories"
+                :key="index"
+              >
+                {{ cat.title }}
+              </vs-chip>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="vx-row">
+      <div class="mt-6 vx-row">
         <div
-          class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="relative w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
+          <vs-tooltip :text="`Delete ${item.title}`" position="top">
+            <vs-button
+              class="absolute right-0 z-20"
+              icon="delete"
+              @click="deleteItem(item.id)"
+            ></vs-button>
+          </vs-tooltip>
+
           <UiCardSimple :item="item" class="h-full" />
         </div>
       </div>
@@ -55,13 +82,27 @@
 
 <script>
 export default {
-  name: 'Music',
+  name: 'Events',
   components: {},
+  props: {
+    item: {
+      type: Object,
+      default: () => {},
+    },
+    schema: {
+      type: Array,
+      default: () => [],
+    },
+    schemas: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      item: { item: 'Music', title: 'Load Folders', type: 'Category' },
       knowledgeBaseSearchQuery: '',
       kb: [],
+      categories: [],
     }
   },
   computed: {
@@ -93,35 +134,11 @@ export default {
             .includes(this.knowledgeBaseSearchQuery.toLowerCase())
       )
     },
-
-    schema() {
-      return [
-        {
-          title: 'TextInput',
-          placeholder: 'Music Gallery Name',
-          type: 'text',
-          label: 'Music Gallery Name',
-          name: 'title',
-        },
-        {
-          title: 'ImageUpload',
-          placeholder: 'Cover Image',
-          type: 'text',
-          label: 'Cover Image',
-          name: 'url',
-        },
-        {
-          title: 'QuilEditor',
-          name: 'desc',
-          label: 'Description',
-          placeholder: 'Description',
-        },
-      ]
-    },
   },
   created() {
     if (process.client) {
       let vm = this
+
       let ref = this.$fireStore
         .collection('apps')
         .doc(this.item.item)
@@ -140,11 +157,66 @@ export default {
               description: doc.data().desc,
               graphic: doc.data().url[0],
               go_to_url: `${window.location.pathname}/${doc.id}`,
+              ...doc.data(),
             })
           }
         })
       })
+
+      let catRef = this.$fireStore
+        .collection('apps')
+        .doc(vm.item.item)
+        .collection('category')
+        .where('b_uid', '==', this.business.b_uid)
+
+      catRef.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            let doc = change.doc
+            let data = doc.data()
+            data.id = doc.id
+            vm.categories.push({
+              id: doc.id,
+              title: doc.data().title,
+              color: doc.data().color,
+            })
+          }
+        })
+      })
+      vm.$store.commit('app/CATEGORIES_SET', vm.categories)
     }
+  },
+  methods: {
+    deleteItem(id) {
+      this.$fireStore
+        .collection('apps')
+        .doc(this.item.item)
+        .collection('app')
+        .doc(id)
+        .delete()
+        .then(() => {
+          this.success()
+          const updatedKb = this.kb.filter((item) => item.id !== id)
+          this.kb = updatedKb
+        })
+        .catch((err) => {
+          this.failure(err)
+        })
+    },
+    success() {
+      this.$vs.notify({
+        title: 'Success',
+        text: 'Successfully deleted!',
+        color: 'success',
+      })
+    },
+    failure(err) {
+      this.$vs.notify({
+        title: 'Oops',
+        text: `${err}`,
+        color: 'warning',
+      })
+    },
   },
 }
 </script>

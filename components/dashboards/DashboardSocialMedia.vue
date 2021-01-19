@@ -91,7 +91,7 @@ export default {
         title: 'Twitter',
         description: 'Update business info, create goups and more...',
         graphic: require('@/assets/illustrations/viral_tweet.svg'),
-        url: '/dashboardAppsTwitter',
+        go_to_url: '/dashboardAppsTwitter',
       },
       {
         id: 2,
@@ -99,7 +99,7 @@ export default {
         description:
           'See your sales activity, orders, shipments from one place',
         graphic: require('@/assets/illustrations/social_growth.svg'),
-        url: '/dashboardAppsFacebook',
+        go_to_url: '/dashboardAppsFacebook',
       },
       {
         id: 3,
@@ -107,7 +107,7 @@ export default {
         description:
           'Create Marketing campaigns, assign staff to run with projects',
         graphic: require('@/assets/illustrations2/loving_it.svg'),
-        url: '/dashboardAppsInstagram',
+        go_to_url: '/dashboardAppsInstagram',
       },
       // {
       //   id: 4,
@@ -115,7 +115,7 @@ export default {
       //   description:
       //     'Create Marketing campaigns, assign staff to run with projects',
       //   graphic: require('@/assets/illustrations/social_ideas.svg'),
-      //   url: '/dashboardAppsLinkedin',
+      //   go_to_url: '/dashboardAppsLinkedin',
       // },
     ])
     const user = computed(() => store.state.auth.main_user)

@@ -129,7 +129,7 @@ export default {
                 description: doc.data().desc,
                 graphic: doc.data().url[0],
                 feature: route.value.params.id,
-                url: `${window.location.pathname}/${doc.id}`,
+                go_to_url: `${window.location.pathname}/${doc.id}`,
               })
             }
           })
