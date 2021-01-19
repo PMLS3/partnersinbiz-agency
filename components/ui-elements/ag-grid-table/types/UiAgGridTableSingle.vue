@@ -60,16 +60,16 @@
           <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()"
             >Export as CSV</vs-button
           >
-          <vs-button class="mb-4 ml-3 md:mb-0" @click="popupActivo = true"
+          <!-- <vs-button class="mb-4 ml-3 md:mb-0" @click="popupActivo = true"
             >New</vs-button
-          >
+          > -->
           <!-- <vs-button
             class="mb-4 ml-3 md:mb-0"
             @click="gridApi.exportDataAsCsv()"
             >Export CSV</vs-button
           >-->
         </div>
-        <vs-row class="mt-6">
+        <!-- <vs-row class="mt-6">
           <vs-col vs-w="6">
             <vs-button
               class="mb-4 mr-4 md:mb-0"
@@ -87,7 +87,7 @@
           </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6">
           </vs-col>
-        </vs-row>
+        </vs-row> -->
       </div>
       <ag-grid-vue
         ref="agGridTable"
@@ -144,6 +144,8 @@
 import { AgGridVue } from 'ag-grid-vue'
 
 import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
+import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActions.vue'
+import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
 
 export default {
   props: {
@@ -154,6 +156,8 @@ export default {
   },
   components: {
     AgGridVue,
+    CellRendererActions,
+    CellRendererHtml,
   },
   data() {
     return {
