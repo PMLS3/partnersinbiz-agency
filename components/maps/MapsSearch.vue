@@ -33,6 +33,7 @@ export default {
     setPlace(place) {
       this.currentPlace = place
       this.$store.dispatch('google/googlePlaceSearch', place)
+      $nuxt.$emit('my-place', place)
     },
     addMarker() {
       if (this.currentPlace) {

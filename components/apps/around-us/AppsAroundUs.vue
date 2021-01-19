@@ -9,6 +9,17 @@
   <div>
     <!-- {{ items[0].position }} -->
     <MapsBasic :center="center" :markers="items" />
+    <div class="flex items-center justify-between">
+      <vs-switch v-model="get_center">
+        <span slot="on">My Location</span>
+        <span slot="off">Search</span>
+      </vs-switch>
+      <MapsSearch />
+      <div v-html="search_center.adr_address">
+        {{ search_center.adr_address }}
+      </div>
+    </div>
+
     <UiAgGridTableSingle :info="items" :item="item" :columnDefs="columnDefs" />
   </div>
 </template>
@@ -29,14 +40,20 @@ export default {
   },
   data() {
     return {
+      item: {},
       items: [],
       status: {
         textContent: '',
       },
-      center: { lat: 10.0, lng: 10.0 },
+      get_center: true,
+      my_center: { lat: 10.0, lng: 10.0 },
+      search_center: { adr_address: '', lat: 10.0, lng: 10.0 },
     }
   },
   computed: {
+    center() {
+      return this.get_center ? this.my_center : this.search_center
+    },
     item_unique() {
       return this.item_id ? this.item_id : this.$route.params.id
     },
@@ -53,7 +70,7 @@ export default {
         },
         {
           headerName: 'Address',
-          field: 'addr.addr_name',
+          field: 'addr_name',
           filter: true,
           width: 250,
         },
@@ -66,6 +83,12 @@ export default {
         {
           headerName: 'Number',
           field: 'number',
+          filter: true,
+          width: 175,
+        },
+        {
+          headerName: 'Website',
+          field: 'website',
           filter: true,
           width: 175,
         },
@@ -91,19 +114,26 @@ export default {
       }
     }
 
+    this.$nuxt.$on('my-place', (data) => {
+      vm.search_center = data
+      vm.search_center.lat = data.geometry.location.lat()
+      vm.search_center.lng = data.geometry.location.lng()
+      vm.get_center = false
+    })
+
     function success(position) {
       console.log('postion', position)
       const latitude = position.coords.latitude
       const longitude = position.coords.longitude
-      vm.center.lat = latitude
-      vm.center.lng = longitude
+      vm.my_center.lat = latitude
+      vm.my_center.lng = longitude
       // status.textContent = ''
       // mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`
       // mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`
     }
 
     function error() {
-      status.textContent = 'Unable to retrieve your location'
+      // status.textContent = 'Unable to retrieve your location'
     }
 
     let ref = this.$fireStore
@@ -119,8 +149,8 @@ export default {
           let data = doc.data()
           data.id = doc.id
           data.position = {
-            lat: parseFloat(doc.data().addr.lat),
-            lng: parseFloat(doc.data().addr.lng),
+            lat: parseFloat(doc.data().lat),
+            lng: parseFloat(doc.data().lng),
           }
           vm.items.push(data)
         }
