@@ -24,7 +24,7 @@
             icon="icon-search"
             size="large"
             class="w-full mt-6"
-            v-if="settings.search"
+            v-if="item.settings.search"
           />
           <div class="flex justify-between py-2">
             <div class="flex items-center">
@@ -34,6 +34,15 @@
             </div>
 
             <div class="flex flex-row">
+              <vs-tooltip text="Click to change data view" position="top">
+                <vs-button
+                  icon="chrome_reader_mode"
+                  class="ml-1"
+                  @click="viewSet = !viewSet"
+                >
+                </vs-button>
+              </vs-tooltip>
+
               <vs-tooltip text="View Component" position="top">
                 <vs-button
                   class="ml-1"
@@ -105,19 +114,28 @@
         </div>
       </div>
 
-      <div class="mt-3 con-example-images">
-        <div v-for="(img, index) in filteredKB" :key="index"></div>
+      <div class="mt-3 con-example-images" v-show="viewSet">
+        <client-only>
+          <MultiCalendar
+            :events="filteredKB"
+            v-if="item.display == 'calendar'"
+          />
+        </client-only>
       </div>
-      <client-only>
-        <MultiCalendar :events="filteredKB" v-if="item.display == 'calendar'" />
-      </client-only>
+      <div v-show="!viewSet">
+        <UiAgGridTableSingle
+          :info="filteredKB"
+          :item="item"
+          :columnDefs="columnDefs"
+        />
+      </div>
     </client-only>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'EventsSingle',
+  name: 'DashboardAppSingle',
 
   props: {
     item: {
@@ -136,12 +154,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    columnDefs: { type: Array, default: () => [] },
   },
   data() {
     return {
       knowledgeBaseSearchQuery: '',
       kb: [],
       categories: [],
+      viewSet: false,
       created_time: false,
       drawingboard: false,
       host: false,
@@ -250,7 +270,7 @@ export default {
     if (process.client) {
       console.log('item', this.item.item)
       let vm = this
-      if (this.item.type == 'calendar') {
+      if (this.item.display == 'calendar') {
         let ref = this.$fireStore
           .collection('apps')
           .doc(this.item.item)

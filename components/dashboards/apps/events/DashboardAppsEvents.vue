@@ -22,6 +22,7 @@ export default {
         sub_text: 'Create different Calendar',
         type: 'Category',
         has_categories: true,
+        search: true,
       },
     }
   },

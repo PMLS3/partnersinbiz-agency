@@ -24,6 +24,7 @@
             icon="icon-search"
             size="large"
             class="w-full mt-6"
+            v-if="item.search"
           />
           <div class="flex items-center justify-between py-2">
             <div class="flex items-center">

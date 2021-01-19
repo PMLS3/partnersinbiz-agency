@@ -11,13 +11,20 @@
     :items="items"
     :schema="schema"
     :schemas="schemas"
+    :columnDefs="columnDefs"
   />
 </template>
 
 <script>
+import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActions.vue'
+import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
+
 export default {
   name: 'EventsSingle',
-
+  components: {
+    CellRendererActions,
+    CellRendererHtml,
+  },
   data() {
     return {
       item: {
@@ -57,6 +64,53 @@ export default {
         cats.push(this.categories[i].title)
       }
       return cats
+    },
+    columnDefs() {
+      return [
+        {
+          headerName: 'Title',
+          field: 'title',
+          width: 175,
+          filter: true,
+          checkboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true,
+          headerCheckboxSelection: true,
+        },
+        {
+          headerName: 'Start',
+          field: 'start',
+          filter: true,
+          width: 250,
+        },
+        {
+          headerName: 'End',
+          field: 'end',
+          filter: true,
+          width: 250,
+        },
+        {
+          headerName: 'Short',
+          field: 'content',
+          filter: true,
+          width: 175,
+        },
+
+        {
+          headerName: 'Long Description',
+          field: 'contentFull',
+          filter: true,
+          width: 250,
+          cellRendererFramework: 'CellRendererHtml',
+        },
+
+        {
+          headerName: 'Actions',
+          field: 'id',
+          filter: 'agNumberColumnFilter',
+          width: 125,
+          cellRendererFramework: 'CellRendererActions',
+        },
+      ]
     },
     schemas() {
       return [
