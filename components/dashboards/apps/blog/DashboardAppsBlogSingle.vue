@@ -67,7 +67,7 @@ export default {
         {
           headerName: 'Title',
           field: 'title',
-          width: 175,
+          width: 250,
           filter: true,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
@@ -77,7 +77,7 @@ export default {
           headerName: 'Category',
           field: 'category',
           filter: true,
-          width: 250,
+          width: 175,
         },
         {
           headerName: 'Publish date',

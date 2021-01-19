@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'DirectionviewSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Direction View',
+        sub_text: 'All your directionview needs',
         type: 'Single',
         has_categories: true,
         parent: 'Directionview',
-        display: 'calendar',
+        display: 'directionview',
         url: '/AppsDirectionview/',
         settings: {
           search: true,

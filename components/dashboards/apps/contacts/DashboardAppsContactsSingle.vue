@@ -2,7 +2,7 @@
     File Name: Dashboard.vue.vue
     Description: Knowledge Base Page
     ----------------------------------------------------------------------------------------
-  
+  TODO find way to include user lists
 ========================================================================================== -->
 
 <template>
@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'ContactsSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Contacts',
+        sub_text: 'Create Contacts Lists',
         type: 'Single',
         has_categories: false,
         parent: 'Contacts',
-        display: 'calendar',
+        display: 'contacts',
         url: '/AppsContacts/',
         settings: {
           search: true,
@@ -67,34 +67,34 @@ export default {
         {
           headerName: 'Title',
           field: 'title',
-          width: 175,
+          width: 250,
           filter: true,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Email',
+          field: 'email',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'End',
-          field: 'end',
+          headerName: 'Number',
+          field: 'number',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'Short',
-          field: 'content',
+          headerName: 'Website',
+          field: 'website',
           filter: true,
           width: 175,
         },
 
         {
-          headerName: 'Long Description',
-          field: 'contentFull',
+          headerName: 'Description',
+          field: 'html',
           filter: true,
           width: 250,
           cellRendererFramework: 'CellRendererHtml',

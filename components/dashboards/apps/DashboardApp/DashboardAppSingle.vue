@@ -127,6 +127,8 @@
           <AppsAroundUs v-if="item.display == 'around'" />
 
           <AppsBlog v-if="item.display == 'blog'" />
+
+          <AppsContacts v-if="item.display == 'contacts'" />
         </client-only>
       </div>
       <div v-show="!viewSet">
