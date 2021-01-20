@@ -115,6 +115,30 @@ export default {
               vm.unsuccessUpload(err)
             })
         }
+      } else if (props.item.item == 'ImageGallerySingle') {
+        for (let i = 0; i < formData.value.url.length; i++) {
+          let form = { url: formData.value.url[i] }
+          form.title = formData.value.title
+          form.desc = formData.value.desc
+          form.i_type = props.item.item
+          form.date = moment().format('DD-MM-YYYY')
+          form.disp_name = user.value.disp_name
+          form.u_uid = user.value.uid
+          form.b_uid = business.value.b_uid
+          form.reseller = [reseller.value, ...sub_reseller.value]
+          form.id = route.value.params.id
+          $fireStore
+            .collection('apps')
+            .doc(props.item.item)
+            .collection('app')
+            .add(form)
+            .then(() => {
+              vm.successUpload()
+            })
+            .catch((err) => {
+              vm.unsuccessUpload(err)
+            })
+        }
       } else if (props.item.item == 'MusicSingle') {
         console.log('form', formData.value)
         for (let i = 0; i < formData.url.length; i++) {

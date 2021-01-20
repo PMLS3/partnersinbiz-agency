@@ -14,7 +14,7 @@ TODO: make items clickable
           <vs-image
             v-for="(image, index) in items"
             :key="index"
-            :src="`${image.downloadURL}`"
+            :src="`${image.url}`"
             @click="imageShow(image)"
           />
         </vs-images>
@@ -47,7 +47,7 @@ export default {
     let vm = this
     let ref = this.$fireStore
       .collection('apps')
-      .doc('EventsSingle')
+      .doc('ImageGallerySingle')
       .collection('app')
       .where('id', '==', this.item_unique)
 
@@ -56,16 +56,9 @@ export default {
         if (change.type === 'added') {
           let doc = change.doc
           let data = doc.data()
-          let datas = {
-            start: `${doc.data().date_start} ${doc.data().time_start}`,
-            end: `${doc.data().date_end} ${doc.data().time_end}`,
-            title: doc.data().title,
-            icon: 'shopping_cart', // Custom attribute.
-            content: doc.data().desc,
-            contentFull: doc.data().description,
-          }
+
           data.id = doc.id
-          vm.items.push(datas)
+          vm.items.push(data)
         }
       })
     })
