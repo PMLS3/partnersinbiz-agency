@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'EmailPhotoSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Email Photo',
+        sub_text: 'All your email photo needs',
         type: 'Single',
         has_categories: true,
         parent: 'EmailPhoto',
-        display: 'calendar',
+        display: 'email-photo',
         url: '/AppsEmailPhoto/',
         settings: {
           search: true,
@@ -74,30 +74,10 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Description',
+          field: 'desc',
           filter: true,
           width: 250,
-        },
-        {
-          headerName: 'End',
-          field: 'end',
-          filter: true,
-          width: 250,
-        },
-        {
-          headerName: 'Short',
-          field: 'content',
-          filter: true,
-          width: 175,
-        },
-
-        {
-          headerName: 'Long Description',
-          field: 'contentFull',
-          filter: true,
-          width: 250,
-          cellRendererFramework: 'CellRendererHtml',
         },
 
         {

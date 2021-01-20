@@ -129,6 +129,14 @@
           <AppsBlog v-if="item.display == 'blog'" />
 
           <AppsContacts v-if="item.display == 'contacts'" />
+
+          <AppsEcommerce v-if="item.display == 'ecommerce'" />
+
+          <AppsEmailPhoto v-if="item.display == 'email-photo'" />
+
+          <AppsFanwall v-if="item.display == 'fanwall'" />
+
+          <AppsImageGallery v-if="item.display == 'image-gallery'" />
         </client-only>
       </div>
       <div v-show="!viewSet">
@@ -324,7 +332,7 @@ export default {
       }
 
       if (this.item.has_categories) {
-        let catRef = tvmhis.$fireStore
+        let catRef = vm.$fireStore
           .collection('apps')
           .doc(vm.items.item)
           .collection('category')

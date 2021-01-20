@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'ImageGallerySingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Image Gallery',
+        sub_text: 'All your image gallery needs',
         type: 'Single',
         has_categories: false,
         parent: 'ImageGallery',
-        display: 'calendar',
+        display: 'image-gallery',
         url: '/AppsImageGallery/',
         settings: {
           search: true,
@@ -74,27 +74,15 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Image',
+          field: 'url',
           filter: true,
           width: 250,
-        },
-        {
-          headerName: 'End',
-          field: 'end',
-          filter: true,
-          width: 250,
-        },
-        {
-          headerName: 'Short',
-          field: 'content',
-          filter: true,
-          width: 175,
         },
 
         {
-          headerName: 'Long Description',
-          field: 'contentFull',
+          headerName: 'Description',
+          field: 'desc',
           filter: true,
           width: 250,
           cellRendererFramework: 'CellRendererHtml',

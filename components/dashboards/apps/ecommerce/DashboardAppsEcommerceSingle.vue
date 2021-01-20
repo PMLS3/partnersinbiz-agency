@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'EcommerceSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'eCommerce',
+        sub_text: 'All your eCommerce needs',
         type: 'Single',
         has_categories: true,
         parent: 'Ecommerce',
-        display: 'calendar',
+        display: 'ecommerce',
         url: '/AppsEcommerce/',
         settings: {
           search: true,
@@ -106,6 +106,24 @@ export default {
           filter: 'agNumberColumnFilter',
           width: 125,
           cellRendererFramework: 'CellRendererActions',
+        },
+      ]
+    },
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
         },
       ]
     },

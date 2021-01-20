@@ -10,7 +10,6 @@
     :item="item"
     :items="items"
     :schema="schema"
-    :schemas="schemas"
     :columnDefs="columnDefs"
   />
 </template>
@@ -29,12 +28,12 @@ export default {
     return {
       item: {
         item: 'FanwallSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Fanwall',
+        sub_text: 'All your fanwall needs',
         type: 'Single',
         has_categories: true,
         parent: 'Fanwall',
-        display: 'calendar',
+        display: 'fanwall',
         url: '/AppsFanwall/',
         settings: {
           search: true,

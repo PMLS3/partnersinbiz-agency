@@ -1,7 +1,7 @@
 <template>
   <div>
     <client-only>
-      <AppsVideoChat />
+      <AppsFanwall />
     </client-only>
   </div>
 </template>
