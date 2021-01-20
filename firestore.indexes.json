@@ -1,23 +1,15 @@
 {
   "indexes": [
     {
-      "collectionGroup": "tweets",
+      "collectionGroup": "app",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "scheduled_date",
+          "fieldPath": "wall_id ",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "scheduled_hour",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "scheduled_minutes",
+          "fieldPath": "t_stamp ",
           "order": "ASCENDING"
         }
       ]
@@ -68,20 +60,6 @@
         },
         {
           "fieldPath": "index",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "tweets",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "u_uid",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "scheduled_date",
           "order": "ASCENDING"
         }
       ]
