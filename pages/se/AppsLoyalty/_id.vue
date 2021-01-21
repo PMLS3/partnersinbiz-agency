@@ -1,7 +1,7 @@
 <template>
   <div>
     <client-only>
-      <AppsVideoChat />
+      <AppsLoyalty />
     </client-only>
   </div>
 </template>

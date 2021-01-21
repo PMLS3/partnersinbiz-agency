@@ -43,7 +43,7 @@
                 :max="Number(loyal.points)"
                 :gauge-color="[
                   { offset: 0, color: '#FDD7D3' },
-                  { offset: 100, color: '#FDD7D3' }
+                  { offset: 100, color: '#FDD7D3' },
                 ]"
                 :scale-interval="0.1"
               />
@@ -57,7 +57,7 @@
                 :max="Number(loyal.points)"
                 :gauge-color="[
                   { offset: 0, color: '#347AB0' },
-                  { offset: 100, color: '#8CDFAD' }
+                  { offset: 100, color: '#8CDFAD' },
                 ]"
                 :scale-interval="0.1"
               />
@@ -65,7 +65,7 @@
           </div>
           <div
             class="flex flex-row justify-between pt-2 pb-2"
-            style="border-top: solid 1px black; "
+            style="border-top: solid 1px black"
           >
             <p class="pr-3 text-center" style="border-right: solid 1px black">
               <span class="block">Stamps Needed</span>
@@ -119,7 +119,12 @@
 <script>
 import moment from 'moment'
 export default {
-  props: ['loyal', 'schema'],
+  props: {
+    loyal: { type: Object, default: () => {} },
+    info: { type: Object, default: () => {} },
+    business: { type: Object, default: () => {} },
+    user: { type: Object, default: () => {} },
+  },
   components: {},
   data() {
     return {
@@ -131,48 +136,41 @@ export default {
       secret: '',
       date: 'None',
       dateTime: '',
-      timestamp: 0
+      timestamp: 0,
     }
   },
-  computed: {
-    activeBusinessInfo() {
-      return this.$store.state.business.app_active_business
-    },
-    activeUserInfo() {
-      return this.$store.state.user.app_active_user
-    }
-  },
+  computed: {},
   created() {
-    console.log('guage', this.schema)
-    let ref = this.$fireStore
-      .collection('apps')
-      .doc('apps')
-      .collection(this.activeBusinessInfo.b_uid)
-      .doc(this.schema.title)
-      .collection(this.schema.title)
-      .doc(this.schema.id)
-      .collection('added')
-      .doc(this.loyal.id)
-      .collection('user')
-      .doc(this.activeUserInfo.uid)
+    console.log('guage', this.loyal)
+    // let ref = this.$fireStore
+    //   .collection('apps')
+    //   .doc('apps')
+    //   .collection(this.activeBusinessInfo.b_uid)
+    //   .doc(this.schema.title)
+    //   .collection(this.schema.title)
+    //   .doc(this.schema.id)
+    //   .collection('added')
+    //   .doc(this.loyal.id)
+    //   .collection('user')
+    //   .doc(this.activeUserInfo.uid)
 
-    ref
-      .get()
-      .then(doc => {
-        if (!doc.exists) {
-          console.log('No such document!')
-        } else {
-          this.value = doc.data().value
-          this.date = doc.data().dateMoment
-          this.dateTime = doc.data().dateMoments
-          this.timestamp = doc.data().timestamp
-        }
-      })
-      .catch(err => {
-        console.log('Error getting document', err)
-      })
+    // ref
+    //   .get()
+    //   .then(doc => {
+    //     if (!doc.exists) {
+    //       console.log('No such document!')
+    //     } else {
+    //       this.value = doc.data().value
+    //       this.date = doc.data().dateMoment
+    //       this.dateTime = doc.data().dateMoments
+    //       this.timestamp = doc.data().timestamp
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log('Error getting document', err)
+    //   })
 
-    this.checkValues()
+    // this.checkValues()
   },
   methods: {
     checkValues() {
@@ -202,7 +200,7 @@ export default {
             value: 0,
             timestamp: date,
             dateMoment: dateMoment,
-            dateMoments: dateMoments
+            dateMoments: dateMoments,
           })
         this.getValue()
         this.successPass()
@@ -255,7 +253,7 @@ export default {
               value: addValue,
               timestamp: date,
               dateMoment: dateMoment,
-              dateMoments: dateMoments
+              dateMoments: dateMoments,
             })
           this.getValue()
           this.successPass()
@@ -276,21 +274,21 @@ export default {
       this.$vs.notify({
         color: 'danger',
         title: 'Oh no',
-        text: 'The Password you have entered is incorrect'
+        text: 'The Password you have entered is incorrect',
       })
     },
     unsuccessPassTime(time) {
       this.$vs.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `You have to wait ${time} minutes from your last stamp`
+        text: `You have to wait ${time} minutes from your last stamp`,
       })
     },
     successPass() {
       this.$vs.notify({
         color: 'success',
         title: 'Yeah!! ',
-        text: 'Another stamp added!'
+        text: 'Another stamp added!',
       })
     },
     getValue() {
@@ -309,7 +307,7 @@ export default {
 
       ref
         .get()
-        .then(doc => {
+        .then((doc) => {
           if (!doc.exists) {
             console.log('No such document!')
           } else {
@@ -318,13 +316,13 @@ export default {
             this.timestamp = doc.data().timestamp
           }
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('Error getting document', err)
         })
 
       this.checkValues()
-    }
-  }
+    },
+  },
 }
 </script>
 
