@@ -23,9 +23,9 @@ export default {
       return [
         {
           title: 'TextInput',
-          placeholder: 'Gallery Name',
+          placeholder: 'Video Collection',
           type: 'text',
-          label: 'Gallery Name',
+          label: 'Video Collection',
           name: 'title',
         },
         {

@@ -11,7 +11,7 @@
       :alt="doc.url.name"
       v-else-if="
         doc.url[0].type ==
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
       "
     />
 
@@ -20,7 +20,7 @@
       :alt="doc.url.name"
       v-else-if="
         doc.url[0].type ==
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       "
     />
 
@@ -52,6 +52,14 @@
       Sorry, your browser doesn't support embedded videos.
     </video>
 
+    <video controls width="250" v-else-if="doc.url[0].type == 'video/mp4'">
+      <source :src="doc.url[0].url" type="video/webm" />
+
+      <source :src="doc.url[0].url" type="video/mp4" />
+
+      Sorry, your browser doesn't support embedded videos.
+    </video>
+
     <img src="@/assets/images/file-icons/xls.png" :alt="doc.url.name" v-else />
 
     <h6>{{ doc.url[0].type }}</h6>
@@ -61,8 +69,8 @@
 <script>
 export default {
   props: {
-    doc: { type: Object, default: {} }
-  }
+    doc: { type: Object, default: {} },
+  },
 }
 </script>
 
