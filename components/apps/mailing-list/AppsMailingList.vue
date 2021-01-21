@@ -28,6 +28,7 @@ export default {
       items: [],
       item: {},
       feature: {},
+      can_add: true,
     }
   },
   computed: {
@@ -97,17 +98,25 @@ export default {
       payload.created_date = moment().format('DD-MM-YYYY')
       payload.created_month = moment().format('MM-YYYY')
       payload.timestamp = Date.now()
-      this.$fireStore
-        .collection('apps')
-        .doc('MailingListSingle')
-        .collection('app')
-        .add(payload)
-        .then(() => {
-          vm.success()
-        })
-        .catch((err) => {
-          vm.fail(err)
-        })
+      if (vm.can_add) {
+        vm.can_add = false
+        this.$fireStore
+          .collection('apps')
+          .doc('MailingListSingle')
+          .collection('app')
+          .doc(data.email)
+          .set(payload)
+          .then(() => {
+            vm.success()
+          })
+          .catch((err) => {
+            vm.fail(err)
+          })
+
+        setTimeout(() => {
+          vm.can_add = true
+        }, 2000)
+      }
     })
   },
   methods: {

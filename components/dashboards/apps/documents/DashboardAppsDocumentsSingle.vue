@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'DocumentsSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Documents',
+        sub_text: 'All your document needs',
         type: 'Single',
-        has_categories: false,
+        has_categories: true,
         parent: 'Documents',
-        display: 'calendar',
+        display: 'documents',
         url: '/AppsDocuments/',
         settings: {
           search: true,
@@ -48,10 +48,20 @@ export default {
           calendar_times: false,
         },
       },
-      // items: { item: 'Documents', title: 'Add Category', type: 'Category' },
+      items: { item: 'Documents', title: 'Add Category', type: 'Category' },
     }
   },
   computed: {
+    categories() {
+      return this.$store.state.app.categories
+    },
+    cats() {
+      let cats = []
+      for (let i = 0; i < this.categories.length; i++) {
+        cats.push(this.categories[i].title)
+      }
+      return cats
+    },
     columnDefs() {
       return [
         {
@@ -64,27 +74,21 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Doctype',
+          field: 'url[0].type',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'End',
-          field: 'end',
+          headerName: 'Document',
+          field: 'url[0]',
           filter: true,
           width: 250,
-        },
-        {
-          headerName: 'Short',
-          field: 'content',
-          filter: true,
-          width: 175,
         },
 
         {
           headerName: 'Long Description',
-          field: 'contentFull',
+          field: 'desc',
           filter: true,
           width: 250,
           cellRendererFramework: 'CellRendererHtml',
@@ -99,9 +103,34 @@ export default {
         },
       ]
     },
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
+        },
+      ]
+    },
 
     schema() {
       return [
+        {
+          title: 'SelectList',
+          name: 'category',
+          multi: false,
+          label: 'Set Category',
+          options: this.cats,
+        },
         {
           title: 'TextInput',
           placeholder: 'Doc Name',

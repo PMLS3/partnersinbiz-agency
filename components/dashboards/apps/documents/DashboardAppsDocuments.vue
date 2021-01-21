@@ -1,5 +1,5 @@
 <template>
-  <DashboardApp :item="item" :schema="schema" />
+  <DashboardApp :item="item" :schema="schema" :schemas="schemas" />
 </template>
 
 <script>
@@ -11,9 +11,9 @@ export default {
         item: 'Documents',
         title: 'Documents',
         child: 'DocumentsSingle',
-        sub_text: 'Create different Calendar',
+        sub_text: 'Create different Document Folders',
         type: 'Category',
-        has_categories: false,
+        has_categories: true,
         search: true,
       },
     }
@@ -40,6 +40,24 @@ export default {
           name: 'desc',
           label: 'Description',
           placeholder: 'Description',
+        },
+      ]
+    },
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
         },
       ]
     },

@@ -142,6 +142,7 @@
           <AppsRealEstate v-if="item.display == 'real-estate'" />
 
           <AppsMailingList v-if="item.display == 'mailing-list'" class="p-4" />
+          <AppsDocuments v-if="item.display == 'documents'" class="p-4" />
         </client-only>
       </div>
       <div v-show="!viewSet">
