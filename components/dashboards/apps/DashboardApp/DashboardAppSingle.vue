@@ -140,6 +140,8 @@
 
           <AppsInfoTier v-if="item.display == 'info-tier'" />
           <AppsRealEstate v-if="item.display == 'real-estate'" />
+
+          <AppsMailingList v-if="item.display == 'mailing-list'" class="p-4" />
         </client-only>
       </div>
       <div v-show="!viewSet">
@@ -264,15 +266,16 @@ export default {
       return this.$store.state.info.motivational_quotes[num]
     },
     filteredKB() {
-      return this.kb.filter(
-        (item) =>
-          item.title
-            .toLowerCase()
-            .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
-          item.description
-            .toLowerCase()
-            .includes(this.knowledgeBaseSearchQuery.toLowerCase())
-      )
+      return this.kb
+      // .filter(
+      //   (item) =>
+      //     item.title
+      //       .toLowerCase()
+      //       .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
+      //     item.description
+      //       .toLowerCase()
+      //       .includes(this.knowledgeBaseSearchQuery.toLowerCase())
+      // )
     },
   },
   created() {

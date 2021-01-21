@@ -44,33 +44,6 @@ export default {
       ]
     },
   },
-  created() {
-    if (process.client) {
-      let vm = this
-      let ref = this.$fireStore
-        .collection('apps')
-        .doc(this.item.item)
-        .collection('app')
-        .where('b_uid', '==', this.business.b_uid)
-
-      ref.onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === 'added') {
-            let doc = change.doc
-            let data = doc.data()
-            data.id = doc.id
-            vm.kb.push({
-              id: doc.id,
-              title: doc.data().title,
-              description: doc.data().desc,
-              graphic: doc.data().url[0],
-              go_to_url: `${window.location.pathname}/${doc.id}`,
-            })
-          }
-        })
-      })
-    }
-  },
 }
 </script>
 
