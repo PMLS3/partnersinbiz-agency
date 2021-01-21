@@ -3,7 +3,7 @@
 	Description:
 	Component Name: 
 	----------------------------------------------------------------------------------------
-TODO: make items clickable 
+TODO: Click pop up image
 ========================================================================================== -->
 
 <template>
@@ -26,7 +26,7 @@ TODO: make items clickable
 
 <script>
 export default {
-  name: 'AppsEvents',
+  name: 'AppsImageGallery',
   props: {
     item_id: {
       type: String,
@@ -36,6 +36,8 @@ export default {
   data() {
     return {
       items: [],
+      imageShowing: false,
+      src: '',
     }
   },
   computed: {
@@ -64,8 +66,8 @@ export default {
     })
   },
   methods: {
-    imageShow(im) {
-      this.src = im.downloadURL
+    imageShow(img) {
+      this.src = img.downloadURL
       this.imageShowing = true
     },
     imageNoShow() {

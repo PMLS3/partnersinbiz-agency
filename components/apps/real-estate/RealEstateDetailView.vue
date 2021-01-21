@@ -2,12 +2,13 @@
   File Name: ECommerceItemDetail.vue
   Description: eCommerce Item Detail page
   ----------------------------------------------------------------------------------------
-
+  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+  Author: Pixinvent
+  Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
 <template>
   <div id="item-detail-page">
-    <h1>Hello</h1>
     <vs-alert
       color="danger"
       title="Error Fetching Product Data"
@@ -18,107 +19,120 @@
         <span>Check </span
         ><router-link
           :to="{ name: 'ecommerce-shop' }"
-          class="underline text-inherit"
+          class="text-inherit underline"
           >All Items</router-link
         >
       </span>
     </vs-alert>
 
-    <vx-card v-if="real_estate" :key="real_estate.objectID">
+    <vx-card v-if="item_data" :key="item_data.objectID">
       <template slot="no-body">
         <div class="item-content">
           <!-- Item Main Info -->
-          <div class="p-6 product-details">
-            <div class="mt-6 vx-row">
+          <div class="product-details p-6">
+            <div class="vx-row mt-6">
               <div
-                class="flex items-center justify-center w-full vx-col md:w-2/5"
+                class="vx-col md:w-2/5 w-full flex items-center justify-center"
               >
-                <div class="w-3/5 mx-auto mb-10 product-img-container md:mb-0">
-                  <!-- <img
-                    :src="real_estate.image[0]"
-                    :alt="real_estate.product_name"
+                <div class="product-img-container w-3/5 mx-auto mb-10 md:mb-0">
+                  <img
+                    src="https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/01.png"
+                    :alt="item_data.name"
                     class="responsive"
-                  /> -->
+                  />
 
                   <!--
                     UnComment Below line for true flow
-                    <img :src="real_estate.image" :alt="real_estate.name" class="responsive">
+                    <img :src="item_data.image" :alt="item_data.name" class="responsive">
 
                     Remove above img tag which is for demo purpose in actual flow
                   -->
-                  <CarouselMultipleSlidesPerView :schema="schema" />
                 </div>
               </div>
 
               <!-- Item Content -->
-              <div class="w-full mt-10 vx-col md:w-3/5">
-                <h3>{{ real_estate.title }}</h3>
+              <div class="vx-col md:w-3/5 w-full">
+                <h3>{{ item_data.name }}</h3>
 
                 <p class="my-2">
                   <span class="mr-2">by</span>
-                  <span>{{ real_estate.brand }}</span>
+                  <span>{{ item_data.brand }}</span>
                 </p>
-                <p class="flex flex-wrap items-center">
+                <p class="flex items-center flex-wrap">
                   <span
-                    class="mt-2 mr-4 text-2xl font-medium leading-none text-primary"
-                    >R{{ real_estate.price }}</span
+                    class="text-2xl leading-none font-medium text-primary mr-4 mt-2"
+                    >${{ item_data.price }}</span
                   >
                   <span
-                    class="pl-4 mt-2 mr-2 border border-t-0 border-b-0 border-r-0 border-solid d-theme-border-grey-light"
+                    class="pl-4 mr-2 mt-2 border border-solid d-theme-border-grey-light border-t-0 border-b-0 border-r-0"
                     ><star-rating
                       :show-rating="false"
-                      :rating="real_estate.rating"
+                      :rating="item_data.rating"
                       :star-size="20"
                       read-only
                   /></span>
-                  <span class="mt-2 leading-none cursor-pointer"
+                  <span class="cursor-pointer leading-none mt-2"
                     >424 ratings</span
                   >
                 </p>
 
                 <vs-divider />
 
-                <p v-html="real_estate.desc">
-                  {{ real_estate.desc }}
-                </p>
+                <p>{{ item_data.description }}</p>
 
-                <vs-list class="px-0 pt-4 product-sales-meta-list">
+                <vs-list class="product-sales-meta-list px-0 pt-4">
                   <vs-list-item
-                    v-if="real_estate.free_shipping"
+                    v-if="item_data.free_shipping"
                     class="p-0 border-none"
                     title="Free Sheeping"
                     icon-pack="feather"
                     icon="icon-truck"
                   />
-                  <!-- <vs-list-item class="p-0 border-none" title="EMI options available" icon-pack="feather" icon="icon-dollar-sign"></vs-list-item> -->
+                  <vs-list-item
+                    class="p-0 border-none"
+                    title="EMI options available"
+                    icon-pack="feather"
+                    icon="icon-dollar-sign"
+                  ></vs-list-item>
                 </vs-list>
 
-                <!-- <vs-divider /> -->
+                <vs-divider />
 
                 <!-- Color -->
-                <!-- <div class="vx-row">
-                  <div class="w-full vx-col">
+                <div class="vx-row">
+                  <div class="vx-col w-full">
                     <span class="text-xl font-medium">Color</span>
                     <div class="flex flex-wrap items-center mt-2">
                       <div
-                        :class="{'border-transparent': opt_color != color}"
-                        class="relative mx-1 border-2 border-solid rounded-full cursor-pointer color-radio"
-                        :style="itemColor({color: color, style: ['borderColor']})"
+                        :class="{ 'border-transparent': opt_color != color }"
+                        class="color-radio rounded-full mx-1 border-2 border-solid cursor-pointer relative"
+                        :style="
+                          itemColor({ color: color, style: ['borderColor'] })
+                        "
                         v-for="color in available_item_colors"
                         :key="color"
-                        @click="opt_color=color">
-                          <div class="absolute w-6 h-6 rounded-full" :style="itemColor({color: color, style: ['backgroundColor']})"></div>
-                        </div>
+                        @click="opt_color = color"
+                      >
+                        <div
+                          class="h-6 w-6 rounded-full absolute"
+                          :style="
+                            itemColor({
+                              color: color,
+                              style: ['backgroundColor']
+                            })
+                          "
+                        ></div>
+                      </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <!-- /Color -->
 
                 <vs-divider />
 
                 <!-- Quantity -->
                 <div class="vx-row">
-                  <div class="w-full vx-col">
+                  <div class="vx-col w-full">
                     <p class="my-2">
                       <span>Available</span>
                       <span class="mx-2">-</span>
@@ -126,25 +140,29 @@
                     </p>
                   </div>
 
-                  <div class="w-full vx-col">
+                  <div class="vx-col w-full">
                     <div class="flex flex-wrap items-start mb-4">
                       <!-- Add To Cart Button -->
                       <vs-button
-                        class="mb-4 mr-4"
+                        class="mr-4 mb-4"
                         icon-pack="feather"
                         icon="icon-shopping-cart"
-                        v-if="!isInCart(real_estate.objectID)"
-                        @click="toggleItemInCart(real_estate)"
+                        v-if="!isInCart(item_data.objectID)"
+                        @click="toggleItemInCart(item_data)"
                       >
                         ADD TO CART
                       </vs-button>
 
                       <vs-button
                         v-else
-                        class="mb-4 mr-4"
+                        class="mr-4 mb-4"
                         icon-pack="feather"
                         icon="icon-shopping-cart"
-                        @click="$router.push({ name: 'ecommerce-checkout' })"
+                        @click="
+                          $router
+                            .push({ name: 'ecommerce-checkout' })
+                            .catch(err => {})
+                        "
                       >
                         VIEW IN CART
                       </vs-button>
@@ -152,13 +170,13 @@
 
                       <!-- Wishlist Button -->
                       <vs-button
-                        v-if="isInWishList(real_estate.objectID)"
+                        v-if="isInWishList(item_data.objectID)"
                         key="filled"
-                        class="mb-4 mr-4"
+                        class="mb-4"
                         icon-pack="feather"
                         icon="icon-heart"
                         color="danger"
-                        @click="toggleItemInWishList(real_estate)"
+                        @click="toggleItemInWishList(item_data)"
                       >
                         WHISHLIST
                       </vs-button>
@@ -166,12 +184,12 @@
                       <vs-button
                         v-else
                         key="border"
-                        class="mb-4 mr-4"
+                        class="mb-4"
                         type="border"
                         icon-pack="feather"
                         icon="icon-heart"
                         color="danger"
-                        @click="toggleItemInWishList(real_estate)"
+                        @click="toggleItemInWishList(item_data)"
                       >
                         WHISHLIST
                       </vs-button>
@@ -182,80 +200,82 @@
                 <!-- /Quantity -->
 
                 <div class="vx-row">
-                  <div class="flex flex-wrap items-center vx-col">
+                  <div class="vx-col flex flex-wrap items-center">
                     <vs-button
                       class="mr-4"
+                      type="border"
                       icon-pack="feather"
                       color="#1551b1"
                       icon="icon-facebook"
                       radius
-                      @click="facebook"
                     ></vs-button>
                     <vs-button
                       class="mr-4"
+                      type="border"
                       icon-pack="feather"
                       color="#00aaff"
                       icon="icon-twitter"
                       radius
-                      @click="twitter"
                     ></vs-button>
-                    <!-- <vs-button class="mr-4" type="border" icon-pack="feather" color="#c4302b" icon="icon-youtube" radius></vs-button> -->
                     <vs-button
                       class="mr-4"
+                      type="border"
                       icon-pack="feather"
-                      color="#C8328C"
+                      color="#c4302b"
+                      icon="icon-youtube"
+                      radius
+                    ></vs-button>
+                    <vs-button
+                      class="mr-4"
+                      type="border"
+                      icon-pack="feather"
+                      color="#405DE6"
                       icon="icon-instagram"
                       radius
-                      @click="instagram"
                     ></vs-button>
                   </div>
-                </div>
-                <div>
-                  <nuxt-link to="/eCommerce">
-                    <vs-button class="mt-4 mb-4"> CONTINUE SHOPPING </vs-button>
-                  </nuxt-link>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Product Feature/Meta Row -->
-          <div class="py-24 mt-10 mb-16 text-center item-features">
+          <div class="py-24 mb-16 mt-10 text-center item-features">
             <div class="vx-row">
-              <div class="w-full vx-col md:w-1/3">
+              <div class="vx-col md:w-1/3 w-full">
                 <div class="w-64 mx-auto mb-16 md:mb-0">
                   <feather-icon
                     icon="AwardIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="text-lg font-semibold">100% Original</span>
+                  <span class="font-semibold text-lg">100% Original</span>
                   <p class="mt-2">
                     Chocolate bar candy canes ice cream toffee cookie halvah.
                   </p>
                 </div>
               </div>
-              <div class="w-full vx-col md:w-1/3">
+              <div class="vx-col md:w-1/3 w-full">
                 <div class="w-64 mx-auto mb-16 md:mb-0">
                   <feather-icon
                     icon="ClockIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="text-lg font-semibold">10 Day Replacement</span>
+                  <span class="font-semibold text-lg">10 Day Replacement</span>
                   <p class="mt-2">
                     Marshmallow biscuit donut dragée fruitcake wafer.
                   </p>
                 </div>
               </div>
-              <div class="w-full vx-col md:w-1/3">
+              <div class="vx-col md:w-1/3 w-full">
                 <div class="w-64 mx-auto">
                   <feather-icon
                     icon="ShieldIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="text-lg font-semibold">1 Year Warranty</span>
+                  <span class="font-semibold text-lg">1 Year Warranty</span>
                   <p class="mt-2">
                     Cotton candy gingerbread cake I love sugar sweet.
                   </p>
@@ -265,18 +285,25 @@
           </div>
         </div>
 
-        <!-- Related Products 
-        <div class="px-6 text-center related-products">
-
-          <div class="mb-8 text-center related-headings">
+        <!-- Related Products -->
+        <div class="related-products text-center px-6">
+          <div class="related-headings mb-8 text-center">
             <h2 class="uppercase">Related Products</h2>
             <p>People also search for this items</p>
           </div>
-          <swiper :options="swiperOption" :dir="$vs.rtl ? 'rtl' : 'ltr'" :key="$vs.rtl" class="px-12 py-6 related-product-swiper">
-            <swiper-slide v-for="item in related_items" :key="item.objectId" class="p-6 rounded cursor-pointer">
-
-             Item Heading 
-              <div class="mb-4 item-heading">
+          <swiper
+            :options="swiperOption"
+            :dir="$vs.rtl ? 'rtl' : 'ltr'"
+            :key="$vs.rtl"
+            class="related-product-swiper px-12 py-6"
+          >
+            <swiper-slide
+              v-for="item in related_items"
+              :key="item.objectId"
+              class="p-6 rounded cursor-pointer"
+            >
+              <!-- Item Heading -->
+              <div class="item-heading mb-4">
                 <p class="text-lg font-semibold truncate">{{ item.name }}</p>
                 <p class="text-sm">
                   <span class="mr-2">by</span>
@@ -284,21 +311,29 @@
                 </p>
               </div>
 
-            Item Image 
-              <div class="w-32 mx-auto img-container my-base">
-                <img class="responsive" :src="item.image" :alt="item.name">
+              <!-- Item Image -->
+              <div class="img-container w-32 mx-auto my-base">
+                <img class="responsive" :src="item.image" :alt="item.name" />
               </div>
 
-            Item Meta 
+              <!-- Item Meta -->
               <div class="item-meta">
-                <star-rating :show-rating="false" :rating="item.rating" :star-size="14" class="justify-center" read-only />
-                <p class="text-lg font-medium text-primary">${{ item.price }}</p>
+                <star-rating
+                  :show-rating="false"
+                  :rating="item.rating"
+                  :star-size="14"
+                  class="justify-center"
+                  read-only
+                />
+                <p class="text-lg font-medium text-primary">
+                  ${{ item.price }}
+                </p>
               </div>
             </swiper-slide>
             <div class="swiper-button-prev" slot="button-prev"></div>
             <div class="swiper-button-next" slot="button-next"></div>
           </swiper>
-        </div> -->
+        </div>
       </template>
     </vx-card>
   </div>
@@ -307,18 +342,22 @@
 <script>
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import algoliasearch from 'algoliasearch/lite'
 import StarRating from 'vue-star-rating'
+
 export default {
-  name: 'DetailedView',
-  props: ['real_estate'],
   components: {
     swiper,
     swiperSlide,
-    StarRating,
+    StarRating
   },
   data() {
     return {
-      //   real_estate: null,
+      algolia_index: algoliasearch(
+        'latency',
+        '6be0576ff61c053d5f9a3225e2a90f76'
+      ).initIndex('instant_search'),
+      item_data: null,
       error_occured: false,
       error_msg: '',
 
@@ -329,25 +368,25 @@ export default {
         breakpoints: {
           1600: {
             slidesPerView: 4,
-            spaceBetween: 55,
+            spaceBetween: 55
           },
           1300: {
             slidesPerView: 3,
-            spaceBetween: 55,
+            spaceBetween: 55
           },
           900: {
             slidesPerView: 2,
-            spaceBetween: 55,
+            spaceBetween: 55
           },
           640: {
             slidesPerView: 1,
-            spaceBetween: 55,
-          },
+            spaceBetween: 55
+          }
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
+          prevEl: '.swiper-button-prev'
+        }
       },
 
       // Below is data which is common in any item
@@ -357,129 +396,97 @@ export default {
         '#28C76F',
         '#EA5455',
         '#FF9F43',
-        '#1E1E1E',
+        '#1E1E1E'
       ],
       opt_color: '#7367F0',
       is_hearted: false,
 
       related_items: [
-        {
-          name:
-            'Apple - Apple Watch Series 1 42mm Space Gray Aluminum Case Black Sport Band - Space Gray Aluminum',
-          brand: 'Apple',
-          price: 229,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/01.png',
-          rating: 4,
-          objectID: '5546604',
-        },
-        {
-          name:
-            'Beats by Dr. Dre - Powerbeats2 Wireless Earbud Headphones - Black/Red',
-          brand: 'Beats by Dr. Dre',
-          price: 199.99,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/08.png',
-          rating: 4,
-          objectID: '5565002',
-        },
-        {
-          name: 'Amazon - Fire TV Stick with Alexa Voice Remote - Black',
-          brand: 'Amazon',
-          price: 39.99,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/03.png',
-          rating: 4,
-          objectID: '5477500',
-        },
-        {
-          name:
-            'Apple - Apple Watch Nike+ 42mm Silver Aluminum Case Silver/Volt Nike Sport Band - Silver Aluminum',
-          brand: 'Apple',
-          price: 399,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/07.png',
-          rating: 4,
-          objectID: '5547700',
-        },
-        {
-          name: 'Google - Chromecast Ultra - Black',
-          brand: 'Google',
-          price: 69.99,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/05.png',
-          rating: 4,
-          objectID: '5578628',
-        },
-        {
-          name: 'Beats by Dr. Dre - Beats EP Headphones - White',
-          brand: 'Beats by Dr. Dre',
-          price: 129.99,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/02.png',
-          rating: 4,
-          objectID: '5577781',
-        },
-        {
-          name: 'LG - 40" Class (39.5" Diag.) - LED - 1080p - HDTV - Black',
-          brand: 'LG',
-          price: 279.99,
-          image:
-            'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/09.png',
-          rating: 4,
-          objectID: '5613404',
-        },
-      ],
+        // {
+        //   'name'       : 'Apple - Apple Watch Series 1 42mm Space Gray Aluminum Case Black Sport Band - Space Gray Aluminum',
+        //   'brand'      : 'Apple',
+        //   'price'      : 229,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/01.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5546604'
+        // },
+        // {
+        //   'name'       : 'Beats by Dr. Dre - Powerbeats2 Wireless Earbud Headphones - Black/Red',
+        //   'brand'      : 'Beats by Dr. Dre',
+        //   'price'      : 199.99,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/08.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5565002'
+        // },
+        // {
+        //   'name'       : 'Amazon - Fire TV Stick with Alexa Voice Remote - Black',
+        //   'brand'      : 'Amazon',
+        //   'price'      : 39.99,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/03.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5477500'
+        // },
+        // {
+        //   'name'       : 'Apple - Apple Watch Nike+ 42mm Silver Aluminum Case Silver/Volt Nike Sport Band - Silver Aluminum',
+        //   'brand'      : 'Apple',
+        //   'price'      : 399,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/07.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5547700'
+        // },
+        // {
+        //   'name'       : 'Google - Chromecast Ultra - Black',
+        //   'brand'      : 'Google',
+        //   'price'      : 69.99,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/05.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5578628'
+        // },
+        // {
+        //   'name'       : 'Beats by Dr. Dre - Beats EP Headphones - White',
+        //   'brand'      : 'Beats by Dr. Dre',
+        //   'price'      : 129.99,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/02.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5577781'
+        // },
+        // {
+        //   'name'       : 'LG - 40" Class (39.5" Diag.) - LED - 1080p - HDTV - Black',
+        //   'brand'      : 'LG',
+        //   'price'      : 279.99,
+        //   'image'      : 'https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/09.png',
+        //   'rating'     : 4,
+        //   'objectID'   : '5613404'
+        // }
+      ]
     }
   },
   computed: {
     item_qty() {
       const item = this.$store.getters['eCommerce/getCartItem'](
-        this.real_estate.objectID
+        this.item_data.objectID
       )
       return Object.keys(item).length ? item.quantity : 1
     },
     itemColor() {
-      return (obj) => {
+      return obj => {
         const style_obj = {}
 
-        obj.style.forEach((p) => {
+        obj.style.forEach(p => {
           style_obj[p] = obj.color
         })
 
         return style_obj
       }
     },
-    schema() {
-      let schema = {
-        content: {
-          title: this.real_estate.title,
-          images: this.real_estate.image,
-        },
-      }
-
-      return schema
-    },
     isInWishList() {
-      return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
+      return itemId => this.$store.getters['eCommerce/isInWishList'](itemId)
     },
     isInCart() {
-      return (itemId) => this.$store.getters['eCommerce/isInCart'](itemId)
-    },
-    // real_estate() {
-    //   return this.$store.getters['eCommerce/selectedItem']
-    // }
+      return itemId => this.$store.getters['eCommerce/isInCart'](itemId)
+    }
   },
   methods: {
-    instagram() {
-      window.open('https://www.instagram.com/agri_ensights/', '_blank')
-    },
-    twitter() {
-      window.open('https://twitter.com/AEnsights', '_blank')
-    },
-    facebook() {
-      window.open('https://web.facebook.com/AgriEnsights/', '_blank')
-    },
     toggleItemInWishList(item) {
       this.$store.dispatch('eCommerce/toggleItemInWishList', item)
     },
@@ -487,27 +494,20 @@ export default {
       this.$store.dispatch('eCommerce/toggleItemInCart', item)
     },
     fetch_item_details(id) {
-      if (process.client) {
-        this.algolia_index.getObject(id, (err, content) => {
-          if (err) {
-            this.error_occured = true
-            this.error_msg = err.message
-            console.error(err)
-          } else {
-            this.real_estate = content
-          }
-        })
-      }
-    },
-  },
-  created() {
-    if (process.client) {
-      console.log(this.real_estate)
-
-      // this.fetch_item_details(this.$route.params.id)
-      // this.fetch_item_details('5546604')
+      this.algolia_index.getObject(id, (err, content) => {
+        if (err) {
+          this.error_occured = true
+          this.error_msg = err.message
+          console.error(err)
+        } else {
+          this.item_data = content
+        }
+      })
     }
   },
+  created() {
+    this.fetch_item_details(this.$route.params.item_id)
+  }
 }
 </script>
 

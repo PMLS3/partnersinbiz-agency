@@ -14,7 +14,7 @@
           @click="navigate_to_detail_view"
         >
           <img
-            :src="item.image[0]"
+            :src="item.img[0]"
             :alt="item.product_name"
             class="grid-view-img p-4"
           />
@@ -82,26 +82,26 @@ export default {
   props: {
     item: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   filters: {
-    capitalize: function(value) {
+    capitalize: function (value) {
       if (!value) return ''
       value = value.toString()
       return value.charAt(0).toUpperCase() + value.slice(1)
     },
     thousandSeprator(amount) {
       return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    }
+    },
   },
   computed: {
     isInCart() {
-      return itemId => this.$store.getters['eCommerce/isInCart'](itemId)
+      return (itemId) => this.$store.getters['eCommerce/isInCart'](itemId)
     },
     isInWishList() {
-      return itemId => this.$store.getters['eCommerce/isInWishList'](itemId)
-    }
+      return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
+    },
   },
   methods: {
     toggleItemInWishList(item) {
@@ -117,8 +117,8 @@ export default {
     },
     navigate_to_detail_view() {
       this.$router.push(`/eCommerce/detail_view/${item.objectID}`)
-    }
-  }
+    },
+  },
 }
 </script>
 

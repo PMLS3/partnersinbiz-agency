@@ -137,6 +137,9 @@
           <AppsFanwall v-if="item.display == 'fanwall'" />
 
           <AppsImageGallery v-if="item.display == 'image-gallery'" />
+
+          <AppsInfoTier v-if="item.display == 'info-tier'" />
+          <AppsRealEstate v-if="item.display == 'real-estate'" />
         </client-only>
       </div>
       <div v-show="!viewSet">

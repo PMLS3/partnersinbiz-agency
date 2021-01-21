@@ -12,11 +12,7 @@
         class="flex items-center justify-center h-64 mb-4 bg-white cursor-pointer item-img-container"
         @click="navigate_to_detail_view"
       >
-        <img
-          :src="item.image[0]"
-          :alt="item.title"
-          class="px-4 grid-view-img"
-        />
+        <img :src="item.img[0]" :alt="item.title" class="px-4 grid-view-img" />
       </div>
       <div class="px-4 item-details">
         <div class="flex items-center justify-between">

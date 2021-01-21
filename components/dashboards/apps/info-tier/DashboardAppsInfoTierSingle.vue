@@ -29,12 +29,12 @@ export default {
     return {
       item: {
         item: 'InfoTierSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Info Tier',
+        sub_text: 'All your Info Tier needs',
         type: 'Single',
         has_categories: true,
         parent: 'InfoTier',
-        display: 'calendar',
+        display: 'info-tier',
         url: '/AppsInfoTier/',
         settings: {
           search: true,
@@ -74,27 +74,15 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Category',
+          field: 'category',
           filter: true,
           width: 250,
-        },
-        {
-          headerName: 'End',
-          field: 'end',
-          filter: true,
-          width: 250,
-        },
-        {
-          headerName: 'Short',
-          field: 'content',
-          filter: true,
-          width: 175,
         },
 
         {
-          headerName: 'Long Description',
-          field: 'contentFull',
+          headerName: 'Description',
+          field: 'html',
           filter: true,
           width: 250,
           cellRendererFramework: 'CellRendererHtml',
@@ -109,7 +97,24 @@ export default {
         },
       ]
     },
-
+    schemas() {
+      return [
+        {
+          title: 'TextInput',
+          placeholder: 'Title',
+          type: 'text',
+          label: 'Title',
+          name: 'title',
+        },
+        {
+          title: 'ColorSelect',
+          placeholder: 'Color',
+          type: 'text',
+          label: 'Color',
+          name: 'color',
+        },
+      ]
+    },
     schema() {
       return [
         {

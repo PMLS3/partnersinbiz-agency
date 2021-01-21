@@ -8,13 +8,13 @@ TODO: make items clickable
 
 <template>
   <div>
-    <UiElementsAccordianSimple :info="info" />
+    <UiElementsAccordianSimple :info="items" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppsEvents',
+  name: 'AppsInfoTier',
   props: {
     item_id: {
       type: String,
@@ -35,7 +35,7 @@ export default {
     let vm = this
     let ref = this.$fireStore
       .collection('apps')
-      .doc('EventsSingle')
+      .doc('InfoTierSingle')
       .collection('app')
       .where('id', '==', this.item_unique)
 
@@ -44,16 +44,9 @@ export default {
         if (change.type === 'added') {
           let doc = change.doc
           let data = doc.data()
-          let datas = {
-            start: `${doc.data().date_start} ${doc.data().time_start}`,
-            end: `${doc.data().date_end} ${doc.data().time_end}`,
-            title: doc.data().title,
-            icon: 'shopping_cart', // Custom attribute.
-            content: doc.data().desc,
-            contentFull: doc.data().description,
-          }
+
           data.id = doc.id
-          vm.items.push(datas)
+          vm.items.push(data)
         }
       })
     })
