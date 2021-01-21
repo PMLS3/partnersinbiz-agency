@@ -5,13 +5,14 @@
 <script>
 export default {
   name: 'Golf',
+  components: {},
   data() {
     return {
       item: {
         item: 'Golf',
         title: 'Golf',
         child: 'GolfSingle',
-        sub_text: 'Create different Course',
+        sub_text: 'Create a Golf',
         type: 'Category',
         has_categories: false,
         search: true,
@@ -25,7 +26,7 @@ export default {
           title: 'TextInput',
           placeholder: 'Course Name',
           label: 'Name',
-          name: 'name',
+          name: 'title',
         },
         {
           title: 'TextInput',
@@ -61,10 +62,10 @@ export default {
           options: ['', 'Yards', 'Km'],
         },
         {
-          title: 'TextArea',
-          placeholder: 'Description',
+          title: 'QuilEditor',
+          name: 'desc',
           label: 'Description',
-          name: 'description',
+          placeholder: 'Description',
         },
         {
           title: 'ImageUpload',

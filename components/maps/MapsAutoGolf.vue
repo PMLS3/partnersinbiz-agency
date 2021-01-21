@@ -51,6 +51,7 @@
     :draggable="true">
   </gmap-custom-marker> -->
       </gmap-map>
+      <vs-button @click="golfSelect">Set Holes</vs-button>
     </div>
   </div>
 </template>
@@ -110,6 +111,14 @@ export default {
     this.geolocate()
   },
   methods: {
+    golfSelect() {
+      let payload = {
+        coordinates: this.coordinates,
+        backcoordinates: this.backcoordinates,
+        frontcoordinates: this.frontcoordinates,
+      }
+      this.$emit('input', payload)
+    },
     updateCoordinates(location) {
       this.coordinates = {
         lat: location.latLng.lat(),

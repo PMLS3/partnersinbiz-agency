@@ -17,9 +17,10 @@
 import { Howl, Howler } from 'howler'
 
 export default {
+  name: 'UiPlayersProgress',
   props: {
     progress: Number,
-    trackInfo: Object
+    trackInfo: Object,
   },
   data() {
     return {}
@@ -27,9 +28,9 @@ export default {
   computed: {
     trackProgress() {
       return this.progress * 100
-    }
+    },
   },
-  created: function() {},
+  created: function () {},
   methods: {
     updateSeek(event) {
       let el = document.querySelector('.progress-linear__bar'),
@@ -37,7 +38,7 @@ export default {
         elWidth = el.clientWidth,
         percents = (mousePos / elWidth) * 100
       this.$emit('updateseek', percents)
-    }
-  }
+    },
+  },
 }
 </script>

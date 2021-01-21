@@ -6,13 +6,7 @@
 ========================================================================================== -->
 
 <template>
-  <DashboardAppSingle
-    :item="item"
-    :items="items"
-    :schema="schema"
-    :schemas="schemas"
-    :columnDefs="columnDefs"
-  />
+  <DashboardAppSingle :item="item" :schema="schema" :columnDefs="columnDefs" />
 </template>
 
 <script>
@@ -29,12 +23,12 @@ export default {
     return {
       item: {
         item: 'GolfSingle',
-        title: 'Calendar',
-        sub_text: 'All your calendar needs',
+        title: 'Golf',
+        sub_text: 'All your golf needs',
         type: 'Single',
-        has_categories: true,
+        has_categories: false,
         parent: 'Golf',
-        display: 'calendar',
+        display: 'golf',
         url: '/AppsGolf/',
         settings: {
           search: true,
@@ -48,20 +42,9 @@ export default {
           calendar_times: false,
         },
       },
-      items: { item: 'Golf', title: 'Add Category', type: 'Category' },
     }
   },
   computed: {
-    categories() {
-      return this.$store.state.app.categories
-    },
-    cats() {
-      let cats = []
-      for (let i = 0; i < this.categories.length; i++) {
-        cats.push(this.categories[i].title)
-      }
-      return cats
-    },
     columnDefs() {
       return [
         {
@@ -74,27 +57,39 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Start',
-          field: 'start',
+          headerName: 'Hole number',
+          field: 'holenumber',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'End',
-          field: 'end',
+          headerName: 'Tee 1',
+          field: 'tee1',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'Short',
-          field: 'content',
+          headerName: 'Tee 2',
+          field: 'tee2',
+          filter: true,
+          width: 175,
+        },
+        {
+          headerName: 'Tee 3',
+          field: 'tee3',
+          filter: true,
+          width: 175,
+        },
+        {
+          headerName: 'Tee 4',
+          field: 'tee4',
           filter: true,
           width: 175,
         },
 
         {
-          headerName: 'Long Description',
-          field: 'contentFull',
+          headerName: 'Description',
+          field: 'desc',
           filter: true,
           width: 250,
           cellRendererFramework: 'CellRendererHtml',
@@ -111,61 +106,86 @@ export default {
     },
     schema() {
       return [
-        // {
-        //   title: 'SelectList',
-        //   name: 'course',
-        //   multi: false,
-        //   label: 'Course',
-        //   options: golfCourse,
-        // },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          placeholder: 'Hole Name',
+          label: 'Name',
+          name: 'title',
+        },
+        {
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Hole Number',
           name: 'holenumber',
           label: 'Hole Number',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Par',
           name: 'par',
           label: 'Par',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Handicap',
           name: 'handicap',
           label: 'Handicap',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Tee 1 - Distance',
           name: 'tee1',
           label: 'Tee 1 - Distance',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Tee 2 - Distance',
           name: 'tee2',
           label: 'Tee 2 - Distance',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Tee 3 - Distance',
           name: 'tee3',
           label: 'Tee 3 - Distance',
           minValue: 0,
         },
         {
-          title: 'NumberInput',
+          title: 'TextInput',
+          textType: 'number',
           placeholder: 'Tee 4 - Distance',
           name: 'tee4',
           label: 'Tee 4 - Distance',
           minValue: 0,
+        },
+        {
+          title: 'QuilEditor',
+          name: 'desc',
+          label: 'Description',
+          placeholder: 'Description',
+        },
+        {
+          title: 'ImageUpload',
+          placeholder: 'Image',
+          type: 'text',
+          label: 'Image',
+          name: 'url',
+        },
+        {
+          title: 'MapsAutoGolf',
+          placeholder: 'Green',
+          name: 'green',
+          label: 'Green',
         },
       ]
     },

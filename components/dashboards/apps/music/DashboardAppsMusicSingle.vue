@@ -18,12 +18,14 @@
 <script>
 import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActions.vue'
 import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
+import CellRendererAudio from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererAudio.vue'
 
 export default {
   name: 'MusicSingle',
   components: {
     CellRendererActions,
     CellRendererHtml,
+    CellRendererAudio,
   },
   data() {
     return {
@@ -34,7 +36,7 @@ export default {
         type: 'Single',
         has_categories: false,
         parent: 'Music',
-        display: 'documents',
+        display: 'music',
         url: '/AppsMusic/',
         settings: {
           search: true,
@@ -74,24 +76,35 @@ export default {
           headerCheckboxSelection: true,
         },
         {
-          headerName: 'Doctype',
-          field: 'url[0].type',
+          headerName: 'Cover',
+          field: 'cover',
           filter: true,
           width: 250,
         },
         {
-          headerName: 'Document',
-          field: 'url[0]',
+          headerName: 'Artist',
+          field: 'Artist',
           filter: true,
           width: 250,
         },
-
         {
-          headerName: 'Long Description',
-          field: 'desc',
+          headerName: 'Category',
+          field: 'category',
           filter: true,
           width: 250,
-          cellRendererFramework: 'CellRendererHtml',
+        },
+        {
+          headerName: 'Genre',
+          field: 'genre',
+          filter: true,
+          width: 250,
+        },
+        {
+          headerName: 'Audio',
+          field: 'audio',
+          filter: true,
+          width: 250,
+          cellRendererFramework: 'CellRendererAudio',
         },
 
         {

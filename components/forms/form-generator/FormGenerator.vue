@@ -36,6 +36,7 @@ import DocumentUpload from './components/documentUpload'
 import MusicUpload from '@/components/upload/UploadMusic.vue'
 
 import GoogleAddress from './components/googleAddress'
+import MapsAutoGolf from '@/components/maps/MapsAutoGolf.vue'
 
 export default {
   name: 'FormGenerator',
@@ -56,6 +57,7 @@ export default {
     Slider,
     MusicUpload,
     DocumentUpload,
+    MapsAutoGolf,
     QuilEditor: () =>
       process.client ? import('./components/quill-Editor') : null,
     DatePicker: () =>

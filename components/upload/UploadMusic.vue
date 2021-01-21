@@ -311,7 +311,6 @@
       v-if="selectedAudios.length > 0"
       >Use Selected</vs-button
     >
-    {{ checkAudio }}
     <div class="flex">
       <div v-for="(audio, index) in infoAudios" :key="index">
         <vs-checkbox v-model="audio.selected" :vs-value="audio"

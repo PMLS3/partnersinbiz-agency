@@ -63,9 +63,6 @@ export default {
 
     let show = ref(true)
 
-    let item = ref({
-      name: 'dashboard',
-    })
     let columnDefs = ref([
       {
         headerName: 'ID',
@@ -163,7 +160,6 @@ export default {
     return {
       user,
       columnDefs,
-      item,
       motivational_quotes,
       itemData,
       optionset,

@@ -17,7 +17,45 @@
                 {{ motivational_quotes }}
               </p>
             </div>
-            <VideoChat />
+            <AppsVideoChat />
+          </div>
+          <div class="flex flex-row">
+            <!-- <vs-tooltip text="Click to change data view" position="top">
+                <vs-button
+                  icon="chrome_reader_mode"
+                  class="ml-1"
+                  @click="viewSet = !viewSet"
+                >
+                </vs-button>
+              </vs-tooltip> -->
+
+            <vs-tooltip text="View Component" position="top">
+              <vs-button
+                class="ml-1"
+                icon="preview"
+                @click="$router.push(`${item.url}${$route.params.id}`)"
+              ></vs-button>
+            </vs-tooltip>
+            <!-- <UploadApps :schema="schema" :item="item" /> -->
+            <!-- <vs-input v-model="userUrl" class="inline-flex mb-2 mr-2" /> -->
+            <vs-tooltip text="Copy link to send on" position="top">
+              <vs-button
+                v-clipboard:copy="userUrl"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+                icon="content_copy"
+                class="ml-1"
+              >
+              </vs-button>
+            </vs-tooltip>
+
+            <!-- <UploadApps :schema="schema" :item="item" />
+
+              <UploadCategory
+                :schema="schemas"
+                :item="items"
+                v-if="item.has_categories"
+              /> -->
           </div>
         </div>
       </div>
@@ -40,7 +78,10 @@
       <vs-card>
         <UploadMusic v-show="optionset == 'Upload'" />
       </vs-card>
-      <DashboardAppsBroadcastStationSingle v-show="optionset == 'Station'" />
+      <DashboardAppsBroadcastStationSingle
+        v-show="optionset == 'Station'"
+        :item="item"
+      />
     </client-only>
   </div>
 </template>
@@ -69,7 +110,7 @@ export default {
     CellRendererAudio,
   },
   setup() {
-    const { store, $fireStore } = useContext()
+    const { store, $fireStore, route } = useContext()
 
     const user = computed(() => store.state.auth.main_user)
 
@@ -80,8 +121,33 @@ export default {
 
     let optionset = ref('SongsLists')
 
+    const userUrl = computed(() => {
+      var url =
+        window.location.origin + '/se' + item.value.url + route.value.params.id
+      return url
+    })
+
     let item = ref({
       name: 'dashboard',
+      item: 'BroadcastSingle',
+      title: 'Broadcast',
+      sub_text: 'All your Broadcast needs',
+      type: 'Single',
+      has_categories: false,
+      parent: 'Broadcast',
+      display: 'broadcast',
+      url: '/AppsBroadcaster/',
+      settings: {
+        search: true,
+        drawingboard: false,
+        host: false,
+        private_room: false,
+        access_control: false,
+        popup: false,
+        selected_view: false,
+        adding_view: false,
+        calendar_times: false,
+      },
     })
     let columnDefs = ref([
       {
@@ -152,6 +218,7 @@ export default {
     let itemData = ref([])
 
     onMounted(() => {
+      console.log('route', route)
       let infoRetrieve = $fireStore.collection('music')
       // .where('u_uid', '==', this.user.uid)
 
@@ -177,7 +244,15 @@ export default {
       })
     })
 
-    return { user, columnDefs, item, motivational_quotes, itemData, optionset }
+    return {
+      user,
+      columnDefs,
+      item,
+      motivational_quotes,
+      itemData,
+      optionset,
+      userUrl,
+    }
   },
   mounted() {
     this.socket = this.$nuxtSocket({ channel: '/radio' })

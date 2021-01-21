@@ -8,7 +8,7 @@ TODO: make events clickable
 
 <template>
   <div>
-    <MultiCalendar :events="events" />
+    <StationPlayer :room="item_unique" :show="show" />
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       events: [],
+      show: false,
     }
   },
   computed: {
