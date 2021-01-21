@@ -71,6 +71,10 @@ export default {
     function addForm() {
       let type = props.item.type
 
+      console.log('type', type)
+      console.log('type', props.item.item)
+      console.log('type', useContext())
+
       if (type == 'Category') {
         let form = formData.value
         form.i_type = props.item.item
@@ -141,12 +145,11 @@ export default {
         }
       } else if (props.item.item == 'MusicSingle') {
         console.log('form', formData.value)
-        for (let i = 0; i < formData.url.length; i++) {
-          let form = formData.value
-          form.url = formData.value.url[i]
-          form.url.type = 'music'
-          form.title = formData.value.title
-          form.desc = formData.value.desc
+        console.log('length', formData.value.url.length)
+
+        for (let i = 0; i < formData.value.url.length; i++) {
+          let form = {}
+          form.type = 'music'
           form.i_type = props.item.item
           form.date = moment().format('DD-MM-YYYY')
           form.disp_name = user.value.disp_name
@@ -154,15 +157,20 @@ export default {
           form.b_uid = business.value.b_uid
           form.reseller = [reseller.value, ...sub_reseller.value]
           form.id = route.value.params.id
+
+          let payload = { ...form, ...formData.value.url[i] }
+          payload.id = route.value.params.id
+          console.log('form:', payload)
           $fireStore
             .collection('apps')
             .doc(props.item.item)
             .collection('app')
-            .add(form)
+            .add(payload)
             .then(() => {
               successUpload()
             })
             .catch((err) => {
+              console.log('error', err)
               unsuccessUpload(err)
             })
         }

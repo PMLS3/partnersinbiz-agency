@@ -33,7 +33,7 @@ import StarRating from './components/starRating'
 import CheckBox from './components/checkBox'
 import ImageUpload from '@/components/upload/UploadImage.vue'
 import DocumentUpload from './components/documentUpload'
-import MusicUpload from './components/musicUpload'
+import MusicUpload from '@/components/upload/UploadMusic.vue'
 
 import GoogleAddress from './components/googleAddress'
 
@@ -72,6 +72,7 @@ export default {
 
   methods: {
     updateForm(fieldName, value) {
+      console.log('form', fieldName, value)
       this.$set(this.formData, fieldName, value)
       this.$emit('input', this.formData)
     },

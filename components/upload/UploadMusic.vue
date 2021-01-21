@@ -311,6 +311,7 @@
       v-if="selectedAudios.length > 0"
       >Use Selected</vs-button
     >
+    {{ checkAudio }}
     <div class="flex">
       <div v-for="(audio, index) in infoAudios" :key="index">
         <vs-checkbox v-model="audio.selected" :vs-value="audio"
@@ -412,11 +413,15 @@ export default {
       needUpload: false,
       selectedCategory: '',
       categories: [],
-      checkAudio: [],
     }
   },
 
   computed: {
+    checkAudio() {
+      let aud = this.infoAudios.filter((a) => a.selected)
+
+      return aud
+    },
     audioPreview() {
       let index = findIndex(this.audios, { highlight: 1 })
       if (index > -1) {
@@ -462,10 +467,16 @@ export default {
       this.selectedAudios = myAudios
     },
     emitChanges() {
-      this.$store.commit('form/UPLOADED_MUSIC', this.checkAudio)
+      let vm = this
       console.log('check', this.checkAudio)
       this.$emit('input', this.checkAudio)
-      ;(this.popupActivo4 = false), (this.needUpload = false)
+      this.$store.commit('form/UPLOADED_MUSIC', this.checkAudio)
+
+      setTimeout(() => {
+        vm.popupActivo4 = false
+        vm.needUpload = false
+      }, 1000)
+      // ;(this.popupActivo4 = false), (this.needUpload = false)
     },
 
     setAudios() {
@@ -551,6 +562,10 @@ export default {
             console.log('i', i, vm.audios.length - 1)
             if (i == vm.audios.length - 1) {
               vm.$vs.loading.close()
+
+              setTimeout(() => {
+                vm.needUpload = false
+              }, 1000)
             }
           })
           .catch((err) => {
@@ -563,11 +578,12 @@ export default {
             console.log('i', i, vm.audios.length - 1)
             if (i == vm.audios.length - 1) {
               vm.$vs.loading.close()
+              setTimeout(() => {
+                vm.needUpload = false
+              }, 1000)
             }
           })
       }
-
-      this.needUpload = false
     },
     onDrop(e) {
       this.isDragover = false
@@ -774,32 +790,32 @@ export default {
   },
   created() {
     if (process.client) {
-      // this.audios = [];
-      // this.audios = cloneDeep(this.dataAudios);
-      // console.log("this.user.uid", this.user.uid);
-      // let infoRetrieve = this.$fireStore
-      //   .collection("music")
-      //   .where("u_uid", "==", this.user.uid);
-      // infoRetrieve.onSnapshot(snapshot => {
-      //   snapshot.docChanges().forEach(change => {
-      //     let doc = change.doc;
-      //     this.infoAudios.push({
-      //       id: doc.id,
-      //       category: doc.data().category,
-      //       audio: doc.data().audio,
-      //       artist: doc.data().artist,
-      //       title: doc.data().title,
-      //       album: doc.data().album,
-      //       display: doc.data().display,
-      //       cover: doc.data().cover,
-      //       genre: doc.data().genre,
-      //       u_uid: doc.data().u_uid,
-      //       b_uid: doc.data().b_uid,
-      //       r_uid: doc.data().r_uid,
-      //       mr_uid: doc.data().mr_uid
-      //     });
-      //   });
-      // });
+      this.audios = []
+      this.audios = cloneDeep(this.dataAudios)
+      console.log('this.user.uid', this.user.uid)
+      let infoRetrieve = this.$fireStore
+        .collection('music')
+        .where('u_uid', '==', this.user.uid)
+      infoRetrieve.onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          let doc = change.doc
+          this.infoAudios.push({
+            id: doc.id,
+            category: doc.data().category,
+            audio: doc.data().audio,
+            artist: doc.data().artist,
+            title: doc.data().title,
+            album: doc.data().album,
+            display: doc.data().display,
+            cover: doc.data().cover,
+            genre: doc.data().genre,
+            u_uid: doc.data().u_uid,
+            b_uid: doc.data().b_uid,
+            r_uid: doc.data().r_uid,
+            mr_uid: doc.data().mr_uid,
+          })
+        })
+      })
     }
   },
 }
