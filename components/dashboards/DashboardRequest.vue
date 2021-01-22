@@ -100,6 +100,7 @@ export default {
       let extraData = {
         b_uid: this.business.b_uid,
         uid: this.user.uid,
+        user_email: this.user.email,
         disp_name: this.user.disp_name,
         b_name: this.business.b_name,
         read: false,
@@ -120,13 +121,5 @@ export default {
         )
     },
   },
-  created() {},
 }
 </script>
-
-<style lang="scss">
-.knowledge-base-jumbotron-content {
-  background-image: url('../../assets/images/background/night.jpeg');
-  background-size: cover;
-}
-</style>

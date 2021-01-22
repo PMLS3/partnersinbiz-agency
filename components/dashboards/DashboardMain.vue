@@ -170,9 +170,16 @@ export default {
       {
         id: 14,
         title: 'Lead Gen',
-        description: 'Have feature request? Found a bug? Please let us know.',
-        graphic: require('@/assets/illustrations/in_thoughts.svg'),
+        description: 'Generate leads, get contact details and more',
+        graphic: require('@/assets/illustrations/collaboration.svg'),
         go_to_url: '/dashboardLeadGen',
+      },
+      {
+        id: 15,
+        title: 'Roadmap',
+        description: 'See what is on our roadmap',
+        graphic: require('@/assets/illustrations/winter_road.svg'),
+        go_to_url: '/dashboardRoadmap',
       },
     ])
     const user = computed(() => store.state.auth.main_user)

@@ -4,7 +4,7 @@
 
 <script>
 import register from '@/components/pages/register/Register.vue'
-import Login from '@/components/pages/login/Login.vue'
+import login from '@/components/pages/login/Login.vue'
 import aframeWorld from '@/components/apps/aframe-world/AframeWorld.vue'
 import profile from '@/components/pages/Profile.vue'
 import userSettings from '@/components/pages/user-settings/UserSettings.vue'
@@ -37,6 +37,7 @@ import DashboardLeadGen from '@/components/dashboards/DashboardLeadGen.vue'
 import DashboardWebsiteBuilder from '@/components/dashboards/DashboardWebsiteBuilder.vue'
 import DashboardPageBuilder from '@/components/dashboards/DashboardPageBuilder.vue'
 import DashboardEmailCampaigns from '@/components/dashboards/DashboardEmailCampaigns.vue'
+import DashboardRoadmap from '@/components/dashboards/DashboardRoadmap.vue'
 
 // // Apps Dashboards
 import dashboardAppsBroadcast from '@/components/dashboards/apps/broadcast/DashboardAppsBroadcast.vue'
@@ -104,7 +105,7 @@ export default {
   layout: myMiddleware,
   components: {
     register,
-    Login,
+    login,
     aframeWorld,
     profile,
     userSettings,
@@ -187,6 +188,7 @@ export default {
     dashboardAppsVideoCallSingle,
     dashboardAppsVideos,
     dashboardAppsVideosSingle,
+    DashboardRoadmap,
     userView,
     userEdit,
     //   // videoChat,

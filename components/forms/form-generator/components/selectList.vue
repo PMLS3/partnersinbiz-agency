@@ -4,7 +4,7 @@
       <h6>Current: {{ placeholder }}</h6>
     </div>
 
-    <h1 class="mt-4 text-base text-gray-800">
+    <h1 class="mt-4 text-sm text-gray-800">
       {{ label }}
     </h1>
     <v-select

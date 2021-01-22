@@ -7,26 +7,26 @@
 
 <template>
   <div
-    class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center"
+    class="flex items-center justify-center w-full h-screen bg-img vx-row no-gutter"
   >
-    <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
+    <div class="m-4 vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0">
       <vx-card>
         <div slot="no-body" class="full-page-bg-color">
           <div class="vx-row no-gutter">
             <div
-              class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center"
+              class="self-center hidden mx-auto vx-col sm:hidden md:hidden lg:block lg:w-1/2"
             >
               <img
-                src="@/assets/images/pages/register.jpg"
+                src="@/assets/illustrations/authentication.svg"
                 alt="register"
-                class="mx-auto"
+                class="w-full mx-auto"
               />
             </div>
             <div
-              class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center  d-theme-dark-bg"
+              class="self-center mx-auto vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg"
             >
               <div class="px-8 pt-8 register-tabs-container">
-                <div class="vx-card__title mb-4">
+                <div class="mb-4 vx-card__title">
                   <h4 class="mb-4">Create Account</h4>
                   <p>Fill the below form to create a new account.</p>
                 </div>
@@ -55,24 +55,24 @@
 </template>
 
 <script>
-import RegisterJwt from "./RegisterJWT.vue";
-import RegisterFirebase from "./RegisterFirebase.vue";
-import RegisterAuth0 from "./RegisterAuth0.vue";
-import RegisterPhone from "./RegisterPhone.vue";
+import RegisterJwt from './RegisterJWT.vue'
+import RegisterFirebase from './RegisterFirebase.vue'
+import RegisterAuth0 from './RegisterAuth0.vue'
+import RegisterPhone from './RegisterPhone.vue'
 export default {
-  name: "Register",
+  name: 'Register',
   components: {
     RegisterJwt,
     RegisterFirebase,
     RegisterAuth0,
-    RegisterPhone
+    RegisterPhone,
   },
   computed: {
     authorization_type() {
-      return this.$store.state.app.authorization_type;
-    }
-  }
-};
+      return this.$store.state.app.authorization_type
+    },
+  },
+}
 </script>
 
 <style lang="scss">

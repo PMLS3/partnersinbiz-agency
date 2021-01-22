@@ -8,6 +8,9 @@ const nodemailer = require('nodemailer')
 // min hour day month weekday https://crontab.guru/
 
 // const { tweeting, retweet, likeTweet } = require('./twitter/tweet')
+const generic = require('./emails/generic')
+
+exports.sendDashboardRequest = generic.sendDashboardRequest
 
 exports.scheduledFunctionMinute = functions.pubsub
   .schedule('* * * * *')

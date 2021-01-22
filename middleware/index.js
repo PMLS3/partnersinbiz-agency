@@ -12,7 +12,7 @@ export default (context) => {
 
   switch (params.id) {
     // case 'profile':
-    // case 'Login':
+    case 'login':
     case 'register':
     case 'wireframes':
     case 'drawingboard':

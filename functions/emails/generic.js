@@ -1,3 +1,5 @@
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
 const nodemailer = require('nodemailer')
 
 let transporter = nodemailer.createTransport({
@@ -23,6 +25,29 @@ transporter.sendMail(mailOptions, (error, info) => {
   }
   console.log('success')
 })
+
+exports.sendDashboardRequest = functions.firestore
+  .document('suggestions/{suggestionsId}')
+  .onCreate((snap, context) => {
+    const mailOptions = {
+      from: 'support@itdesk.com',
+      to: snap.data().user_email,
+      subject: 'Booking Confirmed',
+      html: `<h1>Thank you for your email</h1>
+        <p>This is an automated response from your mail:</p>
+        <br/>
+        ${snap.data().desc}
+        <br/>
+        <h5>We will get back to you soon!</h5>`,
+    }
+    return transporter.sendMail(mailOptions, (error, data) => {
+      if (error) {
+        console.log(error)
+        return
+      }
+      console.log('Sent!')
+    })
+  })
 
 // exports.sendBookingUserEmails = functions.firestore
 // .document('{resellerId}/apps/{companyId}/{componentId}/bookings')

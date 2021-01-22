@@ -289,7 +289,7 @@ TODO: data not pulling through
       <!-- CARD 8: Activity Timeline -->
       <div class="w-full vx-col lg:w-1/3 mb-base">
         <vx-card title="Activity Timeline">
-          <vx-timeline :data="timelineData" />
+          <UiTimeline :data="timelineData" />
         </vx-card>
       </div>
     </div>

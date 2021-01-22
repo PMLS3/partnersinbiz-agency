@@ -16,9 +16,9 @@
           <div class="items-center justify-center vx-row no-gutter">
             <div class="hidden vx-col lg:block lg:w-1/2">
               <img
-                src="@/assets/images/pages/login.png"
+                src="@/assets/illustrations/secure_login.svg"
                 alt="login"
-                class="mx-auto"
+                class="w-full mx-auto"
               />
             </div>
 
