@@ -1,8 +1,9 @@
 <template>
   <div>
     <client-only>
-      <PageBuilder :list2="list2" @askParentToAddToList="addToList" />
-      <DragTypes :list="list" @submitNewList="addToListTwo" />
+      <PageGeneratorBuilder class="mt-24" />
+      <!-- <PageBuilder :list2="list2" @askParentToAddToList="addToList" /> -->
+      <!-- <DragTypes :list="list" @submitNewList="addToListTwo" /> -->
     </client-only>
   </div>
 </template>

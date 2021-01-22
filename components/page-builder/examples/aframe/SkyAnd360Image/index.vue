@@ -1,0 +1,54 @@
+<template>
+  <div>
+    <client-only>
+      <a-scene>
+        <!-- Asset Management System -->
+        <a-assets>
+          <img id="floor" src="./L12-IMGs/floor-1024.jpg" />
+          <img id="floor-NRM" src="./L12-IMGs/floor-1024-NRM.jpg" />
+          <img id="clear-sunny-sky" src="./L12-IMGs/clear-sunny-sky.jpg" />
+          <img id="360-panorama" src="./L12-IMGs/360-panorama.jpg" />
+        </a-assets>
+
+        <!-- Sky
+            <a-sky src="#clear-sunny-sky"
+                   rotation="0 64 0">
+            </a-sky> -->
+
+        <!-- Ground | Realistic Style -->
+        <a-plane
+          material="color: #FFFFFF;
+                               src: #floor;
+                               repeat: 5000 5000;
+                               normal-map: #floor-NRM;
+                               normal-texture-repeat: 5000 5000"
+          rotation="-90 0 0"
+          scale="10000 10000 1"
+        >
+        </a-plane>
+
+        <!-- Ground | Cartoonish Style
+            <a-plane material="color: #00AA00;
+                               shader: flat"
+                     rotation="-90 0 0"
+                     scale="10000 10000 1">
+            </a-plane> -->
+
+        <!-- 360° Panorama -->
+        <a-sky src="#360-panorama"></a-sky>
+      </a-scene>
+    </client-only>
+  </div>
+</template>
+
+<script>
+if (process.client) {
+  //   require('../js/sphereexpand.js')
+}
+
+export default {
+  name: 'sky-and-360-image'
+}
+</script>
+
+<style></style>

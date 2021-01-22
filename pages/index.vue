@@ -1,11 +1,12 @@
 <template>
   <div class="h-screen">
     <client-only>
-      <vs-card class="mt-24">
+      <!-- <vs-card class="mt-24">
         <vs-button @click="$router.push('test')">Tetst</vs-button>
         <UiMarqueeTextExample />
         <UiImageUnsplash />
-      </vs-card>
+      </vs-card> -->
+      <PageGeneratorBuilder class="mt-24" />
     </client-only>
   </div>
 </template>

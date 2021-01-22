@@ -1,12 +1,12 @@
 <template>
-  <div class="flex h-screen">
+  <div class="grid h-screen grid-cols-1 md:grid-cols-2">
     <div class="max-w-md m-auto">
       <vx-card title="Features to be released">
         <UiTimeline :data="timelineFeatures" />
       </vx-card>
     </div>
     <div class="max-w-md m-auto">
-      <vx-card title="Bug Fixes Timeline">
+      <vx-card title="Bug Fixes Timeline ">
         <UiTimeline :data="timelineBugs" />
       </vx-card>
     </div>

@@ -3,6 +3,7 @@
     <client-only>
       <ComponentsEdit @askParentToAddToList="addToList" class="mt-24" />
       {{ component_list }}
+
       <PageGeneratorMainGrid :schema="component_list" />
     </client-only>
   </div>

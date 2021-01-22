@@ -1,0 +1,38 @@
+<!-- =========================================================================================
+    File Name: Notifications.vue
+    Description: Notifications - Imports all page portions
+    ----------------------------------------------------------------------------------------
+    Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+      Author: Pixinvent
+    Author URL: http://www.themeforest.net/user/pixinvent
+========================================================================================== -->
+
+<template>
+  <div id="notifications-demo">
+    <p class="mb-4">Nice, simple, and interactive notifications</p>
+
+    <notifications-default></notifications-default>
+    <notifications-position></notifications-position>
+    <notifications-icon></notifications-icon>
+    <notifications-fixed-and-function-click></notifications-fixed-and-function-click>
+    <notifications-time></notifications-time>
+  </div>
+</template>
+
+<script>
+import NotificationsDefault from './ExampleNotificationsDefault.vue'
+import NotificationsPosition from './ExampleNotificationsPosition.vue'
+import NotificationsIcon from './ExampleNotificationsIcon.vue'
+import NotificationsFixedAndFunctionClick from './ExampleNotificationsFixedAndFunctionClick.vue'
+import NotificationsTime from './ExampleNotificationsTime.vue'
+
+export default {
+  components: {
+    NotificationsDefault,
+    NotificationsPosition,
+    NotificationsIcon,
+    NotificationsFixedAndFunctionClick,
+    NotificationsTime,
+  },
+}
+</script>

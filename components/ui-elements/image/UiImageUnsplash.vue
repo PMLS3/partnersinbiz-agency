@@ -3,7 +3,7 @@
     <div class="content-center lg:flex">
       <div class="flex">
         <vs-input placeholder="Placeholder" v-model="search" />
-        <vs-button @click="searchTerm(1)">Submit</vs-button>
+        <vs-button @click="searchTerm(1)" icon="search"></vs-button>
       </div>
 
       <div class="p-4">
