@@ -1,39 +1,39 @@
 import Vue from 'vue'
 
-Vue.filter('capitalize', function(value) {
+Vue.filter('capitalize', function (value) {
   if (!value) return ''
   value = value.toString()
   const arr = value.split(' ')
   const capitalized_array = []
-  arr.forEach(word => {
+  arr.forEach((word) => {
     const capitalized = word.charAt(0).toUpperCase() + word.slice(1)
     capitalized_array.push(capitalized)
   })
   return capitalized_array.join(' ')
 })
 
-Vue.filter('title', function(value, replacer = '_') {
+Vue.filter('title', function (value, replacer = '_') {
   if (!value) return ''
   value = value.toString()
 
   const arr = value.split(replacer)
   const capitalized_array = []
-  arr.forEach(word => {
+  arr.forEach((word) => {
     const capitalized = word.charAt(0).toUpperCase() + word.slice(1)
     capitalized_array.push(capitalized)
   })
   return capitalized_array.join(' ')
 })
 
-Vue.filter('truncate', function(value, limit) {
+Vue.filter('truncate', function (value, limit) {
   return value.substring(0, limit)
 })
 
-Vue.filter('tailing', function(value, tail) {
+Vue.filter('tailing', function (value, tail) {
   return value + tail
 })
 
-Vue.filter('time', function(value, is24HrFormat = false) {
+Vue.filter('time', function (value, is24HrFormat = false) {
   if (value) {
     const date = new Date(Date.parse(value))
     let hours = date.getHours()
@@ -47,7 +47,7 @@ Vue.filter('time', function(value, is24HrFormat = false) {
   }
 })
 
-Vue.filter('date', function(value, fullDate = false) {
+Vue.filter('date', function (value, fullDate = false) {
   value = String(value)
   const date = value.slice(8, 10).trim()
   const month = value.slice(4, 7).trim()
@@ -57,7 +57,7 @@ Vue.filter('date', function(value, fullDate = false) {
   else return `${date} ${month} ${year}`
 })
 
-Vue.filter('month', function(val, showYear = true) {
+Vue.filter('month', function (val, showYear = true) {
   val = String(val)
 
   const regx = /\w+\s(\w+)\s\d+\s(\d+)./
@@ -68,19 +68,19 @@ Vue.filter('month', function(val, showYear = true) {
   }
 })
 
-Vue.filter('csv', function(value) {
+Vue.filter('csv', function (value) {
   return value.join(', ')
 })
 
-Vue.filter('filter_tags', function(value) {
+Vue.filter('filter_tags', function (value) {
   return value.replace(/<\/?[^>]+(>|$)/g, '')
 })
 
-Vue.filter('k_formatter', function(num) {
+Vue.filter('k_formatter', function (num) {
   return num > 999 ? `${(num / 1000).toFixed(1)}k` : num
 })
 
-Vue.filter('numbers', value => {
+Vue.filter('numbers', (value) => {
   let number = value + 1
   if (number < 10) {
     return '0' + number + '.'
@@ -88,7 +88,7 @@ Vue.filter('numbers', value => {
   return number + '.'
 })
 
-Vue.filter('minutes', value => {
+Vue.filter('minutes', (value) => {
   if (!value || typeof value !== 'number') return '00:00'
   let min = parseInt(value / 60),
     sec = parseInt(value % 60)
@@ -102,11 +102,34 @@ Vue.filter('toCommas', (num, decimals) => {
   let o = {
     style: 'decimal',
     minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
+    maximumFractionDigits: decimals,
   }
   return new Intl.NumberFormat('en-US', o).format(num)
 })
-Vue.filter('toSpaces', str => {
+Vue.filter('toSpaces', (str) => {
+  return String(str || '')
+    .trim()
+    .replace(/[^\w\`\'\-]+/g, ' ')
+    .trim()
+})
+Vue.filter('toText', (str, def) => {
+  str = String(str || '')
+    .replace(/[^\w\`\'\-\.\!\?]+/g, ' ')
+    .trim()
+  return str || String(def || '')
+})
+/**
+ * Vue filters
+ */
+Vue.filter('toCommas', (num, decimals) => {
+  let o = {
+    style: 'decimal',
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }
+  return new Intl.NumberFormat('en-US', o).format(num)
+})
+Vue.filter('toSpaces', (str) => {
   return String(str || '')
     .trim()
     .replace(/[^\w\`\'\-]+/g, ' ')
