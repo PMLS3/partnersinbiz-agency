@@ -147,6 +147,7 @@
 
           <AppsVideos v-if="item.display == 'videos'" class="p-4" />
           <AppsMusic v-if="item.display == 'music'" class="p-4" />
+          <AppsDrawingBoard v-if="item.display == 'drawingboard'" class="p-4" />
         </client-only>
       </div>
       <div v-show="!viewSet">

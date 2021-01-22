@@ -1,8 +1,6 @@
 <template>
   <div>
-    <client-only>
-      <AppsVideoChat />
-    </client-only>
+    <AppsDrawingBoard />
   </div>
 </template>
 
