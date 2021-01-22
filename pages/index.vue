@@ -6,7 +6,7 @@
         <UiMarqueeTextExample />
         <UiImageUnsplash />
       </vs-card> -->
-      <PageGeneratorBuilder class="mt-24" />
+      <!-- <PageGeneratorBuilder class="mt-24" /> -->
     </client-only>
   </div>
 </template>

@@ -29,21 +29,21 @@
 </template>
 
 <script>
-import blog from './ExampleWireframesBlog'
-import contact from './ExampleWireframesContact'
-import contentT from './ExampleWireframesContent'
-import cta from './ExampleWireframesCta'
-import ecommerce from './ExampleWireframeEcommerce'
-import feature from './ExampleWireframesFeature'
-import footerr from './ExampleWireframesFooter'
-import gallery from './ExampleWireframesGallery'
-import headerr from './ExampleWireframesHeader'
-import heros from './ExampleWireframesHero'
-import pricing from './ExampleWireframesPricing'
-import statistics from './ExampleWireframesStatistic'
-import steps from './ExampleWireframeStep'
-import team from './ExampleWireframeTeam'
-import testimonial from './ExampleWireframeTestimonial'
+import blog from './blog/ExampleWireframesBlog'
+import contact from './contact/ExampleWireframesContact'
+import contentT from './content/ExampleWireframesContent'
+import cta from './cta/ExampleWireframesCta'
+import ecommerce from './ecommerce/ExampleWireframeEcommerce'
+import feature from './feature/ExampleWireframesFeature'
+import footerr from './footer/ExampleWireframesFooter'
+import gallery from './gallery/ExampleWireframesGallery'
+import headerr from './header/ExampleWireframesHeader'
+import heros from './hero/ExampleWireframesHero'
+import pricing from './pricing/ExampleWireframesPricing'
+import statistics from './statistic/ExampleWireframesStatistic'
+import steps from './step/ExampleWireframeStep'
+import team from './team/ExampleWireframeTeam'
+import testimonial from './testimonial/ExampleWireframeTestimonial'
 
 export default {
   components: {
