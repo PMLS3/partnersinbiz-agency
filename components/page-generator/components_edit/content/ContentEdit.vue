@@ -1,9 +1,7 @@
 <template>
   <vs-card class="mt-8">
     <div slot="header">
-      <h3>
-        Content
-      </h3>
+      <h3>Content</h3>
     </div>
     <div>
       <span
@@ -49,15 +47,15 @@ export default {
       contentUpdateKey: '',
       title: '',
       options: {
-        title: false
-      }
+        title: false,
+      },
     }
   },
 
   computed: {
     contentUpdate() {
       let obj = {
-        [this.contentUpdateKey]: this.contentUpdateValue
+        [this.contentUpdateKey]: this.contentUpdateValue,
       }
       return obj
     },
@@ -66,21 +64,21 @@ export default {
     },
     uploaded_images() {
       return this.$store.state.form.uploaded_images
-    }
+    },
   },
   watch: {
-    edit_component: function() {
+    edit_component: function () {
       switch (this.edit_component.schema.title) {
         case 'grid':
           this.options = {}
           break
         case 'buttons':
           this.options = {
-            title: true
+            title: true,
           }
           break
       }
-    }
+    },
   },
   methods: {
     changeComponent(key, value) {
@@ -115,7 +113,7 @@ export default {
       if (this.contentUpdateKey && this.contentUpdateValue) {
         content = {
           ...this.edit_component.schema.content,
-          ...this.contentUpdate
+          ...this.contentUpdate,
         }
       } else {
         if (this.edit_component.schema.content) {
@@ -142,16 +140,14 @@ export default {
         content: content,
         style: style,
         class: classUp,
-        inline: inline
+        inline: inline,
       }
 
       this.$store.commit('page_builder/COMPONENTS_UPDATE', payload)
 
       this.contentUpdateValue = ''
       this.contentUpdateKey = ''
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

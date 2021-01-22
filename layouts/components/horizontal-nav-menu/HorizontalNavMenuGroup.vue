@@ -4,7 +4,7 @@
     :class="[
       { 'h-nav-group-open': openItems },
       { 'h-nav-group-active': open },
-      { 'disabled-item pointer-events-none': group.isDisabled }
+      { 'disabled-item pointer-events-none': group.isDisabled },
     ]"
     @mouseover="mouseover"
     @mouseleave="mouseout"
@@ -87,19 +87,19 @@ import HNavMenuItem from './HorizontalNavMenuItem.vue'
 export default {
   name: 'HNavMenuGroup',
   components: {
-    HNavMenuItem
+    HNavMenuItem,
   },
   props: {
     openHover: { type: Boolean, default: true },
     open: { type: Boolean, default: false },
     group: { type: Object },
     groupIndex: { type: Number },
-    bottom: { type: Boolean, default: false }
+    bottom: { type: Boolean, default: false },
   },
   data: () => ({
     openItems: false,
     hovered: false,
-    dropLeft: false
+    dropLeft: false,
   }),
   computed: {
     iconClasses() {
@@ -159,7 +159,7 @@ export default {
         func(item)
         return open
       }
-    }
+    },
   },
   watch: {
     hovered(val) {
@@ -200,7 +200,7 @@ export default {
           this.dropLeft = false
         }
       })
-    }
+    },
   },
   methods: {
     mouseover() {
@@ -217,11 +217,11 @@ export default {
     },
     showChildren(val = true) {
       this.openItems = val
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/horizontalNavMenuGroup.scss';
 </style>

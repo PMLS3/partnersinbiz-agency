@@ -12,7 +12,7 @@
     :class="[
       { 'vs-sidebar-group-open': openItems },
       { 'vs-sidebar-group-active': open },
-      { 'disabled-item pointer-events-none': group.isDisabled }
+      { 'disabled-item pointer-events-none': group.isDisabled },
     ]"
     @mouseover="mouseover"
     @mouseout="mouseout"
@@ -99,17 +99,17 @@ import VNavMenuItem from './VerticalNavMenuItem.vue'
 export default {
   name: 'VNavMenuGroup',
   components: {
-    VNavMenuItem
+    VNavMenuItem,
   },
   props: {
     openHover: { type: Boolean, default: false },
     open: { type: Boolean, default: false },
     group: { type: Object, required: true },
-    groupIndex: { type: Number, required: true }
+    groupIndex: { type: Number, required: true },
   },
   data: () => ({
     maxHeight: '0px',
-    openItems: false
+    openItems: false,
   }),
   computed: {
     verticalNavMenuItemsMin() {
@@ -149,7 +149,7 @@ export default {
         func(item)
         return open
       }
-    }
+    },
   },
   watch: {
     // OPEN & CLOSES DROPDOWN ON ROUTE CHANGE
@@ -197,7 +197,7 @@ export default {
           this.maxHeight = '0px'
         }, 250)
       }
-    }
+    },
   },
   mounted() {
     this.openItems = this.open
@@ -244,11 +244,11 @@ export default {
         const scrollHeight = 0
         this.maxHeight = `${scrollHeight}px`
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/verticalNavMenuGroup.scss';
 </style>

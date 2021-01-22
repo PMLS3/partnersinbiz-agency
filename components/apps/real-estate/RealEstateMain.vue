@@ -32,14 +32,7 @@
             <!-- Stats -->
             <ais-stats>
               <p
-                slot-scope="{
-                  hitsPerPage,
-                  nbPages,
-                  nbHits,
-                  page,
-                  processingTimeMS,
-                  query,
-                }"
+                slot-scope="{ nbHits, processingTimeMS }"
                 class="hidden font-semibold md:block"
               >
                 {{ nbHits }} results found in {{ processingTimeMS }}ms
@@ -111,7 +104,7 @@
             <!-- MULTI RANGE -->
             <h6 class="mb-3 font-bold">Multi Range</h6>
             <ais-numeric-menu attribute="price" :items="numericItems">
-              <ul slot-scope="{ items, refine, createURL }">
+              <ul slot-scope="{ items, refine }">
                 <li
                   v-for="item in items"
                   :key="item.value"
@@ -210,7 +203,7 @@
             <!-- Rating -->
             <h6 class="mb-3 font-bold">Rating</h6>
             <ais-rating-menu attribute="rating">
-              <ul slot-scope="{ items, refine, createURL }">
+              <ul slot-scope="{ items, refine }">
                 <li v-for="item in items" :key="item.value" class="mb-2">
                   <div
                     @click.prevent="refine(item.value)"
@@ -243,7 +236,7 @@
             <ais-clear-refinements class="flex justify-center">
               <vs-button
                 class="w-full"
-                slot-scope="{ canRefine, refine, createURL }"
+                slot-scope="{ canRefine, refine }"
                 @click.prevent="refine"
                 :disabled="!canRefine"
                 >Remove Filters</vs-button
@@ -262,7 +255,6 @@
                 <vs-input
                   class="w-full vs-input-shadow-drop vs-input-no-border d-theme-input-dark-bg"
                   placeholder="Search here"
-                  v-model="currentRefinement"
                   @input="refine($event)"
                   @keyup.esc="refine('')"
                   size="large"
@@ -305,7 +297,7 @@
 
           <!-- SEARCH RESULT -->
           <ais-hits>
-            <div slot-scope="{ items }">
+            <div>
               <!-- GRID VIEW -->
               <template v-if="currentItemView == 'item-grid-view'">
                 <div class="items-grid-view vx-row match-height">
@@ -420,17 +412,7 @@
 
           <!-- PAGINATION -->
           <ais-pagination>
-            <div
-              slot-scope="{
-                currentRefinement,
-                nbPages,
-                pages,
-                isFirstPage,
-                isLastPage,
-                refine,
-                createURL,
-              }"
-            >
+            <div slot-scope="{ currentRefinement, nbPages, refine }">
               <vs-pagination
                 :total="nbPages"
                 :max="7"
@@ -570,7 +552,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #algolia-instant-search-demo {
   .algolia-header {
     .algolia-filters-label {

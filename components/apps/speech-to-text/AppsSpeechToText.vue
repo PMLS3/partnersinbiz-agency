@@ -639,7 +639,7 @@
 </script>
 
 
-<style>
+<style scoped>
   .slide-enter {
     opacity: 0;
   }

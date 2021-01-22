@@ -427,5 +427,3 @@
 // require('@/js/aframe/loadTexture.js')
 export default {}
 </script>
-
-<style></style>

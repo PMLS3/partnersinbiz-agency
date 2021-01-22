@@ -405,7 +405,7 @@ import vSelect from 'vue-select'
 export default {
   props: ['choices', 'item', 'item_id'],
   components: {
-    vSelect
+    vSelect,
   },
   data() {
     return {
@@ -449,13 +449,13 @@ export default {
       popupActivo4: false,
 
       filterAll: {
-        item_id: this.$route.params.id
+        item_id: this.$route.params.id,
       },
 
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   // watch: {
@@ -479,23 +479,23 @@ export default {
           return this.$store.state.auth.active_user
         }
       }
-    }
+    },
   },
 
   created() {
     this.$store.dispatch('form/filterAll', this.filterAll)
   },
   watch: {
-    pop_filter: function() {
+    pop_filter: function () {
       this.filterAll.pop_filter = this.pop_filter
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    popMessage: function() {
+    popMessage: function () {
       this.filterAll.popMessage = this.popMessage
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    filter: function() {
+    filter: function () {
       if (!this.filter) {
         ;(this.group_views = false),
           (this.group_positions = false),
@@ -506,7 +506,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    group_branches: function() {
+    group_branches: function () {
       if (this.group_branches) {
         ;(this.group_positions = false),
           (this.group_views = false),
@@ -517,7 +517,7 @@ export default {
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
 
-    group_push_notes: function() {
+    group_push_notes: function () {
       if (this.group_push_notes) {
         ;(this.group_positions = false),
           (this.group_views = false),
@@ -532,7 +532,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    group_positions: function() {
+    group_positions: function () {
       if (this.group_positions) {
         ;(this.group_branches = false),
           (this.group_views = false),
@@ -542,7 +542,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    group_views: function() {
+    group_views: function () {
       if (this.group_views) {
         ;(this.group_positions = false),
           (this.group_branches = false),
@@ -552,23 +552,23 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    group_branches_selected: function() {
+    group_branches_selected: function () {
       this.filterAll.group_branches_selected = this.group_branches_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    group_positions_selected: function() {
+    group_positions_selected: function () {
       this.filterAll.group_positions_selected = this.group_positions_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    group_views_selected: function() {
+    group_views_selected: function () {
       this.filterAll.group_views_selected = this.group_views_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
 
-    add_filter: function() {
+    add_filter: function () {
       if (!this.filter) {
         ;(this.add_group_views = false),
           (this.add_group_positions = false),
@@ -579,7 +579,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_none: function() {
+    add_group_none: function () {
       if (this.group_none) {
         ;(this.add_group_views = false),
           (this.add_group_positions = false),
@@ -590,7 +590,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_branches: function() {
+    add_group_branches: function () {
       if (this.add_group_branches) {
         ;(this.add_group_positions = false),
           (this.add_group_views = false),
@@ -600,7 +600,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_push_notes: function() {
+    add_group_push_notes: function () {
       if (this.add_group_push_notes) {
         ;(this.add_group_positions = false),
           (this.add_group_views = false),
@@ -615,7 +615,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_positions: function() {
+    add_group_positions: function () {
       if (this.add_group_positions) {
         ;(this.add_group_branches = false),
           (this.add_group_views = false),
@@ -625,7 +625,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_views: function() {
+    add_group_views: function () {
       if (this.add_group_views) {
         ;(this.add_group_positions = false),
           (this.add_group_branches = false),
@@ -635,23 +635,23 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_branches_selected: function() {
+    add_group_branches_selected: function () {
       this.filterAll.add_group_branches_selected = this.add_group_branches_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_positions_selected: function() {
+    add_group_positions_selected: function () {
       this.filterAll.add_group_positions_selected = this.add_group_positions_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    add_group_views_selected: function() {
+    add_group_views_selected: function () {
       this.filterAll.add_group_views_selected = this.add_group_views_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
 
-    edit_filter: function() {
+    edit_filter: function () {
       if (!this.edit_filter) {
         ;(this.edit_group_views = false),
           (this.edit_group_positions = false),
@@ -664,7 +664,7 @@ export default {
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
 
-    edit_group_none: function() {
+    edit_group_none: function () {
       if (this.edit_group_none) {
         ;(this.edit_group_views = false),
           (this.edit_group_positions = false),
@@ -676,7 +676,7 @@ export default {
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
 
-    edit_group_branches: function() {
+    edit_group_branches: function () {
       if (this.edit_group_branches) {
         ;(this.edit_group_positions = false),
           (this.edit_group_views = false),
@@ -686,7 +686,7 @@ export default {
       this.filterAll.edit_group_branches = this.edit_group_branches
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    edit_group_push_notes: function() {
+    edit_group_push_notes: function () {
       if (this.edit_group_push_notes) {
         ;(this.edit_group_positions = false),
           (this.edit_group_views = false),
@@ -701,7 +701,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    edit_group_positions: function() {
+    edit_group_positions: function () {
       if (this.edit_group_positions) {
         ;(this.edit_group_branches = false),
           (this.edit_group_views = false),
@@ -713,7 +713,7 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    edit_group_views: function() {
+    edit_group_views: function () {
       if (this.edit_group_views) {
         ;(this.edit_group_positions = false),
           (this.edit_group_branches = false),
@@ -725,26 +725,26 @@ export default {
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    edit_group_branches_selected: function() {
+    edit_group_branches_selected: function () {
       this.filterAll.edit_group_branches_selected = this.edit_group_branches_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    edit_group_positions_selected: function() {
+    edit_group_positions_selected: function () {
       this.filterAll.edit_group_positions_selected = this.edit_group_positions_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
     },
-    edit_group_views_selected: function() {
+    edit_group_views_selected: function () {
       this.filterAll.edit_group_views_selected = this.edit_group_views_selected
 
       this.$store.dispatch('form/filterAll', this.filterAll)
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #theme-customizer {
   .vs-sidebar {
     position: fixed;

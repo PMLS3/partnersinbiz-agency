@@ -2,7 +2,7 @@
   <div>
     <vs-row class="px-3" vs-w="12">
       <vs-col vs-type="flex" class="px-3 mt-10" vs-w="9" vs-sm="9" vs-xs="12">
-        <vs-row class="mb-5 " vs-w="12">
+        <vs-row class="mb-5" vs-w="12">
           <vs-col
             vs-w="4"
             vs-sm="6"
@@ -19,7 +19,7 @@
                 :src="blog.image"
                 :alt="blog.title"
                 class="responsive"
-                style="height: auto; width: 100%;  border-radius: 15%"
+                style="height: auto; width: 100%; border-radius: 15%"
               />
               <vs-chip color="primary" class="chip">{{
                 blog.category
@@ -226,7 +226,7 @@ export default {
       single_blog: {},
       isMounted: false,
       addNewDataSidebar: false,
-      addNewDataSidebarGroup: false
+      addNewDataSidebarGroup: false,
     }
   },
   computed: {
@@ -235,15 +235,15 @@ export default {
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
   watch: {
-    blogs: function() {
+    blogs: function () {
       this.$store.dispatch('blog/blogsCreate', this.blogs)
     },
-    Categories: function() {
+    Categories: function () {
       this.$store.dispatch('blog/categoriesCreate', this.Categories)
-    }
+    },
   },
   methods: {
     readMore(blog) {
@@ -261,14 +261,14 @@ export default {
         /** WITH CSS */
         var canvasElement = document.createElement('canvas')
         html2canvas(this.$refs.content, { canvas: canvasElement }).then(
-          function(canvas) {
+          function (canvas) {
             const img = canvas.toDataURL('image/jpeg', 0.8)
             doc.addImage(img, 'JPEG', 20, 20)
             doc.save(pdfName + '.pdf')
           }
         )
       }
-    }
+    },
   },
 
   created() {
@@ -293,8 +293,8 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    blogRetrieve.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    blogRetrieve.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.blogs.push({
           id: doc.id,
@@ -304,7 +304,7 @@ export default {
           author_name: doc.data().author,
           image: doc.data().image[0],
           category: doc.data().cat,
-          html: doc.data().desc
+          html: doc.data().desc,
         })
       })
     })
@@ -341,11 +341,11 @@ export default {
     //         });
     //       });
     //     });
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .colDiv {
   position: relative;
 }

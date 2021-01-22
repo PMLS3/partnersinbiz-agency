@@ -258,7 +258,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .knowledge-base-jumbotron-content {
   background-image: url('../../../../assets/images/background/night.jpeg');
   background-size: cover;

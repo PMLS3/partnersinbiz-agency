@@ -304,7 +304,7 @@
                     :class="{
                       'chat-sent-msg bg-primary-gradient text-white':
                         msg.isSent,
-                      'border border-solid d-theme-border-grey-light': !msg.isSent
+                      'border border-solid d-theme-border-grey-light': !msg.isSent,
                     }"
                   >
                     <span>{{ msg.msg }}</span>
@@ -644,7 +644,7 @@ export default {
   components: {
     // VuePerfectScrollbar,
     // videoPlayer,
-    VxTimeline
+    VxTimeline,
   },
   data() {
     return {
@@ -669,22 +669,22 @@ export default {
           icon: 'PlusIcon',
           title: 'New Task Added',
           desc: 'Bonbon macaroon jelly beans gummi bears jelly lollipop apple',
-          time: '25 Days Ago'
+          time: '25 Days Ago',
         },
         {
           color: 'warning',
           icon: 'AlertCircleIcon',
           title: 'Task Update Found',
           desc: 'Cupcake gummi bears soufflé caramels candy',
-          time: '15 Days Ago'
+          time: '15 Days Ago',
         },
         {
           color: 'success',
           icon: 'CheckIcon',
           title: 'Task Finished',
           desc: 'Candy ice cream cake. Halvah gummi bears',
-          time: '20 mins ago'
-        }
+          time: '20 mins ago',
+        },
       ],
 
       name: '',
@@ -695,8 +695,8 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   mounted() {
@@ -812,11 +812,11 @@ export default {
       .catch((error) => {
         console.log(error)
       })
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #demo-basic-card {
   .overlay-card {
     .vx-card__collapsible-content {

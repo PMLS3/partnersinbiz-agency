@@ -38,30 +38,30 @@ export default {
               expanded: true,
               children: [
                 {
-                  title: 'node 1-1-1'
+                  title: 'node 1-1-1',
                 },
                 {
-                  title: 'node 1-1-2'
+                  title: 'node 1-1-2',
                 },
                 {
-                  title: 'node 1-1-3'
-                }
-              ]
+                  title: 'node 1-1-3',
+                },
+              ],
             },
             {
               title: 'node 1-2',
               children: [
                 {
-                  title: "<span style='color: red'>node 1-2-1</span>"
+                  title: "<span style='color: red'>node 1-2-1</span>",
                 },
                 {
-                  title: "<span style='color: red'>node 1-2-2</span>"
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  title: "<span style='color: red'>node 1-2-2</span>",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     }
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
                 active_card: true,
                 component_show: 'buttons',
                 schema: node,
-                index: 0
+                index: 0,
               }
 
               this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
@@ -114,7 +114,7 @@ export default {
                 active_card: true,
                 component_show: 'grid',
                 place: node.place,
-                index: 1
+                index: 1,
               }
               this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
             }}
@@ -127,7 +127,7 @@ export default {
     async asyncLoad(node) {
       const { checked = false } = node
       this.$set(node, 'loading', true)
-      let pro = new Promise(resolve => {
+      let pro = new Promise((resolve) => {
         setTimeout(resolve, 2000, ['async node1', 'async node2'])
       })
       this.$refs.tree.addNodes(node, await pro)
@@ -135,16 +135,16 @@ export default {
       if (checked) {
         this.$refs.tree.childCheckedHandle(node, checked)
       }
-    }
+    },
   },
   components: {
     VTree,
-    VSelectTree
-  }
+    VSelectTree,
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/extraComponents/tree.scss';
 
 button.btn-async {

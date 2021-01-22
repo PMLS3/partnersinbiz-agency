@@ -310,7 +310,7 @@
                       :class="{
                         'chat-sent-msg bg-primary-gradient text-white':
                           msg.isSent,
-                        'border border-solid d-theme-border-grey-light': !msg.isSent
+                        'border border-solid d-theme-border-grey-light': !msg.isSent,
                       }"
                     >
                       <span>{{ msg.msg }}</span>
@@ -652,7 +652,7 @@ import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
 export default {
   components: {
-    VuePerfectScrollbar
+    VuePerfectScrollbar,
     // videoPlayer,
     // VxTimeline
   },
@@ -679,22 +679,22 @@ export default {
           icon: 'PlusIcon',
           title: 'New Task Added',
           desc: 'Bonbon macaroon jelly beans gummi bears jelly lollipop apple',
-          time: '25 Days Ago'
+          time: '25 Days Ago',
         },
         {
           color: 'warning',
           icon: 'AlertCircleIcon',
           title: 'Task Update Found',
           desc: 'Cupcake gummi bears soufflé caramels candy',
-          time: '15 Days Ago'
+          time: '15 Days Ago',
         },
         {
           color: 'success',
           icon: 'CheckIcon',
           title: 'Task Finished',
           desc: 'Candy ice cream cake. Halvah gummi bears',
-          time: '20 mins ago'
-        }
+          time: '20 mins ago',
+        },
       ],
 
       name: '',
@@ -705,14 +705,14 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   computed: {
     scrollbarTag() {
       return this.$store.getters.scrollbarTag
-    }
+    },
   },
   mounted() {
     const scroll_el = this.$refs.chatLogPS.$el || this.$refs.chatLogPS
@@ -722,117 +722,117 @@ export default {
     // Card 1
     this.$http
       .get('/api/users/pixinvent/product/1')
-      .then(response => {
+      .then((response) => {
         this.card_1 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 2
     this.$http
       .get('/api/users/pixinvent/product/sales/1')
-      .then(response => {
+      .then((response) => {
         this.card_2 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 3
     this.$http
       .get('/api/users/pixinvent/product/goals/1')
-      .then(response => {
+      .then((response) => {
         this.card_3 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 4
     this.$http
       .get('/api/users/89')
-      .then(response => {
+      .then((response) => {
         this.card_4 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 5
     this.$http
       .get('/api/users/58')
-      .then(response => {
+      .then((response) => {
         this.card_5 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 6
     this.$http
       .get('/api/users/16')
-      .then(response => {
+      .then((response) => {
         this.card_6 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 7
     this.$http
       .get('/api/place/18')
-      .then(response => {
+      .then((response) => {
         this.card_7 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 8
     this.$http
       .get('/api/place/76/weather')
-      .then(response => {
+      .then((response) => {
         this.card_8 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Chat Log
     this.$http
       .get('/api/chat/demo-1/log')
-      .then(response => {
+      .then((response) => {
         this.chatLog = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Card 9
     this.$http
       .get('/api/item/12/review')
-      .then(response => {
+      .then((response) => {
         this.card_9 = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Player Options
     this.$http
       .get('/api/card/card-basic/player-option')
-      .then(response => {
+      .then((response) => {
         this.playerOptions = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #demo-basic-card {
   .overlay-card {
     .vx-card__collapsible-content {

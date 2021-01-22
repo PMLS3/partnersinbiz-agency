@@ -3,7 +3,15 @@
   <div :class="schema.class" :style="schema.style" :slot="schema.slot">
     <div
       class="profile-actions pointer-events-auto flex"
-      style="position: absolute; margin-top: 1px; margin-right: 2px; position:absolute; top:0;  left:0; z-index: 200"
+      style="
+        position: absolute;
+        margin-top: 1px;
+        margin-right: 2px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 200;
+      "
     >
       <vs-button
         icon-pack="feather"
@@ -49,7 +57,7 @@ export default {
         active_card: true,
         component_show: 'grid',
         place: this.schema.place,
-        index: 1
+        index: 1,
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
     },
@@ -58,13 +66,11 @@ export default {
         active_card: true,
         component_show: 'divi',
         schema: this.schema,
-        index: 0
+        index: 0,
       }
 
       this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

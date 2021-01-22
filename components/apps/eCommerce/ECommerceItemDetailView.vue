@@ -118,7 +118,7 @@
                           :style="
                             itemColor({
                               color: color,
-                              style: ['backgroundColor']
+                              style: ['backgroundColor'],
                             })
                           "
                         ></div>
@@ -161,7 +161,7 @@
                         @click="
                           $router
                             .push({ name: 'ecommerce-checkout' })
-                            .catch(err => {})
+                            .catch((err) => {})
                         "
                       >
                         VIEW IN CART
@@ -349,7 +349,7 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    StarRating
+    StarRating,
   },
   data() {
     return {
@@ -368,25 +368,25 @@ export default {
         breakpoints: {
           1600: {
             slidesPerView: 4,
-            spaceBetween: 55
+            spaceBetween: 55,
           },
           1300: {
             slidesPerView: 3,
-            spaceBetween: 55
+            spaceBetween: 55,
           },
           900: {
             slidesPerView: 2,
-            spaceBetween: 55
+            spaceBetween: 55,
           },
           640: {
             slidesPerView: 1,
-            spaceBetween: 55
-          }
+            spaceBetween: 55,
+          },
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
+          prevEl: '.swiper-button-prev',
+        },
       },
 
       // Below is data which is common in any item
@@ -396,7 +396,7 @@ export default {
         '#28C76F',
         '#EA5455',
         '#FF9F43',
-        '#1E1E1E'
+        '#1E1E1E',
       ],
       opt_color: '#7367F0',
       is_hearted: false,
@@ -458,7 +458,7 @@ export default {
         //   'rating'     : 4,
         //   'objectID'   : '5613404'
         // }
-      ]
+      ],
     }
   },
   computed: {
@@ -469,10 +469,10 @@ export default {
       return Object.keys(item).length ? item.quantity : 1
     },
     itemColor() {
-      return obj => {
+      return (obj) => {
         const style_obj = {}
 
-        obj.style.forEach(p => {
+        obj.style.forEach((p) => {
           style_obj[p] = obj.color
         })
 
@@ -480,11 +480,11 @@ export default {
       }
     },
     isInWishList() {
-      return itemId => this.$store.getters['eCommerce/isInWishList'](itemId)
+      return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
     },
     isInCart() {
-      return itemId => this.$store.getters['eCommerce/isInCart'](itemId)
-    }
+      return (itemId) => this.$store.getters['eCommerce/isInCart'](itemId)
+    },
   },
   methods: {
     toggleItemInWishList(item) {
@@ -503,15 +503,15 @@ export default {
           this.item_data = content
         }
       })
-    }
+    },
   },
   created() {
     this.fetch_item_details(this.$route.params.item_id)
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/_variables.scss';
 
 #item-detail-page {

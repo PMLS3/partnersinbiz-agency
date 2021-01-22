@@ -13,45 +13,45 @@ export default {
     context: WebGLRenderingContext,
     percision: {
       type: String,
-      default: 'highp'
+      default: 'highp',
     },
     alpha: {
       type: Boolean,
-      default: false
+      default: false,
     },
     premultipliedAlpha: {
       type: Boolean,
-      default: true
+      default: true,
     },
     antialias: {
       type: Boolean,
-      default: false
+      default: false,
     },
     stencil: {
       type: Boolean,
-      default: true
+      default: true,
     },
     preserveDrawingBuffer: {
       type: Boolean,
-      default: false
+      default: false,
     },
     depth: {
       type: Boolean,
-      default: true
+      default: true,
     },
     logarithmicDepthBuffer: {
       type: Boolean,
-      default: false
+      default: false,
     },
     width: Number,
     height: Number,
-    styleCanvas: {}
+    styleCanvas: {},
   },
   data() {
     return {
       camera: null,
       scene: null,
-      renderer: null
+      renderer: null,
     }
   },
   watch: {
@@ -60,7 +60,7 @@ export default {
     },
     height(val) {
       this.resize()
-    }
+    },
   },
   methods: {
     render() {
@@ -69,7 +69,7 @@ export default {
     },
     resize() {
       this.renderer.setSize(this.width, this.height)
-    }
+    },
   },
   mounted() {
     this.camera = this.$slots.camera[0].componentInstance.object
@@ -84,15 +84,15 @@ export default {
       stencil: this.stencil,
       preserveDrawingBuffer: this.premultipliedAlpha,
       depth: this.depth,
-      logarithmicDepthBuffer: this.logarithmicDepthBuffer
+      logarithmicDepthBuffer: this.logarithmicDepthBuffer,
     })
     this.resize()
     this.render()
-  }
+  },
 }
 </script>
 
-<style>
+<style scoped>
 #webgl-bg {
   z-index: -1;
   position: absolute;

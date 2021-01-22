@@ -5,8 +5,9 @@
   <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
     <feather-icon
       icon="BellIcon"
-      class="mt-1 mr-2 text-blue-400 cursor-pointer sm:mr-6"
+      class="mt-1 mr-2 cursor-pointer sm:mr-6"
       :badge="unreadNotifications.length"
+      color="primary"
     />
     <!-- {{ unreadNotifications }} -->
     <vs-dropdown-menu

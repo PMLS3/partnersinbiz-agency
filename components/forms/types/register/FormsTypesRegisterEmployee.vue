@@ -103,13 +103,13 @@ export default {
       contactperson: '',
       contactsurname: '',
       email: '',
-      number: ''
+      number: '',
     }
   },
   computed: {
     business() {
       return this.$store.state.business.active_business
-    }
+    },
   },
   methods: {
     newEmployee() {
@@ -117,7 +117,7 @@ export default {
 
       this.$fireAuth
         .createUserWithEmailAndPassword(this.email, this.email)
-        .then(cred => {
+        .then((cred) => {
           this.$fireStore
             .collection('apps')
             .doc('users')
@@ -143,9 +143,9 @@ export default {
               verified: false,
               last_active: moment().format('DD-MM-YYYY'),
               created_month: moment().format('DD-MM-YYYY'),
-              timestamp: Date.now()
+              timestamp: Date.now(),
             })
-            .then(cred => {
+            .then((cred) => {
               console.log('setting')
               let general = vm.$fireStore
                 .collection('user')
@@ -164,10 +164,10 @@ export default {
                 surname: vm.contactsurname,
                 last_active: moment().format('DD-MM-YYYY'),
                 created_month: moment().format('DD-MM-YYYY'),
-                timestamp: Date.now()
+                timestamp: Date.now(),
               })
             })
-            .then(cred => {
+            .then((cred) => {
               const docRef = this.$fireStore
                 .collection('user')
                 .doc('apps')
@@ -187,19 +187,19 @@ export default {
                 contact_email: vm.email,
                 contact_number: vm.number,
                 created_month: moment().format('DD-MM-YYYY'),
-                timestamp: Date.now()
+                timestamp: Date.now(),
               })
             })
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #theme-customizer {
   .vs-sidebar {
     position: fixed;

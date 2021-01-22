@@ -5,17 +5,16 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="vuexy-grid-demo">
-        <grid-overview></grid-overview>
-        <grid-design-concept></grid-design-concept>
-        <grid-column-offset></grid-column-offset>
-        <grid-flex-layout></grid-flex-layout>
-        <grid-flex-alignment></grid-flex-alignment>
-        <grid-flex-order></grid-flex-order>
-        <grid-responsive-layout></grid-responsive-layout>
-    </div>
+  <div id="vuexy-grid-demo">
+    <grid-overview></grid-overview>
+    <grid-design-concept></grid-design-concept>
+    <grid-column-offset></grid-column-offset>
+    <grid-flex-layout></grid-flex-layout>
+    <grid-flex-alignment></grid-flex-alignment>
+    <grid-flex-order></grid-flex-order>
+    <grid-responsive-layout></grid-responsive-layout>
+  </div>
 </template>
 
 <script>
@@ -27,7 +26,7 @@ import GridFlexAlignment from './GridFlexAlignment.vue'
 import GridFlexOrder from './GridFlexOrder.vue'
 import GridResponsiveLayout from './GridResponsiveLayout.vue'
 
-export default{
+export default {
   components: {
     GridOverview,
     GridDesignConcept,
@@ -35,11 +34,11 @@ export default{
     GridFlexLayout,
     GridFlexAlignment,
     GridFlexOrder,
-    GridResponsiveLayout
-  }
+    GridResponsiveLayout,
+  },
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/pages/grid.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/pages/grid.scss';
 </style>

@@ -13,8 +13,6 @@ export default {
   },
   created() {
     // this.$store.commit('STORE_TYPE', this.schema.)
-  }
+  },
 }
 </script>
-
-<style></style>

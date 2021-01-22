@@ -64,7 +64,7 @@ export default {
           description:
             'Muffin lemon drops chocolate carrot cake chocolate bar sweet roll.',
           graphic: require('@/assets/images/pages/graphic-1.png'),
-          url: '/pages/knowledge-base/category'
+          url: '/pages/knowledge-base/category',
         },
         {
           id: 2,
@@ -72,7 +72,7 @@ export default {
           description:
             'Gingerbread sesame snaps wafer soufflé. Macaroon brownie ice cream',
           graphic: require('@/assets/images/pages/graphic-2.png'),
-          url: '/pages/knowledge-base/category'
+          url: '/pages/knowledge-base/category',
         },
         {
           id: 3,
@@ -80,7 +80,7 @@ export default {
           description:
             'cotton candy caramels danish chocolate cake pie candy. Lemon drops tart.',
           graphic: require('@/assets/images/pages/graphic-3.png'),
-          url: '/pages/knowledge-base/category'
+          url: '/pages/knowledge-base/category',
         },
         {
           id: 4,
@@ -88,14 +88,14 @@ export default {
           description:
             'Pudding oat cake carrot cake lemon drops gummies marshmallow.',
           graphic: require('@/assets/images/pages/graphic-4.png'),
-          url: '/pages/knowledge-base/category'
+          url: '/pages/knowledge-base/category',
         },
         {
           id: 5,
           title: 'Email Marketing',
           description: 'Gummi bears pudding icing sweet caramels chocolate',
           graphic: require('@/assets/images/pages/graphic-5.png'),
-          url: '/pages/knowledge-base/category'
+          url: '/pages/knowledge-base/category',
         },
         {
           id: 6,
@@ -103,15 +103,15 @@ export default {
           description:
             'Dragée jelly beans candy canes pudding cake wafer. Muffin croissant.',
           graphic: require('@/assets/images/pages/graphic-6.png'),
-          url: '/pages/knowledge-base/category'
-        }
-      ]
+          url: '/pages/knowledge-base/category',
+        },
+      ],
     }
   },
   computed: {
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -119,14 +119,14 @@ export default {
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase())
       )
-    }
+    },
   },
   methods: {},
-  components: {}
+  components: {},
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .knowledge-base-jumbotron-content {
   background-image: url('../../../assets/images/pages/knowledge-base-cover.jpg');
   background-size: cover;

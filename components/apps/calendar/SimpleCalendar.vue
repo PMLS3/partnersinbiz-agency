@@ -62,7 +62,7 @@
                   class="p-3 md:px-8 md:py-3"
                   :class="{
                     'border-l-0 rounded-l-none': index,
-                    'rounded-r-none': calendarViewTypes.length !== index + 1
+                    'rounded-r-none': calendarViewTypes.length !== index + 1,
                   }"
                   @click="calendarView = view.val"
                   >{{ view.label }}</vs-button
@@ -74,7 +74,7 @@
                   class="p-3 md:px-8 md:py-3"
                   :class="{
                     'border-l-0 rounded-l-none': index,
-                    'rounded-r-none': calendarViewTypes.length !== index + 1
+                    'rounded-r-none': calendarViewTypes.length !== index + 1,
                   }"
                   @click="calendarView = view.val"
                   >{{ view.label }}</vs-button
@@ -296,7 +296,7 @@ export default {
   components: {
     CalendarView,
     CalendarViewHeader,
-    Datepicker
+    Datepicker,
   },
   data() {
     return {
@@ -320,17 +320,17 @@ export default {
       calendarViewTypes: [
         {
           label: 'Month',
-          val: 'month'
+          val: 'month',
         },
         {
           label: 'Week',
-          val: 'week'
+          val: 'week',
         },
         {
           label: 'Year',
-          val: 'year'
-        }
-      ]
+          val: 'year',
+        },
+      ],
     }
   },
   computed: {
@@ -356,7 +356,7 @@ export default {
       return this.$store.state.calendar.eventLabels
     },
     labelColor() {
-      return label => {
+      return (label) => {
         if (label === 'business') return 'success'
         else if (label === 'work') return 'warning'
         else if (label === 'personal') return 'danger'
@@ -365,7 +365,7 @@ export default {
     },
     windowWidth() {
       return this.$store.state.windowWidth
-    }
+    },
   },
   methods: {
     addEvent() {
@@ -374,7 +374,7 @@ export default {
         startDate: this.startDate,
         endDate: this.endDate,
         label: this.labelLocal,
-        url: this.url
+        url: this.url,
       }
       obj.classes = `event-${this.labelColor(this.labelLocal)}`
       this.$store.dispatch('calendar/addEvent', obj)
@@ -418,7 +418,7 @@ export default {
         startDate: this.startDate,
         endDate: this.endDate,
         label: this.labelLocal,
-        url: this.url
+        url: this.url,
       }
       obj.classes = `event-${this.labelColor(this.labelLocal)}`
       this.$store.dispatch('calendar/editEvent', obj)
@@ -428,7 +428,7 @@ export default {
     },
     eventDragged(event, date) {
       this.$store.dispatch('calendar/eventDragged', { event, date })
-    }
+    },
   },
   created() {
     this.$store.dispatch('calendar/fetchEvents')
@@ -436,10 +436,10 @@ export default {
   },
   beforeDestroy() {
     this.$store.unregisterModule('calendar')
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/apps/simple-calendar.scss';
 </style>

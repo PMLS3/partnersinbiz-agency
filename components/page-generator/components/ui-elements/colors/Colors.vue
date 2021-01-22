@@ -5,16 +5,15 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="colors-demo">
-        <colors-default></colors-default>
-        <colors-gradient></colors-gradient>
-        <colors-customization></colors-customization>
-        <colors-change-color></colors-change-color>
-        <colors-change-color-SSR></colors-change-color-SSR>
-        <colors-tailwind></colors-tailwind>
-    </div>
+  <div id="colors-demo">
+    <colors-default></colors-default>
+    <colors-gradient></colors-gradient>
+    <colors-customization></colors-customization>
+    <colors-change-color></colors-change-color>
+    <colors-change-color-SSR></colors-change-color-SSR>
+    <colors-tailwind></colors-tailwind>
+  </div>
 </template>
 
 <script>
@@ -25,18 +24,18 @@ import ColorsChangeColor from './ColorsChangeColor.vue'
 import ColorsChangeColorSSR from './ColorsChangeColorSSR.vue'
 import ColorsTailwind from './ColorsTailwind.vue'
 
-export default{
+export default {
   components: {
     ColorsDefault,
     ColorsGradient,
     ColorsCustomization,
     ColorsChangeColor,
     ColorsChangeColorSSR,
-    ColorsTailwind
-  }
+    ColorsTailwind,
+  },
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/pages/colors.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/pages/colors.scss';
 </style>

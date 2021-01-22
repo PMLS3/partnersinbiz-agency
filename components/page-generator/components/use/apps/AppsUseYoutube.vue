@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="post-media-container ">
+    <div class="post-media-container">
       <div>
         <ul>
           <li v-for="vid in videosEmbed" :key="vid">
@@ -26,7 +26,7 @@ export default {
 
       isMounted: false,
       // component options
-      playsinline: true
+      playsinline: true,
 
       // videojs options
       // playerOptions: {
@@ -60,16 +60,16 @@ export default {
         let payload = {
           vidID: videoId,
           iFrame: iframeMarkup,
-          title: this.videos[i].title
+          title: this.videos[i].title,
         }
 
         this.videosEmbed.push(payload)
       }
-    }
+    },
   },
   computed: {
     playerOptions() {
-      return media => {
+      return (media) => {
         return {
           height: '360',
           fluid: true,
@@ -80,9 +80,9 @@ export default {
           sources: [
             {
               type: 'video/mp4',
-              src: media.link
-            }
-          ]
+              src: media.link,
+            },
+          ],
           // sources: media.link,
           // poster: media.downloadURL
         }
@@ -93,7 +93,7 @@ export default {
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
   methods: {
     // listen event
@@ -131,7 +131,7 @@ export default {
     // player is ready
     playerReadied(player) {
       console.log('example 01: the player is readied', player)
-    }
+    },
   },
 
   mounted() {
@@ -144,22 +144,22 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    videosRetrieve.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    videosRetrieve.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.videos.push({
           id: doc.id,
           cat: doc.data().cat,
           title: doc.data().title,
           link: doc.data().link,
-          desc: doc.data().desc
+          desc: doc.data().desc,
         })
       })
     })
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/pages/profile.scss';
 </style>

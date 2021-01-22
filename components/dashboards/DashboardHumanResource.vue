@@ -29,12 +29,12 @@ export default {
     },
     sub_reseller() {
       return this.$store.state.business.sub_sellers
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .knowledge-base-jumbotron-content {
   background-image: url('../../assets/images/background/night.jpeg');
   background-size: cover;

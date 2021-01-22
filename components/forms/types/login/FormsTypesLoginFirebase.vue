@@ -141,7 +141,7 @@ export default {
     return {
       email: 'demo@demo.com',
       password: 'demodemo',
-      checkbox_remember_me: false
+      checkbox_remember_me: false,
     }
   },
   computed: {
@@ -153,7 +153,7 @@ export default {
     },
     authUser() {
       return this.$store.state['user/authUser']
-    }
+    },
   },
   methods: {
     checkLogin() {
@@ -167,7 +167,7 @@ export default {
           text: 'You are already logged in!',
           iconPack: 'feather',
           icon: 'icon-alert-circle',
-          color: 'warning'
+          color: 'warning',
         })
         return false
       }
@@ -182,10 +182,10 @@ export default {
         userDetails: {
           email: this.email,
           password: this.password,
-          isLoggedIn: this.isLoggedIn
+          isLoggedIn: this.isLoggedIn,
         },
         notify: this.notify,
-        closeAnimation: this.$vs.loading.close
+        closeAnimation: this.$vs.loading.close,
       }
       this.$store.dispatch('auth/loginAttempt', payload)
     },
@@ -194,7 +194,7 @@ export default {
       try {
         await this.$fireAuth
           .signInWithEmailAndPassword(this.email, this.password)
-          .then(function() {
+          .then(function () {
             vm.$router.push('/')
           })
       } catch (e) {
@@ -208,7 +208,7 @@ export default {
         text: `${e}`,
         iconPack: 'feather',
         icon: 'icon-alert-circle',
-        color: 'warning'
+        color: 'warning',
       })
     },
 
@@ -220,7 +220,7 @@ export default {
     // Facebook login
     loginWithFacebook() {
       this.$store.dispatch('auth/loginWithFacebook', {
-        notify: this.notify
+        notify: this.notify,
       })
     },
 
@@ -232,12 +232,12 @@ export default {
     // Github login
     loginWithGithub() {
       this.$store.dispatch('auth/loginWithGithub', { notify: this.notify })
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #page-login {
   .social-login-buttons {
     .bg-facebook {

@@ -9,7 +9,9 @@
       <div class="card-overlay text-white">
         <div class="flex flex-col justify-between h-full">
           <div class="text-center mt-8 w-full">
-            <h3 class="text-white mb-2 tracking-wide">{{ schema.content.weather }}</h3>
+            <h3 class="text-white mb-2 tracking-wide">
+              {{ schema.content.weather }}
+            </h3>
             <p class="mb-6">{{ schema.content.place_name }}</p>
             <div class="flex justify-around">
               <feather-icon
@@ -40,8 +42,6 @@
 <script>
 export default {
   name: 'buttons',
-  props: ['schema', 'index', 'mainIndex']
+  props: ['schema', 'index', 'mainIndex'],
 }
 </script>
-
-<style></style>

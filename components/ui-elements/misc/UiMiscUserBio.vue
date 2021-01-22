@@ -61,12 +61,10 @@
 
 <script>
 export default {
-  name: "UiMiscUserBio",
+  name: 'UiMiscUserBio',
   props: {
-    title: { type: String, default: "About" },
-    user: { type: Object, default: {} }
-  }
-};
+    title: { type: String, default: 'About' },
+    user: { type: Object, default: {} },
+  },
+}
 </script>
-
-<style></style>

@@ -54,7 +54,7 @@ export default {
         active_card: true,
         component_show: 'grid',
         place: this.schema.place,
-        index: 1
+        index: 1,
       }
 
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
@@ -64,12 +64,10 @@ export default {
         active_card: true,
         component_show: 'grid',
         schema: this.schema,
-        index: 0
+        index: 0,
       }
       this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

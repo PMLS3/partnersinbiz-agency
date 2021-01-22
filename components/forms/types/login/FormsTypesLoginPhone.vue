@@ -149,12 +149,12 @@ export default {
         wrapperClasses: '',
         inputClasses: '',
         dropdownOptions: {
-          disabledDialCode: false
+          disabledDialCode: false,
         },
         inputOptions: {
-          showDialCode: true
-        }
-      }
+          showDialCode: true,
+        },
+      },
     }
   },
   computed: {
@@ -166,7 +166,7 @@ export default {
     },
     authUser() {
       return this.$store.state['authUser']
-    }
+    },
   },
   methods: {
     login() {
@@ -178,11 +178,11 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(function() {
+        .then(function () {
           //route to home on success !
           vm.$router.push({ path: '/' })
         })
-        .catch(function(error) {
+        .catch(function (error) {
           // Handle Errors here.
           var errorCode = error.code
           var errorMessage = error.message
@@ -206,7 +206,7 @@ export default {
           text: 'You are already logged in!',
           iconPack: 'feather',
           icon: 'icon-alert-circle',
-          color: 'warning'
+          color: 'warning',
         })
 
         return false
@@ -222,10 +222,10 @@ export default {
         userDetails: {
           email: this.email,
           password: this.password,
-          isLoggedIn: this.isLoggedIn
+          isLoggedIn: this.isLoggedIn,
         },
         notify: this.notify,
-        closeAnimation: this.$vs.loading.close
+        closeAnimation: this.$vs.loading.close,
       }
       this.$store.dispatch('auth/loginAttempt', payload)
     },
@@ -234,7 +234,7 @@ export default {
       try {
         await this.$fireAuth
           .signInWithEmailAndPassword(this.email, this.password)
-          .then(function() {
+          .then(function () {
             vm.$router.push('/')
           })
       } catch (e) {
@@ -250,7 +250,7 @@ export default {
     // Facebook login
     loginWithFacebook() {
       this.$store.dispatch('auth/loginWithFacebook', {
-        notify: this.notify
+        notify: this.notify,
       })
     },
 
@@ -265,12 +265,12 @@ export default {
     },
     registerUser() {
       this.$router.push('/register')
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #page-login {
   .social-login-buttons {
     .bg-facebook {

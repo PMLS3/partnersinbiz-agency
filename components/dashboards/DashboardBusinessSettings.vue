@@ -87,7 +87,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #profile-tabs {
   .vs-tabs--content {
     padding: 0;

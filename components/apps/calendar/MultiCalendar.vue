@@ -1,7 +1,14 @@
 <template>
   <div
-    style="background-position: center;  background-repeat: no-repeat;  background-size: cover;  background-attachment: fixed; width: 100%; height: 100%; min-height: 100vh
-      "
+    style="
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+    "
   >
     <client-only>
       <vue-cal
@@ -245,29 +252,29 @@
 </template>
 
 <script>
-import VueCal from "vue-cal";
-import "vue-cal/dist/vuecal.css";
-import moment from "moment";
-import vSelect from "vue-select";
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
+import moment from 'moment'
+import vSelect from 'vue-select'
 
 export default {
   components: { VueCal, vSelect },
   props: {
     events: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
       selectedEvent: {},
-      selectedDate: moment(Date.now()).format("YYYY MM DD"),
+      selectedDate: moment(Date.now()).format('YYYY MM DD'),
       //   selectedDate: '2020-06-24',
 
       showDialog: false,
       userSelect: null,
       branchDetails: {},
-      OnboardTraning: false
+      OnboardTraning: false,
       //   events: [
       //     {
       //       start: '2020-09-14 14:00',
@@ -289,77 +296,77 @@ export default {
       //       class: 'sport'
       //     }
       //   ]
-    };
+    }
   },
   computed: {
     branchUsers() {
-      let users = [];
+      let users = []
 
       for (let i = 0; i < this.appUsers.length; i++) {
         if (
           this.appUsers[i].group_branches == this.userDetails.group_branches
         ) {
-          users.push(this.appUsers[i]);
+          users.push(this.appUsers[i])
         }
       }
-      return users;
+      return users
     },
     companyDetails() {
-      return this.$store.getters["app/companyDetails"];
+      return this.$store.getters['app/companyDetails']
     },
     resellerName() {
-      return this.$store.getters["app/resellerName"];
+      return this.$store.getters['app/resellerName']
     },
     componentDetails() {
-      return this.$store.getters["feature/componentDetails"];
+      return this.$store.getters['feature/componentDetails']
     },
     routes() {
-      return this.$store.getters["route/route"];
+      return this.$store.getters['route/route']
     },
     routeID() {
-      return this.$store.getters["route/routeID"];
+      return this.$store.getters['route/routeID']
     },
     appUsers() {
-      return this.$store.getters["userManagement/users"];
+      return this.$store.getters['userManagement/users']
     },
     routeDisplayName() {
-      return this.$store.getters["route/routeDisplayName"];
+      return this.$store.getters['route/routeDisplayName']
     },
     routeName() {
-      return this.$store.getters["route/routeName"];
+      return this.$store.getters['route/routeName']
     },
     is_blank() {
-      return this.$store.getters["route/isBlank"];
+      return this.$store.getters['route/isBlank']
     },
 
     appType() {
-      return this.$store.getters["app/appType"];
+      return this.$store.getters['app/appType']
     },
 
     userDetails() {
-      return this.$store.getters["userManagement/userDetails"];
+      return this.$store.getters['userManagement/userDetails']
     },
     user_data() {
-      return this.$store.getters["userManagement/currentDisplayUser"];
+      return this.$store.getters['userManagement/currentDisplayUser']
     },
     currentlyDisplayingUser() {
-      return this.$store.getters["userManagement/currentlyDisplayingUser"];
+      return this.$store.getters['userManagement/currentlyDisplayingUser']
     },
     componentID() {
-      return this.$store.getters["feature/componentID"];
-    }
+      return this.$store.getters['feature/componentID']
+    },
   },
 
   methods: {
     addToFriendCalendar(cal) {
-      let vm = this;
+      let vm = this
 
       this.$fireStore
         .collection(vm.resellerName)
         .doc(vm.companyDetails.id)
-        .collection("users")
+        .collection('users')
         .doc(this.userSelect.id)
-        .collection("calendar")
+        .collection('calendar')
         .doc(cal.id)
         .set({
           id: cal.id,
@@ -375,34 +382,34 @@ export default {
           address_url: cal.address_url,
           resellerName: vm.resellerName,
           companyDetails_id: vm.companyDetails.id,
-          companyDetails_name: vm.companyDetails.appname
+          companyDetails_name: vm.companyDetails.appname,
         })
         .then(() => {
-          this.addFriendEvent(cal);
-          this.addFriendNotification(cal);
-          this.save_changes_branch();
-          this.successUpload();
-        });
+          this.addFriendEvent(cal)
+          this.addFriendNotification(cal)
+          this.save_changes_branch()
+          this.successUpload()
+        })
     },
     addNotToMyCalendar(cal) {
-      let currentUser;
-      let vm = this;
+      let currentUser
+      let vm = this
       if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data;
+        currentUser = vm.user_data
       } else {
-        currentUser = vm.userDetails;
+        currentUser = vm.userDetails
       }
       if (this.is_blank) {
         this.$fireStore
           .collection(this.resellerName)
-          .doc("apps")
+          .doc('apps')
           .collection(this.companyDetails.appcode)
-          .doc("blank_page")
+          .doc('blank_page')
           .collection(this.componentID)
           .doc(this.$route.params.id)
-          .collection("features")
+          .collection('features')
           .doc(cal.id)
-          .collection("Notgoing")
+          .collection('Notgoing')
           .doc(currentUser.id)
           .set({
             name: currentUser.name,
@@ -411,17 +418,17 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
-          });
+            position: currentUser.group_positions,
+          })
       } else {
         this.$fireStore
           .collection(this.resellerName)
-          .doc("apps")
+          .doc('apps')
           .collection(this.companyDetails.appcode)
           .doc(this.$route.params.id)
-          .collection("features")
+          .collection('features')
           .doc(cal.id)
-          .collection("Notgoing")
+          .collection('Notgoing')
           .doc(currentUser.id)
           .set({
             name: currentUser.name,
@@ -430,29 +437,29 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
           .then(() => {
-            this.successUploadNot();
-          });
+            this.successUploadNot()
+          })
       }
     },
     addToMyCalendar(cal) {
-      let vm = this;
-      let currentUser;
+      let vm = this
+      let currentUser
 
       if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data;
+        currentUser = vm.user_data
       } else {
-        currentUser = vm.userDetails;
+        currentUser = vm.userDetails
       }
 
       this.$fireStore
         .collection(vm.resellerName)
         .doc(vm.companyDetails.id)
-        .collection("users")
+        .collection('users')
         .doc(currentUser.id)
-        .collection("calendar")
+        .collection('calendar')
         .doc(cal.id)
         .set({
           id: cal.id,
@@ -468,103 +475,103 @@ export default {
           address_url: cal.address_url,
           resellerName: vm.resellerName,
           companyDetails_id: vm.companyDetails.id,
-          companyDetails_name: vm.companyDetails.appname
+          companyDetails_name: vm.companyDetails.appname,
         })
         .then(() => {
-          this.adduserEvent(cal);
-          this.addNotification(cal);
-          this.save_changes_branch();
-          this.successUpload();
-        });
+          this.adduserEvent(cal)
+          this.addNotification(cal)
+          this.save_changes_branch()
+          this.successUpload()
+        })
     },
     addFriendNotification(cal) {
-      let vm = this;
+      let vm = this
 
       this.$fireStore
         .collection(vm.resellerName)
         .doc(vm.companyDetails.id)
-        .collection("users")
+        .collection('users')
         .doc(this.userSelect.id)
-        .collection("notification")
+        .collection('notification')
         .doc(cal.id)
         .set({
           id: cal.id,
           index: cal.id,
-          title: "Event added to Calendar",
+          title: 'Event added to Calendar',
           msg: cal.title,
-          icon: "CalendarIcon",
+          icon: 'CalendarIcon',
           time: Date.now(),
-          category: "warning"
-        });
+          category: 'warning',
+        })
     },
 
     save_changes_branch() {
-      let mySeller = this.resellerName;
-      let myCompanyDetails = this.companyDetails;
-      let vm = this;
-      let numberUsed;
+      let mySeller = this.resellerName
+      let myCompanyDetails = this.companyDetails
+      let vm = this
+      let numberUsed
 
       if (this.branchDetails.used == undefined) {
-        numberUsed = 1;
+        numberUsed = 1
       } else {
-        numberUsed = this.branchDetails.used + 1;
+        numberUsed = this.branchDetails.used + 1
       }
 
       this.$fireStore
         .collection(this.resellerName)
-        .doc("newapp")
-        .collection("newapp")
+        .doc('newapp')
+        .collection('newapp')
         .doc(myCompanyDetails.id)
-        .collection("group_branch")
+        .collection('group_branch')
         .doc(this.userDetails.group_branches)
         .update({
-          used: numberUsed
-        });
+          used: numberUsed,
+        })
 
-      this.successUpload();
+      this.successUpload()
     },
 
     addNotification(cal) {
-      let vm = this;
-      let currentUser;
+      let vm = this
+      let currentUser
 
       if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data;
+        currentUser = vm.user_data
       } else {
-        currentUser = vm.userDetails;
+        currentUser = vm.userDetails
       }
 
       this.$fireStore
         .collection(vm.resellerName)
         .doc(vm.companyDetails.id)
-        .collection("users")
+        .collection('users')
         .doc(currentUser.id)
-        .collection("notification")
+        .collection('notification')
         .doc(cal.id)
         .set({
           id: cal.id,
           index: cal.id,
-          title: "Event added to Calendar",
+          title: 'Event added to Calendar',
           msg: cal.title,
-          icon: "CalendarIcon",
+          icon: 'CalendarIcon',
           time: Date.now(),
-          category: "warning"
-        });
+          category: 'warning',
+        })
     },
     addFriendEvent(cal) {
-      let currentUser = this.userSelect;
+      let currentUser = this.userSelect
 
       if (this.is_blank) {
         this.$fireStore
           .collection(this.resellerName)
-          .doc("apps")
+          .doc('apps')
           .collection(this.companyDetails.appcode)
-          .doc("blank_page")
+          .doc('blank_page')
           .collection(this.componentID)
           .doc(this.$route.params.id)
-          .collection("features")
+          .collection('features')
           .doc(cal.id)
-          .collection("going")
+          .collection('going')
           .doc(currentUser.id)
           .set({
             name: currentUser.name,
@@ -573,17 +580,17 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
-          });
+            position: currentUser.group_positions,
+          })
       } else {
         this.$fireStore
           .collection(this.resellerName)
-          .doc("apps")
+          .doc('apps')
           .collection(this.companyDetails.appcode)
           .doc(this.$route.params.id)
-          .collection("features")
+          .collection('features')
           .doc(cal.id)
-          .collection("going")
+          .collection('going')
           .doc(currentUser.id)
           .set({
             name: currentUser.name,
@@ -592,32 +599,32 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
           .then(() => {
-            console.log("going added");
-          });
+            console.log('going added')
+          })
       }
     },
     adduserEvent(cal) {
-      let currentUser;
-      let vm = this;
+      let currentUser
+      let vm = this
       if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data;
+        currentUser = vm.user_data
       } else {
-        currentUser = vm.userDetails;
+        currentUser = vm.userDetails
       }
       if (this.is_blank) {
         this.$fireStore
           .collection(this.resellerName)
-          .doc("apps")
+          .doc('apps')
           .collection(this.companyDetails.appcode)
-          .doc("blank_page")
+          .doc('blank_page')
           .collection(this.componentID)
           .doc(this.$route.params.id)
-          .collection("features")
+          .collection('features')
           .doc(cal.id)
-          .collection("going")
+          .collection('going')
           .doc(currentUser.id)
           .set({
             name: currentUser.name,
@@ -626,17 +633,17 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
-          });
+            position: currentUser.group_positions,
+          })
       } else {
         this.$fireStore
           .collection(this.resellerName)
-          .doc("apps")
+          .doc('apps')
           .collection(this.companyDetails.appcode)
           .doc(this.$route.params.id)
-          .collection("features")
+          .collection('features')
           .doc(cal.id)
-          .collection("going")
+          .collection('going')
           .doc(currentUser.id)
           .set({
             name: currentUser.name,
@@ -645,37 +652,37 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
           .then(() => {
-            console.log("going added");
-          });
+            console.log('going added')
+          })
       }
     },
     successUpload() {
       this.$vs.notify({
-        color: "success",
-        title: "Event",
-        text: "Whoop whoop, been uploaded to your calendar"
-      });
+        color: 'success',
+        title: 'Event',
+        text: 'Whoop whoop, been uploaded to your calendar',
+      })
     },
     successUploadNot() {
       this.$vs.notify({
-        color: "danger",
-        title: "Event",
-        text: "We will miss you"
-      });
+        color: 'danger',
+        title: 'Event',
+        text: 'We will miss you',
+      })
     },
     goToEvent(event) {
-      window.open(event);
+      window.open(event)
     },
 
     onEventClick(event, e) {
-      this.selectedEvent = event;
-      this.showDialog = true;
+      this.selectedEvent = event
+      this.showDialog = true
       // Prevent navigating to narrower view (default vue-cal behavior).
-      e.stopPropagation();
-    }
+      e.stopPropagation()
+    },
   },
   created() {
     // if (this.$route.params.id == 'OnboardTraning') {
@@ -792,11 +799,11 @@ export default {
     //       console.log('Error getting document', err)
     //     })
     // }
-  }
-};
+  },
+}
 </script>
 
-<style>
+<style scoped>
 .selectExample {
   z-index: 55000;
 }

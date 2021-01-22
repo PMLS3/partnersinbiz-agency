@@ -17,7 +17,7 @@
       { 'no-shadow': noShadow },
       { 'rounded-none': noRadius },
       { 'card-border': cardBorder },
-      cardClasses
+      cardClasses,
     ]"
     :style="cardStyles"
     v-on="$listeners"
@@ -46,7 +46,7 @@
                 collapseAction ||
                 refreshContentAction ||
                 removeCardAction) &&
-                !codeToggler
+              !codeToggler
             "
             class="vx-card__action-buttons"
           >
@@ -77,7 +77,7 @@
             <feather-icon
               icon="CodeIcon"
               :class="{
-                'border border-solid border-primary border-t-0 border-r-0 border-l-0': showCode
+                'border border-solid border-primary border-t-0 border-r-0 border-l-0': showCode,
               }"
               @click="toggleCode"
             ></feather-icon>
@@ -91,7 +91,7 @@
       class="vx-card__collapsible-content vs-con-loading__container"
       :class="[
         { collapsed: isContentCollapsed },
-        { 'overflow-hidden': tempHidden }
+        { 'overflow-hidden': tempHidden },
       ]"
       :style="StyleItems"
     >
@@ -140,54 +140,54 @@ if (process.client) {
 export default {
   name: 'VxCard',
   components: {
-    prism
+    prism,
   },
   props: {
     title: String,
     subtitle: String,
     actionButtons: {
       type: Boolean,
-      default: false
+      default: false,
     },
     actionButtonsColor: {
       type: String,
-      default: 'success'
+      default: 'success',
     },
     codeToggler: {
       type: Boolean,
-      default: false
+      default: false,
     },
     noShadow: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     noRadius: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     cardBorder: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     codeLanguage: {
       default: 'markup',
-      type: String
+      type: String,
     },
     collapseAction: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     refreshContentAction: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     removeCardAction: {
       default: false,
-      type: Boolean
+      type: Boolean,
     },
     headerBackground: {
       default: '',
-      type: String
+      type: String,
     },
     // bodyBackground: {
     //   default: '',
@@ -199,20 +199,20 @@ export default {
     // },
     cardBackground: {
       default: '',
-      type: String
+      type: String,
     },
     contentColor: {
       default: '',
-      type: String
+      type: String,
     },
     titleColor: {
       default: '',
-      type: String
+      type: String,
     },
     subtitleColor: {
       default: '#b8c2cc',
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
@@ -221,7 +221,7 @@ export default {
       maxHeight: null,
       cardMaxHeight: null,
       codeContainerMaxHeight: '0px',
-      tempHidden: false
+      tempHidden: false,
     }
   },
   computed: {
@@ -269,7 +269,7 @@ export default {
     },
     titleStyles() {
       return {
-        color: _color.getColor(this.titleColor)
+        color: _color.getColor(this.titleColor),
       }
     },
     titleClasses() {
@@ -298,7 +298,7 @@ export default {
       }
 
       return str.trim()
-    }
+    },
   },
   methods: {
     toggleContent() {
@@ -323,7 +323,7 @@ export default {
     refreshcard() {
       this.$vs.loading({
         container: this.$refs.content,
-        scale: 0.5
+        scale: 0.5,
       })
       this.tempHidden = true
       this.$emit('refresh', this)
@@ -360,11 +360,11 @@ export default {
           this.tempHidden = false
         }, 150)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/vxCard.scss';
 </style>

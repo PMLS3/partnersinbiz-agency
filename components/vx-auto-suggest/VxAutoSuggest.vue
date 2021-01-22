@@ -54,7 +54,7 @@
             class="auto-suggest__suggestion-group__suggestion py-3 px-4 cursor-pointer"
             :class="{
               'vx-auto-suggest__current-selected':
-                currentSelected == `${grp_index}.${index}`
+                currentSelected == `${grp_index}.${index}`,
             }"
             @mouseenter="currentSelected = `${grp_index}.${index}`"
             @click="suggestionSelected"
@@ -81,35 +81,35 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: 'Search..'
+      default: 'Search..',
     },
     data: {
       type: Object,
-      required: true
+      required: true,
     },
     initalData: {
       type: Object,
-      default: () => new Object()
+      default: () => new Object(),
     },
     inputClassses: {
-      type: [String, Object, Array]
+      type: [String, Object, Array],
     },
     autoFocus: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showPinned: {
       type: Boolean,
-      default: false
+      default: false,
     },
     searchLimit: {
       type: Number,
-      default: 4
+      default: 4,
     },
     hideGroupTitle: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -117,7 +117,7 @@ export default {
       filteredData: {},
       currentSelected: -1,
       inputFocused: false,
-      insideSuggestions: false
+      insideSuggestions: false,
     }
   },
   watch: {
@@ -159,7 +159,7 @@ export default {
       }
 
       if (grp_index != null) this.currentSelected = grp_index + '.0'
-    }
+    },
   },
   mounted() {
     if (this.autoFocus) this.focusInput()
@@ -269,11 +269,11 @@ export default {
     },
     focusInput() {
       this.$refs.input.$el.querySelector('input').focus()
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/vxAutoSuggest.scss';
 </style>

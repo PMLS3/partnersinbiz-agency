@@ -99,120 +99,120 @@
 </template>
 
 <script>
-import moduleTodo from "@/store/todo/moduleTodo.js";
-import TodoAddNew from "./TodoAddNew.vue";
-import TodoTask from "./TodoTask.vue";
-import TodoFilters from "./TodoFilters.vue";
-import TodoEdit from "./TodoEdit.vue";
-import VuePerfectScrollbar from "vue-perfect-scrollbar";
+import moduleTodo from '@/store/todo/moduleTodo.js'
+import TodoAddNew from './TodoAddNew.vue'
+import TodoTask from './TodoTask.vue'
+import TodoFilters from './TodoFilters.vue'
+import TodoEdit from './TodoEdit.vue'
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
 export default {
   data() {
     return {
-      currFilter: "",
+      currFilter: '',
       clickNotClose: true,
       displayPrompt: false,
       taskIdToEdit: 0,
       isSidebarActive: true,
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.3
-      }
-    };
+        wheelSpeed: 0.3,
+      },
+    }
   },
   watch: {
     todoFilter() {
-      const scroll_el = this.$refs.taskListPS.$el || this.$refs.taskListPS;
-      scroll_el.scrollTop = 0;
+      const scroll_el = this.$refs.taskListPS.$el || this.$refs.taskListPS
+      scroll_el.scrollTop = 0
 
-      this.toggleTodoSidebar();
+      this.toggleTodoSidebar()
 
       // Fetch Tasks
-      const filter = this.$route.params.filter;
-      this.$store.dispatch("todo/fetchTasks", { filter });
-      this.$store.commit("todo/UPDATE_TODO_FILTER", filter);
+      const filter = this.$route.params.filter
+      this.$store.dispatch('todo/fetchTasks', { filter })
+      this.$store.commit('todo/UPDATE_TODO_FILTER', filter)
     },
     windowWidth() {
-      this.setSidebarWidth();
-    }
+      this.setSidebarWidth()
+    },
   },
   computed: {
     todo() {
-      return this.$store.state.todo.todoArray;
+      return this.$store.state.todo.todoArray
     },
     todoFilter() {
-      return this.$route.params.filter;
+      return this.$route.params.filter
     },
     taskList() {
-      return this.$store.getters["todo/queriedTasks"];
+      return this.$store.getters['todo/queriedTasks']
     },
     searchQuery: {
       get() {
-        return this.$store.state.todo.todoSearchQuery;
+        return this.$store.state.todo.todoSearchQuery
       },
       set(val) {
-        this.$store.dispatch("todo/setTodoSearchQuery", val);
-      }
+        this.$store.dispatch('todo/setTodoSearchQuery', val)
+      },
     },
     scrollbarTag() {
-      return this.$store.getters.scrollbarTag;
+      return this.$store.getters.scrollbarTag
     },
     windowWidth() {
-      return this.$store.state.windowWidth;
-    }
+      return this.$store.state.windowWidth
+    },
   },
   methods: {
     showDisplayPrompt(itemId) {
-      this.taskIdToEdit = itemId;
-      this.displayPrompt = true;
+      this.taskIdToEdit = itemId
+      this.displayPrompt = true
     },
     hidePrompt() {
-      this.displayPrompt = false;
+      this.displayPrompt = false
     },
     setSidebarWidth() {
       if (this.windowWidth < 992) {
-        this.isSidebarActive = this.clickNotClose = false;
+        this.isSidebarActive = this.clickNotClose = false
       } else {
-        this.isSidebarActive = this.clickNotClose = true;
+        this.isSidebarActive = this.clickNotClose = true
       }
     },
     toggleTodoSidebar(value = false) {
-      if (!value && this.clickNotClose) return;
-      this.isSidebarActive = value;
-    }
+      if (!value && this.clickNotClose) return
+      this.isSidebarActive = value
+    },
   },
   components: {
     TodoAddNew,
     TodoTask,
     TodoFilters,
     TodoEdit,
-    VuePerfectScrollbar
+    VuePerfectScrollbar,
   },
   created() {
-    this.$store.registerModule("todo", moduleTodo);
-    this.setSidebarWidth();
+    this.$store.registerModule('todo', moduleTodo)
+    this.setSidebarWidth()
 
-    const filter = this.$route.params.filter;
+    const filter = this.$route.params.filter
 
     // Fetch Tasks
-    this.$store.dispatch("todo/fetchTasks", { filter });
-    this.$store.commit("todo/UPDATE_TODO_FILTER", filter);
+    this.$store.dispatch('todo/fetchTasks', { filter })
+    this.$store.commit('todo/UPDATE_TODO_FILTER', filter)
 
     // Fetch Tags
-    this.$store.dispatch("todo/fetchTags");
+    this.$store.dispatch('todo/fetchTags')
   },
   beforeUpdate() {
-    this.currFilter = this.$route.params.filter;
+    this.currFilter = this.$route.params.filter
   },
   beforeDestroy() {
-    this.$store.unregisterModule("todo");
+    this.$store.unregisterModule('todo')
   },
   mounted() {
-    this.$store.dispatch("todo/setTodoSearchQuery", "");
-  }
-};
+    this.$store.dispatch('todo/setTodoSearchQuery', '')
+  },
+}
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/apps/todo.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/apps/todo.scss';
 </style>

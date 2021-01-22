@@ -20,18 +20,18 @@ export default {
         email: data.profile.email,
         avatar: data.profile.picture,
         providerId: data.profile.sub.substr(0, data.profile.sub.indexOf('|')),
-        uid: data.profile.sub
+        uid: data.profile.sub,
       })
       this.$router.push(data.state.target || '/')
-    }
+    },
   },
   created() {
     this.$auth.handleAuthentication()
     if (this.$auth.isAuthenticated()) this.$router.push('/').catch(() => {})
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/css/loader.css';
 </style>

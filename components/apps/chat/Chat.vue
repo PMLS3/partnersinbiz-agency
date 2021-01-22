@@ -10,7 +10,7 @@
 <template>
   <div
     id="chat-app"
-    class="border border-solid d-theme-border-grey-light rounded relative overflow-hidden"
+    class="relative overflow-hidden border border-solid rounded d-theme-border-grey-light"
   >
     <vs-sidebar
       class="items-no-padding"
@@ -29,17 +29,17 @@
         @closeProfileSidebar="closeProfileSidebar"
       ></user-profile>
 
-      <div class="chat__profile-search flex p-4">
+      <div class="flex p-4 chat__profile-search">
         <div class="relative inline-flex">
           <vs-avatar
             v-if="activeUser.avatar"
-            class="m-0 border-2 border-solid border-white"
+            class="m-0 border-2 border-white border-solid"
             :src="activeUser.avatar"
             size="40px"
             @click="showProfileSidebar(Number(activeUser.uid), true)"
           />
           <div
-            class="h-3 w-3 border-white border border-solid rounded-full absolute right-0 bottom-0"
+            class="absolute bottom-0 right-0 w-3 h-3 border border-white border-solid rounded-full"
             :class="'bg-' + getStatusColor(true)"
           ></div>
         </div>
@@ -53,22 +53,22 @@
         />
 
         <feather-icon
-          class="md:inline-flex lg:hidden -ml-3 cursor-pointer"
+          class="-ml-3 cursor-pointer md:inline-flex lg:hidden"
           icon="XIcon"
           @click="toggleChatSidebar(false)"
         />
       </div>
 
-      <vs-divider class="d-theme-border-grey-light m-0" />
+      <vs-divider class="m-0 d-theme-border-grey-light" />
       <component
         :is="scrollbarTag"
-        class="chat-scroll-area pt-4"
+        class="pt-4 chat-scroll-area"
         :settings="settings"
         :key="$vs.rtl"
       >
         <!-- ACTIVE CHATS LIST -->
-        <div class="chat__chats-list mb-8">
-          <h3 class="text-primary mb-5 px-4">Chats</h3>
+        <div class="mb-8 chat__chats-list">
+          <h3 class="px-4 mb-5 text-primary">Chats</h3>
           <ul class="chat__active-chats bordered-items">
             <li
               class="cursor-pointer"
@@ -89,7 +89,7 @@
 
         <!-- CONTACTS LIST -->
         <div class="chat__contacts">
-          <h3 class="text-primary mb-5 px-4">Contacts</h3>
+          <h3 class="px-4 mb-5 text-primary">Contacts</h3>
           <ul class="chat__contacts bordered-items">
             <li
               class="cursor-pointer"
@@ -106,10 +106,10 @@
 
     <!-- RIGHT COLUMN -->
     <div
-      class="chat__bg no-scroll-content chat-content-area border border-solid d-theme-border-grey-light border-t-0 border-r-0 border-b-0"
+      class="border border-t-0 border-b-0 border-r-0 border-solid chat__bg no-scroll-content chat-content-area d-theme-border-grey-light"
       :class="{
         'sidebar-spacer--wide': clickNotClose,
-        'flex items-center justify-center': activeChatUser === null
+        'flex items-center justify-center': activeChatUser === null,
       }"
     >
       <template v-if="activeChatUser">
@@ -125,7 +125,7 @@
         </div>
         <component
           :is="scrollbarTag"
-          class="chat-content-scroll-area border border-solid d-theme-border-grey-light"
+          class="border border-solid chat-content-scroll-area d-theme-border-grey-light"
           :settings="settings"
           ref="chatLogPS"
           :key="$vs.rtl"
@@ -134,7 +134,7 @@
             <chat-log :userId="activeChatUser" v-if="activeChatUser"></chat-log>
           </div>
         </component>
-        <div class="chat__input flex p-4 bg-white">
+        <div class="flex p-4 bg-white chat__input">
           <vs-input
             class="flex-1"
             placeholder="Type Your Message"
@@ -142,7 +142,7 @@
             @keyup.enter="sendMsg"
           />
           <vs-button
-            class="bg-primary-gradient ml-4"
+            class="ml-4 bg-primary-gradient"
             type="filled"
             @click="sendMsg"
             >Send</vs-button
@@ -153,11 +153,11 @@
         <div class="flex flex-col items-center">
           <feather-icon
             icon="MessageSquareIcon"
-            class="mb-4 bg-white p-8 shadow-md rounded-full"
+            class="p-8 mb-4 bg-white rounded-full shadow-md"
             svgClasses="w-16 h-16"
           ></feather-icon>
           <h4
-            class=" py-2 px-4 bg-white shadow-md rounded-full cursor-pointer"
+            class="px-4 py-2 bg-white rounded-full shadow-md cursor-pointer"
             @click.stop="toggleChatSidebar(true)"
           >
             Start Conversation
@@ -189,24 +189,24 @@ export default {
       isChatPinned: false,
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.7
+        wheelSpeed: 0.7,
       },
       clickNotClose: true,
       isChatSidebarActive: true,
-      isLoggedInUserProfileView: false
+      isLoggedInUserProfileView: false,
     }
   },
   watch: {
     windowWidth() {
       this.setSidebarWidth()
-    }
+    },
   },
   computed: {
     chatLastMessaged() {
-      return userId => this.$store.getters['chat/chatLastMessaged'](userId)
+      return (userId) => this.$store.getters['chat/chatLastMessaged'](userId)
     },
     chatUnseenMessages() {
-      return userId => {
+      return (userId) => {
         const unseenMsg = this.$store.getters['chat/chatUnseenMessages'](userId)
         if (unseenMsg) return unseenMsg
       }
@@ -215,7 +215,7 @@ export default {
       return this.$store.state.auth.active_user
     },
     getStatusColor() {
-      return isActiveUser => {
+      return (isActiveUser) => {
         const userStatus = this.getUserStatus(isActiveUser)
 
         if (userStatus === 'online') {
@@ -241,17 +241,17 @@ export default {
       },
       set(val) {
         this.$store.dispatch('chat/setChatSearchQuery', val)
-      }
+      },
     },
     scrollbarTag() {
       return this.$store.getters.scrollbarTag
     },
     isActiveChatUser() {
-      return userId => userId === this.activeChatUser
+      return (userId) => userId === this.activeChatUser
     },
     windowWidth() {
       return this.$store.state.windowWidth
-    }
+    },
   },
   methods: {
     getUserStatus(isActiveUser) {
@@ -289,9 +289,9 @@ export default {
           textContent: this.typedMessage,
           time: String(new Date()),
           isSent: true,
-          isSeen: false
+          isSeen: false,
         },
-        id: this.activeChatUser
+        id: this.activeChatUser,
       }
       this.$store.dispatch('chat/sendChatMessage', payload)
       this.typedMessage = ''
@@ -312,14 +312,14 @@ export default {
     toggleChatSidebar(value = false) {
       if (!value && this.clickNotClose) return
       this.isChatSidebarActive = value
-    }
+    },
   },
   components: {
     VuePerfectScrollbar,
     ChatContact,
     UserProfile,
     ChatNavbar,
-    ChatLog
+    ChatLog,
   },
   created() {
     this.$store.registerModule('chat', moduleChat)
@@ -333,10 +333,10 @@ export default {
   },
   mounted() {
     this.$store.dispatch('chat/setChatSearchQuery', '')
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/apps/chat.scss';
 </style>

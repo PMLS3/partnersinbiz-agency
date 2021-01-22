@@ -316,6 +316,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);
 </style>

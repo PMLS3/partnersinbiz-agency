@@ -20,7 +20,7 @@ export default {
     userList: () =>
       process.client
         ? import('@/components/apps/user/user-list/UserList.vue')
-        : null
+        : null,
   },
 
   computed: {
@@ -35,12 +35,12 @@ export default {
     },
     sub_reseller() {
       return this.$store.state.business.sub_sellers
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .knowledge-base-jumbotron-content {
   background-image: url('../../../../assets/images/background/night.jpeg');
   background-size: cover;

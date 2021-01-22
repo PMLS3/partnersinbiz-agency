@@ -38,12 +38,12 @@ export default {
     GridColumnSpacing,
     GridAutoColumnWidth,
     GridSimpleOffset,
-    GridColumnOrder
-  }
+    GridColumnOrder,
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #tailwind-grid-demo {
   .bg-grid-color {
     background-color: #b8c2cc;

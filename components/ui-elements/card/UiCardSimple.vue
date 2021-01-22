@@ -7,6 +7,7 @@
 <template>
   <vx-card
     class="text-center bg-gray-100 cursor-pointer"
+    :class="{ [` bg-gray-500`]: item.coming_soon }"
     @click="sendFeature(item)"
   >
     <img
@@ -34,12 +35,20 @@ export default {
   },
   setup() {
     function sendFeature(item) {
-      if (item.url == '/dashboardMain') {
-        this.$store.commit('business/UPDATE_BUSINESS_INFO', item)
-        this.$router.push(item.url)
+      if (item.coming_soon) {
+        this.$vs.notify({
+          title: 'Coming Soon',
+          text: 'Check out our roadmap on release date',
+          color: 'warning',
+        })
       } else {
-        this.$store.commit('app/SET_FEATURE', item)
-        this.$router.push(item.go_to_url)
+        if (item.url == '/dashboardMain') {
+          this.$store.commit('business/UPDATE_BUSINESS_INFO', item)
+          this.$router.push(item.url)
+        } else {
+          this.$store.commit('app/SET_FEATURE', item)
+          this.$router.push(item.go_to_url)
+        }
       }
     }
 
@@ -47,5 +56,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

@@ -30,11 +30,11 @@ export default {
   name: 'VxInputGroup',
   props: {
     prependClasses: { type: String },
-    appendClasses: { type: String }
-  }
+    appendClasses: { type: String },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/vxInputGroup.scss';
 </style>

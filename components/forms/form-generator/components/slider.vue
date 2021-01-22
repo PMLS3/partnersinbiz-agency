@@ -41,15 +41,13 @@ export default {
     'min',
     'max',
     'step',
-    'decimals'
+    'decimals',
   ],
   data() {
     return {
       val: 5,
-      val2: [this.min + 1, this.max - 1]
+      val2: [this.min + 1, this.max - 1],
     }
-  }
+  },
 }
 </script>
-
-<style></style>

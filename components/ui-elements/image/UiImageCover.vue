@@ -10,12 +10,10 @@
 
 <script>
 export default {
-  name: "UiImageCover",
+  name: 'UiImageCover',
   props: {
     user: { type: Object, default: {} },
-    user_info: { type: Object, default: {} }
-  }
-};
+    user_info: { type: Object, default: {} },
+  },
+}
 </script>
-
-<style></style>

@@ -5,15 +5,14 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="form-element-switch-demo">
-        <switch-state></switch-state>
-        <switch-color></switch-color>
-        <switch-text></switch-text>
-        <switch-icons></switch-icons>
-        <switch-array-value></switch-array-value>
-    </div>
+  <div id="form-element-switch-demo">
+    <switch-state></switch-state>
+    <switch-color></switch-color>
+    <switch-text></switch-text>
+    <switch-icons></switch-icons>
+    <switch-array-value></switch-array-value>
+  </div>
 </template>
 
 <script>
@@ -23,17 +22,17 @@ import SwitchText from './SwitchText.vue'
 import SwitchIcons from './SwitchIcons.vue'
 import SwitchArrayValue from './SwitchArrayValue.vue'
 
-export default{
+export default {
   components: {
     SwitchState,
     SwitchColor,
     SwitchText,
     SwitchIcons,
-    SwitchArrayValue
-  }
+    SwitchArrayValue,
+  },
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/pages/switch.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/pages/switch.scss';
 </style>

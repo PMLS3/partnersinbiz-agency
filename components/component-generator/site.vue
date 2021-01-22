@@ -140,7 +140,7 @@ export default {
     carouselParallax,
     carouselProgress,
     carouselResponsiveBreakpoints,
-    carouselVirtualSlides
+    carouselVirtualSlides,
   },
   data() {
     return {
@@ -150,13 +150,13 @@ export default {
       styleData: {
         border: '1px solid black',
         'min-height': '50px',
-        position: 'relative'
-      }
+        position: 'relative',
+      },
     }
   },
-  props: ['schema', 'key', 'is', 'index', 'mainIndex']
+  props: ['schema', 'key', 'is', 'index', 'mainIndex'],
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/pages/profile.scss';
 </style>

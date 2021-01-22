@@ -10,7 +10,7 @@
       class="header-label flex items-center cursor-pointer relative px-5 py-2"
       :class="[
         { 'text-white bg-primary-gradient header-active': isHeaderActive },
-        { 'header-open': isHovered || showChildren }
+        { 'header-open': isHovered || showChildren },
       ]"
     >
       <feather-icon :icon="header.icon" svg-classes="h-5 w-5" class="mr-3" />
@@ -64,23 +64,23 @@ import HNavMenuItem from './HorizontalNavMenuItem.vue'
 export default {
   components: {
     HNavMenuGroup,
-    HNavMenuItem
+    HNavMenuItem,
   },
   props: {
     header: {
       type: Object,
-      requried: true
+      requried: true,
     },
     openOnHover: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
       showChildren: false,
       isHovered: false,
-      dropRight: false
+      dropRight: false,
     }
   },
   computed: {
@@ -103,7 +103,7 @@ export default {
       })
 
       return active
-    }
+    },
   },
   watch: {
     showChildren() {
@@ -120,7 +120,7 @@ export default {
           }
         }
       })
-    }
+    },
   },
   methods: {
     checkGrpChildrenActive(group) {
@@ -145,11 +145,11 @@ export default {
       if (this.openOnHover) {
         val ? (this.showChildren = true) : (this.showChildren = false)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/horizontalNavMenuHeader.scss';
 </style>

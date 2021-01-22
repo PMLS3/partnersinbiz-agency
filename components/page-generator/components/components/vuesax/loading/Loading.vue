@@ -5,15 +5,14 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="loading-demo">
-        <loading-default></loading-default>
-        <loading-type></loading-type>
-        <loading-color></loading-color>
-        <loading-background></loading-background>
-        <loading-contained></loading-contained>
-    </div>
+  <div id="loading-demo">
+    <loading-default></loading-default>
+    <loading-type></loading-type>
+    <loading-color></loading-color>
+    <loading-background></loading-background>
+    <loading-contained></loading-contained>
+  </div>
 </template>
 
 <script>
@@ -23,17 +22,17 @@ import LoadingColor from './LoadingColor.vue'
 import LoadingBackground from './LoadingBackground.vue'
 import LoadingContained from './LoadingContained.vue'
 
-export default{
+export default {
   components: {
     LoadingDefault,
     LoadingType,
     LoadingColor,
     LoadingBackground,
-    LoadingContained
-  }
+    LoadingContained,
+  },
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/pages/loading.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/pages/loading.scss';
 </style>

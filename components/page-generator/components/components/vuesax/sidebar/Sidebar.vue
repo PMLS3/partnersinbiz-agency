@@ -5,17 +5,16 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="sidebar-demo">
-        <sidebar-default></sidebar-default>
-        <sidebar-parent></sidebar-parent>
-        <sidebar-static></sidebar-static>
-        <sidebar-group-collapsed></sidebar-group-collapsed>
-        <sidebar-right></sidebar-right>
-        <sidebar-reduce-expand></sidebar-reduce-expand>
-        <sidebar-custom></sidebar-custom>
-    </div>
+  <div id="sidebar-demo">
+    <sidebar-default></sidebar-default>
+    <sidebar-parent></sidebar-parent>
+    <sidebar-static></sidebar-static>
+    <sidebar-group-collapsed></sidebar-group-collapsed>
+    <sidebar-right></sidebar-right>
+    <sidebar-reduce-expand></sidebar-reduce-expand>
+    <sidebar-custom></sidebar-custom>
+  </div>
 </template>
 
 <script>
@@ -27,7 +26,7 @@ import SidebarRight from './SidebarRight.vue'
 import SidebarReduceExpand from './SidebarReduceExpand.vue'
 import SidebarCustom from './SidebarCustom.vue'
 
-export default{
+export default {
   components: {
     SidebarDefault,
     SidebarParent,
@@ -35,11 +34,11 @@ export default{
     SidebarGroupCollapsed,
     SidebarRight,
     SidebarReduceExpand,
-    SidebarCustom
-  }
+    SidebarCustom,
+  },
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/pages/sidebar.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/pages/sidebar.scss';
 </style>

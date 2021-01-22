@@ -323,7 +323,7 @@
                       :class="{
                         'chat-sent-msg bg-primary-gradient text-white':
                           msg.isSent,
-                        'border border-solid d-theme-border-grey-light': !msg.isSent
+                        'border border-solid d-theme-border-grey-light': !msg.isSent,
                       }"
                     >
                       <span>{{ msg.msg }}</span>
@@ -666,7 +666,7 @@ import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 
 export default {
   components: {
-    VuePerfectScrollbar
+    VuePerfectScrollbar,
     // videoPlayer
     // VxTimeline
   },
@@ -678,7 +678,7 @@ export default {
         img: require('@/assets/images/pages/content-img-1.jpg'),
         title: 'Vuexy Admin',
         subtitle: 'By Pixinvent Creative Studio',
-        subtitle_2: 'Elite Author'
+        subtitle_2: 'Elite Author',
       },
       card_2: {
         img: require('@/assets/images/pages/content-img-2.jpg'),
@@ -687,7 +687,7 @@ export default {
         footer_text_left_value: '$ 4785.78',
         footer_text_left_label: 'Income',
         footer_text_right_value: '12 June 2019',
-        footer_text_right_label: 'Release Date'
+        footer_text_right_label: 'Release Date',
       },
       card_3: {
         img: require('@/assets/images/pages/content-img-3.jpg'),
@@ -696,7 +696,7 @@ export default {
         current_progress: '$ 5975',
         progress_goal: '$ 8000',
         btn_left_text: 'Add More',
-        btn_right_text: 'Remove'
+        btn_right_text: 'Remove',
       },
       card_4: {
         userImg: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
@@ -707,7 +707,7 @@ export default {
         footer_text_1_icon: 'StarIcon',
         footer_text_1: '4.9',
         footer_text_2_icon: 'BriefcaseIcon',
-        footer_text_2: '37 Projects'
+        footer_text_2: '37 Projects',
       },
       card_5: {
         userImg: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
@@ -719,7 +719,7 @@ export default {
         user_meta_2_label: 'Followers',
         user_meta_3_title: 112,
         user_meta_3_label: 'Following',
-        btn_text: 'Follow'
+        btn_text: 'Follow',
       },
       card_6: {
         userImg: require('@/assets/images/portrait/small/avatar-s-1.jpg'),
@@ -729,13 +729,13 @@ export default {
         current_progress: '720 Points',
         progress_goal: '1000',
         btn_left_text: 'Follow',
-        btn_right_text: 'Message'
+        btn_right_text: 'Message',
       },
       card_7: {
         overlay_img: require('@/assets/images/pages/card-image-6.jpg'),
         title: 'Beautiful Overlay',
         text:
-          'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop.'
+          'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop.',
       },
       card_8: {
         overlay_img: require('@/assets/images/pages/card-image-5.jpg'),
@@ -746,50 +746,50 @@ export default {
         meta: [
           {
             label: 'Precipitation',
-            value: '48%'
+            value: '48%',
           },
           {
             label: 'Humidity',
-            value: '60%'
+            value: '60%',
           },
           {
             label: 'Wind',
-            value: '4823 km/h'
-          }
-        ]
+            value: '4823 km/h',
+          },
+        ],
       },
 
       chatLog: [
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
           msg: 'Cake sesame snaps cupcake gingerbread',
-          isSent: false
+          isSent: false,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
           msg: 'Apple pie pie jujubes chupa chups muffin',
-          isSent: true
+          isSent: true,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
           msg: 'Chocolate cake',
-          isSent: false
+          isSent: false,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
           msg: 'Donut sweet pie oat cake dragée fruitcake',
-          isSent: true
+          isSent: true,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
           msg: 'Liquorice chocolate bar jelly beans icing',
-          isSent: false
+          isSent: false,
         },
         {
           senderImg: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
           msg: 'Pudding candy',
-          isSent: true
-        }
+          isSent: true,
+        },
       ],
       chatMsgInput: '',
 
@@ -800,8 +800,8 @@ export default {
         meta: {
           likes: 368,
           comments: 341,
-          dislikes: 53
-        }
+          dislikes: 53,
+        },
       },
 
       timelineData: [
@@ -810,22 +810,22 @@ export default {
           icon: 'PlusIcon',
           title: 'New Task Added',
           desc: 'Bonbon macaroon jelly beans gummi bears jelly lollipop apple',
-          time: '25 Days Ago'
+          time: '25 Days Ago',
         },
         {
           color: 'warning',
           icon: 'AlertCircleIcon',
           title: 'Task Update Found',
           desc: 'Cupcake gummi bears soufflé caramels candy',
-          time: '15 Days Ago'
+          time: '15 Days Ago',
         },
         {
           color: 'success',
           icon: 'CheckIcon',
           title: 'Task Finished',
           desc: 'Candy ice cream cake. Halvah gummi bears',
-          time: '20 mins ago'
-        }
+          time: '20 mins ago',
+        },
       ],
 
       name: '',
@@ -842,16 +842,16 @@ export default {
         sources: [
           {
             type: 'video/mp4',
-            src: 'http://vjs.zencdn.net/v/oceans.mp4'
-          }
+            src: 'http://vjs.zencdn.net/v/oceans.mp4',
+          },
         ],
-        poster: 'https://goo.gl/xcCsDd'
+        poster: 'https://goo.gl/xcCsDd',
       },
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   computed: {
@@ -877,7 +877,7 @@ export default {
       }
 
       return newPlace
-    }
+    },
   },
   created() {
     this.place = this.$store.getters['page_builder/place']
@@ -891,11 +891,11 @@ export default {
           payload = {
             title: name,
             content: {
-              name: name
+              name: name,
             },
             style: {
-              height: 50
-            }
+              height: 50,
+            },
           }
 
           break
@@ -903,7 +903,7 @@ export default {
           payload = {
             title: 'vcard',
             content: {
-              name: name
+              name: name,
             },
             children: [
               {
@@ -917,35 +917,35 @@ export default {
                     title: 'imageAdd',
                     content: {
                       title: 'imageAdd',
-                      src: 'https://picsum.photos/300/300?image=12'
+                      src: 'https://picsum.photos/300/300?image=12',
                     },
-                    place: [...this.newPlace, 0, 0]
-                  }
-                ]
+                    place: [...this.newPlace, 0, 0],
+                  },
+                ],
               },
               {
                 title: 'h5Tag',
                 content: {
-                  html: `Our Admin`
+                  html: `Our Admin`,
                 },
                 class: 'mb-2',
-                place: [...this.newPlace, 1]
+                place: [...this.newPlace, 1],
               },
               {
                 title: 'pTag',
                 content: {
-                  html: `By Pixinvent Creative Studio`
+                  html: `By Pixinvent Creative Studio`,
                 },
                 class: 'text-grey',
-                place: [...this.newPlace, 2]
+                place: [...this.newPlace, 2],
               },
               {
                 title: 'pTag',
                 content: {
-                  html: `Elite Author`
+                  html: `Elite Author`,
                 },
                 class: 'text-grey',
-                place: [...this.newPlace, 3]
+                place: [...this.newPlace, 3],
               },
               {
                 title: 'divi',
@@ -955,49 +955,49 @@ export default {
                   {
                     title: 'buttons',
                     content: {
-                      title: 'Download'
+                      title: 'Download',
                     },
                     inline: {
                       color: '#7367F0',
                       type: 'gradient',
-                      colorx2: '#CE9FFC'
+                      colorx2: '#CE9FFC',
                     },
                     class: 'mt-4 mr-2 shadow-lg',
-                    place: [...this.newPlace, 4, 0]
+                    place: [...this.newPlace, 4, 0],
                   },
                   {
                     title: 'buttons',
                     content: {
-                      title: 'Download'
+                      title: 'Download',
                     },
                     inline: {
                       color: '#b9b9b9',
                       type: 'border',
-                      colorx2: '#CE9FFC'
+                      colorx2: '#CE9FFC',
                     },
                     class: 'mt-4 ',
-                    place: [...this.newPlace, 4, 1]
-                  }
-                ]
-              }
-            ]
+                    place: [...this.newPlace, 4, 1],
+                  },
+                ],
+              },
+            ],
           }
           break
         case 'basicCardNumb':
           payload = {
             title: 'vcard',
             content: {
-              name: name
+              name: name,
             },
             children: [
               {
                 title: 'imageAdd',
                 content: {
                   title: 'imageAdd',
-                  src: 'https://picsum.photos/300/300?image=12'
+                  src: 'https://picsum.photos/300/300?image=12',
                 },
                 class: 'responsive rounded-lg',
-                place: [...this.newPlace, 0]
+                place: [...this.newPlace, 0],
               },
               {
                 title: 'divi',
@@ -1007,20 +1007,20 @@ export default {
                   {
                     title: 'h5Tag',
                     content: {
-                      html: `Our Admin`
+                      html: `Our Admin`,
                     },
                     class: 'mb-2',
-                    place: [...this.newPlace, 1, 0]
+                    place: [...this.newPlace, 1, 0],
                   },
                   {
                     title: 'pTag',
                     content: {
-                      html: `Elite Author`
+                      html: `Elite Author`,
                     },
                     class: 'text-grey',
-                    place: [...this.newPlace, 1, 1]
-                  }
-                ]
+                    place: [...this.newPlace, 1, 1],
+                  },
+                ],
               },
               {
                 title: 'divider',
@@ -1028,10 +1028,10 @@ export default {
                   // title: 'divider'
                 },
                 inline: {
-                  color: 'primary'
+                  color: 'primary',
                 },
 
-                place: [...this.newPlace, 2]
+                place: [...this.newPlace, 2],
               },
 
               {
@@ -1042,20 +1042,20 @@ export default {
                   {
                     title: 'htmlAdd',
                     content: {
-                      html: `<h5>R5 2020</h5><p>Income</p>`
+                      html: `<h5>R5 2020</h5><p>Income</p>`,
                     },
-                    place: [...this.newPlace, 3, 0]
+                    place: [...this.newPlace, 3, 0],
                   },
                   {
                     title: 'htmlAdd',
                     content: {
-                      html: `<h5>12 June 2020</h5><p>Release Date</p>`
+                      html: `<h5>12 June 2020</h5><p>Release Date</p>`,
                     },
-                    place: [...this.newPlace, 3, 1]
-                  }
-                ]
-              }
-            ]
+                    place: [...this.newPlace, 3, 1],
+                  },
+                ],
+              },
+            ],
           }
 
           break
@@ -1064,17 +1064,17 @@ export default {
           payload = {
             title: 'vcard',
             content: {
-              name: name
+              name: name,
             },
             children: [
               {
                 title: 'imageAdd',
                 content: {
                   title: 'imageAdd',
-                  src: 'https://picsum.photos/300/300?image=12'
+                  src: 'https://picsum.photos/300/300?image=12',
                 },
                 class: 'responsive rounded-lg',
-                place: [...this.newPlace, 0]
+                place: [...this.newPlace, 0],
               },
               {
                 title: 'divi',
@@ -1084,31 +1084,31 @@ export default {
                   {
                     title: 'h5Tag',
                     content: {
-                      html: `Our Admin`
+                      html: `Our Admin`,
                     },
                     class: 'mb-2',
-                    place: [...this.newPlace, 1, 0]
+                    place: [...this.newPlace, 1, 0],
                   },
                   {
                     title: 'pTag',
                     content: {
-                      html: `Elite Author`
+                      html: `Elite Author`,
                     },
                     class: 'text-grey',
-                    place: [...this.newPlace, 1, 1]
-                  }
-                ]
+                    place: [...this.newPlace, 1, 1],
+                  },
+                ],
               },
               {
                 title: 'progressBar',
                 content: {
-                  percent: 80
+                  percent: 80,
                 },
                 inline: {
-                  color: 'primary'
+                  color: 'primary',
                 },
 
-                place: [...this.newPlace, 2]
+                place: [...this.newPlace, 2],
               },
 
               {
@@ -1119,20 +1119,20 @@ export default {
                   {
                     title: 'htmlAdd',
                     content: {
-                      html: `<h5>R5 2020</h5><p>Income</p>`
+                      html: `<h5>R5 2020</h5><p>Income</p>`,
                     },
-                    place: [...this.newPlace, 3, 0]
+                    place: [...this.newPlace, 3, 0],
                   },
                   {
                     title: 'htmlAdd',
                     content: {
-                      html: `<h5>12 June 2020</h5><p>Release Date</p>`
+                      html: `<h5>12 June 2020</h5><p>Release Date</p>`,
                     },
-                    place: [...this.newPlace, 3, 1]
-                  }
-                ]
-              }
-            ]
+                    place: [...this.newPlace, 3, 1],
+                  },
+                ],
+              },
+            ],
           }
 
           break
@@ -1149,8 +1149,8 @@ export default {
               footer_text_1_icon: 'StarIcon',
               footer_text_1: '4.9',
               footer_text_2_icon: 'BriefcaseIcon',
-              footer_text_2: '37 Projects'
-            }
+              footer_text_2: '37 Projects',
+            },
           }
 
           break
@@ -1168,8 +1168,8 @@ export default {
               user_meta_2_label: 'Followers',
               user_meta_3_title: 112,
               user_meta_3_label: 'Following',
-              btn_text: 'Follow'
-            }
+              btn_text: 'Follow',
+            },
           }
 
           break
@@ -1181,8 +1181,8 @@ export default {
               overlay_img: require('@/assets/images/pages/card-image-6.jpg'),
               title: 'Beautiful Overlay',
               text:
-                'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop.'
-            }
+                'Cake sesame snaps cupcake gingerbread danish I love gingerbread. Apple pie pie jujubes chupa chups muffin halvah lollipop.',
+            },
           }
 
           break
@@ -1197,8 +1197,8 @@ export default {
               current_progress: '720 Points',
               progress_goal: '1000',
               btn_left_text: 'Follow',
-              btn_right_text: 'Message'
-            }
+              btn_right_text: 'Message',
+            },
           }
 
           break
@@ -1215,18 +1215,18 @@ export default {
               meta: [
                 {
                   label: 'Precipitation',
-                  value: '48%'
+                  value: '48%',
                 },
                 {
                   label: 'Humidity',
-                  value: '60%'
+                  value: '60%',
                 },
                 {
                   label: 'Wind',
-                  value: '4823 km/h'
-                }
-              ]
-            }
+                  value: '4823 km/h',
+                },
+              ],
+            },
           }
 
           break
@@ -1241,8 +1241,8 @@ export default {
               current_progress: '720 Points',
               progress_goal: '1000',
               btn_left_text: 'Follow',
-              btn_right_text: 'Message'
-            }
+              btn_right_text: 'Message',
+            },
           }
 
           break
@@ -1261,15 +1261,15 @@ export default {
         place: [],
         active_edit_card: false,
 
-        index: 1
+        index: 1,
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payloads)
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #demo-basic-card {
   .overlay-card {
     .vx-card__collapsible-content {

@@ -276,7 +276,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #data-list-list-view {
   .vs-con-table {
     /*

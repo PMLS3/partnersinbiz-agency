@@ -37,9 +37,9 @@
     <vs-divider
       v-if="
         authorization_type.facebook ||
-          authorization_type.google ||
-          authorization_type.github ||
-          authorization_type.twitter
+        authorization_type.google ||
+        authorization_type.github ||
+        authorization_type.twitter
       "
       >OR</vs-divider
     >
@@ -143,20 +143,20 @@
 <script>
 export default {
   props: {
-    authorization_type: { type: Object, required: true }
+    authorization_type: { type: Object, required: true },
   },
   data() {
     return {
-      email: "demo@demo.com",
-      password: "demodemo",
-      checkbox_remember_me: false
-    };
+      email: 'demo@demo.com',
+      password: 'demodemo',
+      checkbox_remember_me: false,
+    }
   },
   computed: {
     validateForm() {
-      return true;
+      return true
       //  return !this.errors.any() && this.email !== '' && this.password !== ''
-    }
+    },
   },
   methods: {
     checkLogin() {
@@ -166,65 +166,65 @@ export default {
         // this.$vs.loading.close()
 
         this.$vs.notify({
-          title: "Login Attempt",
-          text: "You are already logged in!",
-          iconPack: "feather",
-          icon: "icon-alert-circle",
-          color: "warning"
-        });
+          title: 'Login Attempt',
+          text: 'You are already logged in!',
+          iconPack: 'feather',
+          icon: 'icon-alert-circle',
+          color: 'warning',
+        })
 
-        return false;
+        return false
       }
-      return true;
+      return true
     },
     login() {
       // Loading
-      this.$vs.loading();
+      this.$vs.loading()
 
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
         userDetails: {
           email: this.email,
-          password: this.password
+          password: this.password,
         },
         notify: this.$vs.notify,
         router: this.$router,
-        closeAnimation: this.$vs.loading.close
-      };
-      this.$store.dispatch("auth/loginAttempt", payload);
+        closeAnimation: this.$vs.loading.close,
+      }
+      this.$store.dispatch('auth/loginAttempt', payload)
     },
 
     // Google login
     loginWithGoogle() {
-      this.$store.dispatch("auth/loginWithGoogle", { notify: this.$vs.notify });
+      this.$store.dispatch('auth/loginWithGoogle', { notify: this.$vs.notify })
     },
 
     // Facebook login
     loginWithFacebook() {
-      this.$store.dispatch("auth/loginWithFacebook", {
-        notify: this.$vs.notify
-      });
+      this.$store.dispatch('auth/loginWithFacebook', {
+        notify: this.$vs.notify,
+      })
     },
 
     // Twitter login
     loginWithTwitter() {
-      this.$store.dispatch("auth/loginWithTwitter", {
-        notify: this.$vs.notify
-      });
+      this.$store.dispatch('auth/loginWithTwitter', {
+        notify: this.$vs.notify,
+      })
     },
 
     // Github login
     loginWithGithub() {
-      this.$store.dispatch("auth/loginWithGithub", { notify: this.$vs.notify });
+      this.$store.dispatch('auth/loginWithGithub', { notify: this.$vs.notify })
     },
     registerUser() {
-      this.$router.push("/register");
-    }
-  }
-};
+      this.$router.push('/register')
+    },
+  },
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #page-login {
   .social-login-buttons {
     .bg-facebook {

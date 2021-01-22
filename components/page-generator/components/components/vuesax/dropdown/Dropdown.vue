@@ -5,15 +5,14 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <div id="dropdown-demo">
-        <dropdown-default></dropdown-default>
-        <dropdown-color></dropdown-color>
-        <dropdown-group-option></dropdown-group-option>
-        <dropdown-custom-content></dropdown-custom-content>
-        <dropdown-button></dropdown-button>
-    </div>
+  <div id="dropdown-demo">
+    <dropdown-default></dropdown-default>
+    <dropdown-color></dropdown-color>
+    <dropdown-group-option></dropdown-group-option>
+    <dropdown-custom-content></dropdown-custom-content>
+    <dropdown-button></dropdown-button>
+  </div>
 </template>
 
 <script>
@@ -23,17 +22,17 @@ import DropdownGroupOption from './DropdownGroupOption.vue'
 import DropdownCustomContent from './DropdownCustomContent.vue'
 import DropdownButton from './DropdownButton.vue'
 
-export default{
+export default {
   components: {
     DropdownDefault,
     DropdownColor,
     DropdownGroupOption,
     DropdownCustomContent,
-    DropdownButton
-  }
+    DropdownButton,
+  },
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/vuexy/pages/dropdown.scss";
+<style lang="scss" scoped>
+@import '@/assets/scss/vuexy/pages/dropdown.scss';
 </style>

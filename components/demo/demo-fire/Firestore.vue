@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       InputText: '',
-      messages: []
+      messages: [],
     }
   },
   created() {
@@ -66,7 +66,7 @@ export default {
         const doc = change.doc
         this.messages.push({
           id: doc.id,
-          message: doc.data().message
+          message: doc.data().message,
         })
       })
     })
@@ -75,11 +75,9 @@ export default {
     WriteFirebase() {
       const messageRef = this.$fireStore.collection('message')
       messageRef.add({
-        message: this.InputText
+        message: this.InputText,
       })
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

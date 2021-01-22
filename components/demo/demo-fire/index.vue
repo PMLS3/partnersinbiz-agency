@@ -28,7 +28,7 @@ export default {
     VuexStore,
     Analytics,
     RemoteConfig,
-    Messaging
+    Messaging,
   },
   data: () => ({
     exampleComponents: [
@@ -40,10 +40,8 @@ export default {
       Analytics,
       RemoteConfig,
       Messaging,
-      VuexStore
-    ]
-  })
+      VuexStore,
+    ],
+  }),
 }
 </script>
-
-<style></style>

@@ -62,16 +62,16 @@ export default {
   components: {
     HNavMenuGroup,
     HNavMenuHeader,
-    HNavMenuItem
+    HNavMenuItem,
   },
   props: {
     // navbarColor  : { type: String, default: "#fff", },
-    navMenuItems: { type: Array, required: true }
+    navMenuItems: { type: Array, required: true },
   },
   computed: {
     navbarColor() {
       return this.$store.state.theme === 'dark' ? '#10163a' : '#fff'
-    }
+    },
   },
   methods: {
     checkGrpChildrenActive(group) {
@@ -91,11 +91,11 @@ export default {
       }
 
       return active
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/horizontalNavMenu.scss';
 </style>

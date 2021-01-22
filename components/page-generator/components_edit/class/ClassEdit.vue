@@ -1,9 +1,7 @@
 <template>
   <vs-card class="mt-8">
     <div slot="header">
-      <h3>
-        Class
-      </h3>
+      <h3>Class</h3>
     </div>
     <div>
       <span
@@ -39,9 +37,7 @@
       <vs-divider class="mt-4"></vs-divider>
       <vs-collapse class="mb-12">
         <vs-collapse-item>
-          <div slot="header">
-            Padding/Margin
-          </div>
+          <div slot="header">Padding/Margin</div>
           <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-"
             >Margin Horizontal</vs-radio
           >
@@ -117,7 +113,7 @@ export default {
     return {
       classUpdate: '',
       number: 0,
-      pmType: 'mx'
+      pmType: 'mx',
     }
   },
   computed: {
@@ -126,16 +122,16 @@ export default {
     },
     wordsSplit() {
       return this.schema.trim().split(' ')
-    }
+    },
   },
   watch: {
-    edit_component: function() {
+    edit_component: function () {
       switch (this.edit_component.schema.title) {
         case 'grid':
           this.options = {
             size: true,
             sizeOptions: {
-              vs: true
+              vs: true,
             },
             alignment: true,
             alignmentOptions: {
@@ -145,14 +141,14 @@ export default {
               flex_start: true,
               flex_end: true,
               space_around: true,
-              space_between: true
-            }
+              space_between: true,
+            },
           }
           break
         case 'buttons':
           break
       }
-    }
+    },
   },
 
   methods: {
@@ -212,15 +208,13 @@ export default {
         content: content,
         style: style,
         class: classUp,
-        inline: inline
+        inline: inline,
       }
 
       this.$store.commit('page_builder/COMPONENTS_UPDATE', payload)
 
       this.classUpdate = ''
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

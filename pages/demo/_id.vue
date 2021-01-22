@@ -19,9 +19,7 @@ export default {
     DemoAframeApartment,
     DemoAframeSmall,
     DemoAframeModernApartment,
-    DemoAR
-  }
+    DemoAR,
+  },
 }
 </script>
-
-<style></style>

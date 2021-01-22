@@ -23,12 +23,12 @@ export default {
   props: {
     list: {
       type: Array,
-      required: true
+      required: true,
     },
     icon: {
       type: String,
-      default: 'ChevronsRightIcon'
-    }
+      default: 'ChevronsRightIcon',
+    },
   },
   computed: {
     rtlSpecificIcon() {
@@ -41,11 +41,11 @@ export default {
           : null
       }
       return i
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/vxList.scss';
 </style>

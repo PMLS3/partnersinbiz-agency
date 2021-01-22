@@ -77,18 +77,18 @@ export default {
     return {
       name: '',
       email: '',
-      msg: ''
+      msg: '',
     }
   },
   computed: {
     isMobile() {
       return this.$store.getters['app/isMobile']
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style>
+<style scoped>
 h3 {
   margin-top: 40px;
 }

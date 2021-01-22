@@ -29,9 +29,7 @@ export default {
       } catch (e) {
         alert(e)
       }
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

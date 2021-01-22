@@ -896,7 +896,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #demo-card-analytics {
   .tasks-today-container {
     .tasks-today__task {

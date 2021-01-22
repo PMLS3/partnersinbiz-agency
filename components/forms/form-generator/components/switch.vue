@@ -10,9 +10,8 @@ export default {
   props: ['options', 'name', 'label', 'value'],
   data() {
     return {
-      val: true
+      val: true,
     }
-  }
+  },
 }
 </script>
-<style></style>

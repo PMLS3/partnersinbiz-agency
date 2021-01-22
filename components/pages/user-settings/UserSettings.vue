@@ -80,7 +80,7 @@ export default {
     UserSettingsInfo,
     UserSettingsSocialLinks,
     UserSettingsConnections,
-    UserSettingsNotifications
+    UserSettingsNotifications,
   },
   data() {
     return {}
@@ -88,12 +88,12 @@ export default {
   computed: {
     isSmallerScreen() {
       return this.$store.state.windowWidth < 768
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #profile-tabs {
   .vs-tabs--content {
     padding: 0;

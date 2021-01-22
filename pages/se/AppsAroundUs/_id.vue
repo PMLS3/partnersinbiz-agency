@@ -12,5 +12,3 @@ export default {
   layout: 'fullPage',
 }
 </script>
-
-<style></style>

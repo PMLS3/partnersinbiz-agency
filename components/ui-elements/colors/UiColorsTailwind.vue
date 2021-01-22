@@ -29,12 +29,12 @@ export default {
   components: {
     TailwindTextClasses,
     TailwindBackgroundClasses,
-    TailwindAddMoreColors
-  }
+    TailwindAddMoreColors,
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #colors-demo {
   .demo-alignment li {
     width: 100px;

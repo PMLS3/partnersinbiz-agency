@@ -42,8 +42,6 @@
 <script>
 export default {
   name: 'buttons',
-  props: ['schema', 'index', 'mainIndex']
+  props: ['schema', 'index', 'mainIndex'],
 }
 </script>
-
-<style></style>

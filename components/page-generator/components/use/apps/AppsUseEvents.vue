@@ -271,7 +271,7 @@ export default {
           content: 'Click to see my shopping list',
           contentFull:
             'My shopping list is rather long:<br><ul><li>Avocadoes</li><li>Tomatoes</li><li>Potatoes</li><li>Mangoes</li></ul>', // Custom attribute.
-          class: 'leisure'
+          class: 'leisure',
         },
         {
           start: '2018-11-22 10:00',
@@ -280,9 +280,9 @@ export default {
           icon: 'golf_course', // Custom attribute.
           content: 'Do I need to tell how many holes?',
           contentFull: 'Okay.<br>It will be a 18 hole golf course.', // Custom attribute.
-          class: 'sport'
-        }
-      ]
+          class: 'sport',
+        },
+      ],
     }
   },
   computed: {
@@ -303,7 +303,7 @@ export default {
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
 
   methods: {
@@ -333,7 +333,7 @@ export default {
           address_url: cal.address_url,
           resellerName: vm.resellerName,
           companyDetails_id: vm.companyDetails.id,
-          companyDetails_name: vm.companyDetails.appname
+          companyDetails_name: vm.companyDetails.appname,
         })
         .then(() => {
           this.addFriendEvent(cal)
@@ -369,7 +369,7 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
       } else {
         this.$fireStore
@@ -388,7 +388,7 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
           .then(() => {
             this.successUploadNot()
@@ -426,7 +426,7 @@ export default {
           address_url: cal.address_url,
           resellerName: vm.resellerName,
           companyDetails_id: vm.companyDetails.id,
-          companyDetails_name: vm.companyDetails.appname
+          companyDetails_name: vm.companyDetails.appname,
         })
         .then(() => {
           this.adduserEvent(cal)
@@ -452,7 +452,7 @@ export default {
           msg: cal.title,
           icon: 'CalendarIcon',
           time: Date.now(),
-          category: 'warning'
+          category: 'warning',
         })
     },
 
@@ -476,7 +476,7 @@ export default {
         .collection('group_branch')
         .doc(this.userDetails.group_branches)
         .update({
-          used: numberUsed
+          used: numberUsed,
         })
 
       this.successUpload()
@@ -506,7 +506,7 @@ export default {
           msg: cal.title,
           icon: 'CalendarIcon',
           time: Date.now(),
-          category: 'warning'
+          category: 'warning',
         })
     },
     addFriendEvent(cal) {
@@ -531,7 +531,7 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
       } else {
         this.$fireStore
@@ -550,7 +550,7 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
           .then(() => {
             console.log('going added')
@@ -584,7 +584,7 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
       } else {
         this.$fireStore
@@ -603,7 +603,7 @@ export default {
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
             branch: currentUser.group_branches,
-            position: currentUser.group_positions
+            position: currentUser.group_positions,
           })
           .then(() => {
             console.log('going added')
@@ -614,14 +614,14 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Event',
-        text: 'Whoop whoop, been uploaded to your calendar'
+        text: 'Whoop whoop, been uploaded to your calendar',
       })
     },
     successUploadNot() {
       this.$vs.notify({
         color: 'danger',
         title: 'Event',
-        text: 'We will miss you'
+        text: 'We will miss you',
       })
     },
     goToEvent(event) {
@@ -633,7 +633,7 @@ export default {
       this.showDialog = true
       // Prevent navigating to narrower view (default vue-cal behavior).
       e.stopPropagation()
-    }
+    },
   },
   created() {
     let myEvents = []
@@ -645,8 +645,8 @@ export default {
       .collection(this.schema.title)
       .doc(this.schema.id)
       .collection('added')
-    refff.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    refff.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.events.push({
           id: doc.id,
@@ -657,7 +657,7 @@ export default {
           content: doc.data().desc,
           contentFull: doc.data().html, // Custom attribute.
           class: doc.data().cat,
-          downloadURL: doc.data().imageUpload[0]
+          downloadURL: doc.data().imageUpload[0],
           // adr_address: doc.data().adr_address,
           // address_url: doc.data().address_url,
           // add_filter: doc.data().add_filter,
@@ -791,11 +791,11 @@ export default {
     //       console.log('Error getting document', err)
     //     })
     // }
-  }
+  },
 }
 </script>
 
-<style>
+<style scoped>
 .selectExample {
   z-index: 55000;
 }

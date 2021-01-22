@@ -57,9 +57,7 @@ export default {
       } catch (e) {
         alert(e.message)
       }
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

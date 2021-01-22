@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
     }
   },
   computed: {
@@ -64,7 +64,7 @@ export default {
     },
     authUser() {
       return this.$store.state.authUser
-    }
+    },
   },
   methods: {
     logoutUser() {
@@ -96,9 +96,7 @@ export default {
       } catch (e) {
         alert(e)
       }
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

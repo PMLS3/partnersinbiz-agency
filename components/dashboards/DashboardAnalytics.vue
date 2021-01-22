@@ -651,7 +651,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /*! rtl:begin:ignore */
 #dashboard-analytics {
   .greet-user {

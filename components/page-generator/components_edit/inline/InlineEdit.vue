@@ -1,9 +1,7 @@
 <template>
   <vs-card class="mt-8" style="width: 100%">
     <div slot="header">
-      <h3>
-        Inline
-      </h3>
+      <h3>Inline</h3>
     </div>
     <div>
       <span
@@ -42,9 +40,7 @@
           </div> -->
       <vs-collapse class="mb-12">
         <vs-collapse-item v-if="options.color">
-          <div slot="header">
-            Color
-          </div>
+          <div slot="header">Color</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -203,9 +199,7 @@
           </vs-col>
         </vs-collapse-item>
         <vs-collapse-item v-if="options.types">
-          <div slot="header">
-            Types
-          </div>
+          <div slot="header">Types</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -309,9 +303,7 @@
           </vs-col>
         </vs-collapse-item>
         <vs-collapse-item v-if="options.size">
-          <div slot="header">
-            Size
-          </div>
+          <div slot="header">Size</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -376,9 +368,7 @@
           </vs-col>
         </vs-collapse-item>
         <vs-collapse-item v-if="options.alignment" class="mb-6">
-          <div slot="header">
-            Alignment
-          </div>
+          <div slot="header">Alignment</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -502,9 +492,7 @@
         </vs-collapse-item>
 
         <vs-collapse-item v-if="options.inputs">
-          <div slot="header">
-            Inputs
-          </div>
+          <div slot="header">Inputs</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -576,9 +564,7 @@
         </vs-collapse-item>
 
         <vs-collapse-item v-if="options.booleans">
-          <div slot="header">
-            Booleans
-          </div>
+          <div slot="header">Booleans</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -736,9 +722,7 @@
         </vs-collapse-item>
 
         <vs-collapse-item v-if="options.border">
-          <div slot="header">
-            Border
-          </div>
+          <div slot="header">Border</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -765,9 +749,7 @@
         </vs-collapse-item>
 
         <vs-collapse-item v-if="options.icon">
-          <div slot="header">
-            Icon
-          </div>
+          <div slot="header">Icon</div>
           <vs-col
             vs-type="flex"
             vs-justify="space-around"
@@ -816,9 +798,7 @@
         </vs-collapse-item>
 
         <vs-collapse-item v-if="options.link">
-          <div slot="header">
-            Link
-          </div>
+          <div slot="header">Link</div>
 
           <vs-button radius @click="changeComponent('radius', true)"
             >Radius</vs-button
@@ -873,7 +853,7 @@ export default {
       size: {
         lg: '',
         sm: '',
-        xs: ''
+        xs: '',
       },
       options: {
         color: false,
@@ -885,7 +865,7 @@ export default {
           text: false,
           active: false,
           background: false,
-          pop: false
+          pop: false,
         },
         types: false,
         typesOptions: {
@@ -900,13 +880,13 @@ export default {
           relief: false,
           color: false,
           default: false,
-          margin: false
+          margin: false,
         },
         size: false,
         sizeOptions: {
           buttons: false,
           percPix: false,
-          vs: false
+          vs: false,
         },
         alignment: false,
         alignmentOptions: {
@@ -926,7 +906,7 @@ export default {
           flex_start: false,
           flex_end: false,
           space_around: false,
-          space_between: false
+          space_between: false,
         },
         inputs: false,
         inputOptions: {
@@ -934,7 +914,7 @@ export default {
           label: false,
           placeholder: false,
           vs_placeholder: false,
-          seperator: false
+          seperator: false,
         },
         booleans: false,
         booleansOptions: {
@@ -951,11 +931,11 @@ export default {
           accordian: false,
           radius: false,
           closable: false,
-          transparent: false
+          transparent: false,
         },
         border: false,
         icon: false,
-        link: false
+        link: false,
       },
 
       themeColors: [
@@ -964,21 +944,21 @@ export default {
         '#28C76F',
         '#EA5455',
         '#FF9F43',
-        '#1E1E1E'
+        '#1E1E1E',
       ],
       inlineUpdateKey: '',
-      inlineUpdateValue: ''
+      inlineUpdateValue: '',
     }
   },
   computed: {
     inlineUpdate() {
       let obj = {
-        [this.inlineUpdateKey]: this.inlineUpdateValue
+        [this.inlineUpdateKey]: this.inlineUpdateValue,
       }
       return obj
     },
     ColorOptionClasses() {
-      return color => {
+      return (color) => {
         const classes = {}
         if (color == this.ColorLocal) classes['shadow-outline'] = true
         if (this.navbarTypeLocal == 'static')
@@ -994,11 +974,11 @@ export default {
         this.inlineUpdateKey = this.colortype
         this.inlineUpdateValue = val
         this.update()
-      }
+      },
     },
     edit_component() {
       return this.$store.state.page_builder.edit_component
-    }
+    },
   },
 
   //  this.options = {
@@ -1086,13 +1066,13 @@ export default {
   //       }
 
   watch: {
-    edit_component: function() {
+    edit_component: function () {
       switch (this.edit_component.schema.title) {
         case 'grid':
           this.options = {
             size: true,
             sizeOptions: {
-              vs: true
+              vs: true,
             },
             alignment: true,
             alignmentOptions: {
@@ -1102,8 +1082,8 @@ export default {
               flex_start: true,
               flex_end: true,
               space_around: true,
-              space_between: true
-            }
+              space_between: true,
+            },
           }
           break
         case 'buttons':
@@ -1117,12 +1097,12 @@ export default {
               text: true,
               active: false,
               background: false,
-              pop: false
-            }
+              pop: false,
+            },
           }
           break
       }
-    }
+    },
   },
   methods: {
     changeComponent(key, value) {
@@ -1177,7 +1157,7 @@ export default {
         content: content,
         style: style,
         class: classUp,
-        inline: inline
+        inline: inline,
       }
 
       this.$store.commit('page_builder/COMPONENTS_UPDATE', payload)
@@ -1189,18 +1169,16 @@ export default {
       this.$vs.notify({
         color: 'danger',
         title: 'Delete Success',
-        text: 'Property has been deleted!'
+        text: 'Property has been deleted!',
       })
     },
     successUpload() {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, property been uploaded'
+        text: 'Whoop whoop, property been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

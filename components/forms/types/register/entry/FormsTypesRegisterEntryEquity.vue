@@ -283,7 +283,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #theme-customizer {
   .vs-sidebar {
     position: fixed;

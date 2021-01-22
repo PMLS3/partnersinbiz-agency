@@ -230,7 +230,7 @@ export default {
   name: 'Journal-Entries',
   components: {
     vSelect,
-    ImageUpload
+    ImageUpload,
   },
   data() {
     return {
@@ -241,9 +241,9 @@ export default {
           contact: '',
           tax: '',
           deb: 0,
-          cred: 0
-        }
-      ]
+          cred: 0,
+        },
+      ],
     }
   },
   computed: {
@@ -264,7 +264,7 @@ export default {
     },
     totalDifference() {
       return this.totalDebit - this.totalCredit
-    }
+    },
   },
   methods: {
     addMore() {
@@ -274,11 +274,9 @@ export default {
         contact: '',
         tax: '',
         deb: 0,
-        cred: 0
+        cred: 0,
       })
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

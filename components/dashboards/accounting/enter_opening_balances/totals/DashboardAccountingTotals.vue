@@ -17,7 +17,7 @@
         vs-lg="2"
         vs-sm="4"
         vs-xs="12"
-        style=" border-style: double; border-color: rgba(0,0,0,0.25)"
+        style="border-style: double; border-color: rgba(0, 0, 0, 0.25)"
       >
         <h6 class="ml-3 p-2">Total Credit</h6>
       </vs-col>
@@ -28,7 +28,7 @@
         vs-lg="2"
         vs-sm="4"
         vs-xs="12"
-        style=" border-style: double; border-color: rgba(0,0,0,0.25)"
+        style="border-style: double; border-color: rgba(0, 0, 0, 0.25)"
       >
         <h6 class="ml-3 p-2">R {{ total | k_formatter }}</h6>
       </vs-col>
@@ -48,7 +48,7 @@
         vs-lg="2"
         vs-sm="4"
         vs-xs="12"
-        style=" border-style: double; border-color: rgba(0,0,0,0.25)"
+        style="border-style: double; border-color: rgba(0, 0, 0, 0.25)"
       >
         <h6 class="ml-3 p-2">Total Debit</h6>
       </vs-col>
@@ -59,7 +59,7 @@
         vs-lg="2"
         vs-sm="4"
         vs-xs="12"
-        style=" border-style: double; border-color: rgba(0,0,0,0.25)"
+        style="border-style: double; border-color: rgba(0, 0, 0, 0.25)"
       >
         <h6 class="ml-3 p-2">R {{ total | k_formatter }}</h6>
       </vs-col>
@@ -79,7 +79,7 @@
         vs-lg="2"
         vs-sm="4"
         vs-xs="12"
-        style=" border-style: double; border-color: rgba(0,0,0,0.25)"
+        style="border-style: double; border-color: rgba(0, 0, 0, 0.25)"
       >
         <h6 class="ml-3 p-2">Sub Total</h6>
       </vs-col>
@@ -90,7 +90,7 @@
         vs-lg="2"
         vs-sm="4"
         vs-xs="12"
-        style=" border-style: double; border-color: rgba(0,0,0,0.25)"
+        style="border-style: double; border-color: rgba(0, 0, 0, 0.25)"
       >
         <h6 class="ml-3 p-2">R {{ total | k_formatter }}</h6>
       </vs-col>
@@ -124,7 +124,7 @@
           <div class="vx-col w-full">
             <p class="mt-5">Branch</p>
             <v-select
-              class="w-full "
+              class="w-full"
               v-model="branch"
               :options="branches"
             ></v-select>
@@ -150,7 +150,7 @@ import vSelect from 'vue-select'
 import moment from 'moment'
 export default {
   components: {
-    vSelect
+    vSelect,
   },
   data() {
     return {
@@ -158,7 +158,7 @@ export default {
       branch: '',
       account_length: 0,
       accounts_loaded: 0,
-      activeLoading: false
+      activeLoading: false,
     }
   },
   computed: {
@@ -197,7 +197,7 @@ export default {
     },
     total() {
       return this.debit - this.credit
-    }
+    },
   },
   methods: {
     submit() {
@@ -228,7 +228,7 @@ export default {
             desc: '',
             date: moment().format('DD-MM-YYYY'),
             month: moment().format('MM-YYYY'),
-            t_stamp: Date.now()
+            t_stamp: Date.now(),
           }
 
           myAccounts[acc_code] = item
@@ -253,7 +253,7 @@ export default {
       for (let i = 0; i < openingAccounts.length; i++) {
         let transaction = {
           trans: 'Opening Account',
-          trans_id: openingAccounts[i].acc_code
+          trans_id: openingAccounts[i].acc_code,
         }
         let payload = { ...openingAccounts[i], ...transaction }
 
@@ -277,17 +277,17 @@ export default {
     startLoading() {
       this.activeLoading = true
       this.$vs.loading({
-        type: 'radius'
+        type: 'radius',
       })
     },
     endLoading() {
       this.activeLoading = false
       this.$vs.loading.close()
-    }
-  }
+    },
+  },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .fill-row-loading {
   display: flex;
   align-items: center;

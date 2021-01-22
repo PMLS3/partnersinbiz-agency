@@ -17,7 +17,7 @@
   >
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .buy-now {
   position: fixed;
   bottom: 5%;
@@ -29,6 +29,6 @@
 
 <script>
 export default {
-  name: 'BuyNow'
+  name: 'BuyNow',
 }
 </script>

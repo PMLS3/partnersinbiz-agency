@@ -16,7 +16,7 @@
             <h4>{{ contact.title }}</h4>
           </div>
           <!-- <vs-avatar class="block mx-auto my-6" size="80px" :src=" contact.downloadURL " /> -->
-          <div class="mt-6 mb-8 text-center ">
+          <div class="mt-6 mb-8 text-center">
             <span v-html="contact.html"></span>
           </div>
 
@@ -29,40 +29,30 @@
             <vs-col vs-type="flex" vs-justify="center" vs-align="center">
               <a :href="`${contact.website}`" target="_blank">
                 <vs-button
-                  :style="
-                    `background-size: cover; background-repeat: no-repeat;`
-                  "
+                  :style="`background-size: cover; background-repeat: no-repeat;`"
                   icon="web"
                 ></vs-button>
               </a>
               <a :href="`tel:${contact.number}`">
                 <vs-button
-                  :style="
-                    `background-size: cover; background-repeat: no-repeat; background-color: `
-                  "
+                  :style="`background-size: cover; background-repeat: no-repeat; background-color: `"
                   icon="speaker_phone"
                   class="ml-2"
                 ></vs-button>
               </a>
               <a :href="`mailto:${contact.email}`">
                 <vs-button
-                  :style="
-                    `background-size: cover; background-repeat: no-repeat;  `
-                  "
+                  :style="`background-size: cover; background-repeat: no-repeat;  `"
                   icon="mail"
                   class="ml-2"
                 ></vs-button>
               </a>
               <a
-                :href="
-                  `http://www.google.com/maps/place/${contact.lat},${contact.lng}`
-                "
+                :href="`http://www.google.com/maps/place/${contact.lat},${contact.lng}`"
                 target="_blank"
               >
                 <vs-button
-                  :style="
-                    `background-size: cover; background-repeat: no-repeat;    `
-                  "
+                  :style="`background-size: cover; background-repeat: no-repeat;    `"
                   icon="location_on"
                   class="ml-2"
                 ></vs-button>
@@ -89,7 +79,7 @@ export default {
       contacts: [],
       Categories: [],
 
-      isMounted: false
+      isMounted: false,
     }
   },
   computed: {
@@ -98,7 +88,7 @@ export default {
     },
     activeUserInfo() {
       return this.$store.state.user.app_active_user
-    }
+    },
   },
   methods: {},
 
@@ -118,8 +108,8 @@ export default {
       .doc(this.schema.id)
       .collection('added')
 
-    contactsRetrieve.onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(change => {
+    contactsRetrieve.onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
         let doc = change.doc
         this.contacts.push({
           id: doc.id,
@@ -134,12 +124,12 @@ export default {
           lat: doc.data().addr.lat,
           lng: doc.data().addr.lng,
           html: doc.data().desc,
-          formatted_address: doc.data().addr.for_address
+          formatted_address: doc.data().addr.for_address,
         })
       })
     })
-  }
+  },
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>

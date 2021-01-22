@@ -6,11 +6,9 @@
 
 <script>
 export default {
-  name: "UiImageUserAvatar",
+  name: 'UiImageUserAvatar',
   props: {
-    avatar: { type: String, default: "" }
-  }
-};
+    avatar: { type: String, default: '' },
+  },
+}
 </script>
-
-<style></style>

@@ -87,7 +87,7 @@
               <li
                 :style="{ backgroundColor: customPrimaryColor }"
                 :class="{
-                  'shadow-outline': customPrimaryColor == primaryColor
+                  'shadow-outline': customPrimaryColor == primaryColor,
                 }"
                 class="w-10 cursor-pointer h-10 rounded-lg m-2 float-left"
                 @click="updatePrimaryColor(customPrimaryColor)"
@@ -309,7 +309,7 @@ export default {
     hideScrollToTop: { type: Boolean, required: true },
     navbarType: { type: String, required: true },
     navbarColor: { type: String, required: true, default: '#fff' },
-    routerTransition: { type: String, required: true }
+    routerTransition: { type: String, required: true },
   },
   data() {
     return {
@@ -322,13 +322,13 @@ export default {
         { text: 'Fade Bottom', value: 'fade-bottom' },
         { text: 'Fade', value: 'fade' },
         { text: 'Zoom Out', value: 'zoom-out' },
-        { text: 'None', value: 'none' }
+        { text: 'None', value: 'none' },
       ],
       settings: {
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
+        wheelSpeed: 0.6,
       },
-      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+      themeColors: ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E'],
     }
   },
   computed: {
@@ -338,7 +338,7 @@ export default {
       },
       set(val) {
         this.$emit('updateFooter', val)
-      }
+      },
     },
     hideScrollToTopLocal: {
       get() {
@@ -346,7 +346,7 @@ export default {
       },
       set(val) {
         this.$emit('toggleHideScrollToTop', val)
-      }
+      },
     },
     navbarColorInitial() {
       return this.$store.state.theme === 'dark' ? '#10163a' : '#fff'
@@ -367,7 +367,7 @@ export default {
       set(val) {
         if (this.navbarType == 'static') return
         this.$emit('updateNavbarColor', val)
-      }
+      },
     },
     navbarTypeLocal: {
       get() {
@@ -375,7 +375,7 @@ export default {
       },
       set(val) {
         this.$emit('updateNavbar', val)
-      }
+      },
     },
     layoutType: {
       get() {
@@ -383,7 +383,7 @@ export default {
       },
       set(val) {
         this.$store.commit('UPDATE_MAIN_LAYOUT_TYPE', val)
-      }
+      },
     },
     primaryColor: {
       get() {
@@ -391,7 +391,7 @@ export default {
       },
       set(val) {
         this.$store.commit('UPDATE_PRIMARY_COLOR', val)
-      }
+      },
     },
     reduced_sidebar: {
       get() {
@@ -399,7 +399,7 @@ export default {
       },
       set(val) {
         this.$store.commit('TOGGLE_REDUCE_BUTTON', val)
-      }
+      },
     },
     routerTransitionLocal: {
       get() {
@@ -407,7 +407,7 @@ export default {
       },
       set(val) {
         this.$emit('updateRouterTransition', val)
-      }
+      },
     },
     rtl: {
       get() {
@@ -415,7 +415,7 @@ export default {
       },
       set(val) {
         this.$vs.rtl = val
-      }
+      },
     },
     themeMode: {
       get() {
@@ -423,11 +423,11 @@ export default {
       },
       set(val) {
         this.$store.dispatch('updateTheme', val)
-      }
+      },
     },
     windowWidth() {
       return this.$store.state.windowWidth
-    }
+    },
   },
   watch: {
     layoutType(val) {
@@ -439,18 +439,18 @@ export default {
           : null
         this.$emit('updateNavbarColor', '#fff')
       }
-    }
+    },
   },
   methods: {
     updatePrimaryColor(color) {
       this.primaryColor = color
       this.$vs.theme({ primary: color })
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #theme-customizer {
   .vs-sidebar {
     position: fixed;

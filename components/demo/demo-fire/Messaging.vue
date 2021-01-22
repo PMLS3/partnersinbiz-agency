@@ -35,7 +35,7 @@ export default {
     return {
       listenersStarted: false,
       permissionGranted: false,
-      idToken: ''
+      idToken: '',
     }
   },
   methods: {
@@ -86,9 +86,7 @@ export default {
           console.error('Unable to retrieve refreshed token ', e)
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

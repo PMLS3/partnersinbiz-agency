@@ -1,9 +1,7 @@
 <template>
   <vs-card class="mt-8">
     <div slot="header">
-      <h3>
-        Style
-      </h3>
+      <h3>Style</h3>
     </div>
     <div>
       <span
@@ -36,9 +34,7 @@
       <vs-divider class="mt-4"></vs-divider>
       <vs-collapse class="mb-12">
         <vs-collapse-item v-if="options.color">
-          <div slot="header">
-            Color
-          </div>
+          <div slot="header">Color</div>
           <vs-radio
             v-if="options.colorOptions.background"
             v-model="colortype"
@@ -126,8 +122,8 @@ export default {
       options: {
         color: false,
         colorOptions: {
-          background: false
-        }
+          background: false,
+        },
       },
       themeColors: [
         '#FFF',
@@ -135,10 +131,10 @@ export default {
         '#28C76F',
         '#EA5455',
         '#FF9F43',
-        '#1E1E1E'
+        '#1E1E1E',
       ],
       customNavbarColor: '#3DC9B3',
-      colortype: 'background-color'
+      colortype: 'background-color',
     }
   },
   computed: {
@@ -147,7 +143,7 @@ export default {
     },
     styleUpdate() {
       let obj = {
-        [this.styleUpdateKey]: this.styleUpdateValue
+        [this.styleUpdateKey]: this.styleUpdateValue,
       }
       return obj
     },
@@ -155,7 +151,7 @@ export default {
       return this.$store.state.form.uploaded_images
     },
     ColorOptionClasses() {
-      return color => {
+      return (color) => {
         const classes = {}
         if (color == this.ColorLocal) classes['shadow-outline'] = true
         if (this.navbarTypeLocal == 'static')
@@ -171,24 +167,24 @@ export default {
         this.styleUpdateKey = this.colortype
         this.styleUpdateValue = val
         this.update()
-      }
-    }
+      },
+    },
   },
   watch: {
-    edit_component: function() {
+    edit_component: function () {
       switch (this.edit_component.schema.title) {
         case 'grid':
           this.options = {
             color: true,
             colorOptions: {
-              background: true
-            }
+              background: true,
+            },
           }
           break
         case 'buttons':
           break
       }
-    }
+    },
   },
   methods: {
     changeComponent(key, value) {
@@ -245,15 +241,13 @@ export default {
         content: content,
         style: style,
         class: classUp,
-        inline: inline
+        inline: inline,
       }
 
       this.$store.commit('page_builder/COMPONENTS_UPDATE', payload)
       this.styleUpdateKey = ''
       this.styleUpdateValue = ''
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

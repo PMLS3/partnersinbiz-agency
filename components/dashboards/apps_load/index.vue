@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row ">
+  <div class="flex flex-row">
     <vs-button icon="amp_stories"></vs-button>
     <vs-button icon="storage"></vs-button>
 
@@ -13,7 +13,7 @@
       class="holamundo"
       :title="item.title"
       :active.sync="popupActivo"
-      style="z-index:300; margin-top: 5%; "
+      style="z-index: 300; margin-top: 5%"
     >
       <div class="px-6 pb-12">
         <FormsTypesAccess v-if="control" />
@@ -32,24 +32,23 @@ export default {
   props: {
     item: {
       type: Object,
-      required: true
+      required: true,
     },
     schema: {
       type: Array,
-      required: true
+      required: true,
     },
 
     control: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
-
 
   data() {
     return {
       popupActivo: false,
-      formData: {}
+      formData: {},
     }
   },
 
@@ -77,7 +76,7 @@ export default {
         }
       }
       return color
-    }
+    },
   },
   methods: {
     addForm() {
@@ -101,7 +100,7 @@ export default {
           .then(() => {
             vm.successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             vm.unsuccessUpload(err)
           })
       } else if (vm.item.item == 'Images') {
@@ -124,7 +123,7 @@ export default {
             .then(() => {
               vm.successUpload()
             })
-            .catch(err => {
+            .catch((err) => {
               vm.unsuccessUpload(err)
             })
         }
@@ -151,7 +150,7 @@ export default {
             .then(() => {
               vm.successUpload()
             })
-            .catch(err => {
+            .catch((err) => {
               vm.unsuccessUpload(err)
             })
         }
@@ -176,7 +175,7 @@ export default {
           .then(() => {
             vm.successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             vm.unsuccessUpload(err)
           })
       } else if (vm.item.type == 'Single') {
@@ -196,7 +195,7 @@ export default {
           .then(() => {
             vm.successUpload()
           })
-          .catch(err => {
+          .catch((err) => {
             vm.unsuccessUpload(err)
           })
       }
@@ -205,25 +204,23 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: `${this.item.item} added`,
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
     },
     successDelete() {
       this.$vs.notify({
         color: 'success',
         title: `${this.item.item} Deleted`,
-        text: 'Successful deletion'
+        text: 'Successful deletion',
       })
     },
     unsuccessUpload(er) {
       this.$vs.notify({
         color: 'danger',
         title: 'Oh no',
-        text: `Error ${er}`
+        text: `Error ${er}`,
       })
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

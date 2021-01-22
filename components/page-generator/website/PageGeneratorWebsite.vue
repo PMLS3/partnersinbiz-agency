@@ -102,7 +102,7 @@
 import theCustomizer from '@/layouts/components/customizer/TheCustomizer.vue'
 export default {
   components: {
-    theCustomizer
+    theCustomizer,
   },
   name: 'website',
   display: 'Clone',
@@ -111,7 +111,7 @@ export default {
     return {
       homePage: '',
       list1: [],
-      list2: []
+      list2: [],
     }
   },
 
@@ -124,7 +124,7 @@ export default {
     },
     pages() {
       return this.$store.state.page_builder.pages
-    }
+    },
   },
 
   created() {
@@ -139,7 +139,7 @@ export default {
         this.list1.push(this.pages[i])
       }
     },
-    log: function(evt) {
+    log: function (evt) {
       if (process.client) {
         window.console.log(evt)
 
@@ -174,9 +174,9 @@ export default {
         ref
           .update({
             site: site,
-            index: index
+            index: index,
           })
-          .then(function() {
+          .then(function () {
             this.successUpload()
           })
       }
@@ -185,11 +185,9 @@ export default {
       this.$vs.notify({
         color: 'success',
         title: 'Upload Success',
-        text: 'Whoop whoop, been uploaded'
+        text: 'Whoop whoop, been uploaded',
       })
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style></style>

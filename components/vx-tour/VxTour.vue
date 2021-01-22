@@ -89,21 +89,21 @@ export default {
   props: {
     steps: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   watch: {
     '$route.path'() {
       this.$tours.vuexyTour.stop()
-    }
+    },
   },
   mounted() {
     this.$tours.vuexyTour.start()
-  }
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-tour {
   .v-step {
     z-index: 55000;

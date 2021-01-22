@@ -12,7 +12,7 @@
     class="h-nav-menu-item"
     :class="[
       { 'h-nav-active-item text-primary font-medium': activeLink },
-      { 'disabled-item pointer-events-none': isDisabled }
+      { 'disabled-item pointer-events-none': isDisabled },
     ]"
   >
     <router-link
@@ -20,7 +20,7 @@
       exact
       :class="[
         { 'router-link-active': activeLink },
-        'nav-link flex items-center'
+        'nav-link flex items-center',
       ]"
       :to="to"
       :target="target"
@@ -51,7 +51,7 @@ export default {
     index: { type: [String, Number], default: null },
     featherIcon: { type: Boolean, default: true },
     target: { type: String, default: '_self' },
-    isDisabled: { type: Boolean, default: false }
+    isDisabled: { type: Boolean, default: false },
   },
   computed: {
     iconClasses() {
@@ -69,11 +69,11 @@ export default {
         this.to == this.$route.path ||
         (this.$route.meta.parent == this.slug && this.to)
       )
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/vuexy/components/horizontalNavMenuItem.scss';
 </style>

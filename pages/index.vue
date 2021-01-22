@@ -3,6 +3,7 @@
     <client-only>
       <vs-card class="mt-24">
         <vs-button @click="$router.push('test')">Tetst</vs-button>
+        <UiMarqueeTextExample />
         <UiImageUnsplash />
       </vs-card>
     </client-only>
@@ -54,5 +55,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

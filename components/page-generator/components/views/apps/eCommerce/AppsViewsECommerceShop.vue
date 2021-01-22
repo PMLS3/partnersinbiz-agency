@@ -593,7 +593,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #algolia-instant-search-demo {
   .algolia-header {
     .algolia-filters-label {

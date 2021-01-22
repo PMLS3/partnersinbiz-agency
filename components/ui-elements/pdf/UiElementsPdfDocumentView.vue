@@ -49,7 +49,7 @@ export default {
     return {
       popupActivo: false,
       title: '',
-      explain: ''
+      explain: '',
     }
   },
   created() {
@@ -66,12 +66,12 @@ export default {
       console.log('whooooo')
       console.log('site', site)
       window.open(site.image[0], '_blank')
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style>
+<style scoped>
 .image-container {
   position: relative;
   text-align: center;
