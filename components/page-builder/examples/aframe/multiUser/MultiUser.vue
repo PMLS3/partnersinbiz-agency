@@ -58,13 +58,13 @@
 
 <script>
 if (process.client) {
-  require('./index.js')
+  require('@/js/aframe/index.js')
 }
 import { setStore, setSocket, setUser } from './index'
 export default {
   name: 'multi-user',
   head: {
-    script: []
+    script: [],
   },
   data() {
     return {
@@ -81,7 +81,7 @@ export default {
       roomInfo: {},
       msgRxd: {},
       userNumber: null,
-      myAvatar: {}
+      myAvatar: {},
     }
   },
   computed: {
@@ -97,7 +97,7 @@ export default {
 
     newPos() {
       return this.$store.state.aframe.location
-    }
+    },
   },
   created() {
     setStore(this.$store, this)
@@ -115,13 +115,13 @@ export default {
     // },
 
     newPos: function (data) {
-        console.log('new poa', data)
+      console.log('new poa', data)
     },
     room() {
       console.log('room')
       let user = {
         name: this.user.disp_name,
-        id: this.userNumber
+        id: this.userNumber,
       }
       this.joinDetails = { room: this.room, user: user }
       this.joinRoom()
@@ -129,8 +129,6 @@ export default {
     roomInfo() {
       this.cylinders = this.roomInfo
     },
-   
-    
   },
   mounted() {
     this.socket = this.$nuxtSocket({ channel: '/aframe' })
@@ -147,9 +145,9 @@ export default {
         color: this.color,
         surname: this.user.surname ? this.user.surname : '',
         height: this.height,
-        rotation: '0 180 0'
+        rotation: '0 180 0',
       }
-      setUser({room: this.room, userNumber: this.userNumber})
+      setUser({ room: this.room, userNumber: this.userNumber })
       this.joinDetails = { room: this.room, user: user }
       this.$store.commit('aframe/SET_AVATAR', this.joinDetails)
       this.joinRoom()
@@ -168,7 +166,7 @@ export default {
       console.log('current data', data)
 
       //Find index of specific object using findIndex method.
-      let objIndex = this.cylinders.findIndex(obj => obj.id == data.id)
+      let objIndex = this.cylinders.findIndex((obj) => obj.id == data.id)
 
       //Log object to Console.
       console.log('Before update: ', this.cylinders[objIndex])
@@ -180,11 +178,10 @@ export default {
       console.log('After update: ', this.cylinders[objIndex])
     },
 
-  
     sendText() {
       let user = {
         name: this.user.disp_name,
-        id: this.userNumber
+        id: this.userNumber,
       }
       this.userMsg = { room: this.room, message: this.message, user: user }
       this.messages.push(this.userMsg)
@@ -205,8 +202,8 @@ export default {
 
     createRoom() {
       this.$store.commit('route/ROOM_SET', this.newRoomName)
-    }
-  }
+    },
+  },
 }
 </script>
 

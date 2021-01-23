@@ -1,25 +1,30 @@
 <template>
   <div>
-    <div class="grid grid-cols-3 gap-4">
-      <!-- <ComponentsSelection /> -->
-      <ExampleWireFrame />
-      <div
-        v-for="(schema, index) in grids"
-        :key="index"
-        class="col-span-2"
-      ></div>
-    </div>
+    <DraggableNested :list="list" @submitNewList="newList" />
   </div>
 </template>
 
 <script>
+import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
 export default {
-  data() {
+  name: 'pageGeneratorBuilder',
+  setup() {
+    const { store } = useContext()
+    onMounted(() => {})
+
+    const user = computed(() => store.state.auth.main_user)
+
+    let business = computed(() => {
+      return store.state.business.main_business
+    })
     return {
-      grids: [],
+      user,
+      business,
     }
   },
+
+  //   created() {
+  //     this.$store.commit("business/UPDATE_BUSINESS_INFO", this.business);
+  //   }
 }
 </script>
-
-<style></style>
