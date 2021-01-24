@@ -15,13 +15,18 @@ export default {
     const { store } = useContext()
     onMounted(() => {
       $nuxt.$on('component-added', (data) => {
-        console.log('data', data)
-        list.value.push(data)
-        //Do Something
+        if (listPos.value == 0) {
+          list.value.push(data)
+        }
+      })
+
+      $nuxt.$on('grid-only', (data) => {
+        listPos.value = 0
       })
     })
 
     let list = ref([])
+    let listPos = ref(0)
 
     const user = computed(() => store.state.auth.main_user)
 
@@ -34,9 +39,5 @@ export default {
       list,
     }
   },
-
-  //   created() {
-  //     this.$store.commit("business/UPDATE_BUSINESS_INFO", this.business);
-  //   }
 }
 </script>

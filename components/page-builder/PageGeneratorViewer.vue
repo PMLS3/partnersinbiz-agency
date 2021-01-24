@@ -2,8 +2,8 @@
   <div>
     <div style="width: 100%" v-for="(schema, index) in list" :key="index">
       <ComponentCreatorEditor
-        v-for="(field, index) in schema"
-        :key="index"
+        v-for="(field, ind) in schema"
+        :key="ind"
         :schema="field"
       />
     </div>

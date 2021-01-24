@@ -5,7 +5,7 @@
 ========================================================================================== -->
 
 <template>
-  <vs-col
+  <!-- <vs-col
     :vs-type="schema.inline.type"
     :vs-justify="schema.inline.justify"
     :vs-align="schema.inline.align"
@@ -58,7 +58,15 @@
       :key="index"
       :schema="field"
     />
-  </vs-col>
+  </vs-col> -->
+  <div :class="schema.class" :style="schema.style" :slot="schema.slot">
+    <ComponentGenerator
+      v-if="schema.children"
+      v-for="(field, index) in schema.children"
+      :key="index"
+      :schema="field"
+    />
+  </div>
 </template>
 
 <script>

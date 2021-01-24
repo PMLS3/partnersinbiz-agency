@@ -7,7 +7,7 @@
     </vs-tab>
     <!-- Data List -->
 
-    <vs-tab label="Data List">
+    <vs-tab label="Data List" v-if="allowedType == 'all'">
       <vs-tabs alignment="fixed" position="left">
         <vs-tab label="List View"> </vs-tab>
         <vs-tab label="Thumb View"> </vs-tab>
@@ -15,7 +15,7 @@
     </vs-tab>
 
     <!-- Cards -->
-    <vs-tab label="Card">
+    <vs-tab label="Card" v-if="allowedType == 'all'">
       <div>
         <vs-tabs alignment="fixed" position="left">
           <vs-tab label="Basic"> </vs-tab>
@@ -28,7 +28,7 @@
     </vs-tab>
 
     <!-- Components -->
-    <vs-tab label="Components">
+    <vs-tab label="Components" v-if="allowedType == 'all'">
       <div>
         <vs-tabs alignment="fixed" position="left">
           <!-- UI -->
@@ -61,7 +61,7 @@
     </vs-tab>
     <!-- Extensions -->
 
-    <vs-tab label="Extensions">
+    <vs-tab label="Extensions" v-if="allowedType == 'all'">
       <div>
         <vs-tabs alignment="fixed" position="left">
           <vs-tab label="Auto Complete"> </vs-tab>
@@ -88,7 +88,7 @@
       </div>
     </vs-tab>
 
-    <vs-tab label="Pages">
+    <vs-tab label="Pages" v-if="allowedType == 'all'">
       <vs-tabs alignment="fixed" position="left">
         <vs-tab label="Login"> </vs-tab>
         <vs-tab label="Register"> </vs-tab>
@@ -112,7 +112,7 @@
       <content-set />
     </vs-tab>
 
-    <vs-tab label="Apps">
+    <vs-tab label="Apps" v-if="allowedType == 'all'">
       <vs-tabs alignment="fixed" position="left">
         <vs-tab label="Events" @click="item = 'Events'"> </vs-tab>
         <vs-tab label="eCommerce"> </vs-tab>
@@ -127,7 +127,7 @@
         <vs-tab label="Classroom"> </vs-tab>
       </vs-tabs>
     </vs-tab>
-    <vs-tab label="Forms & Tables">
+    <vs-tab label="Forms & Tables" v-if="allowedType == 'all'">
       <vs-tabs alignment="fixed" position="left">
         <vs-tab label="Form Elements">
           <vs-tabs alignment="fixed" position="left">
@@ -151,9 +151,9 @@
         <vs-tab label="Table"> </vs-tab>
       </vs-tabs>
     </vs-tab>
-    <vs-tab label="Own Components"> </vs-tab>
+    <vs-tab label="Own Components" v-if="allowedType == 'all'"> </vs-tab>
     <vs-tab label="TailWind">
-      <vs-tabs alignment="fixed" position="left">
+      <vs-tabs alignment="fixed" position="left" v-if="allowedType == 'all'">
         <vs-tab label="Buttons"> </vs-tab>
         <vs-tab label="Forms"> </vs-tab>
         <vs-tab label="Navigations"> </vs-tab>
@@ -168,6 +168,12 @@
 
 <script>
 export default {
+  props: {
+    allowedType: {
+      type: String,
+      default: 'all',
+    },
+  },
   data() {
     return {}
   },
