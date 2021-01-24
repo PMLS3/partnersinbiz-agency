@@ -340,15 +340,15 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import algoliasearch from 'algoliasearch/lite'
 import StarRating from 'vue-star-rating'
 
 export default {
   components: {
-    swiper,
-    swiperSlide,
+    // swiper,
+    //   swiperSlide,
     StarRating,
   },
   data() {

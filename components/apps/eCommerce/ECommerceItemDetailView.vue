@@ -19,7 +19,7 @@
         <span>Check </span
         ><router-link
           :to="{ name: 'ecommerce-shop' }"
-          class="text-inherit underline"
+          class="underline text-inherit"
           >All Items</router-link
         >
       </span>
@@ -29,12 +29,12 @@
       <template slot="no-body">
         <div class="item-content">
           <!-- Item Main Info -->
-          <div class="product-details p-6">
-            <div class="vx-row mt-6">
+          <div class="p-6 product-details">
+            <div class="mt-6 vx-row">
               <div
-                class="vx-col md:w-2/5 w-full flex items-center justify-center"
+                class="flex items-center justify-center w-full vx-col md:w-2/5"
               >
-                <div class="product-img-container w-3/5 mx-auto mb-10 md:mb-0">
+                <div class="w-3/5 mx-auto mb-10 product-img-container md:mb-0">
                   <img
                     src="https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/products/01.png"
                     :alt="item_data.name"
@@ -51,27 +51,27 @@
               </div>
 
               <!-- Item Content -->
-              <div class="vx-col md:w-3/5 w-full">
+              <div class="w-full vx-col md:w-3/5">
                 <h3>{{ item_data.name }}</h3>
 
                 <p class="my-2">
                   <span class="mr-2">by</span>
                   <span>{{ item_data.brand }}</span>
                 </p>
-                <p class="flex items-center flex-wrap">
+                <p class="flex flex-wrap items-center">
                   <span
-                    class="text-2xl leading-none font-medium text-primary mr-4 mt-2"
+                    class="mt-2 mr-4 text-2xl font-medium leading-none text-primary"
                     >${{ item_data.price }}</span
                   >
                   <span
-                    class="pl-4 mr-2 mt-2 border border-solid d-theme-border-grey-light border-t-0 border-b-0 border-r-0"
+                    class="pl-4 mt-2 mr-2 border border-t-0 border-b-0 border-r-0 border-solid d-theme-border-grey-light"
                     ><star-rating
                       :show-rating="false"
                       :rating="item_data.rating"
                       :star-size="20"
                       read-only
                   /></span>
-                  <span class="cursor-pointer leading-none mt-2"
+                  <span class="mt-2 leading-none cursor-pointer"
                     >424 ratings</span
                   >
                 </p>
@@ -80,7 +80,7 @@
 
                 <p>{{ item_data.description }}</p>
 
-                <vs-list class="product-sales-meta-list px-0 pt-4">
+                <vs-list class="px-0 pt-4 product-sales-meta-list">
                   <vs-list-item
                     v-if="item_data.free_shipping"
                     class="p-0 border-none"
@@ -100,12 +100,12 @@
 
                 <!-- Color -->
                 <div class="vx-row">
-                  <div class="vx-col w-full">
+                  <div class="w-full vx-col">
                     <span class="text-xl font-medium">Color</span>
                     <div class="flex flex-wrap items-center mt-2">
                       <div
                         :class="{ 'border-transparent': opt_color != color }"
-                        class="color-radio rounded-full mx-1 border-2 border-solid cursor-pointer relative"
+                        class="relative mx-1 border-2 border-solid rounded-full cursor-pointer color-radio"
                         :style="
                           itemColor({ color: color, style: ['borderColor'] })
                         "
@@ -114,7 +114,7 @@
                         @click="opt_color = color"
                       >
                         <div
-                          class="h-6 w-6 rounded-full absolute"
+                          class="absolute w-6 h-6 rounded-full"
                           :style="
                             itemColor({
                               color: color,
@@ -132,7 +132,7 @@
 
                 <!-- Quantity -->
                 <div class="vx-row">
-                  <div class="vx-col w-full">
+                  <div class="w-full vx-col">
                     <p class="my-2">
                       <span>Available</span>
                       <span class="mx-2">-</span>
@@ -140,11 +140,11 @@
                     </p>
                   </div>
 
-                  <div class="vx-col w-full">
+                  <div class="w-full vx-col">
                     <div class="flex flex-wrap items-start mb-4">
                       <!-- Add To Cart Button -->
                       <vs-button
-                        class="mr-4 mb-4"
+                        class="mb-4 mr-4"
                         icon-pack="feather"
                         icon="icon-shopping-cart"
                         v-if="!isInCart(item_data.objectID)"
@@ -155,7 +155,7 @@
 
                       <vs-button
                         v-else
-                        class="mr-4 mb-4"
+                        class="mb-4 mr-4"
                         icon-pack="feather"
                         icon="icon-shopping-cart"
                         @click="
@@ -200,7 +200,7 @@
                 <!-- /Quantity -->
 
                 <div class="vx-row">
-                  <div class="vx-col flex flex-wrap items-center">
+                  <div class="flex flex-wrap items-center vx-col">
                     <vs-button
                       class="mr-4"
                       type="border"
@@ -240,42 +240,42 @@
           </div>
 
           <!-- Product Feature/Meta Row -->
-          <div class="py-24 mb-16 mt-10 text-center item-features">
+          <div class="py-24 mt-10 mb-16 text-center item-features">
             <div class="vx-row">
-              <div class="vx-col md:w-1/3 w-full">
+              <div class="w-full vx-col md:w-1/3">
                 <div class="w-64 mx-auto mb-16 md:mb-0">
                   <feather-icon
                     icon="AwardIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="font-semibold text-lg">100% Original</span>
+                  <span class="text-lg font-semibold">100% Original</span>
                   <p class="mt-2">
                     Chocolate bar candy canes ice cream toffee cookie halvah.
                   </p>
                 </div>
               </div>
-              <div class="vx-col md:w-1/3 w-full">
+              <div class="w-full vx-col md:w-1/3">
                 <div class="w-64 mx-auto mb-16 md:mb-0">
                   <feather-icon
                     icon="ClockIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="font-semibold text-lg">10 Day Replacement</span>
+                  <span class="text-lg font-semibold">10 Day Replacement</span>
                   <p class="mt-2">
                     Marshmallow biscuit donut dragée fruitcake wafer.
                   </p>
                 </div>
               </div>
-              <div class="vx-col md:w-1/3 w-full">
+              <div class="w-full vx-col md:w-1/3">
                 <div class="w-64 mx-auto">
                   <feather-icon
                     icon="ShieldIcon"
                     svgClasses="h-12 w-12 text-primary stroke-current"
                     class="block mb-4"
                   />
-                  <span class="font-semibold text-lg">1 Year Warranty</span>
+                  <span class="text-lg font-semibold">1 Year Warranty</span>
                   <p class="mt-2">
                     Cotton candy gingerbread cake I love sugar sweet.
                   </p>
@@ -286,8 +286,8 @@
         </div>
 
         <!-- Related Products -->
-        <div class="related-products text-center px-6">
-          <div class="related-headings mb-8 text-center">
+        <div class="px-6 text-center related-products">
+          <div class="mb-8 text-center related-headings">
             <h2 class="uppercase">Related Products</h2>
             <p>People also search for this items</p>
           </div>
@@ -295,7 +295,7 @@
             :options="swiperOption"
             :dir="$vs.rtl ? 'rtl' : 'ltr'"
             :key="$vs.rtl"
-            class="related-product-swiper px-12 py-6"
+            class="px-12 py-6 related-product-swiper"
           >
             <swiper-slide
               v-for="item in related_items"
@@ -303,7 +303,7 @@
               class="p-6 rounded cursor-pointer"
             >
               <!-- Item Heading -->
-              <div class="item-heading mb-4">
+              <div class="mb-4 item-heading">
                 <p class="text-lg font-semibold truncate">{{ item.name }}</p>
                 <p class="text-sm">
                   <span class="mr-2">by</span>
@@ -312,7 +312,7 @@
               </div>
 
               <!-- Item Image -->
-              <div class="img-container w-32 mx-auto my-base">
+              <div class="w-32 mx-auto img-container my-base">
                 <img class="responsive" :src="item.image" :alt="item.name" />
               </div>
 
@@ -340,15 +340,15 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import algoliasearch from 'algoliasearch/lite'
 import StarRating from 'vue-star-rating'
 
 export default {
   components: {
-    swiper,
-    swiperSlide,
+    // swiper,
+    //   swiperSlide,
     StarRating,
   },
   data() {

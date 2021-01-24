@@ -1,6 +1,9 @@
 <template>
   <div>
-    <DraggableNested :list="list" @submitNewList="newList" />
+    <PageGeneratorNavbar />
+
+    {{ list }}
+    <PageGeneratorViewer :list="list" />
   </div>
 </template>
 
@@ -10,7 +13,15 @@ export default {
   name: 'pageGeneratorBuilder',
   setup() {
     const { store } = useContext()
-    onMounted(() => {})
+    onMounted(() => {
+      $nuxt.$on('component-added', (data) => {
+        console.log('data', data)
+        list.value.push(data)
+        //Do Something
+      })
+    })
+
+    let list = ref([])
 
     const user = computed(() => store.state.auth.main_user)
 
@@ -20,6 +31,7 @@ export default {
     return {
       user,
       business,
+      list,
     }
   },
 

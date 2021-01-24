@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   components: {
-    swiper,
-    swiperSlide
+    // swiper,
+    //   swiperSlide,
   },
   data() {
     return {
@@ -53,36 +53,36 @@ export default {
         spaceBetween: 30,
         pagination: {
           el: '.swiper-pagination',
-          type: 'fraction'
+          type: 'fraction',
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          prevEl: '.swiper-button-prev',
         },
         virtual: {
-          slides: (function() {
+          slides: (function () {
             const slides = []
             for (let i = 0; i < 600; i += 1) {
               slides.push(`Slide ${i + 1}`)
             }
             return slides
-          })()
+          })(),
         },
         breakpoints: {
           1024: {
             slidesPerView: 3,
-            spaceBetween: 40
+            spaceBetween: 40,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 30
+            spaceBetween: 30,
           },
           640: {
             slidesPerView: 1,
-            spaceBetween: 20
-          }
-        }
-      }
+            spaceBetween: 20,
+          },
+        },
+      },
     }
   },
   methods: {
@@ -99,20 +99,20 @@ export default {
             '@/assets/images/pages/carousel/banner-16.jpg',
             '@/assets/images/pages/carousel/banner-13.jpg',
             '@/assets/images/pages/carousel/banner-4.jpg',
-            '@/assets/images/pages/carousel/banner-2.jpg'
-          ]
-        }
+            '@/assets/images/pages/carousel/banner-2.jpg',
+          ],
+        },
       })
 
       this.$store.commit('page_builder/COMPONENTS_LIST', payload)
 
       let payloads = {
         active_card: false,
-        component_show: 'builder'
+        component_show: 'builder',
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payloads)
-    }
-  }
+    },
+  },
 }
 </script>
 

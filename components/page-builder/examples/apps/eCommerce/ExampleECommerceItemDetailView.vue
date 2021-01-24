@@ -116,7 +116,7 @@
                           :style="
                             itemColor({
                               color: color,
-                              style: ['backgroundColor']
+                              style: ['backgroundColor'],
                             })
                           "
                         ></div>
@@ -159,7 +159,7 @@
                         @click="
                           $router
                             .push({ name: 'ecommerce-checkout' })
-                            .catch(err => {})
+                            .catch((err) => {})
                         "
                       >
                         VIEW IN CART
@@ -338,16 +338,16 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import algoliasearch from 'algoliasearch/lite'
 import StarRating from 'vue-star-rating'
 
 export default {
   components: {
-    swiper,
-    swiperSlide,
-    StarRating
+    // swiper,
+    //   swiperSlide,
+    StarRating,
   },
   data() {
     return {
@@ -366,25 +366,25 @@ export default {
         breakpoints: {
           1600: {
             slidesPerView: 4,
-            spaceBetween: 55
+            spaceBetween: 55,
           },
           1300: {
             slidesPerView: 3,
-            spaceBetween: 55
+            spaceBetween: 55,
           },
           900: {
             slidesPerView: 2,
-            spaceBetween: 55
+            spaceBetween: 55,
           },
           640: {
             slidesPerView: 1,
-            spaceBetween: 55
-          }
+            spaceBetween: 55,
+          },
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
+          prevEl: '.swiper-button-prev',
+        },
       },
 
       // Below is data which is common in any item
@@ -394,7 +394,7 @@ export default {
         '#28C76F',
         '#EA5455',
         '#FF9F43',
-        '#1E1E1E'
+        '#1E1E1E',
       ],
       opt_color: '#7367F0',
       is_hearted: false,
@@ -466,7 +466,7 @@ export default {
         //   rating: 4,
         //   objectID: '5613404'
         // }
-      ]
+      ],
     }
   },
   computed: {
@@ -477,10 +477,10 @@ export default {
       return Object.keys(item).length ? item.quantity : 1
     },
     itemColor() {
-      return obj => {
+      return (obj) => {
         const style_obj = {}
 
-        obj.style.forEach(p => {
+        obj.style.forEach((p) => {
           style_obj[p] = obj.color
         })
 
@@ -488,11 +488,11 @@ export default {
       }
     },
     isInWishList() {
-      return itemId => this.$store.getters['example/isInWishList'](itemId)
+      return (itemId) => this.$store.getters['example/isInWishList'](itemId)
     },
     isInCart() {
-      return itemId => this.$store.getters['example/isInCart'](itemId)
-    }
+      return (itemId) => this.$store.getters['example/isInCart'](itemId)
+    },
   },
   methods: {
     toggleItemInWishList(item) {
@@ -511,7 +511,7 @@ export default {
           this.item_data = content
         }
       })
-    }
+    },
   },
   created() {
     // this.fetch_item_details(this.$route.params.item_id)
@@ -524,7 +524,7 @@ export default {
       categories: ['TV & Home Theater', 'Streaming Media Players'],
       hierarchicalCategories: {
         lvl0: 'TV & Home Theater',
-        lvl1: 'TV & Home Theater > Streaming Media Players'
+        lvl1: 'TV & Home Theater > Streaming Media Players',
       },
       type: 'Streaming media plyr',
       price: 39.99,
@@ -539,36 +539,36 @@ export default {
         name: {
           value: 'Amazon - Fire TV Stick with Alexa Voice Remote - Black',
           matchLevel: 'none',
-          matchedWords: []
+          matchedWords: [],
         },
         description: {
           value:
             'Enjoy smart access to videos, games and apps with this Amazon Fire TV stick. Its Alexa voice remote lets you deliver hands-free commands when you want to watch television or engage with other applications. With a quad-core processor, 1GB internal memory and 8GB of storage, this portable Amazon Fire TV stick works fast for buffer-free streaming.',
           matchLevel: 'none',
-          matchedWords: []
+          matchedWords: [],
         },
         brand: { value: 'Amazon', matchLevel: 'none', matchedWords: [] },
         categories: [
           {
             value: 'TV &amp; Home Theater',
             matchLevel: 'none',
-            matchedWords: []
+            matchedWords: [],
           },
           {
             value: 'Streaming Media Players',
             matchLevel: 'none',
-            matchedWords: []
-          }
+            matchedWords: [],
+          },
         ],
         type: {
           value: 'Streaming media plyr',
           matchLevel: 'none',
-          matchedWords: []
-        }
+          matchedWords: [],
+        },
       },
-      __position: 1
+      __position: 1,
     }
-  }
+  },
 }
 </script>
 

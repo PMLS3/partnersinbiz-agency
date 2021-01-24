@@ -24,19 +24,19 @@ export default {
       payload.push({
         title: 'divi',
         content: {
-          name: 'Div'
+          name: 'Div',
         },
-        children: []
+        children: [],
       })
 
       this.$store.commit('page_builder/COMPONENTS_LIST', payload)
 
       let payloads = {
         active_card: false,
-        component_show: 'builder'
+        component_show: 'builder',
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payloads)
-    }
-  }
+    },
+  },
 }
 </script>

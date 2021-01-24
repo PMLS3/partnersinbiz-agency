@@ -37,7 +37,7 @@
               <feather-icon
                 :icon="deviceData.icon"
                 :svgClasses="[
-                  `h-5 w-5 stroke-current text-${deviceData.color}`
+                  `h-5 w-5 stroke-current text-${deviceData.color}`,
                 ]"
               ></feather-icon>
               <span class="ml-2 inline-block font-semibold">{{
@@ -59,7 +59,7 @@
                     deviceData.comparedResultPercentage < 0
                       ? 'text-danger'
                       : 'text-success',
-                    'stroke-current h-4 w-4 mb-1 mr-1'
+                    'stroke-current h-4 w-4 mb-1 mr-1',
                   ]"
                 ></feather-icon>
               </div>
@@ -598,7 +598,7 @@
                       browser.comparedResult < 0
                         ? 'text-danger'
                         : 'text-success',
-                      'stroke-current h-4 w-4 mb-1 mr-1'
+                      'stroke-current h-4 w-4 mb-1 mr-1',
                     ]"
                   ></feather-icon>
                 </span>
@@ -638,7 +638,7 @@
 import VueApexCharts from 'vue-apexcharts'
 
 import StatisticsCardLine from '@/components/statistics-cards/StatisticsCardLine.vue'
-import analyticsData from './analyticsData.js'
+import analyticsData from '@/js/data/analyticsData.js'
 import ChangeTimeDurationDropdown from '@/components/ChangeTimeDurationDropdown.vue'
 
 export default {
@@ -664,145 +664,145 @@ export default {
       browserStatistics: [],
       clientRetentionBar: {},
 
-      analyticsData
+      analyticsData,
     }
   },
   components: {
     VueApexCharts,
     StatisticsCardLine,
-    ChangeTimeDurationDropdown
+    ChangeTimeDurationDropdown,
   },
   created() {
     // Sessions By Device
     this.$http
       .get('/api/card/card-analytics/session-by-device')
-      .then(response => {
+      .then((response) => {
         this.sessionsData = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Products Order
     this.$http
       .get('/api/card/card-analytics/products-orders')
-      .then(response => {
+      .then((response) => {
         this.productsOrder = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Customers
     this.$http
       .get('/api/card/card-analytics/customers')
-      .then(response => {
+      .then((response) => {
         this.customersData = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Sales Radar
     this.$http
       .get('/api/card/card-analytics/sales/radar')
-      .then(response => {
+      .then((response) => {
         this.salesRadar = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Support Tracker
     this.$http
       .get('/api/card/card-analytics/support-tracker')
-      .then(response => {
+      .then((response) => {
         this.supportTracker = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Revenue Comparison
     this.$http
       .get('/api/card/card-analytics/revenue-comparison')
-      .then(response => {
+      .then((response) => {
         this.revenueComparisonLine = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Goal Overview
     this.$http
       .get('/api/card/card-analytics/goal-overview')
-      .then(response => {
+      .then((response) => {
         this.goalOverview = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Sales bar
     this.$http
       .get('/api/card/card-analytics/sales/bar')
-      .then(response => {
+      .then((response) => {
         this.salesBarSession = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Todo
     this.$http
       .get('/api/card/card-analytics/todo/today')
-      .then(response => {
+      .then((response) => {
         this.todoToday = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Funding
     this.$http
       .get('/api/card/card-analytics/funding')
-      .then(response => {
+      .then((response) => {
         this.funding = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Sales line
     this.$http
       .get('/api/card/card-analytics/sales/line')
-      .then(response => {
+      .then((response) => {
         this.salesLine = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Browser Analytics
     this.$http
       .get('/api/card/card-analytics/browser-analytics')
-      .then(response => {
+      .then((response) => {
         this.browserStatistics = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
 
     // Client Retention
     this.$http
       .get('/api/card/card-analytics/client-retention')
-      .then(response => {
+      .then((response) => {
         this.clientRetentionBar = response.data
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error)
       })
-  }
+  },
 }
 </script>
 

@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   data() {
@@ -70,23 +70,23 @@ export default {
         spaceBetween: 30,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
         },
         breakpoints: {
           1024: {
             slidesPerView: 3,
-            spaceBetween: 40
+            spaceBetween: 40,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 30
+            spaceBetween: 30,
           },
           640: {
             slidesPerView: 1,
-            spaceBetween: 20
-          }
-        }
-      }
+            spaceBetween: 20,
+          },
+        },
+      },
     }
   },
   methods: {
@@ -100,23 +100,23 @@ export default {
             '@/assets/images/pages/carousel/banner-16.jpg',
             '@/assets/images/pages/carousel/banner-13.jpg',
             '@/assets/images/pages/carousel/banner-4.jpg',
-            '@/assets/images/pages/carousel/banner-2.jpg'
-          ]
-        }
+            '@/assets/images/pages/carousel/banner-2.jpg',
+          ],
+        },
       })
 
       this.$store.commit('page_builder/COMPONENTS_LIST', payload)
 
       let payloads = {
         active_card: false,
-        component_show: 'builder'
+        component_show: 'builder',
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payloads)
-    }
+    },
   },
   components: {
-    swiper,
-    swiperSlide
-  }
+    // swiper,
+    //   swiperSlide,
+  },
 }
 </script>

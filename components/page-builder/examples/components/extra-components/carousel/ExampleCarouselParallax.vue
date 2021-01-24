@@ -136,8 +136,8 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   data() {
@@ -147,19 +147,19 @@ export default {
         parallax: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      }
+          prevEl: '.swiper-button-prev',
+        },
+      },
     }
   },
   components: {
-    swiper,
-    swiperSlide
-  }
+    // swiper,
+    //   swiperSlide,
+  },
 }
 </script>
 

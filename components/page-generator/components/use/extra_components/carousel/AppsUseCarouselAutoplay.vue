@@ -5,51 +5,69 @@
   
 ========================================================================================== -->
 
-
 <template>
-    <vx-card :title="schema.content.title" class="carousel-example"  @click="add()" >
-          <!-- swiper -->
-          <swiper :options="swiperOption" :dir="$vs.rtl ? 'rtl' : 'ltr'" :key="$vs.rtl"  @click="add()" >
-            <swiper-slide v-for="(img, i) in schema.content.images" :key="i"  @click="add()">
-              <img class="responsive" :src="img" alt="banner">
-            </swiper-slide>
-            
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-            <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-          </swiper>
-      </vx-card>
+  <vx-card
+    :title="schema.content.title"
+    class="carousel-example"
+    @click="add()"
+  >
+    <!-- swiper -->
+    <swiper
+      :options="swiperOption"
+      :dir="$vs.rtl ? 'rtl' : 'ltr'"
+      :key="$vs.rtl"
+      @click="add()"
+    >
+      <swiper-slide
+        v-for="(img, i) in schema.content.images"
+        :key="i"
+        @click="add()"
+      >
+        <img class="responsive" :src="img" alt="banner" />
+      </swiper-slide>
+
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div
+        class="swiper-button-prev swiper-button-white"
+        slot="button-prev"
+      ></div>
+      <div
+        class="swiper-button-next swiper-button-white"
+        slot="button-next"
+      ></div>
+    </swiper>
+  </vx-card>
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-     name: "carouselAutoplay",
-  props: ["schema", 'index', 'mainIndex'],
-  data () {
+  name: 'carouselAutoplay',
+  props: ['schema', 'index', 'mainIndex'],
+  data() {
     return {
       swiperOption: {
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
           delay: 2500,
-          disableOnInteraction: false
+          disableOnInteraction: false,
         },
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      }
+          prevEl: '.swiper-button-prev',
+        },
+      },
     }
   },
   methods: {
-      add() {
+    add() {
       console.log('fiel', this.mainIndex, this.index)
 
       let payload = {
@@ -57,15 +75,15 @@ export default {
         component_show: 'grid',
         schema: this.schema,
         index: this.mainIndex,
-        mainIndex: this.index
+        mainIndex: this.index,
       }
       this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
-    }
+    },
   },
 
   components: {
-    swiper,
-    swiperSlide
-  }
+    // swiper,
+    //   swiperSlide,
+  },
 }
 </script>

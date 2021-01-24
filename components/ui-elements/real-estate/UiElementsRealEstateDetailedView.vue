@@ -305,15 +305,15 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import StarRating from 'vue-star-rating'
 export default {
   name: 'DetailedView',
   props: ['real_estate'],
   components: {
-    swiper,
-    swiperSlide,
+    // swiper,
+    //   swiperSlide,
     StarRating,
   },
   data() {

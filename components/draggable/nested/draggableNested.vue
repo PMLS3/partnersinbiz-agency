@@ -1,11 +1,11 @@
 <template>
   <div class="flex">
-    <div class="w-1/2 bg-gray-400 p-8">
+    <div class="w-1/2 p-8 bg-gray-400">
       <h3>Nested draggable</h3>
       <Nested :children="list" />
     </div>
 
-    <rawDisplayer class="w-1/2 bg-gray-400 p-8" :value="list" title="List" />
+    <RawDisplayer class="w-1/2 p-8 bg-gray-400" :value="list" title="List" />
   </div>
 </template>
 

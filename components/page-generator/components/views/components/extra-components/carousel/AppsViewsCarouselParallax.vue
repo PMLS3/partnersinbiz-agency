@@ -81,8 +81,8 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   data() {
@@ -92,13 +92,13 @@ export default {
         parallax: true,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
         },
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      }
+          prevEl: '.swiper-button-prev',
+        },
+      },
     }
   },
   methods: {
@@ -112,24 +112,24 @@ export default {
             '@/assets/images/pages/carousel/banner-16.jpg',
             '@/assets/images/pages/carousel/banner-13.jpg',
             '@/assets/images/pages/carousel/banner-4.jpg',
-            '@/assets/images/pages/carousel/banner-2.jpg'
-          ]
-        }
+            '@/assets/images/pages/carousel/banner-2.jpg',
+          ],
+        },
       })
 
       this.$store.commit('page_builder/COMPONENTS_LIST', payload)
 
       let payloads = {
         active_card: false,
-        component_show: 'builder'
+        component_show: 'builder',
       }
       this.$store.commit('page_builder/COMPONENTS_NEEDED', payloads)
-    }
+    },
   },
   components: {
-    swiper,
-    swiperSlide
-  }
+    // swiper,
+    //   swiperSlide,
+  },
 }
 </script>
 
