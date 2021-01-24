@@ -178,7 +178,11 @@
 import moment from 'moment'
 export default {
   layout: 'full_page',
-  components: {},
+  props: {
+    list: {
+      type: Array,
+    },
+  },
 
   data() {
     return {
@@ -187,9 +191,20 @@ export default {
       editing_page: false,
       popupAdd: false,
       b_type: 'page',
+      place: [],
     }
   },
+  mounted() {
+    $nuxt.$on('add_comp', (data) => {
+      this.popupAdd = true
+      this.place = data
+      $nuxt.$emit('place', this.place)
+    })
 
+    $nuxt.$on('close_comp', () => {
+      this.popupAdd = false
+    })
+  },
   methods: {
     newPage() {},
     saveComponent() {
@@ -259,7 +274,7 @@ export default {
     addEdit() {},
     addGrid() {
       this.popupAdd = true
-      $nuxt.$emit('grid-only')
+      $nuxt.$emit('place', [this.list.length])
     },
   },
 }

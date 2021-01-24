@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div style="width: 100%" v-for="(schema, index) in list" :key="index">
-      <!-- {{ schema }} -->
-      <ComponentCreatorEditor
-        v-for="(field, ind) in schema"
-        :key="ind"
-        :schema="field"
-      />
-    </div>
+  <div class="w-screen h-full">
+    <!-- <div style="width: 100%" v-for="(schema, index) in list" :key="index"> -->
+    <!-- {{ schema }} -->
+    <ComponentCreatorEditor
+      v-for="(field, ind) in list"
+      :key="ind"
+      :schema="field"
+    />
+    <!-- </div> -->
   </div>
 </template>
 

@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <component
-      :key="mykey"
-      :is="schema.title"
-      :schema="schema"
-      :index="myindex"
-      :mainIndex="mainIndex"
-    ></component>
-  </div>
+  <component
+    :key="mykey"
+    :is="schema.title"
+    :schema="schema"
+    :index="myindex"
+    :mainIndex="mainIndex"
+  ></component>
 </template>
 
 <script>

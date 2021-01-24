@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <!-- <UiTree /> -->
-    <PageGeneratorNavbar />
+  <div class="w-screen h-full">
+    <!-- <UiTree :data='list'/> -->
+    <PageGeneratorNavbar :list="list" />
 
     <!-- {{ list }} -->
     <PageGeneratorViewer :list="list" />
@@ -16,15 +16,30 @@ export default {
     const { store } = useContext()
     onMounted(() => {
       $nuxt.$on('component-added', (data) => {
-        if (listPos.value == 0) {
+        // console.log('data', data)
+        if (data.place.length == 1) {
           list.value.push(data)
+        } else {
+          getList(data)
         }
       })
 
-      $nuxt.$on('grid-only', (data) => {
-        listPos.value = 0
+      $nuxt.$on('place', (data) => {
+        listPos.value = data
+        store.commit('page_builder/LIST_UPDATE', data)
       })
     })
+
+    function getList(data) {
+      console.log('data list', data)
+      console.log(' list', list.value)
+
+      if (data.place.length == 2) {
+        console.log('value', list.value[data.place[0]].children[data.place[1]])
+        list.value[data.place[0]].children[data.place[1]].children.push(data)
+        console.log('list', list.value)
+      }
+    }
 
     let list = ref([])
     let listPos = ref(0)

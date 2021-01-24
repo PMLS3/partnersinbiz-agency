@@ -1,6 +1,7 @@
 <template>
   <!-- <nuxt-link :to="schema.content.href"> -->
   <span :class="schema.class" :style="schema.style" :slot="schema.slot">
+    {{ schema.innerText }}
     <!-- <div
       class="flex pointer-events-auto profile-actions"
       style="position: absolute; margin-top: 1px; margin-right: 2px; position:absolute; top:0;  left:0; z-index: 200"
@@ -42,6 +43,12 @@
 export default {
   name: 'spanAdd',
   props: ['schema'],
+  components: {
+    ComponentCreatorEditor: () =>
+      import(
+        '@/components/page-builder/component-creator/ComponentCreatorEditor.vue'
+      ),
+  },
   methods: {
     add() {
       let payload = {

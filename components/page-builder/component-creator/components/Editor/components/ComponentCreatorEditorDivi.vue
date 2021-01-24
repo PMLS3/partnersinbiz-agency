@@ -1,9 +1,11 @@
 <template>
-  <!-- <nuxt-link :to="schema.content.href"> -->
-  <div :class="schema.class" :style="schema.style" :slot="schema.slot">
-    {{ schema.class }} -- {{ schema.children }}
-
-    <!-- <div
+  <div
+    class="relative"
+    :class="schema.class"
+    :style="schema.style"
+    :slot="schema.slot"
+  >
+    <div
       class="flex pointer-events-auto profile-actions"
       style="
         position: absolute;
@@ -38,29 +40,35 @@
         radius
         icon="icon-trash"
       ></vs-button>
-    </div> -->
+    </div>
     <ComponentCreatorEditor
       v-for="(field, ind) in schema.children"
       :key="ind"
       :schema="field"
-    />
+    ></ComponentCreatorEditor>
   </div>
-  <!-- </nuxt-link> -->
 </template>
 
 <script>
 export default {
   name: 'DIV',
   props: ['schema'],
+  components: {
+    ComponentCreatorEditor: () =>
+      import(
+        '@/components/page-builder/component-creator/ComponentCreatorEditor.vue'
+      ),
+  },
   methods: {
     add() {
-      let payload = {
-        active_card: true,
-        component_show: 'grid',
-        place: this.schema.place,
-        index: 1,
-      }
-      this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
+      $nuxt.$emit('add_comp', this.schema.place)
+      // let payload = {
+      //   active_card: true,
+      //   component_show: 'grid',
+      //   place: this.schema.place,
+      //   index: 1,
+      // }
+      // this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
     },
     edit() {
       let payload = {

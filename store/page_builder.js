@@ -1,19 +1,23 @@
 export const state = () => ({
-  active_card: false,
-  component_show: '',
-  component_list: [],
-  index: -1,
-  active_edit_card: false,
-  edit_all: false,
-  edit_component: {},
-  pages: [],
-  place: [],
-  myComponents: [],
-  editing_page: false,
-  edited_page: {}
+  // active_card: false,
+  // component_show: '',
+  // component_list: [],
+  // index: -1,
+  // active_edit_card: false,
+  // edit_all: false,
+  // edit_component: {},
+  // pages: [],
+  // place: [],
+  // myComponents: [],
+  // editing_page: false,
+  // edited_page: {},
+  list_pos: [],
 })
 
 export const mutations = {
+  LIST_UPDATE(state, payload) {
+    state.list_pos = payload
+  },
   EDIT_ALL(state, payload) {
     state.edit_all = payload
   },
@@ -89,7 +93,7 @@ export const mutations = {
     state.edited_page = payload
   },
   COMPONENTS_LIST_ADD(state, payload) {
-    payload.map(i => state.component_list.push(i))
+    payload.map((i) => state.component_list.push(i))
   },
   COMPONENTS_LIST(state, payload) {
     let index = state.index
@@ -118,11 +122,11 @@ export const mutations = {
         build.children.push(payload[i])
       }
     }
-  }
+  },
 }
 
 export const actions = {}
 
 export const getters = {
-  place: state => state.place
+  place: (state) => state.place,
 }
