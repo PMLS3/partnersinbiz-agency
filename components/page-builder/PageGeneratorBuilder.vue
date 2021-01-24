@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- <UiTree /> -->
     <PageGeneratorNavbar />
 
-    {{ list }}
+    <!-- {{ list }} -->
     <PageGeneratorViewer :list="list" />
   </div>
 </template>

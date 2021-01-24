@@ -1,21 +1,24 @@
 <template>
-  <component
-    :key="mykey"
-    :is="schema.title"
-    :schema="schema"
-    :index="myindex"
-    :mainIndex="mainIndex"
-  ></component>
+  <div>
+    <component
+      :key="mykey"
+      :is="schema.title"
+      :schema="schema"
+      :index="myindex"
+      :mainIndex="mainIndex"
+    ></component>
+  </div>
 </template>
 
 <script>
-import grid from '@/components/page-generator/components/grid/grid'
-
+import SPAN from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSpanAdd.vue'
+import DIV from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorDivi.vue'
 export default {
-  name: 'componentGenerator',
+  name: 'ComponentCreatorEditor',
 
   components: {
-    grid,
+    DIV,
+    SPAN,
   },
   data() {
     return {
