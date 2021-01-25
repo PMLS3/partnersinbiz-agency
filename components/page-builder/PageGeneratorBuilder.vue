@@ -15,16 +15,26 @@
       @click.stop="active = !active"
     />
 
-    <!-- Customizer Content -->
     <vs-sidebar
       v-model="active"
-      click-not-close
       hidden-background
       position-right
       class="h-screen items-no-padding"
     >
       <div class="h-screen p-2">
         <UiTree :data="list" />
+      </div>
+    </vs-sidebar>
+
+    <vs-sidebar
+      v-model="editactive"
+      hidden-background
+      position-right
+      class="h-screen items-no-padding"
+    >
+      <div class="h-screen p-2">
+        {{ edit_comp }}
+        <PageGeneratorComponentEditor :edit_comp="edit_comp" />
       </div>
     </vs-sidebar>
   </div>
@@ -50,6 +60,11 @@ export default {
         listPos.value = data
         store.commit('page_builder/LIST_UPDATE', data)
       })
+
+      $nuxt.$on('edit_comp', (data) => {
+        edit_comp.value = data
+        editactive.value = true
+      })
     })
 
     function getList(data) {
@@ -66,6 +81,9 @@ export default {
     let list = ref([])
     let listPos = ref(0)
     let active = ref(false)
+    let editactive = ref(false)
+
+    let edit_comp = ref({})
 
     const user = computed(() => store.state.auth.main_user)
 
@@ -77,6 +95,8 @@ export default {
       business,
       list,
       active,
+      editactive,
+      edit_comp,
     }
   },
 }

@@ -71,14 +71,7 @@ export default {
       // this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
     },
     edit() {
-      let payload = {
-        active_card: true,
-        component_show: 'divi',
-        schema: this.schema,
-        index: 0,
-      }
-
-      this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
+      $nuxt.$emit('edit_comp', this.schema)
     },
   },
 }
