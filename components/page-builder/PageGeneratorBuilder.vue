@@ -30,7 +30,10 @@
       v-model="editactive"
       hidden-background
       class="h-screen items-no-padding"
+      click-not-close
     >
+      <vs-button icon="close" @click="editactive = false" class="float-right">
+      </vs-button>
       <!-- <div v-if="editactive"> -->
       <PerfectScrollbar>
         <PageGeneratorComponentEditor :edit_comp="edit_comp" />
@@ -66,31 +69,46 @@ export default {
         editactive.value = true
       })
 
+      $nuxt.$on('delete_comp', (data) => {
+        console.log('data', data)
+      })
+
       $nuxt.$on('edit_comp_update', (data) => {
         // editactive.value = false
         let schema = data.schema
         let classUpdate = data.classUpdate
 
-        console.log('schema: ', schema.place.length)
-        console.log('classUpdate: ' + classUpdate)
+        if (schema.place.length == 1) {
+          list.value[schema.place[0]].class = classUpdate
+        }
+
         if (schema.place.length == 2) {
-          console.log(
-            'value',
-            list.value[schema.place[0]].children[schema.place[1]]
-          )
           list.value[schema.place[0]].children[
             schema.place[1]
           ].class = classUpdate
-          console.log('list', list.value)
+        }
+
+        if (schema.place.length == 3) {
+          list.value[schema.place[0]].children[schema.place[1]].children[
+            schema.place[2]
+          ].class = classUpdate
+        }
+
+        if (schema.place.length == 4) {
+          list.value[schema.place[0]].children[schema.place[1]].children[
+            schema.place[2]
+          ].children[schema.place[3]].class = classUpdate
         }
       })
     })
 
-    function updateList(data) {}
-
     function getList(data) {
       console.log('data list', data)
       console.log(' list', list.value)
+
+      // if (data.place.length == 1) {
+      //   list.value[data.place[0]].children.push(data)
+      // }
 
       if (data.place.length == 2) {
         console.log('value', list.value[data.place[0]].children[data.place[1]])

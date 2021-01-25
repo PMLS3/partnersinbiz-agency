@@ -1,6 +1,5 @@
 <template>
   <div :class="schema.class">
-    {{ schema.class }} - {{ schema.children }}
     <ComponentCreatorEditor
       v-for="(field, ind) in schema"
       :key="ind"

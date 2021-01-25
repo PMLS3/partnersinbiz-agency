@@ -6,16 +6,7 @@
     :slot="schema.slot"
   >
     <div
-      class="flex pointer-events-auto profile-actions"
-      style="
-        position: absolute;
-        margin-top: 1px;
-        margin-right: 2px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 200;
-      "
+      class="absolute inset-x-0 flex items-center w-3/4 mx-auto -mt-1 rounded-lg rounded-t-none md:w-2/5"
     >
       <vs-button
         icon-pack="feather"
@@ -62,16 +53,12 @@ export default {
   methods: {
     add() {
       $nuxt.$emit('add_comp', this.schema.place)
-      // let payload = {
-      //   active_card: true,
-      //   component_show: 'grid',
-      //   place: this.schema.place,
-      //   index: 1,
-      // }
-      // this.$store.commit('page_builder/COMPONENTS_NEEDED', payload)
     },
     edit() {
       $nuxt.$emit('edit_comp', this.schema)
+    },
+    delete() {
+      $nuxt.$emit('delete_comp', this.schema.place)
     },
   },
 }
