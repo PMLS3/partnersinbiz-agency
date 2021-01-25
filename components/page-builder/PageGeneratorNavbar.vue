@@ -97,9 +97,25 @@
         icon="icon-x-circle"
         @click="popupAdd = false"
       ></vs-button>
-      <PageGeneratorComponentSelection allowedType="grid" />
+      <PageGeneratorComponentSelection allowedType="all" />
     </vs-popup>
-
+    <vs-popup
+      title="Building Options"
+      :active.sync="popupAddQuick"
+      :button-close-hidden="true"
+    >
+      <!-- <vs-button @click="addGrid('builder', false)">Cancel</vs-button> -->
+      <vs-button
+        style="float: right"
+        radius
+        color="danger"
+        type="gradient"
+        icon-pack="feather"
+        icon="icon-x-circle"
+        @click="popupAddQuick = false"
+      ></vs-button>
+      <PageGeneratorComponentQuickSelection />
+    </vs-popup>
     <!-- <vs-popup
       :title="component_show"
       :active.sync="popup2"
@@ -190,6 +206,7 @@ export default {
       component_name: '',
       editing_page: false,
       popupAdd: false,
+      popupAddQuick: false,
       b_type: 'page',
       place: [],
     }
@@ -201,8 +218,15 @@ export default {
       $nuxt.$emit('place', this.place)
     })
 
+    $nuxt.$on('add_comp_quick', (data) => {
+      this.popupAddQuick = true
+      this.place = data
+      $nuxt.$emit('place', this.place)
+    })
+
     $nuxt.$on('close_comp', () => {
       this.popupAdd = false
+      this.popupAddQuick = false
     })
   },
   methods: {

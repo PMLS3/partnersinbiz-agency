@@ -71,10 +71,29 @@ export default {
 
       $nuxt.$on('delete_comp', (data) => {
         console.log('data', data)
+
+        if (data.length == 1) {
+          list.value[data[0]].class = classUpdate
+        }
+
+        if (data.length == 2) {
+          list.value[data[0]].children.splice(data[1], 1)
+        }
+
+        if (data.length == 3) {
+          list.value[data[0]].children[data[1]].children.splice(data[2], 1)
+        }
+
+        if (data.length == 4) {
+          list.value[data[0]].children[data[1]].children[
+            data[2]
+          ].children.splice(data[3], 1)
+        }
       })
 
       $nuxt.$on('edit_comp_update', (data) => {
         // editactive.value = false
+        console.log('edit classUpdate', data)
         let schema = data.schema
         let classUpdate = data.classUpdate
 

@@ -36,7 +36,7 @@
           <vs-tab label="Alert"> </vs-tab>
           <vs-tab label="Avatar"> </vs-tab>
           <vs-tab label="Breadcrumb"> </vs-tab>
-          <vs-tab label="Button"> </vs-tab>
+          <vs-tab label="Button"><ExampleTailwindButton /> </vs-tab>
           <vs-tab label="Button Groups"> </vs-tab>
           <vs-tab label="Chip"> </vs-tab>
           <vs-tab label="Collapse"> </vs-tab>

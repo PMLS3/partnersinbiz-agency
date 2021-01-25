@@ -1,0 +1,196 @@
+<template>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('text')"
+        >Text</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('image')"
+        >Image</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('video')"
+        >Video</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('audio')"
+        >Audio</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('gallery')"
+        >Gallery</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('timer')"
+        >Timer</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('list')"
+        >List</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('button')"
+        >Button</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('link')"
+        >Links</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('icon')"
+        >Icons</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('table')"
+        >Table</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('divider')"
+        >Divider</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('slideshow')"
+        >Slideshow</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('form')"
+        >Form</vs-button
+      >
+    </div>
+
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('widget')"
+        >Widget</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('embed')"
+        >Embed</vs-button
+      >
+    </div>
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('container')"
+        >Container</vs-button
+      >
+    </div>
+
+    <div>
+      <vs-button
+        color="success"
+        type="flat"
+        icon="done"
+        @click="addComponent('control')"
+        >Control</vs-button
+      >
+    </div>
+
+    <div>
+      <button
+        class="px-8 py-2 text-blue-600 uppercase border border-blue-600 rounded shadow-sm max-w-max hover:shadow-lg"
+        id="button"
+      >
+        button
+      </button>
+      <img src="'@/assets/illustrations/content_team.svg" alt="test" />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>

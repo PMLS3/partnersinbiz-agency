@@ -11,12 +11,15 @@
 <script>
 import SPAN from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSpanAdd.vue'
 import DIV from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorDivi.vue'
+import BUTTON from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorButton.vue'
+
 export default {
   name: 'ComponentCreatorEditor',
 
   components: {
     DIV,
     SPAN,
+    BUTTON,
   },
   data() {
     return {

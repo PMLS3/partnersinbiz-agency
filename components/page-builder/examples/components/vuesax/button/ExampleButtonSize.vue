@@ -7,25 +7,42 @@
     Author URL: http://www.themeforest.net/user/pixinvent
 ========================================================================================== -->
 
-
 <template>
-    <vx-card title="Size" code-toggler>
+  <vx-card title="Size" code-toggler>
+    <p>
+      To define the size of button the directive is used <code>size</code>.
+      there are three type of size: <code>large</code>, <code>default</code>,
+      <code>small</code>. It is not important to specify the size when the
+      button is of type <code>default</code>
+    </p>
 
-        <p>To define the size of button the directive is used <code>size</code>. there are three type of size: <code>large</code>, <code>default</code>, <code>small</code>. It is not important to specify the size when the button is of type <code>default</code></p>
+    <div class="demo-alignment">
+      <vs-button size="large">Large</vs-button>
+      <vs-button>Default</vs-button>
+      <vs-button size="small">Small</vs-button>
+    </div>
 
-        <div class="demo-alignment">
-
-            <vs-button size="large">Large</vs-button>
-            <vs-button>Default</vs-button>
-            <vs-button size="small">Small</vs-button>
-
-        </div>
-
-        <template slot="codeContainer">
-&lt;vs-button size=&quot;large&quot;&gt;Large&lt;/vs-button&gt;
-&lt;vs-button&gt;Default&lt;/vs-button&gt;
-&lt;vs-button size=&quot;small&quot;&gt;Small&lt;/vs-button&gt;
-        </template>
-
-    </vx-card>
+    <template slot="codeContainer">
+      &lt;vs-button size=&quot;large&quot;&gt;Large&lt;/vs-button&gt;
+      &lt;vs-button&gt;Default&lt;/vs-button&gt; &lt;vs-button
+      size=&quot;small&quot;&gt;Small&lt;/vs-button&gt;
+    </template>
+  </vx-card>
 </template>
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>

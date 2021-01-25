@@ -8,7 +8,8 @@
     <div
       class="absolute inset-x-0 flex items-center w-3/4 mx-auto -mt-1 rounded-lg rounded-t-none md:w-2/5"
     >
-      <vs-button
+      <ComponentsCreatorEditorButtons :schema="schema" />
+      <!-- <vs-button
         icon-pack="feather"
         radius
         icon="icon-edit-2"
@@ -23,6 +24,14 @@
         icon="icon-plus-circle"
         @click="add()"
       ></vs-button>
+      <vs-button
+        icon-pack="feather"
+        size="small"
+        color="success"
+        icon="icon-plus-circle"
+        @click="add_quick()"
+        >Add Quick</vs-button
+      >
 
       <vs-button
         icon-pack="feather"
@@ -30,7 +39,7 @@
         color="danger"
         radius
         icon="icon-trash"
-      ></vs-button>
+      ></vs-button> -->
     </div>
     <ComponentCreatorEditor
       v-for="(field, ind) in schema.children"
@@ -59,6 +68,9 @@ export default {
     },
     delete() {
       $nuxt.$emit('delete_comp', this.schema.place)
+    },
+    add_quick() {
+      $nuxt.$emit('add_comp_quick', this.schema.place)
     },
   },
 }
