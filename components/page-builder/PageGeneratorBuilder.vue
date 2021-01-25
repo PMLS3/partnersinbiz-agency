@@ -5,6 +5,28 @@
 
     <!-- {{ list }} -->
     <PageGeneratorViewer :list="list" />
+
+    <vs-button
+      color="primary"
+      type="filled"
+      class="customizer-btn"
+      icon-pack="feather"
+      icon="icon-settings"
+      @click.stop="active = !active"
+    />
+
+    <!-- Customizer Content -->
+    <vs-sidebar
+      v-model="active"
+      click-not-close
+      hidden-background
+      position-right
+      class="h-screen items-no-padding"
+    >
+      <div class="h-screen p-2">
+        <UiTree :data="list" />
+      </div>
+    </vs-sidebar>
   </div>
 </template>
 
@@ -43,6 +65,7 @@ export default {
 
     let list = ref([])
     let listPos = ref(0)
+    let active = ref(false)
 
     const user = computed(() => store.state.auth.main_user)
 
@@ -53,7 +76,39 @@ export default {
       user,
       business,
       list,
+      active,
     }
   },
 }
 </script>
+
+<style lang="scss" scoped>
+#theme-customizer {
+  .vs-sidebar {
+    position: fixed;
+    z-index: 52000;
+    width: 400px;
+    max-width: 90vw;
+    // @apply shadow-lg;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
+      0 5px 15px 0 rgba(0, 0, 0, 0.08);
+  }
+}
+
+.customizer-btn {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 50000;
+
+  .vs-icon {
+    animation: spin 1.5s linear infinite;
+  }
+}
+
+.scroll-area--customizer {
+  height: calc(100% - 5rem);
+}
+</style>

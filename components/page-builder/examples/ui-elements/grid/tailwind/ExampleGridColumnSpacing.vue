@@ -2,49 +2,75 @@
     File Name: GridColumnSpacing.vue
     Description: Add space between columns
     ----------------------------------------------------------------------------------------
-    Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
+
 ========================================================================================== -->
 
-
 <template>
-    <vx-card title="Column Spacing" code-toggler>
+  <vx-card title="Column Spacing" code-toggler>
+    <p>
+      Add a negative horizontal margin like <code>-mx-2</code> to your column
+      container and an equal horizontal padding like <code>px-2</code> to each
+      column to add gutters
+    </p>
 
-        <p>Add a negative horizontal margin like <code>-mx-2</code> to your column container and an equal horizontal padding like <code>px-2</code> to each column to add gutters</p>
+    <p>
+      To prevent horizontal scrolling in full width layouts, add
+      <code>overflow-hidden</code> to another parent container, or compensate
+      for the negative margin with matching horizontal padding
+    </p>
 
-        <p>To prevent horizontal scrolling in full width layouts, add <code>overflow-hidden</code> to another parent container, or compensate for the negative margin with matching horizontal padding</p>
-
-        <div class="mt-5">
-            <div class="px-2">
-                <div class="flex -mx-2">
-                    <div class="w-1/3 px-2">
-                        <div class="bg-grid-color-secondary h-12 flex"><span class="flex m-auto">w-1/3</span></div>
-                    </div>
-                    <div class="w-1/3 px-2">
-                        <div class="bg-grid-color h-12 flex"><span class="flex m-auto">w-1/3</span></div>
-                    </div>
-                    <div class="w-1/3 px-2">
-                        <div class="bg-grid-color-secondary h-12 flex"><span class="flex m-auto">w-1/3</span></div>
-                    </div>
-                </div>
+    <div
+      class="mt-5"
+      @click="addComponent('column-spacing')"
+      id="column-spacing"
+    >
+      <div class="px-2">
+        <div class="flex -mx-2">
+          <div class="w-1/3 px-2">
+            <div class="bg-grid-color-secondary h-12 flex">
+              <span class="flex m-auto">w-1/3</span>
             </div>
+          </div>
+          <div class="w-1/3 px-2">
+            <div class="bg-grid-color h-12 flex">
+              <span class="flex m-auto">w-1/3</span>
+            </div>
+          </div>
+          <div class="w-1/3 px-2">
+            <div class="bg-grid-color-secondary h-12 flex">
+              <span class="flex m-auto">w-1/3</span>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <template slot="codeContainer">
-&lt;div class=&quot;px-2&quot;&gt;
-  &lt;div class=&quot;flex -mx-2&quot;&gt;
-    &lt;div class=&quot;w-1/3 px-2&quot;&gt;
-      &lt;div class=&quot;bg-grid-color-secondary h-12&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;w-1/3 px-2&quot;&gt;
-      &lt;div class=&quot;bg-grid-color h-12&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;w-1/3 px-2&quot;&gt;
-      &lt;div class=&quot;bg-grid-color-secondary h-12&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-        </template>
-    </vx-card>
+    <template slot="codeContainer">
+      &lt;div class=&quot;px-2&quot;&gt; &lt;div class=&quot;flex
+      -mx-2&quot;&gt; &lt;div class=&quot;w-1/3 px-2&quot;&gt; &lt;div
+      class=&quot;bg-grid-color-secondary h-12&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt; &lt;div class=&quot;w-1/3 px-2&quot;&gt; &lt;div
+      class=&quot;bg-grid-color h-12&quot;&gt;&lt;/div&gt; &lt;/div&gt; &lt;div
+      class=&quot;w-1/3 px-2&quot;&gt; &lt;div
+      class=&quot;bg-grid-color-secondary h-12&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;
+    </template>
+  </vx-card>
 </template>
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>

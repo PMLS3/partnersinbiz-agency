@@ -29,7 +29,7 @@ export default (context, inject) => {
     // console.log('attributes', attributes)
 
     let innerText = element.innerText
-    // console.log('innerText', innerText)
+    console.log('innerText', innerText)
     let item = {}
 
     item.title = node_name
@@ -66,8 +66,8 @@ export default (context, inject) => {
       let attributes = elm.attributes
       // console.log('attributes', attributes)
 
-      let innerText = element.innerText
-      // console.log('innerText', innerText)
+      let innerText = elm.innerText
+      console.log('innerText', innerText, i)
 
       let child_item = {}
 

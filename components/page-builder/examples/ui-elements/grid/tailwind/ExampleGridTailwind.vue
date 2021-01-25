@@ -8,13 +8,13 @@
 <template>
   <div id="tailwind-grid-demo">
     <ExampleGridBasicGrid />
-    <!-- <ExampleGridResponsiveGrids />
-  <ExampleGridMixedColumnSizes/>
-  <ExampleGridWrappingColumns/>
-   <ExampleGridColumnSpacing/>
-   <ExampleGridAutoColumnWidth/>
-   <ExampleGridColumnOrder/>
-   <ExampleGridSimpleOffset/> -->
+    <ExampleGridResponsiveGrids />
+    <ExampleGridMixedColumnSizes />
+    <ExampleGridWrappingColumns />
+    <ExampleGridColumnSpacing />
+    <ExampleGridAutoColumnWidth />
+    <ExampleGridColumnOrder />
+    <ExampleGridSimpleOffset />
   </div>
 </template>
 

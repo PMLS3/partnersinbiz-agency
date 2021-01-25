@@ -1,7 +1,7 @@
 <template>
   <div>
     <vs-input
-      class="inputx tree-search-input float-left mr-2"
+      class="float-left mr-2 inputx tree-search-input"
       placeholder="Search..."
       v-model.lazy="searchword"
     />
@@ -79,18 +79,18 @@ export default {
             domPropsInnerHTML={node.title}
             onClick={() => {
               this.$refs.tree.nodeSelected(node)
-              console.log('here', domPropsInnerHTML)
+              // console.log('here', domPropsInnerHTML)
             }}
           ></span>
 
           <button
-            class="btn-delete text-danger border-none cursor-pointer px-2 py-1 rounded"
+            class="px-2 py-1 border-none rounded cursor-pointer btn-delete text-danger"
             onClick={() => this.$refs.tree.delNode(node, parent, index)}
           >
             delete
           </button>
           <button
-            class="btn-delete text-warning border-none cursor-pointer px-2 py-1 rounded"
+            class="px-2 py-1 border-none rounded cursor-pointer btn-delete text-warning"
             onClick={() => {
               let payload = {
                 active_card: true,
@@ -105,7 +105,7 @@ export default {
             edit
           </button>
           <button
-            class="btn-delete text-success border-none cursor-pointer px-2 py-1 rounded"
+            class="px-2 py-1 border-none rounded cursor-pointer btn-delete text-success"
             onClick={() => {
               console.log('node', node)
               this.$store.commit('page_builder/EDIT_ALL', false)
