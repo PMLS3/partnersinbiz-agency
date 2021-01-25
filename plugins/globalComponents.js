@@ -8,7 +8,7 @@
 import Vue from 'vue'
 import Verte from 'verte'
 import 'verte/dist/verte.css'
-import VuePerfectScrollbar from 'vue2-perfect-scrollbar'
+// import VuePerfectScrollbar from 'vue2-perfect-scrollbar'
 import VueSvgGauge from 'vue-svg-gauge'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import vSelect from 'vue-select'
@@ -27,7 +27,7 @@ Vue.use(VeeValidate)
 // Register it globally
 // main.js or any entry file.
 // Vue.component('ValidationProvider', ValidationProvider)
-Vue.component(VuePerfectScrollbar.name, VuePerfectScrollbar)
+// Vue.component(VuePerfectScrollbar.name, VuePerfectScrollbar)
 Vue.component(Verte.name, Verte)
 Vue.component(FeatherIcon.name, FeatherIcon)
 Vue.use(require('v-validate'))

@@ -29,13 +29,13 @@
     <vs-sidebar
       v-model="editactive"
       hidden-background
-      position-right
       class="h-screen items-no-padding"
     >
-      <div class="h-screen p-2">
-        {{ edit_comp }}
+      <!-- <div v-if="editactive"> -->
+      <PerfectScrollbar>
         <PageGeneratorComponentEditor :edit_comp="edit_comp" />
-      </div>
+      </PerfectScrollbar>
+      <!-- </div> -->
     </vs-sidebar>
   </div>
 </template>
@@ -65,7 +65,28 @@ export default {
         edit_comp.value = data
         editactive.value = true
       })
+
+      $nuxt.$on('edit_comp_update', (data) => {
+        // editactive.value = false
+        let schema = data.schema
+        let classUpdate = data.classUpdate
+
+        console.log('schema: ', schema.place.length)
+        console.log('classUpdate: ' + classUpdate)
+        if (schema.place.length == 2) {
+          console.log(
+            'value',
+            list.value[schema.place[0]].children[schema.place[1]]
+          )
+          list.value[schema.place[0]].children[
+            schema.place[1]
+          ].class = classUpdate
+          console.log('list', list.value)
+        }
+      })
     })
+
+    function updateList(data) {}
 
     function getList(data) {
       console.log('data list', data)

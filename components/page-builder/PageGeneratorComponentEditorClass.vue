@@ -1,19 +1,10 @@
 <template>
-  <vs-card class="mt-8">
+  <vs-card>
     <div slot="header">
       <h3>Class</h3>
     </div>
     <div>
-      <span
-        >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.</span
-      >
-      <vs-divider></vs-divider>
       <div v-if="schema">
-        {{ schema }}
-        {{ wordsSplit }}
         <vs-col
           vs-type="flex"
           vs-justify="space-between"
@@ -89,18 +80,12 @@
         vs-align="center"
         vs-w="12"
       >
-        <vs-input v-model="classUpdate" placeholder="Class" />
+        <vs-textarea v-model="classUpdate" placeholder="Class" />
       </vs-col>
     </div>
     <div slot="footer">
       <vs-row vs-justify="flex-end">
-        <vs-button
-          type="gradient"
-          color="success"
-          icon="check"
-          @click="update()"
-          >Submit</vs-button
-        >
+        <vs-button icon="check" @click="update()">Submit</vs-button>
       </vs-row>
     </div>
   </vs-card>
@@ -154,71 +139,35 @@ export default {
           break
       }
     },
+    schema() {
+      this.classUpdate = this.schema.class
+    },
+  },
+  created() {
+    this.classUpdate = this.schema.class
   },
 
   methods: {
     deleteItem(item, i) {
-      let test = this.edit_component.schema.class.replace(item, '')
-      this.edit_component.schema.class = test
+      let test = this.classUpdate.replace(item, '')
+      let str = test.replace(/ +(?= )/g, '')
+      this.classUpdate = str
+
       this.update()
     },
     changeComponent(item) {
       console.log('item', item)
-      this.classUpdate = item
+      this.classUpdate = this.classUpdate + item
       this.update()
     },
     update() {
-      let vm = this
-      let style
-      let content
-      let inline
-      let classUp
-      let place = this.edit_component.schema.place
-
-      if (this.edit_component.schema.style) {
-        style = this.edit_component.schema.style
-      } else {
-        style = ''
-      }
-
-      if (this.edit_component.schema.content) {
-        content = this.edit_component.schema.content
-      } else {
-        content = ''
-      }
-
-      if (this.edit_component.schema.inline) {
-        inline = this.edit_component.schema.inline
-      } else {
-        inline = ''
-      }
-
-      if (vm.edit_component.schema.class) {
-        if (vm.classUpdate) {
-          classUp = vm.edit_component.schema.class.concat('', vm.classUpdate)
-        } else {
-          classUp = vm.edit_component.schema.class
-        }
-      } else {
-        if (vm.classUpdate) {
-          classUp = vm.classUpdate
-        } else {
-          classUp = ''
-        }
-      }
-
       let payload = {
-        place: place,
-
-        content: content,
-        style: style,
-        class: classUp,
-        inline: inline,
+        schema: this.schema,
+        classUpdate: this.classUpdate,
       }
-
-      this.$store.commit('page_builder/COMPONENTS_UPDATE', payload)
-
-      this.classUpdate = ''
+      setTimeout(() => {
+        $nuxt.$emit('edit_comp_update', payload)
+      }, 1000)
     },
   },
 }
