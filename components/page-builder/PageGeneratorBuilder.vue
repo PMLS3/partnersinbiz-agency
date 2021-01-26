@@ -86,51 +86,48 @@ export default {
       console.log('value', Schema.value)
       let schema = Schema.value
       let MainIndex = mainIndex.value
-      let deleteList = list.value[MainIndex][0]
+      let addList = list.value[MainIndex][0]
       let schemaId = schema.id
       console.log('schema', schema)
-      if (schemaId == deleteList.id) {
-        list.value[MainIndex][0].push(data)
+      console.log('list.value[MainIndex][0]', list.value[MainIndex][0])
+      if (schemaId == addList.id) {
+        list.value[MainIndex][0].children.push(data)
       } else {
-        if (deleteList.children.length) {
-          for (let i = 0; i < deleteList.children.length; i++) {
-            let childDeleteList = list.value[MainIndex][0].children[i]
-            if (schemaId == childDeleteList.id) {
+        if (addList.children.length) {
+          for (let i = 0; i < addList.children.length; i++) {
+            let childaddList = list.value[MainIndex][0].children[i]
+            if (schemaId == childaddList.id) {
               list.value[MainIndex][0].children[i].children.push(data)
             } else {
-              if (childDeleteList.children.length) {
-                for (let e = 0; e < childDeleteList.children.length; e++) {
-                  let child2DeleteList =
+              if (childaddList.children.length) {
+                for (let e = 0; e < childaddList.children.length; e++) {
+                  let child2addList =
                     list.value[MainIndex][0].children[i].children[e]
-                  if (schemaId == child2DeleteList.id) {
+                  if (schemaId == child2addList.id) {
                     list.value[MainIndex][0].children[i].children[
                       e
                     ].children.push(data)
                   } else {
-                    if (child2DeleteList.children.length) {
-                      for (
-                        let a = 0;
-                        a < child2DeleteList.children.length;
-                        a++
-                      ) {
-                        let child3DeleteList =
+                    if (child2addList.children.length) {
+                      for (let a = 0; a < child2addList.children.length; a++) {
+                        let child3addList =
                           list.value[MainIndex][0].children[i].children[e]
                             .children[a]
-                        if (schemaId == child3DeleteList.id) {
+                        if (schemaId == child3addList.id) {
                           list.value[MainIndex][0].children[i].children[
                             e
                           ].children[a].children.push(data)
                         } else {
-                          if (child3DeleteList.children.length) {
+                          if (child3addList.children.length) {
                             for (
                               let u = 0;
-                              u < child3DeleteList.children.length;
+                              u < child3addList.children.length;
                               u++
                             ) {
-                              let child4DeleteList =
+                              let child4addList =
                                 list.value[MainIndex][0].children[i].children[e]
                                   .children[a].children[u]
-                              if (schemaId == child4DeleteList.id) {
+                              if (schemaId == child4addList.id) {
                                 list.value[MainIndex][0].children[i].children[
                                   e
                                 ].children[a].children[u].children.push(data)
@@ -169,6 +166,33 @@ export default {
     let edit_comp = ref({})
 
     const user = computed(() => store.state.auth.main_user)
+
+    let drag_start_component = computed(
+      () => store.state.page_builder.drag_start_component
+    )
+    let drag_end_component = computed(
+      () => store.state.page_builder.drag_end_component
+    )
+
+    watch(drag_end_component, (newValue, oldValue) => {
+      console.log('drag start', drag_start_component.value)
+      console.log('drag end', drag_end_component.value)
+
+      listPos.value = drag_end_component.value.schema.place
+      mainIndex.value = drag_end_component.value.MainIndex
+      Schema.value = drag_end_component.value.schema
+      store.commit('page_builder/LIST_UPDATE', listPos.value)
+
+      $nuxt.$emit('component-added', drag_start_component.value.schema)
+
+      setTimeout(() => {
+        console.log('payload:', drag_start_component.value)
+        store.commit(
+          'page_builder/DELETE_COMPONENT',
+          drag_start_component.value
+        )
+      }, 1000)
+    })
 
     let update_component = computed(
       () => store.state.page_builder.update_component
@@ -253,51 +277,51 @@ export default {
       let schema = data.schema
       let classUpdate = data.classUpdate
       let MainIndex = mainIndex.value
-      let deleteList = list.value[MainIndex][0]
+      let UpdateList = list.value[MainIndex][0]
       let schemaId = schema.id
 
-      if (schemaId == deleteList.id) {
+      if (schemaId == UpdateList.id) {
         list.value[MainIndex][0].class = classUpdate
       } else {
-        if (deleteList.children.length) {
-          for (let i = 0; i < deleteList.children.length; i++) {
-            let childDeleteList = list.value[MainIndex][0].children[i]
-            if (schemaId == childDeleteList.id) {
+        if (UpdateList.children.length) {
+          for (let i = 0; i < UpdateList.children.length; i++) {
+            let childUpdateList = list.value[MainIndex][0].children[i]
+            if (schemaId == childUpdateList.id) {
               list.value[MainIndex][0].children[i].class = classUpdate
             } else {
-              if (childDeleteList.children.length) {
-                for (let e = 0; e < childDeleteList.children.length; e++) {
-                  let child2DeleteList =
+              if (childUpdateList.children.length) {
+                for (let e = 0; e < childUpdateList.children.length; e++) {
+                  let child2UpdateList =
                     list.value[MainIndex][0].children[i].children[e]
-                  if (schemaId == child2DeleteList.id) {
+                  if (schemaId == child2UpdateList.id) {
                     list.value[MainIndex][0].children[i].children[
                       e
                     ].class = classUpdate
                   } else {
-                    if (child2DeleteList.children.length) {
+                    if (child2UpdateList.children.length) {
                       for (
                         let a = 0;
-                        a < child2DeleteList.children.length;
+                        a < child2UpdateList.children.length;
                         a++
                       ) {
-                        let child3DeleteList =
+                        let child3UpdateList =
                           list.value[MainIndex][0].children[i].children[e]
                             .children[a]
-                        if (schemaId == child3DeleteList.id) {
+                        if (schemaId == child3UpdateList.id) {
                           list.value[MainIndex][0].children[i].children[
                             e
                           ].children[a].class = classUpdate
                         } else {
-                          if (child3DeleteList.children.length) {
+                          if (child3UpdateList.children.length) {
                             for (
                               let u = 0;
-                              u < child3DeleteList.children.length;
+                              u < child3UpdateList.children.length;
                               u++
                             ) {
-                              let child4DeleteList =
+                              let child4UpdateList =
                                 list.value[MainIndex][0].children[i].children[e]
                                   .children[a].children[u]
-                              if (schemaId == child4DeleteList.id) {
+                              if (schemaId == child4UpdateList.id) {
                                 list.value[MainIndex][0].children[i].children[
                                   e
                                 ].children[a].children[u].class = classUpdate

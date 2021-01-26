@@ -14,6 +14,8 @@ export const state = () => ({
   list_pos: [],
   update_component: {},
   delete_component: {},
+  drag_start_component: {},
+  drag_end_component: {},
 })
 
 export const mutations = {
@@ -25,6 +27,12 @@ export const mutations = {
   },
   DELETE_COMPONENT(state, payload) {
     state.delete_component = payload
+  },
+  DRAG_START_COMPONENT(state, payload) {
+    state.drag_start_component = payload
+  },
+  DRAG_END_COMPONENT(state, payload) {
+    state.drag_end_component = payload
   },
 
   ////////////////////////
