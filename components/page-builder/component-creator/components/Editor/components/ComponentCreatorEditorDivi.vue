@@ -4,20 +4,22 @@
     :class="schema.class"
     :style="schema.style"
     :slot="schema.slot"
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
   >
     <ComponentsCreatorEditorButtons
       :schema="schema"
       :index="index"
       :mainIndex="mainIndex"
       class="absolute top-0"
-      v-if="schema.place.length == 1"
+      v-if="schema.place.length == 1 && hover"
     />
 
     <ComponentsCreatorEditorButtons
       :schema="schema"
       :index="index"
       :mainIndex="mainIndex"
-      v-else
+      v-if="schema.place.length > 1 && hover"
       class="absolute top-0 right-0 mr-1"
     />
     <ComponentCreatorEditor
@@ -38,6 +40,11 @@ export default {
       import(
         '@/components/page-builder/component-creator/ComponentCreatorEditor.vue'
       ),
+  },
+  data() {
+    return {
+      hover: false,
+    }
   },
   methods: {
     add() {

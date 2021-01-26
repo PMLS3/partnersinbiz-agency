@@ -1,17 +1,18 @@
 <template>
-  <button @click="open_pop = !open_pop" :class="schema.class">
+  <button
+    @click="open_pop = !open_pop"
+    :class="schema.class"
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
+  >
     {{ schema.innerText }}
-    <vs-popup
-      classContent="popup-example"
-      :title="schema.title"
-      :active.sync="open_pop"
-    >
-      <ComponentsCreatorEditorButtons
-        :schema="schema"
-        :index="index"
-        :mainIndex="mainIndex"
-      />
-    </vs-popup>
+
+    <ComponentsCreatorEditorButtons
+      :schema="schema"
+      :index="index"
+      :mainIndex="mainIndex"
+      v-if="hover"
+    />
   </button>
 </template>
 
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       open_pop: false,
+      hover: false,
     }
   },
 }
