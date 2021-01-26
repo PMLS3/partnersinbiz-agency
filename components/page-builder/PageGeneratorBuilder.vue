@@ -65,8 +65,11 @@ export default {
         }
       })
 
-      $nuxt.$on('place', (data) => {
+      $nuxt.$on('place', (data, schema, MainIndex) => {
+        console.log('data', data, schema, MainIndex)
         listPos.value = data
+        mainIndex.value = MainIndex
+        Schema.value = schema
         store.commit('page_builder/LIST_UPDATE', data)
       })
 
@@ -75,91 +78,65 @@ export default {
         edit_comp.value = data
         editactive.value = true
       })
+    })
 
-      $nuxt.$on('delete_comp', (schema, MainIndex) => {
-        page_view.value = false
-        console.log('data', schema, MainIndex, list.value)
-
-        let deleteList = list.value[MainIndex][0]
-        let schemaId = schema.id
-        console.log('deleteList', deleteList)
-        console.log('deleteList id', deleteList.id)
-        console.log('schemaId', schemaId)
-
-        if (schemaId == deleteList.id) {
-          console.log('1')
-          list.value.splice([MainIndex], 1)
-          return
-        } else {
-          console.log('else', deleteList.children.length)
-          if (deleteList.children.length) {
-            for (let i = 0; i < deleteList.children.length; i++) {
-              console.log('id', i)
-              console.log('ne', list.value[MainIndex][0].children)
-              console.log(
-                'list.value[MainIndex].children[i]',
-                list.value[MainIndex][0].children[i]
-              )
-              let childDeleteList = list.value[MainIndex][0].children[i]
-              console.log('child', childDeleteList)
-              if (schemaId == childDeleteList.id) {
-                console.log('yes', list.value[MainIndex][0].children[i])
-                console.log('before', list.value[MainIndex][0])
-                let mine = list.value[MainIndex][0]
-                mine.children.splice([i], 1)
-                // list.value[MainIndex][0] = mine
-                // list.value[MainIndex][0].children.splice([i], 1)
-                console.log('after', list.value[MainIndex][0])
-                console.log('after', mine)
-              } else {
-                console.log('else 1', childDeleteList.length)
-                if (childDeleteList.children.length) {
-                  for (let e = 0; e < childDeleteList.children.length; e++) {
-                    let child2DeleteList =
-                      list.value[MainIndex][0].children[i].children[e]
-                    if (schemaId == child2DeleteList.id) {
-                      list.value[MainIndex][0].children[i].children.splice(
-                        [e],
-                        1
-                      )
-                    } else {
-                      console.log('else 2', child2DeleteList.children.length)
-                      if (child2DeleteList.children.length) {
-                        for (
-                          let a = 0;
-                          a < child2DeleteList.children.length;
-                          a++
-                        ) {
-                          let child3DeleteList =
-                            list.value[MainIndex][0].children[i].children[e]
-                              .children[a]
-                          if (schemaId == child3DeleteList.id) {
-                            list.value[MainIndex][0].children[i].children[
-                              e
-                            ].children.splice([a], 1)
-                          } else {
-                            console.log(
-                              'else 3',
-                              child3DeleteList.children.length
-                            )
-                            if (child3DeleteList.children.length) {
-                              for (
-                                let u = 0;
-                                u < child3DeleteList.children.length;
-                                u++
-                              ) {
-                                let child4DeleteList =
-                                  list.value[MainIndex][0].children[i].children[
-                                    e
-                                  ].children[a].children[u]
-                                if (schemaId == child4DeleteList.id) {
-                                  list.value[MainIndex][0].children[i].children[
-                                    e
-                                  ].children[a].children.splice([u], 1)
-                                  return
-                                } else {
-                                  alert('end')
-                                }
+    function getList(data) {
+      console.log('data list', data)
+      console.log(' list', list.value)
+      console.log('value', Schema.value)
+      let schema = Schema.value
+      let MainIndex = mainIndex.value
+      let deleteList = list.value[MainIndex][0]
+      let schemaId = schema.id
+      console.log('schema', schema)
+      if (schemaId == deleteList.id) {
+        list.value[MainIndex][0].push(data)
+      } else {
+        if (deleteList.children.length) {
+          for (let i = 0; i < deleteList.children.length; i++) {
+            let childDeleteList = list.value[MainIndex][0].children[i]
+            if (schemaId == childDeleteList.id) {
+              list.value[MainIndex][0].children[i].children.push(data)
+            } else {
+              if (childDeleteList.children.length) {
+                for (let e = 0; e < childDeleteList.children.length; e++) {
+                  let child2DeleteList =
+                    list.value[MainIndex][0].children[i].children[e]
+                  if (schemaId == child2DeleteList.id) {
+                    list.value[MainIndex][0].children[i].children[
+                      e
+                    ].children.push(data)
+                  } else {
+                    if (child2DeleteList.children.length) {
+                      for (
+                        let a = 0;
+                        a < child2DeleteList.children.length;
+                        a++
+                      ) {
+                        let child3DeleteList =
+                          list.value[MainIndex][0].children[i].children[e]
+                            .children[a]
+                        if (schemaId == child3DeleteList.id) {
+                          list.value[MainIndex][0].children[i].children[
+                            e
+                          ].children[a].children.push(data)
+                        } else {
+                          if (child3DeleteList.children.length) {
+                            for (
+                              let u = 0;
+                              u < child3DeleteList.children.length;
+                              u++
+                            ) {
+                              let child4DeleteList =
+                                list.value[MainIndex][0].children[i].children[e]
+                                  .children[a].children[u]
+                              if (schemaId == child4DeleteList.id) {
+                                list.value[MainIndex][0].children[i].children[
+                                  e
+                                ].children[a].children[u].children.push(data)
+                                return
+                              } else {
+                                console.log('end')
                               }
                             }
                           }
@@ -172,149 +149,13 @@ export default {
             }
           }
         }
-      })
-
-      $nuxt.$on('edit_comp_update', (data) => {
-        console.log('nuxt', data)
-        // editactive.value = false
-        // console.log('edit classUpdate', data)
-        // console.log('data', data.schema, mainIndex.value, list.value)
-        // let schema = data.schema
-        // let classUpdate = data.classUpdate
-        // let MainIndex = mainIndex.value
-        // let deleteList = list.value[MainIndex][0]
-        // let schemaId = schema.id
-        // console.log('deleteList', deleteList)
-        // console.log('deleteList id', deleteList.id)
-        // console.log('schemaId', schemaId)
-
-        // if (schemaId == deleteList.id) {
-        //   console.log('1')
-        //   list.value[MainIndex][0].class = classUpdate
-        //   console.log('here', list.value[MainIndex][0].class)
-        // }
-        //else {
-        //   console.log('else', deleteList.children.length)
-        //   if (deleteList.children.length) {
-        //     for (let i = 0; i < deleteList.children.length; i++) {
-        //       console.log('id', i)
-        //       console.log('ne', list.value[MainIndex][0].children)
-        //       console.log(
-        //         'list.value[MainIndex].children[i]',
-        //         list.value[MainIndex][0].children[i]
-        //       )
-        //       let childDeleteList = list.value[MainIndex][0].children[i]
-        //       console.log('child', childDeleteList)
-        //       if (schemaId == childDeleteList.id) {
-        //         console.log('yes', list.value[MainIndex][0].children[i])
-        //         console.log('before', list.value[MainIndex][0])
-        //         let mine = list.value[MainIndex][0]
-        //         mine.children.splice([i], 1)
-        //         // list.value[MainIndex][0] = mine
-        //         // list.value[MainIndex][0].children.splice([i], 1)
-        //         console.log('after', list.value[MainIndex][0])
-        //         console.log('after', mine)
-        //       } else {
-        //         console.log('else 1', childDeleteList.length)
-        //         if (childDeleteList.children.length) {
-        //           for (let e = 0; e < childDeleteList.children.length; e++) {
-        //             let child2DeleteList =
-        //               list.value[MainIndex][0].children[i].children[e]
-        //             if (schemaId == child2DeleteList.id) {
-        //               list.value[MainIndex][0].children[i].children.splice(
-        //                 [e],
-        //                 1
-        //               )
-        //             } else {
-        //               console.log('else 2', child2DeleteList.children.length)
-        //               if (child2DeleteList.children.length) {
-        //                 for (
-        //                   let a = 0;
-        //                   a < child2DeleteList.children.length;
-        //                   a++
-        //                 ) {
-        //                   let child3DeleteList =
-        //                     list.value[MainIndex][0].children[i].children[e]
-        //                       .children[a]
-        //                   if (schemaId == child3DeleteList.id) {
-        //                     list.value[MainIndex][0].children[i].children[
-        //                       e
-        //                     ].children.splice([a], 1)
-        //                   } else {
-        //                     console.log(
-        //                       'else 3',
-        //                       child3DeleteList.children.length
-        //                     )
-        //                     if (child3DeleteList.children.length) {
-        //                       for (
-        //                         let u = 0;
-        //                         u < child3DeleteList.children.length;
-        //                         u++
-        //                       ) {
-        //                         let child4DeleteList =
-        //                           list.value[MainIndex][0].children[i].children[
-        //                             e
-        //                           ].children[a].children[u]
-        //                         if (schemaId == child4DeleteList.id) {
-        //                           list.value[MainIndex][0].children[i].children[
-        //                             e
-        //                           ].children[a].children.splice([u], 1)
-        //                           return
-        //                         } else {
-        //                           alert('end')
-        //                         }
-        //                       }
-        //                     }
-        //                   }
-        //                 }
-        //               }
-        //             }
-        //           }
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
-        // let schema = data.schema
-        // let classUpdate = data.classUpdate
-
-        // if (schema.place.length == 1) {
-        //   list.value[schema.place[0]].class = classUpdate
-        // }
-
-        // if (schema.place.length == 2) {
-        //   list.value[schema.place[0]].children[
-        //     schema.place[1]
-        //   ].class = classUpdate
-        // }
-
-        // if (schema.place.length == 3) {
-        //   list.value[schema.place[0]].children[schema.place[1]].children[
-        //     schema.place[2]
-        //   ].class = classUpdate
-        // }
-
-        // if (schema.place.length == 4) {
-        //   list.value[schema.place[0]].children[schema.place[1]].children[
-        //     schema.place[2]
-        //   ].children[schema.place[3]].class = classUpdate
-        // }
-      })
-    })
-
-    function getList(data) {
-      console.log('data list', data)
-      console.log(' list', list.value)
-
-      // if (data.place.length == 1) {
-      //   list.value[data.place[0]].children.push(data)
-      // }
-
-      if (data.place.length == 2) {
-        console.log('value', list.value[data.place[0]].children[data.place[1]])
-        list.value[data.place[0]].children[data.place[1]].children.push(data)
-        console.log('list', list.value)
       }
+
+      // if (data.place.length == 2) {
+      //   console.log('value', list.value[data.place[0]].children[data.place[1]])
+      //   list.value[data.place[0]].children[data.place[1]].children.push(data)
+      //   console.log('list', list.value)
+      // }
     }
 
     let list = ref([])
@@ -323,6 +164,7 @@ export default {
     let editactive = ref(false)
     let page_view = ref(true)
     let mainIndex = ref(0)
+    let Schema = ref({})
 
     let edit_comp = ref({})
 
@@ -337,6 +179,7 @@ export default {
     )
 
     watch(delete_component, (newValue, oldValue) => {
+      console.log('delete_component', newValue, oldValue)
       let schema = delete_component.value.schema
       let MainIndex = delete_component.value.MainIndex
 
@@ -388,7 +231,7 @@ export default {
                                 ].children[a].children.splice([u], 1)
                                 return
                               } else {
-                                alert('end')
+                                console.log('end')
                               }
                             }
                           }
@@ -460,7 +303,7 @@ export default {
                                 ].children[a].children[u].class = classUpdate
                                 return
                               } else {
-                                alert('end')
+                                console.log('end')
                               }
                             }
                           }

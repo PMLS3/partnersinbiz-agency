@@ -212,16 +212,17 @@ export default {
     }
   },
   mounted() {
-    $nuxt.$on('add_comp', (data) => {
+    $nuxt.$on('add_comp', (data, schema, mainIndex) => {
+      console.log('place nav', data, schema, mainIndex)
       this.popupAdd = true
       this.place = data
-      $nuxt.$emit('place', this.place)
+      $nuxt.$emit('place', this.place, schema, mainIndex)
     })
 
-    $nuxt.$on('add_comp_quick', (data) => {
+    $nuxt.$on('add_comp_quick', (data, schema, mainIndex) => {
       this.popupAddQuick = true
       this.place = data
-      $nuxt.$emit('place', this.place)
+      $nuxt.$emit('place', this.place, schema, mainIndex)
     })
 
     $nuxt.$on('close_comp', () => {
@@ -298,7 +299,7 @@ export default {
     addEdit() {},
     addGrid() {
       this.popupAdd = true
-      $nuxt.$emit('place', [this.list.length])
+      $nuxt.$emit('place', [this.list.length], {}, 0)
     },
   },
 }

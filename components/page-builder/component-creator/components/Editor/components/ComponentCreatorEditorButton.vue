@@ -6,7 +6,11 @@
       :title="schema.title"
       :active.sync="open_pop"
     >
-      <ComponentsCreatorEditorButtons :schema="schema" />
+      <ComponentsCreatorEditorButtons
+        :schema="schema"
+        :index="index"
+        :mainIndex="mainIndex"
+      />
     </vs-popup>
   </button>
 </template>
@@ -14,7 +18,8 @@
 <script>
 export default {
   name: 'buttons',
-  props: ['schema'],
+  props: ['schema', 'index', 'mainIndex'],
+
   components: {
     ComponentCreatorEditor: () =>
       import(

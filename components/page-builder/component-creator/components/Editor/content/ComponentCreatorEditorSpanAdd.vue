@@ -12,7 +12,11 @@
       :title="schema.title"
       :active.sync="open_pop"
     >
-      <ComponentsCreatorEditorButtons :schema="schema" />
+      <ComponentsCreatorEditorButtons
+        :schema="schema"
+        :index="index"
+        :mainIndex="mainIndex"
+      />
     </vs-popup>
     <ComponentCreatorEditor
       v-for="(field, ind) in schema"
@@ -26,7 +30,8 @@
 <script>
 export default {
   name: 'spanAdd',
-  props: ['schema'],
+  props: ['schema', 'index', 'mainIndex'],
+
   components: {
     ComponentCreatorEditor: () =>
       import(

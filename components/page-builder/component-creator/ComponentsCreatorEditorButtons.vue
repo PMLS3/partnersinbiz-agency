@@ -49,28 +49,30 @@ export default {
   },
   methods: {
     add() {
-      $nuxt.$emit('add_comp', this.schema.place)
+      $nuxt.$emit('add_comp', this.schema.place, this.schema, this.mainIndex)
     },
     add_quick() {
-      $nuxt.$emit('add_comp_quick', this.schema.place)
+      $nuxt.$emit(
+        'add_comp_quick',
+        this.schema.place,
+        this.schema,
+        this.mainIndex
+      )
     },
     edit() {
       $nuxt.$emit('edit_comp', this.schema, this.mainIndex)
     },
     deleteItem() {
       console.log('here to delete item')
-      // if (this.can_submit) {
-      //   this.can_submit = false
-      //   setTimeout(() => {
-      //     $nuxt.$emit('delete_comp', this.schema, this.mainIndex)
-      //   }, 1000)
 
       let payload = {
         schema: this.schema,
         MainIndex: this.mainIndex,
       }
-
-      this.$store.commit('page_builder/DELETE_COMPONENT', payload)
+      setTimeout(() => {
+        console.log('payload:', payload)
+        this.$store.commit('page_builder/DELETE_COMPONENT', payload)
+      }, 1000)
 
       // }
     },
