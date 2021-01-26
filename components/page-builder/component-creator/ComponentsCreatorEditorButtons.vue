@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-4 gap-2">
+  <div class="grid grid-cols-4 gap-1">
     <vs-tooltip :text="`Edit ${schema.name}`">
       <vs-button
         icon-pack="feather"
