@@ -1,10 +1,14 @@
 <template>
   <div class="w-screen h-full">
-    <ComponentCreatorEditor
-      v-for="(field, ind) in list"
-      :key="ind"
-      :schema="field"
-    />
+    {{ list }}
+    <div class="w-screen h-full" v-for="(comp, index) in list" :key="index">
+      <ComponentCreatorEditor
+        v-for="(field, ind) in comp"
+        :key="ind"
+        :schema="field"
+        :mainIndex="index"
+      />
+    </div>
   </div>
 </template>
 

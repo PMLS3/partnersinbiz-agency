@@ -41,8 +41,12 @@
 <script>
 export default {
   name: 'ComponentsCreatorEditorButtons',
-  props: ['schema'],
-
+  props: ['schema', 'index', 'mainIndex'],
+  data() {
+    return {
+      can_submit: true,
+    }
+  },
   methods: {
     add() {
       $nuxt.$emit('add_comp', this.schema.place)
@@ -51,12 +55,24 @@ export default {
       $nuxt.$emit('add_comp_quick', this.schema.place)
     },
     edit() {
-      $nuxt.$emit('edit_comp', this.schema)
+      $nuxt.$emit('edit_comp', this.schema, this.mainIndex)
     },
     deleteItem() {
-      setTimeout(() => {
-        $nuxt.$emit('delete_comp', this.schema.place)
-      }, 1000)
+      console.log('here to delete item')
+      // if (this.can_submit) {
+      //   this.can_submit = false
+      //   setTimeout(() => {
+      //     $nuxt.$emit('delete_comp', this.schema, this.mainIndex)
+      //   }, 1000)
+
+      let payload = {
+        schema: this.schema,
+        MainIndex: this.mainIndex,
+      }
+
+      this.$store.commit('page_builder/DELETE_COMPONENT', payload)
+
+      // }
     },
   },
 }

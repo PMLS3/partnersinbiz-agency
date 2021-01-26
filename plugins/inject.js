@@ -39,7 +39,9 @@ export default (context, inject) => {
       item.innerText = innerText
     }
     item.place = [...list]
-    item.name = node_name + item.place
+    item.id = Math.random().toString(36).substr(2, 6)
+    item.name = node_name + item.id
+
     item.children = []
 
     for (let i = 0; i < child_element_count; i++) {
@@ -77,7 +79,8 @@ export default (context, inject) => {
 
       child_item.class = class_name
       child_item.place = [...place, i]
-      child_item.name = node_name + child_item.place
+      child_item.id = Math.random().toString(36).substr(2, 6)
+      child_item.name = node_name + child_item.id
 
       if (innerText) {
         child_item.innerText = innerText

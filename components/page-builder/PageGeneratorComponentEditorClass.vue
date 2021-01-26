@@ -165,9 +165,11 @@ export default {
         schema: this.schema,
         classUpdate: this.classUpdate,
       }
-      setTimeout(() => {
-        $nuxt.$emit('edit_comp_update', payload)
-      }, 1000)
+      console.log('updatingggg')
+      this.$store.commit('page_builder/UPDATE_COMPONENT', payload)
+      // setTimeout(() => {
+      //   $nuxt.$emit('edit_comp_update', payload)
+      // }, 1000)
     },
   },
 }

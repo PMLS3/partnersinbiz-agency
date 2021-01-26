@@ -5,46 +5,21 @@
     :style="schema.style"
     :slot="schema.slot"
   >
+    {{ mainIndex }} - {{ schema.id }}
     <div
       class="absolute inset-x-0 flex items-center w-3/4 mx-auto -mt-1 rounded-lg rounded-t-none md:w-2/5"
     >
-      <ComponentsCreatorEditorButtons :schema="schema" />
-      <!-- <vs-button
-        icon-pack="feather"
-        radius
-        icon="icon-edit-2"
-        size="small"
-        @click="edit()"
-      ></vs-button>
-      <vs-button
-        icon-pack="feather"
-        size="small"
-        color="success"
-        radius
-        icon="icon-plus-circle"
-        @click="add()"
-      ></vs-button>
-      <vs-button
-        icon-pack="feather"
-        size="small"
-        color="success"
-        icon="icon-plus-circle"
-        @click="add_quick()"
-        >Add Quick</vs-button
-      >
-
-      <vs-button
-        icon-pack="feather"
-        size="small"
-        color="danger"
-        radius
-        icon="icon-trash"
-      ></vs-button> -->
+      <ComponentsCreatorEditorButtons
+        :schema="schema"
+        :index="index"
+        :mainIndex="mainIndex"
+      />
     </div>
     <ComponentCreatorEditor
       v-for="(field, ind) in schema.children"
       :key="ind"
       :schema="field"
+      :mainIndex="mainIndex"
     ></ComponentCreatorEditor>
   </div>
 </template>
@@ -52,7 +27,7 @@
 <script>
 export default {
   name: 'DIV',
-  props: ['schema'],
+  props: ['schema', 'index', 'mainIndex'],
   components: {
     ComponentCreatorEditor: () =>
       import(

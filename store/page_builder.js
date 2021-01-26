@@ -12,12 +12,22 @@ export const state = () => ({
   // editing_page: false,
   // edited_page: {},
   list_pos: [],
+  update_component: {},
+  delete_component: {},
 })
 
 export const mutations = {
   LIST_UPDATE(state, payload) {
     state.list_pos = payload
   },
+  UPDATE_COMPONENT(state, payload) {
+    state.update_component = payload
+  },
+  DELETE_COMPONENT(state, payload) {
+    state.delete_component = payload
+  },
+
+  ////////////////////////
   EDIT_ALL(state, payload) {
     state.edit_all = payload
   },

@@ -22,7 +22,7 @@
       class="h-screen items-no-padding"
     >
       <div class="h-screen p-2">
-        <UiTree :data="list" />
+        <!-- <UiTree :data="list" /> -->
       </div>
     </vs-sidebar>
 
@@ -44,7 +44,13 @@
 </template>
 
 <script>
-import { ref, useContext, computed, onMounted } from '@nuxtjs/composition-api'
+import {
+  ref,
+  useContext,
+  computed,
+  onMounted,
+  watch,
+} from '@nuxtjs/composition-api'
 export default {
   name: 'pageGeneratorBuilder',
   setup() {
@@ -53,7 +59,7 @@ export default {
       $nuxt.$on('component-added', (data) => {
         // console.log('data', data)
         if (data.place.length == 1) {
-          list.value.push(data)
+          list.value.push([data])
         } else {
           getList(data)
         }
@@ -64,60 +70,235 @@ export default {
         store.commit('page_builder/LIST_UPDATE', data)
       })
 
-      $nuxt.$on('edit_comp', (data) => {
+      $nuxt.$on('edit_comp', (data, MainIndex) => {
+        mainIndex.value = MainIndex
         edit_comp.value = data
         editactive.value = true
       })
 
-      $nuxt.$on('delete_comp', (data) => {
-        console.log('data', data)
+      $nuxt.$on('delete_comp', (schema, MainIndex) => {
+        page_view.value = false
+        console.log('data', schema, MainIndex, list.value)
 
-        if (data.length == 1) {
-          list.value[data[0]].class = classUpdate
-        }
+        let deleteList = list.value[MainIndex][0]
+        let schemaId = schema.id
+        console.log('deleteList', deleteList)
+        console.log('deleteList id', deleteList.id)
+        console.log('schemaId', schemaId)
 
-        if (data.length == 2) {
-          list.value[data[0]].children.splice(data[1], 1)
-        }
-
-        if (data.length == 3) {
-          list.value[data[0]].children[data[1]].children.splice(data[2], 1)
-        }
-
-        if (data.length == 4) {
-          list.value[data[0]].children[data[1]].children[
-            data[2]
-          ].children.splice(data[3], 1)
+        if (schemaId == deleteList.id) {
+          console.log('1')
+          list.value.splice([MainIndex], 1)
+          return
+        } else {
+          console.log('else', deleteList.children.length)
+          if (deleteList.children.length) {
+            for (let i = 0; i < deleteList.children.length; i++) {
+              console.log('id', i)
+              console.log('ne', list.value[MainIndex][0].children)
+              console.log(
+                'list.value[MainIndex].children[i]',
+                list.value[MainIndex][0].children[i]
+              )
+              let childDeleteList = list.value[MainIndex][0].children[i]
+              console.log('child', childDeleteList)
+              if (schemaId == childDeleteList.id) {
+                console.log('yes', list.value[MainIndex][0].children[i])
+                console.log('before', list.value[MainIndex][0])
+                let mine = list.value[MainIndex][0]
+                mine.children.splice([i], 1)
+                // list.value[MainIndex][0] = mine
+                // list.value[MainIndex][0].children.splice([i], 1)
+                console.log('after', list.value[MainIndex][0])
+                console.log('after', mine)
+              } else {
+                console.log('else 1', childDeleteList.length)
+                if (childDeleteList.children.length) {
+                  for (let e = 0; e < childDeleteList.children.length; e++) {
+                    let child2DeleteList =
+                      list.value[MainIndex][0].children[i].children[e]
+                    if (schemaId == child2DeleteList.id) {
+                      list.value[MainIndex][0].children[i].children.splice(
+                        [e],
+                        1
+                      )
+                    } else {
+                      console.log('else 2', child2DeleteList.children.length)
+                      if (child2DeleteList.children.length) {
+                        for (
+                          let a = 0;
+                          a < child2DeleteList.children.length;
+                          a++
+                        ) {
+                          let child3DeleteList =
+                            list.value[MainIndex][0].children[i].children[e]
+                              .children[a]
+                          if (schemaId == child3DeleteList.id) {
+                            list.value[MainIndex][0].children[i].children[
+                              e
+                            ].children.splice([a], 1)
+                          } else {
+                            console.log(
+                              'else 3',
+                              child3DeleteList.children.length
+                            )
+                            if (child3DeleteList.children.length) {
+                              for (
+                                let u = 0;
+                                u < child3DeleteList.children.length;
+                                u++
+                              ) {
+                                let child4DeleteList =
+                                  list.value[MainIndex][0].children[i].children[
+                                    e
+                                  ].children[a].children[u]
+                                if (schemaId == child4DeleteList.id) {
+                                  list.value[MainIndex][0].children[i].children[
+                                    e
+                                  ].children[a].children.splice([u], 1)
+                                  return
+                                } else {
+                                  alert('end')
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       })
 
       $nuxt.$on('edit_comp_update', (data) => {
+        console.log('nuxt', data)
         // editactive.value = false
-        console.log('edit classUpdate', data)
-        let schema = data.schema
-        let classUpdate = data.classUpdate
+        // console.log('edit classUpdate', data)
+        // console.log('data', data.schema, mainIndex.value, list.value)
+        // let schema = data.schema
+        // let classUpdate = data.classUpdate
+        // let MainIndex = mainIndex.value
+        // let deleteList = list.value[MainIndex][0]
+        // let schemaId = schema.id
+        // console.log('deleteList', deleteList)
+        // console.log('deleteList id', deleteList.id)
+        // console.log('schemaId', schemaId)
 
-        if (schema.place.length == 1) {
-          list.value[schema.place[0]].class = classUpdate
-        }
+        // if (schemaId == deleteList.id) {
+        //   console.log('1')
+        //   list.value[MainIndex][0].class = classUpdate
+        //   console.log('here', list.value[MainIndex][0].class)
+        // }
+        //else {
+        //   console.log('else', deleteList.children.length)
+        //   if (deleteList.children.length) {
+        //     for (let i = 0; i < deleteList.children.length; i++) {
+        //       console.log('id', i)
+        //       console.log('ne', list.value[MainIndex][0].children)
+        //       console.log(
+        //         'list.value[MainIndex].children[i]',
+        //         list.value[MainIndex][0].children[i]
+        //       )
+        //       let childDeleteList = list.value[MainIndex][0].children[i]
+        //       console.log('child', childDeleteList)
+        //       if (schemaId == childDeleteList.id) {
+        //         console.log('yes', list.value[MainIndex][0].children[i])
+        //         console.log('before', list.value[MainIndex][0])
+        //         let mine = list.value[MainIndex][0]
+        //         mine.children.splice([i], 1)
+        //         // list.value[MainIndex][0] = mine
+        //         // list.value[MainIndex][0].children.splice([i], 1)
+        //         console.log('after', list.value[MainIndex][0])
+        //         console.log('after', mine)
+        //       } else {
+        //         console.log('else 1', childDeleteList.length)
+        //         if (childDeleteList.children.length) {
+        //           for (let e = 0; e < childDeleteList.children.length; e++) {
+        //             let child2DeleteList =
+        //               list.value[MainIndex][0].children[i].children[e]
+        //             if (schemaId == child2DeleteList.id) {
+        //               list.value[MainIndex][0].children[i].children.splice(
+        //                 [e],
+        //                 1
+        //               )
+        //             } else {
+        //               console.log('else 2', child2DeleteList.children.length)
+        //               if (child2DeleteList.children.length) {
+        //                 for (
+        //                   let a = 0;
+        //                   a < child2DeleteList.children.length;
+        //                   a++
+        //                 ) {
+        //                   let child3DeleteList =
+        //                     list.value[MainIndex][0].children[i].children[e]
+        //                       .children[a]
+        //                   if (schemaId == child3DeleteList.id) {
+        //                     list.value[MainIndex][0].children[i].children[
+        //                       e
+        //                     ].children.splice([a], 1)
+        //                   } else {
+        //                     console.log(
+        //                       'else 3',
+        //                       child3DeleteList.children.length
+        //                     )
+        //                     if (child3DeleteList.children.length) {
+        //                       for (
+        //                         let u = 0;
+        //                         u < child3DeleteList.children.length;
+        //                         u++
+        //                       ) {
+        //                         let child4DeleteList =
+        //                           list.value[MainIndex][0].children[i].children[
+        //                             e
+        //                           ].children[a].children[u]
+        //                         if (schemaId == child4DeleteList.id) {
+        //                           list.value[MainIndex][0].children[i].children[
+        //                             e
+        //                           ].children[a].children.splice([u], 1)
+        //                           return
+        //                         } else {
+        //                           alert('end')
+        //                         }
+        //                       }
+        //                     }
+        //                   }
+        //                 }
+        //               }
+        //             }
+        //           }
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
+        // let schema = data.schema
+        // let classUpdate = data.classUpdate
 
-        if (schema.place.length == 2) {
-          list.value[schema.place[0]].children[
-            schema.place[1]
-          ].class = classUpdate
-        }
+        // if (schema.place.length == 1) {
+        //   list.value[schema.place[0]].class = classUpdate
+        // }
 
-        if (schema.place.length == 3) {
-          list.value[schema.place[0]].children[schema.place[1]].children[
-            schema.place[2]
-          ].class = classUpdate
-        }
+        // if (schema.place.length == 2) {
+        //   list.value[schema.place[0]].children[
+        //     schema.place[1]
+        //   ].class = classUpdate
+        // }
 
-        if (schema.place.length == 4) {
-          list.value[schema.place[0]].children[schema.place[1]].children[
-            schema.place[2]
-          ].children[schema.place[3]].class = classUpdate
-        }
+        // if (schema.place.length == 3) {
+        //   list.value[schema.place[0]].children[schema.place[1]].children[
+        //     schema.place[2]
+        //   ].class = classUpdate
+        // }
+
+        // if (schema.place.length == 4) {
+        //   list.value[schema.place[0]].children[schema.place[1]].children[
+        //     schema.place[2]
+        //   ].children[schema.place[3]].class = classUpdate
+        // }
       })
     })
 
@@ -140,10 +321,160 @@ export default {
     let listPos = ref(0)
     let active = ref(false)
     let editactive = ref(false)
+    let page_view = ref(true)
+    let mainIndex = ref(0)
 
     let edit_comp = ref({})
 
     const user = computed(() => store.state.auth.main_user)
+
+    let update_component = computed(
+      () => store.state.page_builder.update_component
+    )
+
+    let delete_component = computed(
+      () => store.state.page_builder.delete_component
+    )
+
+    watch(delete_component, (newValue, oldValue) => {
+      let schema = delete_component.value.schema
+      let MainIndex = delete_component.value.MainIndex
+
+      let deleteList = list.value[MainIndex][0]
+      let schemaId = schema.id
+
+      if (schemaId == deleteList.id) {
+        list.value.splice([MainIndex], 1)
+      } else {
+        if (deleteList.children.length) {
+          for (let i = 0; i < deleteList.children.length; i++) {
+            let childDeleteList = list.value[MainIndex][0].children[i]
+            if (schemaId == childDeleteList.id) {
+              list.value[MainIndex][0].children.splice([i], 1)
+            } else {
+              if (childDeleteList.children.length) {
+                for (let e = 0; e < childDeleteList.children.length; e++) {
+                  let child2DeleteList =
+                    list.value[MainIndex][0].children[i].children[e]
+                  if (schemaId == child2DeleteList.id) {
+                    list.value[MainIndex][0].children[i].children.splice([e], 1)
+                  } else {
+                    if (child2DeleteList.children.length) {
+                      for (
+                        let a = 0;
+                        a < child2DeleteList.children.length;
+                        a++
+                      ) {
+                        let child3DeleteList =
+                          list.value[MainIndex][0].children[i].children[e]
+                            .children[a]
+                        if (schemaId == child3DeleteList.id) {
+                          list.value[MainIndex][0].children[i].children[
+                            e
+                          ].children.splice([a], 1)
+                        } else {
+                          if (child3DeleteList.children.length) {
+                            for (
+                              let u = 0;
+                              u < child3DeleteList.children.length;
+                              u++
+                            ) {
+                              let child4DeleteList =
+                                list.value[MainIndex][0].children[i].children[e]
+                                  .children[a].children[u]
+                              if (schemaId == child4DeleteList.id) {
+                                list.value[MainIndex][0].children[i].children[
+                                  e
+                                ].children[a].children.splice([u], 1)
+                                return
+                              } else {
+                                alert('end')
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    })
+
+    watch(update_component, (newValue, oldValue) => {
+      let data = update_component.value
+
+      let schema = data.schema
+      let classUpdate = data.classUpdate
+      let MainIndex = mainIndex.value
+      let deleteList = list.value[MainIndex][0]
+      let schemaId = schema.id
+
+      if (schemaId == deleteList.id) {
+        list.value[MainIndex][0].class = classUpdate
+      } else {
+        if (deleteList.children.length) {
+          for (let i = 0; i < deleteList.children.length; i++) {
+            let childDeleteList = list.value[MainIndex][0].children[i]
+            if (schemaId == childDeleteList.id) {
+              list.value[MainIndex][0].children[i].class = classUpdate
+            } else {
+              if (childDeleteList.children.length) {
+                for (let e = 0; e < childDeleteList.children.length; e++) {
+                  let child2DeleteList =
+                    list.value[MainIndex][0].children[i].children[e]
+                  if (schemaId == child2DeleteList.id) {
+                    list.value[MainIndex][0].children[i].children[
+                      e
+                    ].class = classUpdate
+                  } else {
+                    if (child2DeleteList.children.length) {
+                      for (
+                        let a = 0;
+                        a < child2DeleteList.children.length;
+                        a++
+                      ) {
+                        let child3DeleteList =
+                          list.value[MainIndex][0].children[i].children[e]
+                            .children[a]
+                        if (schemaId == child3DeleteList.id) {
+                          list.value[MainIndex][0].children[i].children[
+                            e
+                          ].children[a].class = classUpdate
+                        } else {
+                          if (child3DeleteList.children.length) {
+                            for (
+                              let u = 0;
+                              u < child3DeleteList.children.length;
+                              u++
+                            ) {
+                              let child4DeleteList =
+                                list.value[MainIndex][0].children[i].children[e]
+                                  .children[a].children[u]
+                              if (schemaId == child4DeleteList.id) {
+                                list.value[MainIndex][0].children[i].children[
+                                  e
+                                ].children[a].children[u].class = classUpdate
+                                return
+                              } else {
+                                alert('end')
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    })
 
     let business = computed(() => {
       return store.state.business.main_business
@@ -155,6 +486,7 @@ export default {
       active,
       editactive,
       edit_comp,
+      page_view,
     }
   },
 }
