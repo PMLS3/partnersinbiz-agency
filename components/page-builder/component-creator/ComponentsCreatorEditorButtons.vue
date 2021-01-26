@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-4 gap-1">
+  <div class="grid grid-cols-5 gap-1">
     <vs-tooltip :text="`Edit ${schema.name}`">
       <vs-button
         icon-pack="feather"
@@ -33,6 +33,14 @@
         color="danger"
         icon="icon-trash"
         @click="deleteItem()"
+      ></vs-button>
+    </vs-tooltip>
+    <vs-tooltip :text="`Drag ${schema.name}`">
+      <vs-button
+        size="small"
+        icon="drag_indicator"
+        draggable
+        @dragstart="startDrag($event, schema)"
       ></vs-button>
     </vs-tooltip>
   </div>
@@ -75,6 +83,18 @@ export default {
       }, 1000)
 
       // }
+    },
+    startDrag(evt, item) {
+      console.log('start Drag', evt, item)
+
+      let payload = {
+        schema: item,
+        MainIndex: this.mainIndex,
+      }
+      setTimeout(() => {
+        console.log('payload:', payload)
+        this.$store.commit('page_builder/DRAG_START_COMPONENT', payload)
+      }, 1000)
     },
   },
 }

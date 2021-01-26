@@ -1,6 +1,6 @@
 <template>
-  <div class="w-screen h-full">
-    <div class="w-screen h-full" v-for="(comp, index) in list" :key="index">
+  <div class="w-full h-full">
+    <div class="w-full h-full" v-for="(comp, index) in list" :key="index">
       <ComponentCreatorEditor
         v-for="(field, ind) in comp"
         :key="ind"

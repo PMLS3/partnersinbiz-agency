@@ -3,7 +3,6 @@
     <!-- <UiTree :data='list'/> -->
     <PageGeneratorNavbar :list="list" />
 
-    <!-- {{ list }} -->
     <PageGeneratorViewer :list="list" />
 
     <vs-button

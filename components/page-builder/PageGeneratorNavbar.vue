@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vs-row vs-w="12" style="width: 80vw">
+    <vs-row vs-w="12">
       <vs-col
         vs-type="flex"
         vs-justify="center"
