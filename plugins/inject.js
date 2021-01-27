@@ -32,7 +32,11 @@ export default (context, inject) => {
     console.log('innerText', innerText)
     let item = {}
 
-    item.title = node_name
+    item.title = node_name.toUpperCase()
+
+    if (item.title == 'SVG' || item.title == 'PATH') {
+      item.title = item.title + 'S'
+    }
 
     item.class = class_name
     if (innerText) {
@@ -41,6 +45,30 @@ export default (context, inject) => {
     item.place = [...list]
     item.id = Math.random().toString(36).substr(2, 6)
     item.name = node_name + item.id
+
+    var nodes = [],
+      values = []
+    for (
+      var att, i = 0, atts = element.attributes, n = atts.length;
+      i < n;
+      i++
+    ) {
+      att = atts[i]
+      nodes.push(att.nodeName)
+      values.push(att.nodeValue)
+      console.log('att.nodeName', typeof att.nodeName)
+      let nodeName = att.nodeName
+      if (att.nodeValue) {
+        if (att.nodeName.includes('-')) {
+          console.log('- ' + att.nodeName)
+          let split = att.nodeName.split('-')
+          let newName = split[0] + split[1]
+          console.log('- ' + newName)
+          nodeName = newName
+        }
+      }
+      item[nodeName] = att.nodeValue
+    }
 
     item.children = []
 
@@ -69,19 +97,47 @@ export default (context, inject) => {
 
       let attributes = elm.attributes
       console.log('attributes', attributes)
+      console.log('attributes typeof', typeof attributes)
 
       let innerText = elm.innerText
       console.log('innerText', innerText, i)
 
       let child_item = {}
 
-      child_item.title = node_name
+      child_item.title = node_name.toUpperCase()
+
+      if (child_item.title == 'SVG' || child_item.title == 'PATH') {
+        child_item.title = child_item.title + 'S'
+      }
 
       child_item.class = class_name
       child_item.place = [...place, i]
       child_item.id = Math.random().toString(36).substr(2, 6)
       child_item.name = node_name + child_item.id
 
+      var nodes = [],
+        values = []
+      for (var att, i = 0, atts = elm.attributes, n = atts.length; i < n; i++) {
+        att = atts[i]
+        console.log('at', att)
+        nodes.push(att.nodeName)
+        values.push(att.nodeValue)
+        console.log('att.nodeName', typeof att.nodeName)
+        let nodeName = att.nodeName
+
+        if (att.nodeValue) {
+          if (att.nodeName.includes('-')) {
+            console.log('- ' + att.nodeName)
+            let split = att.nodeName.split('-')
+            let newName = split[0] + split[1]
+            console.log('- ' + newName)
+            nodeName = newName
+          }
+        }
+
+        child_item[nodeName] = att.nodeValue
+      }
+      console.log('noded', nodes, values)
       if (innerText) {
         child_item.innerText = innerText
       }

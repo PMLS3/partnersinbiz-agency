@@ -97,6 +97,7 @@ module.exports = {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api',
+    '@nuxtjs/fontawesome',
   ],
   tailwindcss: {
     configPath: '~/config/tailwind.config.js',

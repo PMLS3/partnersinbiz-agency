@@ -1,5 +1,11 @@
 <template>
-  <button
+  <svg
+    :xmlns="schema.xmlns"
+    :fill="schema.fill"
+    :width="schema.width"
+    :height="schema.height"
+    :viewBox="schema.viewBox"
+    :stroke="schema.stroke"
     @click="open_pop = !open_pop"
     :class="schema.class"
     @mouseover="hover = true"
@@ -9,7 +15,16 @@
       :schema="schema"
       :index="index"
       :mainIndex="mainIndex"
-      v-if="hover"
+      class="absolute top-0"
+      v-if="schema.place.length == 1 && hover"
+    />
+
+    <ComponentsCreatorEditorButtons
+      :schema="schema"
+      :index="index"
+      :mainIndex="mainIndex"
+      v-if="schema.place.length > 1 && hover"
+      class="absolute top-0 right-0 mr-1"
     />
 
     <ComponentCreatorEditor
@@ -18,13 +33,12 @@
       :schema="field"
       :mainIndex="mainIndex"
     ></ComponentCreatorEditor>
-    {{ schema.innerText }}
-  </button>
+  </svg>
 </template>
 
 <script>
 export default {
-  name: 'buttons',
+  name: 'SVGS',
   props: ['schema', 'index', 'mainIndex'],
   components: {
     ComponentCreatorEditor: () =>

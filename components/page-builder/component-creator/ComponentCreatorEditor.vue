@@ -12,6 +12,8 @@
 import SPAN from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSpanAdd.vue'
 import DIV from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorDivi.vue'
 import BUTTON from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorButton.vue'
+import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
+import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
 
 export default {
   name: 'ComponentCreatorEditor',
@@ -20,17 +22,14 @@ export default {
     DIV,
     SPAN,
     BUTTON,
+    SVGS,
+    PATHS,
   },
   data() {
     return {
       popup: false,
       field: {},
       index: 0,
-      styleData: {
-        border: '1px solid black',
-        'min-height': '50px',
-        position: 'relative',
-      },
     }
   },
   props: ['schema', 'mykey', 'myindex', 'mainIndex'],

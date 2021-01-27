@@ -1,5 +1,9 @@
 <template>
-  <button
+  <path
+    :stroke-linecap="schema.strokelinecap"
+    :stroke-linejoin="schema.strokelinejoin"
+    :stroke-width="schema.strokewidth"
+    :d="schema.d"
     @click="open_pop = !open_pop"
     :class="schema.class"
     @mouseover="hover = true"
@@ -9,7 +13,16 @@
       :schema="schema"
       :index="index"
       :mainIndex="mainIndex"
-      v-if="hover"
+      class="absolute top-0"
+      v-if="schema.place.length == 1 && hover"
+    />
+
+    <ComponentsCreatorEditorButtons
+      :schema="schema"
+      :index="index"
+      :mainIndex="mainIndex"
+      v-if="schema.place.length > 1 && hover"
+      class="absolute top-0 right-0 mr-1"
     />
 
     <ComponentCreatorEditor
@@ -18,13 +31,12 @@
       :schema="field"
       :mainIndex="mainIndex"
     ></ComponentCreatorEditor>
-    {{ schema.innerText }}
-  </button>
+  </path>
 </template>
 
 <script>
 export default {
-  name: 'buttons',
+  name: 'PATHS',
   props: ['schema', 'index', 'mainIndex'],
   components: {
     ComponentCreatorEditor: () =>
