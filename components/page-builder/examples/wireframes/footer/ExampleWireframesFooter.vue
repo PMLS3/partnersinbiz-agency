@@ -22,6 +22,18 @@ TODO correct heading, name component and update this
         >Right Logo</vs-radio
       >
       <vs-radio v-model="val" vs-name="val" vs-value="simple">Simple</vs-radio>
+      <vs-radio
+        v-model="val"
+        vs-name="val"
+        vs-value="ExampleWireframesFooterBlue"
+        >Blue Background</vs-radio
+      >
+      <vs-radio
+        v-model="val"
+        vs-name="val"
+        vs-value="ExampleWireframesFooterSiteMap"
+        >Site Map</vs-radio
+      >
     </div>
 
     <actionInput v-if="val == 'actionInput'" />
@@ -29,6 +41,10 @@ TODO correct heading, name component and update this
     <leftLogo v-if="val == 'leftLogo'" />
     <rightLogo v-if="val == 'rightLogo'" />
     <simple v-if="val == 'simple'" />
+    <ExampleWireframesFooterBlue v-if="val == 'ExampleWireframesFooterBlue'" />
+    <ExampleWireframesFooterSiteMap
+      v-if="val == 'ExampleWireframesFooterSiteMap'"
+    />
   </vs-card>
 </template>
 

@@ -14,11 +14,21 @@ TODO correct heading, name component and update this
       <vs-radio v-model="val" vs-name="val" vs-value="cardThree"
         >Three</vs-radio
       >
+
+      <vs-radio
+        v-model="val"
+        vs-name="val"
+        vs-value="ExampleWireframeTestimonialChevron"
+        >Chev</vs-radio
+      >
     </div>
 
     <cardOne v-if="val == 'cardOne'" />
     <cardTwo v-if="val == 'cardTwo'" />
     <cardThree v-if="val == 'cardThree'" />
+    <ExampleWireframeTestimonialChevron
+      v-if="val == 'ExampleWireframeTestimonialChevron'"
+    />
   </vs-card>
 </template>
 

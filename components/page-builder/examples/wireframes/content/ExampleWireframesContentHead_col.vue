@@ -1,18 +1,22 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    id="exampleWireFrame"
+    @click="addComponent('exampleWireFrame')"
+  >
     <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-col text-center w-full mb-20">
+      <div class="flex flex-col w-full mb-20 text-center">
         <h2
-          class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1"
+          class="mb-1 text-xs font-medium tracking-widest text-indigo-500 title-font"
         >
           ROOF PARTY POLAROID
         </h2>
         <h1
-          class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+          class="mb-4 text-2xl font-medium text-gray-900 sm:text-3xl title-font"
         >
           Master Cleanse Reliac Heirloom
         </h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+        <p class="mx-auto text-base leading-relaxed lg:w-2/3">
           Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
           gentrify, subway tile poke farm-to-table. Franzen you probably haven't
           heard of them man bun deep jianbing selfies heirloom prism food truck
@@ -21,18 +25,18 @@
       </div>
       <div class="flex flex-wrap">
         <div
-          class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200"
+          class="px-8 py-6 border-l-2 border-gray-200 xl:w-1/4 lg:w-1/2 md:w-full"
         >
           <h2
-            class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2"
+            class="mb-2 text-lg font-medium text-gray-900 sm:text-xl title-font"
           >
             Shooting Stars
           </h2>
-          <p class="leading-relaxed text-base mb-4">
+          <p class="mb-4 text-base leading-relaxed">
             Fingerstache flexitarian street art 8-bit waistcoat. Distillery
             hexagon disrupt edison bulbche.
           </p>
-          <a class="text-indigo-500 inline-flex items-center"
+          <a class="inline-flex items-center text-indigo-500"
             >Learn More
             <svg
               fill="none"
@@ -48,18 +52,18 @@
           </a>
         </div>
         <div
-          class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200"
+          class="px-8 py-6 border-l-2 border-gray-200 xl:w-1/4 lg:w-1/2 md:w-full"
         >
           <h2
-            class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2"
+            class="mb-2 text-lg font-medium text-gray-900 sm:text-xl title-font"
           >
             The Catalyzer
           </h2>
-          <p class="leading-relaxed text-base mb-4">
+          <p class="mb-4 text-base leading-relaxed">
             Fingerstache flexitarian street art 8-bit waistcoat. Distillery
             hexagon disrupt edison bulbche.
           </p>
-          <a class="text-indigo-500 inline-flex items-center"
+          <a class="inline-flex items-center text-indigo-500"
             >Learn More
             <svg
               fill="none"
@@ -75,18 +79,18 @@
           </a>
         </div>
         <div
-          class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200"
+          class="px-8 py-6 border-l-2 border-gray-200 xl:w-1/4 lg:w-1/2 md:w-full"
         >
           <h2
-            class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2"
+            class="mb-2 text-lg font-medium text-gray-900 sm:text-xl title-font"
           >
             Neptune
           </h2>
-          <p class="leading-relaxed text-base mb-4">
+          <p class="mb-4 text-base leading-relaxed">
             Fingerstache flexitarian street art 8-bit waistcoat. Distillery
             hexagon disrupt edison bulbche.
           </p>
-          <a class="text-indigo-500 inline-flex items-center"
+          <a class="inline-flex items-center text-indigo-500"
             >Learn More
             <svg
               fill="none"
@@ -102,18 +106,18 @@
           </a>
         </div>
         <div
-          class="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-l-2 border-gray-200"
+          class="px-8 py-6 border-l-2 border-gray-200 xl:w-1/4 lg:w-1/2 md:w-full"
         >
           <h2
-            class="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2"
+            class="mb-2 text-lg font-medium text-gray-900 sm:text-xl title-font"
           >
             Melanchole
           </h2>
-          <p class="leading-relaxed text-base mb-4">
+          <p class="mb-4 text-base leading-relaxed">
             Fingerstache flexitarian street art 8-bit waistcoat. Distillery
             hexagon disrupt edison bulbche.
           </p>
-          <a class="text-indigo-500 inline-flex items-center"
+          <a class="inline-flex items-center text-indigo-500"
             >Learn More
             <svg
               fill="none"
@@ -130,10 +134,27 @@
         </div>
       </div>
       <button
-        class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+        class="flex px-8 py-2 mx-auto mt-16 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600"
       >
         Button
       </button>
     </div>
   </section>
 </template>
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>

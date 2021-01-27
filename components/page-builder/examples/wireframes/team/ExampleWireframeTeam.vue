@@ -14,11 +14,15 @@ TODO correct heading, name component and update this
         >Three</vs-radio
       >
       <vs-radio v-model="val" vs-name="val" vs-value="splitTwo">Two</vs-radio>
+      <vs-radio v-model="val" vs-name="val" vs-value="ExampleWireframeTeamGrey"
+        >Big with Description</vs-radio
+      >
     </div>
 
     <splitFour v-if="val == 'splitFour'" />
     <splitThree v-if="val == 'splitThree'" />
     <splitTwo v-if="val == 'splitTwo'" />
+    <ExampleWireframeTeamGrey v-if="val == 'ExampleWireframeTeamGrey'" />
   </vs-card>
 </template>
 

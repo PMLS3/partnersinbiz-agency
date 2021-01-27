@@ -17,12 +17,16 @@ TODO correct heading, name component and update this
         >Playstore</vs-radio
       >
       <vs-radio v-model="val" vs-name="val" vs-value="signup">SignUp</vs-radio>
+      <vs-radio v-model="val" vs-name="val" vs-value="alternating"
+        >Alternating</vs-radio
+      >
     </div>
 
     <ctaLineBtn v-if="val == 'btn'" />
     <ctaLineSign v-if="val == 'sign'" />
     <ctaPlaystore v-if="val == 'playstore'" />
     <ctaSignUp v-if="val == 'signup'" />
+    <ExampleWireframesCtaAlternating v-if="val == 'alternating'" />
   </vs-card>
 </template>
 

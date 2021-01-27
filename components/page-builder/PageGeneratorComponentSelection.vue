@@ -163,6 +163,9 @@
         <vs-tab label="Layouts"> </vs-tab>
       </vs-tabs>
     </vs-tab>
+    <vs-tab label="WireFrame">
+      <ExampleWireFrame />
+    </vs-tab>
   </vs-tabs>
 </template>
 

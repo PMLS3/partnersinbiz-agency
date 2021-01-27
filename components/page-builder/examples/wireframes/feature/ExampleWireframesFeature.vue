@@ -31,6 +31,16 @@ TODO correct heading, name component and update this
       <vs-radio v-model="val" vs-name="val" vs-value="twoCards"
         >Two Cards</vs-radio
       >
+
+      <vs-radio v-model="val" vs-name="val" vs-value="video"
+        >Video with Message</vs-radio
+      >
+
+      <vs-radio v-model="val" vs-name="val" vs-value="3by3">3 By 3</vs-radio>
+
+      <vs-radio v-model="val" vs-name="val" vs-value="iconText"
+        >Icon and Text</vs-radio
+      >
     </div>
 
     <bigImgSplit v-if="val == 'bigImgSplit'" />
@@ -41,6 +51,9 @@ TODO correct heading, name component and update this
     <itemized v-if="val == 'itemized'" />
     <listSplit v-if="val == 'listSplit'" />
     <twoCards v-if="val == 'twoCards'" />
+    <ExampleWireframesFeatureVideo v-if="val == 'video'" />
+    <ExampleWireframesFeature3by3 v-if="val == '3by3'" />
+    <ExampleWireframesFeatureIconText v-if="val == 'iconText'" />
   </vs-card>
 </template>
 

@@ -14,6 +14,24 @@
     <vs-radio v-model="val" vs-name="val" vs-value="gallery">Gallery</vs-radio>
     <vs-radio v-model="val" vs-name="val" vs-value="headerr">Header</vs-radio>
     <vs-radio v-model="val" vs-name="val" vs-value="heros">Hero</vs-radio>
+    <vs-radio v-model="val" vs-name="val" vs-value="box">Box Layout</vs-radio>
+    <vs-radio v-model="val" vs-name="val" vs-value="side">Side Layout</vs-radio>
+    <vs-radio v-model="val" vs-name="val" vs-value="cardL"
+      >Card Layout</vs-radio
+    >
+    <vs-radio v-model="val" vs-name="val" vs-value="card">Card</vs-radio>
+    <vs-radio v-model="val" vs-name="val" vs-value="overlays"
+      >Overlays</vs-radio
+    >
+
+    <vs-radio v-model="val" vs-name="val" vs-value="navigation"
+      >Navigation</vs-radio
+    >
+
+    <vs-radio v-model="val" vs-name="val" vs-value="headings">Heading</vs-radio>
+    <vs-radio v-model="val" vs-name="val" vs-value="tables">Tables</vs-radio>
+    <vs-radio v-model="val" vs-name="val" vs-value="lists">Lists</vs-radio>
+
     <vs-radio v-model="val" vs-name="val" vs-value="pricing">Pricing</vs-radio>
     <vs-radio v-model="val" vs-name="val" vs-value="statistics"
       >Statistics</vs-radio
@@ -44,6 +62,15 @@ import statistics from './statistic/ExampleWireframesStatistic'
 import steps from './step/ExampleWireframeStep'
 import team from './team/ExampleWireframeTeam'
 import testimonial from './testimonial/ExampleWireframeTestimonial'
+import box from './layouts/box/ExamplesWireframesBox'
+import side from './layouts/side/ExamplesWireframesSide'
+import cardL from './layouts/card/ExampleWireFrameLayoutsCard'
+import card from './card/ExampleWireFrameCard'
+import navigation from './navigation/ExampleWireframeNavigation'
+import headings from './heading/ExampleWireframeHeading'
+import tables from './table/ExampleWireframeTable'
+import lists from './lists/ExampleWireframeLists'
+import overlays from './overlays/ExampleWireframeOverlays'
 
 export default {
   components: {
@@ -62,6 +89,15 @@ export default {
     steps,
     team,
     testimonial,
+    box,
+    side,
+    cardL,
+    card,
+    navigation,
+    headings,
+    tables,
+    overlays,
+    lists,
   },
   data: () => ({
     val: 'blog',

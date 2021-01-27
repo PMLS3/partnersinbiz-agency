@@ -33,6 +33,11 @@ TODO correct heading, name component and update this
     <imgLeft v-if="val == 'imgLeft'" />
     <imgLeftInput v-if="val == 'imgLeftInput'" />
     <imgRight v-if="val == 'imgRight'" />
+    <ExampleWireframesHeroGradient
+      v-if="val == 'ExampleWireframesHeroGradient'"
+    />
+    <ExampleWireframesHeroLeft v-if="val == 'ExampleWireframesHeroLeft'" />
+    <ExampleWireframesHeroCenter v-if="val == 'ExampleWireframesHeroCenter'" />
   </vs-card>
 </template>
 

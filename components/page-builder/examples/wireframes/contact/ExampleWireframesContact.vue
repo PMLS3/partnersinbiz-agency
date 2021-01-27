@@ -18,11 +18,16 @@
       <vs-radio v-model="val" vs-name="val" vs-value="contact"
         >Contact Us</vs-radio
       >
+
+      <vs-radio v-model="val" vs-name="val" vs-value="4cards"
+        >Four Cards</vs-radio
+      >
     </div>
 
     <contactBigLocation v-if="val == 'big'" />
     <contactSmallLocation v-if="val == 'small'" />
     <contactContactUs v-if="val == 'contact'" />
+    <ExampleWireframesContact4Cards v-if="val == '4cards'" />
   </vs-card>
 </template>
 
