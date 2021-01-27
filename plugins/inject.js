@@ -42,7 +42,12 @@ export default (context, inject) => {
         item.title == 'H3' ||
         item.title == 'H4' ||
         item.title == 'H5' ||
-        item.title == 'H6'
+        item.title == 'H6' ||
+        item.title == 'FOOTER' ||
+        item.title == 'P' ||
+        item.title == 'CITE' ||
+        item.title == 'HEADER' ||
+        item.title == 'SMALL'
       ) {
         item.title = item.title + 'S'
       }
@@ -116,14 +121,19 @@ export default (context, inject) => {
         child_item.title = node_name.toUpperCase()
 
         if (
-          item.title == 'SVG' ||
-          item.title == 'PATH' ||
-          item.title == 'H1' ||
-          item.title == 'H2' ||
-          item.title == 'H3' ||
-          item.title == 'H4' ||
-          item.title == 'H5' ||
-          item.title == 'H6'
+          child_item.title == 'SVG' ||
+          child_item.title == 'PATH' ||
+          child_item.title == 'H1' ||
+          child_item.title == 'H2' ||
+          child_item.title == 'H3' ||
+          child_item.title == 'H4' ||
+          child_item.title == 'H5' ||
+          child_item.title == 'H6' ||
+          child_item.title == 'FOOTER' ||
+          child_item.title == 'P' ||
+          child_item.title == 'CITE' ||
+          child_item.title == 'HEADER' ||
+          child_item.title == 'SMALL'
         ) {
           child_item.title = child_item.title + 'S'
         }

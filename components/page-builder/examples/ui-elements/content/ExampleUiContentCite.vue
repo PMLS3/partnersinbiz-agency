@@ -6,13 +6,10 @@
 ========================================================================================== -->
 
 <template>
-  <vx-card title="Span" @click="addComponent('span')">
-    <p class="mb-4">
-      Add <code>span</code> class to wrapper to make all contained button acts
-      as grouped buttons.
-    </p>
+  <vx-card title="Cite" @click="addComponent('cite')">
+    <p class="mb-4">Add <code>cite</code> usually used as...</p>
 
-    <span id="span">Span</span>
+    <cite id="cite">Cite</cite>
   </vx-card>
 </template>
 

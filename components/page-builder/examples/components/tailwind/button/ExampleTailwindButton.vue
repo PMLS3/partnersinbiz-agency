@@ -8,8 +8,13 @@
 <template>
   <div class="w-full">
     <ExampleTailwindButtonSmallFilled />
-    <ExampleTailwindButtonLargeFilled />
     <ExampleTailwindButtonRegularFilled />
+    <ExampleTailwindButtonLargeFilled />
+
+    <ExampleTailwindButtonSmallOutline />
+    <ExampleTailwindButtonRegularOutline />
+    <ExampleTailwindButtonLargeOutline />
+    <ExampleTailwindButtonLinks />
   </div>
 </template>
 

@@ -61,54 +61,14 @@
           type="border"
           icon="add"
         ></vs-button>
-
-        <!-- <vs-button
-          @click="addEdit()"
-          color="primary"
-          type="border"
-          icon="edit"
-          class="ml-2"
-        ></vs-button>
-
-        <vs-button
-          @click="newPage()"
-          color="success"
-          type="border"
-          icon="refresh"
-          class="ml-2"
-        ></vs-button> -->
       </vs-col>
       <vs-divider color="primary" icon="check"></vs-divider>
     </vs-row>
 
     <vs-popup fullscreen title="Building Options" :active.sync="popupAdd">
-      <!-- <vs-button @click="addGrid('builder', false)">Cancel</vs-button> -->
-      <!-- <vs-button
-        style="float: right"
-        radius
-        color="danger"
-        type="gradient"
-        icon-pack="feather"
-        icon="icon-x-circle"
-        @click="popupAdd = false"
-      ></vs-button> -->
       <PageGeneratorComponentSelection allowedType="all" />
     </vs-popup>
-    <vs-popup
-      title="Building Options"
-      :active.sync="popupAddQuick"
-      :button-close-hidden="true"
-    >
-      <!-- <vs-button @click="addGrid('builder', false)">Cancel</vs-button> -->
-      <vs-button
-        style="float: right"
-        radius
-        color="danger"
-        type="gradient"
-        icon-pack="feather"
-        icon="icon-x-circle"
-        @click="popupAddQuick = false"
-      ></vs-button>
+    <vs-popup title="Building Options" :active.sync="popupAddQuick">
       <PageGeneratorComponentQuickSelection />
     </vs-popup>
     <!-- <vs-popup

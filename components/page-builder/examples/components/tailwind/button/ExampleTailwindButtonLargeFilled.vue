@@ -15,74 +15,94 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-gray"
+          @click="addComponent('large-text-gray')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-red"
+          @click="addComponent('large-text-red')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-orange-500 rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-orange-500 border-none rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-orange"
+          @click="addComponent('large-text-orange')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-yellow-500 rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-yellow-500 border-none rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-yellow"
+          @click="addComponent('large-text-yellow')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-green-500 rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-green-500 border-none rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-green"
+          @click="addComponent('large-text-green')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-teal-500 border-none rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-teal"
+          @click="addComponent('large-text-teal')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-blue-500 rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-blue-500 border-none rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-blue"
+          @click="addComponent('large-text-blue')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-indigo-500 rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-indigo-500 border-none rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-indigo"
+          @click="addComponent('large-text-indigo')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-purple-500 rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-purple-500 border-none rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-purple"
+          @click="addComponent('large-text-purple')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-pink-500 border-none rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-pink"
+          @click="addComponent('large-text-pink')"
         >
-          Small
+          Large
         </button>
       </div>
     </vx-card>
@@ -95,74 +115,304 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-gray"
+          @click="addComponent('large-text-icon-gary')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-red"
+          @click="addComponent('large-text-icon-red')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-orange-500 rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-orange-500 border-none rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-orange"
+          @click="addComponent('large-text-icon-orange')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-yellow-500 rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-yellow-500 border-none rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-yellow"
+          @click="addComponent('large-text-icon-yellow')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-green-500 rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-green-500 border-none rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-green"
+          @click="addComponent('large-text-icon-green')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-teal-500 border-none rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-teal"
+          @click="addComponent('large-text-icon-teal')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-blue-500 rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-blue-500 border-none rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-blue"
+          @click="addComponent('large-text-icon-blue')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-indigo-500 rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-indigo-500 border-none rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-indigo"
+          @click="addComponent('large-text-icon-indigo')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-purple-500 rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-purple-500 border-none rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-purple"
+          @click="addComponent('large-text-icon-purple')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-pink-500 border-none rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-pink"
+          @click="addComponent('large-text-icon-pink')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
       </div>
     </vx-card>
@@ -175,74 +425,294 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-gray"
+          @click="addComponent('large-icon-gray')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-red"
+          @click="addComponent('large-icon-red')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-orange-500 rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-orange-500 border-none rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-orange"
+          @click="addComponent('large-icon-orange')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-yellow-500 rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-yellow-500 border-none rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-yellow"
+          @click="addComponent('large-icon-yellow')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-green-500 rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-green-500 border-none rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-green"
+          @click="addComponent('large-icon-green')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-teal-500 border-none rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-teal"
+          @click="addComponent('large-icon-teal')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-blue-500 rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-blue-500 border-none rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-blue"
+          @click="addComponent('large-icon-blue')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-indigo-500 rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-indigo-500 border-none rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-indigo"
+          @click="addComponent('large-icon-indigo')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-purple-500 rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-purple-500 border-none rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-purple"
+          @click="addComponent('large-icon-purple')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-pink-500 border-none rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-pink"
+          @click="addComponent('large-icon-pink')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
       </div>
     </vx-card>
@@ -255,74 +725,94 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-gray-500 border-none rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-gray"
+          @click="addComponent('large-text-rounded-gray')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-red-500 border-none rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-red"
+          @click="addComponent('large-text-rounded-red')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-orange-500 rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-orange-500 border-none rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-orange"
+          @click="addComponent('large-text-rounded-orange')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-yellow-500 rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-yellow-500 border-none rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-yellow"
+          @click="addComponent('large-text-rounded-yellow')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-green-500 rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-green-500 border-none rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-green"
+          @click="addComponent('large-text-rounded-green')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-teal-500 rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-teal-500 border-none rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-teal"
+          @click="addComponent('large-text-rounded-teal')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-blue-500 rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-blue-500 border-none rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-blue"
+          @click="addComponent('large-text-rounded-blue')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-indigo-500 rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-indigo-500 border-none rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-indigo"
+          @click="addComponent('large-text-rounded-indigo')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-purple-500 rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-purple-500 border-none rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-purple"
+          @click="addComponent('large-text-rounded-purple')"
         >
-          Small
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-pink-500 rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-pink-500 border-none rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-rounded-pink"
+          @click="addComponent('large-text-rounded-pink')"
         >
-          Small
+          Large
         </button>
       </div>
     </vx-card>
@@ -335,79 +825,309 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-gray-500 border-none rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-gray"
+          @click="addComponent('large-text-icon-rounded-gray')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-red-500 border-none rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-red"
+          @click="addComponent('large-text-icon-rounded-red')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-orange-500 rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-orange-500 border-none rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-orange"
+          @click="addComponent('large-text-icon-rounded-orange')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-yellow-500 rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-yellow-500 border-none rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-yellow"
+          @click="addComponent('large-text-icon-rounded-yellow')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-green-500 rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-green-500 border-none rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-green"
+          @click="addComponent('large-text-icon-rounded-green')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-teal-500 rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-teal-500 border-none rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-teal"
+          @click="addComponent('large-text-icon-rounded-teal')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-blue-500 rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-blue-500 border-none rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-blue"
+          @click="addComponent('large-text-icon-rounded-blue')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-indigo-500 rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-indigo-500 border-none rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-indigo"
+          @click="addComponent('large-text-icon-rounded-indigo')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-purple-500 rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-purple-500 border-none rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-purple"
+          @click="addComponent('large-text-icon-rounded-purple')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-pink-500 rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-pink-500 border-none rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-text-icon-rounded-pink"
+          @click="addComponent('large-text-icon-rounded-pink')"
         >
-          <i class="fas fa-heart"></i> Small
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+          Large
         </button>
       </div>
     </vx-card>
 
-    <vx-card title="Border">
+    <vx-card title="Round with Icons">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -415,74 +1135,294 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-gray-500 border-none rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-gray"
+          @click="addComponent('large-text-icon-rounded-gray')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-red-500 border-none rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-red"
+          @click="addComponent('large-text-icon-rounded-red')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-orange-500 rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-orange-500 border-none rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-orange"
+          @click="addComponent('large-text-icon-rounded-orange')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-yellow-500 rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-yellow-500 border-none rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-yellow"
+          @click="addComponent('large-text-icon-rounded-yellow')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-green-500 rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-green-500 border-none rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-green"
+          @click="addComponent('large-text-icon-rounded-green')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-teal-500 rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-teal-500 border-none rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-teal"
+          @click="addComponent('large-text-icon-rounded-teal')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-blue-500 rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-blue-500 border-none rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-blue"
+          @click="addComponent('large-text-icon-rounded-blue')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-indigo-500 rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-indigo-500 border-none rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-indigo"
+          @click="addComponent('large-text-icon-rounded-indigo')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-purple-500 rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-purple-500 border-none rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-purple"
+          @click="addComponent('large-text-icon-rounded-purple')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-pink-500 rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-8 py-3 mb-1 mr-1 text-base font-bold text-white uppercase bg-pink-500 border-none rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
+          id="large-icon-rounded-pink"
+          @click="addComponent('large-text-icon-rounded-pink')"
         >
-          <i class="fas fa-heart"></i>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            width="14px"
+            height="14px"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
         </button>
       </div>
     </vx-card>
@@ -490,7 +1430,7 @@
 </template>
 <script>
 export default {
-  name: 'ExampleTailwindButtonSmallFilled',
+  name: 'ExampleTailwindButtonLargeFilled',
   methods: {
     addComponent(name) {
       let element = document.getElementById(name)

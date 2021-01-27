@@ -21,6 +21,11 @@ import H4S from '@/components/page-builder/component-creator/components/Editor/c
 import H5S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh5Tag.vue'
 import H6S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh6Tag.vue'
 
+import PS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorP.vue'
+import FOOTERS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorFooter.vue'
+import SMALLS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSmall.vue'
+import CITES from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorCite.vue'
+
 export default {
   name: 'ComponentCreatorEditor',
 
@@ -36,6 +41,10 @@ export default {
     H4S,
     H5S,
     H6S,
+    PS,
+    FOOTERS,
+    SMALLS,
+    CITES,
   },
   data() {
     return {

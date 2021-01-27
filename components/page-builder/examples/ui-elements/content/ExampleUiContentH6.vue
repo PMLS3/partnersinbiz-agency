@@ -1,9 +1,6 @@
 <template>
   <vx-card title="H6">
-    <p class="mb-4">
-      Add <code>btn-group</code> class to wrapper to make all contained button
-      acts as grouped buttons.
-    </p>
+    <p class="mb-4">Add <code>h6</code> heading to your page.</p>
     <div class="flex flex-wrap">
       <h6
         class="mt-0 mb-2 text-xl font-normal leading-normal text-pink-800"

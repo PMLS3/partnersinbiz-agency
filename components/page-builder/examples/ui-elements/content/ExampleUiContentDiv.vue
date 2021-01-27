@@ -6,13 +6,10 @@
 ========================================================================================== -->
 
 <template>
-  <vx-card title="Div">
-    <p class="mb-4">
-      Add <code>div</code> class to wrapper to make all contained button acts as
-      grouped buttons.
-    </p>
+  <vx-card title="Div" @click="addComponent('comp')">
+    <p class="mb-4">Add <code>div</code> class to wrapper.</p>
 
-    <div id="comp" @click="addComponent('comp')"></div>
+    <div id="comp" class="h-12"></div>
   </vx-card>
 </template>
 

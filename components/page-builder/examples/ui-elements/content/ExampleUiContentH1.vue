@@ -1,7 +1,7 @@
 <template>
   <vx-card title="H1">
     <p class="mb-4">Add <code>h1</code> heading to your page.</p>
-    <div class="flex flex-auto">
+    <div class="flex flex-wrap">
       <h1
         class="mt-0 mb-2 text-6xl font-normal leading-normal text-pink-800"
         id="pink"

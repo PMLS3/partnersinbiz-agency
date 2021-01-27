@@ -15,94 +15,94 @@
 
       <div class="demo-alignment">
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-gray-500 text-gray-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-gray-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-gray"
-          @click="addComponent('regular-text-gray')"
+          id="outline-text-gray"
+          @click="addComponent('outline-text-gray')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-red-500 text-red-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-red-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-red"
-          @click="addComponent('regular-text-red')"
+          id="outline-text-red"
+          @click="addComponent('outline-text-red')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-orange-500 border-none rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-orange-500 text-orange-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-orange-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-orange"
-          @click="addComponent('regular-text-orange')"
+          id="outline-text-orange"
+          @click="addComponent('outline-text-orange')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-yellow-500 border-none rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-yellow-500 text-yellow-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-yellow-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-yellow"
-          @click="addComponent('regular-text-yellow')"
+          id="outline-text-yellow"
+          @click="addComponent('outline-text-yellow')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 border-none rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-green-500 text-green-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-green-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-green"
-          @click="addComponent('regular-text-green')"
+          id="outline-text-green"
+          @click="addComponent('outline-text-green')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-teal-500 border-none rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-teal-500 text-teal-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-teal-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-teal"
-          @click="addComponent('regular-text-teal')"
+          id="outline-text-teal"
+          @click="addComponent('outline-text-teal')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-blue-500 border-none rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-blue-500 text-blue-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-blue-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-blue"
-          @click="addComponent('regular-text-blue')"
+          id="outline-text-blue"
+          @click="addComponent('outline-text-blue')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 border-none rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-indigo-500 text-indigo-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-indigo-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-indigo"
-          @click="addComponent('regular-text-indigo')"
+          id="outline-text-indigo"
+          @click="addComponent('outline-text-indigo')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-purple-500 border-none rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-purple-500 text-purple-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-purple-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-purple"
-          @click="addComponent('regular-text-purple')"
+          id="outline-text-purple"
+          @click="addComponent('outline-text-purple')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-pink-500 border-none rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-pink-500 text-pink-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-pink-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-pink"
-          @click="addComponent('regular-text-pink')"
+          id="outline-text-pink"
+          @click="addComponent('outline-text-pink')"
         >
-          Regular
+          Small
         </button>
       </div>
     </vx-card>
@@ -115,11 +115,11 @@
 
       <div class="demo-alignment">
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-gray-500 text-gray-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-gray-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-gray"
-          @click="addComponent('regular-text-icon-gary')"
+          id="outline-text-icon-gray"
+          @click="addComponent('outline-text-icon-gary')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -142,14 +142,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-red-500 text-red-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-red-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-red"
-          @click="addComponent('regular-text-icon-red')"
+          id="outline-text-icon-red"
+          @click="addComponent('outline-text-icon-red')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -172,14 +172,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-orange-500 border-none rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-orange-500 text-orange-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-orange-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-orange"
-          @click="addComponent('regular-text-icon-orange')"
+          id="outline-text-icon-orange"
+          @click="addComponent('outline-text-icon-orange')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -202,14 +202,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-yellow-500 border-none rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-yellow-500 text-yellow-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-yellow-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-yellow"
-          @click="addComponent('regular-text-icon-yellow')"
+          id="outline-text-icon-yellow"
+          @click="addComponent('outline-text-icon-yellow')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -232,14 +232,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 border-none rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-green-500 text-green-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-green-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-green"
-          @click="addComponent('regular-text-icon-green')"
+          id="outline-text-icon-green"
+          @click="addComponent('outline-text-icon-green')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -262,14 +262,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-teal-500 border-none rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-teal-500 text-teal-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-teal-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-teal"
-          @click="addComponent('regular-text-icon-teal')"
+          id="outline-text-icon-teal"
+          @click="addComponent('outline-text-icon-teal')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -292,14 +292,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-blue-500 border-none rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-blue-500 text-blue-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-blue-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-blue"
-          @click="addComponent('regular-text-icon-blue')"
+          id="outline-text-icon-blue"
+          @click="addComponent('outline-text-icon-blue')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -322,14 +322,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 border-none rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-indigo-500 text-indigo-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-indigo-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-indigo"
-          @click="addComponent('regular-text-icon-indigo')"
+          id="outline-text-icon-indigo"
+          @click="addComponent('outline-text-icon-indigo')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -352,14 +352,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-purple-500 border-none rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-purple-500 text-purple-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-purple-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-purple"
-          @click="addComponent('regular-text-icon-purple')"
+          id="outline-text-icon-purple"
+          @click="addComponent('outline-text-icon-purple')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -382,14 +382,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-pink-500 border-none rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-pink-500 text-pink-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-pink-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-pink"
-          @click="addComponent('regular-text-icon-pink')"
+          id="outline-text-icon-pink"
+          @click="addComponent('outline-text-icon-pink')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -412,7 +412,7 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
       </div>
     </vx-card>
@@ -425,11 +425,11 @@
 
       <div class="demo-alignment">
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-gray-500 text-gray-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-gray-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-gray"
-          @click="addComponent('regular-icon-gray')"
+          id="outline-icon-gray"
+          @click="addComponent('outline-icon-gray')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -454,11 +454,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-red-500 text-red-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-red-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-red"
-          @click="addComponent('regular-icon-red')"
+          id="outline-icon-red"
+          @click="addComponent('outline-icon-red')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -483,11 +483,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-orange-500 border-none rounded shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-orange-500 text-orange-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-orange-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-orange"
-          @click="addComponent('regular-icon-orange')"
+          id="outline-icon-orange"
+          @click="addComponent('outline-icon-orange')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -512,11 +512,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-yellow-500 border-none rounded shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-yellow-500 text-yellow-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-yellow-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-yellow"
-          @click="addComponent('regular-icon-yellow')"
+          id="outline-icon-yellow"
+          @click="addComponent('outline-icon-yellow')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -541,11 +541,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 border-none rounded shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-green-500 text-green-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-green-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-green"
-          @click="addComponent('regular-icon-green')"
+          id="outline-icon-green"
+          @click="addComponent('outline-icon-green')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -570,11 +570,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-teal-500 border-none rounded shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-teal-500 text-teal-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-teal-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-teal"
-          @click="addComponent('regular-icon-teal')"
+          id="outline-icon-teal"
+          @click="addComponent('outline-icon-teal')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -599,11 +599,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-blue-500 border-none rounded shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-blue-500 text-blue-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-blue-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-blue"
-          @click="addComponent('regular-icon-blue')"
+          id="outline-icon-blue"
+          @click="addComponent('outline-icon-blue')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -628,11 +628,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 border-none rounded shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-indigo-500 text-indigo-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-indigo-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-indigo"
-          @click="addComponent('regular-icon-indigo')"
+          id="outline-icon-indigo"
+          @click="addComponent('outline-icon-indigo')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -657,11 +657,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-purple-500 border-none rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-purple-500 text-purple-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-purple-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-purple"
-          @click="addComponent('regular-icon-purple')"
+          id="outline-icon-purple"
+          @click="addComponent('outline-icon-purple')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -686,11 +686,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-pink-500 border-none rounded shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-pink-500 text-pink-500 bg-opacity-0 border border-solid rounded shadow outline-none active:bg-pink-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-pink"
-          @click="addComponent('regular-icon-pink')"
+          id="outline-icon-pink"
+          @click="addComponent('outline-icon-pink')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -725,94 +725,94 @@
 
       <div class="demo-alignment">
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-500 border-none rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-gray-500 text-gray-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-gray-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-gray"
-          @click="addComponent('regular-text-rounded-gray')"
+          id="outline-text-rounded-gray"
+          @click="addComponent('outline-text-rounded-gray')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-red-500 border-none rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-red-500 text-red-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-red-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-red"
-          @click="addComponent('regular-text-rounded-red')"
+          id="outline-text-rounded-red"
+          @click="addComponent('outline-text-rounded-red')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-orange-500 border-none rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-orange-500 text-orange-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-orange-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-orange"
-          @click="addComponent('regular-text-rounded-orange')"
+          id="outline-text-rounded-orange"
+          @click="addComponent('outline-text-rounded-orange')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-yellow-500 border-none rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-yellow-500 text-yellow-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-yellow-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-yellow"
-          @click="addComponent('regular-text-rounded-yellow')"
+          id="outline-text-rounded-yellow"
+          @click="addComponent('outline-text-rounded-yellow')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 border-none rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-green-500 text-green-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-green-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-green"
-          @click="addComponent('regular-text-rounded-green')"
+          id="outline-text-rounded-green"
+          @click="addComponent('outline-text-rounded-green')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-teal-500 border-none rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-teal-500 text-teal-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-teal-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-teal"
-          @click="addComponent('regular-text-rounded-teal')"
+          id="outline-text-rounded-teal"
+          @click="addComponent('outline-text-rounded-teal')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-blue-500 border-none rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-blue-500 text-blue-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-blue-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-blue"
-          @click="addComponent('regular-text-rounded-blue')"
+          id="outline-text-rounded-blue"
+          @click="addComponent('outline-text-rounded-blue')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 border-none rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-indigo-500 text-indigo-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-indigo-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-indigo"
-          @click="addComponent('regular-text-rounded-indigo')"
+          id="outline-text-rounded-indigo"
+          @click="addComponent('outline-text-rounded-indigo')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-purple-500 border-none rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-purple-500 text-purple-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-purple-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-purple"
-          @click="addComponent('regular-text-rounded-purple')"
+          id="outline-text-rounded-purple"
+          @click="addComponent('outline-text-rounded-purple')"
         >
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-pink-500 border-none rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-pink-500 text-pink-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-pink-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-rounded-pink"
-          @click="addComponent('regular-text-rounded-pink')"
+          id="outline-text-rounded-pink"
+          @click="addComponent('outline-text-rounded-pink')"
         >
-          Regular
+          Small
         </button>
       </div>
     </vx-card>
@@ -825,11 +825,11 @@
 
       <div class="demo-alignment">
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-500 border-none rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-gray-500 text-gray-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-gray-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-gray"
-          @click="addComponent('regular-text-icon-rounded-gray')"
+          id="outline-text-icon-rounded-gray"
+          @click="addComponent('outline-text-icon-rounded-gray')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -852,14 +852,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-red-500 border-none rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-red-500 text-red-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-red-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-red"
-          @click="addComponent('regular-text-icon-rounded-red')"
+          id="outline-text-icon-rounded-red"
+          @click="addComponent('outline-text-icon-rounded-red')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -882,14 +882,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-orange-500 border-none rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-orange-500 text-orange-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-orange-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-orange"
-          @click="addComponent('regular-text-icon-rounded-orange')"
+          id="outline-text-icon-rounded-orange"
+          @click="addComponent('outline-text-icon-rounded-orange')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -912,14 +912,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-yellow-500 border-none rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-yellow-500 text-yellow-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-yellow-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-yellow"
-          @click="addComponent('regular-text-icon-rounded-yellow')"
+          id="outline-text-icon-rounded-yellow"
+          @click="addComponent('outline-text-icon-rounded-yellow')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -942,14 +942,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 border-none rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-green-500 text-green-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-green-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-green"
-          @click="addComponent('regular-text-icon-rounded-green')"
+          id="outline-text-icon-rounded-green"
+          @click="addComponent('outline-text-icon-rounded-green')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -972,14 +972,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-teal-500 border-none rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-teal-500 text-teal-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-teal-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-teal"
-          @click="addComponent('regular-text-icon-rounded-teal')"
+          id="outline-text-icon-rounded-teal"
+          @click="addComponent('outline-text-icon-rounded-teal')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1002,14 +1002,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-blue-500 border-none rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-blue-500 text-blue-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-blue-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-blue"
-          @click="addComponent('regular-text-icon-rounded-blue')"
+          id="outline-text-icon-rounded-blue"
+          @click="addComponent('outline-text-icon-rounded-blue')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1032,14 +1032,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 border-none rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-indigo-500 text-indigo-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-indigo-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-indigo"
-          @click="addComponent('regular-text-icon-rounded-indigo')"
+          id="outline-text-icon-rounded-indigo"
+          @click="addComponent('outline-text-icon-rounded-indigo')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1062,14 +1062,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-purple-500 border-none rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-purple-500 text-purple-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-purple-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-purple"
-          @click="addComponent('regular-text-icon-rounded-purple')"
+          id="outline-text-icon-rounded-purple"
+          @click="addComponent('outline-text-icon-rounded-purple')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1092,14 +1092,14 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-pink-500 border-none rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-pink-500 text-pink-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-pink-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-text-icon-rounded-pink"
-          @click="addComponent('regular-text-icon-rounded-pink')"
+          id="outline-text-icon-rounded-pink"
+          @click="addComponent('outline-text-icon-rounded-pink')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1122,7 +1122,7 @@
               d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
             />
           </svg>
-          Regular
+          Small
         </button>
       </div>
     </vx-card>
@@ -1135,11 +1135,11 @@
 
       <div class="demo-alignment">
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-500 border-none rounded-full shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-gray-500 text-gray-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-gray-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-gray"
-          @click="addComponent('regular-text-icon-rounded-gray')"
+          id="outline-icon-rounded-gray"
+          @click="addComponent('outline-text-icon-rounded-gray')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1164,11 +1164,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-red-500 border-none rounded-full shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-red-500 text-red-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-red-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-red"
-          @click="addComponent('regular-text-icon-rounded-red')"
+          id="outline-icon-rounded-red"
+          @click="addComponent('outline-text-icon-rounded-red')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1193,11 +1193,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-orange-500 border-none rounded-full shadow outline-none active:bg-orange-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-orange-500 text-orange-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-orange-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-orange"
-          @click="addComponent('regular-text-icon-rounded-orange')"
+          id="outline-icon-rounded-orange"
+          @click="addComponent('outline-text-icon-rounded-orange')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1222,11 +1222,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-yellow-500 border-none rounded-full shadow outline-none active:bg-yellow-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-yellow-500 text-yellow-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-yellow-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-yellow"
-          @click="addComponent('regular-text-icon-rounded-yellow')"
+          id="outline-icon-rounded-yellow"
+          @click="addComponent('outline-text-icon-rounded-yellow')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1251,11 +1251,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-green-500 border-none rounded-full shadow outline-none active:bg-green-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-green-500 text-green-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-green-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-green"
-          @click="addComponent('regular-text-icon-rounded-green')"
+          id="outline-icon-rounded-green"
+          @click="addComponent('outline-text-icon-rounded-green')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1280,11 +1280,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-teal-500 border-none rounded-full shadow outline-none active:bg-teal-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-teal-500 text-teal-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-teal-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-teal"
-          @click="addComponent('regular-text-icon-rounded-teal')"
+          id="outline-icon-rounded-teal"
+          @click="addComponent('outline-text-icon-rounded-teal')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1309,11 +1309,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-blue-500 border-none rounded-full shadow outline-none active:bg-blue-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-blue-500 text-blue-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-blue-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-blue"
-          @click="addComponent('regular-text-icon-rounded-blue')"
+          id="outline-icon-rounded-blue"
+          @click="addComponent('outline-text-icon-rounded-blue')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1338,11 +1338,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-indigo-500 border-none rounded-full shadow outline-none active:bg-indigo-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-indigo-500 text-indigo-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-indigo-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-indigo"
-          @click="addComponent('regular-text-icon-rounded-indigo')"
+          id="outline-icon-rounded-indigo"
+          @click="addComponent('outline-text-icon-rounded-indigo')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1367,11 +1367,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-purple-500 border-none rounded-full shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-purple-500 text-purple-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-purple-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-purple"
-          @click="addComponent('regular-text-icon-rounded-purple')"
+          id="outline-icon-rounded-purple"
+          @click="addComponent('outline-text-icon-rounded-purple')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1396,11 +1396,11 @@
           </svg>
         </button>
         <button
-          class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-pink-500 border-none rounded-full shadow outline-none active:bg-pink-600 hover:shadow-md focus:outline-none"
+          class="px-4 py-2 mb-1 mr-1 text-xs font-bold uppercase border-pink-500 text-pink-500 bg-opacity-0 border border-solid rounded-full shadow outline-none active:bg-pink-600 hover:bg-orange-500 hover: focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
-          id="regular-icon-rounded-pink"
-          @click="addComponent('regular-text-icon-rounded-pink')"
+          id="outline-icon-rounded-pink"
+          @click="addComponent('outline-text-icon-rounded-pink')"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -1430,7 +1430,7 @@
 </template>
 <script>
 export default {
-  name: 'ExampleTailwindButtonRegularFilled',
+  name: 'ExampleTailwindButtonSmallOutline',
   methods: {
     addComponent(name) {
       let element = document.getElementById(name)

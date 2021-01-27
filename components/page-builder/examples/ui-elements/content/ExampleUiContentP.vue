@@ -1,53 +1,56 @@
 <template>
   <vx-card title="p">
-    <p class="mb-4">
-      Add <code>btn-group</code> class to wrapper to make all contained button
-      acts as grouped buttons.
-    </p>
+    <p class="mb-4">Add <code>p</code> for your paragraphs</p>
 
     <p id="none" @click="addComponent('none')">No Extras</p>
+    <br />
     <p
-      class="mt-0 mb-4 text-base font-light leading-relaxed text-orange-800"
+      class="mt-0 mb-4 text-base font-light leading-relaxed text-orange-600"
       id="para"
       @click="addComponent('para')"
     >
-      I will be the leader of a company that ends up being worth billions of
-      dollars, because I got the answers. I understand culture. I am the
-      nucleus. I think that’s a responsibility that I have, to push
-      possibilities, to show people, this is the level that things could be at.
+      Far better is it to dare mighty things, to win glorious triumphs, even
+      though checkered by failure... than to rank with those poor spirits who
+      neither enjoy nor suffer much, because they live in a gray twilight that
+      knows not victory nor defeat.
     </p>
+    <br />
+
     <p
-      class="mt-6 mb-4 text-lg font-light leading-relaxed text-pink-800"
+      class="mt-6 mb-4 text-lg font-light leading-relaxed text-orange-600"
       id="lead"
       @click="addComponent('lead')"
     >
-      I will be the leader of a company that ends up being worth billions of
-      dollars, because I got the answers. I understand culture. I am the
-      nucleus. I think that’s a responsibility that I have, to push
-      possibilities, to show people, this is the level that things could be at.
+      Far better is it to dare mighty things, to win glorious triumphs, even
+      though checkered by failure... than to rank with those poor spirits who
+      neither enjoy nor suffer much, because they live in a gray twilight that
+      knows not victory nor defeat.
     </p>
+    <br />
 
     <div id="quote" @click="addComponent('quote')">
-      <p class="mt-0 mb-0 text-base font-light leading-relaxed text-pink-800">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.
+      <p class="mt-0 mb-0 text-base font-light leading-relaxed text-orange-600">
+        Far better is it to dare mighty things, to win glorious triumphs, even
+        though checkered by failure... than to rank with those poor spirits who
+        neither enjoy nor suffer much, because they live in a gray twilight that
+        knows not victory nor defeat.
       </p>
-      <footer class="block text-pink-600">
-        - Someone famous in <cite>Source Title</cite>
+      <footer class="block text-orange-600">
+        - Theodore Roosevelt in <cite>Source Title</cite>
       </footer>
-
-      <small
-        class="mt-0 mb-4 font-normal leading-normal text-pink-800"
-        id="small"
-        @click="addComponent('small')"
-      >
-        I will be the leader of a company that ends up being worth billions of
-        dollars, because I got the answers. I understand culture. I am the
-        nucleus. I think that’s a responsibility that I have, to push
-        possibilities, to show people, this is the level that things could be
-        at.
-      </small>
     </div>
+    <br />
+
+    <small
+      class="mt-0 mb-4 font-normal leading-normal text-orange-600"
+      id="small"
+      @click="addComponent('small')"
+    >
+      Far better is it to dare mighty things, to win glorious triumphs, even
+      though checkered by failure... than to rank with those poor spirits who
+      neither enjoy nor suffer much, because they live in a gray twilight that
+      knows not victory nor defeat.
+    </small>
   </vx-card>
 </template>
 
