@@ -1,16 +1,19 @@
 <!-- =========================================================================================
-    File Name: Button.vue
-    Description: Buttons - Imports all page portions
-    ----------------------------------------------------------------------------------------
-  
+  File Name: ButtonGroupBasic.vue.vue
+  Description: Buttons Group Basic
+  ----------------------------------------------------------------------------------------
+
 ========================================================================================== -->
 
 <template>
-  <div class="w-full">
-    <ExampleTailwindButtonSmallFilled />
-    <ExampleTailwindButtonLargeFilled />
-    <ExampleTailwindButtonRegularFilled />
-  </div>
+  <vx-card title="Span">
+    <p class="mb-4">
+      Add <code>btn-group</code> class to wrapper to make all contained button
+      acts as grouped buttons.
+    </p>
+
+    <div class="btn-group"></div>
+  </vx-card>
 </template>
 
 <script>

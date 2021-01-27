@@ -1,25 +1,40 @@
 <template>
-  <h2 @click="edit()" :class="schema.class" :style="schema.style">
-    {{ schema.content.html }}
+  <h2 :class="schema.class" :style="schema.style" @click="open_pop = !open_pop">
+    {{ schema.innerText }}
+    <vs-popup
+      classContent="popup-example"
+      :title="schema.title"
+      :active.sync="open_pop"
+    >
+      <ComponentsCreatorEditorButtons
+        :schema="schema"
+        :index="index"
+        :mainIndex="mainIndex"
+      />
+    </vs-popup>
+    <ComponentCreatorEditor
+      v-for="(field, ind) in schema"
+      :key="ind"
+      :schema="field"
+    />
   </h2>
 </template>
 
 <script>
 export default {
-  name: 'h2Tag',
-  props: ['schema'],
+  name: 'H2S',
+  props: ['schema', 'index', 'mainIndex'],
 
-  methods: {
-    edit() {
-      let payload = {
-        active_card: true,
-        component_show: 'h2Tag',
-        schema: this.schema,
-        index: 0
-      }
-
-      this.$store.commit('page_builder/COMPONENTS_EDIT', payload)
+  components: {
+    ComponentCreatorEditor: () =>
+      import(
+        '@/components/page-builder/component-creator/ComponentCreatorEditor.vue'
+      ),
+  },
+  data() {
+    return {
+      open_pop: false,
     }
-  }
+  },
 }
 </script>

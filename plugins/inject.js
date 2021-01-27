@@ -8,123 +8,65 @@ export default (context, inject) => {
     let payload = {}
     // let element = document.getElementById(name)
     console.log('element', element)
+    if (element) {
+      let class_name = element.className
 
-    let class_name = element.className
+      console.log(class_name)
 
-    // console.log(class_name)
-
-    let child_element_count = element.childElementCount
-    // console.log(child_element_count)
-
-    let children = element.children
-    // console.log('children', children)
-
-    var child_nodes = element.childNodes
-    // console.log('children', child_nodes)
-
-    let node_name = element.nodeName
-    // console.log('node_name', node_name)
-
-    let attributes = element.attributes
-    // console.log('attributes', attributes)
-
-    let innerText = element.innerText
-    console.log('innerText', innerText)
-    let item = {}
-
-    item.title = node_name.toUpperCase()
-
-    if (item.title == 'SVG' || item.title == 'PATH') {
-      item.title = item.title + 'S'
-    }
-
-    item.class = class_name
-    if (innerText) {
-      item.innerText = innerText
-    }
-    item.place = [...list]
-    item.id = Math.random().toString(36).substr(2, 6)
-    item.name = node_name + item.id
-
-    var nodes = [],
-      values = []
-    for (
-      var att, i = 0, atts = element.attributes, n = atts.length;
-      i < n;
-      i++
-    ) {
-      att = atts[i]
-      nodes.push(att.nodeName)
-      values.push(att.nodeValue)
-      console.log('att.nodeName', typeof att.nodeName)
-      let nodeName = att.nodeName
-      if (att.nodeValue) {
-        if (att.nodeName.includes('-')) {
-          console.log('- ' + att.nodeName)
-          let split = att.nodeName.split('-')
-          let newName = split[0] + split[1]
-          console.log('- ' + newName)
-          nodeName = newName
-        }
-      }
-      item[nodeName] = att.nodeValue
-    }
-
-    item.children = []
-
-    for (let i = 0; i < child_element_count; i++) {
-      item.children.push(childElementLoop(children[i], i, item.place))
-    }
-    payload = item
-    // payload.push(item)
-
-    function childElementLoop(elm, i, place) {
-      let class_name = elm.className
-
-      console.log('elm', elm)
-
-      let child_element_count = elm.childElementCount
+      let child_element_count = element.childElementCount
       // console.log(child_element_count)
 
-      let children = elm.children
-      // console.log(children)
+      let children = element.children
+      console.log('children', children)
 
-      var child_nodes = elm.childNodes
+      var child_nodes = element.childNodes
       // console.log('children', child_nodes)
 
-      let node_name = elm.nodeName
-      console.log('node_name', node_name)
+      let node_name = element.nodeName
+      // console.log('node_name', node_name)
 
-      let attributes = elm.attributes
-      console.log('attributes', attributes)
-      console.log('attributes typeof', typeof attributes)
+      let attributes = element.attributes
+      // console.log('attributes', attributes)
 
-      let innerText = elm.innerText
-      console.log('innerText', innerText, i)
+      let innerText = element.innerText
+      console.log('innerText', innerText)
+      let item = {}
 
-      let child_item = {}
+      item.title = node_name.toUpperCase()
 
-      child_item.title = node_name.toUpperCase()
-
-      if (child_item.title == 'SVG' || child_item.title == 'PATH') {
-        child_item.title = child_item.title + 'S'
+      if (
+        item.title == 'SVG' ||
+        item.title == 'PATH' ||
+        item.title == 'H1' ||
+        item.title == 'H2' ||
+        item.title == 'H3' ||
+        item.title == 'H4' ||
+        item.title == 'H5' ||
+        item.title == 'H6'
+      ) {
+        item.title = item.title + 'S'
       }
 
-      child_item.class = class_name
-      child_item.place = [...place, i]
-      child_item.id = Math.random().toString(36).substr(2, 6)
-      child_item.name = node_name + child_item.id
+      item.class = class_name
+      if (innerText) {
+        item.innerText = innerText
+      }
+      item.place = [...list]
+      item.id = Math.random().toString(36).substr(2, 6)
+      item.name = node_name + item.id
 
       var nodes = [],
         values = []
-      for (var att, i = 0, atts = elm.attributes, n = atts.length; i < n; i++) {
+      for (
+        var att, i = 0, atts = element.attributes, n = atts.length;
+        i < n;
+        i++
+      ) {
         att = atts[i]
-        console.log('at', att)
         nodes.push(att.nodeName)
         values.push(att.nodeValue)
         console.log('att.nodeName', typeof att.nodeName)
         let nodeName = att.nodeName
-
         if (att.nodeValue) {
           if (att.nodeName.includes('-')) {
             console.log('- ' + att.nodeName)
@@ -134,25 +76,106 @@ export default (context, inject) => {
             nodeName = newName
           }
         }
+        item[nodeName] = att.nodeValue
+      }
 
-        child_item[nodeName] = att.nodeValue
-      }
-      console.log('noded', nodes, values)
-      if (innerText) {
-        child_item.innerText = innerText
-      }
-      child_item.children = []
+      item.children = []
 
       for (let i = 0; i < child_element_count; i++) {
-        child_item.children.push(
-          childElementLoop(children[i], i, child_item.place)
-        )
+        item.children.push(childElementLoop(children[i], i, item.place))
       }
-      return child_item
-    }
+      payload = item
+      // payload.push(item)
 
-    console.log('payload', payload)
-    return payload
+      function childElementLoop(elm, i, place) {
+        let class_name = elm.className
+
+        console.log('elm', elm)
+
+        let child_element_count = elm.childElementCount
+        // console.log(child_element_count)
+
+        let children = elm.children
+        // console.log(children)
+
+        var child_nodes = elm.childNodes
+        // console.log('children', child_nodes)
+
+        let node_name = elm.nodeName
+        console.log('node_name', node_name)
+
+        let attributes = elm.attributes
+        console.log('attributes', attributes)
+        console.log('attributes typeof', typeof attributes)
+
+        let innerText = elm.innerText
+        console.log('innerText', innerText, i)
+
+        let child_item = {}
+
+        child_item.title = node_name.toUpperCase()
+
+        if (
+          item.title == 'SVG' ||
+          item.title == 'PATH' ||
+          item.title == 'H1' ||
+          item.title == 'H2' ||
+          item.title == 'H3' ||
+          item.title == 'H4' ||
+          item.title == 'H5' ||
+          item.title == 'H6'
+        ) {
+          child_item.title = child_item.title + 'S'
+        }
+
+        child_item.class = class_name
+        child_item.place = [...place, i]
+        child_item.id = Math.random().toString(36).substr(2, 6)
+        child_item.name = node_name + child_item.id
+
+        var nodes = [],
+          values = []
+        for (
+          var att, i = 0, atts = elm.attributes, n = atts.length;
+          i < n;
+          i++
+        ) {
+          att = atts[i]
+          console.log('at', att)
+          nodes.push(att.nodeName)
+          values.push(att.nodeValue)
+          console.log('att.nodeName', typeof att.nodeName)
+          let nodeName = att.nodeName
+
+          if (att.nodeValue) {
+            if (att.nodeName.includes('-')) {
+              console.log('- ' + att.nodeName)
+              let split = att.nodeName.split('-')
+              let newName = split[0] + split[1]
+              console.log('- ' + newName)
+              nodeName = newName
+            }
+          }
+
+          child_item[nodeName] = att.nodeValue
+        }
+        console.log('noded', nodes, values)
+        if (innerText) {
+          child_item.innerText = innerText
+        }
+        child_item.children = []
+
+        for (let i = 0; i < child_element_count; i++) {
+          child_item.children.push(
+            childElementLoop(children[i], i, child_item.place)
+          )
+        }
+        return child_item
+      }
+
+      console.log('payload', payload)
+      return payload
+    }
   }
   inject('comp_create', comp_create)
   // Inject $hello(msg) in Vue, context and store.

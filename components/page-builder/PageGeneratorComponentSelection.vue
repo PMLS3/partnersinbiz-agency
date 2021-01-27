@@ -109,7 +109,7 @@
     </vs-tab>
     <!-- Apps -->
     <vs-tab label="Content">
-      <content-set />
+      <ExampleUiContent />
     </vs-tab>
 
     <vs-tab label="Apps" v-if="allowedType == 'all'">
