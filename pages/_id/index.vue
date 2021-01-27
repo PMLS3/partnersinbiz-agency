@@ -95,7 +95,7 @@ import DashboardEmailCampaignsSpecific from '@/components/dashboards/email-campa
 import email from '@/components/apps/email/Email.vue'
 import userView from '@/components/apps/user/UserView.vue'
 import userEdit from '@/components/apps/user/user-edit/UserEdit.vue'
-
+import todo from '@/components/apps/todo/Todo.vue'
 // // // Pages
 import calendar from '@/components/pages/Calendar.vue'
 // // import videoChat from '@/components/apps/videoChat/VideoChat.vue'
@@ -137,6 +137,7 @@ export default {
     DashboardEmailCampaigns,
     DashboardEmailCampaignsSpecific,
     email,
+    todo,
 
     dashboardAppsTwitter,
     dashboardAppsFacebook,

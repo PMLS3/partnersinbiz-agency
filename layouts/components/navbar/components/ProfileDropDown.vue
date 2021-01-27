@@ -53,7 +53,7 @@
             <span class="ml-2">Dashboard </span>
           </li>
 
-          <!--  <li
+          <li
             class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
             @click="$router.push('/apps/email').catch(() => {})"
           >
@@ -70,7 +70,7 @@
 
           <li
             class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/todo').catch(() => {})"
+            @click="$router.push('/todo')"
           >
             <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">Tasks</span>
@@ -106,7 +106,7 @@
             <feather-icon icon="LayoutIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">CRM</span>
           </li>
-        
+
           <li
             class="flex px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
             @click="$router.push(`/m/${business.un_name}`)"
@@ -114,7 +114,7 @@
           >
             <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />
             <span class="ml-2">App </span>
-          </li> -->
+          </li>
 
           <vs-divider class="m-1" />
 

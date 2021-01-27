@@ -9,7 +9,7 @@
   <!-- component -->
   <!-- This is an example component -->
   <div class="w-full">
-    <div
+    <!-- <div
       class="grid w-full grid-cols-2 gap-16 p-16 mx-auto overflow-hidden bg-white rounded-lg shadow-lg"
     >
       <div class="grid gap-2">
@@ -575,7 +575,10 @@
           button
         </button>
       </div>
-    </div>
+    </div> -->
+    <ExampleTailwindButtonSmallFilled />
+    <ExampleTailwindButtonLargeFilled />
+    <ExampleTailwindButtonRegularFilled />
   </div>
 </template>
 

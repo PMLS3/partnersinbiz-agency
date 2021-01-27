@@ -8,7 +8,7 @@
 <template>
   <div
     id="todo-app"
-    class="border border-solid d-theme-border-grey-light rounded relative overflow-hidden"
+    class="relative overflow-hidden border border-solid rounded d-theme-border-grey-light"
   >
     <vs-sidebar
       class="items-no-padding"
@@ -30,14 +30,14 @@
     </vs-sidebar>
     <div
       :class="{ 'sidebar-spacer': clickNotClose }"
-      class="no-scroll-content border border-r-0 border-b-0 border-t-0 border-solid d-theme-border-grey-light no-scroll-content"
+      class="border border-t-0 border-b-0 border-r-0 border-solid no-scroll-content d-theme-border-grey-light"
     >
       <div
-        class="flex d-theme-dark-bg items-center border border-l-0 border-r-0 border-t-0 border-solid d-theme-border-grey-light"
+        class="flex items-center border border-t-0 border-l-0 border-r-0 border-solid d-theme-dark-bg d-theme-border-grey-light"
       >
         <!-- TOGGLE SIDEBAR BUTTON -->
         <feather-icon
-          class="md:inline-flex lg:hidden ml-4 mr-4 cursor-pointer"
+          class="ml-4 mr-4 cursor-pointer md:inline-flex lg:hidden"
           icon="MenuIcon"
           @click.stop="toggleTodoSidebar(true)"
         />
@@ -50,7 +50,7 @@
           icon="icon-search"
           placeholder="Search..."
           v-model="searchQuery"
-          class="vs-input-no-border vs-input-no-shdow-focus w-full"
+          class="w-full vs-input-no-border vs-input-no-shdow-focus"
         />
       </div>
 
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import moduleTodo from '@/store/todo/moduleTodo.js'
+// import moduleTodo from '@/store/todo/moduleTodo.js'
 import TodoAddNew from './TodoAddNew.vue'
 import TodoTask from './TodoTask.vue'
 import TodoFilters from './TodoFilters.vue'
@@ -189,7 +189,7 @@ export default {
     VuePerfectScrollbar,
   },
   created() {
-    this.$store.registerModule('todo', moduleTodo)
+    // this.$store.registerModule('todo', moduleTodo)
     this.setSidebarWidth()
 
     const filter = this.$route.params.filter
