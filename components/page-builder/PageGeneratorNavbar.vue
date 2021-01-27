@@ -81,14 +81,9 @@
       <vs-divider color="primary" icon="check"></vs-divider>
     </vs-row>
 
-    <vs-popup
-      fullscreen
-      title="Building Options"
-      :active.sync="popupAdd"
-      :button-close-hidden="true"
-    >
+    <vs-popup fullscreen title="Building Options" :active.sync="popupAdd">
       <!-- <vs-button @click="addGrid('builder', false)">Cancel</vs-button> -->
-      <vs-button
+      <!-- <vs-button
         style="float: right"
         radius
         color="danger"
@@ -96,7 +91,7 @@
         icon-pack="feather"
         icon="icon-x-circle"
         @click="popupAdd = false"
-      ></vs-button>
+      ></vs-button> -->
       <PageGeneratorComponentSelection allowedType="all" />
     </vs-popup>
     <vs-popup
