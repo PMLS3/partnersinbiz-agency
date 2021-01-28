@@ -37,6 +37,9 @@ export default (context, inject) => {
       if (
         item.title == 'SVG' ||
         item.title == 'PATH' ||
+        item.title == 'RECT' ||
+        item.title == 'CIRCLE' ||
+        item.title == 'LINE' ||
         item.title == 'H1' ||
         item.title == 'H2' ||
         item.title == 'H3' ||
@@ -125,6 +128,9 @@ export default (context, inject) => {
         if (
           child_item.title == 'SVG' ||
           child_item.title == 'PATH' ||
+          child_item.title == 'RECT' ||
+          child_item.title == 'CIRCLE' ||
+          child_item.title == 'LINE' ||
           child_item.title == 'H1' ||
           child_item.title == 'H2' ||
           child_item.title == 'H3' ||

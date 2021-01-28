@@ -1,7 +1,11 @@
 <template>
   <!-- Card is full width. Use in 12 col grid for best view. -->
   <!-- Card code block start -->
-  <div class="flex flex-col lg:flex-row mx-auto w-full bg-white shadow rounded">
+  <div
+    class="flex flex-col lg:flex-row mx-auto w-full bg-white shadow rounded"
+    id="card-project"
+    @click="addComponent('card-project')"
+  >
     <div class="w-full lg:w-1/3 p-6">
       <div class="flex items-center">
         <div class="w-12 h-12 rounded shadow">
@@ -212,5 +216,18 @@
 <script>
 export default {
   name: 'FullWidthThreeSectionProjectCard',
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
 }
 </script>

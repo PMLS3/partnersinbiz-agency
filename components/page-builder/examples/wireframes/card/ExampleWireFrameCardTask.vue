@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container flex w-full justify-center items-center mt-20">
+  <div
+    class="mx-auto container flex w-full justify-center items-center mt-20"
+    id="card-task"
+    @click="addComponent('card-task')"
+  >
     <div class="md:flex justify-between w-10/12 py-4 border-t border-gray-400">
       <div class="flex items-center">
         <div class="flex items-center justify-end text-gray-700">
@@ -133,7 +137,23 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
 
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>
 <style scoped>
 body {
   font-family: 'Lato', sans-serif;

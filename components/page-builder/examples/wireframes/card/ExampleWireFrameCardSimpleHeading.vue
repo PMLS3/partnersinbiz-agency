@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container xl:px-0 px-4 py-16">
+  <div
+    class="mx-auto container xl:px-0 px-4 py-16"
+    id="card-simple-heading"
+    @click="addComponent('card-simple-heading')"
+  >
     <div class="xl:w-6/12">
       <div class="w-full h-48">
         <img src="https://i.ibb.co/8BNQmFB/Bitmap.png" class="w-full h-full" />
@@ -208,3 +212,20 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>

@@ -12,8 +12,7 @@
 import SPAN from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSpanAdd.vue'
 import DIV from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorDiv.vue'
 import BUTTON from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorButton.vue'
-import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
-import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
+
 import H1S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh1Tag.vue'
 import H2S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh2Tag.vue'
 import H3S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh3Tag.vue'
@@ -24,6 +23,12 @@ import H6S from '@/components/page-builder/component-creator/components/Editor/c
 import PS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorP.vue'
 import SECTIONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSection.vue'
 import IMGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorImg.vue'
+
+import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
+import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
+import RECTS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorRect.vue'
+import LINES from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorLine.vue'
+import CIRCLES from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorCircle.vue'
 
 import FOOTERS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorFooter.vue'
 import SMALLS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSmall.vue'
@@ -38,7 +43,10 @@ export default {
     BUTTON,
     SVGS,
     PATHS,
+    RECTS,
     SECTIONS,
+    LINES,
+    CIRCLES,
     H1S,
     H2S,
     H3S,

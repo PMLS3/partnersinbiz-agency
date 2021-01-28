@@ -1,5 +1,5 @@
-<template
-  ><footer class="text-gray-700 body-font">
+<template>
+  <footer class="text-gray-700 body-font">
     <div
       class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col"
     >
@@ -199,3 +199,20 @@
     </div>
   </footer>
 </template>
+<script>
+export default {
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+}
+</script>

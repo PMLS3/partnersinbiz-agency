@@ -1,6 +1,10 @@
 <template>
   <!-- Card code block start -->
-  <div class="bg-white shadow rounded">
+  <div
+    class="bg-white shadow rounded"
+    id="card-profile"
+    @click="addComponent('card-profile')"
+  >
     <div class="relative">
       <img
         class="h-56 shadow rounded-t w-full object-cover object-center"
@@ -199,6 +203,19 @@ export default {
       profilePhoto:
         'https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg',
     }
+  },
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
   },
 }
 </script>

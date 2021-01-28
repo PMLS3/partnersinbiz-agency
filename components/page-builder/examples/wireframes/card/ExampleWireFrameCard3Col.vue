@@ -1,5 +1,9 @@
 <template>
-  <div class="w-full bg-gray-200 py-10">
+  <div
+    class="w-full bg-gray-200 py-10"
+    id="card-col-3"
+    @click="addComponent('card-col-3')"
+  >
     <div class="container mx-auto px-6 flex items-start justify-center">
       <div class="w-full lg:w-1/4">
         <!-- Card is full width. Use in 4 col grid for best view. -->
@@ -76,5 +80,18 @@
 <script>
 export default {
   name: 'ThreeColListCardWithActionButtons',
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
 }
 </script>

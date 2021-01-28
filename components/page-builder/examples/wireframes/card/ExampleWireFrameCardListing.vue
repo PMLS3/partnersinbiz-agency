@@ -1,7 +1,11 @@
 <template>
   <!-- Card is full width. Use in 6 col grid for best view. -->
   <!-- Card code block start -->
-  <div class="mx-auto bg-white shadow p-8 rounded w-full">
+  <div
+    class="mx-auto bg-white shadow p-8 rounded w-full"
+    id="card-listing"
+    @click="addComponent('card-listing')"
+  >
     <div class="flex items-center pb-5">
       <div class="h-12 w-12">
         <img
@@ -39,5 +43,18 @@
 <script>
 export default {
   name: 'SixColListingCard',
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
 }
 </script>

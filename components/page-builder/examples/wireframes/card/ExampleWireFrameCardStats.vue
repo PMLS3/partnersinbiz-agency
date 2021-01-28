@@ -3,6 +3,8 @@
   <!-- Card code block start -->
   <div
     class="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8"
+    id="card-stats"
+    @click="addComponent('card-stats')"
   >
     <div class="bg-white rounded shadow px-8 py-6 flex items-center">
       <div class="p-4 bg-indigo-700 rounded">
@@ -125,5 +127,18 @@
 <script>
 export default {
   name: 'MediumStatCardsWithIcon',
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
 }
 </script>
