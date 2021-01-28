@@ -44,7 +44,7 @@
           <vs-tab label="Divider"> </vs-tab>
           <vs-tab label="Dropdown"> </vs-tab>
           <vs-tab label="List"> </vs-tab>
-          <vs-tab label="Images"> </vs-tab>
+          <vs-tab label="Images"><ExampleTailwindImage /> </vs-tab>
           <vs-tab label="Loading"> </vs-tab>
           <vs-tab label="Navbar"> </vs-tab>
           <vs-tab label="Notifications"> </vs-tab>

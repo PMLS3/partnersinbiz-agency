@@ -10,7 +10,7 @@
 
 <script>
 import SPAN from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSpanAdd.vue'
-import DIV from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorDivi.vue'
+import DIV from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorDiv.vue'
 import BUTTON from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorButton.vue'
 import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
 import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
@@ -22,6 +22,9 @@ import H5S from '@/components/page-builder/component-creator/components/Editor/c
 import H6S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh6Tag.vue'
 
 import PS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorP.vue'
+import SECTIONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSection.vue'
+import IMGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorImg.vue'
+
 import FOOTERS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorFooter.vue'
 import SMALLS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSmall.vue'
 import CITES from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorCite.vue'
@@ -35,6 +38,7 @@ export default {
     BUTTON,
     SVGS,
     PATHS,
+    SECTIONS,
     H1S,
     H2S,
     H3S,
@@ -45,6 +49,7 @@ export default {
     FOOTERS,
     SMALLS,
     CITES,
+    IMGS,
   },
   data() {
     return {

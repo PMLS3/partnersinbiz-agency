@@ -47,7 +47,9 @@ export default (context, inject) => {
         item.title == 'P' ||
         item.title == 'CITE' ||
         item.title == 'HEADER' ||
-        item.title == 'SMALL'
+        item.title == 'SMALL' ||
+        item.title == 'SECTION' ||
+        item.title == 'IMG'
       ) {
         item.title = item.title + 'S'
       }
@@ -133,7 +135,9 @@ export default (context, inject) => {
           child_item.title == 'P' ||
           child_item.title == 'CITE' ||
           child_item.title == 'HEADER' ||
-          child_item.title == 'SMALL'
+          child_item.title == 'SMALL' ||
+          child_item.title == 'SECTION' ||
+          child_item.title == 'IMG'
         ) {
           child_item.title = child_item.title + 'S'
         }

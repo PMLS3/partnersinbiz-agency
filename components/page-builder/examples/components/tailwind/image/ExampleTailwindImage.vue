@@ -7,19 +7,13 @@
 
 <template>
   <div class="w-full">
-    <ExampleTailwindButtonSmallFilled />
-    <ExampleTailwindButtonRegularFilled />
-    <ExampleTailwindButtonLargeFilled />
-
-    <ExampleTailwindButtonSmallOutline />
-    <ExampleTailwindButtonRegularOutline />
-    <ExampleTailwindButtonLargeOutline />
-    <ExampleTailwindButtonLinks />
+    <ExampleTailwindImageSingle />
+    <ExampleTailwindImageGrid />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ExampleTailwindButton',
+  name: 'ExampleTailwindImage',
 }
 </script>
