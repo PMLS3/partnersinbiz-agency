@@ -7,7 +7,7 @@
 
 <template>
   <div>
-    <vx-card title="Text Only">
+    <vx-card class="mt-8" title="Text Only">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -114,7 +114,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Icon and Text">
+    <vx-card class="mt-8" title="Icon and Text">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -424,7 +424,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Icon Only">
+    <vx-card class="mt-8" title="Icon Only">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -724,7 +724,7 @@
       </div>
     </vx-card>
 
-    <vx-card title=" with Text">
+    <vx-card class="mt-8" title=" with Text">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -824,7 +824,7 @@
       </div>
     </vx-card>
 
-    <vx-card title=" with icon and text">
+    <vx-card class="mt-8" title=" with icon and text">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -1134,7 +1134,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Round with Icons">
+    <vx-card class="mt-8" title="Round with Icons">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>

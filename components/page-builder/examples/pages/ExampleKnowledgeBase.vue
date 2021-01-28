@@ -6,11 +6,11 @@
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
+  <div id="knowledge-base-page" @click="addComponent('knowledge-base-page')">
     <!-- JUMBOTRON -->
     <div class="knowledge-base-jumbotron">
       <div
-        class="knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base"
+        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
       >
         <h1 class="mb-1 text-white">Run your business from</h1>
         <p class="text-white">
@@ -32,7 +32,7 @@
     <!-- KNOWLEDGE BASE CARDS  -->
     <div class="vx-row">
       <div
-        class="vx-col w-full md:w-1/3 sm:w-1/2 mb-base"
+        class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base"
         v-for="item in filteredKB"
         :key="item.id"
         @click="$router.push(item.url)"
@@ -64,7 +64,7 @@ export default {
           description:
             'Muffin lemon drops chocolate carrot cake chocolate bar sweet roll.',
           graphic: require('@/assets/images/pages/graphic-1.png'),
-          url: '/demo/pages/KnowledgeBaseCategory'
+          url: '/demo/pages/KnowledgeBaseCategory',
         },
         {
           id: 2,
@@ -72,7 +72,7 @@ export default {
           description:
             'Gingerbread sesame snaps wafer soufflé. Macaroon brownie ice cream',
           graphic: require('@/assets/images/pages/graphic-2.png'),
-          url: '/demo/pages/KnowledgeBaseCategory'
+          url: '/demo/pages/KnowledgeBaseCategory',
         },
         {
           id: 3,
@@ -80,7 +80,7 @@ export default {
           description:
             'cotton candy caramels danish chocolate cake pie candy. Lemon drops tart.',
           graphic: require('@/assets/images/pages/graphic-3.png'),
-          url: '/demo/pages/KnowledgeBaseCategory'
+          url: '/demo/pages/KnowledgeBaseCategory',
         },
         {
           id: 4,
@@ -88,14 +88,14 @@ export default {
           description:
             'Pudding oat cake carrot cake lemon drops gummies marshmallow.',
           graphic: require('@/assets/images/pages/graphic-4.png'),
-          url: '/demo/pages/KnowledgeBaseCategory'
+          url: '/demo/pages/KnowledgeBaseCategory',
         },
         {
           id: 5,
           title: 'Email Marketing',
           description: 'Gummi bears pudding icing sweet caramels chocolate',
           graphic: require('@/assets/images/pages/graphic-5.png'),
-          url: '/demo/pages/KnowledgeBaseCategory'
+          url: '/demo/pages/KnowledgeBaseCategory',
         },
         {
           id: 6,
@@ -103,15 +103,15 @@ export default {
           description:
             'Dragée jelly beans candy canes pudding cake wafer. Muffin croissant.',
           graphic: require('@/assets/images/pages/graphic-6.png'),
-          url: '/demo/pages/KnowledgeBaseCategory'
-        }
-      ]
+          url: '/demo/pages/KnowledgeBaseCategory',
+        },
+      ],
     }
   },
   computed: {
     filteredKB() {
       return this.kb.filter(
-        item =>
+        (item) =>
           item.title
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase()) ||
@@ -119,16 +119,28 @@ export default {
             .toLowerCase()
             .includes(this.knowledgeBaseSearchQuery.toLowerCase())
       )
-    }
+    },
   },
-  methods: {},
-  components: {}
+  methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
+  },
+  components: {},
 }
 </script>
 
 <style lang="scss">
 .knowledge-base-jumbotron-content {
-  background-image: url('../../../assets/images/pages/knowledge-base-cover.jpg');
+  background-image: url('../../../../assets/images/pages/knowledge-base-cover.jpg');
   background-size: cover;
 }
 </style>

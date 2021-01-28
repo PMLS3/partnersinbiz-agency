@@ -7,11 +7,8 @@
 
 <template>
   <vs-tabs alignment="fixed" position="left">
-    <vs-tab label="Single"> <ExampleTailwindImageSingle /> </vs-tab>
-    <vs-tab label="Grid">
-      <ExampleTailwindImageGrid />
-      /></vs-tab
-    >
+    <vs-tab label="Single"> <ExampleTailwindAvatarSingle /> </vs-tab>
+    <vs-tab label="Group"> <ExampleTailwindAvatarGroup /></vs-tab>
   </vs-tabs>
 </template>
 

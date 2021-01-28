@@ -103,7 +103,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Two Side">
+    <vx-card class="mt-8" title="Two Side">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -145,7 +145,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Side by Side">
+    <vx-card class="mt-8" title="Side by Side">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -177,7 +177,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Three by Two">
+    <vx-card class="mt-8" title="Three by Two">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -237,7 +237,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Four by Two">
+    <vx-card class="mt-8" title="Four by Two">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>

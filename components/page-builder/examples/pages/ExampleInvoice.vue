@@ -6,7 +6,7 @@
 ========================================================================================== -->
 
 <template>
-  <div id="invoice-page">
+  <div id="invoice-page" @click="addComponent('invoice-page')">
     <div class="flex flex-wrap items-center justify-between">
       <vx-input-group class="mb-base mr-3">
         <vs-input v-model="mailTo" placeholder="Email" />
@@ -64,7 +64,7 @@
             <p>{{ recipientDetails.addressLine2 }}</p>
             <p>{{ recipientDetails.zipcode }}</p>
           </div>
-          <div class="invoice__recipient-contact ">
+          <div class="invoice__recipient-contact">
             <p class="flex items-center">
               <feather-icon icon="MailIcon" svgClasses="h-4 w-4"></feather-icon>
               <span class="ml-2">{{ recipientDetails.mailId }}</span>
@@ -176,7 +176,7 @@ export default {
         addressLine2: 'Elyria, OH',
         zipcode: '94203',
         mailId: 'hello@pixinvent.net',
-        mobile: '+91 999 999 9999'
+        mobile: '+91 999 999 9999',
       },
       recipientDetails: {
         fullName: 'Peter Stark',
@@ -184,11 +184,11 @@ export default {
         addressLine2: 'Holbrook, NY',
         zipcode: '90001',
         mailId: 'peter@mail.com',
-        mobile: '+91 988 888 8888'
+        mobile: '+91 988 888 8888',
       },
       invoiceDetails: {
         invoiceNo: '001/2019',
-        invoiceDate: 'Mon Dec 10 2018 07:46:00 GMT+0000 (GMT)'
+        invoiceDate: 'Mon Dec 10 2018 07:46:00 GMT+0000 (GMT)',
       },
       invoiceData: {
         tasks: [
@@ -197,33 +197,44 @@ export default {
             task: 'Website Redesign',
             hours: 60,
             rate: 15,
-            amount: 90000
+            amount: 90000,
           },
           {
             id: 2,
             task: 'Newsletter template design',
             hours: 20,
             rate: 12,
-            amount: 24000
-          }
+            amount: 24000,
+          },
         ],
         subtotal: 114000,
         discountPercentage: 5,
         discountedAmount: 5700,
-        total: 108300
-      }
+        total: 108300,
+      },
     }
   },
   computed: {},
   methods: {
     printInvoice() {
       window.print()
-    }
+    },
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
   },
   components: {},
   mounted() {
     this.$emit('setAppClasses', 'invoice-page')
-  }
+  },
 }
 </script>
 

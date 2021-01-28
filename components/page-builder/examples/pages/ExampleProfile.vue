@@ -6,18 +6,18 @@
 ========================================================================================== -->
 
 <template>
-  <div id="profile-page">
+  <div id="profile-page" @click="addComponent('profile-page')">
     <!-- PROFILE HEADER -->
     <div class="profile-header">
       <div class="relative">
-        <div class="cover-container rounded-t-lg">
+        <div class="rounded-t-lg cover-container">
           <img
             :src="user_info.cover_img"
             alt="user-profile-cover"
-            class="responsive block"
+            class="block responsive"
           />
         </div>
-        <div class="profile-img-container pointer-events-none">
+        <div class="pointer-events-none profile-img-container">
           <div>
             <vs-avatar
               class="user-profile-img"
@@ -25,7 +25,7 @@
               size="85px"
             />
           </div>
-          <div class="profile-actions pointer-events-auto flex">
+          <div class="flex pointer-events-auto profile-actions">
             <vs-button
               icon-pack="feather"
               radius
@@ -41,29 +41,29 @@
         </div>
       </div>
       <div
-        class="flex items-center justify-end flex-wrap profile-header-nav p-6"
+        class="flex flex-wrap items-center justify-end p-6 profile-header-nav"
       >
         <div class="block sm:hidden">
           <feather-icon
             @click="isNavOpen = !isNavOpen"
             icon="AlignJustifyIcon"
             v-show="!isNavOpen"
-            class="vx-navbar-toggler cursor-pointer"
+            class="cursor-pointer vx-navbar-toggler"
           />
           <feather-icon
             icon="XIcon"
             v-show="isNavOpen"
             @click="isNavOpen = !isNavOpen"
-            class="vx-navbar-toggler cursor-pointer"
+            class="cursor-pointer vx-navbar-toggler"
           />
         </div>
         <div
           :class="isNavOpen ? 'block' : 'hidden'"
-          class="w-full flex-grow sm:flex sm:items-center sm:w-auto"
+          class="flex-grow w-full sm:flex sm:items-center sm:w-auto"
         >
           <div class="text-sm sm:flex-grow">
             <ul
-              class="sm:flex justify-around mt-8 w-full md:mt-0 md:ml-auto md:w-3/4"
+              class="justify-around w-full mt-8 sm:flex md:mt-0 md:ml-auto md:w-3/4"
             >
               <li class="p-2 sm:p-0">
                 <router-link to="/pages/profile">Timeline</router-link>
@@ -94,7 +94,7 @@
     <!-- COL AREA -->
     <div class="vx-row">
       <!-- COL 1 -->
-      <div class="vx-col w-full lg:w-1/4">
+      <div class="w-full vx-col lg:w-1/4">
         <!-- ABOUT CARD -->
         <vx-card title="About" class="mt-base">
           <!-- ACTION SLOT -->
@@ -131,7 +131,7 @@
             <p>www.pixinvent.com</p>
           </div>
 
-          <div class="social-links flex mt-4">
+          <div class="flex mt-4 social-links">
             <feather-icon
               svgClasses="h-7 w-7 cursor-pointer bg-primary p-1 text-white rounded"
               class="mr-2"
@@ -154,7 +154,7 @@
         <vx-card title="Suggested Pages" class="mt-base">
           <ul class="page-suggestions-list">
             <li
-              class="page-suggestion flex items-center mb-4"
+              class="flex items-center mb-4 page-suggestion"
               v-for="page in suggestedPages"
               :key="page.index"
             >
@@ -173,7 +173,7 @@
                     class="mr-2 cursor-pointer"
                   ></feather-icon>
                 </div>
-                <!-- <span class="flex bg-primary rounded p-2 text-white"><feather-icon icon="UserPlusIcon" svgClasses="w-4 h-4"></feather-icon></span> -->
+                <!-- <span class="flex p-2 text-white rounded bg-primary"><feather-icon icon="UserPlusIcon" svgClasses="w-4 h-4"></feather-icon></span> -->
               </div>
             </li>
           </ul>
@@ -189,10 +189,10 @@
               :key="feed.id"
             >
               <!-- FEED HEADER -->
-              <div class="twitter-feed-header flex items-center">
+              <div class="flex items-center twitter-feed-header">
                 <vs-avatar class="m-0" :src="feed.authorAvatar" size="35px" />
-                <div class="leading-tight ml-3">
-                  <p class="feed-author font-semibold">
+                <div class="ml-3 leading-tight">
+                  <p class="font-semibold feed-author">
                     {{ feed.authorDisplayName }}
                   </p>
                   <span class="flex items-center"
@@ -217,7 +217,7 @@
                   >#{{ tag }}</span
                 >
               </div>
-              <small class="mt-3 inline-block">{{
+              <small class="inline-block mt-3">{{
                 feed.time | date(true)
               }}</small>
             </li>
@@ -226,7 +226,7 @@
       </div>
 
       <!-- COL 2 -->
-      <div class="vx-col w-full lg:w-1/2">
+      <div class="w-full vx-col lg:w-1/2">
         <vx-card
           class="mt-base"
           v-for="(post, index) in userPosts"
@@ -234,7 +234,7 @@
         >
           <div>
             <!-- POST HEADER -->
-            <div class="post-header flex justify-between mb-4">
+            <div class="flex justify-between mb-4 post-header">
               <div class="flex items-center">
                 <div>
                   <vs-avatar
@@ -256,7 +256,7 @@
                   class="ml-4"
                   icon="HeartIcon"
                   :svgClasses="{
-                    'text-danger fill-current stroke-current': post.isLiked
+                    'text-danger fill-current stroke-current': post.isLiked,
                   }"
                 ></feather-icon>
               </div>
@@ -266,15 +266,15 @@
             <div class="post-content">
               <p>{{ post.text }}</p>
             </div>
-            <div class="post-media-container mb-6 mt-4">
+            <div class="mt-4 mb-6 post-media-container">
               <ul class="flex post-media-list">
                 <li
-                  class="post-media m-1 w-full"
+                  class="w-full m-1 post-media"
                   v-for="(media, mediaIdex) in post.media.slice(0, 2)"
                   :key="mediaIdex"
                 >
                   <img
-                    class="responsive rounded"
+                    class="rounded responsive"
                     :src="media.img"
                     alt="user-upload"
                     v-if="mediaType(media) == 'image'"
@@ -314,7 +314,7 @@
                     ></feather-icon>
                     <span>{{ post.likes }}</span>
                   </div>
-                  <ul class="users-liked user-list ml-3 sm:ml-6">
+                  <ul class="ml-3 users-liked user-list sm:ml-6">
                     <li
                       v-for="(user, userIndex) in post.usersLiked"
                       :key="userIndex"
@@ -323,7 +323,7 @@
                         <vs-avatar
                           :src="user.img"
                           size="30px"
-                          class="border-2 border-white border-solid -m-1"
+                          class="-m-1 border-2 border-white border-solid"
                         ></vs-avatar>
                       </vx-tooltip>
                     </li>
@@ -339,13 +339,14 @@
                   <span>{{ post.comments }}</span>
                 </div>
               </div>
-              <div class="comments-container mt-4">
+              <div class="mt-4 comments-container">
                 <ul class="user-comments-list">
                   <li
-                    v-for="(commentedUser,
-                    commentIndex) in post.usersCommented.slice(0, 2)"
+                    v-for="(
+                      commentedUser, commentIndex
+                    ) in post.usersCommented.slice(0, 2)"
                     :key="commentIndex"
-                    class="commented-user flex items-center mb-4"
+                    class="flex items-center mb-4 commented-user"
                   >
                     <div class="mr-3">
                       <vs-avatar
@@ -401,19 +402,19 @@
       </div>
 
       <!-- COL 3 -->
-      <div class="vx-col w-full lg:w-1/4">
+      <div class="w-full vx-col lg:w-1/4">
         <!-- LATEST PHOTOS -->
         <vx-card title="Latest Photos" class="mt-base">
-          <div class="vx-row pt-2">
+          <div class="pt-2 vx-row">
             <div
-              class="vx-col w-1/2 sm:w-1/2 md:w-1/3 xl:1/4"
+              class="w-1/2 vx-col sm:w-1/2 md:w-1/3 xl:1/4"
               v-for="(img, index) in userLatestPhotos"
               :key="index"
             >
               <img
                 :src="img"
                 alt="latest-upload"
-                class="rounded mb-4 user-latest-image responsive"
+                class="mb-4 rounded user-latest-image responsive"
               />
             </div>
           </div>
@@ -428,7 +429,7 @@
           <!-- FRIENDS LIST -->
           <ul class="friend-suggesions-list">
             <li
-              class="friend-suggestion flex items-center mb-4"
+              class="flex items-center mb-4 friend-suggestion"
               v-for="(friend, index) in suggestedFriends"
               :key="index"
             >
@@ -464,7 +465,7 @@
               <h6 class="poll-title">{{ poll.title }}</h6>
               <ul class="poll-options-result">
                 <li
-                  class="poll-option mt-6"
+                  class="mt-6 poll-option"
                   v-for="option in poll.options"
                   :key="option.value"
                 >
@@ -475,7 +476,7 @@
                     <span class="block ml-auto">{{ option.voted }}%</span>
                   </div>
                   <vs-progress :percent="option.voted"></vs-progress>
-                  <ul class="users-voted user-list mt-2">
+                  <ul class="mt-2 users-voted user-list">
                     <li
                       v-for="(user, userIndex) in option.usersVoted"
                       :key="userIndex"
@@ -484,14 +485,14 @@
                         <vs-avatar
                           :src="user.avatar"
                           size="30px"
-                          class="border-2 border-white border-solid -m-1"
+                          class="-m-1 border-2 border-white border-solid"
                         ></vs-avatar>
                       </vx-tooltip>
                     </li>
                   </ul>
                 </li>
               </ul>
-              <vs-button class="mt-5 w-full">Vote Now</vs-button>
+              <vs-button class="w-full mt-5">Vote Now</vs-button>
             </li>
           </ul>
         </vx-card>
@@ -499,7 +500,7 @@
     </div>
 
     <div class="vx-row">
-      <div class="vx-col w-full">
+      <div class="w-full vx-col">
         <div class="flex justify-center mt-base">
           <vs-button
             id="button-load-more-posts"
@@ -524,53 +525,53 @@ export default {
       userPoll: '',
       user_info: {
         profile_img: require('@/assets/images/profile/user-uploads/user-13.jpg'),
-        cover_img: require('@/assets/images/profile/user-uploads/cover.jpg')
+        cover_img: require('@/assets/images/profile/user-uploads/cover.jpg'),
       },
       mediaExtensions: {
         img: ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'exif', 'tiff'],
-        video: ['avi', 'flv', 'wmv', 'mov', 'mp4', '3gp']
+        video: ['avi', 'flv', 'wmv', 'mov', 'mp4', '3gp'],
       },
       suggestedFriends: [
         {
           name: 'Carissa Dolle',
           avatar: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
-          mutualFriends: 6
+          mutualFriends: 6,
         },
         {
           name: 'Liliana Pecor',
           avatar: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
-          mutualFriends: 3
+          mutualFriends: 3,
         },
         {
           name: 'Isidra Strunk',
           avatar: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
-          mutualFriends: 2
+          mutualFriends: 2,
         },
         {
           name: 'Gerald Licea',
           avatar: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
-          mutualFriends: 1
+          mutualFriends: 1,
         },
         {
           name: 'Kelle Herrick',
           avatar: require('@/assets/images/portrait/small/avatar-s-9.jpg'),
-          mutualFriends: 1
+          mutualFriends: 1,
         },
         {
           name: 'Cesar Lee',
           avatar: require('@/assets/images/portrait/small/avatar-s-10.jpg'),
-          mutualFriends: 1
+          mutualFriends: 1,
         },
         {
           name: 'John Doe',
           avatar: require('@/assets/images/portrait/small/avatar-s-11.jpg'),
-          mutualFriends: 1
+          mutualFriends: 1,
         },
         {
           name: 'Tonia Seabold',
           avatar: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
-          mutualFriends: 1
-        }
+          mutualFriends: 1,
+        },
       ],
       userLatestPhotos: [
         require('@/assets/images/profile/user-uploads/user-01.jpg'),
@@ -581,7 +582,7 @@ export default {
         require('@/assets/images/profile/user-uploads/user-06.jpg'),
         require('@/assets/images/profile/user-uploads/user-07.jpg'),
         require('@/assets/images/profile/user-uploads/user-08.jpg'),
-        require('@/assets/images/profile/user-uploads/user-09.jpg')
+        require('@/assets/images/profile/user-uploads/user-09.jpg'),
       ],
       userPosts: [
         {
@@ -596,24 +597,24 @@ export default {
           usersLiked: [
             {
               name: 'Trina Lynes',
-              img: require('@/assets/images/portrait/small/avatar-s-1.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-1.jpg'),
             },
             {
               name: 'Lilian Nenez',
-              img: require('@/assets/images/portrait/small/avatar-s-2.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
             },
             {
               name: 'Alberto Glotzbach',
-              img: require('@/assets/images/portrait/small/avatar-s-3.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-3.jpg'),
             },
             {
               name: 'George Nordick',
-              img: require('@/assets/images/portrait/small/avatar-s-4.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-4.jpg'),
             },
             {
               name: 'Vennie Mostowy',
-              img: require('@/assets/images/portrait/small/avatar-s-5.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
+            },
           ],
           commentbox: '',
           usersCommented: [
@@ -621,15 +622,15 @@ export default {
               comment: 'orthoplumbate morningtide naphthaline exarteritis',
               author: 'Kitty Allanson',
               img: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
-              time: 'Mon Dec 10 2018 08:56:05 GMT+0000 (GMT)'
+              time: 'Mon Dec 10 2018 08:56:05 GMT+0000 (GMT)',
             },
             {
               comment: 'blockiness pandemy metaxylene speckle coppy',
               author: 'Jeanie Bulgrin',
               img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
-              time: 'Mon Dec 10 2018 08:55:00 GMT+0000 (GMT)'
-            }
-          ]
+              time: 'Mon Dec 10 2018 08:55:00 GMT+0000 (GMT)',
+            },
+          ],
         },
         {
           author: 'Leeanna Alvord',
@@ -638,31 +639,31 @@ export default {
           text:
             'Candy jelly beans powder brownie biscuit. Jelly marzipan oat cake cake. Cupcake I love wafer cake. Halvah I love powder jelly I love cheesecake cotton candy tiramisu brownie.',
           media: [
-            { img: require('@/assets/images/profile/post-media/25.jpg') }
+            { img: require('@/assets/images/profile/post-media/25.jpg') },
           ],
           likes: 276,
           comments: 105,
           usersLiked: [
             {
               name: 'Lai Lewandowski',
-              img: require('@/assets/images/portrait/small/avatar-s-6.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
             },
             {
               name: 'Elicia Rieske',
-              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
             },
             {
               name: 'Darcey Nooner',
-              img: require('@/assets/images/portrait/small/avatar-s-8.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
             },
             {
               name: 'Julee Rossignol',
-              img: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-10.jpg'),
             },
             {
               name: 'Jeffrey Gerondale',
-              img: require('@/assets/images/portrait/small/avatar-s-9.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-9.jpg'),
+            },
           ],
           commentbox: '',
           usersCommented: [
@@ -670,15 +671,15 @@ export default {
               comment: 'I love cupcake danish jujubes sweet.',
               author: 'Darcey Nooner',
               img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
-              time: 'Mon Dec 11 2018 09:56:05 GMT+0000 (GMT)'
+              time: 'Mon Dec 11 2018 09:56:05 GMT+0000 (GMT)',
             },
             {
               comment: 'Wafer I love brownie jelly bonbon tart apple pie',
               author: 'Lai Lewandowski',
               img: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
-              time: 'Mon Dec 10 2018 09:50:00 GMT+0000 (GMT)'
-            }
-          ]
+              time: 'Mon Dec 10 2018 09:50:00 GMT+0000 (GMT)',
+            },
+          ],
         },
         {
           author: 'Leeanna Alvord',
@@ -689,34 +690,37 @@ export default {
           media: [
             {
               sources: [
-                { type: 'video/mp4', src: 'http://vjs.zencdn.net/v/oceans.mp4' }
+                {
+                  type: 'video/mp4',
+                  src: 'http://vjs.zencdn.net/v/oceans.mp4',
+                },
               ],
-              poster: 'https://goo.gl/xcCsDd'
-            }
+              poster: 'https://goo.gl/xcCsDd',
+            },
           ],
           likes: 269,
           comments: 98,
           usersLiked: [
             {
               name: 'Vennie Mostowy',
-              img: require('@/assets/images/portrait/small/avatar-s-5.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
             },
             {
               name: 'Elicia Rieske',
-              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
             },
             {
               name: 'Julee Rossignol',
-              img: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-10.jpg'),
             },
             {
               name: 'Darcey Nooner',
-              img: require('@/assets/images/portrait/small/avatar-s-8.jpg')
+              img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
             },
             {
               name: 'Elicia Rieske',
-              img: require('@/assets/images/portrait/small/avatar-s-7.jpg')
-            }
+              img: require('@/assets/images/portrait/small/avatar-s-7.jpg'),
+            },
           ],
           commentbox: '',
           usersCommented: [
@@ -724,63 +728,63 @@ export default {
               comment: 'I love cupcake danish jujubes sweet.',
               author: 'Darcey Nooner',
               img: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
-              time: 'Mon Dec 11 2018 09:56:05 GMT+0000 (GMT)'
+              time: 'Mon Dec 11 2018 09:56:05 GMT+0000 (GMT)',
             },
             {
               comment: 'Wafer I love brownie jelly bonbon tart apple pie',
               author: 'Lai Lewandowski',
               img: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
-              time: 'Mon Dec 10 2018 09:50:00 GMT+0000 (GMT)'
-            }
-          ]
-        }
+              time: 'Mon Dec 10 2018 09:50:00 GMT+0000 (GMT)',
+            },
+          ],
+        },
       ],
       suggestedPages: [
         {
           img: require('@/assets/images/profile/pages/page-09.jpg'),
           title: 'Rockose',
-          type: 'Company'
+          type: 'Company',
         },
         {
           img: require('@/assets/images/profile/pages/page-08.jpg'),
           title: "The Devil's",
-          type: 'Clothing Store'
+          type: 'Clothing Store',
         },
         {
           img: require('@/assets/images/profile/pages/page-03.jpg'),
           title: 'The Magician',
-          type: 'Public Figure'
+          type: 'Public Figure',
         },
         {
           img: require('@/assets/images/profile/pages/page-02.jpg'),
           title: 'AC/DC',
-          type: 'Music'
+          type: 'Music',
         },
         {
           img: require('@/assets/images/profile/pages/page-07.jpg'),
           title: 'eat hard',
-          type: 'restaurant / bar'
+          type: 'restaurant / bar',
         },
         {
           img: require('@/assets/images/profile/pages/page-04.jpg'),
           title: 'B4B',
-          type: 'Beauty Store'
+          type: 'Beauty Store',
         },
         {
           img: require('@/assets/images/profile/pages/page-05.jpg'),
           title: 'Kylie Jenner',
-          type: 'Public Figure'
+          type: 'Public Figure',
         },
         {
           img: require('@/assets/images/profile/pages/page-01.jpg'),
           title: 'RDJ',
-          type: 'Actor'
+          type: 'Actor',
         },
         {
           img: require('@/assets/images/profile/pages/page-06.jpg'),
           title: 'Taylor Swift',
-          type: 'Music'
-        }
+          type: 'Music',
+        },
       ],
       polls: [
         {
@@ -794,33 +798,33 @@ export default {
               usersVoted: [
                 {
                   name: 'Tonia Seabold',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-12.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
                 },
                 {
                   name: 'Carissa Dolle',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-5.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-5.jpg'),
                 },
                 {
                   name: 'Kelle Herrick',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-9.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-9.jpg'),
                 },
                 {
                   name: 'Len Bregantini',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-10.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-10.jpg'),
                 },
                 {
                   name: 'John Doe',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-11.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-11.jpg'),
                 },
                 {
                   name: 'Tonia Seabold',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-12.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
                 },
                 {
                   name: 'Dirk Fornili',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-2.jpg')
-                }
-              ]
+                  avatar: require('@/assets/images/portrait/small/avatar-s-2.jpg'),
+                },
+              ],
             },
             {
               text: 'Chris Hemsworth',
@@ -829,13 +833,13 @@ export default {
               usersVoted: [
                 {
                   name: 'Liliana Pecor',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-6.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-6.jpg'),
                 },
                 {
                   name: 'Kasandra Nalevanko',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-1.jpg')
-                }
-              ]
+                  avatar: require('@/assets/images/portrait/small/avatar-s-1.jpg'),
+                },
+              ],
             },
             {
               text: 'mark ruffalo',
@@ -844,9 +848,9 @@ export default {
               usersVoted: [
                 {
                   name: 'Lorelei Lacsamana',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-4.jpg')
-                }
-              ]
+                  avatar: require('@/assets/images/portrait/small/avatar-s-4.jpg'),
+                },
+              ],
             },
             {
               text: 'Chris Evans',
@@ -855,16 +859,16 @@ export default {
               usersVoted: [
                 {
                   name: 'Jeanie Bulgrin',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-8.jpg')
+                  avatar: require('@/assets/images/portrait/small/avatar-s-8.jpg'),
                 },
                 {
                   name: 'Graig Muckey',
-                  avatar: require('@/assets/images/portrait/small/avatar-s-3.jpg')
-                }
-              ]
-            }
-          ]
-        }
+                  avatar: require('@/assets/images/portrait/small/avatar-s-3.jpg'),
+                },
+              ],
+            },
+          ],
+        },
       ],
       twitterFeeds: [
         {
@@ -874,7 +878,7 @@ export default {
           content:
             'I love cookie chupa chups sweet tart apple pie chocolate bar. Jelly-o oat cake chupa chups.',
           tags: ['js', 'vuejs'],
-          time: 'Mon Dec 12 2018 07:46:05 GMT+0000 (GMT)'
+          time: 'Mon Dec 12 2018 07:46:05 GMT+0000 (GMT)',
         },
         {
           authorAvatar: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
@@ -883,7 +887,7 @@ export default {
           content:
             'Carrot cake cake gummies I love I love tiramisu. Biscuit marzipan cookie lemon drops.',
           tags: ['python'],
-          time: 'Mon Dec 11 2018 01:05:05 GMT+0000 (GMT)'
+          time: 'Mon Dec 11 2018 01:05:05 GMT+0000 (GMT)',
         },
         {
           authorAvatar: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
@@ -892,7 +896,7 @@ export default {
           content:
             'I love cookie chupa chups sweet tart apple pie chocolate bar. Jelly-o oat cake chupa chups .',
           tags: [],
-          time: 'Mon Dec 10 2018 03:33:05 GMT+0000 (GMT)'
+          time: 'Mon Dec 10 2018 03:33:05 GMT+0000 (GMT)',
         },
         {
           authorAvatar: require('@/assets/images/portrait/small/avatar-s-12.jpg'),
@@ -901,15 +905,15 @@ export default {
           content:
             'Muffin candy caramels. I love caramels tiramisu jelly. Pie I love wafer. Chocolate cake lollipop tootsie roll cake.',
           tags: ['django', 'vuejs'],
-          time: 'Mon Dec 9 2018 08:47:05 GMT+0000 (GMT)'
-        }
+          time: 'Mon Dec 9 2018 08:47:05 GMT+0000 (GMT)',
+        },
       ],
-      wasSidebarOpen: null
+      wasSidebarOpen: null,
     }
   },
   computed: {
     mediaType() {
-      return media => {
+      return (media) => {
         if (media.img) {
           const ext = media.img.split('.').pop()
           if (this.mediaExtensions.img.includes(ext)) return 'image'
@@ -920,7 +924,7 @@ export default {
       }
     },
     playerOptions() {
-      return media => {
+      return (media) => {
         return {
           height: '360',
           fluid: true,
@@ -929,23 +933,34 @@ export default {
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: media.sources,
-          poster: media.poster
+          poster: media.poster,
         }
       }
-    }
+    },
   },
   methods: {
+    addComponent(name) {
+      let element = document.getElementById(name)
+
+      let payload = this.$comp_create(
+        element,
+        this.$store.state.page_builder.list_pos
+      )
+
+      $nuxt.$emit('component-added', payload)
+      $nuxt.$emit('close_comp')
+    },
     loadContent() {
       this.$vs.loading({
         background: this.backgroundLoading,
         color: this.colorLoading,
         container: '#button-load-more-posts',
-        scale: 0.45
+        scale: 0.45,
       })
       setTimeout(() => {
         this.$vs.loading.close('#button-load-more-posts > .con-vs-loading')
       }, 3000)
-    }
+    },
   },
   components: {
     // videoPlayer
@@ -956,7 +971,7 @@ export default {
   },
   beforeDestroy() {
     if (!this.wasSidebarOpen) this.$store.commit('TOGGLE_REDUCE_BUTTON', false)
-  }
+  },
 }
 </script>
 

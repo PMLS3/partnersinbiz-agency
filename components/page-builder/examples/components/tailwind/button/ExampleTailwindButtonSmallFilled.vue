@@ -7,7 +7,7 @@
 
 <template>
   <div>
-    <vx-card title="Text Only">
+    <vx-card class="mt-8" title="Text Only">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -15,15 +15,17 @@
 
       <div class="demo-alignment">
         <button
-          class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-gray-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none"
+          v-for="(color, index) in colors"
+          :key="index"
+          :class="`px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-${color}-500 border-none rounded shadow outline-none active:bg-gray-600 hover:shadow-md focus:outline-none`"
           type="button"
           style="transition: all 0.15s ease"
-          id="text-gray"
-          @click="addComponent('text-gray')"
+          :id="`text-${color}`"
+          @click="addComponent(`text-${color}`)"
         >
           Small
         </button>
-        <button
+        <!-- <button
           class="px-4 py-2 mb-1 mr-1 text-xs font-bold text-white uppercase bg-red-500 border-none rounded shadow outline-none active:bg-red-600 hover:shadow-md focus:outline-none"
           type="button"
           style="transition: all 0.15s ease"
@@ -103,11 +105,11 @@
           @click="addComponent('text-pink')"
         >
           Small
-        </button>
+        </button> -->
       </div>
     </vx-card>
 
-    <vx-card title="Icon and Text">
+    <vx-card class="mt-8" title="Icon and Text">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -417,7 +419,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Icon Only">
+    <vx-card class="mt-8" title="Icon Only">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -717,7 +719,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Rounded with Text">
+    <vx-card class="mt-8" title="Rounded with Text">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -817,7 +819,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Rounded with icon and text">
+    <vx-card class="mt-8" title="Rounded with icon and text">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -1127,7 +1129,7 @@
       </div>
     </vx-card>
 
-    <vx-card title="Round with Icons">
+    <vx-card class="mt-8" title="Round with Icons">
       <p>
         To add a type of button with edges we change the value of
         <code>border</code>
@@ -1431,6 +1433,22 @@
 <script>
 export default {
   name: 'ExampleTailwindButtonSmallFilled',
+  data() {
+    return {
+      colors: [
+        'gray',
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'teal',
+        'blue',
+        'indigo',
+        'purple',
+        'pink',
+      ],
+    }
+  },
   methods: {
     addComponent(name) {
       let element = document.getElementById(name)

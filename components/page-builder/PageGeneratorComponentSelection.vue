@@ -33,8 +33,8 @@
         <vs-tabs alignment="fixed" position="left">
           <!-- UI -->
 
-          <vs-tab label="Alert"> </vs-tab>
-          <vs-tab label="Avatar"> </vs-tab>
+          <!-- <vs-tab label="Alert"> </vs-tab> -->
+          <vs-tab label="Avatar"> <ExampleTailwindAvatar /> </vs-tab>
           <vs-tab label="Breadcrumb"> </vs-tab>
           <vs-tab label="Button"><ExampleTailwindButton /> </vs-tab>
           <vs-tab label="Button Groups"> </vs-tab>
@@ -89,23 +89,7 @@
     </vs-tab>
 
     <vs-tab label="Pages" v-if="allowedType == 'all'">
-      <vs-tabs alignment="fixed" position="left">
-        <vs-tab label="Login"> </vs-tab>
-        <vs-tab label="Register"> </vs-tab>
-        <vs-tab label="Coming Soon"> </vs-tab>
-        <vs-tab label="Error404"> </vs-tab>
-        <vs-tab label="Error500"> </vs-tab>
-        <vs-tab label="FAQ"> </vs-tab>
-        <vs-tab label="Forgot Password"> </vs-tab>
-        <vs-tab label="Invoice"> </vs-tab>
-        <vs-tab label="KnowledgeBase"> </vs-tab>
-        <vs-tab label="LockScreen"> </vs-tab>
-        <vs-tab label="Maintenance"> </vs-tab>
-        <vs-tab label="Not Authorized"> </vs-tab>
-        <vs-tab label="Profile"> </vs-tab>
-        <vs-tab label="Reset Password"> </vs-tab>
-        <vs-tab label="Search"> </vs-tab>
-      </vs-tabs>
+      <ExamplePages />
     </vs-tab>
     <!-- Apps -->
     <vs-tab label="Content">
