@@ -93,3 +93,6 @@ Vue.use(Clipboard)
 import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
 
 Vue.use(VueAwesomeSwiper)
+import VueTreeList from 'vue-tree-list'
+
+Vue.use(VueTreeList)

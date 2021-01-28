@@ -58,6 +58,7 @@ export default {
   methods: {
     add() {
       $nuxt.$emit('add_comp', this.schema.place, this.schema, this.mainIndex)
+      $nuxt.$emit('main-add', false)
     },
     add_quick() {
       $nuxt.$emit(

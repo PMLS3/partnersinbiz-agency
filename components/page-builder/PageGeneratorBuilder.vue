@@ -21,7 +21,10 @@
       class="h-screen items-no-padding"
     >
       <div class="h-screen p-2">
-        <!-- <UiTree :data="list" /> -->
+        {{ list.length }}
+        <div class="w-full h-full" v-for="(comp, index) in list" :key="index">
+          <UiTreeList :data="comp" />
+        </div>
       </div>
     </vs-sidebar>
 
@@ -54,10 +57,15 @@ export default {
   name: 'pageGeneratorBuilder',
   setup() {
     const { store } = useContext()
+
+    let mainAdd = ref(false)
     onMounted(() => {
+      $nuxt.$on('main-add', (data) => {
+        mainAdd.value = data
+      })
+
       $nuxt.$on('component-added', (data) => {
-        // console.log('data', data)
-        if (data.place.length == 1) {
+        if (data.place.length == 1 && mainAdd.value) {
           list.value.push([data])
         } else {
           getList(data)
@@ -65,7 +73,6 @@ export default {
       })
 
       $nuxt.$on('place', (data, schema, MainIndex) => {
-        console.log('data', data, schema, MainIndex)
         listPos.value = data
         mainIndex.value = MainIndex
         Schema.value = schema
@@ -80,15 +87,11 @@ export default {
     })
 
     function getList(data) {
-      console.log('data list', data)
-      console.log(' list', list.value)
-      console.log('value', Schema.value)
       let schema = Schema.value
       let MainIndex = mainIndex.value
       let addList = list.value[MainIndex][0]
       let schemaId = schema.id
-      console.log('schema', schema)
-      console.log('list.value[MainIndex][0]', list.value[MainIndex][0])
+
       if (schemaId == addList.id) {
         list.value[MainIndex][0].children.push(data)
       } else {
@@ -132,7 +135,183 @@ export default {
                                 ].children[a].children[u].children.push(data)
                                 return
                               } else {
-                                console.log('end')
+                                if (child4addList.children.length) {
+                                  for (
+                                    let q = 0;
+                                    q < child4addList.children.length;
+                                    q++
+                                  ) {
+                                    let child5addList =
+                                      list.value[MainIndex][0].children[i]
+                                        .children[e].children[a].children[u]
+                                        .children[q]
+                                    if (schemaId == child5addList.id) {
+                                      list.value[MainIndex][0].children[
+                                        i
+                                      ].children[e].children[a].children[
+                                        u
+                                      ].children[q].children.push(data)
+                                      return
+                                    } else {
+                                      if (child5addList.children.length) {
+                                        for (
+                                          let w = 0;
+                                          w < child5addList.children.length;
+                                          w++
+                                        ) {
+                                          let child6addList =
+                                            list.value[MainIndex][0].children[i]
+                                              .children[e].children[a].children[
+                                              u
+                                            ].children[q].children[w]
+                                          if (schemaId == child6addList.id) {
+                                            list.value[MainIndex][0].children[
+                                              i
+                                            ].children[e].children[a].children[
+                                              u
+                                            ].children[q].children[
+                                              w
+                                            ].children.push(data)
+                                            return
+                                          } else {
+                                            if (child6addList.children.length) {
+                                              for (
+                                                let r = 0;
+                                                r <
+                                                child6addList.children.length;
+                                                r++
+                                              ) {
+                                                let child7addList =
+                                                  list.value[MainIndex][0]
+                                                    .children[i].children[e]
+                                                    .children[a].children[u]
+                                                    .children[q].children[w]
+                                                    .children[r]
+                                                if (
+                                                  schemaId == child7addList.id
+                                                ) {
+                                                  list.value[
+                                                    MainIndex
+                                                  ][0].children[i].children[
+                                                    e
+                                                  ].children[a].children[
+                                                    u
+                                                  ].children[q].children[
+                                                    w
+                                                  ].children[r].children.push(
+                                                    data
+                                                  )
+                                                  return
+                                                } else {
+                                                  if (
+                                                    child7addList.children
+                                                      .length
+                                                  ) {
+                                                    for (
+                                                      let s = 0;
+                                                      s <
+                                                      child7addList.children
+                                                        .length;
+                                                      s++
+                                                    ) {
+                                                      let child8addList =
+                                                        list.value[MainIndex][0]
+                                                          .children[i].children[
+                                                          e
+                                                        ].children[a].children[
+                                                          u
+                                                        ].children[q].children[
+                                                          w
+                                                        ].children[r].children[
+                                                          s
+                                                        ]
+                                                      if (
+                                                        schemaId ==
+                                                        child8addList.id
+                                                      ) {
+                                                        list.value[
+                                                          MainIndex
+                                                        ][0].children[
+                                                          i
+                                                        ].children[e].children[
+                                                          a
+                                                        ].children[u].children[
+                                                          q
+                                                        ].children[w].children[
+                                                          r
+                                                        ].children[
+                                                          s
+                                                        ].children.push(data)
+                                                        return
+                                                      } else {
+                                                        if (
+                                                          child8addList.children
+                                                            .length
+                                                        ) {
+                                                          for (
+                                                            let t = 0;
+                                                            t <
+                                                            child8addList
+                                                              .children.length;
+                                                            t++
+                                                          ) {
+                                                            let child9addList =
+                                                              list.value[
+                                                                MainIndex
+                                                              ][0].children[i]
+                                                                .children[e]
+                                                                .children[a]
+                                                                .children[u]
+                                                                .children[q]
+                                                                .children[w]
+                                                                .children[r]
+                                                                .children[s]
+                                                                .children[t]
+                                                            if (
+                                                              schemaId ==
+                                                              child9addList.id
+                                                            ) {
+                                                              list.value[
+                                                                MainIndex
+                                                              ][0].children[
+                                                                i
+                                                              ].children[
+                                                                e
+                                                              ].children[
+                                                                a
+                                                              ].children[
+                                                                u
+                                                              ].children[
+                                                                q
+                                                              ].children[
+                                                                w
+                                                              ].children[
+                                                                r
+                                                              ].children[
+                                                                s
+                                                              ].children[
+                                                                t
+                                                              ].children.push(
+                                                                data
+                                                              )
+                                                              return
+                                                            } else {
+                                                              console.log('end')
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
                             }
                           }
@@ -146,7 +325,6 @@ export default {
           }
         }
       }
-
       // if (data.place.length == 2) {
       //   console.log('value', list.value[data.place[0]].children[data.place[1]])
       //   list.value[data.place[0]].children[data.place[1]].children.push(data)
@@ -254,7 +432,186 @@ export default {
                                 ].children[a].children.splice([u], 1)
                                 return
                               } else {
-                                console.log('end')
+                                if (child4DeleteList.children.length) {
+                                  for (
+                                    let q = 0;
+                                    q < child4DeleteList.children.length;
+                                    q++
+                                  ) {
+                                    let child5DeleteList =
+                                      list.value[MainIndex][0].children[i]
+                                        .children[e].children[a].children[u]
+                                        .children[q]
+                                    if (schemaId == child5DeleteList.id) {
+                                      list.value[MainIndex][0].children[
+                                        i
+                                      ].children[e].children[a].children[
+                                        q
+                                      ].children.splice([u], 1)
+                                      return
+                                    } else {
+                                      if (child5DeleteList.children.length) {
+                                        for (
+                                          let w = 0;
+                                          w < child5DeleteList.children.length;
+                                          w++
+                                        ) {
+                                          let child6DeleteList =
+                                            list.value[MainIndex][0].children[i]
+                                              .children[e].children[a].children[
+                                              u
+                                            ].children[q].children[w]
+                                          if (schemaId == child6DeleteList.id) {
+                                            list.value[MainIndex][0].children[
+                                              i
+                                            ].children[e].children[a].children[
+                                              q
+                                            ].children[w].children.splice(
+                                              [u],
+                                              1
+                                            )
+                                            return
+                                          } else {
+                                            if (
+                                              child6DeleteList.children.length
+                                            ) {
+                                              for (
+                                                let t = 0;
+                                                t <
+                                                child6DeleteList.children
+                                                  .length;
+                                                t++
+                                              ) {
+                                                let child7DeleteList =
+                                                  list.value[MainIndex][0]
+                                                    .children[i].children[e]
+                                                    .children[a].children[u]
+                                                    .children[q].children[w]
+                                                    .children[t]
+                                                if (
+                                                  schemaId ==
+                                                  child7DeleteList.id
+                                                ) {
+                                                  list.value[
+                                                    MainIndex
+                                                  ][0].children[i].children[
+                                                    e
+                                                  ].children[a].children[
+                                                    q
+                                                  ].children[w].children[
+                                                    t
+                                                  ].children.splice([u], 1)
+                                                  return
+                                                } else {
+                                                  if (
+                                                    child7DeleteList.children
+                                                      .length
+                                                  ) {
+                                                    for (
+                                                      let s = 0;
+                                                      s <
+                                                      child7DeleteList.children
+                                                        .length;
+                                                      s++
+                                                    ) {
+                                                      let child8DeleteList =
+                                                        list.value[MainIndex][0]
+                                                          .children[i].children[
+                                                          e
+                                                        ].children[a].children[
+                                                          u
+                                                        ].children[q].children[
+                                                          w
+                                                        ].children[t].children[
+                                                          s
+                                                        ]
+                                                      if (
+                                                        schemaId ==
+                                                        child8DeleteList.id
+                                                      ) {
+                                                        list.value[
+                                                          MainIndex
+                                                        ][0].children[
+                                                          i
+                                                        ].children[e].children[
+                                                          a
+                                                        ].children[q].children[
+                                                          w
+                                                        ].children[t].children[
+                                                          s
+                                                        ].children.splice(
+                                                          [u],
+                                                          1
+                                                        )
+                                                        return
+                                                      } else {
+                                                        if (
+                                                          child8DeleteList
+                                                            .children.length
+                                                        ) {
+                                                          for (
+                                                            let p = 0;
+                                                            p <
+                                                            child8DeleteList
+                                                              .children.length;
+                                                            p++
+                                                          ) {
+                                                            let child9DeleteList =
+                                                              list.value[
+                                                                MainIndex
+                                                              ][0].children[i]
+                                                                .children[e]
+                                                                .children[a]
+                                                                .children[u]
+                                                                .children[q]
+                                                                .children[w]
+                                                                .children[t]
+                                                                .children[s]
+                                                                .children[p]
+                                                            if (
+                                                              schemaId ==
+                                                              child9DeleteList.id
+                                                            ) {
+                                                              list.value[
+                                                                MainIndex
+                                                              ][0].children[
+                                                                i
+                                                              ].children[
+                                                                e
+                                                              ].children[
+                                                                a
+                                                              ].children[
+                                                                q
+                                                              ].children[
+                                                                w
+                                                              ].children[
+                                                                t
+                                                              ].children[
+                                                                s
+                                                              ].children[
+                                                                p
+                                                              ].children.splice(
+                                                                [u],
+                                                                1
+                                                              )
+                                                              return
+                                                            } else {
+                                                              console.log('end')
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
                             }
                           }
@@ -326,7 +683,185 @@ export default {
                                 ].children[a].children[u].class = classUpdate
                                 return
                               } else {
-                                console.log('end')
+                                if (child4UpdateList.children.length) {
+                                  for (
+                                    let q = 0;
+                                    q < child4UpdateList.children.length;
+                                    q++
+                                  ) {
+                                    let child5UpdateList =
+                                      list.value[MainIndex][0].children[i]
+                                        .children[e].children[a].children[u]
+                                        .children[q]
+                                    if (schemaId == child5UpdateList.id) {
+                                      list.value[MainIndex][0].children[
+                                        i
+                                      ].children[e].children[a].children[
+                                        u
+                                      ].children[q].class = classUpdate
+                                      return
+                                    } else {
+                                      if (child5UpdateList.children.length) {
+                                        for (
+                                          let w = 0;
+                                          w < child5UpdateList.children.length;
+                                          w++
+                                        ) {
+                                          let child6UpdateList =
+                                            list.value[MainIndex][0].children[i]
+                                              .children[e].children[a].children[
+                                              u
+                                            ].children[q].children[w]
+                                          if (schemaId == child6UpdateList.id) {
+                                            list.value[MainIndex][0].children[
+                                              i
+                                            ].children[e].children[a].children[
+                                              u
+                                            ].children[q].children[
+                                              w
+                                            ].class = classUpdate
+                                            return
+                                          } else {
+                                            if (
+                                              child6UpdateList.children.length
+                                            ) {
+                                              for (
+                                                let s = 0;
+                                                s <
+                                                child6UpdateList.children
+                                                  .length;
+                                                s++
+                                              ) {
+                                                let child7UpdateList =
+                                                  list.value[MainIndex][0]
+                                                    .children[i].children[e]
+                                                    .children[a].children[u]
+                                                    .children[q].children[w]
+                                                    .children[s]
+                                                if (
+                                                  schemaId ==
+                                                  child7UpdateList.id
+                                                ) {
+                                                  list.value[
+                                                    MainIndex
+                                                  ][0].children[i].children[
+                                                    e
+                                                  ].children[a].children[
+                                                    u
+                                                  ].children[q].children[
+                                                    w
+                                                  ].children[
+                                                    s
+                                                  ].class = classUpdate
+                                                  return
+                                                } else {
+                                                  if (
+                                                    child7UpdateList.children
+                                                      .length
+                                                  ) {
+                                                    for (
+                                                      let p = 0;
+                                                      p <
+                                                      child7UpdateList.children
+                                                        .length;
+                                                      p++
+                                                    ) {
+                                                      let child8UpdateList =
+                                                        list.value[MainIndex][0]
+                                                          .children[i].children[
+                                                          e
+                                                        ].children[a].children[
+                                                          u
+                                                        ].children[q].children[
+                                                          w
+                                                        ].children[s].children[
+                                                          p
+                                                        ]
+                                                      if (
+                                                        schemaId ==
+                                                        child8UpdateList.id
+                                                      ) {
+                                                        list.value[
+                                                          MainIndex
+                                                        ][0].children[
+                                                          i
+                                                        ].children[e].children[
+                                                          a
+                                                        ].children[u].children[
+                                                          q
+                                                        ].children[w].children[
+                                                          s
+                                                        ].children[
+                                                          p
+                                                        ].class = classUpdate
+                                                        return
+                                                      } else {
+                                                        if (
+                                                          child8UpdateList
+                                                            .children.length
+                                                        ) {
+                                                          for (
+                                                            let r = 0;
+                                                            r <
+                                                            child8UpdateList
+                                                              .children.length;
+                                                            r++
+                                                          ) {
+                                                            let child9UpdateList =
+                                                              list.value[
+                                                                MainIndex
+                                                              ][0].children[i]
+                                                                .children[e]
+                                                                .children[a]
+                                                                .children[u]
+                                                                .children[q]
+                                                                .children[w]
+                                                                .children[s]
+                                                                .children[p]
+                                                                .children[r]
+                                                            if (
+                                                              schemaId ==
+                                                              child9UpdateList.id
+                                                            ) {
+                                                              list.value[
+                                                                MainIndex
+                                                              ][0].children[
+                                                                i
+                                                              ].children[
+                                                                e
+                                                              ].children[
+                                                                a
+                                                              ].children[
+                                                                u
+                                                              ].children[
+                                                                q
+                                                              ].children[
+                                                                w
+                                                              ].children[
+                                                                s
+                                                              ].children[
+                                                                p
+                                                              ].children[
+                                                                r
+                                                              ].class = classUpdate
+                                                              return
+                                                            } else {
+                                                              console.log('end')
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
                               }
                             }
                           }

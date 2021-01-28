@@ -5,7 +5,7 @@ export const state = () => ({
     bookmarksNow: false,
     searchNow: false,
     i18nNow: false,
-    cartDropDown: false,
+    cartDropDown: true,
     notificationDropDown: true,
     anon: false,
     speed: false,

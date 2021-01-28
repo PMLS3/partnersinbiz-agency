@@ -17233,6 +17233,11 @@ vue-tree-halower@^1.8.3:
   dependencies:
     vue "^2.4.4"
 
+vue-tree-list@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/vue-tree-list/-/vue-tree-list-1.5.0.tgz#aa596dc63597ea23d0aee9e6955cfa43bef58501"
+  integrity sha512-qHRJtPMmjCYA9I9kpHgIT6F1H7leR1ZxcNETrP2r97otSHYdHdK42qt12t4glf2mNvI+wBpY2fLClUGcaQJnpg==
+
 vue-video-player-videojs-7@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/vue-video-player-videojs-7/-/vue-video-player-videojs-7-7.1.1.tgz#54ebdd3252a9f7916c7766725fbf7647f54cf203"

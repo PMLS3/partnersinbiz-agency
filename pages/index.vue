@@ -7,6 +7,8 @@
         <UiImageUnsplash />
       </vs-card> -->
       <!-- <PageGeneratorBuilder class="mt-24" /> -->
+      <!-- <ExampleECommerceShop /> -->
+      <vs-button @click="$router.push('test')" class="mt-24">Tetst</vs-button>
     </client-only>
   </div>
 </template>

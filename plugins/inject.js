@@ -64,6 +64,11 @@ export default (context, inject) => {
       item.place = [...list]
       item.id = Math.random().toString(36).substr(2, 6)
       item.name = node_name + item.id
+      item.dragDisabled = false
+      item.addTreeNodeDisabled = false
+      item.addLeafNodeDisabled = false
+      item.editNodeDisabled = false
+      item.delNodeDisabled = false
 
       var nodes = [],
         values = []
@@ -152,6 +157,11 @@ export default (context, inject) => {
         child_item.place = [...place, i]
         child_item.id = Math.random().toString(36).substr(2, 6)
         child_item.name = node_name + child_item.id
+        child_item.dragDisabled = false
+        child_item.addTreeNodeDisabled = false
+        child_item.addLeafNodeDisabled = false
+        child_item.editNodeDisabled = false
+        child_item.delNodeDisabled = false
 
         var nodes = [],
           values = []

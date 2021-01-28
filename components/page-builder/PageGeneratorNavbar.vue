@@ -255,6 +255,7 @@ export default {
     addGrid() {
       this.popupAdd = true
       $nuxt.$emit('place', [this.list.length], {}, 0)
+      $nuxt.$emit('main-add', true)
     },
   },
 }

@@ -14,17 +14,17 @@
 
 <script>
 export default {
-  name: ' ',
+  name: 'AppsEcommerce',
 
   data() {
     return {
-      current_view: 'shop',
+      // current_view: 'shop',
     }
   },
-  created() {
-    this.$nuxt.$on('change_current_view', (payload) => {
-      this.current_view = payload
-    })
-  },
+  // created() {
+  //   this.$nuxt.$on('change_current_view', (payload) => {
+  //     this.current_view = payload
+  //   })
+  // },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full px-12">
     <div class="w-full h-full" v-for="(comp, index) in list" :key="index">
       <ComponentCreatorEditor
         v-for="(field, ind) in comp"

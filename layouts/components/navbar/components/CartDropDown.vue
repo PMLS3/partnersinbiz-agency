@@ -3,7 +3,7 @@
   <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
     <feather-icon
       icon="ShoppingCartIcon"
-      class="mt-1 ml-4 mr-6 text-blue-400 cursor-pointer"
+      class="mt-1 ml-4 mr-6 cursor-pointer"
       :badge="cartItems.length"
       color="primary"
     />
@@ -38,7 +38,7 @@
                 $router
                   .push({
                     name: 'ecommerce-item-detail-view',
-                    params: { item_id: item.objectID }
+                    params: { item_id: item.objectID },
                   })
                   .catch(() => {})
               "
@@ -111,20 +111,20 @@ export default {
       settings: {
         // perfectscrollbar settings
         maxScrollbarLength: 60,
-        wheelSpeed: 0.6
-      }
+        wheelSpeed: 0.6,
+      },
     }
   },
   computed: {
     // CART DROPDOWN
     cartItems() {
       return this.$store.state.eCommerce.cartItems.slice().reverse()
-    }
+    },
   },
   methods: {
     removeItemFromCart(item) {
       this.$store.dispatch('eCommerce/toggleItemInCart', item)
-    }
-  }
+    },
+  },
 }
 </script>
