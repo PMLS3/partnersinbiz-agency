@@ -43,10 +43,21 @@
 
       <div class="demo-alignment">
         <div
-          class="flex flex-wrap justify-center"
-          id="circle-image"
-          @click="addComponent('circle-image')"
+          class="relative flex flex-wrap content-center justify-center"
+          id="video-over"
+          @click="addComponent('video-over')"
         >
+          <h1
+            class="absolute text-3xl leading-none text-white uppercase place-self-center video-title md:text-5xl"
+          >
+            Video Title
+          </h1>
+
+          <h1
+            class="absolute mt-16 text-2xl leading-none text-white uppercase place-self-center video-title md:text-5xl"
+          >
+            Video tag line to entice
+          </h1>
           <video
             src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4"
             autoplay

@@ -191,18 +191,13 @@ export default {
     saveComponent() {
       let vm = this
 
-      let ref = this.$fireStore
-        .collection('apps')
-        .doc('builder')
-        .collection(this.activeBusinessInfo.b_uid)
-        .doc('page_builder')
-        .collection('components')
+      let ref = this.$fireStore.collection('page_builder').doc('components')
 
       ref
         .add({
           uid: vm.activeUserInfo.uid,
           component_name: vm.component_name,
-          component_list: vm.component_list,
+          component_list: vm.list,
           created_date: moment().format('DD-MM-YYYY'),
           created_month: moment().format('MM-YYYY'),
         })
@@ -213,12 +208,7 @@ export default {
     savePage() {
       let vm = this
 
-      let ref = this.$fireStore
-        .collection('apps')
-        .doc('builder')
-        .collection(this.activeBusinessInfo.b_uid)
-        .doc('page_builder')
-        .collection('page_builder')
+      let ref = this.$fireStore.collection('page_builder').doc('pages')
 
       if (this.editing_page) {
         ref

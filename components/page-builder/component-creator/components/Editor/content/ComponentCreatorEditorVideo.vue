@@ -9,11 +9,11 @@
     :loop="schema.loop"
     :id="schema.id"
   >
-    <source
+    <!-- <source
       :class="schema.children[0].class"
       :src="schema.children[0].src"
       :type="schema.children[0].type"
-    />
+    /> -->
     <!-- <vs-popup
       classContent="popup-example"
       :title="schema.title"

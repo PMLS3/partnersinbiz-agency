@@ -15,5 +15,6 @@
     <vs-tab label="Profile"><ExampleProfile /> </vs-tab>
     <vs-tab label="Reset Password"><ExampleResetPassword /> </vs-tab>
     <vs-tab label="Search"><ExampleSearch /> </vs-tab>
+    <vs-tab label="Movie"><ExampleMovieProd /> </vs-tab>
   </vs-tabs>
 </template>
