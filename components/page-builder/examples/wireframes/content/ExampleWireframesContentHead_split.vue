@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('content-headsplit')"
+    id="content-headsplit"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col">
         <div class="h-1 bg-gray-200 rounded overflow-hidden">

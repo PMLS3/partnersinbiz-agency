@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('contact-4-cards')" id="contact-4-cards">
     <div class="f-f-p pt-16 lg:pt-32 mx-auto container px-4 xl:px-0">
       <h1 class="text-center text-3xl lg:text-5xl tracking-wider text-gray-900">
         Contact Us
@@ -9,7 +9,7 @@
           class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
           <div
-            class="bg-white shadow-xl cursor-pointer shadow-2xl py-10 rounded-3xl flex flex-col items-center"
+            class="bg-white cursor-pointer shadow-2xl py-10 rounded-3xl flex flex-col items-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -147,9 +147,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="mx-auto pb-16 pb-32 f-f-p container lg:mt-24 mt-12 px-4 xl:px-0"
-    >
+    <div class="mx-auto pb-32 f-f-p container lg:mt-24 mt-12 px-4 xl:px-0">
       <div
         class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8"
       >

@@ -1,8 +1,8 @@
 <template>
   <section
     class="text-gray-700 body-font"
-    id="exampleWireFrame"
-    @click="addComponent('exampleWireFrame')"
+    @click="addComponent('content-col')"
+    id="content-col"
   >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col w-full mb-20 text-center">

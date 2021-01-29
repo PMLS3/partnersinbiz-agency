@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('blog-date')"
+    id="blog-date"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap -mx-4 -my-8">
         <div class="py-8 px-4 lg:w-1/3">

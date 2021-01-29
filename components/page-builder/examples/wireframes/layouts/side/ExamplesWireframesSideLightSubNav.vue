@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="flex flex-no-wrap bg-gray-200">
+    <div
+      class="flex flex-no-wrap bg-gray-200"
+      @click="addComponent('layout-box-subnav')"
+      id="layout-box-subnav"
+    >
       <!-- Sidebar starts -->
       <!-- Remove class [ hidden ] and replace [ sm:block ] with [ block ] -->
       <div class="absolute sm:relative w-64 shadow bg-white hidden sm:block">

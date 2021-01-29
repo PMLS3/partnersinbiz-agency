@@ -1,5 +1,9 @@
 <template>
-  <div class="w-full bg-gray-200 py-10">
+  <div
+    class="w-full bg-gray-200 py-10"
+    @click="addComponent('table-com')"
+    id="table-com"
+  >
     <div class="mx-auto container bg-white shadow rounded">
       <div
         class="flex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full"

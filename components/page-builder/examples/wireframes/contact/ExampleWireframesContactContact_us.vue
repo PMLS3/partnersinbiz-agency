@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font relative">
+  <section
+    class="text-gray-700 body-font relative"
+    @click="addComponent('contact-us')"
+    id="contact-us"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-12">
         <h1

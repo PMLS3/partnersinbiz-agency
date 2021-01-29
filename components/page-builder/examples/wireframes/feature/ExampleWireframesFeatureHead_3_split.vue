@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('feature-h3split')"
+    id="feature-h3split"
+  >
     <div class="container px-5 py-24 mx-auto">
       <h1
         class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20"

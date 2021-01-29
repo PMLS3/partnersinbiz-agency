@@ -1,6 +1,8 @@
 <template>
   <div
     class="absolute border-r border-gray-100 sm:relative h-full bg-gray-100 z-20 p-4"
+    @click="addComponent('nav-ver')"
+    id="nav-ver"
   >
     <div class="flex w-1/5">
       <div class="w-1/4 flex justify-center flex-col">

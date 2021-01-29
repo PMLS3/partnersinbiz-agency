@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('feature-twocards')"
+    id="feature-twocards"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div class="flex flex-wrap -m-4">
         <div class="p-4 lg:w-1/2 md:w-full">

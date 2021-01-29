@@ -1,18 +1,15 @@
 <template>
-  <svg
-    :xmlns="schema.xmlns"
+  <g
+    :id="schema.id"
+    :transform="schema.transform"
     :fill="schema.fill"
-    :width="schema.width"
-    :height="schema.height"
-    :viewBox="schema.viewBox"
     :stroke="schema.stroke"
+    :stroke-width="schema.strokewidth"
+    :fill-rule="schema.fillrule"
     @click="open_pop = !open_pop"
     :class="schema.class"
     @mouseover="hover = true"
     @mouseleave="hover = false"
-    :stroke-width="schema.strokewidth"
-    :stroke-linecap="schema.strokelinecap"
-    :stroke-linejoin="schema.strokelinejoin"
   >
     <ComponentsCreatorEditorButtons
       :schema="schema"
@@ -36,12 +33,12 @@
       :schema="field"
       :mainIndex="mainIndex"
     ></ComponentCreatorEditor>
-  </svg>
+  </g>
 </template>
 
 <script>
 export default {
-  name: 'SVGS',
+  name: 'RECTS',
   props: ['schema', 'index', 'mainIndex'],
   components: {
     ComponentCreatorEditor: () =>

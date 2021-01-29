@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font overflow-hidden">
+  <section
+    class="text-gray-700 body-font overflow-hidden"
+    @click="addComponent('pricing-col')"
+    id="pricing-col"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
         <h1

@@ -1,5 +1,9 @@
 <template>
-  <footer class="text-gray-700 body-font">
+  <footer
+    class="text-gray-700 body-font"
+    @click="addComponent('footer-actioninput')"
+    id="footer-actioninput"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap md:text-left text-center -mb-10 -mx-4">
         <div class="lg:w-1/6 md:w-1/2 w-full px-4">

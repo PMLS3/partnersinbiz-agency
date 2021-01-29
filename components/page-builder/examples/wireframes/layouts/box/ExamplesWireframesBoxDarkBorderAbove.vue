@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div
+    @click="addComponent('layout-box-darkborder')"
+    id="layout-box-darkborder"
+  >
     <!-- Navigation starts -->
     <nav
       class="w-full mx-auto bg-gray-800 border-b border-gray-700 shadow relative z-20"

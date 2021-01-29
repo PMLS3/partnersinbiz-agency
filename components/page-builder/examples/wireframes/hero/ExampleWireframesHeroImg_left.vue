@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('hero-left')"
+    id="hero-left"
+  >
     <div
       class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center"
     >

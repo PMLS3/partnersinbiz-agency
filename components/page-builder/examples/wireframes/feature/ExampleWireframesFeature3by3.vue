@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('feature-3by3')" id="feature-3by3">
     <div class="f-f-p bg-gray-100 px-4 xl:px-0 py-16">
       <div class="mx-auto container">
         <div class="mb-4 lg:mb-20">

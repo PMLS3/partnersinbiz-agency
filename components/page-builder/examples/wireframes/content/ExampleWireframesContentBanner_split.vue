@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('content-bannersplit')"
+    id="content-bannersplit"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-col">
       <div class="lg:w-4/6 mx-auto">
         <div class="rounded-lg h-64 overflow-hidden">

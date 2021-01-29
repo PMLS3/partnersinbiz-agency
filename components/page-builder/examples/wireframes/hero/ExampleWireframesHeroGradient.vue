@@ -1,5 +1,9 @@
 <template>
-  <div class="relative py-16">
+  <div
+    class="relative py-16"
+    @click="addComponent('hero-gradient')"
+    id="hero-gradient"
+  >
     <img
       src="https://i.ibb.co/99JQ8Nf/prodify-bg.png"
       alt="gradient"
@@ -36,28 +40,28 @@
                 </a>
               </li>
               <li
-                class="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
+                class="flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
               >
                 <a href="javascript:void(0)">
                   <span class="ml-2 font-bold">About Us</span>
                 </a>
               </li>
               <li
-                class="flex cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
               >
                 <a href="javascript:void(0)">
                   <span class="ml-2 font-bold">Pricing</span>
                 </a>
               </li>
               <li
-                class="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
+                class="flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
               >
                 <a href="javascript:void(0)">
                   <span class="ml-2 font-bold">Resources</span>
                 </a>
               </li>
               <li
-                class="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
+                class="flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
               >
                 <a href="javascript:void(0)">
                   <span class="ml-2 font-bold">Sign In</span>
@@ -146,7 +150,7 @@
               </li>
             </ul>
             <button
-              class="py-3 pl-6 pr-4 bg-white bg-indigo-700 text-white text-lg font-bold flex items-center justify-center"
+              class="py-3 pl-6 pr-4 bg-indigo-700 text-white text-lg font-bold flex items-center justify-center"
             >
               Sign In
               <svg

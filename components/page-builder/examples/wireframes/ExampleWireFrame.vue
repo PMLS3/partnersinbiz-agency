@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <vs-radio v-model="val" vs-name="val" vs-value="blog">Blog</vs-radio>
     <vs-radio v-model="val" vs-name="val" vs-value="contact"
       >Contact Us</vs-radio
@@ -43,65 +43,42 @@
     >
 
     <component :is="val" />
-  </div>
+  </div> -->
+  <vs-tabs alignment="fixed" position="left">
+    <vs-tab label="Blog"> <ExampleWireframesBlog /> </vs-tab>
+    <vs-tab label="Card"> <ExampleWireFrameCard /> </vs-tab>
+    <vs-tab label="Contact"> <ExampleWireframesContact /> </vs-tab>
+    <vs-tab label="Heading"> <ExampleWireframesContent /> </vs-tab>
+    <vs-tab label="CTA"> <ExampleWireframesCta /> </vs-tab>
+    <vs-tab label="eCommercce"> <ExampleWireframeEcommerce /> </vs-tab>
+    <vs-tab label="Features"> <ExampleWireframesFeature /> </vs-tab>
+    <vs-tab label="Footer"> <ExampleWireframesFooter /> </vs-tab>
+    <vs-tab label="Forms"> <ExampleWireframesForms /> </vs-tab>
+    <vs-tab label="Gallery"> <ExampleWireframesGallery /> </vs-tab>
+    <vs-tab label="Header"> <ExampleWireframesHeader /> </vs-tab>
+    <vs-tab label="Headings"> <ExampleWireframesHeading /> </vs-tab>
+    <vs-tab label="Hero"> <ExampleWireframesHero /> </vs-tab>
+    <vs-tab label="Layouts">
+      <vs-tab label="Box"> <ExampleWireframesBox /> </vs-tab>
+      <vs-tab label="Card"> <ExampleWireFrameCard /> </vs-tab>
+      <vs-tab label="Side"> <ExampleWireframesSide /> </vs-tab>
+    </vs-tab>
+    <vs-tab label="Lists"> <ExampleWireFrameLists /> </vs-tab>
+    <vs-tab label="Navigation"> <ExampleWireFrameNavigation /> </vs-tab>
+    <vs-tab label="Overlays"> <ExampleWireFrameOverlays /> </vs-tab>
+    <vs-tab label="Pricing"> <ExampleWireframesPricing /> </vs-tab>
+    <vs-tab label="Statistics"> <ExampleWireframesStatistic /> </vs-tab>
+    <vs-tab label="Step"> <ExampleWireframeStep /> </vs-tab>
+    <vs-tab label="Table"> <ExampleWireFrameTable /> </vs-tab>
+    <vs-tab label="Team"> <ExampleWireframeTeam /> </vs-tab>
+    <vs-tab label="Testimonial"> <ExampleWireframeTestimonial /> </vs-tab>
+    <vs-tab label="UI"> <ExampleWireFrameUi /> </vs-tab>
+  </vs-tabs>
 </template>
 
 <script>
-import blog from './blog/ExampleWireframesBlog'
-import contact from './contact/ExampleWireframesContact'
-import contentT from './content/ExampleWireframesContent'
-import cta from './cta/ExampleWireframesCta'
-import ecommerce from './ecommerce/ExampleWireframeEcommerce'
-import feature from './feature/ExampleWireframesFeature'
-import footerr from './footer/ExampleWireframesFooter'
-import gallery from './gallery/ExampleWireframesGallery'
-import headerr from './header/ExampleWireframesHeader'
-import heros from './hero/ExampleWireframesHero'
-import pricing from './pricing/ExampleWireframesPricing'
-import statistics from './statistic/ExampleWireframesStatistic'
-import steps from './step/ExampleWireframeStep'
-import team from './team/ExampleWireframeTeam'
-import testimonial from './testimonial/ExampleWireframeTestimonial'
-import box from './layouts/box/ExamplesWireframesBox'
-import side from './layouts/side/ExamplesWireframesSide'
-import cardL from './layouts/card/ExampleWireFrameLayoutsCard'
-import card from './card/ExampleWireFrameCard'
-import navigation from './navigation/ExampleWireframeNavigation'
-import headings from './heading/ExampleWireframeHeading'
-import tables from './table/ExampleWireframeTable'
-import lists from './lists/ExampleWireframeLists'
-import overlays from './overlays/ExampleWireframeOverlays'
-
 export default {
-  components: {
-    blog,
-    contact,
-    contentT,
-    cta,
-    ecommerce,
-    feature,
-    footerr,
-    gallery,
-    headerr,
-    heros,
-    pricing,
-    statistics,
-    steps,
-    team,
-    testimonial,
-    box,
-    side,
-    cardL,
-    card,
-    navigation,
-    headings,
-    tables,
-    overlays,
-    lists,
-  },
-  data: () => ({
-    val: 'blog',
-  }),
+  name: 'ExampleWireFrame',
 }
 </script>
 

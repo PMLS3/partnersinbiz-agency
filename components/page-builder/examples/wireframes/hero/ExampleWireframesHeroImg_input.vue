@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('hero-inp')"
+    id="hero-inp"
+  >
     <div
       class="container mx-auto flex flex-col px-5 py-24 justify-center items-center"
     >
@@ -21,7 +25,7 @@
         </p>
         <div class="flex w-full justify-center">
           <input
-            class="border-0 bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full"
+            class="border-0 bg-gray-100 rounded mr-4 border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full"
             placeholder="Placeholder"
             type="text"
           />

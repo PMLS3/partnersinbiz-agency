@@ -1,5 +1,9 @@
 <template>
-  <div class="h-full w-full bg-gray-100 py-16">
+  <div
+    class="h-full w-full bg-gray-100 py-16"
+    @click="addComponent('ui-progress')"
+    id="ui-progress"
+  >
     <div class="container mx-auto flex justify-center">
       <div class="w-11/12 md:w-2/6 h-2 bg-gray-200 rounded">
         <div class="w-7/12 bg-indigo-700 h-2 rounded relative">

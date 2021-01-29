@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="flex flex-no-wrap bg-gray-200">
+    <div
+      class="flex flex-no-wrap bg-gray-200"
+      @click="addComponent('layout-box-lighticons')"
+      id="layout-box-lighticons"
+    >
       <!-- Sidebar starts -->
       <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
       <div

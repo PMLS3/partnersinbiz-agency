@@ -1,5 +1,9 @@
 <template>
-  <div class="py-6 w-full h-full bg-gray-200">
+  <div
+    class="py-6 w-full h-full bg-gray-200"
+    @click="addComponent('forms-toggle')"
+    id="forms-toggle"
+  >
     <div class="container mx-auto">
       <div class="py-6 w-full h-full bg-gray-200">
         <div

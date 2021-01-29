@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="relative flex flex-no-wrap bg-gray-200">
+    <div
+      class="relative flex flex-no-wrap bg-gray-200"
+      @click="addComponent('layout-box-lightheader')"
+      id="layout-box-lightheader"
+    >
       <!-- Sidebar starts -->
       <!-- Remove class [ hidden ] and replace [ sm:block ] with [ block ] -->
       <div

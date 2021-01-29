@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container px-4 xl:px-0 py-10 xl:py-40">
+  <div
+    class="mx-auto container px-4 xl:px-0 py-10 xl:py-40"
+    @click="addComponent('feature-vid')"
+    id="feature-vid"
+  >
     <div class="">
       <div class="flex flex-wrap items-center">
         <div class="lg:w-2/5 w-full">

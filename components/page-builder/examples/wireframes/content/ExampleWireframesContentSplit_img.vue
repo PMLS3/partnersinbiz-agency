@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('content-imgsplit')" id="content-imgsplit">
     <section class="text-gray-700 body-font">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-wrap -mx-4 -mb-10 text-center">

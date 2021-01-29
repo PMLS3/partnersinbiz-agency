@@ -1,5 +1,9 @@
 <template>
-  <div class="w-full h-full bg-gray-200">
+  <div
+    class="w-full h-full bg-gray-200"
+    @click="addComponent('layout-list-simple')"
+    id="layout-box-simple"
+  >
     <div class="container mx-auto px-6 py-10">
       <div class="sm:shadow rounded bg-white">
         <div

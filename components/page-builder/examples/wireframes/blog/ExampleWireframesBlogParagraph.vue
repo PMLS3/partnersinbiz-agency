@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font overflow-hidden">
+  <section
+    class="text-gray-700 body-font overflow-hidden"
+    @click="addComponent('blog-para')"
+    id="blog-para"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap -m-12">
         <div class="p-12 md:w-1/2 flex flex-col items-start">

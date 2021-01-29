@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container py-20 px-6">
+  <div
+    class="mx-auto container py-20 px-6"
+    @click="addComponent('nav-simple')"
+    id="nav-simple"
+  >
     <div class="flex w-full justify-between items-center mb-6 md:mb-12">
       <div class="rounded relative w-8/12 md:w-1/3">
         <svg

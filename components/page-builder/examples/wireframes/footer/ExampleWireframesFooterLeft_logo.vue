@@ -1,5 +1,9 @@
 <template>
-  <footer class="text-gray-700 body-font">
+  <footer
+    class="text-gray-700 body-font"
+    @click="addComponent('footer-leftlogo')"
+    id="footer-leftlogo"
+  >
     <div
       class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-no-wrap flex-wrap flex-col"
     >

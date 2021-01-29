@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('content-left')"
+    id="content-left"
+  >
     <div class="container flex flex-wrap px-5 py-24 mx-auto items-center">
       <div
         class="md:w-1/2 md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-300"

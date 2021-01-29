@@ -1,5 +1,9 @@
 <template>
-  <div class="container mx-auto pt-16">
+  <div
+    class="container mx-auto pt-16"
+    @click="addComponent('testimonial-chev')"
+    id="testimonial-chev"
+  >
     <div class="flex flex-wrap rounded-lg">
       <div
         class="xl:w-2/5 lg:w-2/5 sm:w-full bg-indigo-700 py-16 xl:py-32 px-8 xl:px-16 text-center xl:text-left lg:text-left md:text-left sm:text-left xl:rounded-tl xl:rounded-bl"

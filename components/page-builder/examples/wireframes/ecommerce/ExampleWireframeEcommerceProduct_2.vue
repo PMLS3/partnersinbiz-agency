@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font overflow-hidden">
+  <section
+    class="text-gray-700 body-font overflow-hidden"
+    @click="addComponent('ecom-prod2')"
+    id="ecom-prod2"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-4/5 mx-auto flex flex-wrap">
         <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">

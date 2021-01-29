@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('cta-line')"
+    id="cta-line"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div
         class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto"

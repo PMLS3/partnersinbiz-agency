@@ -1,6 +1,8 @@
 <template>
   <div
     class="flex flex-wrap sm:flex-no-wrap items-center justify-between w-full"
+    @click="addComponent('layout-box-three')"
+    id="layout-box-three"
   >
     <div
       class="w-full sm:w-1/3 h-64 rounded-t sm:rounded-l sm:rounded-t-none shadow bg-white"

@@ -1,5 +1,9 @@
 <template>
-  <div class="max-w-8xl mx-auto container py-8">
+  <div
+    class="max-w-8xl mx-auto container py-8"
+    @click="addComponent('nav-pagdots')"
+    id="nav-pagdots"
+  >
     <ul class="flex justify-center items-center">
       <li>
         <span

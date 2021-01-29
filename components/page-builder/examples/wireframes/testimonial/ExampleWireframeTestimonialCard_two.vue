@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('testimonial-card2')"
+    id="testimonial-card2"
+  >
     <div class="container px-5 py-24 mx-auto">
       <h1
         class="text-3xl font-medium title-font text-gray-900 mb-12 text-center"

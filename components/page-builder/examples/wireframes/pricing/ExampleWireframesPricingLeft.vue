@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font overflow-hidden">
+  <section
+    class="text-gray-700 body-font overflow-hidden"
+    @click="addComponent('pricing-left')"
+    id="pricing-left"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div class="lg:w-1/4 mt-48 hidden lg:block">
         <div

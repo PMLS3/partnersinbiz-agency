@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('cta-playstore')"
+    id="cta-playstore"
+  >
     <div
       class="container px-5 py-24 mx-auto flex items-center md:flex-row flex-col"
     >

@@ -24,8 +24,12 @@ import PS from '@/components/page-builder/component-creator/components/Editor/co
 import SECTIONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSection.vue'
 import IMGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorImg.vue'
 import VIDEO from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorVideo.vue'
+import A from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorA.vue'
 
 import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
+import G from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorG.vue'
+import POLYGON from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPolygon.vue'
+
 import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
 import RECTS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorRect.vue'
 import LINES from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorLine.vue'
@@ -47,6 +51,9 @@ export default {
     SVGS,
     PATHS,
     RECTS,
+    G,
+    A,
+    POLYGON,
     SECTIONS,
     LINES,
     CIRCLES,

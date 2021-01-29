@@ -1,6 +1,8 @@
 <template>
   <div
     class="flex flex-wrap lg:flex-no-wrap items-center justify-between w-full"
+    @click="addComponent('layout-box-6col')"
+    id="layout-box-6col"
   >
     <!-- Code block starts -->
     <div

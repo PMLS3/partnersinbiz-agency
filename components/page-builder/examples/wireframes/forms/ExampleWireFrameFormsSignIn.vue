@@ -1,5 +1,9 @@
 <template>
-  <section class="h-screen bg-indigo-600">
+  <section
+    class="h-screen bg-indigo-600"
+    @click="addComponent('forms-signin')"
+    id="forms-signin"
+  >
     <div class="flex justify-center h-full mx-auto lg:items-center">
       <form
         id="login"

@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('testimonial-card3')"
+    id="testimonial-card3"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap -m-4">
         <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">

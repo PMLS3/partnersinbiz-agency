@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('layout-box-img')" id="layout-box-img">
     <div class="relative">
       <!-- Background image starts -->
       <img

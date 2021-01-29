@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('feature-itemized')"
+    id="feature-itemized"
+  >
     <div class="container px-5 py-24 mx-auto">
       <div class="text-center mb-20">
         <h1

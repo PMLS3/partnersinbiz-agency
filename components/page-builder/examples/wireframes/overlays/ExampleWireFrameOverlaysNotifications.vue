@@ -1,11 +1,15 @@
 <template>
-  <div class="bg-gray-200 h-full">
+  <div
+    class="bg-gray-200 h-full"
+    @click="addComponent('overlay-noti')"
+    id="overlay-noti"
+  >
     <div
       class="relative mx-auto flex justify-center sm:justify-end pt-16 sm:pt-6 pb-6 sm:pb-16 h-64 overflow-x-hidden"
     >
       <div
         role="alert"
-        class="xl:w-5/12 mx-auto sm:mx-0 sm:w-6/12 md:w-6/12 justify-between w-10/12 bg-white shadow-lg rounded flex absolute left-0 sm:left-auto right-0 sm:top-0 sm:mr-6 mt-16 sm:mt-6 mb-6 sm:mb-0 hidden transition duration-150 ease-in-out"
+        class="xl:w-5/12 mx-auto sm:mx-0 sm:w-6/12 md:w-6/12 justify-between w-10/12 bg-white shadow-lg rounded absolute left-0 sm:left-auto right-0 sm:top-0 sm:mr-6 mt-16 sm:mt-6 mb-6 sm:mb-0 hidden transition duration-150 ease-in-out"
         id="notification"
       >
         <div

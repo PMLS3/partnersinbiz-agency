@@ -1,5 +1,9 @@
 <template>
-  <div class="py-6 bg-gray-200">
+  <div
+    class="py-6 bg-gray-200"
+    @click="addComponent('heading-simple')"
+    id="heading-simple"
+  >
     <div class="container mx-auto w-5/6 sm:w-2/3 h-full">
       <div
         class="w-full bg-white py-5 flex items-center justify-between px-5 sm:px-10 shadow rounded-t"

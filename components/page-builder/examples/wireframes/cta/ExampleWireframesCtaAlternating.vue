@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container px-4 lg:px-0">
+  <div
+    class="mx-auto container px-4 lg:px-0"
+    @click="addComponent('cta-alter')"
+    id="cta-alter"
+  >
     <div class="pt-10 lg:pt-40">
       <div class="container mx-auto">
         <div class="flex flex-wrap items-center">

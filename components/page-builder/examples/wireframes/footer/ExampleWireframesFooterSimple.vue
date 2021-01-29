@@ -1,5 +1,9 @@
 <template>
-  <footer class="text-gray-700 body-font">
+  <footer
+    class="text-gray-700 body-font"
+    @click="addComponent('footer-simple')"
+    id="footer-simple"
+  >
     <div
       class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
     >

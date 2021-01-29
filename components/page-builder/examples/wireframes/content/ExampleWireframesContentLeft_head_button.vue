@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('content-leftbutton')"
+    id="content-leftbutton"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <h2
         class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5"

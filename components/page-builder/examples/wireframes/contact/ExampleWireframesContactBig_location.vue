@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font relative">
+  <section
+    class="text-gray-700 body-font relative"
+    @click="addComponent('contact-location')"
+    id="contact-location"
+  >
     <div class="absolute inset-0 bg-gray-300">
       <iframe
         width="100%"
@@ -10,7 +14,7 @@
         title="map"
         scrolling="no"
         src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"
-        style="filter: grayscale(1) contrast(1.2) opacity(0.4);"
+        style="filter: grayscale(1) contrast(1.2) opacity(0.4)"
       ></iframe>
     </div>
     <div class="container px-5 py-24 mx-auto flex">

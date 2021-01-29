@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('gallery-mix')"
+    id="gallery-mix"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div class="flex w-full mb-20 flex-wrap">
         <h1

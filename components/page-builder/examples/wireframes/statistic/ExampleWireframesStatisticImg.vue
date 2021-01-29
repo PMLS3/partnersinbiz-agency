@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('stats-img')"
+    id="stats-img"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div
         class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10"

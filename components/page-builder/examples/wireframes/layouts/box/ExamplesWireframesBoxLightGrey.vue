@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('layout-box-lightgrey')" id="layout-box-lightgrey">
     <div class="w-full h-full bg-gray-200">
       <!-- Navigation starts -->
       <nav class="w-full mx-auto bg-white shadow">

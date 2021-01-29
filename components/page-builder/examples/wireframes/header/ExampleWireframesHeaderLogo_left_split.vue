@@ -1,5 +1,9 @@
 <template>
-  <header class="text-gray-700 body-font">
+  <header
+    class="text-gray-700 body-font"
+    @click="addComponent('header-left')"
+    id="header-left"
+  >
     <div
       class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
     >

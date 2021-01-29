@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container py-20">
+  <div
+    class="mx-auto container py-20"
+    @click="addComponent('layout-list-5col')"
+    id="layout-box-5col"
+  >
     <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
       <table class="min-w-full bg-white">
         <thead>

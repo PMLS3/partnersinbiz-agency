@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('nav-ver-simple')" id="nav-ver-simple">
     <div
       class="w-64 pl-4 border-r shadow bg-white border-gray-300 transition duration-150 ease-in-out hidden sm:block"
     >

@@ -1,5 +1,9 @@
 <template>
-  <nav class="w-full bg-white shadow">
+  <nav
+    class="w-full bg-white shadow"
+    @click="addComponent('nav-hor')"
+    id="nav-hor"
+  >
     <div
       class="container px-6 h-16 flex justify-between items-center lg:items-stretch mx-auto"
     >

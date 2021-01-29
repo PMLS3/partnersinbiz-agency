@@ -1,5 +1,9 @@
 <template>
-  <div class="py-6 w-full h-full bg-gray-200">
+  <div
+    class="py-6 w-full h-full bg-gray-200"
+    @click="addComponent('forms-text')"
+    id="forms-text"
+  >
     <div
       class="xl:w-5/12 w-11/12 mx-auto mb-4 my-6 md:w-2/3 shadow sm:px-10 sm:py-6 py-4 px-4 bg-white rounded-md"
     >

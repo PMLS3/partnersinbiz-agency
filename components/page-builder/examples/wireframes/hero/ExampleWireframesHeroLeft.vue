@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('hero-left')" id="hero-left">
     <div class="mx-auto container relative px-6 xl:px-0">
       <nav>
         <div class="lg:flex justify-between w-full py-12 hidden">

@@ -1,5 +1,9 @@
 <template>
-  <section class="max-w-8xl mx-auto container bg-white pt-16">
+  <section
+    class="max-w-8xl mx-auto container bg-white pt-16"
+    @click="addComponent('feature-icon-text')"
+    id="feature-icon-text"
+  >
     <div>
       <div class="flex items-center flex-col px-4">
         <p class="uppercase text-lg text-center text-gray-600 leading-normal">

@@ -1,5 +1,9 @@
 <template>
-  <div class="mx-auto container">
+  <div
+    class="mx-auto container"
+    @click="addComponent('layout-list-expanded')"
+    id="layout-box-expanded"
+  >
     <div>
       <div class="flex pt-6 items-center">
         <div data-menu class="cursor-pointer">

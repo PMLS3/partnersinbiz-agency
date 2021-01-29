@@ -1,5 +1,9 @@
 <template>
-  <nav class="bg-white shadow">
+  <nav
+    class="bg-white shadow"
+    @click="addComponent('nav-leftaligned')"
+    id="nav-leftaligned"
+  >
     <div class="container mx-auto px-6">
       <div class="flex items-center justify-between">
         <div class="inset-y-0 left-0 flex items-center xl:hidden">

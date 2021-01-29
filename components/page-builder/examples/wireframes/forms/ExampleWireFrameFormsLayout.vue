@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-gray-200 py-10">
+  <div
+    class="bg-gray-200 py-10"
+    @click="addComponent('forms-layout')"
+    id="forms-layout"
+  >
     <div>
       <form
         id="form"

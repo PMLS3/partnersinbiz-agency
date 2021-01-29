@@ -1,6 +1,8 @@
 <template>
   <div
     class="container px-6 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between py-8"
+    @click="addComponent('heading-simple')"
+    id="heading-simple"
   >
     <h4 class="text-2xl font-bold leading-tight text-gray-800">Dashboard</h4>
     <div class="mt-6 md:mt-0">

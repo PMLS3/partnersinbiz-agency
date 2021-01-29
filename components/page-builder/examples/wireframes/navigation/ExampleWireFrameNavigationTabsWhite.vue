@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-gray-200 py-10">
+  <div
+    class="bg-gray-200 py-10"
+    @click="addComponent('nav-tabs-white')"
+    id="nav-tabs-white"
+  >
     <div class="container mx-auto">
       <div class="sm:hidden relative w-11/12 mx-auto bg-white rounded">
         <div class="absolute inset-0 m-auto mr-4 z-0 w-6 h-6">

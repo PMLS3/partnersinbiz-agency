@@ -1,5 +1,9 @@
 <template>
-  <div class="pt-16">
+  <div
+    class="pt-16"
+    @click="addComponent('footer-sitemap')"
+    id="footer-sitemap"
+  >
     <div
       class="w-full border-gray-300 border-t lg:w-11/12 md:w-11/12 lg:mx-auto md:mx-auto"
     >

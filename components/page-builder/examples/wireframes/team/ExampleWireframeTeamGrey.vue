@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-16">
+  <div class="pb-16" @click="addComponent('team-grey')" id="team-grey">
     <div class="container flex justify-center mx-auto pt-16">
       <div>
         <p class="text-gray-500 text-lg text-center font-normal pb-3">

@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('gallery-center')"
+    id="gallery-center"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <div class="lg:w-2/3 mx-auto">
         <div

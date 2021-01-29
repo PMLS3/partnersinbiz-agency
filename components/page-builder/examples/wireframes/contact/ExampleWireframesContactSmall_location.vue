@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font relative">
+  <section
+    class="text-gray-700 body-font relative"
+    @click="addComponent('contact-small-location')"
+    id="contact-small-location"
+  >
     <div class="container px-5 py-24 mx-auto flex sm:flex-no-wrap flex-wrap">
       <div
         class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative"
@@ -14,7 +18,7 @@
           marginwidth="0"
           scrolling="no"
           src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=%C4%B0zmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed"
-          style="filter: grayscale(1) contrast(1.2) opacity(0.4);"
+          style="filter: grayscale(1) contrast(1.2) opacity(0.4)"
         ></iframe>
         <div class="bg-white relative flex flex-wrap py-6">
           <div class="lg:w-1/2 px-6">

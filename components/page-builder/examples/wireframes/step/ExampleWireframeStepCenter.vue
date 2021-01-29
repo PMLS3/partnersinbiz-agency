@@ -1,5 +1,9 @@
 <template>
-  <section class="text-gray-700 body-font">
+  <section
+    class="text-gray-700 body-font"
+    @click="addComponent('steps-center')"
+    id="steps-center"
+  >
     <div class="container px-5 py-24 mx-auto flex flex-wrap flex-col">
       <div class="flex mx-auto flex-wrap mb-20">
         <a

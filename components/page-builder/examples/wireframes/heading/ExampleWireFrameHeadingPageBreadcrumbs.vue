@@ -1,5 +1,9 @@
 <template>
-  <div class="py-6 lg:py-8">
+  <div
+    class="py-6 lg:py-8"
+    @click="addComponent('heading-bread')"
+    id="heading-bread"
+  >
     <div
       class="container px-6 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between"
     >

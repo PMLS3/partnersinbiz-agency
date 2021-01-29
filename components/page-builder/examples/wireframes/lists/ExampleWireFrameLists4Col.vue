@@ -1,5 +1,9 @@
 <template>
-  <div class="w-full h-full bg-gray-200 overflow-x-scroll">
+  <div
+    class="w-full h-full bg-gray-200 overflow-x-scroll"
+    @click="addComponent('layout-list-4col')"
+    id="layout-box-4col"
+  >
     <div class="container mx-auto py-20">
       <table class="w-full shadow text-left bg-white">
         <thead>

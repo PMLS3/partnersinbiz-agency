@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer @click="addComponent('footer-blue')" id="footer-blue">
     <div class="mt-12 relative pt-6">
       <img
         class="w-8 lg:w-auto absolute inset-0 m-auto mr-12 z-10 -mt-4 lg:-mt-8"

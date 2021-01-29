@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="addComponent('hero-center')" id="hero-center">
     <nav class="w-full">
       <div class="container mx-auto px-6 flex items-center justify-between">
         <div class="flex items-center">
