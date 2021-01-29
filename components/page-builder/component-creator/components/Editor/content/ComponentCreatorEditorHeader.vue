@@ -1,5 +1,5 @@
 <template>
-  <form
+  <header
     :class="schema.class"
     :style="schema.style"
     @click="open_pop = !open_pop"
@@ -21,12 +21,12 @@
       :key="ind"
       :schema="field"
     />
-  </form>
+  </header>
 </template>
 
 <script>
 export default {
-  name: 'FORM',
+  name: 'HEADER',
   props: ['schema', 'index', 'mainIndex'],
 
   components: {

@@ -1,9 +1,5 @@
 <template>
-  <form
-    :class="schema.class"
-    :style="schema.style"
-    @click="open_pop = !open_pop"
-  >
+  <li :class="schema.class" :style="schema.style" @click="open_pop = !open_pop">
     {{ schema.innerText }}
     <vs-popup
       classContent="popup-example"
@@ -21,12 +17,12 @@
       :key="ind"
       :schema="field"
     />
-  </form>
+  </li>
 </template>
 
 <script>
 export default {
-  name: 'FORM',
+  name: 'PS',
   props: ['schema', 'index', 'mainIndex'],
 
   components: {

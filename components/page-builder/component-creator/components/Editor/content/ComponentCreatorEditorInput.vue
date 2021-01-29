@@ -1,10 +1,13 @@
 <template>
-  <form
-    :class="schema.class"
-    :style="schema.style"
-    @click="open_pop = !open_pop"
-  >
-    {{ schema.innerText }}
+  <div>
+    <input
+      :class="schema.class"
+      :style="schema.style"
+      :type="schema.type"
+      :placeholder="schema.placeholder"
+      @click="open_pop = !open_pop"
+    />
+
     <vs-popup
       classContent="popup-example"
       :title="schema.title"
@@ -21,12 +24,12 @@
       :key="ind"
       :schema="field"
     />
-  </form>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'FORM',
+  name: 'INPUT',
   props: ['schema', 'index', 'mainIndex'],
 
   components: {
