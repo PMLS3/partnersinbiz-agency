@@ -1,7 +1,7 @@
 <template>
   <div :class="schema.class" :style="schema.style" :slot="schema.slot">
     <ComponentCreatorEditor
-      v-for="(field, ind) in schema"
+      v-for="(field, ind) in schema.children"
       :key="ind"
       :schema="field"
     />

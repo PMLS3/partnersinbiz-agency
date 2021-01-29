@@ -122,8 +122,10 @@
 
           <div class="flex items-center justify-center w-full p-10 md:w-1/2">
             <div class="max-w-xs">
-              <h1 class="mb-4 text-6xl leading-none">Welcome</h1>
-              <p class="mb-8 text-sm leading-relaxed">
+              <h1 class="mb-4 text-6xl leading-none backInRight-enter-active">
+                Welcome
+              </h1>
+              <p class="mb-8 text-sm leading-relaxed backInDown-enter-active">
                 No matter which salon you go to we are all dedicated to
                 maintaining the same legacy of hard work and quality that Kays
                 Nails was originally founded on. We are dedicated to providing
@@ -247,7 +249,7 @@
           </div>
 
           <div class="w-9/12 mt-2">
-            <p class="mb-8 leading-relaxed opacity-75">
+            <p class="mb-8 leading-relaxed opacity-75 backInDown-enter-active">
               Kay Mophethe, founder of Kay Beauty and Nails, has been in the
               beauty and nail industry for twelve years. The spark that ignited
               this passion was her very first visit to a nail salon when her
@@ -268,7 +270,7 @@
         <div
           class="relative z-20 max-w-3xl py-6 mx-auto text-center bg-pink-300 opacity-75"
         >
-          <h3 class="mb-4 text-2xl">Subscribe</h3>
+          <h3 class="mb-4 text3xl">Subscribe</h3>
           <p class="mb-6 text-sm">Stay up to date with our news letter</p>
 
           <form class="flex w-full max-w-xs mx-auto">
@@ -286,7 +288,7 @@
         </div>
 
         <img
-          src="https://cdn.glitch.com/17595a2f-f296-43f9-8ee0-29a94d25fdf7%2F6f131d6.png?v=1611924117255"
+          src="https://cdn.glitch.com/17595a2f-f296-43f9-8ee0-29a94d25fdf7%2FKAY-18.jpg?v=1611929350247"
           class="absolute top-0 left-0 z-10 object-cover w-full h-full"
         />
       </div>
@@ -329,7 +331,7 @@
 </template>
 <script>
 export default {
-  layout: 'fullPage',
+  // layout: 'fullPage',
   data() {
     return {
       show: true,

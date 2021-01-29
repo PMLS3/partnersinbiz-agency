@@ -18,7 +18,7 @@
       />
     </vs-popup>
     <ComponentCreatorEditor
-      v-for="(field, ind) in schema"
+      v-for="(field, ind) in schema.childre"
       :key="ind"
       :schema="field"
     />

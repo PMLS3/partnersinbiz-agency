@@ -17,7 +17,7 @@ import NAV from '@/components/page-builder/component-creator/components/Editor/c
 import BODY from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorBody.vue'
 import FORM from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorForm.vue'
 
-import HEADER from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorHeader.vue'
+import HEADERS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorHeader.vue'
 import BUTTON from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorButton.vue'
 
 import H1S from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorh1Tag.vue'
@@ -32,11 +32,13 @@ import SECTIONS from '@/components/page-builder/component-creator/components/Edi
 import IMGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorImg.vue'
 import VIDEO from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorVideo.vue'
 import A from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorA.vue'
+import HR from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorHr.vue'
+
 import INPUT from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorInput.vue'
 
 import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
-import G from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorG.vue'
-import POLYGON from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPolygon.vue'
+import GS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorG.vue'
+import POLYGONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPolygon.vue'
 
 import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
 import RECTS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorRect.vue'
@@ -59,16 +61,17 @@ export default {
     SVGS,
     PATHS,
     RECTS,
-    G,
+    GS,
+    HR,
     A,
     UL,
     LI,
     NAV,
-    POLYGON,
+    POLYGONS,
     SECTIONS,
     LINES,
     CIRCLES,
-    HEADER,
+    HEADERS,
     BODY,
     FORM,
     INPUT,

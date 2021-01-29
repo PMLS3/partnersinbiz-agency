@@ -4,7 +4,6 @@
     :style="schema.style"
     @click="open_pop = !open_pop"
   >
-    {{ schema.innerText }}
     <vs-popup
       classContent="popup-example"
       :title="schema.title"
@@ -17,7 +16,7 @@
       />
     </vs-popup>
     <ComponentCreatorEditor
-      v-for="(field, ind) in schema"
+      v-for="(field, ind) in schema.children"
       :key="ind"
       :schema="field"
     />

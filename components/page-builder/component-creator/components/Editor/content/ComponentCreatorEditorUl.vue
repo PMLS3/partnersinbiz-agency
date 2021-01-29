@@ -15,7 +15,7 @@
       />
     </vs-popup>
     <ComponentCreatorEditor
-      v-for="(field, ind) in schema"
+      v-for="(field, ind) in schema.children"
       :key="ind"
       :schema="field"
     />

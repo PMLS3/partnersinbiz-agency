@@ -31,7 +31,7 @@
       <AnimationTransition />
     </vs-tab>
     <!-- Components -->
-    <vs-tab label="Components" v-if="allowedType == 'all'">
+    <vs-tab label="Elements" v-if="allowedType == 'all'">
       <div>
         <vs-tabs alignment="fixed" position="left">
           <!-- UI -->
