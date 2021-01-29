@@ -23,7 +23,7 @@ export default (context, inject) => {
       // console.log('children', child_nodes)
 
       let node_name = element.nodeName
-      // console.log('node_name', node_name)
+      console.log('node_name', node_name)
 
       let attributes = element.attributes
       // console.log('attributes', attributes)

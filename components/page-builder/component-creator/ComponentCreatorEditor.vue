@@ -23,6 +23,7 @@ import H6S from '@/components/page-builder/component-creator/components/Editor/c
 import PS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorP.vue'
 import SECTIONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSection.vue'
 import IMGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorImg.vue'
+import VIDEO from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorVideo.vue'
 
 import SVGS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSvg.vue'
 import PATHS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorPath.vue'
@@ -60,6 +61,7 @@ export default {
     SMALLS,
     CITES,
     IMGS,
+    VIDEO,
     TRANSITIONS,
   },
   data() {
