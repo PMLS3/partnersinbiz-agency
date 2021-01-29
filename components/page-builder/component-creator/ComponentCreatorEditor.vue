@@ -34,6 +34,8 @@ import FOOTERS from '@/components/page-builder/component-creator/components/Edit
 import SMALLS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorSmall.vue'
 import CITES from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorCite.vue'
 
+import TRANSITIONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorTransition.vue'
+
 export default {
   name: 'ComponentCreatorEditor',
 
@@ -58,6 +60,7 @@ export default {
     SMALLS,
     CITES,
     IMGS,
+    TRANSITIONS,
   },
   data() {
     return {

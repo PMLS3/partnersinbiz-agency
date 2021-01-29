@@ -10,6 +10,7 @@
     @dragover.prevent
     @drop.prevent="drop(schema)"
   >
+    {{ schema.innerText }}
     <ComponentsCreatorEditorButtons
       :schema="schema"
       :index="index"

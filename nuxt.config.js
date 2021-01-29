@@ -49,6 +49,7 @@ module.exports = {
   css: [
     // VUESAX
     'vuesax/dist/vuesax.css',
+    '~/assets/css/animate/animate.css',
 
     // Tailwind
     '~/assets/css/main.css',
@@ -61,7 +62,6 @@ module.exports = {
     // Vue Select
     'vue-select/dist/vue-select.css',
     'fullpage-vue/src/fullpage.css',
-    'animate.css',
     // SCSS file in the project
     '~/assets/css/loader.css',
   ],
@@ -128,7 +128,7 @@ module.exports = {
       ['vuesax/dist/vuesax.css'],
       ['swiper/dist/css/swiper.min.css'],
       ['vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'],
-      ['animate.css'],
+      ['~/assets/css/animate/animate.css'],
       ['fullpage-vue/src/fullpage.css'],
     ],
   ],

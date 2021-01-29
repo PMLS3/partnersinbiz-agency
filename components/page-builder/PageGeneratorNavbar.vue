@@ -185,6 +185,7 @@ export default {
       this.popupAddQuick = false
     })
   },
+  computed() {},
   methods: {
     newPage() {},
     saveComponent() {

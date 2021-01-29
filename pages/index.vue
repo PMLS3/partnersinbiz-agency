@@ -1,20 +1,36 @@
 <template>
   <div class="h-screen">
     <client-only>
-      <!-- <vs-card class="mt-24">
-        <vs-button @click="$router.push('test')">Tetst</vs-button>
-        <UiMarqueeTextExample />
-        <UiImageUnsplash />
-      </vs-card> -->
-      <!-- <PageGeneratorBuilder class="mt-24" /> -->
-      <!-- <ExampleECommerceShop /> -->
-      <vs-button @click="$router.push('test')" class="mt-24">Tetst</vs-button>
+      <vs-button
+        @click="$router.push('test')"
+        class="mt-24 backInDown-enter-active"
+        >Tetst</vs-button
+      >
+
+      <div id="example-2">
+        <button @click="show = !show">Toggle show</button>
+        <transition name="backInLeft" appear>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+            facilisis enim libero, at lacinia diam fermentum id. Pellentesque
+            habitant morbi tristique senectus et netus.
+          </p>
+        </transition>
+      </div>
+      <transition name="backInDown" appear>
+        <div><h1>Hello</h1></div>
+      </transition>
     </client-only>
   </div>
 </template>
 <script>
 export default {
   // layout: 'fullPage',
+  data() {
+    return {
+      show: true,
+    }
+  },
   computed: {
     main_business_set() {
       return this.$store.state.business.main_business_set

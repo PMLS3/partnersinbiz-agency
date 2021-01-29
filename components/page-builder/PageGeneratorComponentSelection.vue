@@ -26,7 +26,10 @@
         </vs-tabs>
       </div>
     </vs-tab>
-
+    <!-- Cards -->
+    <vs-tab label="Transitions" v-if="allowedType == 'all'">
+      <AnimationTransition />
+    </vs-tab>
     <!-- Components -->
     <vs-tab label="Components" v-if="allowedType == 'all'">
       <div>
