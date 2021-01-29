@@ -17,6 +17,9 @@ import NAV from '@/components/page-builder/component-creator/components/Editor/c
 import BODY from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorBody.vue'
 import FORM from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorForm.vue'
 
+import ARTICLE from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorArticle.vue'
+import ASIDE from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorAside.vue'
+
 import HEADERS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorHeader.vue'
 import BUTTON from '@/components/page-builder/component-creator/components/Editor/components/ComponentCreatorEditorButton.vue'
 
@@ -69,6 +72,8 @@ export default {
     NAV,
     POLYGONS,
     SECTIONS,
+    ARTICLE,
+    ASIDE,
     LINES,
     CIRCLES,
     HEADERS,

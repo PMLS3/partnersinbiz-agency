@@ -4,7 +4,7 @@
     <!-- <vs-tab label="Register"><ExampleRegister /> </vs-tab> -->
     <vs-tab label="Misc">
       <vs-tabs alignment="fixed" position="left">
-        <vs-tab label="Error404"><Example404 /> </vs-tab>
+        <vs-tab label="Error404"><ExampleError404 /> </vs-tab>
         <vs-tab label="Error500"><ExampleError500 /> </vs-tab>
         <vs-tab label="LockScreen"> <ExampleLockScreen /> </vs-tab>
         <vs-tab label="Maintenance"><ExampleMaintenance /> </vs-tab>
