@@ -1,9 +1,19 @@
 <template>
   <div class="w-screen h-full">
     <!-- <UiTree :data='list'/> -->
-    <PageGeneratorNavbar :list="list" />
 
-    <PageGeneratorViewer :list="list" />
+    <div class="grid grid-cols-4 gap-4">
+      <div class="col-span-3">
+        <PageGeneratorNavbar :list="list" />
+
+        <PageGeneratorViewer :list="list" />
+      </div>
+      <div class="h-full">
+        <PerfectScrollbar>
+          <PageGeneratorComponentEditor :edit_comp="edit_comp" />
+        </PerfectScrollbar>
+      </div>
+    </div>
 
     <vs-button
       color="primary"
@@ -28,20 +38,19 @@
       </div>
     </vs-sidebar>
 
-    <vs-sidebar
+    <!-- <vs-sidebar
       v-model="editactive"
       hidden-background
       class="h-screen items-no-padding"
       click-not-close
+      staticPosition
     >
       <vs-button icon="close" @click="editactive = false" class="float-right">
       </vs-button>
-      <!-- <div v-if="editactive"> -->
       <PerfectScrollbar>
         <PageGeneratorComponentEditor :edit_comp="edit_comp" />
       </PerfectScrollbar>
-      <!-- </div> -->
-    </vs-sidebar>
+    </vs-sidebar> -->
   </div>
 </template>
 
