@@ -89,7 +89,9 @@
             ></vs-button>
           </vs-col>
         </vs-tab>
-        <vs-tab label="Layout"> </vs-tab>
+        <vs-tab label="Layout">
+          <ClassLayoutFloats @emitvalue="emitvalue" />
+        </vs-tab>
         <vs-tab label="Flexbox"> </vs-tab>
         <vs-tab label="Grid"> </vs-tab>
         <vs-tab label="Box Alignment"> </vs-tab>
@@ -97,102 +99,12 @@
           <vs-collapse type="shadow">
             <vs-collapse-item>
               <div slot="header">Margin</div>
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-auto"
-                >Horizontal Auto</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="my-auto"
-                >Vertical Auto</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-"
-                >Horizontal</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="my-"
-                >Vertical</vs-radio
-              >
-              <br />
 
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="ml-"
-                >Left</vs-radio
-              >
-              <br />
-
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mr-"
-                >Right</vs-radio
-              >
-              <br />
-
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mt-"
-                >Top</vs-radio
-              >
-              <br />
-
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mb-"
-                >Bottom</vs-radio
-              >
-              <br />
-
-              <vs-divider></vs-divider>
-              <div v-if="pmType != 'mx-auto' && pmType != 'my-auto'">
-                <vs-input-number
-                  min="0"
-                  v-model="number"
-                  class="w-24 mx-auto"
-                />
-                <vs-divider></vs-divider>
-
-                <vs-button
-                  @click="changeComponent(pmType + number)"
-                  class="w-full mx-auto"
-                  >Submit</vs-button
-                >
-              </div>
-
-              <vs-button
-                @click="changeComponent(pmType)"
-                class="w-full mx-auto"
-                v-else
-                >Submit</vs-button
-              >
+              <ClassSpacingMargin @emitvalue="emitvalue" />
             </vs-collapse-item>
             <vs-collapse-item>
-              <div slot="header">Pading</div>
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="px-"
-                >Horizontal</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="py-"
-                >Vertical</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pl-"
-                >Left</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pr-"
-                >Right</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pt-"
-                >Top</vs-radio
-              >
-              <br />
-              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pb-"
-                >Bottom</vs-radio
-              >
-
-              <vs-divider></vs-divider>
-
-              <vs-input-number min="0" v-model="number" class="w-24 mx-auto" />
-              <vs-divider></vs-divider>
-
-              <vs-button
-                @click="changeComponent(pmType + number)"
-                class="w-full mx-auto"
-                >Submit</vs-button
-              >
+              <div slot="header">Padding</div>
+              <ClassSpacingPadding @emitvalue="emitvalue" />
             </vs-collapse-item>
           </vs-collapse>
         </vs-tab>
@@ -319,8 +231,7 @@ export default {
   data() {
     return {
       classUpdate: '',
-      number: 0,
-      pmType: 'mx',
+
       break_points: 'none',
     }
   },
@@ -377,6 +288,10 @@ export default {
       this.classUpdate = str
 
       this.update()
+    },
+    emitvalue(data) {
+      console.log('data', data)
+      this.changeComponent(data)
     },
     changeComponent(item) {
       let vm = this
