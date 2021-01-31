@@ -1,7 +1,7 @@
 <template>
   <vs-card class="min-h-screen">
     <vs-tabs alignment="fixed" position="top">
-      <vs-tab label="Class" class="min-h-screen">
+      <vs-tab label="Class">
         <PageGeneratorComponentEditorClass :schema="edit_comp" />
       </vs-tab>
       <vs-tab label="Inline" class="min-h-screen">

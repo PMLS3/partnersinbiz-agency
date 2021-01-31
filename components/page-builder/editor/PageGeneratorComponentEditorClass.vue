@@ -1,94 +1,316 @@
 <template>
-  <vs-card>
-    <div slot="header">
-      <h3>Class</h3>
+  <div>
+    <div class="w-full mb-3">
+      <h3 class="text-gray-600">{{ schema.name }}</h3>
+
+      <vs-button icon="check" class="float-right" @click="update()"></vs-button>
     </div>
-    <div>
-      <div v-if="schema">
-        <vs-col
-          vs-type="flex"
-          vs-justify="space-between"
-          vs-align="center"
-          vs-w="12"
-          v-for="(item, i) in wordsSplit"
-          :key="i"
+
+    <vs-textarea v-model="classUpdate" placeholder="Class" class="w-full" />
+    <vs-divider></vs-divider>
+
+    <div class="my-4 text-base text-gray-800">Break Point</div>
+    <div class="flex">
+      <vs-tooltip text="Cover all" position="top">
+        <vs-radio
+          v-model="break_points"
+          vs-name="break_points"
+          vs-value="none"
+          class="mr-2"
+          >x</vs-radio
         >
-          <span>{{ item }}</span>
-          <vs-button
-            icon-pack="feather"
-            size="small"
-            color="danger"
-            radius
-            icon="icon-trash"
-            @click="deleteItem(item, i)"
-          ></vs-button>
-        </vs-col>
-      </div>
+      </vs-tooltip>
+      <vs-tooltip text="Small: 640px" position="top">
+        <vs-radio
+          v-model="break_points"
+          vs-name="break_points"
+          vs-value="sm:"
+          class="mr-2"
+          >sm</vs-radio
+        >
+      </vs-tooltip>
+      <vs-tooltip text="Medium: 768px" position="top">
+        <vs-radio
+          v-model="break_points"
+          vs-name="break_points"
+          vs-value="md:"
+          class="mr-2"
+          >md</vs-radio
+        >
+      </vs-tooltip>
+      <vs-tooltip text="Large: 1024px" position="top">
+        <vs-radio
+          v-model="break_points"
+          vs-name="break_points"
+          vs-value="lg:"
+          class="mr-2"
+          >lg</vs-radio
+        >
+      </vs-tooltip>
+      <vs-tooltip text="Extra large: 1280px" position="top">
+        <vs-radio
+          v-model="break_points"
+          vs-name="break_points"
+          vs-value="xl:"
+          class="mr-2"
+          >xl</vs-radio
+        >
+      </vs-tooltip>
+      <vs-tooltip text="Extra Extra Large: 1536px" position="top">
+        <vs-radio
+          v-model="break_points"
+          vs-name="break_points"
+          vs-value="2xl:"
+          class="mr-2"
+          >2xl</vs-radio
+        >
+      </vs-tooltip>
+    </div>
+    <vs-divider></vs-divider>
+    <PerfectScrollbar>
+      <vs-tabs alignment="fixed" position="left">
+        <vs-tab label="Current">
+          <vs-col
+            vs-type="flex"
+            vs-justify="space-between"
+            vs-align="center"
+            vs-w="12"
+            v-for="(item, i) in wordsSplit"
+            :key="i"
+          >
+            <span>{{ item }}</span>
+            <vs-button
+              icon-pack="feather"
+              size="small"
+              color="danger"
+              radius
+              icon="icon-trash"
+              @click="deleteItem(item, i)"
+            ></vs-button>
+          </vs-col>
+        </vs-tab>
+        <vs-tab label="Layout"> </vs-tab>
+        <vs-tab label="Flexbox"> </vs-tab>
+        <vs-tab label="Grid"> </vs-tab>
+        <vs-tab label="Box Alignment"> </vs-tab>
+        <vs-tab label="Spacing">
+          <vs-collapse type="shadow">
+            <vs-collapse-item>
+              <div slot="header">Margin</div>
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-auto"
+                >Horizontal Auto</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="my-auto"
+                >Vertical Auto</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-"
+                >Horizontal</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="my-"
+                >Vertical</vs-radio
+              >
+              <br />
 
-      <vs-divider class="mt-4"></vs-divider>
-      <vs-collapse class="mb-12">
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="ml-"
+                >Left</vs-radio
+              >
+              <br />
+
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mr-"
+                >Right</vs-radio
+              >
+              <br />
+
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mt-"
+                >Top</vs-radio
+              >
+              <br />
+
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="mb-"
+                >Bottom</vs-radio
+              >
+              <br />
+
+              <vs-divider></vs-divider>
+              <div v-if="pmType != 'mx-auto' && pmType != 'my-auto'">
+                <vs-input-number
+                  min="0"
+                  v-model="number"
+                  class="w-24 mx-auto"
+                />
+                <vs-divider></vs-divider>
+
+                <vs-button
+                  @click="changeComponent(pmType + number)"
+                  class="w-full mx-auto"
+                  >Submit</vs-button
+                >
+              </div>
+
+              <vs-button
+                @click="changeComponent(pmType)"
+                class="w-full mx-auto"
+                v-else
+                >Submit</vs-button
+              >
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Pading</div>
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="px-"
+                >Horizontal</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="py-"
+                >Vertical</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pl-"
+                >Left</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pr-"
+                >Right</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pt-"
+                >Top</vs-radio
+              >
+              <br />
+              <vs-radio v-model="pmType" vs-name="pmType" vs-value="pb-"
+                >Bottom</vs-radio
+              >
+
+              <vs-divider></vs-divider>
+
+              <vs-input-number min="0" v-model="number" class="w-24 mx-auto" />
+              <vs-divider></vs-divider>
+
+              <vs-button
+                @click="changeComponent(pmType + number)"
+                class="w-full mx-auto"
+                >Submit</vs-button
+              >
+            </vs-collapse-item>
+          </vs-collapse>
+        </vs-tab>
+        <vs-tab label="Sizing"> </vs-tab>
+        <vs-tab label="Typography"> </vs-tab>
+        <vs-tab label="Backgrounds"> </vs-tab>
+        <vs-tab label="Borders"> </vs-tab>
+        <vs-tab label="Effects"> </vs-tab>
+        <vs-tab label="Tables"> </vs-tab>
+        <vs-tab label="Transitions"> </vs-tab>
+        <vs-tab label="Transforms"> </vs-tab>
+        <vs-tab label="Interactivity"> </vs-tab>
+      </vs-tabs>
+    </PerfectScrollbar>
+
+    <!-- <div v-if="schema">
+      <vs-collapse>
         <vs-collapse-item>
-          <div slot="header">Padding/Margin</div>
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-"
-            >Margin Horizontal</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="my-"
-            >Margin Vertical</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="ml-"
-            >Maring left</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="mr-"
-            >Maring right</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="mt-"
-            >Maring top</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="mb-"
-            >Maring bottom</vs-radio
-          >
-
-          <vs-divider></vs-divider>
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="px-"
-            >Padding Horizontal</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="py-"
-            >Padding Vertical</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="pl-"
-            >Padding left</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="pr-"
-            >Padding right</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="pt-"
-            >Padding top</vs-radio
-          >
-          <vs-radio v-model="pmType" vs-name="pmType" vs-value="pb-"
-            >Padding bottom</vs-radio
-          >
-
-          <vs-input-number min="0" v-model="number" />
-          <vs-button @click="changeComponent(pmType + number)"
-            >Submit</vs-button
-          >
+          <div slot="header">Current Classes</div>
         </vs-collapse-item>
       </vs-collapse>
-      <vs-col
-        vs-type="flex"
-        vs-justify="space-around"
-        vs-align="center"
-        vs-w="12"
-      >
-        <vs-textarea v-model="classUpdate" placeholder="Class" />
-      </vs-col>
     </div>
-    <div slot="footer">
-      <vs-row vs-justify="flex-end">
-        <vs-button icon="check" @click="update()">Submit</vs-button>
-      </vs-row>
-    </div>
-  </vs-card>
+
+    <vs-divider></vs-divider>
+    <vs-collapse>
+      <vs-collapse-item>
+        <div slot="header">Break Point</div>
+        <vs-tooltip text="Cover all" position="top">
+          <vs-radio
+            v-model="break_points"
+            vs-name="break_points"
+            vs-value="none"
+            >x</vs-radio
+          >
+        </vs-tooltip>
+        <vs-tooltip text="Small: 640px" position="top">
+          <vs-radio v-model="break_points" vs-name="break_points" vs-value="sm:"
+            >sm</vs-radio
+          >
+        </vs-tooltip>
+        <vs-tooltip text="Medium: 768px" position="top">
+          <vs-radio v-model="break_points" vs-name="break_points" vs-value="md:"
+            >md</vs-radio
+          >
+        </vs-tooltip>
+        <vs-tooltip text="Large: 1024px" position="top">
+          <vs-radio v-model="break_points" vs-name="break_points" vs-value="lg:"
+            >lg</vs-radio
+          >
+        </vs-tooltip>
+        <vs-tooltip text="Extra large: 1280px" position="top">
+          <vs-radio v-model="break_points" vs-name="break_points" vs-value="xl:"
+            >xl</vs-radio
+          >
+        </vs-tooltip>
+        <vs-tooltip text="Extra Extra Large: 1536px" position="top">
+          <vs-radio
+            v-model="break_points"
+            vs-name="break_points"
+            vs-value="2xl:"
+            >2xl</vs-radio
+          >
+        </vs-tooltip>
+      </vs-collapse-item>
+    </vs-collapse>
+    <vs-divider></vs-divider>
+    <vs-collapse>
+      <vs-collapse-item>
+        <div slot="header">Padding/Margin</div>
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="mx-"
+          >Margin Horizontal</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="my-"
+          >Margin Vertical</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="ml-"
+          >Maring left</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="mr-"
+          >Maring right</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="mt-"
+          >Maring top</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="mb-"
+          >Maring bottom</vs-radio
+        >
+
+        <vs-divider></vs-divider>
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="px-"
+          >Padding Horizontal</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="py-"
+          >Padding Vertical</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="pl-"
+          >Padding left</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="pr-"
+          >Padding right</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="pt-"
+          >Padding top</vs-radio
+        >
+        <vs-radio v-model="pmType" vs-name="pmType" vs-value="pb-"
+          >Padding bottom</vs-radio
+        >
+
+        <vs-input-number min="0" v-model="number" class="w-24 mx-auto" />
+        <vs-button
+          @click="changeComponent(pmType + number)"
+          class="float-right"
+          size="small"
+          >Submit</vs-button
+        >
+      </vs-collapse-item>
+    </vs-collapse> -->
+  </div>
 </template>
 
 <script>
@@ -99,6 +321,7 @@ export default {
       classUpdate: '',
       number: 0,
       pmType: 'mx',
+      break_points: 'none',
     }
   },
   computed: {
@@ -156,20 +379,36 @@ export default {
       this.update()
     },
     changeComponent(item) {
-      console.log('item', item)
-      this.classUpdate = this.classUpdate + item
-      this.update()
+      let vm = this
+      if (this.break_points != 'none') {
+        item = this.break_points + item
+      }
+      let check_item = item.split('-')
+      let check_array = this.classUpdate.split(' ')
+      let found = false
+      for (let i = 0; i < check_array.length; i++) {
+        let check_array_item = check_array[i].split('-')
+
+        if (check_array_item[0] == check_item[0]) {
+          let newClass = vm.classUpdate.replace(check_array[i], item)
+          vm.classUpdate = newClass
+          found = true
+        }
+      }
+
+      if (found) {
+        this.update()
+      } else {
+        this.classUpdate = this.classUpdate + ' ' + item
+        this.update()
+      }
     },
     update() {
       let payload = {
         schema: this.schema,
         classUpdate: this.classUpdate,
       }
-      console.log('updatingggg')
       this.$store.commit('page_builder/UPDATE_COMPONENT', payload)
-      // setTimeout(() => {
-      //   $nuxt.$emit('edit_comp_update', payload)
-      // }, 1000)
     },
   },
 }

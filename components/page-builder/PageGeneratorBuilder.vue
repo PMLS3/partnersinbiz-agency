@@ -9,9 +9,9 @@
         <PageGeneratorViewer :list="list" />
       </div>
       <div class="h-full">
-        <PerfectScrollbar>
-          <PageGeneratorComponentEditor :edit_comp="edit_comp" />
-        </PerfectScrollbar>
+        <!-- <PerfectScrollbar> -->
+        <PageGeneratorComponentEditor :edit_comp="edit_comp" />
+        <!-- </PerfectScrollbar> -->
       </div>
     </div>
 
