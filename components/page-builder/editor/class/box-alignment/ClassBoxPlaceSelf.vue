@@ -1,0 +1,41 @@
+<template>
+  <div>
+    <vs-radio v-model="pmType" vs-name="pmType" vs-value="place-self-start"
+      >Place Self Start</vs-radio
+    >
+    <vs-radio v-model="pmType" vs-name="pmType" vs-value="place-self-end"
+      >Place Self End</vs-radio
+    >
+    <vs-radio v-model="pmType" vs-name="pmType" vs-value="place-self-center"
+      >Place Self Center</vs-radio
+    >
+    <vs-radio v-model="pmType" vs-name="pmType" vs-value="place-self-auto"
+      >Place Self Auto</vs-radio
+    >
+    <vs-radio v-model="pmType" vs-name="pmType" vs-value="place-self-stretch"
+      >Place Self Stretch</vs-radio
+    >
+
+    <vs-button @click="changeComponent(pmType)" class="w-full mx-auto"
+      >Submit</vs-button
+    >
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      numbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      pmType: 'place-self-start',
+    }
+  },
+  methods: {
+    changeComponent(data) {
+      this.$emit('emitvalue', data)
+    },
+  },
+}
+</script>
+
+<style></style>
