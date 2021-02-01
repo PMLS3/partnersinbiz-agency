@@ -46,7 +46,7 @@
 export default {
   data() {
     return {
-      size: [0, 1, 2, 3, 6, 12],
+      sizes: [0, 1, 2, 3, 6, 12],
       pmType: '',
     }
   },

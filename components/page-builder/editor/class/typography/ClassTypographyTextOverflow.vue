@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['truncate', 'overflow-ellipsis', 'overflow-clip'],
+      sizes: ['truncate', 'overflow-ellipsis', 'overflow-clip'],
       pmType: '',
     }
   },

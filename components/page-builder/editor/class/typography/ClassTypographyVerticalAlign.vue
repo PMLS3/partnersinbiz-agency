@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['baseline', 'top', 'middle', 'bottom', 'text-top', 'text-bottom'],
+      sizes: ['baseline', 'top', 'middle', 'bottom', 'text-top', 'text-bottom'],
       pmType: '',
     }
   },

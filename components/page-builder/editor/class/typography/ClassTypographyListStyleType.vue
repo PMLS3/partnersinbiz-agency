@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['none', 'disc', 'decimal'],
+      sizes: ['none', 'disc', 'decimal'],
       pmType: 'italic',
     }
   },

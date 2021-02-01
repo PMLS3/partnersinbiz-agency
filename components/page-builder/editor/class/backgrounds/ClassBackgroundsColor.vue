@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['fixed', 'local', 'scroll'],
+      sizes: ['fixed', 'local', 'scroll'],
       pmType: '',
     }
   },

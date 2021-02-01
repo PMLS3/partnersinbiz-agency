@@ -75,7 +75,7 @@
         </button>
       </div>
     </div> -->
-    <!-- <body class="font-serif bg-white">
+    <body class="font-serif bg-white">
       <div class="relative w-full h-screen p-16">
         <header
           class="relative z-20 flex items-center justify-between w-full h-20"
@@ -326,15 +326,29 @@
       <div class="w-full px-24 py-20 text-center text-gray-100 bg-pink-400">
         <p>&copy; Copyright 2021 | Kay Mophethe</p>
       </div>
-    </body> -->
+    </body>
   </div>
 </template>
 <script>
 export default {
-  // layout: 'fullPage',
+  layout: 'fullPage',
   data() {
     return {
       show: true,
+      title: 'Kay',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My custom description',
+        },
+      ],
     }
   },
   computed: {

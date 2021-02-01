@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      size: ['none', 'sm', 'md', 'lg', 'xl', '2xl', 'inner'],
+      sizes: ['none', 'sm', 'md', 'lg', 'xl', '2xl', 'inner'],
       pmType: '',
     }
   },

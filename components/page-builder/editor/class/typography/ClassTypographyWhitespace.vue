@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap'],
+      sizes: ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap'],
       pmType: '',
     }
   },

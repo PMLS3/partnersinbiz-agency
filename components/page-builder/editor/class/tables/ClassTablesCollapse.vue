@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['collapse', 'separate'],
+      sizes: ['collapse', 'separate'],
       pmType: '',
     }
   },

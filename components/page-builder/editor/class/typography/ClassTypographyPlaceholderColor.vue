@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['inside', 'outisde'],
+      sizes: ['inside', 'outisde'],
       pmType: '',
     }
   },

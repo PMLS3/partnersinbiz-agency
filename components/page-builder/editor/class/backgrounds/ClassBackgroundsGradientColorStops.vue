@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: [
+      sizes: [
         'none',
         'gradient-to-t',
         'gradient-to-tr',

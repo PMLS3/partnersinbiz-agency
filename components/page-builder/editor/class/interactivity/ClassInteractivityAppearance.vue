@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      size: ['gpu', 'none'],
+      sizes: ['gpu', 'none'],
       pmType: '',
     }
   },

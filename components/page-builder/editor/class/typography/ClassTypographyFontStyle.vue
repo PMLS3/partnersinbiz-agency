@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['italic', 'not-italic'],
+      sizes: ['italic', 'not-italic'],
       pmType: 'italic',
     }
   },

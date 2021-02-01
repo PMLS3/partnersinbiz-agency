@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['left', 'center', 'right', 'justify'],
+      sizes: ['left', 'center', 'right', 'justify'],
       pmType: '',
     }
   },

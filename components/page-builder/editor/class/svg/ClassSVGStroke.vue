@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['current'],
+      sizes: ['current'],
       pmType: '',
     }
   },

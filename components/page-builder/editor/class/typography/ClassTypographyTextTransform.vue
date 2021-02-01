@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['uppercase', 'lowercase', 'capitalize', 'normal-case'],
+      sizes: ['uppercase', 'lowercase', 'capitalize', 'normal-case'],
       pmType: '',
     }
   },

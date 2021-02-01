@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['border', 'padding', 'content', 'text'],
+      sizes: ['border', 'padding', 'content', 'text'],
       pmType: '',
     }
   },

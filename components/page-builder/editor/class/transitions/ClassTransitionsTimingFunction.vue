@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['ease-linear', 'ease-in', 'ease-out', 'ease-in-out'],
+      sizes: ['ease-linear', 'ease-in', 'ease-out', 'ease-in-out'],
       pmType: '',
     }
   },

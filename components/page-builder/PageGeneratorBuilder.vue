@@ -8,7 +8,7 @@
 
         <PageGeneratorViewer :list="list" />
       </div>
-      <div class="h-full">
+      <div>
         <!-- <PerfectScrollbar> -->
         <PageGeneratorComponentEditor :edit_comp="edit_comp" />
         <!-- </PerfectScrollbar> -->

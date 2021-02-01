@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['none', 'spin', 'ping', 'pulse', 'bounce'],
+      sizes: ['none', 'spin', 'ping', 'pulse', 'bounce'],
       pmType: '',
     }
   },

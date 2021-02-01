@@ -134,7 +134,7 @@
             <vs-collapse-item>
               <div slot="header">Overscroll Behaviour</div>
 
-              <ClassLayoutOverscrollBehaviour @emitvalue="emitvalue" />
+              <ClassLayoutOverscrollBehavior @emitvalue="emitvalue" />
             </vs-collapse-item>
             <vs-collapse-item>
               <div slot="header">Position</div>
@@ -352,9 +352,111 @@
         <vs-tab label="Typography">
           <vs-collapse type="shadow">
             <vs-collapse-item>
-              <div slot="header">Typography</div>
+              <div slot="header">Typography Font Family</div>
 
-              <ClassTypography @emitvalue="emitvalue" />
+              <ClassTypographyFontFamily @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Font Size</div>
+
+              <ClassTypographyFontSize @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Font Smoothing</div>
+
+              <ClassTypographyFontSmoothing @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Font Style</div>
+
+              <ClassTypographyFontStyle @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Font Weight</div>
+
+              <ClassTypographyFontWeight @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Letter Spacing</div>
+
+              <ClassTypographyLetterSpacing @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Line Height</div>
+
+              <ClassTypographyLineHeight @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography List Style Position</div>
+
+              <ClassTypographyListStylePosition @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography List Style Type</div>
+
+              <ClassTypographyListStyleType @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Placeholder Color</div>
+
+              <ClassTypographyPlaceholderColor @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Placeholder Opacity</div>
+
+              <ClassTypographyPlaceholderOpacity @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Text Align</div>
+
+              <ClassTypographyTextAlign @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Text Color</div>
+
+              <ClassTypographyTextColor @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Text Decoration</div>
+
+              <ClassTypographyTextDecoration @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Text Opacity</div>
+
+              <ClassTypographyTextOpacity @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Text Overflow</div>
+
+              <ClassTypographyTextOverflow @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Text Transform</div>
+
+              <ClassTypographyTextTransform @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Variant Numeric</div>
+
+              <ClassTypographyVariantNumeric @emitvalue="emitvalue" />
+            </vs-collapse-item>
+            <vs-collapse-item>
+              <div slot="header">Typography Vertical Align</div>
+
+              <ClassTypographyVerticalAlign @emitvalue="emitvalue" />
+            </vs-collapse-item>
+
+            <vs-collapse-item>
+              <div slot="header">Typography Whitespace</div>
+
+              <ClassTypographyWhitespace @emitvalue="emitvalue" />
+            </vs-collapse-item>
+
+            <vs-collapse-item>
+              <div slot="header">Typography Word Break</div>
+
+              <ClassTypographyWordBreak @emitvalue="emitvalue" />
             </vs-collapse-item>
           </vs-collapse>
         </vs-tab>

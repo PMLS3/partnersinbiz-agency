@@ -23,7 +23,7 @@
 export default {
   data() {
     return {
-      size: ['none', 'all', 'colors', 'opacity', 'shadow', 'transform'],
+      sizes: ['none', 'all', 'colors', 'opacity', 'shadow', 'transform'],
       pmType: '',
     }
   },

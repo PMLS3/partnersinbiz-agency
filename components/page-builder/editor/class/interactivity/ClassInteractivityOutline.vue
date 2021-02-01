@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['none', 'white', 'black'],
+      sizes: ['none', 'white', 'black'],
       pmType: '',
     }
   },

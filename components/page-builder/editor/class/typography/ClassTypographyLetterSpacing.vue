@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['tighter', 'tight', 'normal', 'wide', 'wider', 'widest'],
+      sizes: ['tighter', 'tight', 'normal', 'wide', 'wider', 'widest'],
       pmType: 'italic',
     }
   },

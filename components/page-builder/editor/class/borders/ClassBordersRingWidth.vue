@@ -21,7 +21,7 @@
 export default {
   data() {
     return {
-      size: [0, 1, 2, 4, 8, 'inset'],
+      sizes: [0, 1, 2, 4, 8, 'inset'],
       pmType: '',
     }
   },

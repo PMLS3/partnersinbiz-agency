@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: [
+      sizes: [
         'thin',
         'extralight',
         'light',
@@ -28,7 +28,7 @@ export default {
         'semibold',
         'bold',
         'extrabold',
-        black,
+        'black',
       ],
       pmType: 'font-thin',
     }

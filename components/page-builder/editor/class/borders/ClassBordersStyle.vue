@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['solid', 'dashed', 'dotted', 'double', 'none'],
+      sizes: ['solid', 'dashed', 'dotted', 'double', 'none'],
       pmType: '',
     }
   },

@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['normal', 'words', 'all'],
+      sizes: ['normal', 'words', 'all'],
       pmType: '',
     }
   },

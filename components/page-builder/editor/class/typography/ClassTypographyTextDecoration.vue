@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['underline', 'line-through', 'no-underline'],
+      sizes: ['underline', 'line-through', 'no-underline'],
       pmType: '',
     }
   },

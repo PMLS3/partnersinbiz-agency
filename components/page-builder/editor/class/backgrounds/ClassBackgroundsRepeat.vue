@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: [
+      sizes: [
         'repeat',
         'no-repeat',
         'repeat-x',

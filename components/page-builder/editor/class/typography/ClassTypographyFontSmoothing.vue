@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['antialiased', 'subpixel-antialiased'],
+      sizes: ['antialiased', 'subpixel-antialiased'],
       pmType: 'subpixel-antialiased',
     }
   },

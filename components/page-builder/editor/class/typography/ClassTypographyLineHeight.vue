@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: [
+      sizes: [
         3,
         4,
         5,

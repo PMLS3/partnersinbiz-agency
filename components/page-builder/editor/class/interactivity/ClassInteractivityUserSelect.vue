@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      size: ['none', 'text', 'all', 'auto'],
+      sizes: ['none', 'text', 'all', 'auto'],
       pmType: '',
     }
   },
