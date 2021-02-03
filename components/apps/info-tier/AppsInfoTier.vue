@@ -7,9 +7,7 @@ TODO: make items clickable
 ========================================================================================== -->
 
 <template>
-  <div>
-    <UiElementsAccordianSimple :info="items" />
-  </div>
+  <UiElementsAccordianSimple :info="items" />
 </template>
 
 <script>

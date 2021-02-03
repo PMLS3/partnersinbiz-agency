@@ -5,6 +5,7 @@
     :schema="schema"
     :index="myindex"
     :mainIndex="mainIndex"
+    :item_id="schema.id"
   ></component>
 </template>
 
@@ -54,6 +55,30 @@ import CITES from '@/components/page-builder/component-creator/components/Editor
 
 import TRANSITIONS from '@/components/page-builder/component-creator/components/Editor/content/ComponentCreatorEditorTransition.vue'
 
+import Blog from '@/components/apps/blog/AppsBlog.vue'
+import AroundUs from '@/components/apps/around-us/AppsAroundUs.vue'
+import Broadcaster from '@/components/apps/broadcaster/AppsBroadcaster.vue'
+import ClassRoom from '@/components/apps/classroom/AppsClassroom.vue'
+import Contacts from '@/components/apps/contacts/AppsContacts.vue'
+import Documents from '@/components/apps/documents/AppsDocuments.vue'
+import Drawingboard from '@/components/apps/drawing-board/AppsDrawingBoard.vue'
+import eCommerce from '@/components/apps/eCommerce/AppsEcommerce.vue'
+import Email from '@/components/apps/email/Email.vue'
+import EmailPhoto from '@/components/apps/email-photo/AppsEmailPhoto.vue'
+import Events from '@/components/apps/events/AppsEvents.vue'
+import Fanwall from '@/components/apps/fanwall/AppsFanwall.vue'
+import Golf from '@/components/apps/golf/AppsGolf.vue'
+import ImageGallery from '@/components/apps/image-gallery/AppsImageGallery.vue'
+import InfoTier from '@/components/apps/info-tier/AppsInfoTier.vue'
+import Kanban from '@/components/apps/kanban/Kanban.vue'
+import Loyalty from '@/components/apps/loyalty/AppsLoyalty.vue'
+import MailingList from '@/components/apps/mailing-list/AppsMailingList.vue'
+import Music from '@/components/apps/music/AppsMusic'
+import ProjectManagement from '@/components/apps/project-management/AppsProjectManagement.vue'
+import Radio from '@/components/apps/radio/AppsRadio.vue'
+import RealEstate from '@/components/apps/real-estate/AppsRealEstate.vue'
+import Videos from '@/components/apps/videos/AppsVideos.vue'
+
 export default {
   name: 'ComponentCreatorEditor',
 
@@ -93,6 +118,29 @@ export default {
     IMGS,
     VIDEO,
     TRANSITIONS,
+    Blog,
+    AroundUs,
+    Broadcaster,
+    ClassRoom,
+    Contacts,
+    Documents,
+    Drawingboard,
+    eCommerce,
+    Email,
+    EmailPhoto,
+    Events,
+    Fanwall,
+    Golf,
+    ImageGallery,
+    InfoTier,
+    Kanban,
+    Loyalty,
+    MailingList,
+    Music,
+    ProjectManagement,
+    Radio,
+    RealEstate,
+    Videos,
   },
   data() {
     return {

@@ -102,17 +102,72 @@
 
     <vs-tab label="Apps" v-if="allowedType == 'all'">
       <vs-tabs alignment="fixed" position="left">
-        <vs-tab label="Events" @click="item = 'Events'"> </vs-tab>
-        <vs-tab label="eCommerce"> </vs-tab>
-        <vs-tab label="Loyalty"> </vs-tab>
-        <vs-tab label="Email"> </vs-tab>
-        <vs-tab label="Form Builder"> </vs-tab>
-        <vs-tab label="Todo"> </vs-tab>
-        <vs-tab label="Distress Signal"> </vs-tab>
-        <vs-tab label="Golfcourse"> </vs-tab>
-        <vs-tab label="Chat"> </vs-tab>
-        <vs-tab label="Whiteboard"> </vs-tab>
-        <vs-tab label="Classroom"> </vs-tab>
+        <vs-tab label="Blog"
+          ><PageGeneratorComponentSelectionApps item="Blog"
+        /></vs-tab>
+        <vs-tab label="Events"
+          ><PageGeneratorComponentSelectionApps item="Events" />
+        </vs-tab>
+        <vs-tab label="eCommerce"
+          ><PageGeneratorComponentSelectionApps item="eCommerce" />
+        </vs-tab>
+        <vs-tab label="Around Us"
+          ><PageGeneratorComponentSelectionApps item="AroundUs" />
+        </vs-tab>
+        <vs-tab label="Contacts"
+          ><PageGeneratorComponentSelectionApps item="Contacts" />
+        </vs-tab>
+        <vs-tab label="Email Photo"
+          ><PageGeneratorComponentSelectionApps item="Email Photo" />
+        </vs-tab>
+        <vs-tab label="FanWall"
+          ><PageGeneratorComponentSelectionApps item="Fanwall" />
+        </vs-tab>
+        <vs-tab label="Image Gallery"
+          ><PageGeneratorComponentSelectionApps item="ImageGallery" />
+        </vs-tab>
+        <vs-tab label="Info Tier"
+          ><PageGeneratorComponentSelectionApps item="InfoTier" />
+        </vs-tab>
+        <vs-tab label="Real Estate"
+          ><PageGeneratorComponentSelectionApps item="RealEstate" />
+        </vs-tab>
+        <vs-tab label="Mailing List"
+          ><PageGeneratorComponentSelectionApps item="Mailing List" />
+        </vs-tab>
+        <vs-tab label="Documents"
+          ><PageGeneratorComponentSelectionApps item="Documents" />
+        </vs-tab>
+        <vs-tab label="Loyalty"
+          ><PageGeneratorComponentSelectionApps item="Loyalty" />
+        </vs-tab>
+        <vs-tab label="Videos"
+          ><PageGeneratorComponentSelectionApps item="Videos" />
+        </vs-tab>
+        <vs-tab label="Music"
+          ><PageGeneratorComponentSelectionApps item="Music" />
+        </vs-tab>
+        <vs-tab label="Golf"
+          ><PageGeneratorComponentSelectionApps item="Golf" />
+        </vs-tab>
+        <vs-tab label="Drawing Board"
+          ><PageGeneratorComponentSelectionApps item="DrawingBoard" />
+        </vs-tab>
+        <vs-tab label="Radio"
+          ><PageGeneratorComponentSelectionApps item="Radio" />
+        </vs-tab>
+        <vs-tab label="Class Room"
+          ><PageGeneratorComponentSelectionApps item="ClassRoom" />
+        </vs-tab>
+        <vs-tab label="Alert Button"
+          ><PageGeneratorComponentSelectionApps item="AlertButton" />
+        </vs-tab>
+        <vs-tab label="Project Management"
+          ><PageGeneratorComponentSelectionApps item="Project Management" />
+        </vs-tab>
+        <vs-tab label="Broadcaster"
+          ><PageGeneratorComponentSelectionApps item="Broadcaster" />
+        </vs-tab>
       </vs-tabs>
     </vs-tab>
     <vs-tab label="Forms & Tables" v-if="allowedType == 'all'">

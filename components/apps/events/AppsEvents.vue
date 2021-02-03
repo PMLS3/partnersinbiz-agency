@@ -7,9 +7,7 @@ TODO: make events clickable
 ========================================================================================== -->
 
 <template>
-  <div>
-    <MultiCalendar :events="events" />
-  </div>
+  <MultiCalendar :events="events" />
 </template>
 
 <script>

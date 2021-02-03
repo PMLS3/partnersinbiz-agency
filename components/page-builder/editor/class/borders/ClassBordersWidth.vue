@@ -12,7 +12,7 @@
       >Border {{ num }}
     </vs-radio>
 
-    <div v-for="(num, index) in sizes" :key="index">
+    <div v-for="(num, ind) in sizes" :key="ind">
       <vs-radio v-model="pmType" vs-name="pmType" :vs-value="`border-t-${num}`"
         >Border Top {{ num }}
       </vs-radio>
