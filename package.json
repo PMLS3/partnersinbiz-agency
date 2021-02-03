@@ -65,7 +65,7 @@
     "latlon-geohash": "^2.0.0",
     "less-loader": "^6.2.0",
     "mailparser": "^3.0.1",
-    "material-icons": "^0.5.2",
+    "material-icons": "^0.5.3",
     "moment": "^2.29.1",
     "networked-aframe": "^0.7.1",
     "nuxt": "^2.14.6",
