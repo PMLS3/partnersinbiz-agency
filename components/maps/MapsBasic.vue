@@ -9,7 +9,7 @@
   <div>
     <GmapMap
       :center="center"
-      :zoom="7"
+      :zoom="15"
       map-type-id="terrain"
       style="width: 100%; height: 400px"
     >

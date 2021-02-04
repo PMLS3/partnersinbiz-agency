@@ -9,7 +9,7 @@
       v-model="email"
       class="w-full"
     />
-    <!-- <span class="text-danger text-sm">{{ errors.first('email') }}</span> -->
+    <!-- <span class="text-sm text-danger">{{ errors.first('email') }}</span> -->
 
     <vs-input
       type="password"
@@ -21,7 +21,7 @@
       v-model="password"
       class="w-full mt-6"
     />
-    <!-- <span class="text-danger text-sm">{{ errors.first('password') }}</span> -->
+    <!-- <span class="text-sm text-danger">{{ errors.first('password') }}</span> -->
 
     <div class="flex flex-wrap justify-between my-5">
       <vs-checkbox v-model="checkbox_remember_me" class="mb-3"
@@ -29,7 +29,9 @@
       >
       <router-link to="/forgot-password">Forgot Password?</router-link>
     </div>
-    <vs-button type="border" @click="registerUser">Register</vs-button>
+    <vs-button type="border" @click="registerUser" v-if="registerButton"
+      >Register</vs-button
+    >
     <vs-button class="float-right" :disabled="!validateForm" @click="login"
       >Login</vs-button
     >
@@ -44,10 +46,10 @@
       >OR</vs-divider
     >
 
-    <div class="social-login-buttons flex flex-wrap items-center mt-4">
+    <div class="flex flex-wrap items-center mt-4 social-login-buttons">
       <!-- facebook -->
       <div
-        class="bg-facebook pt-3 pb-2 px-4 rounded-lg cursor-pointer mr-4"
+        class="px-4 pt-3 pb-2 mr-4 rounded-lg cursor-pointer bg-facebook"
         @click="loginWithFacebook"
         v-if="authorization_type.facebook"
       >
@@ -56,7 +58,7 @@
           focusable="false"
           data-prefix="fab"
           data-icon="facebook-f"
-          class="text-white h-4 w-4 svg-inline--fa fa-facebook-f fa-w-9"
+          class="w-4 h-4 text-white svg-inline--fa fa-facebook-f fa-w-9"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 264 512"
@@ -70,7 +72,7 @@
 
       <!-- TWITTER -->
       <div
-        class="bg-twitter pt-3 pb-2 px-4 rounded-lg cursor-pointer mr-4"
+        class="px-4 pt-3 pb-2 mr-4 rounded-lg cursor-pointer bg-twitter"
         @click="loginWithTwitter"
         v-if="authorization_type.twitter"
       >
@@ -79,7 +81,7 @@
           focusable="false"
           data-prefix="fab"
           data-icon="twitter"
-          class="text-white h-4 w-4 svg-inline--fa fa-twitter fa-w-16"
+          class="w-4 h-4 text-white svg-inline--fa fa-twitter fa-w-16"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
@@ -93,7 +95,7 @@
 
       <!-- GOOGLE -->
       <div
-        class="bg-google pt-3 pb-2 px-4 rounded-lg cursor-pointer mr-4"
+        class="px-4 pt-3 pb-2 mr-4 rounded-lg cursor-pointer bg-google"
         @click="loginWithGoogle"
         v-if="authorization_type.google"
       >
@@ -102,7 +104,7 @@
           focusable="false"
           data-prefix="fab"
           data-icon="google"
-          class="text-white h-4 w-4 svg-inline--fa fa-google fa-w-16"
+          class="w-4 h-4 text-white svg-inline--fa fa-google fa-w-16"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 488 512"
@@ -116,7 +118,7 @@
 
       <!-- GITHUB -->
       <div
-        class="bg-github pt-3 pb-2 px-4 rounded-lg cursor-pointer mr-4"
+        class="px-4 pt-3 pb-2 mr-4 rounded-lg cursor-pointer bg-github"
         @click="loginWithGithub"
         v-if="authorization_type.github"
       >
@@ -125,7 +127,7 @@
           focusable="false"
           data-prefix="fab"
           data-icon="github-alt"
-          class="text-white h-4 w-4 svg-inline--fa fa-github-alt fa-w-15"
+          class="w-4 h-4 text-white svg-inline--fa fa-github-alt fa-w-15"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 480 512"
@@ -144,6 +146,8 @@
 export default {
   props: {
     authorization_type: { type: Object, required: true },
+    goToRoute: { type: Object, default: () => {} },
+    registerButton: { type: Boolean, default: true },
   },
   data() {
     return {
@@ -181,6 +185,8 @@ export default {
       // Loading
       this.$vs.loading()
 
+      this.$emit('logged')
+
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
         userDetails: {
@@ -190,6 +196,7 @@ export default {
         notify: this.$vs.notify,
         router: this.$router,
         closeAnimation: this.$vs.loading.close,
+        goToRoute: this.goToRoute,
       }
       this.$store.dispatch('auth/loginAttempt', payload)
     },

@@ -130,9 +130,9 @@ export const actions = {
   },
   loginAttempt({ dispatch }, payload) {
     let goToRoute = '/'
-    // if (payload.goToRoute) {
-    //   goToRoute = payload.goToRoute
-    // }
+    if (payload.goToRoute) {
+      goToRoute = payload.goToRoute
+    }
 
     const newPayload = {
       userDetails: payload.userDetails,
@@ -177,7 +177,9 @@ export const actions = {
         .then(function () {
           if (payload.updateUser) {
             commit('UPDATE_USER_INFO', payload.userDetails)
-            payload.router.push(payload.goToRoute)
+            if (payload.goToRoute != null) {
+              payload.router.push(payload.goToRoute)
+            }
           } else {
             vm.$fireAuth.onAuthStateChanged(function (user) {
               if (user) {

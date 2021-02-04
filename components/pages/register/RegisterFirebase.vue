@@ -55,7 +55,9 @@
     <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6"
       >I accept the terms & conditions.</vs-checkbox
     >
-    <vs-button type="border" to="/login" class="mt-6">Login</vs-button>
+    <vs-button type="border" to="/login" class="mt-6" v-if="loginButton"
+      >Login</vs-button
+    >
     <vs-button
       class="float-right mt-6"
       @click="registerUser"
@@ -67,24 +69,28 @@
 
 <script>
 export default {
+  props: {
+    goToRoute: { type: Object, default: () => {} },
+    loginButton: { type: Boolean, default: true },
+  },
   data() {
     return {
-      displayName: "",
-      name: "",
-      surname: "",
-      email: "",
-      password: "",
-      confirm_password: "",
-      isTermsConditionAccepted: true
-    };
+      displayName: '',
+      name: '',
+      surname: '',
+      email: '',
+      password: '',
+      confirm_password: '',
+      isTermsConditionAccepted: true,
+    }
   },
   computed: {
     validateForm() {
-      return true;
+      return true
     },
     business() {
-      return this.$store.state.business.main_business;
-    }
+      return this.$store.state.business.main_business
+    },
   },
   methods: {
     checkLogin() {
@@ -94,20 +100,21 @@ export default {
         // this.$vs.loading.close()
 
         this.$vs.notify({
-          title: "Login Attempt",
-          text: "You are already logged in!",
-          iconPack: "feather",
-          icon: "icon-alert-circle",
-          color: "warning"
-        });
+          title: 'Login Attempt',
+          text: 'You are already logged in!',
+          iconPack: 'feather',
+          icon: 'icon-alert-circle',
+          color: 'warning',
+        })
 
-        return false;
+        return false
       }
-      return true;
+      return true
     },
     registerUser() {
       // If form is not validated or user is already login return
       // if (!this.validateForm || !this.checkLogin()) return;
+      this.$emit('logged')
 
       const payload = {
         userDetails: {
@@ -117,13 +124,14 @@ export default {
           email: this.email,
           password: this.password,
           confirmPassword: this.confirm_password,
-          b_uid: this.business.b_uid
+          b_uid: this.business.b_uid,
         },
         router: this.$router,
-        notify: this.$vs.notify
-      };
-      this.$store.dispatch("auth/registerUser", payload);
-    }
-  }
-};
+        notify: this.$vs.notify,
+        goToRoute: this.goToRoute,
+      }
+      this.$store.dispatch('auth/registerUser', payload)
+    },
+  },
+}
 </script>

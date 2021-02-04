@@ -61,6 +61,10 @@ export default {
               time_start: doc.data().time_start,
               date_end: doc.data().date_end,
               date_start: doc.data().date_start,
+              lat: doc.data().lat,
+              lng: doc.data().lng,
+              center: { lat: doc.data().lat, lng: doc.data().lng },
+              markers: [{ lat: doc.data().lat, lng: doc.data().lng }],
             }
             datas.id = doc.id
             vm.events.push(datas)
