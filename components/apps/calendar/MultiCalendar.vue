@@ -18,48 +18,63 @@
       ></vue-cal>
     </client-only>
 
-    <!-- <vs-popup
-        class="holamundo"
-        :title="selectedEvent.title"
-        :active.sync="showDialog"
-      >
-        <vs-row>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6">
-            <img :src="selectedEvent.downloadURL" width="100%" />
-          </vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6">
-            <p v-html="selectedEvent.contentFull" />
-          </vs-col>
-        </vs-row>
-        <vs-divider color="success" icon="check"></vs-divider>
-        <ul>
-          <li>
-            <b>{{
-              selectedEvent.startDate &&
-                selectedEvent.startDate.format('DD/MM/YYYY')
-            }}</b>
-          </li>
-          <li>
-            Event starts at:
-            {{
-              selectedEvent.startDate && selectedEvent.startDate.formatTime()
-            }}
-          </li>
-          <li>
-            Event ends Date at:
-            {{
-              selectedEvent.endDate &&
-                selectedEvent.endDate.format('DD/MM/YYYY')
-            }}
-          </li>
-          <li>
-            Event ends at:
-            {{ selectedEvent.endDate && selectedEvent.endDate.formatTime() }}
-          </li>
-        </ul>
-        <p v-html="selectedEvent.adr_address" />
-        <vs-divider color="success" icon="check"></vs-divider>
-        <vs-row
+    <vs-popup
+      class="holamundo"
+      :title="selectedEvent.title"
+      :active.sync="showDialog"
+    >
+      <vs-row>
+        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6">
+          <div v-if="selectedEvent.images">
+            <img :src="selectedEvent.images[0]" width="100%" />
+          </div>
+        </vs-col>
+        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="6">
+          <p v-html="selectedEvent.contentFull" />
+        </vs-col>
+      </vs-row>
+      <vs-divider icon="check"></vs-divider>
+      <ul>
+        <li>
+          <b
+            >Start: {{ selectedEvent.date_start }} -
+            {{ selectedEvent.time_start }}</b
+          >
+        </li>
+        <li>
+          End:
+          {{ selectedEvent.date_end }} - {{ selectedEvent.time_end }}
+        </li>
+      </ul>
+      <div v-if="selectedEvent.address">
+        <p>Here</p>
+        <p v-html="selectedEvent.address.addr_html" />
+      </div>
+      <vs-divider icon="check"></vs-divider>
+      <vs-row vs-type="flex" vs-justify="space-around">
+        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
+          <vs-button
+            @click="addToMyCalendar(selectedEvent)"
+            class="button_event"
+            >I'm Going</vs-button
+          >
+        </vs-col>
+        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
+          <vs-button
+            @click="goToEvent(selectedEvent.address_url)"
+            class="button_event"
+            >Directions</vs-button
+          >
+        </vs-col>
+        <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
+          <vs-button
+            @click="addNotToMyCalendar(selectedEvent)"
+            class="button_event"
+            >I'm NOT Going</vs-button
+          >
+        </vs-col>
+      </vs-row>
+      <!-- <vs-row
           vs-type="flex"
           vs-justify="space-around"
           v-if="selectedEvent.add_filter"
@@ -246,8 +261,8 @@
               >I'm NOT Going</vs-button
             >
           </vs-col>
-        </vs-row>
-      </vs-popup> -->
+        </vs-row> -->
+    </vs-popup>
   </div>
 </template>
 
@@ -269,93 +284,10 @@ export default {
     return {
       selectedEvent: {},
       selectedDate: moment(Date.now()).format('YYYY MM DD'),
-      //   selectedDate: '2020-06-24',
-
       showDialog: false,
-      userSelect: null,
-      branchDetails: {},
-      OnboardTraning: false,
-      //   events: [
-      //     {
-      //       start: '2020-09-14 14:00',
-      //       end: '2020-09-14 18:00',
-      //       title: 'Need to go shopping',
-      //       icon: 'shopping_cart', // Custom attribute.
-      //       content: 'Click to see my shopping list',
-      //       contentFull:
-      //         'My shopping list is rather long:<br><ul><li>Avocadoes</li><li>Tomatoes</li><li>Potatoes</li><li>Mangoes</li></ul>', // Custom attribute.
-      //       class: 'leisure'
-      //     },
-      //     {
-      //       start: '2018-11-22 10:00',
-      //       end: '2018-11-22 15:00',
-      //       title: 'Golf with John',
-      //       icon: 'golf_course', // Custom attribute.
-      //       content: 'Do I need to tell how many holes?',
-      //       contentFull: 'Okay.<br>It will be a 18 hole golf course.', // Custom attribute.
-      //       class: 'sport'
-      //     }
-      //   ]
     }
   },
-  computed: {
-    branchUsers() {
-      let users = []
-
-      for (let i = 0; i < this.appUsers.length; i++) {
-        if (
-          this.appUsers[i].group_branches == this.userDetails.group_branches
-        ) {
-          users.push(this.appUsers[i])
-        }
-      }
-      return users
-    },
-    companyDetails() {
-      return this.$store.getters['app/companyDetails']
-    },
-    resellerName() {
-      return this.$store.getters['app/resellerName']
-    },
-    componentDetails() {
-      return this.$store.getters['feature/componentDetails']
-    },
-    routes() {
-      return this.$store.getters['route/route']
-    },
-    routeID() {
-      return this.$store.getters['route/routeID']
-    },
-    appUsers() {
-      return this.$store.getters['userManagement/users']
-    },
-    routeDisplayName() {
-      return this.$store.getters['route/routeDisplayName']
-    },
-    routeName() {
-      return this.$store.getters['route/routeName']
-    },
-    is_blank() {
-      return this.$store.getters['route/isBlank']
-    },
-
-    appType() {
-      return this.$store.getters['app/appType']
-    },
-
-    userDetails() {
-      return this.$store.getters['userManagement/userDetails']
-    },
-    user_data() {
-      return this.$store.getters['userManagement/currentDisplayUser']
-    },
-    currentlyDisplayingUser() {
-      return this.$store.getters['userManagement/currentlyDisplayingUser']
-    },
-    componentID() {
-      return this.$store.getters['feature/componentID']
-    },
-  },
+  computed: {},
 
   methods: {
     addToFriendCalendar(cal) {
@@ -678,127 +610,12 @@ export default {
     },
 
     onEventClick(event, e) {
+      console.log('event', event)
       this.selectedEvent = event
       this.showDialog = true
       // Prevent navigating to narrower view (default vue-cal behavior).
       e.stopPropagation()
     },
-  },
-  created() {
-    // if (this.$route.params.id == 'OnboardTraning') {
-    //   this.OnboardTraning = true
-    // }
-    // console.log('is blank', this.is_blank)
-    // let routeID = this.routeID
-    // let myEvents = []
-    // if (this.is_blank) {
-    //   console.log(
-    //     'route',
-    //     this.resellerName,
-    //     this.companyDetails.appcode,
-    //     routeID,
-    //     this.$route.params.id
-    //   )
-    //   this.$store.dispatch('route/blankRoute', routeID)
-    //   let refff = this.$fireStore
-    //     .collection(this.resellerName)
-    //     .doc('apps')
-    //     .collection(this.companyDetails.appcode)
-    //     .doc('blank_page')
-    //     .collection(this.componentID)
-    //     .doc(this.$route.params.id)
-    //     .collection('features')
-    //   refff.onSnapshot(snapshot => {
-    //     snapshot.docChanges().forEach(change => {
-    //       let doc = change.doc
-    //       myEvents.push({
-    //         id: doc.id,
-    //         start: `${doc.data().date} ${doc.data().time}`,
-    //         end: `${doc.data().dateEnd} ${doc.data().timeEnd}`,
-    //         title: doc.data().name,
-    //         icon: 'golf_course', // Custom attribute.
-    //         content: doc.data().description,
-    //         contentFull: doc.data().html, // Custom attribute.
-    //         class: doc.data().category,
-    //         downloadURL: doc.data().downloadURL,
-    //         adr_address: doc.data().adr_address,
-    //         address_url: doc.data().address_url,
-    //         add_filter: doc.data().add_filter,
-    //         add_group_branches: doc.data().add_group_branches,
-    //         add_group_branches_selected: doc.data().add_group_branches_selected,
-    //         add_group_positions: doc.data().add_group_positions,
-    //         add_group_positions_selected: doc.data()
-    //           .add_group_positions_selected,
-    //         add_group_push_notes: doc.data().add_group_push_notes,
-    //         add_group_push_notes_selected: doc.data()
-    //           .add_group_push_notes_selected,
-    //         add_group_views_selected: doc.data().add_group_views_selected,
-    //         add_group_views: doc.data().add_group_views
-    //       })
-    //     })
-    //   })
-    //   this.events = myEvents
-    //   console.log('MY EVENTS', myEvents)
-    // } else {
-    //   let refff = this.$fireStore
-    //     .collection(this.resellerName)
-    //     .doc('apps')
-    //     .collection(this.companyDetails.id)
-    //     .doc(this.$route.params.id)
-    //     .collection('features')
-    //   refff.onSnapshot(snapshot => {
-    //     snapshot.docChanges().forEach(change => {
-    //       let doc = change.doc
-    //       myEvents.push({
-    //         id: doc.id,
-    //         start: `${doc.data().date} ${doc.data().time}`,
-    //         end: `${doc.data().dateEnd} ${doc.data().timeEnd}`,
-    //         title: doc.data().name,
-    //         icon: 'golf_course', // Custom attribute.
-    //         content: doc.data().description,
-    //         contentFull: doc.data().html, // Custom attribute.
-    //         class: doc.data().category,
-    //         downloadURL: doc.data().downloadURL,
-    //         adr_address: doc.data().adr_address,
-    //         address_url: doc.data().address_url,
-    //         add_filter: doc.data().add_filter,
-    //         add_group_branches: doc.data().add_group_branches,
-    //         add_group_branches_selected: doc.data().add_group_branches_selected,
-    //         add_group_positions: doc.data().add_group_positions,
-    //         add_group_positions_selected: doc.data()
-    //           .add_group_positions_selected,
-    //         add_group_push_notes: doc.data().add_group_push_notes,
-    //         add_group_push_notes_selected: doc.data()
-    //           .add_group_push_notes_selected,
-    //         add_group_views_selected: doc.data().add_group_views_selected,
-    //         add_group_views: doc.data().add_group_views
-    //       })
-    //     })
-    //   })
-    //   this.events = myEvents
-    // }
-    // if (this.userDetails.group_branches) {
-    //   console.log('user branches')
-    //   this.$fireStore
-    //     .collection(this.resellerName)
-    //     .doc('newapp')
-    //     .collection('newapp')
-    //     .doc(this.companyDetails.id)
-    //     .collection('group_branch')
-    //     .doc(this.userDetails.group_branches)
-    //     .get()
-    //     .then(doc => {
-    //       if (!doc.exists) {
-    //         console.log('No such document!')
-    //       } else {
-    //         console.log('Document data:!!!!', doc.data())
-    //         this.branchDetails = doc.data()
-    //       }
-    //     })
-    //     .catch(err => {
-    //       console.log('Error getting document', err)
-    //     })
-    // }
   },
 }
 </script>
