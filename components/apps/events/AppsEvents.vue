@@ -31,6 +31,7 @@ export default {
   },
   created() {
     console.log('this', this.item_unique)
+    let b_uid = ''
     let vm = this
     let ref = this.$fireStore
       .collection('apps')
@@ -43,6 +44,7 @@ export default {
         if (change.type === 'added') {
           let doc = change.doc
           let data = doc.data()
+          b_uid = doc.data().b_uid
           let datas = {
             start: `${doc.data().date_start} ${doc.data().time_start}`,
             end: `${doc.data().date_end} ${doc.data().time_end}`,
@@ -52,7 +54,8 @@ export default {
             contentFull: doc.data().description,
             images: doc.data().img,
             color: doc.data().color,
-            address: doc.data().addr,
+            addr_html: doc.data().addr_html,
+            addr_url: doc.data().addr_url,
             time_end: doc.data().time_end,
             time_start: doc.data().time_start,
             date_end: doc.data().date_end,

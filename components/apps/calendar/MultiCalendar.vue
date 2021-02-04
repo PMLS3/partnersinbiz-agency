@@ -46,10 +46,9 @@
           {{ selectedEvent.date_end }} - {{ selectedEvent.time_end }}
         </li>
       </ul>
-      <div v-if="selectedEvent.address">
-        <p>Here</p>
-        <p v-html="selectedEvent.address.addr_html" />
-      </div>
+
+      <p v-html="selectedEvent.addr_html" />
+
       <vs-divider icon="check"></vs-divider>
       <vs-row vs-type="flex" vs-justify="space-around">
         <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="3">
@@ -290,92 +289,92 @@ export default {
   computed: {},
 
   methods: {
-    addToFriendCalendar(cal) {
-      let vm = this
+    // addToFriendCalendar(cal) {
+    //   let vm = this
 
-      this.$fireStore
-        .collection(vm.resellerName)
-        .doc(vm.companyDetails.id)
-        .collection('users')
-        .doc(this.userSelect.id)
-        .collection('calendar')
-        .doc(cal.id)
-        .set({
-          id: cal.id,
-          start: cal.start,
-          end: cal.end,
-          title: cal.title,
-          icon: cal.icon, // Custom attribute.
-          content: cal.content,
-          contentFull: cal.contentFull, // Custom attribute.
-          class: cal.class,
-          downloadURL: cal.downloadURL,
-          adr_address: cal.adr_address,
-          address_url: cal.address_url,
-          resellerName: vm.resellerName,
-          companyDetails_id: vm.companyDetails.id,
-          companyDetails_name: vm.companyDetails.appname,
-        })
-        .then(() => {
-          this.addFriendEvent(cal)
-          this.addFriendNotification(cal)
-          this.save_changes_branch()
-          this.successUpload()
-        })
-    },
-    addNotToMyCalendar(cal) {
-      let currentUser
-      let vm = this
-      if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data
-      } else {
-        currentUser = vm.userDetails
-      }
-      if (this.is_blank) {
-        this.$fireStore
-          .collection(this.resellerName)
-          .doc('apps')
-          .collection(this.companyDetails.appcode)
-          .doc('blank_page')
-          .collection(this.componentID)
-          .doc(this.$route.params.id)
-          .collection('features')
-          .doc(cal.id)
-          .collection('Notgoing')
-          .doc(currentUser.id)
-          .set({
-            name: currentUser.name,
-            surname: currentUser.surname,
-            uid: currentUser.id,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-            branch: currentUser.group_branches,
-            position: currentUser.group_positions,
-          })
-      } else {
-        this.$fireStore
-          .collection(this.resellerName)
-          .doc('apps')
-          .collection(this.companyDetails.appcode)
-          .doc(this.$route.params.id)
-          .collection('features')
-          .doc(cal.id)
-          .collection('Notgoing')
-          .doc(currentUser.id)
-          .set({
-            name: currentUser.name,
-            surname: currentUser.surname,
-            uid: currentUser.id,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-            branch: currentUser.group_branches,
-            position: currentUser.group_positions,
-          })
-          .then(() => {
-            this.successUploadNot()
-          })
-      }
-    },
+    //   this.$fireStore
+    //     .collection(vm.resellerName)
+    //     .doc(vm.companyDetails.id)
+    //     .collection('users')
+    //     .doc(this.userSelect.id)
+    //     .collection('calendar')
+    //     .doc(cal.id)
+    //     .set({
+    //       id: cal.id,
+    //       start: cal.start,
+    //       end: cal.end,
+    //       title: cal.title,
+    //       icon: cal.icon, // Custom attribute.
+    //       content: cal.content,
+    //       contentFull: cal.contentFull, // Custom attribute.
+    //       class: cal.class,
+    //       downloadURL: cal.downloadURL,
+    //       adr_address: cal.adr_address,
+    //       address_url: cal.address_url,
+    //       resellerName: vm.resellerName,
+    //       companyDetails_id: vm.companyDetails.id,
+    //       companyDetails_name: vm.companyDetails.appname,
+    //     })
+    //     .then(() => {
+    //       this.addFriendEvent(cal)
+    //       this.addFriendNotification(cal)
+    //       this.save_changes_branch()
+    //       this.successUpload()
+    //     })
+    // },
+    // addNotToMyCalendar(cal) {
+    //   let currentUser
+    //   let vm = this
+    //   if (this.currentlyDisplayingUser) {
+    //     currentUser = vm.user_data
+    //   } else {
+    //     currentUser = vm.userDetails
+    //   }
+    //   if (this.is_blank) {
+    //     this.$fireStore
+    //       .collection(this.resellerName)
+    //       .doc('apps')
+    //       .collection(this.companyDetails.appcode)
+    //       .doc('blank_page')
+    //       .collection(this.componentID)
+    //       .doc(this.$route.params.id)
+    //       .collection('features')
+    //       .doc(cal.id)
+    //       .collection('Notgoing')
+    //       .doc(currentUser.id)
+    //       .set({
+    //         name: currentUser.name,
+    //         surname: currentUser.surname,
+    //         uid: currentUser.id,
+    //         displayName: currentUser.displayName,
+    //         photoURL: currentUser.photoURL,
+    //         branch: currentUser.group_branches,
+    //         position: currentUser.group_positions,
+    //       })
+    //   } else {
+    //     this.$fireStore
+    //       .collection(this.resellerName)
+    //       .doc('apps')
+    //       .collection(this.companyDetails.appcode)
+    //       .doc(this.$route.params.id)
+    //       .collection('features')
+    //       .doc(cal.id)
+    //       .collection('Notgoing')
+    //       .doc(currentUser.id)
+    //       .set({
+    //         name: currentUser.name,
+    //         surname: currentUser.surname,
+    //         uid: currentUser.id,
+    //         displayName: currentUser.displayName,
+    //         photoURL: currentUser.photoURL,
+    //         branch: currentUser.group_branches,
+    //         position: currentUser.group_positions,
+    //       })
+    //       .then(() => {
+    //         this.successUploadNot()
+    //       })
+    //   }
+    // },
     addToMyCalendar(cal) {
       let vm = this
       let currentUser
@@ -416,181 +415,181 @@ export default {
           this.successUpload()
         })
     },
-    addFriendNotification(cal) {
-      let vm = this
+    // addFriendNotification(cal) {
+    //   let vm = this
 
-      this.$fireStore
-        .collection(vm.resellerName)
-        .doc(vm.companyDetails.id)
-        .collection('users')
-        .doc(this.userSelect.id)
-        .collection('notification')
-        .doc(cal.id)
-        .set({
-          id: cal.id,
-          index: cal.id,
-          title: 'Event added to Calendar',
-          msg: cal.title,
-          icon: 'CalendarIcon',
-          time: Date.now(),
-          category: 'warning',
-        })
-    },
+    //   this.$fireStore
+    //     .collection(vm.resellerName)
+    //     .doc(vm.companyDetails.id)
+    //     .collection('users')
+    //     .doc(this.userSelect.id)
+    //     .collection('notification')
+    //     .doc(cal.id)
+    //     .set({
+    //       id: cal.id,
+    //       index: cal.id,
+    //       title: 'Event added to Calendar',
+    //       msg: cal.title,
+    //       icon: 'CalendarIcon',
+    //       time: Date.now(),
+    //       category: 'warning',
+    //     })
+    // },
 
-    save_changes_branch() {
-      let mySeller = this.resellerName
-      let myCompanyDetails = this.companyDetails
-      let vm = this
-      let numberUsed
+    // save_changes_branch() {
+    //   let mySeller = this.resellerName
+    //   let myCompanyDetails = this.companyDetails
+    //   let vm = this
+    //   let numberUsed
 
-      if (this.branchDetails.used == undefined) {
-        numberUsed = 1
-      } else {
-        numberUsed = this.branchDetails.used + 1
-      }
+    //   if (this.branchDetails.used == undefined) {
+    //     numberUsed = 1
+    //   } else {
+    //     numberUsed = this.branchDetails.used + 1
+    //   }
 
-      this.$fireStore
-        .collection(this.resellerName)
-        .doc('newapp')
-        .collection('newapp')
-        .doc(myCompanyDetails.id)
-        .collection('group_branch')
-        .doc(this.userDetails.group_branches)
-        .update({
-          used: numberUsed,
-        })
+    //   this.$fireStore
+    //     .collection(this.resellerName)
+    //     .doc('newapp')
+    //     .collection('newapp')
+    //     .doc(myCompanyDetails.id)
+    //     .collection('group_branch')
+    //     .doc(this.userDetails.group_branches)
+    //     .update({
+    //       used: numberUsed,
+    //     })
 
-      this.successUpload()
-    },
+    //   this.successUpload()
+    // },
 
-    addNotification(cal) {
-      let vm = this
-      let currentUser
+    // addNotification(cal) {
+    //   let vm = this
+    //   let currentUser
 
-      if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data
-      } else {
-        currentUser = vm.userDetails
-      }
+    //   if (this.currentlyDisplayingUser) {
+    //     currentUser = vm.user_data
+    //   } else {
+    //     currentUser = vm.userDetails
+    //   }
 
-      this.$fireStore
-        .collection(vm.resellerName)
-        .doc(vm.companyDetails.id)
-        .collection('users')
-        .doc(currentUser.id)
-        .collection('notification')
-        .doc(cal.id)
-        .set({
-          id: cal.id,
-          index: cal.id,
-          title: 'Event added to Calendar',
-          msg: cal.title,
-          icon: 'CalendarIcon',
-          time: Date.now(),
-          category: 'warning',
-        })
-    },
-    addFriendEvent(cal) {
-      let currentUser = this.userSelect
+    //   this.$fireStore
+    //     .collection(vm.resellerName)
+    //     .doc(vm.companyDetails.id)
+    //     .collection('users')
+    //     .doc(currentUser.id)
+    //     .collection('notification')
+    //     .doc(cal.id)
+    //     .set({
+    //       id: cal.id,
+    //       index: cal.id,
+    //       title: 'Event added to Calendar',
+    //       msg: cal.title,
+    //       icon: 'CalendarIcon',
+    //       time: Date.now(),
+    //       category: 'warning',
+    //     })
+    // },
+    // addFriendEvent(cal) {
+    //   let currentUser = this.userSelect
 
-      if (this.is_blank) {
-        this.$fireStore
-          .collection(this.resellerName)
-          .doc('apps')
-          .collection(this.companyDetails.appcode)
-          .doc('blank_page')
-          .collection(this.componentID)
-          .doc(this.$route.params.id)
-          .collection('features')
-          .doc(cal.id)
-          .collection('going')
-          .doc(currentUser.id)
-          .set({
-            name: currentUser.name,
-            surname: currentUser.surname,
-            uid: currentUser.id,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-            branch: currentUser.group_branches,
-            position: currentUser.group_positions,
-          })
-      } else {
-        this.$fireStore
-          .collection(this.resellerName)
-          .doc('apps')
-          .collection(this.companyDetails.appcode)
-          .doc(this.$route.params.id)
-          .collection('features')
-          .doc(cal.id)
-          .collection('going')
-          .doc(currentUser.id)
-          .set({
-            name: currentUser.name,
-            surname: currentUser.surname,
-            uid: currentUser.id,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-            branch: currentUser.group_branches,
-            position: currentUser.group_positions,
-          })
-          .then(() => {
-            console.log('going added')
-          })
-      }
-    },
-    adduserEvent(cal) {
-      let currentUser
-      let vm = this
-      if (this.currentlyDisplayingUser) {
-        currentUser = vm.user_data
-      } else {
-        currentUser = vm.userDetails
-      }
-      if (this.is_blank) {
-        this.$fireStore
-          .collection(this.resellerName)
-          .doc('apps')
-          .collection(this.companyDetails.appcode)
-          .doc('blank_page')
-          .collection(this.componentID)
-          .doc(this.$route.params.id)
-          .collection('features')
-          .doc(cal.id)
-          .collection('going')
-          .doc(currentUser.id)
-          .set({
-            name: currentUser.name,
-            surname: currentUser.surname,
-            uid: currentUser.id,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-            branch: currentUser.group_branches,
-            position: currentUser.group_positions,
-          })
-      } else {
-        this.$fireStore
-          .collection(this.resellerName)
-          .doc('apps')
-          .collection(this.companyDetails.appcode)
-          .doc(this.$route.params.id)
-          .collection('features')
-          .doc(cal.id)
-          .collection('going')
-          .doc(currentUser.id)
-          .set({
-            name: currentUser.name,
-            surname: currentUser.surname,
-            uid: currentUser.id,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-            branch: currentUser.group_branches,
-            position: currentUser.group_positions,
-          })
-          .then(() => {
-            console.log('going added')
-          })
-      }
-    },
+    //   if (this.is_blank) {
+    //     this.$fireStore
+    //       .collection(this.resellerName)
+    //       .doc('apps')
+    //       .collection(this.companyDetails.appcode)
+    //       .doc('blank_page')
+    //       .collection(this.componentID)
+    //       .doc(this.$route.params.id)
+    //       .collection('features')
+    //       .doc(cal.id)
+    //       .collection('going')
+    //       .doc(currentUser.id)
+    //       .set({
+    //         name: currentUser.name,
+    //         surname: currentUser.surname,
+    //         uid: currentUser.id,
+    //         displayName: currentUser.displayName,
+    //         photoURL: currentUser.photoURL,
+    //         branch: currentUser.group_branches,
+    //         position: currentUser.group_positions,
+    //       })
+    //   } else {
+    //     this.$fireStore
+    //       .collection(this.resellerName)
+    //       .doc('apps')
+    //       .collection(this.companyDetails.appcode)
+    //       .doc(this.$route.params.id)
+    //       .collection('features')
+    //       .doc(cal.id)
+    //       .collection('going')
+    //       .doc(currentUser.id)
+    //       .set({
+    //         name: currentUser.name,
+    //         surname: currentUser.surname,
+    //         uid: currentUser.id,
+    //         displayName: currentUser.displayName,
+    //         photoURL: currentUser.photoURL,
+    //         branch: currentUser.group_branches,
+    //         position: currentUser.group_positions,
+    //       })
+    //       .then(() => {
+    //         console.log('going added')
+    //       })
+    //   }
+    // },
+    // adduserEvent(cal) {
+    //   let currentUser
+    //   let vm = this
+    //   if (this.currentlyDisplayingUser) {
+    //     currentUser = vm.user_data
+    //   } else {
+    //     currentUser = vm.userDetails
+    //   }
+    //   if (this.is_blank) {
+    //     this.$fireStore
+    //       .collection(this.resellerName)
+    //       .doc('apps')
+    //       .collection(this.companyDetails.appcode)
+    //       .doc('blank_page')
+    //       .collection(this.componentID)
+    //       .doc(this.$route.params.id)
+    //       .collection('features')
+    //       .doc(cal.id)
+    //       .collection('going')
+    //       .doc(currentUser.id)
+    //       .set({
+    //         name: currentUser.name,
+    //         surname: currentUser.surname,
+    //         uid: currentUser.id,
+    //         displayName: currentUser.displayName,
+    //         photoURL: currentUser.photoURL,
+    //         branch: currentUser.group_branches,
+    //         position: currentUser.group_positions,
+    //       })
+    //   } else {
+    //     this.$fireStore
+    //       .collection(this.resellerName)
+    //       .doc('apps')
+    //       .collection(this.companyDetails.appcode)
+    //       .doc(this.$route.params.id)
+    //       .collection('features')
+    //       .doc(cal.id)
+    //       .collection('going')
+    //       .doc(currentUser.id)
+    //       .set({
+    //         name: currentUser.name,
+    //         surname: currentUser.surname,
+    //         uid: currentUser.id,
+    //         displayName: currentUser.displayName,
+    //         photoURL: currentUser.photoURL,
+    //         branch: currentUser.group_branches,
+    //         position: currentUser.group_positions,
+    //       })
+    //       .then(() => {
+    //         console.log('going added')
+    //       })
+    //   }
+    // },
     successUpload() {
       this.$vs.notify({
         color: 'success',
