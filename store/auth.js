@@ -129,8 +129,13 @@ export const actions = {
     commit('UPDATE_USER_INFO', userDefaults)
   },
   loginAttempt({ dispatch }, payload) {
+    console.log('pp', payload)
     let goToRoute = '/'
     if (payload.goToRoute) {
+      goToRoute = payload.goToRoute
+    }
+
+    if (payload.goToRoute == null) {
       goToRoute = payload.goToRoute
     }
 
@@ -191,7 +196,9 @@ export const actions = {
                     if (doc.exists) {
                       commit('UPDATE_USER_INFO', doc.data())
                       payload.closeAnimation()
-                      payload.router.push(payload.goToRoute)
+                      if (payload.goToRoute != null) {
+                        payload.router.push(payload.goToRoute)
+                      }
                     } else {
                       payload.closeAnimation()
                       payload.notify({

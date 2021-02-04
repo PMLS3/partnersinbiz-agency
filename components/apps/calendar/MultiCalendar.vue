@@ -83,6 +83,7 @@
         <vs-tab label="Login">
           <LoginFirebase
             :registerButton="registerButton"
+            :authorization_type="authorization_type"
             :goToRoute="goToRoute"
             @logged="showLogin = !showLogin"
           />
@@ -91,6 +92,7 @@
           <RegisterFirebase
             :loginButton="loginButton"
             :goToRoute="goToRoute"
+            :authorization_type="authorization_type"
             @logged="showLogin = !showLogin"
           />
         </vs-tab>
@@ -122,6 +124,14 @@ export default {
       loginButton: false,
       registerButton: false,
       goToRoute: null,
+      authorization_type: {
+        email: true,
+        phone: false,
+        facebook: false,
+        twitter: false,
+        google: false,
+        github: false,
+      },
     }
   },
   computed: {
@@ -156,14 +166,21 @@ export default {
         center: cal.center,
         markers: cal.markers,
         going: bool,
+        id: cal.id,
       }
+
+      console.log('bus', this.business)
+      console.log('user', this.user)
+      console.log('b_uid', vm.business.b_uid)
+      console.log('user', this.user.uid)
+      console.log('cal', cal.id)
 
       if (this.user.uid) {
         vm.$fireStore
           .collection('business')
           .doc('users')
           .collection(vm.business.b_uid)
-          .doc(vm.user.id)
+          .doc(vm.user.uid)
           .collection('calendar')
           .doc(cal.id)
           .set(payload)
@@ -198,7 +215,7 @@ export default {
         .collection('business')
         .doc('users')
         .collection(vm.business.b_uid)
-        .doc(vm.user.id)
+        .doc(vm.user.uid)
         .collection('notification')
         .doc(cal.id)
         .set({
@@ -219,11 +236,11 @@ export default {
         .collection('app')
         .doc(payload.id)
         .collection('attendees')
-        .doc(this.user.id)
+        .doc(this.user.uid)
         .set({
           name: this.user.name,
           surname: this.user.surname,
-          uid: this.user.id,
+          uid: this.user.uid,
           displayName: this.user.disp_name,
           avatar: this.user.avatar,
           going: payload.going,

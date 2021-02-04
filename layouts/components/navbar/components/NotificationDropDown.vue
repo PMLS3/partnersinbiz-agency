@@ -142,11 +142,11 @@ export default {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         const refff = vm.$fireStore
-          .collection('apps')
+          .collection('business')
           .doc('users')
           .collection(vm.business.b_uid)
-          .doc('notifications')
-          .collection(user.uid)
+          .doc(vm.user.uid)
+          .collection('notification')
         refff.onSnapshot((snapshot) => {
           snapshot.docChanges().forEach((change) => {
             const doc = change.doc
@@ -170,11 +170,11 @@ export default {
     notificationDelete(ntf) {
       const vm = this
       vm.$fireStore
-        .collection('apps')
+        .collection('business')
         .doc('users')
-        .collection(this.business.b_uid)
-        .doc('notifications')
-        .collection(user.uid)
+        .collection(vm.business.b_uid)
+        .doc(vm.user.uid)
+        .collection('notification')
         .doc(ntf.id)
         .delete()
         .then(function () {
