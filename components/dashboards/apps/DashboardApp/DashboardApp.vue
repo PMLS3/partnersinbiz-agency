@@ -6,14 +6,14 @@
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
+  <div id="knowledge-base-page" class="min-h-screen background-dash">
     <client-only>
       <!-- JUMBOTRON -->
-      <div class="knowledge-base-jumbotron">
-        <div class="p-8 pt-24 knowledge-base-jumbotron-content">
+      <div>
+        <div class="p-8 pt-24 bg-gray-700 bg-opacity-75">
           <h1 class="mb-1 text-white">{{ item.title }}</h1>
           <h2 class="text-xl leading-tight text-white font-semibild">
-            {{ item.sub_text }}
+            {{ motivational_quotes }}
           </h2>
 
           <vs-input
@@ -27,11 +27,6 @@
             v-if="item.search"
           />
           <div class="flex items-center justify-between py-2">
-            <div class="flex items-center">
-              <p class="text-white">
-                {{ motivational_quotes }}
-              </p>
-            </div>
             <div class="flex flex-row">
               <UploadApps :schema="schema" :item="item" />
               <UploadCategory
@@ -62,7 +57,7 @@
 
       <div class="mt-6 vx-row">
         <div
-          class="relative w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
+          class="relative w-full vx-col md:w-1/5 sm:w-1/2 mb-base min-h-250"
           v-for="item in filteredKB"
           :key="item.id"
         >
@@ -223,8 +218,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.knowledge-base-jumbotron-content {
-  background-image: url('../../../../assets/images/background/night.jpeg');
-  background-size: cover;
+.background-dash {
+  background-image: url('../../../../assets/images/pages/vuexy-login-bg.jpg');
 }
 </style>

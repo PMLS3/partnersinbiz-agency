@@ -6,8 +6,8 @@
 ========================================================================================== -->
 <template>
   <vx-card
-    class="text-center bg-gray-100 cursor-pointer"
-    :class="{ [` bg-gray-500`]: item.coming_soon }"
+    class="text-center transition duration-500 ease-in-out transform bg-gray-700 shadow-2xl cursor-pointer hover:bg-gray-900 hover:-translate-y-1 hover:scale-110"
+    :class="{ [` bg-black hover:bg-gray-500`]: item.coming_soon }"
     @click="sendFeature(item)"
   >
     <img

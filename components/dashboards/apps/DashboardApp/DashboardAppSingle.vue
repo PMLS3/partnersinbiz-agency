@@ -6,11 +6,11 @@
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
+  <div id="knowledge-base-page" class="min-h-screen background-dash">
     <client-only>
       <!-- JUMBOTRON -->
-      <div class="knowledge-base-jumbotron">
-        <div class="p-8 pt-24 knowledge-base-jumbotron-content">
+      <div>
+        <div class="p-8 pt-24 mb-4 bg-gray-700 bg-opacity-75 rounded">
           <h1 class="mb-1 text-white">{{ item.title }}</h1>
           <h2 class="text-xl leading-tight text-white font-semibild">
             {{ item.sub_text }}
@@ -422,12 +422,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.knowledge-base-jumbotron-content {
-  background-image: url('../../../../assets/images/background/night.jpeg');
-  background-size: cover;
-}
 .con-example-images {
   max-height: 300px;
   overflow: auto;
+}
+.background-dash {
+  background-image: url('../../../../assets/images/pages/vuexy-login-bg.jpg');
 }
 </style>

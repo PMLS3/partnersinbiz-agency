@@ -6,11 +6,12 @@
 ========================================================================================== -->
 
 <template>
-  <div>
+  <div class="background-dash">
     <UiHeaderImageQuote />
+
     <div class="vx-row">
       <div
-        class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
+        class="w-full vx-col md:w-1/5 sm:w-1/2 mb-base min-h-250"
         v-for="item in filteredKB"
         :key="item.id"
       >
@@ -65,7 +66,7 @@ export default {
       },
       {
         id: 14,
-        title: 'Lead Gen',
+        title: 'Lead Generation',
         tooltip: 'Generate leads, get contact details and more',
         graphic: require('@/assets/illustrations/collaboration.svg'),
         go_to_url: '/dashboardLeadGen',
@@ -174,3 +175,8 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.background-dash {
+  background-image: url('../../assets/images/pages/vuexy-login-bg.jpg');
+}
+</style>

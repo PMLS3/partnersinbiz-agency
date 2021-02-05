@@ -5,17 +5,15 @@
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
-    <div class="p-8 pt-24 mb-4 knowledge-base-jumbotron-content">
-      <UiMarqueeText
-        :paused="isPaused"
-        class="py-2 mt-2 text-white bg-dark"
-        @mouseenter="isPaused = !isPaused"
-        @mouseleave="isPaused = false"
-      >
-        {{ motivational_quotes }}
-      </UiMarqueeText>
-    </div>
+  <div class="p-8 pt-24 mb-4 bg-gray-700 bg-opacity-75">
+    <UiMarqueeText
+      :paused="isPaused"
+      class="py-2 mt-2 text-white bg-gray-700"
+      @mouseenter="isPaused = !isPaused"
+      @mouseleave="isPaused = false"
+    >
+      {{ motivational_quote }} | ' '
+    </UiMarqueeText>
   </div>
 </template>
 
@@ -27,21 +25,17 @@ export default {
     const { store } = useContext()
     let isPaused = ref(false)
     let motivational_quotes = computed(() => {
+      return store.state.info.motivational_quotes
+    })
+    let motivational_quote = computed(() => {
       let num = Math.floor(Math.random() * 55)
-      return store.state.info.motivational_quotes[num]
+      return motivational_quotes.value[num]
     })
     return {
       motivational_quotes,
+      motivational_quote,
       isPaused,
     }
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.knowledge-base-jumbotron-content {
-  background-image: url('../../../assets/images/background/night.jpeg');
-
-  background-size: cover;
-}
-</style>

@@ -6,13 +6,10 @@
 ========================================================================================== -->
 
 <template>
-  <div id="knowledge-base-page">
+  <div id="knowledge-base-page" class="background-dash">
     <!-- JUMBOTRON -->
-    <div class="knowledge-base-jumbotron">
-      <div
-        class="p-8 rounded-lg knowledge-base-jumbotron-content lg:p-32 md:p-24 sm:p-16 mb-base"
-      >
-        <h1 class="mb-1 text-white">Run your business from here</h1>
+    <div class="mb-4 knowledge-base-jumbotron">
+      <div class="p-8 pt-24 bg-gray-700 bg-opacity-75 rounded">
         <p class="text-white">
           {{ motivational_quotes }}
         </p>
@@ -29,7 +26,7 @@
           radius
           type="filled"
           icon="all_out"
-          class="float-right mt-24"
+          class="float-right mt-1/9"
           @click="popupActivo = true"
         ></vs-button>
         <vs-popup
@@ -45,7 +42,7 @@
     <!-- KNOWLEDGE BASE CARDS  -->
     <div class="vx-row">
       <div
-        class="w-full vx-col md:w-1/3 sm:w-1/2 mb-base min-h-250"
+        class="w-full vx-col md:w-1/5 sm:w-1/2 mb-base min-h-250"
         v-for="item in filteredKB"
         :key="item.id"
       >
@@ -256,5 +253,8 @@ export default {
 .knowledge-base-jumbotron-content {
   background-image: url('../../assets/images/background/night.jpeg');
   background-size: cover;
+}
+.background-dash {
+  background-image: url('../../assets/images/pages/vuexy-login-bg.jpg');
 }
 </style>
