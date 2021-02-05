@@ -35,7 +35,10 @@
                   </vs-tab> -->
 
                   <vs-tab label="Email" v-if="authorization_type.email">
-                    <LoginFirebase :authorization_type="authorization_type" />
+                    <LoginFirebase
+                      :authorization_type="authorization_type"
+                      :goToRoute="goToRoute"
+                    />
                   </vs-tab>
                   <vs-tab label="Phone" v-if="authorization_type.phone">
                     <LoginPhone />
@@ -57,6 +60,11 @@
 <script>
 export default {
   name: 'Login',
+  data() {
+    return {
+      goToRoute: '/',
+    }
+  },
 
   computed: {
     authorization_type() {

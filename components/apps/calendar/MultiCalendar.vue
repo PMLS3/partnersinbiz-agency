@@ -240,6 +240,7 @@ export default {
         .set({
           name: this.user.name,
           surname: this.user.surname,
+          email: this.user.email,
           uid: this.user.uid,
           displayName: this.user.disp_name,
           avatar: this.user.avatar,

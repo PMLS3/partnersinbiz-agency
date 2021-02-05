@@ -146,7 +146,7 @@
 export default {
   props: {
     authorization_type: { type: Object, required: true },
-    goToRoute: { type: Object, default: () => {} },
+    goToRoute: { type: String, default: '/' },
     registerButton: { type: Boolean, default: true },
   },
   data() {

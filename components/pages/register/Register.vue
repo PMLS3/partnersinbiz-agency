@@ -36,7 +36,7 @@
                                   </vs-tab> -->
 
                   <vs-tab label="Email" v-if="authorization_type.email">
-                    <register-firebase></register-firebase>
+                    <register-firebase :goToRoute='goToRoute'></register-firebase >
                   </vs-tab>
                   <vs-tab label="Phone" v-if="authorization_type.phone">
                     <register-phone></register-phone>
@@ -66,6 +66,11 @@ export default {
     RegisterFirebase,
     RegisterAuth0,
     RegisterPhone,
+  },
+   data(){
+    return {
+       goToRoute: '/',
+    }
   },
   computed: {
     authorization_type() {

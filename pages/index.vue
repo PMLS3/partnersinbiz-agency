@@ -6,7 +6,8 @@ export default {
   data() {
     return {
       show: true,
-      title: 'Kay',
+      title: 'Loading...',
+      description: '',
     }
   },
   head() {
@@ -17,8 +18,11 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description',
+          content: this.description,
         },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' },
       ],
     }
   },
@@ -49,6 +53,8 @@ export default {
             querySnapshot.forEach(function (doc) {
               // doc.data() is never undefined for query doc snapshots
               console.log(doc.id, ' => ', doc.data())
+              vm.title = doc.data().b_name
+              vm.description = doc.data().desc
 
               let payload = doc.data()
               payload.id = doc.id

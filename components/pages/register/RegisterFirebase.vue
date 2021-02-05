@@ -70,7 +70,7 @@
 <script>
 export default {
   props: {
-    goToRoute: { type: Object, default: () => {} },
+    goToRoute: { type: String, default: '/' },
     loginButton: { type: Boolean, default: true },
   },
   data() {

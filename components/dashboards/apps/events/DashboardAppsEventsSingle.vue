@@ -18,12 +18,13 @@
 <script>
 import CellRendererActions from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererActions.vue'
 import CellRendererHtml from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererHtml.vue'
-
+import CellRendererPopUp from '@/components/ui-elements/ag-grid-table/cell-renderer/CellRendererPopUp.vue'
 export default {
   name: 'EventsSingle',
   components: {
     CellRendererActions,
     CellRendererHtml,
+    CellRendererPopUp,
   },
   data() {
     return {
@@ -106,6 +107,13 @@ export default {
           filter: 'agNumberColumnFilter',
           width: 125,
           cellRendererFramework: 'CellRendererActions',
+        },
+        {
+          headerName: 'Attendance',
+          field: 'id',
+          filter: 'agNumberColumnFilter',
+          width: 125,
+          cellRendererFramework: 'CellRendererPopUp',
         },
       ]
     },

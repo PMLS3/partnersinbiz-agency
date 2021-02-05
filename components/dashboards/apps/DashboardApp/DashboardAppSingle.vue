@@ -320,7 +320,8 @@ export default {
                 content: doc.data().desc,
                 contentFull: doc.data().description,
               }
-              data.id = doc.id
+              datas.component = vm.item.item
+              datas.id = doc.id
               vm.kb.push(datas)
             }
           })
@@ -338,6 +339,8 @@ export default {
               let doc = change.doc
               let data = doc.data()
               data.id = doc.id
+              data.component = vm.item.item
+
               vm.kb.push(data)
             }
           })
