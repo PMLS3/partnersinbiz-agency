@@ -13,43 +13,42 @@
       :title="null"
       :subtitle="null"
       :hide-buttons="true"
+      style="margin-top: 85px"
     >
       <!-- tab 1 content -->
       <tab-content title="Cart" icon="feather icon-shopping-cart" class="mb-5">
         <!-- IF CART HAVE ITEMS -->
         <div class="vx-row" v-if="cartItems.length">
           <!-- LEFT COL -->
-          <div class="vx-col lg:w-2/3 w-full relative">
+          <div class="relative w-full vx-col lg:w-2/3">
             <div
               class="items-list-view"
               v-for="(item, index) in cartItems"
               :key="item.objectID"
             >
-              <item-list-view :item="item" class="mb-base">
+              <ItemListView :item="item" class="mb-base">
                 <!-- SLOT: ITEM META -->
                 <template slot="item-meta">
                   <h6
-                    class="item-name font-semibold mb-1 cursor-pointer hover:text-primary"
+                    class="mb-1 font-semibold cursor-pointer item-name hover:text-primary"
                     @click="
-                      $router
-                        .push({
-                          name: 'ecommerce-item-detail-view',
-                          params: { item_id: item.objectID }
-                        })
-                        .catch(() => {})
+                      $router.push({
+                        name: 'ecommerce-item-detail-view',
+                        params: { item_id: item.objectID },
+                      })
                     "
                   >
                     {{ item.name }}
                   </h6>
-                  <p class="text-sm mb-2">
+                  <p class="mb-2 text-sm">
                     By
                     <span class="font-semibold cursor-pointer">{{
-                      item.brand
+                      item.brand.brand
                     }}</span>
                   </p>
-                  <p class="text-success text-sm">In Stock</p>
+                  <p class="text-sm text-success">In Stock</p>
 
-                  <p class="mt-4 font-bold text-sm">Quantity</p>
+                  <p class="mt-4 text-sm font-bold">Quantity</p>
                   <vs-input-number
                     min="1"
                     max="10"
@@ -58,10 +57,10 @@
                     class="inline-flex"
                   />
 
-                  <p class="font-medium text-grey mt-4">
+                  <!-- <p class="mt-4 font-medium text-grey">
                     Delivery by, {{ item.delivery_date }}
-                  </p>
-                  <p class="text-success font-medium">
+                  </p> -->
+                  <p class="font-medium text-success">
                     {{ item.discount_in_percentage }}% off
                     {{ item.offers_count }} offers Available
                   </p>
@@ -71,81 +70,86 @@
                 <template slot="action-buttons">
                   <!-- PRIMARY BUTTON: REMOVE -->
                   <div
-                    class="item-view-primary-action-btn p-3 rounded-lg flex flex-grow items-center justify-center cursor-pointer mb-3"
+                    class="flex items-center justify-center flex-grow p-3 mb-3 rounded-lg cursor-pointer item-view-primary-action-btn"
                     @click="removeItemFromCart(item)"
                   >
                     <feather-icon icon="XIcon" svgClasses="h-4 w-4" />
-                    <span class="text-sm font-semibold ml-2">REMOVE</span>
+                    <span class="ml-2 text-sm font-semibold">REMOVE</span>
                   </div>
 
                   <!-- SECONDARY BUTTON: MOVE-TO/VIEW-IN WISHLIST -->
                   <div
-                    class="item-view-secondary-action-btn bg-primary p-3 rounded-lg flex flex-grow items-center justify-center text-white cursor-pointer"
+                    class="flex items-center justify-center flex-grow p-3 text-white rounded-lg cursor-pointer item-view-secondary-action-btn bg-primary"
                     @click="wishListButtonClicked(item)"
                   >
                     <feather-icon
                       icon="HeartIcon"
                       :svgClasses="[
                         {
-                          'text-white fill-current': isInWishList(item.objectID)
+                          'text-white fill-current': isInWishList(
+                            item.objectID
+                          ),
                         },
-                        'h-4 w-4'
+                        'h-4 w-4',
                       ]"
                     />
                     <span
-                      class="text-sm font-semibold ml-2"
+                      class="ml-2 text-sm font-semibold"
                       v-if="isInWishList(item.objectID)"
                       >WISHLIST</span
                     >
-                    <span class="text-sm font-semibold ml-2" v-else
+                    <span class="ml-2 text-sm font-semibold" v-else
                       >WISHLIST</span
                     >
                   </div>
                 </template>
-              </item-list-view>
+              </ItemListView>
             </div>
           </div>
 
           <!-- RIGHT COL -->
-          <div class="vx-col lg:w-1/3 w-full">
+          <div class="w-full vx-col lg:w-1/3">
             <vx-card>
-              <p class="text-grey mb-3">Options</p>
+              <p class="mb-3 text-grey">Options</p>
               <div class="flex justify-between">
                 <span class="font-semibold">Coupons</span>
-                <span class="font-medium text-primary cursor-pointer"
+                <span class="font-medium cursor-pointer text-primary"
                   >Apply</span
                 >
               </div>
 
               <vs-divider />
 
-              <p class="font-semibold mb-3">Price Details</p>
+              <p class="mb-3 font-semibold">Price Details</p>
               <div class="flex justify-between mb-2">
                 <span class="text-grey">Total MRP</span>
-                <span>$598</span>
+                <span>R{{ cost | thousandSeprator }}</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-grey">Bag Discount</span>
-                <span class="text-success">-25$</span>
+                <span class="text-grey">Discount</span>
+                <span class="text-success"
+                  >R{{ totalDiscount | thousandSeprator }}</span
+                >
               </div>
               <div class="flex justify-between mb-2">
                 <span class="text-grey">Estimated Tax</span>
-                <span>$1.3</span>
+                <!-- <span>R{{ totalVat | thousandSeprator }} Covered per product</span> -->
+                <span>R0</span>
               </div>
-              <div class="flex justify-between mb-2">
+              <!-- <div class="flex justify-between mb-2">
                 <span class="text-grey">EMI Eligibility</span>
                 <a href="#" class="text-primary">Details</a>
-              </div>
+              </div> -->
               <div class="flex justify-between mb-2">
                 <span class="text-grey">Delivery Charges</span>
-                <span class="text-success">Free</span>
+                <span class="text-success">Not included</span>
               </div>
 
               <vs-divider />
 
-              <div class="flex justify-between font-semibold mb-3">
+              <div class="flex justify-between mb-3 font-semibold">
                 <span>Total</span>
-                <span>$574.3</span>
+                <span>R{{ totalCost | thousandSeprator }}</span>
               </div>
 
               <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()"
@@ -157,8 +161,7 @@
 
         <!-- IF NO ITEMS IN CART -->
         <vx-card title="You don't have any items in your cart." v-else>
-          <vs-button
-            @click="$router.push('/apps/eCommerce/shop').catch(() => {})"
+          <vs-button @click="$router.push('/apps/eCommerce/shop')"
             >Browse Shop</vs-button
           >
         </vx-card>
@@ -166,9 +169,84 @@
 
       <!-- tab 2 content -->
       <tab-content title="Address" icon="feather icon-home" class="mb-5">
-        <div class="vx-row">
+        <div>
+          <ul class="mb-10 ml-10">
+            <!-- <li>
+        <vs-checkbox v-model="checkBox1">Delivery</vs-checkbox>
+      </li>
+      <li>
+        <vs-checkbox v-model="checkBox2">Pickup</vs-checkbox>
+      </li>-->
+            <li>
+              <vs-radio
+                v-model="checkBox1"
+                vs-name="checkBox1"
+                vs-value="Delivery"
+                >Delivery</vs-radio
+              >
+            </li>
+            <li>
+              <vs-radio
+                v-model="checkBox1"
+                vs-name="checkBox1"
+                vs-value="Pickup"
+                >Pickup</vs-radio
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="vx-row" v-if="checkBox1 == 'Pickup'">
+          <vx-card
+            title="Pick up"
+            subtitle='Be sure to check "Pickup at this address" when you have finished'
+            class="mb-base"
+          >
+            <div
+              class="items-list-view"
+              v-for="item in cartItems"
+              :key="item.objectID"
+            >
+              <!-- SLOT: ITEM META -->
+
+              <h6
+                class="mb-1 font-semibold cursor-pointer item-name hover:text-primary"
+                @click="
+                  $router.push({
+                    name: 'ecommerce-item-detail-view',
+                    params: { item_id: item.objectID },
+                  })
+                "
+              >
+                {{ item.name }}
+              </h6>
+              <p class="mb-2 text-sm">
+                By
+                <span class="font-semibold cursor-pointer">{{
+                  item.brand
+                }}</span>
+              </p>
+              <p class="text-sm text-success">In Stock</p>
+
+              <p class="mt-4 text-sm font-bold">Pickup from:</p>
+              <p class="mb-2 text-sm">
+                Farm
+                <span class="font-semibold cursor-pointer">{{
+                  item.sellerName
+                }}</span>
+              </p>
+              <vs-divider></vs-divider>
+            </div>
+            <vs-button
+              class="flex mt-6 ml-auto"
+              @click="$refs.checkoutWizard.nextTab()"
+              >Continue</vs-button
+            >
+          </vx-card>
+        </div>
+
+        <div class="vx-row" v-if="checkBox1 == 'Delivery'">
           <!-- LEFT COL: NEW ADDRESS -->
-          <div class="vx-col lg:w-2/3 w-full">
+          <div class="w-full vx-col lg:w-2/3">
             <vx-card
               title="Add New Address"
               subtitle='Be sure to check "Deliver to this address" when you have finished'
@@ -176,55 +254,40 @@
             >
               <form data-vv-scope="add-new-address">
                 <div class="vx-row">
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
-                      v-validate="'required|alpha_spaces'"
                       data-vv-as="field"
                       name="fullName"
                       label="Full Name:"
                       v-model="fullName"
                       class="w-full mt-5"
                     />
-                    <span
-                      v-show="errors.has('add-new-address.fullName')"
-                      class="text-danger"
-                      >{{ errors.first('add-new-address.fullName') }}</span
-                    >
+                    <!-- <span v-show="errors.has('add-new-address.fullName')" class="text-danger">{{ errors.first('add-new-address.fullName') }}</span> -->
                   </div>
 
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
-                      v-validate="'required|digits:10'"
                       name="mobileNum"
                       label="Mobile Number:"
                       v-model="mobileNum"
                       class="w-full mt-5"
                     />
-                    <span
-                      v-show="errors.has('add-new-address.mobileNum')"
-                      class="text-danger"
-                      >{{ errors.first('add-new-address.mobileNum') }}</span
-                    >
+                    <!-- <span v-show="errors.has('add-new-address.mobileNum')" class="text-danger">{{ errors.first('add-new-address.mobileNum') }}</span> -->
                   </div>
                 </div>
 
                 <div class="vx-row">
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
-                      v-validate="'required'"
                       name="houseNum"
                       label="Flat, House No:"
                       v-model="houseNum"
                       class="w-full mt-5"
                     />
-                    <span
-                      v-show="errors.has('add-new-address.houseNum')"
-                      class="text-danger"
-                      >{{ errors.first('add-new-address.houseNum') }}</span
-                    >
+                    <!-- <span v-show="errors.has('add-new-address.houseNum')" class="text-danger">{{ errors.first('add-new-address.houseNum') }}</span> -->
                   </div>
 
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
                       name="landmark"
                       label="Landmark e.g. near apollo hospital:"
@@ -235,54 +298,39 @@
                 </div>
 
                 <div class="vx-row">
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
-                      v-validate="'required'"
                       name="city"
                       label="Town/City:"
                       v-model="city"
                       class="w-full mt-5"
                     />
-                    <span
-                      v-show="errors.has('add-new-address.city')"
-                      class="text-danger"
-                      >{{ errors.first('add-new-address.city') }}</span
-                    >
+                    <!-- <span v-show="errors.has('add-new-address.city')" class="text-danger">{{ errors.first('add-new-address.city') }}</span> -->
                   </div>
 
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
-                      v-validate="'required|min:3|max:6|numeric'"
                       name="pincode"
-                      label="Pincode:"
+                      label="Area Code:"
                       v-model="pincode"
                       class="w-full mt-5"
                     />
-                    <span
-                      v-show="errors.has('add-new-address.pincode')"
-                      class="text-danger"
-                      >{{ errors.first('add-new-address.pincode') }}</span
-                    >
+                    <!-- <span v-show="errors.has('add-new-address.pincode')" class="text-danger">{{ errors.first('add-new-address.pincode') }}</span> -->
                   </div>
                 </div>
 
                 <div class="vx-row">
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-input
-                      v-validate="'required'"
                       name="state"
-                      label="State:"
+                      label="Province:"
                       v-model="state"
                       class="w-full mt-5"
                     />
-                    <span
-                      v-show="errors.has('add-new-address.state')"
-                      class="text-danger"
-                      >{{ errors.first('add-new-address.state') }}</span
-                    >
+                    <!-- <span v-show="errors.has('add-new-address.state')" class="text-danger">{{ errors.first('add-new-address.state') }}</span> -->
                   </div>
 
-                  <div class="vx-col sm:w-1/2 w-full">
+                  <div class="w-full vx-col sm:w-1/2">
                     <vs-select
                       label="Address Type:"
                       v-model="addressType"
@@ -298,7 +346,7 @@
                   </div>
                 </div>
                 <vs-button
-                  class="mt-6 ml-auto flex"
+                  class="flex mt-6 ml-auto"
                   @click.prevent="submitNewAddressForm"
                   >SAVE AND DELIVER HERE</vs-button
                 >
@@ -307,18 +355,54 @@
           </div>
 
           <!-- RIGHT COL: CONTINUE WITH SAVED ADDRESS -->
-          <div class="vx-col lg:w-1/3 w-full">
-            <vx-card title="John Doe">
-              <div>
-                <p>9447 Glen Eagles Drive</p>
-                <p>Lewis Center, OH 43035</p>
-                <p class="my-4">UTC-5: Eastern Standard Time (EST)</p>
-                <p>202-555-0140</p>
+
+          <div class="w-full vx-col lg:w-1/3">
+            <vx-card
+              :title="comp.b_name"
+              v-for="comp in userCompanies"
+              :key="comp.id"
+            >
+              <div v-html="comp.address_html">
+                {{ comp.address_html }}
               </div>
 
               <vs-divider />
 
-              <vs-button class="w-full" @click="$refs.checkoutWizard.nextTab()"
+              <vs-button class="w-full" @click="submitComp('Company', comp)"
+                >DELIVER TO THIS ADDRESS</vs-button
+              >
+            </vx-card>
+
+            <div v-if="branchesAvail">
+              <vx-card
+                :title="comp.branch"
+                v-for="comp in branchesAvail"
+                :key="comp.id"
+              >
+                <div v-html="comp.adr_address">
+                  {{ comp.adr_address }}
+                </div>
+
+                <vs-divider />
+
+                <vs-button
+                  class="w-full"
+                  @click="submitAddress('Company', comp)"
+                  >DELIVER TO THIS ADDRESS</vs-button
+                >
+              </vx-card>
+            </div>
+
+            <vx-card :title="app_active_user.display_name">
+              <!-- <div v-html="comp.address_html">
+                {{ comp.address_html }}
+              </div> -->
+
+              <vs-divider />
+
+              <vs-button
+                class="w-full"
+                @click="submitAddress('Personal', 'toets')"
                 >DELIVER TO THIS ADDRESS</vs-button
               >
             </vx-card>
@@ -329,128 +413,145 @@
       <!-- tab 3 content -->
       <tab-content title="Payment" icon="feather icon-credit-card" class="mb-5">
         <div class="vx-row">
-          <!-- LEFT COL: PAYMENT OPTIONS -->
-          <div class="vx-col lg:w-2/3 w-full">
-            <vx-card
-              title="Payment Options"
-              subtitle="Be sure to click on correct payment option"
-              class="mb-base"
-            >
-              <div class="mt-3">
-                <ul>
-                  <!-- OPTION 1 -->
-                  <li>
-                    <!-- CARD DETAILS -->
-                    <div class="flex flex-wrap justify-between items-center">
-                      <vs-radio v-model="paymentMethod" vs-value="debit-card">
-                        <div class="flex items-center">
-                          <img
-                            src="@/assets/images/pages/eCommerce/bank.png"
-                            alt="bank-logo"
-                            height="40"
-                            width="50"
-                            class="inline-flex"
-                          />
-                          <span
-                            >US Unlocked Debit Card 12XX XXXX XXXX 0000</span
-                          >
-                        </div>
-                      </vs-radio>
-                      <span>John Doe</span>
-                      <span>11/2020</span>
-                    </div>
+          <!-- <div class="w-full vx-col lg:w-2/3">
+                        <vx-card title="Payment Options" subtitle="Be sure to click on correct payment option" class="mb-base">
 
-                    <!-- CVV BLOCK -->
-                    <form data-vv-scope="cvv-form">
-                      <div class="flex items-center flex-wrap">
-                        <span class="mt-4">Enter CVV: </span>
-                        <vs-input
-                          v-validate="'required|digits:3'"
-                          name="cvv"
-                          v-model="cvv"
-                          class="mr-3 ml-2 mt-4"
-                        />
-                        <vs-button
-                          class="mt-4"
-                          @click.prevent="makePayment"
-                          :disabled="false"
-                          >CONTINUE</vs-button
-                        >
-                      </div>
-                      <span
-                        v-show="errors.has('cvv-form.cvv')"
-                        class="text-danger ml-24"
-                        >{{ errors.first('cvv-form.cvv') }}</span
-                      >
-                    </form>
-                  </li>
+                            <div class="mt-3">
+                                <ul>
+                                  <li>
+                                    <div class="flex flex-wrap items-center justify-between">
+                                        <vs-radio v-model="paymentMethod" vs-value="debit-card">
+                                            <div class="flex items-center">
+                                                <img src="@/assets/images/pages/eCommerce/bank.png" alt="bank-logo" height="40" width="50" class="inline-flex">
+                                                <span>US Unlocked Debit Card 12XX XXXX XXXX 0000</span>
+                                            </div>
+                                        </vs-radio>
+                                        <span>John Doe</span>
+                                        <span>11/2020</span>
+                                    </div>
 
-                  <vs-divider class="my-6" />
+                                    <form data-vv-scope="cvv-form">
+                                        <div class="flex flex-wrap items-center">
+                                            <span class="mt-4">Enter CVV: </span>
+                                            <vs-input
+                                               
+                                                name="cvv"
+                                                v-model="cvv"
+                                                class="mt-4 ml-2 mr-3" />
+                                            <vs-button class="mt-4" @click.prevent="makePayment" :disabled="false">CONTINUE</vs-button>
+                                        </div>
+                                    </form>
+                                  </li>
 
-                  <!-- OPTION 2 -->
-                  <li>
-                    <vs-radio
-                      v-model="paymentMethod"
-                      vs-value="credit-debit-atmCard"
-                      >Credit / Debit / ATM Card</vs-radio
-                    >
-                  </li>
+                                  <vs-divider class="my-6" />
 
-                  <!-- OPTION 3 -->
-                  <li class="mt-2">
-                    <vs-radio v-model="paymentMethod" vs-value="netBanking"
-                      >Net Banking</vs-radio
-                    >
-                  </li>
+                                 
+                                  <li>
+                                    <vs-radio v-model="paymentMethod" vs-value="credit-debit-atmCard">Credit / Debit / ATM Card</vs-radio>
+                                  </li>
 
-                  <!-- OPTION 4 -->
-                  <li class="mt-2">
-                    <vs-radio v-model="paymentMethod" vs-value="emi"
-                      >EMI (Easy Installment)</vs-radio
-                    >
-                  </li>
+                                 
+                                  <li class="mt-2">
+                                    <vs-radio v-model="paymentMethod" vs-value="netBanking">Net Banking</vs-radio>
+                                  </li>
 
-                  <!-- OPTION 5 -->
-                  <li class="mt-2">
-                    <vs-radio v-model="paymentMethod" vs-value="cashOnDelivery"
-                      >Cash On Delivery</vs-radio
-                    >
-                  </li>
-                </ul>
+                                 
+                                  <li class="mt-2">
+                                    <vs-radio v-model="paymentMethod" vs-value="emi">EMI (Easy Installment)</vs-radio>
+                                  </li> 
 
-                <vs-divider />
+                                  <li class="mt-2">
+                                    <vs-radio v-model="paymentMethod" vs-value="cashOnDelivery">Cash On Delivery</vs-radio>
+                                  </li>
+                                </ul>
 
-                <!-- GIFT CARD -->
-                <div class="inline-flex items-center cursor-pointer">
-                  <feather-icon
-                    icon="PlusSquareIcon"
-                    class="mr-2"
-                    svgClasses="h-6 w-6"
-                  />
-                  <span>Add Gift Card</span>
-                </div>
-              </div>
-            </vx-card>
-          </div>
+                                <vs-divider />
+
+                                <div class="inline-flex items-center cursor-pointer">
+                                    <feather-icon icon="PlusSquareIcon" class="mr-2" svgClasses="h-6 w-6" />
+                                    <span>Add Gift Card</span>
+                                </div>
+                            </div>
+                        </vx-card>
+                    </div> -->
 
           <!-- RIGHT COL: PRICE -->
-          <div class="vx-col lg:w-1/3 w-full">
-            <vx-card title="Price Details">
+          <div class="w-full vx-col lg:w-1/3">
+            <vx-card title="Pay now online">
               <div class="flex justify-between mb-2">
                 <span>Price 3 Items</span>
-                <span class="font-semibold">$699.30</span>
+                <span class="font-semibold"
+                  >R{{ totalCost | thousandSeprator }}</span
+                >
               </div>
               <div class="flex justify-between mb-2">
                 <span>Delivery Charges</span>
-                <span class="text-success">Free</span>
+                <span class="text-success">Not included</span>
               </div>
 
               <vs-divider />
 
               <div class="flex justify-between">
                 <span>Amount Payable</span>
-                <span class="font-semibold">$699.30</span>
+                <span class="font-semibold"
+                  >R{{ totalCost | thousandSeprator }}</span
+                >
               </div>
+              <vs-button @click="buyingNow('Payment')" class="mt-4"
+                >Buy Now</vs-button
+              >
+            </vx-card>
+          </div>
+          <div class="w-full vx-col lg:w-1/3">
+            <vx-card title="Get Quote">
+              <div class="flex justify-between mb-2">
+                <span>Price 3 Items</span>
+                <span class="font-semibold"
+                  >R{{ totalCost | thousandSeprator }}</span
+                >
+              </div>
+              <div class="flex justify-between mb-2">
+                <span>Delivery Charges</span>
+                <span class="text-success">Not included</span>
+              </div>
+
+              <vs-divider />
+
+              <div class="flex justify-between">
+                <span>Amount Payable</span>
+                <span class="font-semibold"
+                  >R{{ totalCost | thousandSeprator }}</span
+                >
+              </div>
+              <vs-button @click="buyingNow('Quote')" class="mt-4"
+                >Get Quote</vs-button
+              >
+            </vx-card>
+          </div>
+          <div class="w-full vx-col lg:w-1/3">
+            <vx-card title="Arrange Viewing">
+              <div class="flex justify-between mb-2">
+                <span>Price 3 Items</span>
+                <span class="font-semibold"
+                  >R{{ totalCost | thousandSeprator }}</span
+                >
+              </div>
+              <div class="flex justify-between mb-2">
+                <span>Delivery Charges</span>
+                <span class="text-success">Not included</span>
+              </div>
+
+              <vs-divider />
+
+              <div class="flex justify-between">
+                <span>Amount Payable</span>
+                <span class="font-semibold"
+                  >R{{ totalCost | thousandSeprator }}</span
+                >
+              </div>
+              <vs-button @click="buyingNow('Viewing')" class="mt-4"
+                >Arrange Viewing</vs-button
+              >
             </vx-card>
           </div>
         </div>
@@ -462,12 +563,33 @@
 <script>
 import { FormWizard, TabContent } from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-const ItemListView = () => import('./components/ItemListView.vue')
+
+const { PayFastAPI } = require('@gettruck/payfast-js')
+// const payfast = new PayFastAPI({ merchant_id: "10017515", merchant_key: "omnkr3wlkmlfn", production: true | false });
+const payfast = new PayFastAPI({
+  merchant_id: '10017515',
+  merchant_key: 'omnkr3wlkmlfn',
+  production: false,
+})
+
+import moment from 'moment'
 
 export default {
   data() {
     return {
+      checkBox1: 'Delivery',
+      paymentID: null,
+      quoteRequest: false,
       // TAB 2
+      savedAddress: false,
+      deliveryToo: {},
+      branchesAvail: [],
+      transActionType: '',
+      transactionDetails: {
+        created_date: moment().format('DD-MM-YYYY'),
+        created_month: moment().format('MM-YYYY'),
+        timestamp: Date.now(),
+      },
       fullName: '',
       mobileNum: '',
       pincode: '',
@@ -476,26 +598,224 @@ export default {
       landmark: '',
       city: '',
       state: '',
-      addressType: 1,
+      addressType: 'Home',
       addressTypeOptions: [
-        { text: 'Home', value: 1 },
-        { text: 'Office', value: 2 }
+        { text: 'Home', value: 'Home' },
+        { text: 'Office', value: 'Office' },
       ],
 
       // TAB 3
       paymentMethod: 'debit-card',
-      cvv: ''
+      cvv: '',
     }
   },
+
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    },
+    thousandSeprator(amount) {
+      return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+  },
+
   computed: {
+    shopType() {
+      return this.$store.state.eCommerce.shopType
+    },
+    app_active_user() {
+      return this.$store.state.user.app_active_user
+    },
+    userCompanies() {
+      return this.$store.state.user.app_active_user.apps
+    },
     cartItems() {
       return this.$store.state.eCommerce.cartItems.slice().reverse()
     },
     isInWishList() {
-      return itemId => this.$store.getters['eCommerce/isInWishList'](itemId)
-    }
+      return (itemId) => this.$store.getters['eCommerce/isInWishList'](itemId)
+    },
+    cost() {
+      let cartTotal = 0
+      for (let i = 0; i < this.cartItems.length; i++) {
+        let cost =
+          parseInt(this.cartItems[i].price) *
+          parseInt(this.cartItems[i].quantity)
+        cartTotal += cost
+      }
+      return cartTotal
+    },
+    totalCost() {
+      return this.cost + this.totalVat - this.totalDiscount
+    },
+    totalVat() {
+      return 0
+    },
+    totalDiscount() {
+      return 0
+    },
   },
   methods: {
+    buyingOwner() {
+      let vm = this
+
+      for (let i = 0; i < this.cartItems.length; i++) {
+        let individualTransaction = {
+          m_payment_id: this.paymentID,
+          client_uid: this.app_active_user.uid,
+          client_displayname: this.app_active_user.display_name,
+          client_email: this.app_active_user.email,
+          cart_items: this.cartItems[i],
+          price: this.cartItems[i].price,
+          ctc: this.cartItems[i].ctc,
+          item_ref: this.cartItems[i].objectID,
+          total_price:
+            Number(this.cartItems[i].price) *
+            Number(this.cartItems[i].quantity),
+          total_profit:
+            (Number(this.cartItems[i].price) - Number(this.cartItems[i].ctc)) *
+            Number(this.cartItems[i].quantity),
+          total_quantity: this.cartItems[i].quantity,
+          total_CTC:
+            Number(this.cartItems[i].ctc) * Number(this.cartItems[i].quantity),
+          payment_received: false,
+          verify_payfast: false,
+          stage: this.transActionType,
+          invoiced_date: moment().format('DD-MM-YYYY'),
+          invoiced_month: moment().format('MM-YYYY'),
+          created_date: moment().format('DD-MM-YYYY'),
+          created_month: moment().format('MM-YYYY'),
+          timestamp: Date.now(),
+        }
+
+        if (this.transActionType == 'Invoice') {
+          individualTransaction.invoiced_date = moment().format('DD-MM-YYYY')
+          individualTransaction.invoiced_month = moment().format('MM-YYYY')
+        } else if (this.transActionType == 'Quote') {
+          individualTransaction.quoted_date = moment().format('DD-MM-YYYY')
+          individualTransaction.quoted_month = moment().format('MM-YYYY')
+        } else if (this.transActionType == 'Viewing') {
+          individualTransaction.viewing_request_date = moment().format(
+            'DD-MM-YYYY'
+          )
+          individualTransaction.viewing_request_month = moment().format(
+            'MM-YYYY'
+          )
+        }
+
+        if (this.savedAddress) {
+          individualTransaction.full_name = this.fullName
+          individualTransaction.mobile_num = this.mobileNum
+          individualTransaction.pincode = this.pincode
+          individualTransaction.house_num = this.houseNum
+          individualTransaction.area = this.area
+          individualTransaction.landmark = this.landmark
+          individualTransaction.city = this.city
+          individualTransaction.state = this.state
+          individualTransaction.address_type = this.addressType
+        } else {
+          individualTransaction.deliveryToo = this.deliveryToo
+        }
+
+        vm.$fireStore
+          .collection('apps')
+          .doc('crm')
+          .collection(vm.cartItems[i].sellerID)
+          .doc('sales')
+          .collection('sales')
+          .add(individualTransaction)
+      }
+      this.buyingNow()
+    },
+    buyingNow(type) {
+      let buyer = this.app_active_user
+      this.paymentID = Math.floor(Math.random() * 1000000000)
+      let vm = this
+      this.transActionType = type
+
+      if (this.transActionType == 'Invoice') {
+        this.transactionDetails.invoiced_date = moment().format('DD-MM-YYYY')
+        this.transactionDetails.invoiced_month = moment().format('MM-YYYY')
+      } else if (this.transActionType == 'Quote') {
+        this.transactionDetails.quoted_date = moment().format('DD-MM-YYYY')
+        this.transactionDetails.quoted_month = moment().format('MM-YYYY')
+      } else if (this.transActionType == 'Viewing') {
+        this.transactionDetails.viewing_request_date = moment().format(
+          'DD-MM-YYYY'
+        )
+        this.transactionDetails.viewing_request_month = moment().format(
+          'MM-YYYY'
+        )
+      }
+
+      if (this.savedAddress) {
+        this.transactionDetails.full_name = this.fullName
+        this.transactionDetails.mobile_num = this.mobileNum
+        this.transactionDetails.pincode = this.pincode
+        this.transactionDetails.house_num = this.houseNum
+        this.transactionDetails.area = this.area
+        this.transactionDetails.landmark = this.landmark
+        this.transactionDetails.city = this.city
+        this.transactionDetails.state = this.state
+        this.transactionDetails.address_type = this.addressType
+      } else {
+        this.transactionDetails.deliveryToo = this.deliveryToo
+      }
+      this.transactionDetails.shopType = this.shopType
+      ;(this.transactionDetails.m_payment_id = this.paymentID),
+        (this.transactionDetails.client_uid = this.app_active_user.uid),
+        (this.transactionDetails.client_displayname = this.app_active_user.display_name),
+        (this.transactionDetails.client_email = this.app_active_user.email),
+        (this.transactionDetails.cart_items = this.cartItems),
+        (this.transactionDetails.total_cost = this.totalCost),
+        (this.transactionDetails.collection_type = this.checkBox1),
+        (this.transactionDetails.paid_owner = false),
+        (this.transactionDetails.verify_payfast = false),
+        (this.transactionDetails.stage = this.transActionType)
+      this.transactionDetails.comp_email = this.$store.state.business.app_main_business.contact_email
+      this.transactionDetails.comp_name = this.$store.state.business.app_main_business.b_name
+      this.transactionDetails.comp_id = this.$store.state.business.app_main_business.b_uid
+
+      this.$fireStore
+        .collection('apps')
+        .doc('crm')
+        .collection(this.$store.state.business.app_main_business.b_uid)
+        .doc('sales')
+        .collection('transactions')
+        .add(this.transactionDetails)
+
+      payfast.addPaymentDetails({
+        amount: this.totalCost,
+        item_name: this.$store.state.business.app_main_business.b_name,
+        currency: 'ZAR',
+        email_address: buyer.email,
+        item_description: this.cartItems,
+        name_first: buyer.displayName,
+        name_last: buyer.surname,
+        payment_method: 'PayFast',
+      })
+
+      payfast.addReferenceDetails({
+        m_payment_id: buyer.id,
+        email_address: buyer.email,
+        item_description: this.cartItems,
+        name_first: buyer.displayName,
+        name_last: buyer.surname,
+      })
+      let site
+      if (process.client) {
+        site = window.location.hostname
+      }
+
+      payfast.returnURL(`https://${site}/transaction/success`)
+      payfast.cancelURL(`https://${site}/transaction/cancelled`)
+      payfast.notifyURL(`https://${site}/success`)
+      // payfast.generateURL()
+
+      window.open(payfast.generateURL())
+    },
     // TAB 1
     removeItemFromCart(item) {
       this.$store.dispatch('eCommerce/toggleItemInCart', item)
@@ -516,34 +836,81 @@ export default {
       const itemIndex = Math.abs(index + 1 - this.cartItems.length)
       this.$store.dispatch('eCommerce/updateItemQuantity', {
         quantity: event,
-        index: itemIndex
+        index: itemIndex,
       })
     },
-
+    submitComp(who, comp) {
+      let vm = this
+      this.savedAddress = false
+      this.deliveryToo.name = comp.b_name
+      this.deliveryToo.id = comp.id
+      this.deliveryToo.type = 'company'
+      console.log('comp', comp.id)
+      this.$fireStore
+        .collection('apps')
+        .doc('info')
+        .collection('groups')
+        .doc(comp.id)
+        .collection('branches')
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            vm.branchesAvail.push(doc.data())
+            console.log(doc.id, ' => ', doc.data())
+          })
+        })
+        .catch(function (error) {
+          console.log('rer', error)
+          alert('No Branches set')
+        })
+    },
+    submitAddress(who, comp) {
+      console.log(comp)
+      this.savedAddress = false
+      if (who == 'Company') {
+        this.deliveryToo.branch = comp.branch
+        if (comp.addr_address) {
+          this.deliveryToo.address = comp.addr_address
+        } else {
+          this.deliveryToo.address = {
+            name: 'To be confirmed',
+          }
+        }
+      } else {
+        this.deliveryToo.name = this.app_active_user.display_name
+        this.deliveryToo.id = this.app_active_user.uid
+        this.deliveryToo.type = 'person'
+      }
+      this.$refs.checkoutWizard.nextTab()
+    },
     // TAB 2
     submitNewAddressForm() {
-      return new Promise(() => {
-        this.$validator.validateAll('add-new-address').then(result => {
-          if (result) {
-            // if form have no errors
-            this.$refs.checkoutWizard.nextTab()
-          } else {
-            this.$vs.notify({
-              title: 'Error',
-              text: 'Please enter valid details',
-              color: 'warning',
-              iconPack: 'feather',
-              icon: 'icon-alert-circle'
-            })
-          }
-        })
-      })
+      this.savedAddress = true
+      this.$refs.checkoutWizard.nextTab()
+
+      // return new Promise(() => {
+      //   this.$validator.validateAll('add-new-address').then(result => {
+      //     if (result) {
+      //       // if form have no errors
+      //       this.$refs.checkoutWizard.nextTab()
+      //     } else {
+      //       this.$vs.notify({
+      //         title: 'Error',
+      //         text: 'Please enter valid details',
+      //         color: 'warning',
+      //         iconPack: 'feather',
+      //         icon: 'icon-alert-circle'
+      //       })
+      //     }
+      //   })
+      // })
     },
 
     // TAB 3
     makePayment() {
       return new Promise(() => {
-        this.$validator.validateAll('cvv-form').then(result => {
+        this.$validator.validateAll('cvv-form').then((result) => {
           if (result) {
             // if form have no errors
             this.$vs.notify({
@@ -551,7 +918,7 @@ export default {
               text: 'Payment received successfully',
               color: 'success',
               iconPack: 'feather',
-              icon: 'icon-check'
+              icon: 'icon-check',
             })
           } else {
             this.$vs.notify({
@@ -559,18 +926,18 @@ export default {
               text: 'Please enter valid details',
               color: 'warning',
               iconPack: 'feather',
-              icon: 'icon-alert-circle'
+              icon: 'icon-alert-circle',
             })
           }
         })
       })
-    }
+    },
   },
   components: {
     ItemListView,
     FormWizard,
-    TabContent
-  }
+    TabContent,
+  },
 }
 </script>
 
