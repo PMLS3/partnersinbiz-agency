@@ -9,48 +9,22 @@
         <PageGeneratorViewer :list="list" />
       </div>
       <div>
-        <!-- <PerfectScrollbar> -->
-        <PageGeneratorComponentEditor :edit_comp="edit_comp" />
-        <!-- </PerfectScrollbar> -->
+        <vs-tabs>
+          <vs-tab label="Tree">
+            <!-- <div
+              class="w-full h-full"
+              v-for="(comp, index) in list"
+              :key="index"
+            > -->
+            <UiTreeListPageBuilder :list="list" />
+            <!-- </div> -->
+          </vs-tab>
+          <vs-tab label="Edit">
+            <PageGeneratorComponentEditor :edit_comp="edit_comp" />
+          </vs-tab>
+        </vs-tabs>
       </div>
     </div>
-
-    <vs-button
-      color="primary"
-      type="filled"
-      class="customizer-btn"
-      icon-pack="feather"
-      icon="icon-settings"
-      @click.stop="active = !active"
-    />
-
-    <vs-sidebar
-      v-model="active"
-      hidden-background
-      position-right
-      class="h-screen items-no-padding"
-    >
-      <div class="h-screen p-2">
-        {{ list.length }}
-        <div class="w-full h-full" v-for="(comp, index) in list" :key="index">
-          <UiTreeList :data="comp" />
-        </div>
-      </div>
-    </vs-sidebar>
-
-    <!-- <vs-sidebar
-      v-model="editactive"
-      hidden-background
-      class="h-screen items-no-padding"
-      click-not-close
-      staticPosition
-    >
-      <vs-button icon="close" @click="editactive = false" class="float-right">
-      </vs-button>
-      <PerfectScrollbar>
-        <PageGeneratorComponentEditor :edit_comp="edit_comp" />
-      </PerfectScrollbar>
-    </vs-sidebar> -->
   </div>
 </template>
 

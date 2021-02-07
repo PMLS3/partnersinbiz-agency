@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full px-12">
     <div class="w-full" v-for="(comp, index) in list" :key="index">
-      <ComponentCreatorEditor
+      <UiTreeMenu
         v-for="(field, ind) in comp"
         :key="ind"
         :schema="field"

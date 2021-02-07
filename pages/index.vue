@@ -1,7 +1,7 @@
 <template>
   <div class="font-serif bg-white">
     <client-only>
-      <FormsTypes />
+      <!-- <FormsTypes /> -->
     </client-only>
   </div>
 </template>
