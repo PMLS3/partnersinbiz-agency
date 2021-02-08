@@ -1,18 +1,20 @@
 <template>
-  <UiTreeItem
-    :key="mykey"
-    :schema="schema"
-    :index="myindex"
-    :mainIndex="mainIndex"
-    :item_id="schema.id"
-  />
+  <div>
+    <UiTreeItem
+      :key="mykey"
+      :schema="schema"
+      :index="myindex"
+      :mainIndex="mainIndex"
+      :item_id="schema.id"
+      :depth="depth"
+    />
+  </div>
 </template>
 
 <script>
 export default {
   name: 'UiTreeMenu',
 
-  components: {},
   data() {
     return {
       popup: false,
@@ -20,6 +22,6 @@ export default {
       index: 0,
     }
   },
-  props: ['schema', 'mykey', 'myindex', 'mainIndex'],
+  props: ['schema', 'mykey', 'myindex', 'mainIndex', 'depth'],
 }
 </script>

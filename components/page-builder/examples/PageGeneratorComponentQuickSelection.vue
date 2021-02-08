@@ -172,7 +172,7 @@
       >
         button
       </button>
-      <img src="'@/assets/illustrations/content_team.svg" alt="test" />
+      <img src="@/assets/illustrations/content_team.svg" alt="test" />
     </div>
   </div>
 </template>

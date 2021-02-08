@@ -3,12 +3,13 @@
 </template>
 <script>
 export default {
-  layout: 'fullPage',
+  // layout: 'fullPage',
   data() {
     return {
       show: true,
       title: 'Loading...',
       description: '',
+      favicon: '/static/favicon.ico',
     }
   },
   head() {
@@ -22,9 +23,7 @@ export default {
           content: this.description,
         },
       ],
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/static/favicon.ico' },
-      ],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: this.favicon }],
     }
   },
   computed: {
@@ -34,13 +33,9 @@ export default {
   },
   created() {
     let vm = this
-    console.log('CREATED')
-
-    console.log(vm.main_business_set)
     if (process.client) {
       let url = window.location.href
 
-      console.log(url)
       if (url == 'http://localhost:3000/') {
         url = 'https://partnersinbiz.tech/'
       }
@@ -52,11 +47,8 @@ export default {
           .get()
           .then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
-              // doc.data() is never undefined for query doc snapshots
-              console.log(doc.id, ' => ', doc.data())
               vm.title = doc.data().b_name
               vm.description = doc.data().desc
-
               let payload = doc.data()
               payload.id = doc.id
               payload.b_uid = doc.id

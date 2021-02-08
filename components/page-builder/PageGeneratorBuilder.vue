@@ -3,11 +3,6 @@
     <!-- <UiTree :data='list'/> -->
 
     <div class="grid grid-cols-4 gap-4">
-      <div class="col-span-3">
-        <PageGeneratorNavbar :list="list" />
-
-        <PageGeneratorViewer :list="list" />
-      </div>
       <div>
         <vs-tabs>
           <vs-tab label="Tree">
@@ -23,6 +18,11 @@
             <PageGeneratorComponentEditor :edit_comp="edit_comp" />
           </vs-tab>
         </vs-tabs>
+      </div>
+      <div class="col-span-3">
+        <PageGeneratorNavbar :list="list" />
+
+        <PageGeneratorViewer :list="list" />
       </div>
     </div>
   </div>
@@ -70,6 +70,8 @@ export default {
     })
 
     function getList(data) {
+      console.log('list', list.value)
+      console.log('main', mainIndex.value)
       let schema = Schema.value
       let MainIndex = mainIndex.value
       let addList = list.value[MainIndex][0]
@@ -338,15 +340,20 @@ export default {
       console.log('drag start', drag_start_component.value)
       console.log('drag end', drag_end_component.value)
 
+      let new_component = drag_start_component.value.schema
+      new_component.id = drag_start_component.value.schema.id + 'l'
+
       listPos.value = drag_end_component.value.schema.place
       mainIndex.value = drag_end_component.value.MainIndex
       Schema.value = drag_end_component.value.schema
       store.commit('page_builder/LIST_UPDATE', listPos.value)
 
-      $nuxt.$emit('component-added', drag_start_component.value.schema)
+      // $nuxt.$emit('component-added', drag_start_component.value.schema)
+      console.log('new_component', new_component)
+      $nuxt.$emit('component-added', new_component)
 
       setTimeout(() => {
-        console.log('payload:', drag_start_component.value)
+        console.log('payload to delete:', drag_start_component.value)
         store.commit(
           'page_builder/DELETE_COMPONENT',
           drag_start_component.value
