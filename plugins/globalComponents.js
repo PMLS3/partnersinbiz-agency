@@ -21,6 +21,11 @@ import FeatherIcon from '../components/FeatherIcon.vue'
 // Your app initialization logic goes here
 Vue.use(VueFlatPickr)
 
+import VueWaypoint from 'vue-waypoint'
+
+// Waypoint plugin
+Vue.use(VueWaypoint)
+
 // VeeValidate
 import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)

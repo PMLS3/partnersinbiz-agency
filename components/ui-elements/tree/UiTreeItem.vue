@@ -1,44 +1,37 @@
 <template>
-  <div
-    class="relative h-12 border border-orange-500 border-dashed"
-    :class="schema.class"
-    :style="schema.style"
-    :slot="schema.slot"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-    @dragenter.prevent
-    @dragover.prevent
-    @drop.prevent="drop(schema)"
-  >
-    <ComponentsCreatorEditorButtons
-      :schema="schema"
-      :index="index"
-      :mainIndex="mainIndex"
-      class="absolute top-0"
-      v-if="schema.place.length == 1 && hover"
-    />
+  <div>
+    <div
+      class="relative h-12 border border-orange-500 border-dashed"
+      :style="indent"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
+      @dragenter.prevent
+      @dragover.prevent
+      @drop.prevent="drop(schema)"
+    >
+      {{ schema.title }}
 
-    <ComponentsCreatorEditorButtons
-      :schema="schema"
-      :index="index"
-      :mainIndex="mainIndex"
-      v-if="schema.place.length > 1 && hover"
-      class="absolute top-0 right-0 mr-1"
-    />
-
+      <ComponentsCreatorEditorButtons
+        :schema="schema"
+        :index="index"
+        :mainIndex="mainIndex"
+        class="absolute top-0 right-0 mr-1"
+      />
+    </div>
     <UiTreeMenu
       v-for="(field, ind) in schema.children"
       :key="ind"
       :schema="field"
       :mainIndex="mainIndex"
+      :depth="depth + 1"
     />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'DIV',
-  props: ['schema', 'index', 'mainIndex'],
+  name: 'UiTreeItem',
+  props: ['schema', 'index', 'mainIndex', 'depth'],
   components: {
     ComponentCreatorEditor: () =>
       import(
@@ -49,6 +42,11 @@ export default {
     return {
       hover: false,
     }
+  },
+  computed: {
+    indent() {
+      return { transform: `translate(${this.depth * 50}px)` }
+    },
   },
   methods: {
     drop(item) {

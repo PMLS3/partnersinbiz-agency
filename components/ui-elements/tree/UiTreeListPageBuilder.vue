@@ -6,6 +6,7 @@
         :key="ind"
         :schema="field"
         :mainIndex="index"
+        :depth="0"
       />
     </div>
   </div>
@@ -13,6 +14,7 @@
 
 <script>
 export default {
+  name: 'UiTreeListPageBuilder',
   props: {
     list: {
       type: Array,

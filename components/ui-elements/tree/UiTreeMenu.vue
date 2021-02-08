@@ -1,19 +1,16 @@
 <template>
-  <div>
-    {{ schema.title }}
-    <UiTreeItem
-      :key="mykey"
-      :schema="schema"
-      :index="myindex"
-      :mainIndex="mainIndex"
-      :item_id="schema.id"
-    ></UiTreeItem>
-  </div>
+  <UiTreeItem
+    :key="mykey"
+    :schema="schema"
+    :index="myindex"
+    :mainIndex="mainIndex"
+    :item_id="schema.id"
+  />
 </template>
 
 <script>
 export default {
-  name: 'ComponentCreatorEditor',
+  name: 'UiTreeMenu',
 
   components: {},
   data() {

@@ -1,12 +1,9 @@
 <template>
-  <div class="font-serif bg-white">
-    <client-only>
-      <!-- <FormsTypes /> -->
-    </client-only>
-  </div>
+  <ExampleWireframeSliding />
 </template>
 <script>
 export default {
+  layout: 'fullPage',
   data() {
     return {
       show: true,
