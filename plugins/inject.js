@@ -4,32 +4,21 @@ export default (context, inject) => {
   const hello = (msg) => console.log(`Hello ${msg}!`)
 
   const comp_create = (element, list) => {
-    // console.log('LIST', list)
     let payload = {}
-    // let element = document.getElementById(name)
-    console.log('element', element)
     if (element) {
       let class_name = element.className
 
-      console.log(class_name)
-
       let child_element_count = element.childElementCount
-      // console.log(child_element_count)
 
       let children = element.children
-      console.log('children', children)
 
       var child_nodes = element.childNodes
-      // console.log('children', child_nodes)
 
       let node_name = element.nodeName
-      console.log('node_name', node_name)
 
       let attributes = element.attributes
-      // console.log('attributes', attributes)
 
       let innerText = element.innerText
-      console.log('innerText', innerText)
       let item = {}
 
       item.title = node_name.toUpperCase()
@@ -82,14 +71,11 @@ export default (context, inject) => {
         att = atts[i]
         nodes.push(att.nodeName)
         values.push(att.nodeValue)
-        console.log('att.nodeName', typeof att.nodeName)
         let nodeName = att.nodeName
         if (att.nodeValue) {
           if (att.nodeName.includes('-')) {
-            console.log('- ' + att.nodeName)
             let split = att.nodeName.split('-')
             let newName = split[0] + split[1]
-            console.log('- ' + newName)
             nodeName = newName
           }
         }
@@ -107,26 +93,17 @@ export default (context, inject) => {
       function childElementLoop(elm, i, place) {
         let class_name = elm.className
 
-        console.log('elm', elm)
-
         let child_element_count = elm.childElementCount
-        // console.log(child_element_count)
 
         let children = elm.children
-        // console.log(children)
 
         var child_nodes = elm.childNodes
-        // console.log('children', child_nodes)
 
         let node_name = elm.nodeName
-        console.log('node_name', node_name)
 
         let attributes = elm.attributes
-        console.log('attributes', attributes)
-        console.log('attributes typeof', typeof attributes)
 
         let innerText = elm.innerText
-        console.log('innerText', innerText, i)
 
         let child_item = {}
 
@@ -175,25 +152,20 @@ export default (context, inject) => {
           i++
         ) {
           att = atts[i]
-          console.log('at', att)
           nodes.push(att.nodeName)
           values.push(att.nodeValue)
-          console.log('att.nodeName', typeof att.nodeName)
           let nodeName = att.nodeName
 
           if (att.nodeValue) {
             if (att.nodeName.includes('-')) {
-              console.log('- ' + att.nodeName)
               let split = att.nodeName.split('-')
               let newName = split[0] + split[1]
-              console.log('- ' + newName)
               nodeName = newName
             }
           }
 
           child_item[nodeName] = att.nodeValue
         }
-        console.log('noded', nodes, values)
         if (innerText) {
           child_item.innerText = innerText
         }
@@ -207,7 +179,6 @@ export default (context, inject) => {
         return child_item
       }
 
-      console.log('payload', payload)
       return payload
     }
   }

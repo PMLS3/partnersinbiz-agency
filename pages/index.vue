@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  // layout: 'fullPage',
+  layout: 'fullPage',
   data() {
     return {
       show: true,

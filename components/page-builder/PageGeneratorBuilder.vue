@@ -70,8 +70,6 @@ export default {
     })
 
     function getList(data) {
-      console.log('list', list.value)
-      console.log('main', mainIndex.value)
       let schema = Schema.value
       let MainIndex = mainIndex.value
       let addList = list.value[MainIndex][0]
@@ -310,11 +308,6 @@ export default {
           }
         }
       }
-      // if (data.place.length == 2) {
-      //   console.log('value', list.value[data.place[0]].children[data.place[1]])
-      //   list.value[data.place[0]].children[data.place[1]].children.push(data)
-      //   console.log('list', list.value)
-      // }
     }
 
     let list = ref([])
@@ -337,9 +330,6 @@ export default {
     )
 
     watch(drag_end_component, (newValue, oldValue) => {
-      console.log('drag start', drag_start_component.value)
-      console.log('drag end', drag_end_component.value)
-
       let new_component = drag_start_component.value.schema
       new_component.id = drag_start_component.value.schema.id + 'l'
 
@@ -348,12 +338,9 @@ export default {
       Schema.value = drag_end_component.value.schema
       store.commit('page_builder/LIST_UPDATE', listPos.value)
 
-      // $nuxt.$emit('component-added', drag_start_component.value.schema)
-      console.log('new_component', new_component)
       $nuxt.$emit('component-added', new_component)
 
       setTimeout(() => {
-        console.log('payload to delete:', drag_start_component.value)
         store.commit(
           'page_builder/DELETE_COMPONENT',
           drag_start_component.value
@@ -370,7 +357,6 @@ export default {
     )
 
     watch(delete_component, (newValue, oldValue) => {
-      console.log('delete_component', newValue, oldValue)
       let schema = delete_component.value.schema
       let MainIndex = delete_component.value.MainIndex
 

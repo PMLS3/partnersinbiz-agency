@@ -117,7 +117,7 @@
         :schema="field"
         :mainIndex="mainIndex"
         :depth="depth + 1"
-      />
+      ></UiTreeMenu>
     </div>
   </div>
 </template>
@@ -131,6 +131,7 @@ export default {
       import(
         '@/components/page-builder/component-creator/ComponentsCreatorEditorButtons.vue'
       ),
+    UiTreeMenu: () => import('./UiTreeMenu.vue'),
   },
   data() {
     return {

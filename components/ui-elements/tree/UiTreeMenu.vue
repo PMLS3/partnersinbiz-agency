@@ -14,6 +14,9 @@
 <script>
 export default {
   name: 'UiTreeMenu',
+  components: {
+    UiTreeItem: () => import('./UiTreeItem.vue'),
+  },
 
   data() {
     return {

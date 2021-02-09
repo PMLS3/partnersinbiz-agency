@@ -166,26 +166,26 @@ module.exports = {
           'BElIDO8oe-f5IJCFctJDlKMVaOlbfwXK1XusDBdHShY3YtiKBwYaBMBJLO3JE9QdMLbKazjI3icNvdWlh1JWqc4', // Sets vapid key for FCM after initialization
       },
       development: {
-        apiKey: 'AIzaSyAv6qjy00LlrxmBCk2xuaRKjw2zXJE1jPo',
-        authDomain: 'partnersinbiz-agency.firebaseapp.com',
-        databaseURL: 'https://partnersinbiz-agency.firebaseio.com',
-        projectId: 'partnersinbiz-agency',
-        storageBucket: 'partnersinbiz-agency.appspot.com',
-        messagingSenderId: '463207487963',
-        appId: '1:463207487963:web:d555981e27f1c41189affe',
-        measurementId: 'G-0ML2QYBW4V',
-        fcmPublicVapidKey:
-          'BElIDO8oe-f5IJCFctJDlKMVaOlbfwXK1XusDBdHShY3YtiKBwYaBMBJLO3JE9QdMLbKazjI3icNvdWlh1JWqc4', // Sets vapid key for FCM after initialization
-        // apiKey: 'AIzaSyBMj2o9iEITpXpmXGiaJ9wfDr8otWdh-fw',
-        // authDomain: 'apps-test-all.firebaseapp.com',
-        // databaseURL: 'https://apps-test-all.firebaseio.com',
-        // projectId: 'apps-test-all',
-        // storageBucket: 'apps-test-all.appspot.com',
-        // messagingSenderId: '458723667512',
-        // appId: '1:458723667512:web:112c5fcd9c7ece141140cd',
-        // measurementId: 'G-NCTV5W0QKN',
+        // apiKey: 'AIzaSyAv6qjy00LlrxmBCk2xuaRKjw2zXJE1jPo',
+        // authDomain: 'partnersinbiz-agency.firebaseapp.com',
+        // databaseURL: 'https://partnersinbiz-agency.firebaseio.com',
+        // projectId: 'partnersinbiz-agency',
+        // storageBucket: 'partnersinbiz-agency.appspot.com',
+        // messagingSenderId: '463207487963',
+        // appId: '1:463207487963:web:d555981e27f1c41189affe',
+        // measurementId: 'G-0ML2QYBW4V',
         // fcmPublicVapidKey:
-        //   'BJnNaNqvpiEa1uoj4fSPMD_BNU3rFPB7QYQIJb9KsqtyPbmYT7HeajpCjFD1NViUcwQ8dBaHFTpEmoA4TGAEanU', // Sets vapid key for FCM after initialization
+        //   'BElIDO8oe-f5IJCFctJDlKMVaOlbfwXK1XusDBdHShY3YtiKBwYaBMBJLO3JE9QdMLbKazjI3icNvdWlh1JWqc4', // Sets vapid key for FCM after initialization
+        apiKey: 'AIzaSyBMj2o9iEITpXpmXGiaJ9wfDr8otWdh-fw',
+        authDomain: 'apps-test-all.firebaseapp.com',
+        databaseURL: 'https://apps-test-all.firebaseio.com',
+        projectId: 'apps-test-all',
+        storageBucket: 'apps-test-all.appspot.com',
+        messagingSenderId: '458723667512',
+        appId: '1:458723667512:web:112c5fcd9c7ece141140cd',
+        measurementId: 'G-NCTV5W0QKN',
+        fcmPublicVapidKey:
+          'BJnNaNqvpiEa1uoj4fSPMD_BNU3rFPB7QYQIJb9KsqtyPbmYT7HeajpCjFD1NViUcwQ8dBaHFTpEmoA4TGAEanU', // Sets vapid key for FCM after initialization
       },
     },
     customEnv: false,
