@@ -97,7 +97,7 @@
     "twit": "^2.2.11",
     "v-clipboard": "^2.2.3",
     "v-validate": "^0.1.4",
-    "vee-validate": "^2.2.8",
+    "vee-validate": "^4.6.9",
     "verte": "^0.0.12",
     "videojs": "^1.0.0",
     "vue": "^2.6.12",
